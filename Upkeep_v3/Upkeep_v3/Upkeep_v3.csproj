@@ -817,6 +817,7 @@
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="HtmlPage2.html" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
