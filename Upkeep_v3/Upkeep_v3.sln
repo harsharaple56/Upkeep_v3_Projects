@@ -8,7 +8,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Upkeep_V3_Services", "Upkeep_V3_Services\", "{00BB05ED-9C54-4B87-ADA0-F9794DFE8A87}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		ProjectReferences = ""
+		ProjectReferences = "{9ad65256-e522-4f39-83e3-f3e45eac36dd}|UpkeepV3_BusinessLayer.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_60461"
 		Debug.AspNetCompiler.PhysicalPath = "Upkeep_V3_Services\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60461\"

@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>C:\Users\PC-06\Downloads\ModalPopupExtenderExample\Bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3725,6 +3725,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visit_Configuration.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4082,6 +4083,13 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visit_Configuration.aspx.cs">
+      <DependentUpon>Visit_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visit_Configuration.aspx.designer.cs">
+      <DependentUpon>Visit_Configuration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\Upkeep_V3_Services\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -739,5 +739,48 @@ public class My_Upkeep
     #endregion
 
 
+    #region VMS
+
+    //Added by RC This function is used to save VMS Configuration 
+
+    public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID)
+    {
+
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strXmlVMS_Question, strXmlVMS_Feedback, blFeedbackCompulsary, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    #endregion
+
+    #region General Functions
+
+    //Added by RC This function is used to Fetch Answer type master
+
+    public DataSet Fetch_Answer(char Key)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Answer(Key,StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    #endregion
 
 }

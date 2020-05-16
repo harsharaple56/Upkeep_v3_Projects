@@ -1022,7 +1022,45 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #endregion
 
+    #region VMS
 
+    //Added by RC This function is used to save VMS Configuration 
+    [WebMethod]
+    public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strXmlVMS_Question, strXmlVMS_Feedback, blFeedbackCompulsary, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
+
+    #region General Functions
+
+    //Added by RC This function is used to Fetch Answer type master
+
+    [WebMethod]
+    public DataSet Fetch_Answer(char Key)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Answer(Key);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    #endregion
 }
 
 public class AuthenticationHeader : SoapHeader
