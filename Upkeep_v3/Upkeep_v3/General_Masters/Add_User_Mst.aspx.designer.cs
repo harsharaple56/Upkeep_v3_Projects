@@ -40,33 +40,6 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// ddlZone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlZone;
-        
-        /// <summary>
-        /// ddlLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
-        
-        /// <summary>
-        /// ddlSublocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSublocation;
-        
-        /// <summary>
         /// ddlDepartment control.
         /// </summary>
         /// <remarks>

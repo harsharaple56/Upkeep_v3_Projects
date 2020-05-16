@@ -147,11 +147,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_User_Type()
+    public DataSet Fetch_User_Type(int CompanyId)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjUpkeep.FetchUserType();
+            ds = ObjUpkeep.FetchUserType(CompanyId);
         }
         catch (Exception ex)
         {

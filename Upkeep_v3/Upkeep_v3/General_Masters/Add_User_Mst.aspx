@@ -59,19 +59,18 @@
                                         <div class="col-xl-8 offset-xl-2">
                                             <div class="m-form__section m-form__section--first">
                                               
-                                                <div class="form-group m-form__group row">
+                                                 <%-- commented by sujata --%>
+
+                                           <%--         <div class="form-group m-form__group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Zone:</label>
                                                     <div class="col-xl-9 col-lg-9">
-                                                        <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                        <asp:DropDownList ID="ddlZone" class="form-control m-input" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList>
-                                                    <%--  OnSelectedIndexChanged="ddlZone_SelectedIndexChanged" AutoPostBack="true"--%>
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location:</label>
                                                     <div class="col-xl-9 col-lg-9">
-                                                        <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                        <asp:DropDownList ID="ddlLocation" class="form-control m-input" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList>
                                                      
 
@@ -80,13 +79,12 @@
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location:</label>
                                                     <div class="col-xl-9 col-lg-9">
-                                                        <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                        <asp:DropDownList ID="ddlSublocation" class="form-control m-input"  OnSelectedIndexChanged="ddlSublocation_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList>
                                                       
-                                                      
-
                                                     </div>
-                                                </div>
+                                                </div>--%>   
+                                    <%-- end commented by sujata --%>
+                                         
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Department:</label>
                                                     <div class="col-xl-9 col-lg-9">
