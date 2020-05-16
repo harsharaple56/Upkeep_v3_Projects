@@ -173,7 +173,11 @@
         </s:complexType>
       </s:element>
       <s:element name="Fetch_User_Type">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="Fetch_User_TypeResponse">
         <s:complexType>

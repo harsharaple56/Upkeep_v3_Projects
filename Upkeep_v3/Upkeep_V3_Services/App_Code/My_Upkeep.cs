@@ -176,7 +176,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet FetchDepartment(int CompanyID)
+    public DataSet FetchDepartment(int CompanyID)  //Added CompanyId by sujata
     {
         try
         {
@@ -196,7 +196,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet FetchUserType()
+    public DataSet FetchUserType(int CompanyID)  //Added CompanyId by sujata
     {
         try
         {
@@ -204,7 +204,7 @@ public class My_Upkeep
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
 
-            ds = ObjUpkeepCC_BL.FetchUserType(StrConn);
+            ds = ObjUpkeepCC_BL.FetchUserType(CompanyID,StrConn);
 
             return ds;
         }

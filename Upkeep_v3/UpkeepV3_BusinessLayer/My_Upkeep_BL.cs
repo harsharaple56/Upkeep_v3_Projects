@@ -303,13 +303,14 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet FetchUserType(String StrConn)
+        public DataSet FetchUserType(int CompanyID , String StrConn) //Added CompanyId by sujata
         {
             try
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_User_Type", con);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
