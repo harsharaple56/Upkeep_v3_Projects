@@ -510,7 +510,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet CategoryMaster_CRUD(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -518,6 +518,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_Category", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("CompanyID", CompanyID); //Added by sujata
                 cmd.Parameters.AddWithValue("Category_ID", Category_ID);
                 cmd.Parameters.AddWithValue("Category_Desc", Category_Desc);
                 cmd.Parameters.AddWithValue("DepartmentID", DepartmentID);
@@ -535,7 +536,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet SubCategoryMaster_CRUD(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
+        public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -543,6 +544,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_SubCategory", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("CompanyID", CompanyID); //Added by sujata 
                 cmd.Parameters.AddWithValue("SubCategory_ID", SubcategoryID);
                 cmd.Parameters.AddWithValue("SubCategory_Desc", SubCategoryDesc);
                 cmd.Parameters.AddWithValue("Category_ID", CategoryID);
@@ -598,14 +600,14 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_Workflow(int ZoneID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID, string StrConn)
         {
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_TKT_Fetch_Workflow", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ZoneID", ZoneID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
                 cmd.Parameters.AddWithValue("@SubCategoryID", SubCategoryID);
                 cmd.Parameters.AddWithValue("@TktPrefix", TicketPrefix);
@@ -620,7 +622,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Ticket_Details(string TicketCode, int ZoneID, int LocationID, int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, string StrConn)
+        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, string StrConn)
         {
             try
             {
@@ -628,9 +630,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_Ticket_Mast", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@TktCode", TicketCode);
-                cmd.Parameters.AddWithValue("@ZoneID", ZoneID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LocationID", LocationID);
-                cmd.Parameters.AddWithValue("@SubLocationID", SubLocationID);
+                //cmd.Parameters.AddWithValue("@SubLocationID", SubLocationID);
                 cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
                 cmd.Parameters.AddWithValue("@SubCategoryID", SubCategoryID);
                 cmd.Parameters.AddWithValue("@TicketMessage", TicketMessage);

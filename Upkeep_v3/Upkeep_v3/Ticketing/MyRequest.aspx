@@ -116,15 +116,15 @@
 								<table class="m-datatable" id="html_table" width="100%">
 									<thead>
 										<tr>
-											<th title="Field #1" data-field="OrderID">Ticket Number</th>
-											<th title="Field #2" data-field="Owner">Zone</th>
-											<th title="Field #3" data-field="Contact">Location</th>
-											<th title="Field #4" data-field="CarMake">Sub Location</th>
-											<th title="Field #5" data-field="CarModel">Category</th>
-											<th title="Field #6" data-field="Color">Sub Category</th>
-											<th title="Field #7" data-field="RequestDate">Request Date</th>
-											<th title="Field #8" data-field="RequestStatus">RequestStatus</th>
-											<th title="Field #9" data-field="ActionStatus">Action Status</th>
+											<th title="Ticket Number" data-field="TicketNo">Ticket Number</th>
+											<%--<th title="Field #2" data-field="Owner">Zone</th>--%>
+											<th title="Location" data-field="Location">Location</th>
+											<%--<th title="Field #4" data-field="CarMake">Sub Location</th>--%>
+											<th title="Category" data-field="Cat">Category</th>
+											<th title="Sub Category" data-field="SubCat">Sub Category</th>
+											<th title="Request Date" data-field="RequestDate">Request Date</th>
+											<th title="Request Status" data-field="RequestStatus">Request Status</th>
+											<th title="Action Status" data-field="ActionStatus">Action Status</th>
 											<%--<th title="Field #10" data-field="Type">View</th>--%>
 										</tr>
 									</thead>
