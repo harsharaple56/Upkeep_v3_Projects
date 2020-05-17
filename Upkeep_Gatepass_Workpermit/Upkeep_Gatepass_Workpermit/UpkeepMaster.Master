@@ -6,6 +6,7 @@
 <head runat="server">
 
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="description" content="Latest updates and statistic charts" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
     <meta name="author" content="" />
@@ -496,7 +497,7 @@
 
                                     <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
 
-                                        <a href="<%# Eval("Navigate_Url") %>" class="m-menu__link">
+                                        <a href="<%# Eval("Navigate_Url").ToString() == "" ? "javascript:;" : ConfigurationManager.AppSettings["VDName"] + Eval("Navigate_Url").ToString() %>" class="m-menu__link">
                                             <i class="m-menu__link-icon flaticon-layers"></i>
                                             <span class="m-menu__link-text"><%# Eval("Menu_Desc") %></span>
                                             <i class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -509,7 +510,7 @@
                                                 <asp:Repeater ID="rptVerSubMenu" runat="server">
                                                     <ItemTemplate>
                                                         <li class="m-menu__item " aria-haspopup="true">
-                                                            <a href="<%# Eval("Navigate_Url") %>" class="m-menu__link ">
+                                                            <a href="<%# Eval("Navigate_Url").ToString() == "" ? "javascript:;" : ConfigurationManager.AppSettings["VDName"] + Eval("Navigate_Url").ToString() %>" class="m-menu__link">
                                                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                                                     <span></span></i><span class="m-menu__link-text"><%# Eval("Menu_Desc") %> </span></a></li>
 
