@@ -405,11 +405,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_Workflow(int ZoneID, int CategoryID, int SubCategoryID,string TicketPrefix,string LoggedInUserID)
+    public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID,string TicketPrefix,string LoggedInUserID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Ticket_Workflow(ZoneID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Ticket_Workflow(CompanyID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -419,11 +419,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Insert_Ticket_Details(string TicketCode, int ZoneID,int LocationID,int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage,string list_Images, string LoggedInUserID, string strAction)
+    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage,string list_Images, string LoggedInUserID, string strAction)
     {
         try
         {
-            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, ZoneID, LocationID, SubLocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID,strAction);
+            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID,strAction);
         }
         catch (Exception ex)
         {

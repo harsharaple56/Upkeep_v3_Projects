@@ -1337,9 +1337,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_Workflow", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Ticket_Workflow(int ZoneID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID) {
             object[] results = this.Invoke("Fetch_Ticket_Workflow", new object[] {
-                        ZoneID,
+                        CompanyID,
                         CategoryID,
                         SubCategoryID,
                         TicketPrefix,
@@ -1348,17 +1348,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_WorkflowAsync(int ZoneID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID) {
-            this.Fetch_Ticket_WorkflowAsync(ZoneID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID, null);
+        public void Fetch_Ticket_WorkflowAsync(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID) {
+            this.Fetch_Ticket_WorkflowAsync(CompanyID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_WorkflowAsync(int ZoneID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID, object userState) {
+        public void Fetch_Ticket_WorkflowAsync(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID, object userState) {
             if ((this.Fetch_Ticket_WorkflowOperationCompleted == null)) {
                 this.Fetch_Ticket_WorkflowOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_WorkflowOperationCompleted);
             }
             this.InvokeAsync("Fetch_Ticket_Workflow", new object[] {
-                        ZoneID,
+                        CompanyID,
                         CategoryID,
                         SubCategoryID,
                         TicketPrefix,
@@ -1374,12 +1374,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int ZoneID, int LocationID, int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction) {
+        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction) {
             object[] results = this.Invoke("Insert_Ticket_Details", new object[] {
                         TicketCode,
-                        ZoneID,
+                        CompanyID,
                         LocationID,
-                        SubLocationID,
                         CategoryID,
                         SubCategoryID,
                         TicketMessage,
@@ -1390,20 +1389,19 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int ZoneID, int LocationID, int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction) {
-            this.Insert_Ticket_DetailsAsync(TicketCode, ZoneID, LocationID, SubLocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction, null);
+        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction) {
+            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction, null);
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int ZoneID, int LocationID, int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, object userState) {
+        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, object userState) {
             if ((this.Insert_Ticket_DetailsOperationCompleted == null)) {
                 this.Insert_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Ticket_DetailsOperationCompleted);
             }
             this.InvokeAsync("Insert_Ticket_Details", new object[] {
                         TicketCode,
-                        ZoneID,
+                        CompanyID,
                         LocationID,
-                        SubLocationID,
                         CategoryID,
                         SubCategoryID,
                         TicketMessage,

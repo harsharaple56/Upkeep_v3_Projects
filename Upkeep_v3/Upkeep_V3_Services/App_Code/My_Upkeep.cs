@@ -416,13 +416,13 @@ public class My_Upkeep
         return ds;
     }
 
-    public DataSet Fetch_Ticket_Workflow(int ZoneID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID)
+    public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Ticket_Workflow(ZoneID, CategoryID, SubCategoryID,TicketPrefix, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Ticket_Workflow(CompanyID, CategoryID, SubCategoryID,TicketPrefix, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -432,13 +432,13 @@ public class My_Upkeep
         //return ds;
     }
 
-    public DataSet Insert_Ticket_Details(string TicketCode, int ZoneID, int LocationID, int SubLocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction)
+    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_Ticket_Details(TicketCode, ZoneID, LocationID, SubLocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction, StrConn);
             return ds;
         }
         catch (Exception ex)
