@@ -510,7 +510,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet CategoryMaster_CRUD(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -518,6 +518,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_Category", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("CompanyID", CompanyID); //Added by sujata
                 cmd.Parameters.AddWithValue("Category_ID", Category_ID);
                 cmd.Parameters.AddWithValue("Category_Desc", Category_Desc);
                 cmd.Parameters.AddWithValue("DepartmentID", DepartmentID);
@@ -535,7 +536,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet SubCategoryMaster_CRUD(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
+        public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -543,6 +544,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_SubCategory", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("CompanyID", CompanyID); //Added by sujata 
                 cmd.Parameters.AddWithValue("SubCategory_ID", SubcategoryID);
                 cmd.Parameters.AddWithValue("SubCategory_Desc", SubCategoryDesc);
                 cmd.Parameters.AddWithValue("Category_ID", CategoryID);

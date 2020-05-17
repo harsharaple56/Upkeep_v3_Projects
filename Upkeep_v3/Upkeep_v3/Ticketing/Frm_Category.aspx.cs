@@ -51,7 +51,7 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-                 ds = ObjUpkeep.CategoryMaster_CRUD(0, "",0, LoggedInUserID, "R"); 
+                 ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,0, "",0, LoggedInUserID, "R"); 
 
                 if (ds.Tables.Count > 0)
                 {
@@ -156,7 +156,7 @@ namespace Upkeep_v3.Ticketing
             string data = "";
             try
             {
-                ds = ObjUpkeep.CategoryMaster_CRUD(0, "",0, LoggedInUserID, "R");
+                ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,0, "",0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -231,7 +231,7 @@ namespace Upkeep_v3.Ticketing
 
                 DepartmentID = Convert.ToInt32(ddlDept.SelectedValue);
 
-                ds = ObjUpkeep.CategoryMaster_CRUD(Category_ID, txtCategoryDesc.Text.Trim(),DepartmentID,LoggedInUserID,Action);
+                ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,Category_ID, txtCategoryDesc.Text.Trim(),DepartmentID,LoggedInUserID,Action);
 
                 if (ds.Tables.Count > 0)
                 {

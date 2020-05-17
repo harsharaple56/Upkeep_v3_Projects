@@ -352,13 +352,13 @@ public class My_Upkeep
         }
     }
 
-    public DataSet CategoryMaster_CRUD(int Category_ID, string Category_Desc,int DepartmentID,string LoggedInUserID, string Action)
+    public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc,int DepartmentID,string LoggedInUserID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty; 
-            ds = ObjUpkeepCC_BL.CategoryMaster_CRUD(Category_ID, Category_Desc, DepartmentID, LoggedInUserID, Action, StrConn);
+            ds = ObjUpkeepCC_BL.CategoryMaster_CRUD(CompanyID, Category_ID, Category_Desc, DepartmentID, LoggedInUserID, Action, StrConn);
             //return ds;
         }
         catch (Exception ex)
@@ -368,13 +368,13 @@ public class My_Upkeep
         return ds;
     }
 
-    public DataSet SubCategoryMaster_CRUD(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
+    public DataSet SubCategoryMaster_CRUD(int ComapnyID,int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.SubCategoryMaster_CRUD(SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action, StrConn);
+            ds = ObjUpkeepCC_BL.SubCategoryMaster_CRUD(ComapnyID,SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action, StrConn);
 
         }
         catch (Exception ex)

@@ -1197,8 +1197,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CategoryMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CategoryMaster_CRUD(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CategoryMaster_CRUD(int CompanyID, int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CategoryMaster_CRUD", new object[] {
+                        CompanyID,
                         Category_ID,
                         Category_Desc,
                         DepartmentID,
@@ -1208,16 +1209,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void CategoryMaster_CRUDAsync(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action) {
-            this.CategoryMaster_CRUDAsync(Category_ID, Category_Desc, DepartmentID, LoggedInUserID, Action, null);
+        public void CategoryMaster_CRUDAsync(int CompanyID, int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action) {
+            this.CategoryMaster_CRUDAsync(CompanyID, Category_ID, Category_Desc, DepartmentID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CategoryMaster_CRUDAsync(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, object userState) {
+        public void CategoryMaster_CRUDAsync(int CompanyID, int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, object userState) {
             if ((this.CategoryMaster_CRUDOperationCompleted == null)) {
                 this.CategoryMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCategoryMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("CategoryMaster_CRUD", new object[] {
+                        CompanyID,
                         Category_ID,
                         Category_Desc,
                         DepartmentID,
@@ -1234,8 +1236,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SubCategoryMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SubCategoryMaster_CRUD(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action) {
+        public System.Data.DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("SubCategoryMaster_CRUD", new object[] {
+                        CompanyID,
                         SubcategoryID,
                         SubCategoryDesc,
                         CategoryID,
@@ -1246,16 +1249,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void SubCategoryMaster_CRUDAsync(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action) {
-            this.SubCategoryMaster_CRUDAsync(SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action, null);
+        public void SubCategoryMaster_CRUDAsync(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action) {
+            this.SubCategoryMaster_CRUDAsync(CompanyID, SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void SubCategoryMaster_CRUDAsync(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, object userState) {
+        public void SubCategoryMaster_CRUDAsync(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, object userState) {
             if ((this.SubCategoryMaster_CRUDOperationCompleted == null)) {
                 this.SubCategoryMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSubCategoryMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("SubCategoryMaster_CRUD", new object[] {
+                        CompanyID,
                         SubcategoryID,
                         SubCategoryDesc,
                         CategoryID,

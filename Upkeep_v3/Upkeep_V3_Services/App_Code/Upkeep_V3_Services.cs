@@ -347,11 +347,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet CategoryMaster_CRUD(int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action)
+    public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.CategoryMaster_CRUD(Category_ID, Category_Desc, DepartmentID,LoggedInUserID, Action);
+            ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,Category_ID, Category_Desc, DepartmentID,LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -362,11 +362,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet SubCategoryMaster_CRUD(int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
+    public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.SubCategoryMaster_CRUD(SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action);
+            ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
