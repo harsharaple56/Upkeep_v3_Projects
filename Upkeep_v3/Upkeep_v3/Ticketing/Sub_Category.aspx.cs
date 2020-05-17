@@ -12,9 +12,12 @@ namespace Upkeep_v3.Ticketing
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
+        int CompanyID = 0;   //Added by Sujata
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            CompanyID = Convert.ToInt32(Session["CompanyID"]); //Added by Sujata
             if (LoggedInUserID == "")
             {
                 //Response.Redirect("~/Login.aspx", false);
@@ -44,7 +47,7 @@ namespace Upkeep_v3.Ticketing
             string data = "";
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(0, "", 0,0, LoggedInUserID, "R");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, 0, "", 0,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -135,7 +138,7 @@ namespace Upkeep_v3.Ticketing
                 }
 
 
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(SubCategory_ID, txtSubCategoryDesc.Text.Trim(), CategoryID, Approval_Required, LoggedInUserID, Action);
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, txtSubCategoryDesc.Text.Trim(), CategoryID, Approval_Required, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -204,7 +207,7 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(SubCategory_ID, "", 0,0, LoggedInUserID, "R");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, "", 0,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -240,7 +243,7 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(DelSubCategory_ID, "", 0,0, LoggedInUserID, "D");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,DelSubCategory_ID, "", 0,0, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
