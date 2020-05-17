@@ -33,7 +33,8 @@ namespace Upkeep_v3.General_Masters
             //}
             if (!IsPostBack)
             {
-                bindZoneDesc();
+                //Commented by sujata
+                //bindZoneDesc();
                 bindUserType();
                 bindDepartment();
                 int User_ID = Convert.ToInt32(Request.QueryString["User_ID"]);
@@ -98,10 +99,11 @@ namespace Upkeep_v3.General_Masters
             User_Type_ID = Convert.ToInt32(ddlTypeUser.SelectedValue);
             Login_Id = txtUserLogin.Text.Trim();
             password = txtPassword.Text.Trim();
-            Zone = Convert.ToInt32(ddlZone.SelectedValue);
-            location = Convert.ToInt32(ddlLocation.SelectedValue);
-            subLocation = Convert.ToInt32(ddlSublocation.SelectedValue);
-            Department = Convert.ToInt32(ddlDepartment.SelectedValue);
+            Zone = 0;           //Commented by sujata       Convert.ToInt32(ddlZone.SelectedValue);
+            location = 0;       //Commented by sujata       Convert.ToInt32(ddlLocation.SelectedValue);
+            subLocation = 0;    //Commented by sujata       Convert.ToInt32(ddlSublocation.SelectedValue);
+            Department = 0;     //Commented by sujata       Convert.ToInt32(ddlDepartment.SelectedValue);
+
 
             if (chk_IsApproval.Checked == true)
             {
@@ -188,119 +190,120 @@ namespace Upkeep_v3.General_Masters
         {
 
         }
+        //Commented by sujata
+        //protected void ddlSublocation_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        protected void ddlSublocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //}
 
-        }
+        //protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    bindSubLoctionDesc(Convert.ToInt32(ddlLocation.SelectedValue));
+        //}
 
-        protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindSubLoctionDesc(Convert.ToInt32(ddlLocation.SelectedValue));
-        }
+        //protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    bindLoctionDesc(Convert.ToInt32(ddlZone.SelectedValue));
 
-        protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindLoctionDesc(Convert.ToInt32(ddlZone.SelectedValue));
-
-        }
-
-
-        public void bindZoneDesc()
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-
-                ds = ObjUpkeepCC.Fetch_Zone();
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        ddlZone.DataSource = ds.Tables[0];
-                        ddlZone.DataTextField = "Zone";
-                        ddlZone.DataValueField = "Zone_ID";
-                        ddlZone.DataBind();
-                        ddlZone.Items.Insert(0, new ListItem("--Select--", "0"));
+        //}
 
 
-                    }
+        //public void bindZoneDesc()
+        //{
+        //    try
+        //    {
+        //        DataSet ds = new DataSet();
 
-                }
-            }
+        //        ds = ObjUpkeepCC.Fetch_Zone();
 
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-        public void bindLoctionDesc(int Zone)
-        {
-            try
-            {
-
-
-                //int Zone;
-
-                DataSet ds = new DataSet();
-
-                Zone = Convert.ToInt32(ddlZone.SelectedValue);
+        //        if (ds.Tables.Count > 0)
+        //        {
+        //            if (ds.Tables[0].Rows.Count > 0)
+        //            {
+        //                ddlZone.DataSource = ds.Tables[0];
+        //                ddlZone.DataTextField = "Zone";
+        //                ddlZone.DataValueField = "Zone_ID";
+        //                ddlZone.DataBind();
+        //                ddlZone.Items.Insert(0, new ListItem("--Select--", "0"));
 
 
-                ds = ObjUpkeepCC.Fetch_Location(Zone);
+        //            }
 
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        ddlLocation.DataSource = ds.Tables[0];
-                        ddlLocation.DataTextField = "Location";
-                        ddlLocation.DataValueField = "Loc_ID";
-                        ddlLocation.DataBind();
-                        ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //        }
+        //    }
 
-        }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
-        public void bindSubLoctionDesc(int LocID)
-        {
-            try
-            {
-               // int LocID;
-
-                DataSet ds = new DataSet();
-
-                LocID = Convert.ToInt32(ddlLocation.SelectedValue);
+        //}
+        //public void bindLoctionDesc(int Zone)
+        //{
+        //    try
+        //    {
 
 
-                ds = ObjUpkeepCC.Fetch_Sub_Location(LocID);
+        //        //int Zone;
 
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        ddlSublocation.DataSource = ds.Tables[0];
-                        ddlSublocation.DataTextField = "SubLocation";
-                        ddlSublocation.DataValueField = "SubLoc_ID";
-                        ddlSublocation.DataBind();
-                        ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //        DataSet ds = new DataSet();
 
-        }
+        //        Zone = Convert.ToInt32(ddlZone.SelectedValue);
+
+
+        //        ds = ObjUpkeepCC.Fetch_Location(Zone);
+
+        //        if (ds.Tables.Count > 0)
+        //        {
+        //            if (ds.Tables[0].Rows.Count > 0)
+        //            {
+        //                ddlLocation.DataSource = ds.Tables[0];
+        //                ddlLocation.DataTextField = "Location";
+        //                ddlLocation.DataValueField = "Loc_ID";
+        //                ddlLocation.DataBind();
+        //                ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+
+        //public void bindSubLoctionDesc(int LocID)
+        //{
+        //    try
+        //    {
+        //       // int LocID;
+
+        //        DataSet ds = new DataSet();
+
+        //        LocID = Convert.ToInt32(ddlLocation.SelectedValue);
+
+
+        //        ds = ObjUpkeepCC.Fetch_Sub_Location(LocID);
+
+        //        if (ds.Tables.Count > 0)
+        //        {
+        //            if (ds.Tables[0].Rows.Count > 0)
+        //            {
+        //                ddlSublocation.DataSource = ds.Tables[0];
+        //                ddlSublocation.DataTextField = "SubLocation";
+        //                ddlSublocation.DataValueField = "SubLoc_ID";
+        //                ddlSublocation.DataBind();
+        //                ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+        //end Commented by sujata
 
         public void bindDepartment()
         {
@@ -343,7 +346,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepCC.Fetch_User_Type();
+                ds = ObjUpkeepCC.Fetch_User_Type(CompanyID); ////added company id by sujata 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -386,15 +389,14 @@ namespace Upkeep_v3.General_Masters
                         TxtLandline.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Landine"]);
                         txtPassword.Text = Convert.ToString(ds.Tables[0].Rows[0]["Password"]);
                         txtAlterMobile.Text = Convert.ToString(ds.Tables[0].Rows[0]["USer_MobileAlter"]);
-                        ddlZone.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Zone_Id"]);
 
-                        bindLoctionDesc(Convert.ToInt32(ds.Tables[0].Rows[0]["Zone_Id"]));
-
-                        ddlLocation.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Loc_Id"]);
-
-                        bindSubLoctionDesc(Convert.ToInt32(ds.Tables[0].Rows[0]["Loc_Id"]));
-
-                        ddlSublocation.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubLoc_Id"]);
+                        //Commented by sujata
+                        //ddlZone.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Zone_Id"]);
+                        //bindLoctionDesc(Convert.ToInt32(ds.Tables[0].Rows[0]["Zone_Id"]));
+                        //ddlLocation.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Loc_Id"]);
+                        //bindSubLoctionDesc(Convert.ToInt32(ds.Tables[0].Rows[0]["Loc_Id"]));
+                        //ddlSublocation.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubLoc_Id"]);
+                        //end Commented by sujata
                         ddlDepartment.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Department_Id"]);
                         ddlTypeUser.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["User_Type_ID"]);
 

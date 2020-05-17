@@ -15,9 +15,11 @@ namespace Upkeep_v3.Ticketing
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;   //Added by Sujata
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]); //Added by Sujata
             // frmDepartment.Action = @"General_Masters/Add_Department.aspx";
             frmMain.Action = @"Frm_Category.aspx";
 
@@ -287,7 +289,7 @@ namespace Upkeep_v3.Ticketing
 
 
 
-                ds = ObjUpkeep.Fetch_Department(0);
+                ds = ObjUpkeep.Fetch_Department(CompanyID); //added company id by sujata 
 
                 if (ds.Tables.Count > 0)
                 {

@@ -303,13 +303,14 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet FetchUserType(String StrConn)
+        public DataSet FetchUserType(int CompanyID , String StrConn) //Added CompanyId by sujata
         {
             try
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_User_Type", con);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -1033,6 +1034,57 @@ namespace UpkeepV3_BusinessLayer
         #endregion
 
 
+        #region VMS
+        //Added by RC This function is used to save VMS Configuration
+        public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
+                cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@XmlVMS_Question", strXmlVMS_Question);
+                cmd.Parameters.AddWithValue("@XmlVMS_Feedback", strXmlVMS_Feedback);
+                cmd.Parameters.AddWithValue("@isFeedbackCompulsary", blFeedbackCompulsary);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
+        #region General Functions
+
+        //Added by RC This function is used to Fetch Answer type master
+        public DataSet Fetch_Answer(char Key,string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_Fetch_AnsMst", con);
+                cmd.Parameters.AddWithValue("@Key", Key);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
     }
 
 }

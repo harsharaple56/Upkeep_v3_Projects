@@ -14,8 +14,10 @@ namespace Upkeep_v3.Checklist
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;    //Added by Sujata
         protected void Page_Load(object sender, EventArgs e)
         {
+            CompanyID = Convert.ToInt32(Session["CompanyID"]); //Added by Sujata
             frmChkList.Action = @"Add_Checklist.aspx";
             if (!IsPostBack)
             {
@@ -84,7 +86,7 @@ namespace Upkeep_v3.Checklist
             DataSet dsDepDetails = new DataSet();
             try
             {
-                dsDepDetails = ObjUpkeep.Fetch_Department(0);
+                dsDepDetails = ObjUpkeep.Fetch_Department(CompanyID);  //added company id by sujata 
 
                 if (dsDepDetails.Tables.Count > 0)
                 {

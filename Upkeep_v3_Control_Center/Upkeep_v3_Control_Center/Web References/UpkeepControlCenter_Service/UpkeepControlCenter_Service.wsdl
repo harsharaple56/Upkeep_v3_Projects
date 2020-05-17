@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GroupMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Group_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Group_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Group_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Is_Deleted" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GroupMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GroupDesc">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_GroupDescResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GroupDescResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompanyMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompanyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCompanyDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyLogo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientURL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Is_DBatClientServer" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ConString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompanyMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PopulateLicenseMasters">
+        <s:complexType />
+      </s:element>
+      <s:element name="PopulateLicenseMastersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PopulateLicenseMastersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchLicenseExpiryDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubscriptionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActivationDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchLicenseExpiryDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchLicenseExpiryDateResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="License_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strClientID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Subs_Pack_Id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strActivationDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strExpirationDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDueDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserLimit" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSelectedModules" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="License_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUserResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdminLogin_Master">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Is_Deleted" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdminLogin_MasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdminLogin_MasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateCompanyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatedsLicenseAction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseAction" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatedsLicenseActionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatedsLicenseActionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GroupMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GroupMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="GroupMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GroupMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GroupDescSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GroupDesc" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GroupDescSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GroupDescResponse" />
+  </wsdl:message>
+  <wsdl:message name="CompanyMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:CompanyMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="CompanyMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:CompanyMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="PopulateLicenseMastersSoapIn">
+    <wsdl:part name="parameters" element="tns:PopulateLicenseMasters" />
+  </wsdl:message>
+  <wsdl:message name="PopulateLicenseMastersSoapOut">
+    <wsdl:part name="parameters" element="tns:PopulateLicenseMastersResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchLicenseExpiryDateSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchLicenseExpiryDate" />
+  </wsdl:message>
+  <wsdl:message name="FetchLicenseExpiryDateSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchLicenseExpiryDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="License_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:License_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="License_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:License_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdminLogin_MasterSoapIn">
+    <wsdl:part name="parameters" element="tns:AdminLogin_Master" />
+  </wsdl:message>
+  <wsdl:message name="AdminLogin_MasterSoapOut">
+    <wsdl:part name="parameters" element="tns:AdminLogin_MasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateCompany" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatedsLicenseActionSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatedsLicenseAction" />
+  </wsdl:message>
+  <wsdl:message name="UpdatedsLicenseActionSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatedsLicenseActionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UpkeepControlCenter_ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GroupMaster_CRUD">
+      <wsdl:input message="tns:GroupMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:GroupMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GroupDesc">
+      <wsdl:input message="tns:Fetch_GroupDescSoapIn" />
+      <wsdl:output message="tns:Fetch_GroupDescSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanyMaster_CRUD">
+      <wsdl:input message="tns:CompanyMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:CompanyMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PopulateLicenseMasters">
+      <wsdl:input message="tns:PopulateLicenseMastersSoapIn" />
+      <wsdl:output message="tns:PopulateLicenseMastersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchLicenseExpiryDate">
+      <wsdl:input message="tns:FetchLicenseExpiryDateSoapIn" />
+      <wsdl:output message="tns:FetchLicenseExpiryDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="License_CRUD">
+      <wsdl:input message="tns:License_CRUDSoapIn" />
+      <wsdl:output message="tns:License_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input message="tns:LoginUserSoapIn" />
+      <wsdl:output message="tns:LoginUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin_Master">
+      <wsdl:input message="tns:AdminLogin_MasterSoapIn" />
+      <wsdl:output message="tns:AdminLogin_MasterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCompany">
+      <wsdl:input message="tns:ValidateCompanySoapIn" />
+      <wsdl:output message="tns:ValidateCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatedsLicenseAction">
+      <wsdl:input message="tns:UpdatedsLicenseActionSoapIn" />
+      <wsdl:output message="tns:UpdatedsLicenseActionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UpkeepControlCenter_ServiceSoap" type="tns:UpkeepControlCenter_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GroupMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GroupDesc">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GroupDesc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/CompanyMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PopulateLicenseMasters">
+      <soap:operation soapAction="http://tempuri.org/PopulateLicenseMasters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchLicenseExpiryDate">
+      <soap:operation soapAction="http://tempuri.org/FetchLicenseExpiryDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="License_CRUD">
+      <soap:operation soapAction="http://tempuri.org/License_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/LoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin_Master">
+      <soap:operation soapAction="http://tempuri.org/AdminLogin_Master" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCompany">
+      <soap:operation soapAction="http://tempuri.org/ValidateCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatedsLicenseAction">
+      <soap:operation soapAction="http://tempuri.org/UpdatedsLicenseAction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UpkeepControlCenter_ServiceSoap12" type="tns:UpkeepControlCenter_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GroupMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GroupMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GroupDesc">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GroupDesc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanyMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/CompanyMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PopulateLicenseMasters">
+      <soap12:operation soapAction="http://tempuri.org/PopulateLicenseMasters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchLicenseExpiryDate">
+      <soap12:operation soapAction="http://tempuri.org/FetchLicenseExpiryDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="License_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/License_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap12:operation soapAction="http://tempuri.org/LoginUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminLogin_Master">
+      <soap12:operation soapAction="http://tempuri.org/AdminLogin_Master" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCompany">
+      <soap12:operation soapAction="http://tempuri.org/ValidateCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatedsLicenseAction">
+      <soap12:operation soapAction="http://tempuri.org/UpdatedsLicenseAction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UpkeepControlCenter_Service">
+    <wsdl:port name="UpkeepControlCenter_ServiceSoap" binding="tns:UpkeepControlCenter_ServiceSoap">
+      <soap:address location="http://localhost:57330/UpkeepControlCenter_Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UpkeepControlCenter_ServiceSoap12" binding="tns:UpkeepControlCenter_ServiceSoap12">
+      <soap12:address location="http://localhost:57330/UpkeepControlCenter_Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
