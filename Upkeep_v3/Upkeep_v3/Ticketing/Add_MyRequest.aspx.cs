@@ -331,7 +331,7 @@ namespace Upkeep_v3.Ticketing
                             //string body = "Welcome to ASPSnippets.com";
                             //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
 
-                            dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, ZoneID, LocationID, SubLocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
+                            dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
                             //mpeTicketSaveSuccess.Show();
 
                             if (dsTicketSave.Tables.Count > 0)
