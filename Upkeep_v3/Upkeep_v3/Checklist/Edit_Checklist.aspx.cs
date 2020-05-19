@@ -343,7 +343,7 @@ namespace Upkeep_v3.Checklist
                         txtEndtime.Text = Convert.ToString(ds.Tables[0].Rows[0]["Schedule_End_Time"]);
                         txtCustFrequency.Text = Convert.ToString(ds.Tables[0].Rows[0]["Frequency_Custom"]);
 
-                        DateTime dtSch;
+                        //DateTime dtSch;
                         string strSchDate= Convert.ToString(ds.Tables[0].Rows[0]["Schedule_Date"]);
                         DateTime myDateTime = DateTime.Parse(strSchDate);
 
