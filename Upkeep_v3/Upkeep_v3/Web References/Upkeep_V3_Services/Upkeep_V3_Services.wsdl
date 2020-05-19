@@ -1413,6 +1413,120 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyRequestVMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyRequestVMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestVMSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VMSTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSHeader" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSHeaderData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Answer">
         <s:complexType>
           <s:sequence>
@@ -1795,6 +1909,36 @@
   <wsdl:message name="Insert_VMSConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_VMSConfigurationResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestVMSSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestVMS" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestVMSSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestVMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_VMSRequest" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_VMSRequestResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Answer" />
   </wsdl:message>
@@ -2038,6 +2182,26 @@
     <wsdl:operation name="Insert_VMSConfiguration">
       <wsdl:input message="tns:Insert_VMSConfigurationSoapIn" />
       <wsdl:output message="tns:Insert_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <wsdl:input message="tns:Fetch_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <wsdl:input message="tns:Bind_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestVMS">
+      <wsdl:input message="tns:Fetch_MyRequestVMSSoapIn" />
+      <wsdl:output message="tns:Fetch_MyRequestVMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <wsdl:input message="tns:Bind_VMSRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_VMSRequestDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <wsdl:input message="tns:Insert_VMSRequestSoapIn" />
+      <wsdl:output message="tns:Insert_VMSRequestSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
@@ -2570,6 +2734,51 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_VMSConfiguration">
       <soap:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestVMS">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestVMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <soap:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3113,6 +3322,51 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_VMSConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestVMS">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestVMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <soap12:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

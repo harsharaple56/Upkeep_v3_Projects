@@ -148,6 +148,16 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyRequestVMSOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_VMSRequestDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_VMSRequestOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_AnswerOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -364,6 +374,21 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_VMSConfigurationCompletedEventHandler Bind_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyRequestVMSCompletedEventHandler Fetch_MyRequestVMSCompleted;
+        
+        /// <remarks/>
+        public event Bind_VMSRequestDetailsCompletedEventHandler Bind_VMSRequestDetailsCompleted;
+        
+        /// <remarks/>
+        public event Insert_VMSRequestCompletedEventHandler Insert_VMSRequestCompleted;
         
         /// <remarks/>
         public event Fetch_AnswerCompletedEventHandler Fetch_AnswerCompleted;
@@ -2609,6 +2634,169 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_VMSConfiguration(string Initiator) {
+            object[] results = this.Invoke("Fetch_VMSConfiguration", new object[] {
+                        Initiator});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSConfigurationAsync(string Initiator) {
+            this.Fetch_VMSConfigurationAsync(Initiator, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSConfigurationAsync(string Initiator, object userState) {
+            if ((this.Fetch_VMSConfigurationOperationCompleted == null)) {
+                this.Fetch_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_VMSConfiguration", new object[] {
+                        Initiator}, this.Fetch_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnFetch_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Fetch_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_VMSConfigurationCompleted(this, new Fetch_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_VMSConfiguration(int VMS_ConfigID) {
+            object[] results = this.Invoke("Bind_VMSConfiguration", new object[] {
+                        VMS_ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSConfigurationAsync(int VMS_ConfigID) {
+            this.Bind_VMSConfigurationAsync(VMS_ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSConfigurationAsync(int VMS_ConfigID, object userState) {
+            if ((this.Bind_VMSConfigurationOperationCompleted == null)) {
+                this.Bind_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_VMSConfiguration", new object[] {
+                        VMS_ConfigID}, this.Bind_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_VMSConfigurationCompleted(this, new Bind_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestVMS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyRequestVMS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestVMSAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestVMSAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestVMSAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyRequestVMSOperationCompleted == null)) {
+                this.Fetch_MyRequestVMSOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestVMSOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyRequestVMS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyRequestVMSOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyRequestVMSOperationCompleted(object arg) {
+            if ((this.Fetch_MyRequestVMSCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyRequestVMSCompleted(this, new Fetch_MyRequestVMSCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_VMSRequestDetails", new object[] {
+                        VMS_ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSRequestDetailsAsync(int VMS_ConfigID, string LoggedInUserID) {
+            this.Bind_VMSRequestDetailsAsync(VMS_ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSRequestDetailsAsync(int VMS_ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Bind_VMSRequestDetailsOperationCompleted == null)) {
+                this.Bind_VMSRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSRequestDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Bind_VMSRequestDetails", new object[] {
+                        VMS_ConfigID,
+                        LoggedInUserID}, this.Bind_VMSRequestDetailsOperationCompleted, userState);
+        }
+        
+        private void OnBind_VMSRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_VMSRequestDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_VMSRequestDetailsCompleted(this, new Bind_VMSRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_VMSRequest", new object[] {
+                        VMS_ConfigID,
+                        strVMSDate,
+                        DeptID,
+                        VMSTypeID,
+                        strVMSHeader,
+                        strVMSHeaderData,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSRequestAsync(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID) {
+            this.Insert_VMSRequestAsync(VMS_ConfigID, strVMSDate, DeptID, VMSTypeID, strVMSHeader, strVMSHeaderData, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSRequestAsync(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID, object userState) {
+            if ((this.Insert_VMSRequestOperationCompleted == null)) {
+                this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
+            }
+            this.InvokeAsync("Insert_VMSRequest", new object[] {
+                        VMS_ConfigID,
+                        strVMSDate,
+                        DeptID,
+                        VMSTypeID,
+                        strVMSHeader,
+                        strVMSHeaderData,
+                        LoggedInUserID}, this.Insert_VMSRequestOperationCompleted, userState);
+        }
+        
+        private void OnInsert_VMSRequestOperationCompleted(object arg) {
+            if ((this.Insert_VMSRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_VMSRequestCompleted(this, new Insert_VMSRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Fetch_Answer(char Key) {
             object[] results = this.Invoke("Fetch_Answer", new object[] {
@@ -4177,6 +4365,136 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_VMSConfigurationCompletedEventHandler(object sender, Fetch_VMSConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_VMSConfigurationCompletedEventHandler(object sender, Bind_VMSConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyRequestVMSCompletedEventHandler(object sender, Fetch_MyRequestVMSCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyRequestVMSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyRequestVMSCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_VMSRequestDetailsCompletedEventHandler(object sender, Bind_VMSRequestDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_VMSRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_VMSRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_VMSRequestCompletedEventHandler(object sender, Insert_VMSRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_VMSRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_VMSRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

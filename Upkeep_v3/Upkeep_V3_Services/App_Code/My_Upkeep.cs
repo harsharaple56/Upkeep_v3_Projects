@@ -742,7 +742,6 @@ public class My_Upkeep
     #region VMS
 
     //Added by RC This function is used to save VMS Configuration 
-
     public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID)
     {
 
@@ -752,6 +751,92 @@ public class My_Upkeep
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strXmlVMS_Question, strXmlVMS_Feedback, blFeedbackCompulsary, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to Fetch VMS Configuration 
+    public DataSet Fetch_VMSConfiguration(string Initiator)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_VMSConfiguration(Initiator, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to bind VMS Configuration 
+    public DataSet Bind_VMSConfiguration(int VMS_ConfigID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Bind_VMSConfiguration(VMS_ConfigID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to fetch VMS requests 
+    public DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_MyRequestVMS(LoggedInUserID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to bind VMS request details
+    public DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Bind_VMSRequestDetails(VMS_ConfigID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to save VMS request 
+    public DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Insert_VMSRequest(VMS_ConfigID, strVMSDate, DeptID, VMSTypeID, strVMSHeader, strVMSHeaderData, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
