@@ -64,7 +64,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -816,10 +818,6 @@
     <Content Include="GatePass\MyGatePass.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
-    <Content Include="Reports\BaggageReport.aspx" />
-    <Content Include="Reports\Gatepass_MIS.aspx" />
-    <Content Include="Reports\PowerBankReport.aspx" />
-    <Content Include="Reports\WorkPermit_MIS.aspx" />
     <Content Include="Security\Assign_RoleList.aspx" />
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
@@ -3695,6 +3693,11 @@
     <Content Include="vendors\waypoints\test\waypoint-spec.js" />
     <Content Include="vendors\wnumb\test.html" />
     <Content Include="vendors\wnumb\wNumb.js" />
+    <None Include="Web References\Upkeep_GP_WP_Services\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Upkeep_GP_WP_Services\Upkeep_GP_WP_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
@@ -3715,11 +3718,6 @@
     </None>
     <Content Include="TestMaster.Master" />
     <Content Include="UpkeepMaster.Master" />
-    <None Include="Web References\Upkeep_GP_WP_Services\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\Upkeep_GP_WP_Services\Upkeep_GP_WP_Services.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3891,34 +3889,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\BaggageReport.aspx.cs">
-      <DependentUpon>BaggageReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\BaggageReport.aspx.designer.cs">
-      <DependentUpon>BaggageReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Gatepass_MIS.aspx.cs">
-      <DependentUpon>Gatepass_MIS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Gatepass_MIS.aspx.designer.cs">
-      <DependentUpon>Gatepass_MIS.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\PowerBankReport.aspx.cs">
-      <DependentUpon>PowerBankReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\PowerBankReport.aspx.designer.cs">
-      <DependentUpon>PowerBankReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\WorkPermit_MIS.aspx.cs">
-      <DependentUpon>WorkPermit_MIS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\WorkPermit_MIS.aspx.designer.cs">
-      <DependentUpon>WorkPermit_MIS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\Assign_RoleList.aspx.cs">
       <DependentUpon>Assign_RoleList.aspx</DependentUpon>
