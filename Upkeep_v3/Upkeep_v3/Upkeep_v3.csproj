@@ -837,6 +837,7 @@
     <Content Include="TicketImages\26-12-2019\TKT30_0.jpg" />
     <Content Include="Ticketing\Add_MyRequest.aspx" />
     <Content Include="Ticketing\Frm_Category.aspx" />
+    <Content Include="Ticketing\MyActionable.aspx" />
     <Content Include="Ticketing\MyRequest.aspx" />
     <Content Include="Ticketing\My_RequestRply.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
@@ -4036,6 +4037,13 @@
     </Compile>
     <Compile Include="Ticketing\Frm_Category.aspx.designer.cs">
       <DependentUpon>Frm_Category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\MyActionable.aspx.cs">
+      <DependentUpon>MyActionable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\MyActionable.aspx.designer.cs">
+      <DependentUpon>MyActionable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\MyRequest.aspx.cs">
       <DependentUpon>MyRequest.aspx</DependentUpon>

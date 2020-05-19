@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="My_RequestRply.aspx.cs" Inherits="Upkeep_v3.Ticketing.My_RequestRply" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="My_RequestRply.aspx.cs" Inherits="Upkeep_v3.Ticketing.My_RequestRply" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -33,13 +33,13 @@
             //    $('#radio1003').attr('checked', 'checked');
             //});
 
-           
+
             $('#exampleModal').on('show.bs.modal', function (event) {
 
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var title = button.data('title'); // Extract info from data-* attributes
                 var images_list = button.data('images'); // Extract info from data-* attributes
-               // alert(images_list);
+                // alert(images_list);
                 var modal = $(this);
                 modal.find('.modal-title').text(title);
                 var images = images_list.split(',')
@@ -70,7 +70,7 @@
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                        <form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmticket" method="post">
+                        <div class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmticket1">
                             <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
                             <asp:HiddenField ID="hdnImage" runat="server" ClientIDMode="Static" />
@@ -94,7 +94,7 @@
                                                 <span>Back</span>
                                             </span>
                                         </a>
-                                        <div class="btn-group">
+                                        <%--<div class="btn-group">
 
                                             <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnClose_Click" Text="Close" />
 
@@ -103,7 +103,7 @@
                                                 CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
                                             </cc1:ModalPopupExtender>
 
-                                        </div>
+                                        </div>--%>
                                     </div>
 
                                 </div>
@@ -134,45 +134,27 @@
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Select Location Details</label>
                                         </div>
 
-                                        <asp:UpdatePanel runat="server" style="width: 100%;">
-                                            <ContentTemplate>
-
-                                                <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Zone :</label>
                                                     <div class="col-xl-5 col-lg-9">
-
                                                         <asp:Label ID="lblZone" runat="server" Text="" class="form-control-label"></asp:Label>
-
-
                                                     </div>
+                                                </div>--%>
+                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
+                                            <div class="col-xl-5 col-lg-9">
+                                                <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
 
-                                                </div>
-                                                <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                                    <div class="col-xl-5 col-lg-9">
-
-                                                        <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
-
-
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        </div>
+                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
                                                     <div class="col-xl-5 col-lg-9">
-
                                                         <asp:Label ID="lblSubLocation" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                    </div>                                                
+                                                </div>--%>
 
 
-                                                    </div>
-                                                    <%--<div class="col-xl-3 col-lg-9">
-                                                        <asp:Button ID="btnAddSubLoc" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem;" OnClick="btnSave_Click" Text="Add Sub Location" />
-                                                    </div>--%>
-                                                </div>
-
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
 
                                         <br />
 
@@ -284,6 +266,19 @@
                                             <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Close Ticket Description :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:TextBox ID="txtCloseTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row" id="dvClose" runat="server">
+                                            <div class="col-xl-5 col-lg-5"></div>
+                                            <div class="btn-group col-xl-3 col-lg-3">
+
+                                                <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnClose_Click" Text="Close" />
+
+                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                                <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
                                             </div>
                                         </div>
 
@@ -399,10 +394,10 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel1">Uploaded Image
-						</h5>
+                                            </h5>
                                             <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                                 <span aria-hidden="true">×
-							</span>
+                                                </span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
@@ -412,12 +407,12 @@
                                                 <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleControls" role="button">
                                                     <span aria-hidden="true" class="carousel-control-prev-icon"></span>
                                                     <span class="sr-only">Previous
-								</span>
+                                                    </span>
                                                 </a>
                                                 <a class="carousel-control-next" data-slide="next" href="#carouselExampleControls" role="button">
                                                     <span aria-hidden="true" class="carousel-control-next-icon"></span>
                                                     <span class="sr-only">Next
-								</span>
+                                                    </span>
                                                 </a>
                                             </div>
                                         </div>
@@ -426,7 +421,7 @@
                                 </div>
                             </div>
 
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -652,6 +652,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Ticket_MyActionable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Ticket_MyActionableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Ticket_MyActionableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Employee_CRUD">
         <s:complexType>
           <s:sequence>
@@ -1603,6 +1625,12 @@
   <wsdl:message name="Insert_Ticket_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_Ticket_DetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Ticket_MyActionableSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Ticket_MyActionable" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Ticket_MyActionableSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Ticket_MyActionableResponse" />
+  </wsdl:message>
   <wsdl:message name="Employee_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:Employee_CRUD" />
   </wsdl:message>
@@ -1909,6 +1937,10 @@
     <wsdl:operation name="Insert_Ticket_Details">
       <wsdl:input message="tns:Insert_Ticket_DetailsSoapIn" />
       <wsdl:output message="tns:Insert_Ticket_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Ticket_MyActionable">
+      <wsdl:input message="tns:Fetch_Ticket_MyActionableSoapIn" />
+      <wsdl:output message="tns:Fetch_Ticket_MyActionableSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Employee_CRUD">
       <wsdl:input message="tns:Employee_CRUDSoapIn" />
@@ -2282,6 +2314,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_Ticket_Details">
       <soap:operation soapAction="http://tempuri.org/Insert_Ticket_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Ticket_MyActionable">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Ticket_MyActionable" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2825,6 +2866,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_Ticket_Details">
       <soap12:operation soapAction="http://tempuri.org/Insert_Ticket_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Ticket_MyActionable">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Ticket_MyActionable" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

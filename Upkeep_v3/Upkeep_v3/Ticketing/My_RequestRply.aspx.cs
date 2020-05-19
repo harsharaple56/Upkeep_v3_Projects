@@ -16,10 +16,14 @@ namespace Upkeep_v3.Ticketing
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
             int TicketID = Convert.ToInt32(Request.QueryString["TicketID"]);
             //Session["TicketID"]= Convert.ToString(Session["TicketID"]);
             //string SessionUser = Session["User"].ToString();  //Sam
@@ -40,7 +44,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), 0, 0, 0, 0, "", "", LoggedInUserID, "R");
+                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "", LoggedInUserID, "R");
 
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -64,9 +68,9 @@ namespace Upkeep_v3.Ticketing
                         {
                             Session["TicketCode"] = dsTicket.Tables[0].Rows[i].Field<string>("Tkt_Code"); //ajay
                             lblTicketID.Text = dsTicket.Tables[0].Rows[i].Field<string>("Tkt_Code");
-                            lblZone.Text = dsTicket.Tables[0].Rows[i].Field<string>("Zone_Desc");
+                            //lblZone.Text = dsTicket.Tables[0].Rows[i].Field<string>("Zone_Desc");
                             lblLocation.Text = dsTicket.Tables[0].Rows[i].Field<string>("Loc_Desc");
-                            lblSubLocation.Text = dsTicket.Tables[0].Rows[i].Field<string>("SubLoc_Desc");
+                            //lblSubLocation.Text = dsTicket.Tables[0].Rows[i].Field<string>("SubLoc_Desc");
                             lblCategory.Text = dsTicket.Tables[0].Rows[i].Field<string>("Category_Desc");
                             lblSubCategory.Text = dsTicket.Tables[0].Rows[i].Field<string>("SubCategory_Desc");
                             lblRequestDate.Text = dsTicket.Tables[0].Rows[i].Field<string>("Ticket_Date");
