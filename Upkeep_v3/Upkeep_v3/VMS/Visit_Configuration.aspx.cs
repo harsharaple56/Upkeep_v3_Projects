@@ -181,7 +181,7 @@ namespace Upkeep_v3.VMS
                             //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
                             string[] strValue = strValueData[f].Split(':');
 
-                            string isDefault = "0", isFlag = "0";
+                            //string isDefault = "0", isFlag = "0";
                             //if (strValue[2].ToString() == "on") { isFlag = "1"; }
 
                             strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data>");

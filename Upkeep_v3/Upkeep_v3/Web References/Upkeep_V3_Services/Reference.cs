@@ -84,6 +84,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Insert_Ticket_DetailsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Ticket_MyActionableOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Employee_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
@@ -278,6 +280,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Insert_Ticket_DetailsCompletedEventHandler Insert_Ticket_DetailsCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Ticket_MyActionableCompletedEventHandler Fetch_Ticket_MyActionableCompleted;
         
         /// <remarks/>
         public event Employee_CRUDCompletedEventHandler Employee_CRUDCompleted;
@@ -1439,6 +1444,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Insert_Ticket_DetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Insert_Ticket_DetailsCompleted(this, new Insert_Ticket_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_MyActionable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Ticket_MyActionable", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID) {
+            this.Fetch_Ticket_MyActionableAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_Ticket_MyActionableOperationCompleted == null)) {
+                this.Fetch_Ticket_MyActionableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_MyActionableOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Ticket_MyActionable", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Fetch_Ticket_MyActionableOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Ticket_MyActionableOperationCompleted(object arg) {
+            if ((this.Fetch_Ticket_MyActionableCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Ticket_MyActionableCompleted(this, new Fetch_Ticket_MyActionableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3533,6 +3569,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Ticket_MyActionableCompletedEventHandler(object sender, Fetch_Ticket_MyActionableCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Ticket_MyActionableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Ticket_MyActionableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
