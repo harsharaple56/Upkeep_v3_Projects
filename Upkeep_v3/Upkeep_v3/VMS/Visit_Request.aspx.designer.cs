@@ -112,40 +112,40 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.Repeater rptHeaderDetails;
         
         /// <summary>
-        /// tblVMSHeader control.
+        /// rdbGreen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblVMSHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbGreen;
         
         /// <summary>
-        /// btnSubmit control.
+        /// rdbOrange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbOrange;
         
         /// <summary>
-        /// btnCancel control.
+        /// rdbRed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbRed;
         
         /// <summary>
-        /// lblErrorMsg1 control.
+        /// txtAsmmtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg1;
+        protected global::System.Web.UI.WebControls.TextBox txtAsmmtDate;
         
         /// <summary>
         /// pnlVMSReqestSuccess control.

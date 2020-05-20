@@ -13,6 +13,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using System.Drawing;
 
 namespace Upkeep_Gatepass_Workpermit.Reports
 {

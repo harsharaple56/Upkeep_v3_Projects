@@ -93,7 +93,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
 
                     hdnWPHeaders.Value = string.Join("~", HeaderValues);
 
-                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc")).ToArray();
+                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace( "<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
 
                     hdnWPTerms.Value = string.Join("~", TermsValues);
 
@@ -230,7 +230,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                     if (WorkPermitTermCondition_Array != null)
                     {
                         strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM_DESC>");
-                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_TERM>");
+                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition.Replace(System.Environment.NewLine, "<br>").Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_TERM>");
                         strXmlWorkPermit_TermCondition.Append(@"</WORKPERMIT_TERM_DESC>");
                     }
 
@@ -308,23 +308,23 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 DataSet dsWorkPermitConfig = new DataSet();
 
                 //Replacing special characters with Escape in XML
-                //strXmlWorkPermit_Header.Replace("&", "&amp;");
-                //strXmlWorkPermit_Header.Replace("<", "&lt;");
-                //strXmlWorkPermit_Header.Replace(">", "&gt;");
-                //strXmlWorkPermit_Header.Replace("\"", "&quot;");
-                //strXmlWorkPermit_Header.Replace("'", "&apos;");
+                strXmlWorkPermit_Header.Replace("&", "&amp;");
+                strXmlWorkPermit_Header.Replace("<", "&lt;");
+                strXmlWorkPermit_Header.Replace(">", "&gt;");
+                strXmlWorkPermit_Header.Replace("\"", "&quot;");
+                strXmlWorkPermit_Header.Replace("'", "&apos;");
 
-                //strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
-                //strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
-                //strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
-                //strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
-                //strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
+                strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
+                strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
+                strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
+                strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
+                strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
 
-                //strXmlApprovalMatrix.Replace("&", "&amp;");
-                //strXmlApprovalMatrix.Replace("<", "&lt;");
-                //strXmlApprovalMatrix.Replace(">", "&gt;");
-                //strXmlApprovalMatrix.Replace("\"", "&quot;");
-                //strXmlApprovalMatrix.Replace("'", "&apos;");
+                strXmlApprovalMatrix.Replace("&", "&amp;");
+                strXmlApprovalMatrix.Replace("<", "&lt;");
+                strXmlApprovalMatrix.Replace(">", "&gt;");
+                strXmlApprovalMatrix.Replace("\"", "&quot;");
+                strXmlApprovalMatrix.Replace("'", "&apos;");
 
 
 

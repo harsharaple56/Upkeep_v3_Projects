@@ -649,7 +649,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int CompanyID,string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID, string StrConn)
         {
             try
             {
@@ -658,7 +658,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-               
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -1191,7 +1191,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1199,12 +1199,12 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
-                cmd.Parameters.AddWithValue("@VMSDate", strVMSDate);
-                cmd.Parameters.AddWithValue("@DeptID", DeptID);
-                cmd.Parameters.AddWithValue("@VMSTypeID", VMSTypeID);
-                cmd.Parameters.AddWithValue("@VMSHeader", strVMSHeader);
-                cmd.Parameters.AddWithValue("@VMSHeaderData", strVMSHeaderData);
+                cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@VisitData", strVMSData);
+                cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1241,6 +1241,274 @@ namespace UpkeepV3_BusinessLayer
             }
         }
         #endregion
+
+
+
+        #region Asset Management 
+
+        public DataSet Fetch_Asset_DropDown(int UserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_DROPDOWN_LIST", con);
+                cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_Asset_Vendor_DropDown(string VendorPrefix, int UserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_VENDOR_LIST", con);
+                cmd.Parameters.AddWithValue("@VendorPrefix", VendorPrefix);
+                cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet ASSET_Insert_AssetType(string LoggedInUserID, int companyID, string AssetType, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_INSERT_ASSET_TYPE", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@companyID", companyID);
+                cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Asset_Type", AssetType);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_INSERT_ASSET_CATEGORY", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@companyID", companyID);
+                cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetTypeID", AssetTypeID);
+                cmd.Parameters.AddWithValue("@Category", AssetCategory);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_INSERT_GRNL_MASTER", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@MasterType", MasterType);
+                cmd.Parameters.AddWithValue("@Dept_Value", Dept_Value);
+                cmd.Parameters.AddWithValue("@LocationXmlValue", LocationXmlValue);
+                cmd.Parameters.AddWithValue("@VendorXmlValue", VendorXmlValue);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_MyAsset(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_MY_ASSET", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_ASSET_REQUEST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AssetID", TransactionID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_INSERT_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetXml", AssetXml);
+                cmd.Parameters.AddWithValue("@AssetAmcXml", AssetAmcXml);
+                cmd.Parameters.AddWithValue("@AssetServiceXml", AssetServiceXml);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_UPDATE_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetID", TransactionID);
+                cmd.Parameters.AddWithValue("@AssetXml", AssetXml);
+                cmd.Parameters.AddWithValue("@AssetAmcXml", AssetAmcXml);
+                cmd.Parameters.AddWithValue("@AssetServiceXml", AssetServiceXml);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_CRUD_AMC_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetID", TransactionID);
+                cmd.Parameters.AddWithValue("@AssetAmcXml", AssetAmcXml);
+                cmd.Parameters.AddWithValue("@InsertUpdateFlag", Flag);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_MY_SERVICE_ASSET", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataSet CRUD_ASSET_SERVICE_REQUEST_DATA(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_CRUD_SERVICE_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetID", AssetID);
+                cmd.Parameters.AddWithValue("@AssetScheduleID", ServiceScheduleID);
+                cmd.Parameters.AddWithValue("@AssetServiceXml", AssetServiceXml);
+                cmd.Parameters.AddWithValue("@Flag", Flag);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        #endregion
+
     }
 
 }

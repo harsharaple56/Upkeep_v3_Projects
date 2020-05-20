@@ -332,6 +332,10 @@
                                                                          <asp:RadioButton id="rdbRetailer" runat="server" GroupName="question_for" /> Retailers
 																		<span></span>
 																	</label>
+                                                                    <label class="m-radio">
+                                                                         <asp:RadioButton id="rdbBoth" runat="server" GroupName="question_for" /> Both
+																		<span></span>
+																	</label>
 																</div>
                                                                 <span id="error_question_for" class="text-danger small"></span>
 															</div>
@@ -428,6 +432,8 @@
                                                                                         <option value="Emoji">Emoji</option>
                                                                                         <option value="Text">Text</option>
                                                                                         <option value="Options">Options</option>
+                                                                                        <option value="Star">Star</option>
+                                                                                        <option value="NPS">NPS</option>
                                                                                     </select>
                                                                                     <span class="error_type text-danger small"></span>
                                                                                 </div>

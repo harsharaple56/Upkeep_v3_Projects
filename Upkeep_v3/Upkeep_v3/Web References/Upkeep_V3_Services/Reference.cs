@@ -2833,35 +2833,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID) {
+        public System.Data.DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_VMSRequest", new object[] {
+                        CompanyID,
                         VMS_ConfigID,
                         strVMSDate,
-                        DeptID,
-                        VMSTypeID,
-                        strVMSHeader,
-                        strVMSHeaderData,
+                        strMeetUsrs,
+                        strVMSData,
+                        strVMSFeedbackData,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(VMS_ConfigID, strVMSDate, DeptID, VMSTypeID, strVMSHeader, strVMSHeaderData, LoggedInUserID, null);
+        public void Insert_VMSRequestAsync(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID) {
+            this.Insert_VMSRequestAsync(CompanyID, VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID, object userState) {
+        public void Insert_VMSRequestAsync(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, object userState) {
             if ((this.Insert_VMSRequestOperationCompleted == null)) {
                 this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
             }
             this.InvokeAsync("Insert_VMSRequest", new object[] {
+                        CompanyID,
                         VMS_ConfigID,
                         strVMSDate,
-                        DeptID,
-                        VMSTypeID,
-                        strVMSHeader,
-                        strVMSHeaderData,
+                        strMeetUsrs,
+                        strVMSData,
+                        strVMSFeedbackData,
                         LoggedInUserID}, this.Insert_VMSRequestOperationCompleted, userState);
         }
         

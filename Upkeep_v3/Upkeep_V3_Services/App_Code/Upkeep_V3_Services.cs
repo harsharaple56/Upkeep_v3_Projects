@@ -1132,12 +1132,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(VMS_ConfigID, strVMSDate, DeptID, VMSTypeID, strVMSHeader, strVMSHeaderData, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1167,6 +1167,194 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     #endregion
+
+
+
+    #region Asset Management
+    [WebMethod]
+    public DataSet Fetch_Asset_DropDown(int UserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet Fetch_Asset_Vendor_DropDown(string VendorPrefix, int UserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Asset_Vendor_DropDown(VendorPrefix, UserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet ASSET_Insert_AssetType(string LoggedInUserID, int companyID, string AssetType)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.ASSET_Insert_AssetType(LoggedInUserID, companyID, AssetType);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.ASSET_Insert_AssetCategory(LoggedInUserID, companyID, AssetTypeID, AssetCategory);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_MyAsset(string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyAsset(LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_ASSET_REQUEST_Details(LoggedInUserID, TransactionID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.INSERT_ASSET_REQUEST_Details(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.UPDATE_ASSET_REQUEST_Details(LoggedInUserID, TransactionID, AssetXml, AssetAmcXml, AssetServiceXml);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, TransactionID, AssetAmcXml, Flag);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyAsset_Service(LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet CRUD_ASSET_SERVICE_REQUEST_DATA(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.CRUD_ASSET_SERVICE_REQUEST_DATA(LoggedInUserID, AssetID, ServiceScheduleID, AssetServiceXml, Flag);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
+
 }
 
 public class AuthenticationHeader : SoapHeader

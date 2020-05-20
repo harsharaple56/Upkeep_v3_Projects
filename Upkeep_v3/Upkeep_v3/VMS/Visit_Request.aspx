@@ -14,18 +14,83 @@
 
         .modalPopup {
             /*background-color: #fff;
-            border: 3px solid #ccc;*/
+border: 3px solid #ccc;*/
             padding: 10px;
             width: 300px;
         }
 
+        .CovidColorBoxGreen {
+            width: 100%;
+            height: 30px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            font-size: initial;
+            font-weight: bolder;
+            text-align: center;
+            cursor: pointer;
+            color: green;
+        }
+
+        .CovidColorBoxOrange {
+            width: 100%;
+            height: 30px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            font-size: initial;
+            font-weight: bolder;
+            text-align: center;
+            cursor: pointer;
+            color: orange;
+        }
+
+        .CovidColorBoxRed {
+            width: 100%;
+            height: 30px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, .2);
+            font-size: initial;
+            font-weight: bolder;
+            text-align: center;
+            cursor: pointer;
+            color: red;
+        }
+
+        .CovidColorCheckGreen {
+            display: none;
+        }
+
+        .CovidColorCheckOrange {
+            display: none;
+        }
+
+        .CovidColorCheckRed {
+            display: none;
+        }
+
+        .CovidColorCheckGreen:checked + label {
+            background-color: limegreen;
+            color: white;
+        }
+
+        .CovidColorCheckOrange:checked + label {
+            background-color: orange;
+            color: white;
+        }
+
+        .CovidColorCheckRed:checked + label {
+            background-color: red;
+            color: white;
+        }
+
+
+
         /*.highlight {
-            background-color: blanchedalmond;
-        }*/
+background-color: blanchedalmond;
+}*/
     </style>
 
 
-    <script> 
+    <script>
 
         $(document).ready(function () {
             $('.datetimepicker').datetimepicker({
@@ -37,98 +102,98 @@
                 startDate: moment().format('YYYY-MM-DD'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                //var endDate   = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
                 //if(endDate < startDate)
                 //{
-                //    $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
+                // $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
                 //}
             });
         });
 
-        function AddRow() {
-            var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
-            var len = tbl.rows.length;
-            var row = tbl.insertRow(len);
-            for (var i = 0; i < tbl.rows[0].cells.length - 1; i++) {
-                row.insertCell(i).innerHTML = "<input type=text id=txt" + len + "_" + i + " class='form-control' >";
-            }
-            //row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<INPUT TYPE="button" ONCLICK="deleteRow(this)" class="btn btn-outline btn-circle dark btn-sm black" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record">';
+        //function AddRow() {
+        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //    var len = tbl.rows.length;
+        //    var row = tbl.insertRow(len);
+        //    for (var i = 0; i < tbl.rows[0].cells.length - 1; i++) {
+        //        row.insertCell(i).innerHTML = "<input type=text id=txt" + len + "_" + i + " class='form-control' >";
+        //    }
+        //    //row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<INPUT TYPE="button" ONCLICK="deleteRow(this)" class="btn btn-outline btn-circle dark btn-sm black" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record">';
 
-            row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<a ONCLICK="deleteRow(this)" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record"> 	<i class="la la-trash"></i> </a>';
-        }
+        //    row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<a ONCLICK="deleteRow(this)" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record"> <i class="la la-trash"></i> </a>';
+        //}
 
-        function deleteRow(obj) {
-            var row = obj;
-            while (row.nodeName.toLowerCase() != 'tr') {
-                row = row.parentNode;
-            }
-            var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
-            tbl.deleteRow(row.rowIndex);
+        //function deleteRow(obj) {
+        //    var row = obj;
+        //    while (row.nodeName.toLowerCase() != 'tr') {
+        //        row = row.parentNode;
+        //    }
+        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //    tbl.deleteRow(row.rowIndex);
 
-        }
-
-
-        function SubmitHeader() {
-
-            var cols_len = 0;
-            $('#ContentPlaceHolder1_tblVMSHeader').find('tr:first td').each(function () {
-                var cspan = $(this).attr('colspan');
-                if (!cspan) cspan = 1;
-                cols_len += parseInt(cspan, 10);
-            });
-
-            document.getElementById("hdnVMSHeaderData").value = '';
-            document.getElementById("hdnVMSHeader").value = '';
-
-            var arrDataParent = [];
-            var arrDataChild = [];
-            // loop over each table row (tr)
-            $("#ContentPlaceHolder1_tblVMSHeader tr").each(function () {
-                var currentRow = $(this);
-                // debugger;
-                var k = 0;
-                for (var j = 0; j < cols_len - 1; j++) {
-                    k = currentRow;
-                    var col1_value = currentRow.find("td:eq(" + j + ")").text();
-                    //var col2_value = currentRow.find("td:eq(1)").text();
-                    //var col3_value = currentRow.find("td:eq(2)").text();
-
-                    var obj = {};
-                    obj.colNo = col1_value;
-                    //obj.col2 = col2_value;
-                    //obj.col3 = col3_value;
-
-                    infox.innerHTML = infox.innerHTML + '#' + col1_value;
-                    arrDataChild.push(obj);
-                }
-                infox.innerHTML = infox.innerHTML + ',';
-                arrDataParent.push(arrDataChild);
-            });
-            // alert(infox.innerHTML);
-            // alert(JSON.stringify(arrDataParent));
-            document.getElementById("hdnVMSHeader").value = infox.innerHTML;
-            var myTab = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //}
 
 
-            // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
-            for (i = 2; i < myTab.rows.length; i++) {
+        //function SubmitHeader() {
 
-                // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-                var objCells = myTab.rows.item(i).cells;
-                //var objCells = myTab.rows.item(i).cells.find('input').val();
+        //    var cols_len = 0;
+        //    $('#ContentPlaceHolder1_tblVMSHeader').find('tr:first td').each(function () {
+        //        var cspan = $(this).attr('colspan');
+        //        if (!cspan) cspan = 1;
+        //        cols_len += parseInt(cspan, 10);
+        //    });
 
-                // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
-                //for (var j = 0; j < objCells.length; j++) {
-                for (var j = 0; j < cols_len - 1; j++) {
-                    info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
+        //    document.getElementById("hdnVMSHeaderData").value = '';
+        //    document.getElementById("hdnVMSHeader").value = '';
 
-                }
-                info.innerHTML = info.innerHTML + ',';     // ADD A BREAK (TAG).
-            }
-            document.getElementById("hdnVMSHeaderData").value = info.innerHTML;
-            //alert(info.innerHTML);
-        }
+        //    var arrDataParent = [];
+        //    var arrDataChild = [];
+        //    // loop over each table row (tr)
+        //    $("#ContentPlaceHolder1_tblVMSHeader tr").each(function () {
+        //        var currentRow = $(this);
+        //        // debugger;
+        //        var k = 0;
+        //        for (var j = 0; j < cols_len - 1; j++) {
+        //            k = currentRow;
+        //            var col1_value = currentRow.find("td:eq(" + j + ")").text();
+        //            //var col2_value = currentRow.find("td:eq(1)").text();
+        //            //var col3_value = currentRow.find("td:eq(2)").text();
+
+        //            var obj = {};
+        //            obj.colNo = col1_value;
+        //            //obj.col2 = col2_value;
+        //            //obj.col3 = col3_value;
+
+        //            infox.innerHTML = infox.innerHTML + '#' + col1_value;
+        //            arrDataChild.push(obj);
+        //        }
+        //        infox.innerHTML = infox.innerHTML + ',';
+        //        arrDataParent.push(arrDataChild);
+        //    });
+        //    // alert(infox.innerHTML);
+        //    // alert(JSON.stringify(arrDataParent));
+        //    document.getElementById("hdnVMSHeader").value = infox.innerHTML;
+        //    var myTab = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+
+
+        //    // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        //    for (i = 2; i < myTab.rows.length; i++) {
+
+        //        // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+        //        var objCells = myTab.rows.item(i).cells;
+        //        //var objCells = myTab.rows.item(i).cells.find('input').val();
+
+        //        // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+        //        //for (var j = 0; j < objCells.length; j++) {
+        //        for (var j = 0; j < cols_len - 1; j++) {
+        //            info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
+
+        //        }
+        //        info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
+        //    }
+        //    document.getElementById("hdnVMSHeaderData").value = info.innerHTML;
+        //    //alert(info.innerHTML);
+        //}
         var txtControl = null;
         var txtHdn = null;
         function PopUpGrid() {
@@ -144,7 +209,7 @@
             //alert(Desc);
             txtControl.value = Desc.replace("$", ",");
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
-            //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
+//document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeMeetingUsers.ClientID %>').hide();
             //window.close();
 
@@ -159,13 +224,13 @@
 
 
             //var hiddenValue = $('#hdnSelectedUserID').val();
-            //var hiddenValue2 = $('#hdnSelectedUserName').val();  
+            //var hiddenValue2 = $('#hdnSelectedUserName').val();
 
             SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value + "#0";
             SelectedUsersName = document.getElementById('<%= hdnSelectedUserName.ClientID%>').value;
 
-            <%--//SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
-            //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';--%>
+<%--//SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
+//SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';--%>
 
             //alert(SelectedUsersID);
             //alert(SelectedUsersName);
@@ -180,7 +245,7 @@
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-12">
 
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
@@ -207,7 +272,7 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-md-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     <a href="<%= Page.ResolveClientUrl("~/VMS/MyVMS.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -216,7 +281,7 @@
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitHeader()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -232,8 +297,8 @@
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span> Visit Title :</label>
-                                    <div class="col-xl-4 col-lg-4">
+                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Visit Title :</label>
+                                    <div class="col-md-4">
                                         <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
@@ -244,8 +309,8 @@
 
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Visit Date :</label>
-                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Visit Date :</label>
+                                    <div class="col-md-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
                                             <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
@@ -257,13 +322,13 @@
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Meeting with :</label>
-                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                    <label class="col-md-2 col-form-label font-weight-bold" style="text-align: right;">Meeting with :</label>
+                                    <div class="col-md-4 col-form-label">
                                         <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
-                                                ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
+ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
                                     </div>
                                     <%-- </div>--%>
                                 </div>
@@ -275,7 +340,7 @@
                                 <br />
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Visit Details</label>
+                                    <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Visit Details</label>
                                 </div>
 
 
@@ -286,13 +351,13 @@
                                         <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                            <div class="col-xl-3 col-lg-3">
+                                            <div class="col-md-3">
                                                 <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp;  <%#Eval("Qn_Desc") %>  :</label>
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp; <%#Eval("Qn_Desc") %> :</label>
                                                 <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
-                                                <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                                <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
-                                            <div class="col-xl-9 col-lg-9">
+                                            <div class="col-md-9">
                                                 <div id="divText" style="display: none" runat="server">
                                                     <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                                 </div>
@@ -311,14 +376,14 @@
                                                 <div id="divImage" style="display: none" runat="server">
                                                     <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: 36%;" AllowMultiple="true" />
                                                     &nbsp;
-                                                                    <div id="divImgBtns" style="display: none" runat="server">
-                                                                        <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                                            data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
-                                                                            <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                                            <%--data-images="<%#Eval("Header_Data") %>"--%>
-                                                                        </button>
-                                                                        <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
-                                                                    </div>
+                                                    <div id="divImgBtns" style="display: none" runat="server">
+                                                        <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                            data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
+                                                            <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                            <%--data-images="<%#Eval("Header_Data") %>"--%>
+                                                        </button>
+                                                        <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
+                                                    </div>
                                                 </div>
 
                                                 <div id="divDate" style="display: none" runat="server">
@@ -348,34 +413,51 @@
                                 <%-- Covid19 assessment --%>
                                 <div>
                                     <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Covid-19 Assessment Test</label>
+                                        <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Covid-19 Assessment Test</label>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-md-5">
-                                            <img src="https://www.mygov.in/sites/all/themes/mygov/images/ar_qr.jpg" alt="qr code" />
+                                        <div class="col-md-6">
+                                            <img src="../assets/app/media/img/misc/AarogyaQR.png" class="img-fluid" alt="qr code" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Color Code:</h5>
+                                            <div class="row">
+                                                <div class="col-md-7">
+
+                                                    <div class="form-check">
+                                                        <input type="radio" id="rdbGreen" class="form-check-input CovidColorCheckGreen" name="Color" runat="server" clientidmode="Static" />
+                                                        <label for="rdbGreen" class="form-check-label CovidColorBoxGreen">Green</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" id="rdbOrange" class="form-check-input CovidColorCheckOrange" name="Color" runat="server" clientidmode="Static" />
+                                                        <label for="rdbOrange" class="form-check-label CovidColorBoxOrange">Orange</label>
+
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" id="rdbRed" class="form-check-input CovidColorCheckRed" name="Color" runat="server" clientidmode="Static" />
+                                                        <label for="rdbRed" class="form-check-label CovidColorBoxRed">Red</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <p class="form-text text-muted">Check your phone and select the color code displayed in your Aarogya Setu app.</p>
+                                                </div>
+                                            </div>
+                                            <h5 class="mt-5">Assessment Date:</h5>
+                                            <div class="row">
+                                                <div class="input-group date">
+                                                    <asp:TextBox ID="txtAsmmtDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="click here to select or enter..."></asp:TextBox>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                    </div>
+                                                </div>
+                                                <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                        <ContentTemplate>--%>
-                                <div class="m-portlet__body" style="overflow-x: scroll;">
 
-                                    <table class="table table-striped- table-bordered table-hover table-checkable" style="width: 100%" border="1" runat="server" id="tblVMSHeader">
-                                    </table>
-
-
-
-                                </div>
-                                <br />
-
-                                <div class="col-lg-9 ml-lg-auto">
-                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" OnClientClick="SubmitHeader()" Text="Submit" ValidationGroup="validateVMS" />
-
-                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
-
-                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
-                                </div>
                                 <br />
                                 <br />
                             </div>
@@ -397,15 +479,15 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Visit Request has been saved successfully</label>
+                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been saved successfully</label>
                                                     </div>
                                                     <div class="form-group m-form__group row">
-                                                        <label for="message-text" class="col-xl-5 col-lg-3 form-control-label font-weight-bold">Ticket No :</label>
-                                                        <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Ticket No :</label>
+                                                        <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
+                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
                                                 </div>
                                             </ContentTemplate>
                                             <Triggers>
@@ -428,7 +510,7 @@
                                 <div class="modal-dialog" role="document" style="max-width: 60%;">
                                     <div class="modal-content">
                                         <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                                <ContentTemplate>--%>
+<ContentTemplate>--%>
 
                                         <div class="modal-header">
                                             <h3 id="myModalLabel">Associate Information</h3>
@@ -446,11 +528,11 @@
                                                             <a class="nav-link" data-toggle="tab" href="#t2">User Group Info</a>
                                                         </li>
                                                         <%--<li class="active">
-                                                                <a href="#t1" data-toggle="tab">User Info</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#t2" data-toggle="tab">User Info Group</a>
-                                                            </li>--%>
+<a href="#t1" data-toggle="tab">User Info</a>
+</li>
+<li>
+<a href="#t2" data-toggle="tab">User Info Group</a>
+</li>--%>
                                                     </ul>
                                                 </div>
                                                 <div class="box-body">
@@ -471,7 +553,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 row">
-                                                                            <label class="col-form-label col-xl-4 col-lg-3 ">Department:</label>
+                                                                            <label class="col-form-label col-md-4">Department:</label>
                                                                             <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
 
                                                                         </div>
@@ -563,8 +645,8 @@
 
                                         <%-- </ContentTemplate>--%>
                                         <%--<Triggers>
-                                                    <asp:AsyncPostBackTrigger ControlID="btnMeetingMstSave" EventName="Click" />
-                                                </Triggers>--%>
+<asp:AsyncPostBackTrigger ControlID="btnMeetingMstSave" EventName="Click" />
+</Triggers>--%>
                                         <%--</asp:UpdatePanel>--%>
                                     </div>
                                 </div>
