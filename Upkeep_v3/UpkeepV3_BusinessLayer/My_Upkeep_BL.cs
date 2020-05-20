@@ -44,7 +44,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet DepartmentMaster_CRUD(int Department_ID, string Dept_Desc,int CompanyID, string LoggedInUserID, string Is_Deleted, string Action, string StrConn)
+        public DataSet DepartmentMaster_CRUD(int Department_ID, string Dept_Desc, int CompanyID, string LoggedInUserID, string Is_Deleted, string Action, string StrConn)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet PriorityMaster_CRUD(int Priority_ID, string Priority_Desc,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet PriorityMaster_CRUD(int Priority_ID, string Priority_Desc, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet FrequencyMaster_CRUD(int Frquency_Id, string Frquency_Desc,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet FrequencyMaster_CRUD(int Frquency_Id, string Frquency_Desc, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UserGroupMaster_CRUD(int Grp_Id, string Grp_Desc, string User_ID,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserGroupMaster_CRUD(int Grp_Id, string Grp_Desc, string User_ID, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -283,7 +283,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet FetchDepartment(int CompanyID,String StrConn)
+        public DataSet FetchDepartment(int CompanyID, String StrConn)
         {
             try
             {
@@ -303,7 +303,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet FetchUserType(int CompanyID , String StrConn) //Added CompanyId by sujata
+        public DataSet FetchUserType(int CompanyID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -325,7 +325,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, string Approver_ID, string Profilephoto,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, string Approver_ID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -352,7 +352,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Is_Approver", Is_Approver);
                 cmd.Parameters.AddWithValue("@Is_GlobalApprover", Is_GobalApprover);
                 cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID);
-                cmd.Parameters.AddWithValue("@Profile_photo", Profilephoto); 
+                cmd.Parameters.AddWithValue("@Profile_photo", Profilephoto);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 //cmd.Parameters.AddWithValue("Is_Deleted", Is_Deleted);
@@ -425,7 +425,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet FetchUserGrp(int GroupID,int CompanyID,string StrConn)
+        public DataSet FetchUserGrp(int GroupID, int CompanyID, string StrConn)
         {
             try
             {
@@ -463,7 +463,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet WorkflowMaster_CRUD(int WorkflowID, string WorkflowDesc, int ZoneID, int CategoryID, int SubCategoryID, string xmlWorkflow,int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet WorkflowMaster_CRUD(int WorkflowID, string WorkflowDesc, int ZoneID, int CategoryID, int SubCategoryID, string xmlWorkflow, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -510,7 +510,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CategoryMaster_CRUD(int CompanyID, int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -649,6 +649,27 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Ticket_Fetch_MyActionable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet AddChecklistMaster_CRUD(int ChecklistID, string ChecklistName, int DeptID, Boolean Chkapproval, Boolean ChkExpry, Boolean ChkSchedule, int ExpirytimeID, DateTime dtSchedule_Date, string StartTime, string EndTime, int CustFrequency, int Frquency_Id, int ZoneID, int LocationID, int SubLocationID, string strXmlChecklistPoint, string LoggedInUserID, string Action, string StrConn)
         {
             DataSet dsAddChecklist = new DataSet();
@@ -759,7 +780,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_ChecklistPoints(string TicketNumber, string strXmlChecklist,string list_Images, string LoggedInUserID, string StrConn)
+        public DataSet Update_ChecklistPoints(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID, string StrConn)
         {
             DataSet dsChecklist = new DataSet();
             try
@@ -802,7 +823,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         #region Location Tree View
-        public DataSet Location_PopulateRootLevel(int CompanyID,string StrConn)
+        public DataSet Location_PopulateRootLevel(int CompanyID, string StrConn)
         {
             try
             {
@@ -821,7 +842,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Location_PopulateSubLevel(int ParentID,string StrConn)
+        public DataSet Location_PopulateSubLevel(int ParentID, string StrConn)
         {
             try
             {
@@ -1037,6 +1058,7 @@ namespace UpkeepV3_BusinessLayer
 
 
         #region VMS
+
         //Added by RC This function is used to save VMS Configuration
         public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID, string StrConn)
         {
@@ -1063,12 +1085,122 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        //Added by RC This function is used to Fetch VMS Configuration
+        public DataSet Fetch_VMSConfiguration(string Initiator, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Initiator", Initiator);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to Bind VMS Configuration
+        public DataSet Bind_VMSConfiguration(int VMS_ConfigID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_CONFIG_DETAILS", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to Fetch VMS Request list
+        public DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_MYREQUEST_VMS", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to bind VMS request details
+        public DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to save VMS Request
+        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@VisitData", strVMSData);
+                cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region General Functions
 
         //Added by RC This function is used to Fetch Answer type master
-        public DataSet Fetch_Answer(char Key,string StrConn)
+        public DataSet Fetch_Answer(char Key, string StrConn)
         {
             DataSet ds = new DataSet();
             try

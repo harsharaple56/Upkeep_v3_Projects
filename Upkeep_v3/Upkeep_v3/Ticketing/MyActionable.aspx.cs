@@ -8,13 +8,12 @@ using System.Data;
 
 namespace Upkeep_v3.Ticketing
 {
-    public partial class MyRequest : System.Web.UI.Page
+    public partial class MyActionable : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -36,7 +35,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details("", CompanyID, 0, 0, 0, "", "", LoggedInUserID, "R");
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID);
 
                 int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -58,7 +57,7 @@ namespace Upkeep_v3.Ticketing
 
                         for (int i = 0; i < count; i++)
                         {
-                             TicketID = Convert.ToInt32(dsTicket.Tables[0].Rows[i]["Ticket_ID"]);
+                            TicketID = Convert.ToInt32(dsTicket.Tables[0].Rows[i]["Ticket_ID"]);
                             TicketNumber = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_Code"]);
                             //Zone = Convert.ToString(dsTicket.Tables[0].Rows[i]["Zone_Desc"]);
                             Location = Convert.ToString(dsTicket.Tables[0].Rows[i]["Loc_Desc"]);
@@ -90,7 +89,6 @@ namespace Upkeep_v3.Ticketing
             }
             return data;
         }
-
 
     }
 }

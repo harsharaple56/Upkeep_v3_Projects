@@ -189,9 +189,9 @@ namespace Upkeep_v3.Ticketing
             {
                 lblTicketErrorMsg.Text = "";
                 string TicketPrefix = string.Empty;
-                int ZoneID = 0;
+                //int ZoneID = 0;
                 int LocationID = 0;
-                int SubLocationID = 0;
+                //int SubLocationID = 0;
                 int CategoryID = 0;
                 int SubCategoryID = 0;
                 string TicketMessage = string.Empty;
@@ -205,9 +205,9 @@ namespace Upkeep_v3.Ticketing
                 string abc = string.Empty;
 
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
-                ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
+                //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
                 LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
-                SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
+                //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
                 CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
                 TicketMessage = txtTicketDesc.Text.Trim();
@@ -331,7 +331,7 @@ namespace Upkeep_v3.Ticketing
                             //string body = "Welcome to ASPSnippets.com";
                             //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
 
-                            dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, ZoneID, LocationID, SubLocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
+                            dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
                             //mpeTicketSaveSuccess.Show();
 
                             if (dsTicketSave.Tables.Count > 0)
@@ -385,13 +385,13 @@ namespace Upkeep_v3.Ticketing
             btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
             btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
-            int ZoneID = 0;
+            //int ZoneID = 0;
             int SubCategoryID = 0;
             int CategoryID = 0;
-            ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
+            //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
             CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
             SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
-            BindWorkflow(ZoneID, CategoryID, SubCategoryID);
+            BindWorkflow(CategoryID, SubCategoryID);
 
             dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
         }
@@ -400,25 +400,25 @@ namespace Upkeep_v3.Ticketing
         {
             mpeWorkflow.Show();
 
-            int ZoneID = 0;
+            //int ZoneID = 0;
             int SubCategoryID = 0;
             int CategoryID = 0;
-            ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
+            //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
             CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
             SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
-            BindWorkflow(ZoneID, CategoryID, SubCategoryID);
+            BindWorkflow(CategoryID, SubCategoryID);
 
 
         }
 
-        public void BindWorkflow(int ZoneID, int CategoryID, int SubCategoryID)
+        public void BindWorkflow(int CategoryID, int SubCategoryID)
         {
             DataSet dsWorkflow = new DataSet();
             try
             {
                 string TicketPrefix = string.Empty;
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
-                dsWorkflow = ObjUpkeep.Fetch_Ticket_Workflow(ZoneID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID);
+                dsWorkflow = ObjUpkeep.Fetch_Ticket_Workflow(CompanyID, CategoryID, SubCategoryID, TicketPrefix, LoggedInUserID);
 
                 if (dsWorkflow.Tables.Count > 0)
                 {

@@ -432,6 +432,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Ticket_MyActionable(int CompanyID,string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
 
@@ -1040,6 +1054,86 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    //Added by RC This function is used to Fetch VMS Config
+    [WebMethod]
+    public DataSet Fetch_VMSConfiguration(string Initiator)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_VMSConfiguration(Initiator);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to bind VMS Config
+    [WebMethod]
+    public DataSet Bind_VMSConfiguration(int VMS_ConfigID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Bind_VMSConfiguration(VMS_ConfigID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to Fetch VMS Request list
+    [WebMethod]
+    public DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyRequestVMS(LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to bind VMS request details
+    [WebMethod]
+    public DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Bind_VMSRequestDetails(VMS_ConfigID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to save VMS Request
+    [WebMethod]
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    
     #endregion
 
     #region General Functions
