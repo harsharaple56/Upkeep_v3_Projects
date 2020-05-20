@@ -86,6 +86,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Ticket_MyActionableOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Accept_TicketOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Employee_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
@@ -283,6 +285,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Ticket_MyActionableCompletedEventHandler Fetch_Ticket_MyActionableCompleted;
+        
+        /// <remarks/>
+        public event Accept_TicketCompletedEventHandler Accept_TicketCompleted;
         
         /// <remarks/>
         public event Employee_CRUDCompletedEventHandler Employee_CRUDCompleted;
@@ -1479,6 +1484,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Accept_Ticket", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Accept_Ticket(int TicketID, string LoggedInUserID) {
+            object[] results = this.Invoke("Accept_Ticket", new object[] {
+                        TicketID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Accept_TicketAsync(int TicketID, string LoggedInUserID) {
+            this.Accept_TicketAsync(TicketID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Accept_TicketAsync(int TicketID, string LoggedInUserID, object userState) {
+            if ((this.Accept_TicketOperationCompleted == null)) {
+                this.Accept_TicketOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAccept_TicketOperationCompleted);
+            }
+            this.InvokeAsync("Accept_Ticket", new object[] {
+                        TicketID,
+                        LoggedInUserID}, this.Accept_TicketOperationCompleted, userState);
+        }
+        
+        private void OnAccept_TicketOperationCompleted(object arg) {
+            if ((this.Accept_TicketCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Accept_TicketCompleted(this, new Accept_TicketCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Employee_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Employee_CRUD(string firstName, string lastName, string email, long phone, string EmpID, string LoggedInUserID, string role, string Username, string Password, string actionType) {
             object[] results = this.Invoke("Employee_CRUD", new object[] {
@@ -2252,22 +2288,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Close_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images) {
+        public System.Data.DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel) {
             object[] results = this.Invoke("Close_Ticket_Details", new object[] {
                         TicketID,
                         CloseTicketDesc,
                         LoggedInUserID,
-                        list_Images});
+                        list_Images,
+                        strTicketAction,
+                        CurrentLevel});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Close_Ticket_DetailsAsync(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images) {
-            this.Close_Ticket_DetailsAsync(TicketID, CloseTicketDesc, LoggedInUserID, list_Images, null);
+        public void Close_Ticket_DetailsAsync(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel) {
+            this.Close_Ticket_DetailsAsync(TicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel, null);
         }
         
         /// <remarks/>
-        public void Close_Ticket_DetailsAsync(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, object userState) {
+        public void Close_Ticket_DetailsAsync(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel, object userState) {
             if ((this.Close_Ticket_DetailsOperationCompleted == null)) {
                 this.Close_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnClose_Ticket_DetailsOperationCompleted);
             }
@@ -2275,7 +2313,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         TicketID,
                         CloseTicketDesc,
                         LoggedInUserID,
-                        list_Images}, this.Close_Ticket_DetailsOperationCompleted, userState);
+                        list_Images,
+                        strTicketAction,
+                        CurrentLevel}, this.Close_Ticket_DetailsOperationCompleted, userState);
         }
         
         private void OnClose_Ticket_DetailsOperationCompleted(object arg) {
@@ -3595,6 +3635,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Ticket_MyActionableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Accept_TicketCompletedEventHandler(object sender, Accept_TicketCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Accept_TicketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Accept_TicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

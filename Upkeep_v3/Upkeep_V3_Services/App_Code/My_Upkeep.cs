@@ -464,6 +464,22 @@ public class My_Upkeep
         //return ds;
     }
 
+    public DataSet Accept_Ticket(int TicketID, string LoggedInUserID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Accept_Ticket(TicketID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
 
     public DataSet AddChecklistMaster_CRUD(int ChecklistID, string ChecklistName, int DeptID, Boolean Chkapproval, Boolean ChkExpry, Boolean ChkSchedule, int ExpirytimeID, DateTime dtSchedule_Date, string StartTime, string EndTime, int CustFrequency, int Frquency_Id, int ZoneID, int LocationID, int SubLocationID,string strXmlChecklistPoint, string LoggedInUserID, string Action)
     {
@@ -552,13 +568,13 @@ public class My_Upkeep
     }
 
 
-    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images)
+    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images,string strTicketAction, string CurrentLevel)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Close_Ticket_Details(TicketID, CloseTicketDesc, LoggedInUserID, list_Images, StrConn);
+            ds = ObjUpkeepCC_BL.Close_Ticket_Details(TicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel, StrConn);
             return ds;
         }
         catch (Exception ex)

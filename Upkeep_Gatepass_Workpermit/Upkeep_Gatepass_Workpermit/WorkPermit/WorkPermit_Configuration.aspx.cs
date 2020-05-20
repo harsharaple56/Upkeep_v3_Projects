@@ -203,14 +203,15 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
 
                             if (WorkPermitHeaderArray != null && WorkPermitHeader_AnsArray != null)
                             {
+                                //Replacing special characters with Escape in XML
                                 strXmlWorkPermit_Header.Append(@"<WORKPERMIT_HEADER_DESC>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_SECTION_NAME>" + WPSectionName + "</WORKPERMIT_SECTION_NAME>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_SECTION_ID>" + WPSectionID + "</WORKPERMIT_SECTION_ID>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_HEADER_ID>" + WorkPermitHeaderID + "</WORKPERMIT_HEADER_ID>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_HEADER>" + WorkPermitHeader + "</WORKPERMIT_HEADER>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_MANDATORY>" + WPHeaderMandatory + "</WORKPERMIT_MANDATORY>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_ANSWER>" + WPHeaderAns + "</WORKPERMIT_ANSWER>");
-                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_ANSWER_DATA>" + WPAnsData + "</WORKPERMIT_ANSWER_DATA>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_SECTION_NAME>" + WPSectionName.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_SECTION_NAME>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_SECTION_ID>" + WPSectionID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_SECTION_ID>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_HEADER_ID>" + WorkPermitHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_HEADER_ID>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_HEADER>" + WorkPermitHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_HEADER>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_MANDATORY>" + WPHeaderMandatory.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_MANDATORY>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_ANSWER>" + WPHeaderAns.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_ANSWER>");
+                                strXmlWorkPermit_Header.Append(@"<WORKPERMIT_ANSWER_DATA>" + WPAnsData.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_ANSWER_DATA>");
                                 strXmlWorkPermit_Header.Append(@"</WORKPERMIT_HEADER_DESC>");
                             }
 
@@ -229,7 +230,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                     if (WorkPermitTermCondition_Array != null)
                     {
                         strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM_DESC>");
-                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition + "</WORKPERMIT_TERM>");
+                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_TERM>");
                         strXmlWorkPermit_TermCondition.Append(@"</WORKPERMIT_TERM_DESC>");
                     }
 
@@ -307,23 +308,23 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 DataSet dsWorkPermitConfig = new DataSet();
 
                 //Replacing special characters with Escape in XML
-                strXmlWorkPermit_Header.Replace("&", "&amp;");
-                strXmlWorkPermit_Header.Replace("<", "&lt;");
-                strXmlWorkPermit_Header.Replace(">", "&gt;");
-                strXmlWorkPermit_Header.Replace("\"", "&quot;");
-                strXmlWorkPermit_Header.Replace("'", "&apos;");
+                //strXmlWorkPermit_Header.Replace("&", "&amp;");
+                //strXmlWorkPermit_Header.Replace("<", "&lt;");
+                //strXmlWorkPermit_Header.Replace(">", "&gt;");
+                //strXmlWorkPermit_Header.Replace("\"", "&quot;");
+                //strXmlWorkPermit_Header.Replace("'", "&apos;");
 
-                strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
-                strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
-                strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
-                strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
-                strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
+                //strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
+                //strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
+                //strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
+                //strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
+                //strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
 
-                strXmlApprovalMatrix.Replace("&", "&amp;");
-                strXmlApprovalMatrix.Replace("<", "&lt;");
-                strXmlApprovalMatrix.Replace(">", "&gt;");
-                strXmlApprovalMatrix.Replace("\"", "&quot;");
-                strXmlApprovalMatrix.Replace("'", "&apos;");
+                //strXmlApprovalMatrix.Replace("&", "&amp;");
+                //strXmlApprovalMatrix.Replace("<", "&lt;");
+                //strXmlApprovalMatrix.Replace(">", "&gt;");
+                //strXmlApprovalMatrix.Replace("\"", "&quot;");
+                //strXmlApprovalMatrix.Replace("'", "&apos;");
 
 
 
