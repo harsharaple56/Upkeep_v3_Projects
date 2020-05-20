@@ -93,7 +93,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
 
                     hdnWPHeaders.Value = string.Join("~", HeaderValues);
 
-                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc")).ToArray();
+                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace( "<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
 
                     hdnWPTerms.Value = string.Join("~", TermsValues);
 
