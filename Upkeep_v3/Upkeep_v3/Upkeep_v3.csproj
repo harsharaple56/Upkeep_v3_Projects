@@ -799,6 +799,7 @@
     <Content Include="Feedback\EventListing.aspx" />
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
+    <Content Include="Feedback\Feedback_Request.aspx" />
     <Content Include="General_Masters\Add_Department.aspx" />
     <Content Include="General_Masters\Add_Frequency.aspx" />
     <Content Include="General_Masters\Add_Locations_Mst.aspx" />
@@ -3836,6 +3837,13 @@
     </Compile>
     <Compile Include="Feedback\Feedback_MIS_Report.aspx.designer.cs">
       <DependentUpon>Feedback_MIS_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback\Feedback_Request.aspx.cs">
+      <DependentUpon>Feedback_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
+      <DependentUpon>Feedback_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Add_Department.aspx.cs">
       <DependentUpon>Add_Department.aspx</DependentUpon>
