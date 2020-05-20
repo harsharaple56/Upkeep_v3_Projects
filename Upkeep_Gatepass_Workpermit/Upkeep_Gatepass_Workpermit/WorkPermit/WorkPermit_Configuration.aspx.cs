@@ -230,7 +230,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                     if (WorkPermitTermCondition_Array != null)
                     {
                         strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM_DESC>");
-                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_TERM>");
+                        strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM>" + WorkPermitTermCondition.Replace(System.Environment.NewLine, "<br>").Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</WORKPERMIT_TERM>");
                         strXmlWorkPermit_TermCondition.Append(@"</WORKPERMIT_TERM_DESC>");
                     }
 

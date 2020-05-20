@@ -407,10 +407,10 @@
                 $('.divTxtAnswer input[type="text"]').each(function () {
                     // Do your magic here 
                     //alert($(this).val());
-                    if ($(this).val() === "||") {
-                        alert("jjjj");
-                        alert($(this).siblings('.dltrptanswer').html());
-                        $(this).parent().siblings('.dltrptanswer').click();
+                    if ($(this).val() === "||" || $(this).val() === "") {//RC 19 May
+                        //alert("jjjj");
+                        //alert($(this).siblings('.dltrptanswer').html());
+                        $(this).siblings('.dltrptanswer').click(); //RC 19 May
                     }
                 });
                 $('#btnModal').click();
@@ -424,8 +424,10 @@
                 $('.divTxtAnswer input[type="text"]').each(function () {
                     // Do your magic here 
                     //alert($(this).val());
-                    if ($(this).val() === "||") {
-                        $(this).parent().siblings('.dltrptanswer').click();
+                    if ($(this).val() === "||" || $(this).val() == "") {
+                        //alert("found");
+                        //$(this).siblings('.dltrptanswer').click();
+                        return; //RC 19 May
                     }
                     if ($('#hdnWPConfigID').val() != "0") {
                         if (answers == "") {

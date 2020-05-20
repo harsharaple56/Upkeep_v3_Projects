@@ -112,6 +112,42 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.Repeater rptHeaderDetails;
         
         /// <summary>
+        /// rdbGreen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbGreen;
+        
+        /// <summary>
+        /// rdbOrange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbOrange;
+        
+        /// <summary>
+        /// rdbRed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbRed;
+        
+        /// <summary>
+        /// txtAsmmtDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAsmmtDate;
+        
+        /// <summary>
         /// tblVMSHeader control.
         /// </summary>
         /// <remarks>
