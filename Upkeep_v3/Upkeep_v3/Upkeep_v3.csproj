@@ -88,6 +88,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
+    <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
+    <Content Include="AssetManagement\AssetManagementList.aspx" />
+    <Content Include="AssetManagement\AssetManagementRequest.aspx" />
+    <Content Include="AssetManagement\AssetManagementRequestSchedule.aspx" />
+    <Content Include="AssetManagement\AssetManagementServiceCloseList.aspx" />
+    <Content Include="AssetManagement\AssetManagementServiceList.aspx" />
+    <Content Include="AssetManagement\AssetManagementServiceRequest.aspx" />
     <Content Include="assets1\app\js\dashboard.js" />
     <Content Include="assets1\app\js\layout-builder.js" />
     <Content Include="assets1\app\js\my-script.js" />
@@ -800,6 +808,7 @@
     <Content Include="Feedback\EventListing.aspx" />
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
+    <Content Include="Feedback\Feedback_Request.aspx" />
     <Content Include="General_Masters\Add_Department.aspx" />
     <Content Include="General_Masters\Add_Frequency.aspx" />
     <Content Include="General_Masters\Add_Locations_Mst.aspx" />
@@ -3736,6 +3745,54 @@
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetManagement\AssetManagementAmcList.aspx.cs">
+      <DependentUpon>AssetManagementAmcList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementAmcList.aspx.designer.cs">
+      <DependentUpon>AssetManagementAmcList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementAmcRequest.aspx.cs">
+      <DependentUpon>AssetManagementAmcRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementAmcRequest.aspx.designer.cs">
+      <DependentUpon>AssetManagementAmcRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementList.aspx.cs">
+      <DependentUpon>AssetManagementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementList.aspx.designer.cs">
+      <DependentUpon>AssetManagementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementRequest.aspx.cs">
+      <DependentUpon>AssetManagementRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementRequest.aspx.designer.cs">
+      <DependentUpon>AssetManagementRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementRequestSchedule.aspx.cs">
+      <DependentUpon>AssetManagementRequestSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementRequestSchedule.aspx.designer.cs">
+      <DependentUpon>AssetManagementRequestSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceCloseList.aspx.cs">
+      <DependentUpon>AssetManagementServiceCloseList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceCloseList.aspx.designer.cs">
+      <DependentUpon>AssetManagementServiceCloseList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceList.aspx.cs">
+      <DependentUpon>AssetManagementServiceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceList.aspx.designer.cs">
+      <DependentUpon>AssetManagementServiceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceRequest.aspx.cs">
+      <DependentUpon>AssetManagementServiceRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\AssetManagementServiceRequest.aspx.designer.cs">
+      <DependentUpon>AssetManagementServiceRequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Checklist\Add_Checklist.aspx.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3840,6 +3897,13 @@
     </Compile>
     <Compile Include="Feedback\Feedback_MIS_Report.aspx.designer.cs">
       <DependentUpon>Feedback_MIS_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback\Feedback_Request.aspx.cs">
+      <DependentUpon>Feedback_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
+      <DependentUpon>Feedback_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Add_Department.aspx.cs">
       <DependentUpon>Add_Department.aspx</DependentUpon>
