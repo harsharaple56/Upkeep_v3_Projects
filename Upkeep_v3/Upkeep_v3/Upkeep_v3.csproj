@@ -433,6 +433,7 @@
     <Content Include="assets\app\media\img\logos\logo_invoice_dark.png" />
     <Content Include="assets\app\media\img\logos\logo_invoice_white.png" />
     <Content Include="assets\app\media\img\logos\logo_login.png" />
+    <Content Include="assets\app\media\img\misc\AarogyaQR.png" />
     <Content Include="assets\app\media\img\misc\load.gif" />
     <Content Include="assets\app\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\app\media\img\misc\quick_actions_bg.jpg" />
@@ -837,6 +838,7 @@
     <Content Include="TicketImages\26-12-2019\TKT30_0.jpg" />
     <Content Include="Ticketing\Add_MyRequest.aspx" />
     <Content Include="Ticketing\Frm_Category.aspx" />
+    <Content Include="Ticketing\MyActionable.aspx" />
     <Content Include="Ticketing\MyRequest.aspx" />
     <Content Include="Ticketing\My_RequestRply.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
@@ -3721,13 +3723,13 @@
     <Content Include="RetailerUploadFile\RetailerData.xlsx" />
     <Content Include="TestMaster.Master" />
     <Content Include="UpkeepMaster.Master" />
+    <Content Include="VMS\Visit_Configuration.aspx" />
+    <Content Include="VMS\Visit_Request.aspx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="VMS\Visit_Configuration.aspx" />
-    <Content Include="VMS\Visit_Request.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4036,6 +4038,13 @@
     </Compile>
     <Compile Include="Ticketing\Frm_Category.aspx.designer.cs">
       <DependentUpon>Frm_Category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\MyActionable.aspx.cs">
+      <DependentUpon>MyActionable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\MyActionable.aspx.designer.cs">
+      <DependentUpon>MyActionable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\MyRequest.aspx.cs">
       <DependentUpon>MyRequest.aspx</DependentUpon>
