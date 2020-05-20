@@ -649,7 +649,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int CompanyID,string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID, string StrConn)
         {
             try
             {
@@ -658,7 +658,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-               
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -1169,7 +1169,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1177,12 +1177,12 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
-                cmd.Parameters.AddWithValue("@VMSDate", strVMSDate);
-                cmd.Parameters.AddWithValue("@DeptID", DeptID);
-                cmd.Parameters.AddWithValue("@VMSTypeID", VMSTypeID);
-                cmd.Parameters.AddWithValue("@VMSHeader", strVMSHeader);
-                cmd.Parameters.AddWithValue("@VMSHeaderData", strVMSHeaderData);
+                cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@VisitData", strVMSData);
+                cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

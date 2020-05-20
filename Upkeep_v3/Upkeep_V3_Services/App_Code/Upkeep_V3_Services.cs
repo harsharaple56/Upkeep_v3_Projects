@@ -1120,12 +1120,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int VMS_ConfigID, string strVMSDate, int DeptID, int VMSTypeID, string strVMSHeader, string strVMSHeaderData, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(VMS_ConfigID, strVMSDate, DeptID, VMSTypeID, strVMSHeader, strVMSHeaderData, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID);
         }
         catch (Exception ex)
         {

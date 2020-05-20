@@ -1525,12 +1525,12 @@
       <s:element name="Insert_VMSRequest">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="VMSTypeID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSHeader" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSHeaderData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMeetUsrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSFeedbackData" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>

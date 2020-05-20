@@ -13,10 +13,15 @@ namespace Upkeep_v3.VMS
 {
     public partial class Visit_Request : System.Web.UI.Page
     {
+
+        #region Global variables
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         DataSet dsConfig = new DataSet();
         int CompanyID = 0;
+        #endregion
+
+        #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
@@ -38,151 +43,20 @@ namespace Upkeep_v3.VMS
             }
         }
 
-        public void BindVMSTitle()
-        {
-            DataSet dsTitle = new DataSet();
-            string Initiator = string.Empty;
-            try
-            {
-                Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.Fetch_VMSConfiguration(Initiator);
-                if (dsTitle.Tables.Count > 0)
-                {
-                    if (dsTitle.Tables[0].Rows.Count > 0)
-                    {
-                        ddlVMSTitle.DataSource = dsTitle.Tables[0];
-                        ddlVMSTitle.DataTextField = "Config_Title";
-                        ddlVMSTitle.DataValueField = "VMS_Config_Id";
-                        ddlVMSTitle.DataBind();
-                        ddlVMSTitle.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
-
-        public string bindVMSHeaderValue()
-        {
-            string data = "";
-
-
-            return data;
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            string WpTitleSelectedID = "";
+            WpTitleSelectedID = ddlVMSTitle.SelectedValue;
+            //if (ValidateData() == false)
+            //{
+            //    //ddlWorkPermitTitle.SelectedValue = "0";
+            //    //ddlWorkPermitTitle.SelectedValue = WpTitleSelectedID;
+            //    //setWorkPermitData();
+            //    SetRepeater();
+            //    return;
+            //}
 
-        }
-                
-        protected void btnAddNew_Click(object sender, EventArgs e)
-        {
-            int colsCount = 0;
-            colsCount = Convert.ToInt32(Session["colsCount"]);
-            //GenerateTable(colsCount, 1);
-        }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            string VMSHeader = Convert.ToString(hdnVMSHeader.Value);
-            string VMSHeaderData = Convert.ToString(hdnVMSHeaderData.Value);
-
-            string[] strArrayVMSHeader = VMSHeader.Split(',');
-            string[] strArrayVMSHeaderData = VMSHeaderData.Split(',');
-
-            int recCount = 0;
-            recCount = strArrayVMSHeader.Length - 1;
-
-            DataTable dtHeader = new DataTable();
-
-            // string df = "1,2,1,3";
-
-            int i;
-
-            DataColumn dc = new DataColumn();
-
-            dtHeader.Columns.Add(dc);
-
-            for (i = 0; i < 1; i++)
-            {
-                string[] LocArr = strArrayVMSHeader[i].Split('#');
-                int recCount2 = LocArr.Length;
-
-                for (int j = 0; j < recCount2; j++)
-                {
-                    if (LocArr[j] != "")
-                    {
-                        //dr[dc] = VMSHeader.Split(',')[i];
-                        //dr[dc] = LocArr[j];
-                        //dt.Rows.Add(dr);
-                        dtHeader.Columns.Add(LocArr[j]);
-
-                    }
-                }
-            }
-
-            string[] LocArray = strArrayVMSHeader[1].Split('#');
-
-            DataRow row = dtHeader.NewRow(); ///creating new row in your datatable
-
-            row.ItemArray = LocArray;///copying your data into data row object
-
-            dtHeader.Rows.InsertAt(row, 2);///insert row at 3rd index of datatable
-
-
-            for (int k = 0; k < strArrayVMSHeaderData.Length - 1; k++)
-            {
-
-                string[] HValueArray = strArrayVMSHeaderData[k].Split('#');
-
-                ////if(HValueArray)
-                DataRow rowHValue = dtHeader.NewRow(); ///creating new row in your datatable
-
-                rowHValue.ItemArray = HValueArray;///copying your data into data row object
-
-                dtHeader.Rows.InsertAt(rowHValue, 2);///insert row at 3rd index of datatable
-
-            }
-
-            dtHeader.Columns.Remove("Column1");
-            
-            int VMS_ConfigID = 0;
-            string strVMSDate = string.Empty;
-            int DeptID = 0;
-            int TypeID = 0;
-
-            VMS_ConfigID = Convert.ToInt32(ddlVMSTitle.SelectedValue);
-            strVMSDate = Convert.ToString(txtVMSDate.Text.Trim());
-            DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
-
-
-            DataSet dsVMSHeaderData = new DataSet();
-            dsVMSHeaderData = ObjUpkeep.Insert_VMSRequest(VMS_ConfigID, strVMSDate, DeptID, TypeID, VMSHeader, VMSHeaderData, LoggedInUserID);
-
-            if (dsVMSHeaderData.Tables.Count > 0)
-            {
-                if (dsVMSHeaderData.Tables[0].Rows.Count > 0)
-                {
-                    int Status = Convert.ToInt32(dsVMSHeaderData.Tables[0].Rows[0]["Status"]);
-                    if (Status == 1)
-                    {
-                        lblVMSRequestCode.Text = Convert.ToString(dsVMSHeaderData.Tables[1].Rows[0]["RequestID"]);
-
-                        mpeVMSRequestSaveSuccess.Show();
-                    }
-                }
-            }
-            
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-
+            SaveVisitData();
         }
 
         protected void ddlVMSTitle_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,21 +68,20 @@ namespace Upkeep_v3.VMS
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
 
                 ConfigTitleID = Convert.ToInt32(ddlVMSTitle.SelectedValue);
-                
-                
+
+
                 dsConfig = ObjUpkeep.Bind_VMSRequestDetails(ConfigTitleID, LoggedInUserID);
 
                 rptHeaderDetails.DataSource = dsConfig.Tables[4];
                 rptHeaderDetails.DataBind();
 
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
 
         protected void rptHeaderDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -315,7 +188,6 @@ namespace Upkeep_v3.VMS
             }
         }
 
-
         protected void btnSelectUser_Click(object sender, EventArgs e)
         {
             string SelectedUsersID = string.Empty;
@@ -352,9 +224,60 @@ namespace Upkeep_v3.VMS
             ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", $"SelectUser();", true);
             //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>", true);
             //this.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "xx", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>");
-        
+
         }
 
+        protected void grdInfodetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Fetch_User_UserGroupList();
+        }
+
+        protected void btnSuccessOk_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Page.ResolveClientUrl("~/VMS/MyVMS.aspx"), false);
+        }
+
+        #endregion
+
+        #region Functions
+
+        public void BindVMSTitle()
+        {
+            DataSet dsTitle = new DataSet();
+            string Initiator = string.Empty;
+            try
+            {
+                Initiator = Convert.ToString(Session["UserType"]);
+                dsTitle = ObjUpkeep.Fetch_VMSConfiguration(Initiator);
+                if (dsTitle.Tables.Count > 0)
+                {
+                    if (dsTitle.Tables[0].Rows.Count > 0)
+                    {
+                        ddlVMSTitle.DataSource = dsTitle.Tables[0];
+                        ddlVMSTitle.DataTextField = "Config_Title";
+                        ddlVMSTitle.DataValueField = "VMS_Config_Id";
+                        ddlVMSTitle.DataBind();
+                        ddlVMSTitle.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void Fetch_User_UserGroupList()
         {
@@ -409,24 +332,341 @@ namespace Upkeep_v3.VMS
                 throw ex;
             }
         }
-        protected void grdInfodetails_RowDataBound(object sender, GridViewRowEventArgs e)
+
+
+        private void SaveVisitData()
         {
-            //check if the row is the header row
-            if (e.Row.RowType == DataControlRowType.Header)
+            try
             {
-                //add the thead and tbody section programatically
-                e.Row.TableSection = TableRowSection.TableHeader;
+                #region UserData
+                int ConfigID = Convert.ToInt32(ddlVMSTitle.SelectedValue.ToString());
+                string LoggedInUser = LoggedInUserID;
+                string strVisitDate = txtVMSDate.Text;
+                string strMeetUsers = txtMeetUsers.Text;
+                #endregion
+
+
+                #region SectionHeader
+                /*
+                 Create table and store data in table and convert later in xml and pass in to Datatbase..
+                 Table Structure : SectionID | HeaderID | AnswerID | Data
+                */
+
+                string strVMSData = "";
+
+                DataTable dt = new DataTable();
+                dt.Clear();
+                dt.TableName = "TableSectionHeader";
+                dt.Columns.Add("HeaderID");
+                dt.Columns.Add("AnswerID");
+                dt.Columns.Add("Data");
+                // dtRow["SectionID"] = ""; dtRow["HeaderID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
+
+                string Is_Not_Valid = "False";
+
+
+                foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
+                {
+
+                    int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                    string Is_Mandatory = Convert.ToString((itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value);
+                    Label lblHeaderErr = (itemHeader.FindControl("lblHeaderErr") as Label);
+                    string isField = "False";
+
+                    // int AnswerTypeData = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerTypeData") as HiddenField).Value);
+                    string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
+
+                    if (AnswerType == 1) //Multi Selection [CheckBox]
+                    {
+                        CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
+                        List<String> chkStrList = new List<string>();
+
+
+                        foreach (ListItem item in divCheckBoxIDI.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                isField = "True";
+
+                                chkStrList.Add(item.Value);
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["HeaderID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerType;
+                                dtRow["Data"] = item.Value;
+                                dt.Rows.Add(dtRow);
+                            }
+                        }
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+
+                        //String YrStr = String.Join(";", chkStrList.ToArray());
+                    }
+                    else if (AnswerType == 2) //Single Selection [Radio Button]
+                    {
+                        RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+                        List<String> RadioStrList = new List<string>();
+                        foreach (ListItem item in divRadioButtonrdbYes.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                isField = "True";
+                                RadioStrList.Add(item.Value);
+
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["HeaderID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerType;
+                                dtRow["Data"] = item.Value;
+                                dt.Rows.Add(dtRow);
+                            }
+                        }
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+                        //String YrStr = String.Join(";", RadioStrList.ToArray());
+
+                    }
+                    else if (AnswerType == 3) //Image Upload  
+                    {
+                        HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
+
+                        FileUpload ChecklistImage = (FileUpload)itemHeader.FindControl("FileUpload_ChecklistImage");
+
+
+                        if (ChecklistImage.HasFile)
+                        {
+                            List<int> Lst_ValidImage = new List<int>();
+                            List<int> Lst_ImageSaved = new List<int>();
+                            List<string> Lst_Images = new List<string>();
+                            string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                            string fileName = string.Empty;
+
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/WorkPermitImages/" + CurrentDate);
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+
+                            int i = 0;
+
+                            foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                            {
+                                string filetype = Path.GetExtension(postfiles.FileName);
+                                if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                {
+                                    Lst_ValidImage.Add(1);
+                                }
+                                else
+                                {
+                                    Lst_ValidImage.Add(0);
+                                }
+                            }
+                            foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                            {
+                                string filetype = Path.GetExtension(postfiles.FileName);
+                                if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                {
+                                    try
+                                    {
+                                        fileName =  HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
+                                        string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                        string SaveLocation = Server.MapPath("~/WorkPermitImages/" + CurrentDate) + "/" + fileName;
+                                        string FileLocation = imgPath + "/WorkPermitImages/" + CurrentDate + "/" + fileName;// + "*WP";
+                                        string ImageName = Path.GetFileName(postfiles.FileName);
+                                        Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
+                                        var targetFile = SaveLocation;
+
+                                        if (!Lst_ValidImage.Contains(0))
+                                        {
+                                            postfiles.SaveAs(SaveLocation);
+                                            Lst_Images.Add(FileLocation);
+
+                                            isField = "True";
+                                            DataRow dtRow = dt.NewRow();
+                                            dtRow["HeaderID"] = HeadId;
+                                            dtRow["AnswerID"] = AnswerType;
+                                            dtRow["Data"] = FileLocation;
+                                            dt.Rows.Add(dtRow);
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Lst_ImageSaved.Add(0); // Image failed to save
+                                        throw ex;
+                                    }
+                                }
+                                else
+                                {
+                                    Lst_ValidImage.Add(0);  // image extension is not proper
+                                }
+                                i = i + 1;
+                            }
+                        }
+
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+
+                    }
+                    else if (AnswerType == 4) //Number Text Field
+                    {
+                        HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
+                        string txtNum = sample.Controls[1].UniqueID;
+                        string sVal = Request.Form.GetValues(txtNum)[0];
+                        DataRow dtRow = dt.NewRow();
+                        dtRow["HeaderID"] = HeadId;
+                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["Data"] = sVal;
+                        dt.Rows.Add(dtRow);
+
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+
+                    }
+                    else if (AnswerType == 5) //Normal Text Field
+                    {
+                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                        string txtNum = sample.Controls[1].UniqueID;
+                        string sVal = Request.Form.GetValues(txtNum)[0];
+                        DataRow dtRow = dt.NewRow();
+                        dtRow["HeaderID"] = HeadId;
+                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["Data"] = sVal;
+                        dt.Rows.Add(dtRow);
+
+
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+                    }
+                    else if (AnswerType == 6) // Textarea Field
+                    {
+                        HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
+                        string txtNum = sample.Controls[1].UniqueID;
+                        string sVal = Request.Form.GetValues(txtNum)[0];
+                        DataRow dtRow = dt.NewRow();
+                        dtRow["HeaderID"] = HeadId;
+                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["Data"] = sVal;
+                        dt.Rows.Add(dtRow);
+
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+                    }
+                    else  //Normal Text Field
+                    {
+                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                        string txtNum = sample.Controls[1].UniqueID;
+                        string sVal = Request.Form.GetValues(txtNum)[0];
+                        DataRow dtRow = dt.NewRow();
+                        dtRow["HeaderID"] = HeadId;
+                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["Data"] = sVal;
+                        dt.Rows.Add(dtRow);
+
+
+                        if (Is_Mandatory == "*")
+                        {
+                            if (isField == "False")
+                            {
+                                Is_Not_Valid = "True";
+                                lblHeaderErr.Text = "Please provide valid data.";
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (Is_Not_Valid == "True")
+                {
+                    return;
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataTable DTS = new DataTable();
+                    DTS = dt.Copy();
+
+                    MemoryStream str = new MemoryStream();
+                    DTS.WriteXml(str, true);
+                    str.Seek(0, SeekOrigin.Begin);
+                    StreamReader sr = new StreamReader(str);
+                    string xmlstr;
+                    xmlstr = sr.ReadToEnd();
+                    strVMSData = xmlstr;
+                }
+                #endregion
+
+
+                #region SaveDataToDB
+                DataSet dsWPHeaderData = new DataSet();
+                dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(CompanyID,ConfigID, strVisitDate, strVMSData,strFeedbackData LoggedInUserID );
+
+                if (dsWPHeaderData.Tables.Count > 0)
+                {
+                    if (dsWPHeaderData.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsWPHeaderData.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            SetRepeater();
+                            divInsertButton.Visible = false;
+                            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]);
+                            mpeWpRequestSaveSuccess.Show();
+                        }
+                        else
+                        {
+                            SetRepeater();
+                            lblErrorMsg1.Text = "Error Occured !!!";
+                        }
+                    }
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
-        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Fetch_User_UserGroupList();
-        }
-
-        protected void btnSuccessOk_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(Page.ResolveClientUrl("~/VMS/MyVMS.aspx"), false);
-        }
+        #endregion
     }
 }
