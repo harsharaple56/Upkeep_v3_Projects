@@ -49,6 +49,15 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
+        /// btnClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClose;
+        
+        /// <summary>
         /// btnSaveEdit control.
         /// </summary>
         /// <remarks>
@@ -238,13 +247,13 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// Div5 control.
+        /// divServiceRemarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divServiceRemarks;
         
         /// <summary>
         /// txtServiceRemarks control.

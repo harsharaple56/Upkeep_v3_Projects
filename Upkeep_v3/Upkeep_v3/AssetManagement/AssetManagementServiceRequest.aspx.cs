@@ -72,12 +72,19 @@ namespace Upkeep_v3.AssetManagement
                     DivIsServiceSchedule.Attributes.Add("style", "display:none");
                     //DivAddServiceSchedule.Attributes.Add("style", "display:none");
                     divCloseRemarks.Attributes.Add("style", "display:none");
+
+                    divServiceRemarks.Attributes.Add("style", "display:none");
+
+                    
                 }
                 else if (ActionType == 1) // EDIT SERVICES
                 {
                     //DivIsServiceSchedule.Attributes.Add("style", "display:none");
                     DivAddServiceSchedule.Attributes.Add("style", "display:none");
                     divCloseRemarks.Attributes.Add("style", "display:none");
+
+                    divServiceRemarks.Attributes.Add("style", "display:none");
+
 
                     btnSaveEdit.Attributes.Remove("style");
                     Button1.Attributes.Add("style", "display:none");
@@ -88,7 +95,7 @@ namespace Upkeep_v3.AssetManagement
                     DivAddServiceSchedule.Attributes.Add("style", "display:none");
                     divCloseRemarks.Attributes.Add("style", "display:none");
 
-                    btnSaveEdit.Attributes.Remove("style");
+                    btnClose.Attributes.Remove("style");
                     Button1.Attributes.Add("style", "display:none");
                 }
                  
@@ -201,13 +208,13 @@ namespace Upkeep_v3.AssetManagement
                         { 
                             Button1.Attributes.Add("disabled", "true");
 
-                            if ((int)ViewState["ActionType"] == 2)
-                            {
-                                btnSaveEdit.Text = "Close";
-                            }
-                            else {
-                                btnSaveEdit.Attributes.Add("disabled", "true");
-                            }
+                            //if ((int)ViewState["ActionType"] == 2)
+                            //{
+                            //    btnSaveEdit.Text = "Close";
+                            //}
+                            //else {
+                            //    btnSaveEdit.Attributes.Add("disabled", "true");
+                            //}
 
                             btnNoOfService.Attributes.Add("disabled", "true");
                             TblLevels.Attributes.Add("disabled", "true");
@@ -216,7 +223,7 @@ namespace Upkeep_v3.AssetManagement
                             ddlServiceAssignTo.Attributes.Add("disabled", "true");
                             txtServiceDate.Attributes.Add("disabled", "true");
                             txtAlertDate.Attributes.Add("disabled", "true");
-                            txtServiceRemarks.Attributes.Add("disabled", "true");
+                            //txtServiceRemarks.Attributes.Add("disabled", "true");
                             txtServiceClosingRemarks.Attributes.Add("disabled", "true");
                             txtServiceStatus.Attributes.Add("disabled", "true");
 
@@ -310,7 +317,24 @@ namespace Upkeep_v3.AssetManagement
             }
             else if (iActionTy == 2) //CLOSE SERVICES
             {
-                strAssetServiceData = "";
+                StringBuilder strXmlAsset = new StringBuilder();
+
+                DateTime ServiceDate = DateTime.Parse(txtServiceDate.Text);
+                DateTime AlertDate = DateTime.Parse(txtAlertDate.Text);
+                int Alertdays = 0;
+                Alertdays = (ServiceDate - AlertDate).Days;
+
+                string f = ServiceDate.ToString("yyyy-MM-dd");
+
+
+                strXmlAsset.Append(@"<Asset_Service_Close_ROOT>");
+                strXmlAsset.Append(@"<Asset_Service_Close>");
+                strXmlAsset.Append(@"<Asset_Service_Close_Remarks>" + txtServiceRemarks.Text + "</Asset_Service_Close_Remarks>"); 
+                strXmlAsset.Append(@"</Asset_Service_Close>");
+                strXmlAsset.Append(@"</Asset_Service_Close_ROOT>");
+                 
+
+                strAssetServiceData = strXmlAsset.ToString();
                 strFlag = "CLOSE";
             }
             else

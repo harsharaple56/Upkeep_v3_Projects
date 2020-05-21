@@ -508,13 +508,13 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator12;
         
         /// <summary>
-        /// Div3 control.
+        /// DivIsUpdateAMC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivIsUpdateAMC;
         
         /// <summary>
         /// customCheck control.
@@ -533,6 +533,33 @@ namespace Upkeep_v3.AssetManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRenewAMC;
+        
+        /// <summary>
+        /// DivIsNewAmc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivIsNewAmc;
+        
+        /// <summary>
+        /// ddlAssetName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssetName;
+        
+        /// <summary>
+        /// txtIsNewAmc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txtIsNewAmc;
         
         /// <summary>
         /// Div5 control.

@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Upkeep_V3\Upkeep_v3\Upkeep_v3\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\A1 LIVE\Upkeep_Gatepass_Workpermit_11_Apr_2020\Upkeep_Gatepass_Workpermit\Upkeep_Gatepass_Workpermit\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

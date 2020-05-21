@@ -84,34 +84,32 @@ namespace Upkeep_v3.AssetManagement
                             //Asset_Category  Vendor Department  Location Status Created_By Created_Date
 
                             string Schedule_ID = Convert.ToString(ds.Tables[0].Rows[i]["Schedule_ID"]);
-                            string Service_Date = Convert.ToString(ds.Tables[0].Rows[i]["Service_Date"]);
-                            string Assigned_To = Convert.ToString(ds.Tables[0].Rows[i]["Assigned_To"]);
-                            string Alert_Date = Convert.ToString(ds.Tables[0].Rows[i]["Alert_Date"]);
-                            string Remarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
+
                             string Asset_ID = Convert.ToString(ds.Tables[0].Rows[i]["Asset_ID"]);
                             string Asset_Name = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Name"]);
                             string Asset_Type = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Type"]);
                             string Asset_Category = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Category"]);
-                            string Vendor = Convert.ToString(ds.Tables[0].Rows[i]["Vendor"]);
-                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
-                            string Location = Convert.ToString(ds.Tables[0].Rows[i]["Location"]);
+
+                            string Service_Date = Convert.ToString(ds.Tables[0].Rows[i]["Service_Date"]);
+                            string Assigned_To = Convert.ToString(ds.Tables[0].Rows[i]["Assigned_To"]);
+                            //string Alert_Date = Convert.ToString(ds.Tables[0].Rows[i]["Alert_Date"]);
+                            //string Remarks = Convert.ToString(ds.Tables[0].Rows[i]["Remarks"]);
+                           
+                            //string Vendor = Convert.ToString(ds.Tables[0].Rows[i]["Vendor"]);
+                            //string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
+                            //string Location = Convert.ToString(ds.Tables[0].Rows[i]["Location"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]); 
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                            //string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
+                            //string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
                              
-                            data += "<tr><td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=1' style='text-decoration: underline;' > " + Service_Date + " </a></td>" +
-                                "<td>" + Assigned_To + "</td>" +
-                                "<td>" + Alert_Date + "</td>" +
-                                "<td>" + Remarks + "</td>" +
-                                "<td>" + Asset_Name + "</td>" +
+                            data += "<tr><td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=1' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
+                               
+                                //"<td>" + Asset_Name + "</td>" +
                                 "<td>" + Asset_Type + "</td>" +
                                 "<td>" + Asset_Category + "</td>" +
-                                "<td>" + Vendor + "</td>" +
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Location + "</td>" +
+                                "<td>" + Service_Date + "</td>" +
+                                "<td>" + Assigned_To + "</td>" +
                                 "<td>" + Status + "</td>" + 
-                                "<td>" + Created_By + "</td>" +
-                                "<td>" + Created_Date + "</td>" +
                                 "</tr>";
                         }
                     }
