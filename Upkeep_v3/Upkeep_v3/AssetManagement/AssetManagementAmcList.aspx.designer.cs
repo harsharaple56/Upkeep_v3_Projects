@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_Gatepass_Workpermit.AssetManagement {
+namespace Upkeep_v3.AssetManagement {
     
     
     public partial class AssetManagementAmcList {

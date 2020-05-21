@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementServiceRequest.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.AssetManagement.AssetManagementServiceRequest" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementServiceRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementServiceRequest" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

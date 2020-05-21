@@ -47,7 +47,7 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.7.123, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\A1 LIVE\Upkeep_Gatepass_Workpermit_11_Apr_2020\Upkeep_Gatepass_Workpermit\Upkeep_Gatepass_Workpermit\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3733,7 +3733,6 @@
     <Content Include="TestMaster.Master" />
     <Content Include="UpkeepMaster.Master" />
     <Content Include="VMS\Visit_Configuration.aspx" />
-    <Content Include="VMS\Visit_Request.aspx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -4165,13 +4164,6 @@
     </Compile>
     <Compile Include="VMS\Visit_Configuration.aspx.designer.cs">
       <DependentUpon>Visit_Configuration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VMS\Visit_Request.aspx.cs">
-      <DependentUpon>Visit_Request.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VMS\Visit_Request.aspx.designer.cs">
-      <DependentUpon>Visit_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\Upkeep_V3_Services\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementList.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.AssetManagement.AssetManagementList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementList.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementList" %>
+ 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -170,9 +171,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-
+                                         
                                     </div>
                                 </div>
 
