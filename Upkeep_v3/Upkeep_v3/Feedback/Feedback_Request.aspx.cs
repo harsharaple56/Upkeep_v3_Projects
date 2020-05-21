@@ -52,7 +52,7 @@ namespace Upkeep_v3.Feedback
                 ConfigTitleID = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
 
 
-                dsConfig = ObjUpkeep.Bind_FeedbackRequestDetails(ConfigTitleID, LoggedInUserID);
+                dsConfig = null;// ObjUpkeep.Bind_FeedbackRequestDetails(ConfigTitleID, LoggedInUserID);
 
                 rptHeaderDetails.DataSource = dsConfig.Tables[4];
                 rptHeaderDetails.DataBind();
@@ -180,7 +180,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.Fetch_FeedbackConfiguration(Initiator);
+                dsTitle = null;// ObjUpkeep.Fetch_FeedbackConfiguration(Initiator);
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)

@@ -9,20 +9,22 @@ using System.Xml;
 using System.Text;
 using System.Data;
 using System.Globalization;
-namespace Upkeep_Gatepass_Workpermit.AssetManagement
+
+namespace Upkeep_v3.AssetManagement
 {
     public partial class AssetManagementList : System.Web.UI.Page
     {
-        Upkeep_GP_WP_Services.Upkeep_GP_WP_Services ObjUpkeep = new Upkeep_GP_WP_Services.Upkeep_GP_WP_Services();
+        Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+           // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-               // LoggedInUserID = "3";
+               //
             }
             hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
@@ -51,7 +53,7 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                 }
                 else
                 {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
 
                 }
 
@@ -61,8 +63,8 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                 }
                 else
                 {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                    To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
                 }
 
                 DataSet ds = new DataSet();

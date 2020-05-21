@@ -638,27 +638,27 @@ namespace Upkeep_v3.VMS
 
                 #region SaveDataToDB
                 DataSet dsWPHeaderData = new DataSet();
-                dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(CompanyID,ConfigID, strVisitDate, strVMSData,strFeedbackData LoggedInUserID );
+                //dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(CompanyID,ConfigID, strVisitDate, strVMSData,strFeedbackData LoggedInUserID );
 
-                if (dsWPHeaderData.Tables.Count > 0)
-                {
-                    if (dsWPHeaderData.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsWPHeaderData.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            SetRepeater();
-                            divInsertButton.Visible = false;
-                            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]);
-                            mpeWpRequestSaveSuccess.Show();
-                        }
-                        else
-                        {
-                            SetRepeater();
-                            lblErrorMsg1.Text = "Error Occured !!!";
-                        }
-                    }
-                }
+                //if (dsWPHeaderData.Tables.Count > 0)
+                //{
+                //    if (dsWPHeaderData.Tables[0].Rows.Count > 0)
+                //    {
+                //        int Status = Convert.ToInt32(dsWPHeaderData.Tables[0].Rows[0]["Status"]);
+                //        if (Status == 1)
+                //        {
+                //            SetRepeater();
+                //            divInsertButton.Visible = false;
+                //            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]);
+                //            mpeWpRequestSaveSuccess.Show();
+                //        }
+                //        else
+                //        {
+                //            SetRepeater();
+                //            lblErrorMsg1.Text = "Error Occured !!!";
+                //        }
+                //    }
+                //}
                 #endregion
             }
             catch (Exception ex)

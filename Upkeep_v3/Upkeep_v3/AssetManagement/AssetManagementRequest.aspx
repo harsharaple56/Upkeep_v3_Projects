@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.AssetManagement.AssetManagementRequest" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequest" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -66,6 +66,7 @@
 
             $("#txtassetLocation").on('input', function () {
                 var val = this.value;
+               
                 $('#hdnassetLocation').val("");
                 if ($('#dlassetLocation option').filter(function () {
                     if (this.value.toUpperCase() === val.toUpperCase()) {
@@ -162,6 +163,8 @@
                 $("div#divModalAssetCategorySave").hide();
                 $("div#divModalDepartmentSave").hide();
                 $("div#divModalAssetDepartment").hide();
+                $("div#divModalVendorSave").hide();
+                $("div#divModalAssetVendor").hide();
                 //   return false;
             });
             $("#btnAddAssetCategory").click(function () {
@@ -171,6 +174,8 @@
                 $("div#divModalAssetCategorySave").show();
                 $("div#divModalDepartmentSave").hide();
                 $("div#divModalAssetDepartment").hide();
+                $("div#divModalVendorSave").hide();
+                $("div#divModalAssetVendor").hide();
                 // return false;
             });
             $("#btnAddAssetVendor").click(function () {
@@ -180,6 +185,8 @@
                 $("div#divModalAssetCategorySave").hide();
                 $("div#divModalDepartmentSave").hide();
                 $("div#divModalAssetDepartment").hide();
+                $("div#divModalVendorSave").show();
+                $("div#divModalAssetVendor").show();
                 // return false;
             });
             $("#btnAddDepartment").click(function () {
@@ -189,6 +196,8 @@
                 $("div#divModalAssetCategorySave").hide();
                 $("div#divModalDepartmentSave").show();
                 $("div#divModalAssetDepartment").show();
+                $("div#divModalVendorSave").hide();
+                $("div#divModalAssetVendor").hide();
                 // return false;
             });
             $("#btnAddLocation").click(function () {
@@ -198,6 +207,8 @@
                 $("div#divModalAssetCategorySave").hide();
                 $("div#divModalDepartmentSave").hide();
                 $("div#divModalAssetDepartment").hide();
+                $("div#divModalVendorSave").hide();
+                $("div#divModalAssetVendor").hide();
                 // return false;
             });
 
@@ -574,7 +585,7 @@
                                             </div>
 
                                             <%--<label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;"></span></label>--%>
-                                            <div class="col-xl-3 col-lg-3" style="display: none">
+                                            <div class="col-xl-3 col-lg-3" >
                                                 <asp:Button ID="btnAddAssetVendor" type="Button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
                                                     Text="+" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
                                                     data-title="Add Asset Vendor" data-backdrop="static" data-keyboard="false" />
@@ -1096,6 +1107,71 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <br />
+                                    <div id="divModalAssetVendor" style="display: block;">
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Name :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Name" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="txtModalVendor_Name" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Vendor Name"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    <br />
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Description :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Desc" TextMode ="MultiLine"  runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator26" runat="server" ControlToValidate="txtModalVendor_Desc" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Vendor Description"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    <br />
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Address :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Address" runat="server" TextMode ="MultiLine"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ControlToValidate="txtModalVendor_Address" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Vendor Name"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    <br />
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Contact 1 :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Contact1" runat="server" TextMode ="Number"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ControlToValidate="txtModalVendor_Contact1" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Contact 2"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    <br />
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Contact 2 :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Contact2" runat="server" TextMode ="Number"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="txtModalVendor_Contact2" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Contact 1"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    <br />
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Email :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtModalVendor_Email" runat="server" TextMode ="Email"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="txtModalVendor_Email" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please enter Email ID"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
 
                                     <div id="divModalAssetErrorMessage" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
@@ -1119,6 +1195,11 @@
                                     <div id="divModalDepartmentSave">
                                         <button type="submit" runat="server" id="Button2" onserverclick="btnModalAssetSave_Click" class="btn btn-accent mr-auto"
                                             validationgroup="validateModalDepartment" causesvalidation="true">
+                                            Save</button>
+                                    </div>
+                                    <div id="divModalVendorSave">
+                                        <button type="submit" runat="server" id="Button3" onserverclick="btnModalAssetSave_Click" class="btn btn-accent mr-auto"
+                                            validationgroup="validateModalVendor" causesvalidation="true">
                                             Save</button>
                                     </div>
 

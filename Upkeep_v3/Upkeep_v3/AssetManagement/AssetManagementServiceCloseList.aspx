@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementServiceCloseList.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.AssetManagement.AssetManagementServiceCloseList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementServiceCloseList.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementServiceCloseList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

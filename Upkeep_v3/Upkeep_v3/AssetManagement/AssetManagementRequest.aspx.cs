@@ -15,11 +15,11 @@ using System.Configuration;
 using System.Web.Services;
 using System.Globalization;
 
-namespace Upkeep_Gatepass_Workpermit.AssetManagement
+namespace Upkeep_v3.AssetManagement
 {
     public partial class AssetManagementRequest : System.Web.UI.Page
     {
-        Upkeep_GP_WP_Services.Upkeep_GP_WP_Services ObjUpkeep = new Upkeep_GP_WP_Services.Upkeep_GP_WP_Services();
+        Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
 
-           // LoggedInUserID = "3";
+            //LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -273,17 +273,7 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                         //txtAmcStatus.Enabled = false;
                         //flAmcDoc.Enabled = false;
 
-                        customCheck.Attributes.Add("disabled", "true");
-                        ddlAmcType.Attributes.Add("disabled", "true");
-                        txtAmcDescription.Attributes.Add("disabled", "true");
-                        txtAmcStartDate.Attributes.Add("disabled", "true");
-                        txtAmcEndDate.Attributes.Add("disabled", "true");
-                        txtamcassigVendor.Attributes.Add("disabled", "true");
-                        txtAmcInclusion.Attributes.Add("disabled", "true");
-                        txtAmcExclusion.Attributes.Add("disabled", "true");
-                        txtAmcRemarks.Attributes.Add("disabled", "true");
-                        txtAmcStatus.Attributes.Add("disabled", "true");
-                        flAmcDoc.Attributes.Add("disabled", "true");
+              
 
 
 
@@ -305,25 +295,33 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                     {
                         customCheck1.Checked = true;
                         txtNoOfService.Value = Convert.ToString(dsAssestData.Tables[4].Rows.Count);
-
-                        //customCheck1.Disabled = true;
-                        //txtNoOfService.Disabled = true;
-                        //btnNoOfService.Enabled = false;
-
-
-
+                        
                         //Schedule_ID Asset_ID    Service_Date Alert_Date  Assigned_To Service_Status  Created_By Created_Date   
                         //Updated_By Updated_Date    Is_Deleted Remarks Company_ID
                         AddRows(dsAssestData.Tables[4].Rows.Count, dsAssestData.Tables[4].Copy());
 
-                        customCheck1.Attributes.Add("disabled", "true");
-                        txtNoOfService.Attributes.Add("disabled", "true");
-                        btnNoOfService.Attributes.Add("disabled", "true");
-                        TblLevels.Attributes.Add("disabled", "true");
                     }
                      
-              
                 }
+
+                //AMC
+                customCheck.Attributes.Add("disabled", "true");
+                ddlAmcType.Attributes.Add("disabled", "true");
+                txtAmcDescription.Attributes.Add("disabled", "true");
+                txtAmcStartDate.Attributes.Add("disabled", "true");
+                txtAmcEndDate.Attributes.Add("disabled", "true");
+                txtamcassigVendor.Attributes.Add("disabled", "true");
+                txtAmcInclusion.Attributes.Add("disabled", "true");
+                txtAmcExclusion.Attributes.Add("disabled", "true");
+                txtAmcRemarks.Attributes.Add("disabled", "true");
+                txtAmcStatus.Attributes.Add("disabled", "true");
+                flAmcDoc.Attributes.Add("disabled", "true");
+
+                //SERVICE
+                customCheck1.Attributes.Add("disabled", "true");
+                txtNoOfService.Attributes.Add("disabled", "true");
+                btnNoOfService.Attributes.Add("disabled", "true");
+                TblLevels.Attributes.Add("disabled", "true");
             }
             catch (Exception ex)
             {
@@ -737,9 +735,32 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
 
             return strXmlAsset.ToString();
         }
+
+
+        private string AssetVendorData()
+        {
+            StringBuilder strXmlAsset = new StringBuilder();
+            //strXmlAsset.Append(@"<?xml version=""1.0"" ?>");
+            strXmlAsset.Append(@"<Asset_Vendor_ROOT>");
+            strXmlAsset.Append(@"<Asset_Vendor>");
+             
+            //-------------------------------------------------------------------------------------------------------------------
+            strXmlAsset.Append(@"<Asset_Vendor_Name>" +  txtModalVendor_Name.Text.ToString() + "</Asset_Vendor_Name>");
+            strXmlAsset.Append(@"<Asset_Vendor_Desc>" + txtModalVendor_Desc.Text.ToString() + "</Asset_Vendor_Desc>");
+            strXmlAsset.Append(@"<Asset_Vendor_Address>" + txtModalVendor_Address.Text.ToString() + "</Asset_Vendor_Address>");
+            strXmlAsset.Append(@"<Asset_Vendor_Contact1>" + txtModalVendor_Contact1.Text.ToString() + "</Asset_Vendor_Contact1>");
+            strXmlAsset.Append(@"<Asset_Vendor_Contact2>" + txtModalVendor_Contact2.Text.ToString() + "</Asset_Vendor_Contact2>");
+            strXmlAsset.Append(@"<Asset_Vendor_Email>" + txtModalVendor_Email.Text.ToString() + "</Asset_Vendor_Email>"); 
+            //-------------------------------------------------------------------------------------------------------------------
+            strXmlAsset.Append(@"</Asset_Vendor>");
+            strXmlAsset.Append(@"</Asset_Vendor_ROOT>");
+
+            return strXmlAsset.ToString();
+        }
         #endregion
         protected void btnModalAssetSave_Click(object sender, EventArgs e)
         {
+            string VendorxXml = "";
             if (hdAddAsset.Value == "1")
             {
                 // Add Asset Type
@@ -783,15 +804,21 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
 
                 //SPR_ASSET_INSERT_Department
             }
+            if (hdAddAsset.Value == "3")
+            {
+                //Vendor
+                VendorxXml = AssetVendorData();
+            }
 
             DataSet dsConfig = new DataSet();
             if (hdAddAsset.Value == "1")
                 dsConfig = ObjUpkeep.ASSET_Insert_AssetType(LoggedInUserID, 0, txtModalAssetType.Text);
             else if (hdAddAsset.Value == "2")
                 dsConfig = ObjUpkeep.ASSET_Insert_AssetCategory(LoggedInUserID, 0, Convert.ToInt32(ddlModalAssetType.SelectedValue.ToString()), txtModalAssetCategory.Text);
+            else if (hdAddAsset.Value == "3") //3 5
+                dsConfig = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, "VENDOR", "", "", VendorxXml.ToString());
             else if (hdAddAsset.Value == "4") //3 5
                 dsConfig = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, "DEPARTMENT", txtModalDepartment.Text,"","");
-             
 
             if (dsConfig.Tables.Count > 0)
             {
@@ -1013,7 +1040,7 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                         {
                             LocTxtActionGroup.DataSource = dtCopy;
                             LocTxtActionGroup.DataTextField = "Name";
-                            LocTxtActionGroup.DataValueField = "EmployeeID";
+                            LocTxtActionGroup.DataValueField = "User_ID";
                             LocTxtActionGroup.DataBind();
                             LocTxtActionGroup.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
@@ -1148,7 +1175,7 @@ namespace Upkeep_Gatepass_Workpermit.AssetManagement
                         {
                             LocTxtActionGroup.DataSource = dtCopy;
                             LocTxtActionGroup.DataTextField = "Name";
-                            LocTxtActionGroup.DataValueField = "EmployeeID";
+                            LocTxtActionGroup.DataValueField = "User_ID";
                             LocTxtActionGroup.DataBind();
                             LocTxtActionGroup.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
