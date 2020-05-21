@@ -3738,6 +3738,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visit_Request.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4172,6 +4173,13 @@
     </Compile>
     <Compile Include="VMS\Visit_Configuration.aspx.designer.cs">
       <DependentUpon>Visit_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visit_Request.aspx.cs">
+      <DependentUpon>Visit_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visit_Request.aspx.designer.cs">
+      <DependentUpon>Visit_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\Upkeep_V3_Services\Reference.cs">
       <AutoGen>True</AutoGen>
