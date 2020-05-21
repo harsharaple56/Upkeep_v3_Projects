@@ -1114,16 +1114,18 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                             gvApprovalHistory.DataSource = dsData.Tables[4];
                             gvApprovalHistory.DataBind();
 
-                            if (dsData.Tables[5].Rows.Count > 0)
-                            {
-                                MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
-                            }
                         }
                         else
                         {
                             dvApprovalHistory.Attributes.Add("style", "display:none;");
 
                         }
+
+                    }
+
+                    if (dsData.Tables[5].Rows.Count > 0)
+                    {
+                        MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
                     }
 
                 }
@@ -1149,7 +1151,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
 
                 }
                 else
-                {
+                { 
                     //dvApprovalHistory.Attributes.Add("style", "display:none;");
                     dvApprovalDetails.Attributes.Add("style", "display:none;");
                     dvApprovalDetHeader.Attributes.Add("Style", "display:none;");

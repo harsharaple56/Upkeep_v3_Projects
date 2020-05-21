@@ -308,23 +308,23 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 DataSet dsWorkPermitConfig = new DataSet();
 
                 //Replacing special characters with Escape in XML
-                strXmlWorkPermit_Header.Replace("&", "&amp;");
-                strXmlWorkPermit_Header.Replace("<", "&lt;");
-                strXmlWorkPermit_Header.Replace(">", "&gt;");
-                strXmlWorkPermit_Header.Replace("\"", "&quot;");
-                strXmlWorkPermit_Header.Replace("'", "&apos;");
+                //strXmlWorkPermit_Header.Replace("&", "&amp;");
+                //strXmlWorkPermit_Header.Replace("<", "&lt;");
+                //strXmlWorkPermit_Header.Replace(">", "&gt;");
+                //strXmlWorkPermit_Header.Replace("\"", "&quot;");
+                //strXmlWorkPermit_Header.Replace("'", "&apos;");
 
-                strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
-                strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
-                strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
-                strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
-                strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
+                //strXmlWorkPermit_TermCondition.Replace("&", "&amp;");
+                //strXmlWorkPermit_TermCondition.Replace("<", "&lt;");
+                //strXmlWorkPermit_TermCondition.Replace(">", "&gt;");
+                //strXmlWorkPermit_TermCondition.Replace("\"", "&quot;");
+                //strXmlWorkPermit_TermCondition.Replace("'", "&apos;");
 
-                strXmlApprovalMatrix.Replace("&", "&amp;");
-                strXmlApprovalMatrix.Replace("<", "&lt;");
-                strXmlApprovalMatrix.Replace(">", "&gt;");
-                strXmlApprovalMatrix.Replace("\"", "&quot;");
-                strXmlApprovalMatrix.Replace("'", "&apos;");
+                //strXmlApprovalMatrix.Replace("&", "&amp;");
+                //strXmlApprovalMatrix.Replace("<", "&lt;");
+                //strXmlApprovalMatrix.Replace(">", "&gt;");
+                //strXmlApprovalMatrix.Replace("\"", "&quot;");
+                //strXmlApprovalMatrix.Replace("'", "&apos;");
 
 
 
