@@ -503,6 +503,8 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         //dvDepartment.Attributes.Add("class", "col-xl-3 col-lg-3");
                     }
 
+                    lblGatepassDescription.Text= Convert.ToString(dsConfig.Tables[0].Rows[0]["Gatepass_Description"]);
+
                     string strUserType = Convert.ToString(dsConfig.Tables[1].Rows[0]["UserType"]);
                     if (strUserType == "E")
                     {

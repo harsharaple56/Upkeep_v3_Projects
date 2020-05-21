@@ -48,6 +48,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                 if (dsApproval.Tables.Count > 0)
                 {
                     lblGatepassTitle.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Title"]);
+                    lblGatepassDescription.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["Gatepass_Description"]);
                     lblTicketNo.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["TicketNo"]);
                     lblDepartment.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["DepartmentName"]);
                     lblRequestDate.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GatePassDate"]);

@@ -49,7 +49,7 @@ namespace Upkeep_GP_WP_BL
             }
         }
 
-        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment,string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix,bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID,string StrConn)
+        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment,string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix,bool ShowApprovalMatrix, string strGPClosureBy,string GatepassDescription, string LoggedInUserID,string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -68,7 +68,8 @@ namespace Upkeep_GP_WP_BL
                 cmd.Parameters.AddWithValue("@XmlGatepass_TermCondition", strXmlGatepass_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix); 
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
-                cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
+                cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy); 
+                cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -189,7 +190,7 @@ namespace Upkeep_GP_WP_BL
             }
         }
 
-        public DataSet Update_GatePassConfiguration(int GP_Config_ID,string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment,string strTransactionPrefix, string strXmlApprovalMatrix,bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID, string StrConn)
+        public DataSet Update_GatePassConfiguration(int GP_Config_ID,string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment,string strTransactionPrefix, string strXmlApprovalMatrix,bool ShowApprovalMatrix, string strGPClosureBy,string GatepassDescription, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -205,7 +206,8 @@ namespace Upkeep_GP_WP_BL
                 cmd.Parameters.AddWithValue("@TransactionPrefix", strTransactionPrefix);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix); 
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
-                cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
+                cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy); 
+                cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

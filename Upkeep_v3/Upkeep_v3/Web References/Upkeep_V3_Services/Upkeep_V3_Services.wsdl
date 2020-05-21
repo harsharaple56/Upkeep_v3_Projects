@@ -1594,6 +1594,287 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Asset_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VendorPrefix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Vendor_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssetTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetCategory" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetCategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_INSERT_GRNL_MASTER">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dept_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationXmlValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VendorXmlValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_INSERT_GRNL_MASTERResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_INSERT_GRNL_MASTERResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAssetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset_Service">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset_ServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAsset_ServiceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceScheduleID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CRUD_ASSET_SERVICE_REQUEST_DATAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -2003,6 +2284,78 @@
   <wsdl:message name="Fetch_AnswerSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Asset_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTERResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
+  </wsdl:message>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapOut">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATAResponse" />
+  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -2272,6 +2625,54 @@
     <wsdl:operation name="Fetch_Answer">
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_DropDownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
+      <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <wsdl:input message="tns:Fetch_MyAssetSoapIn" />
+      <wsdl:output message="tns:Fetch_MyAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
+      <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
+      <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
@@ -2879,6 +3280,114 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -3478,6 +3987,114 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

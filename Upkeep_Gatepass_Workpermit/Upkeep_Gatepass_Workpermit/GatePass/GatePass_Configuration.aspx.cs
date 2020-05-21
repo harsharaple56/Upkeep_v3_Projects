@@ -207,8 +207,11 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
 
                 strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
 
+                string GatepassDescription = string.Empty;
+                GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
+
                 DataSet dsGatePassConfig = new DataSet();
-                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, LoggedInUserID);
+                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
 
                 if (dsGatePassConfig.Tables.Count > 0)
                 {

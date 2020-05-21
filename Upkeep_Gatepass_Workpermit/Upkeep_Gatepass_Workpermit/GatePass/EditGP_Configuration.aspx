@@ -671,6 +671,19 @@
 
                                     </div>
 
+                                    <br />
+                                    <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3" style="font-weight: bold;">Gatepass Description:</label>
+                                    <div class="col-md-9">
+                                        <div class="m-form__group">
+                                            <div class="m-form__control">
+                                                <asp:TextBox ID="txtGatepassDescription" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea" ClientIDMode="Static" placeholder="Enter Gatepass Description"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+
                            <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
                                     <%--<div class="col-xl-12">

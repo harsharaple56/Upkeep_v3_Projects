@@ -123,6 +123,7 @@ namespace Upkeep_Gatepass_Workpermit
                             lblGPOpen.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["GP_Request_Open"]);
                             lblGPRejected.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["GP_Request_Rejected"]);
                             lblGPClosed.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["GP_Request_Close"]);
+                            lblGPPendingApprovalCount.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["GPPendingApproval_Count"]);
 
                             lblWPTotalRequest.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WP_Request_Total"]);
                             lblWPHold.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WP_Request_Hold"]);
@@ -130,6 +131,7 @@ namespace Upkeep_Gatepass_Workpermit
                             lblWPOpen.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WP_Request_Open"]);
                             lblWPRejected.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WP_Request_Rejected"]);
                             lblWPClosed.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WP_Request_Close"]);
+                            lblWPPendingApprovalCount.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["WPPendingApproval_Count"]);
 
                             lblBaggageTotal.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["Baggage_Total"]);
                             lblBaggageOpen.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["Baggage_Open"]);
@@ -152,6 +154,8 @@ namespace Upkeep_Gatepass_Workpermit
                         {
                             dvEmployee.Attributes.Add("style", "display:none;");
                             dvRetailer.Attributes.Add("style", "display:block;");
+                            dvGPPendingApproval.Attributes.Add("style", "display:none;");
+                            dvWPPendingApproval.Attributes.Add("style", "display:none;");
 
                             lblR_GP_Total.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["Total_GP_Request"]);
                             lblR_GP_Hold.Text = Convert.ToString(dsDashboard.Tables[0].Rows[0]["Hold_GP_Request"]);

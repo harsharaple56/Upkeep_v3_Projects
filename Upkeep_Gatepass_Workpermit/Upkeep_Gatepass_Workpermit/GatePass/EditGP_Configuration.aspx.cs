@@ -141,6 +141,9 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         txtTitle.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Title"]);
                         ddlCompany.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Company_ID"]);
                         string Initiator = Convert.ToString(ds.Tables[0].Rows[0]["Initiator"]);
+
+                        txtGatepassDescription.Text = Convert.ToString(ds.Tables[0].Rows[0]["Gatepass_Description"]);
+
                         if (Initiator == "E")
                         {
                             rdbEmployee.Checked = true;
@@ -368,8 +371,11 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                 strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
                 strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
 
+                string GatepassDescription = string.Empty;
+                GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
+
                 DataSet dsGatePassConfig = new DataSet();
-                dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, LoggedInUserID);
+                dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
 
                 if (dsGatePassConfig.Tables.Count > 0)
                 {

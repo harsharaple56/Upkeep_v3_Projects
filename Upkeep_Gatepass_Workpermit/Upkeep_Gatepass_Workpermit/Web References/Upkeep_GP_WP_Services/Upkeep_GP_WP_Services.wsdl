@@ -64,6 +64,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="strGPClosureBy" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatepassDescription" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -213,6 +214,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="strGPClosureBy" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatepassDescription" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>

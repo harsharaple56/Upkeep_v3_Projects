@@ -326,13 +326,22 @@
 
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                     <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                        <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span> Gate Pass Title :</label>
+                                        <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold"><span style="color: red;">*</span> Gate Pass Title :</label>
                                         <div class="col-xl-4 col-lg-4">
                                             <asp:DropDownList ID="ddlGatePassTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlGatePassTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlGatePassTitle" Visible="true" Display="Dynamic"
                                                 ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Gate Pass Title"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
+
+                                    
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Gatepass Description :</label>
+                                            <div class="col-xl-9 col-lg-9 col-form-label">
+                                                <asp:Label ID="lblGatepassDescription" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                            </div>
+                                        </div>
+                                   
 
                                     <br />
 

@@ -166,6 +166,24 @@ namespace Upkeep_Gatepass_Workpermit {
         protected global::System.Web.UI.WebControls.Label lblGPClosed;
         
         /// <summary>
+        /// dvGPPendingApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvGPPendingApproval;
+        
+        /// <summary>
+        /// lblGPPendingApprovalCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGPPendingApprovalCount;
+        
+        /// <summary>
         /// lblWPTotalRequest control.
         /// </summary>
         /// <remarks>
@@ -218,6 +236,24 @@ namespace Upkeep_Gatepass_Workpermit {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblWPClosed;
+        
+        /// <summary>
+        /// dvWPPendingApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvWPPendingApproval;
+        
+        /// <summary>
+        /// lblWPPendingApprovalCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWPPendingApprovalCount;
         
         /// <summary>
         /// lblBaggageTotal control.
