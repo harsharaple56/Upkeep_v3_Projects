@@ -274,9 +274,9 @@ namespace Upkeep_Gatepass_Workpermit.CheckList
                                         //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
                                         string[] strValue = strValueData[f].Split(':');
 
-                                        string isDefault = "0", iFlag = "0";
-                                        if (strValue[2].ToString() == "on") { isDefault = "1"; }
-                                        if (strValue[3].ToString() == "on") { iFlag = "1"; }
+                                        //string isDefault = "0", iFlag;
+                                        //if (strValue[2].ToString() == "on") { isDefault = "1"; }
+                                        //if (strValue[3].ToString() == "on") { iFlag = "1"; }
 
                                         strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION_ANSWER_VALUES_DATA>");
 
@@ -388,8 +388,8 @@ namespace Upkeep_Gatepass_Workpermit.CheckList
             }
             catch (Exception ex)
             {
-                //throw ex;
                 return "";
+                throw ex;
             }
         }
         #endregion

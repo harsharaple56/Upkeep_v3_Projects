@@ -674,6 +674,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Accept_Ticket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TicketID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Accept_TicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Accept_TicketResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Employee_CRUD">
         <s:complexType>
           <s:sequence>
@@ -1154,6 +1176,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="CloseTicketDesc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="list_Images" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTicketAction" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2026,6 +2050,12 @@
   <wsdl:message name="Fetch_Ticket_MyActionableSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Ticket_MyActionableResponse" />
   </wsdl:message>
+  <wsdl:message name="Accept_TicketSoapIn">
+    <wsdl:part name="parameters" element="tns:Accept_Ticket" />
+  </wsdl:message>
+  <wsdl:message name="Accept_TicketSoapOut">
+    <wsdl:part name="parameters" element="tns:Accept_TicketResponse" />
+  </wsdl:message>
   <wsdl:message name="Employee_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:Employee_CRUD" />
   </wsdl:message>
@@ -2438,6 +2468,10 @@
     <wsdl:operation name="Fetch_Ticket_MyActionable">
       <wsdl:input message="tns:Fetch_Ticket_MyActionableSoapIn" />
       <wsdl:output message="tns:Fetch_Ticket_MyActionableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Accept_Ticket">
+      <wsdl:input message="tns:Accept_TicketSoapIn" />
+      <wsdl:output message="tns:Accept_TicketSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Employee_CRUD">
       <wsdl:input message="tns:Employee_CRUDSoapIn" />
@@ -2888,6 +2922,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Ticket_MyActionable">
       <soap:operation soapAction="http://tempuri.org/Fetch_Ticket_MyActionable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Accept_Ticket">
+      <soap:operation soapAction="http://tempuri.org/Accept_Ticket" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3593,6 +3636,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Ticket_MyActionable">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Ticket_MyActionable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Accept_Ticket">
+      <soap12:operation soapAction="http://tempuri.org/Accept_Ticket" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

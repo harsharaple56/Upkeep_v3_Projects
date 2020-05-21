@@ -17,14 +17,21 @@ namespace Upkeep_v3.Ticketing
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-
+        int TicketID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
-            int TicketID = Convert.ToInt32(Request.QueryString["TicketID"]);
+            TicketID = Convert.ToInt32(Request.QueryString["TicketID"]);
+
+            if (string.IsNullOrEmpty(LoggedInUserID))
+            {
+                Response.Redirect("~/Login.aspx", false);
+                return;
+            }
+
             //Session["TicketID"]= Convert.ToString(Session["TicketID"]);
             //string SessionUser = Session["User"].ToString();  //Sam
 
@@ -79,6 +86,23 @@ namespace Upkeep_v3.Ticketing
                             rptTicketImage.DataSource = dsTicket.Tables[0];
                             rptTicketImage.DataBind();
 
+                            Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
+
+                            ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
+                            if (ActionStatus == "Assigned")
+                            {
+                                btnClose.Attributes.Add("style", "display:none;");
+                                dvApprovalDetails.Attributes.Add("style", "display:none;");
+                            }
+                            else
+                            {
+                                btnAccept.Attributes.Add("style", "display:none;");
+                            }
+
+                            //if (ActionStatus == "Accepted")
+                            //{
+                            //    dvRemarks.Attributes.Add("style", "display:none;");
+                            //}
 
                             // lblTicketID.Text = Convert.ToInt32(dsTicket.Tables[0].Rows[i]["Ticket_ID"]);
                             //TicketNumber = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_Code"]);
@@ -188,14 +212,14 @@ namespace Upkeep_v3.Ticketing
 
             try
             {
-                if (FileUpload_TicketImage.HasFile)
-                {
+                //if (FileUpload_TicketImage.HasFile)
+                //{
                 string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
 
-                  if (!Directory.Exists(fileUploadPath))
-                  {
+                if (!Directory.Exists(fileUploadPath))
+                {
                     Directory.CreateDirectory(fileUploadPath);
-                  }
+                }
 
                 int i = 0;
 
@@ -224,7 +248,7 @@ namespace Upkeep_v3.Ticketing
                             fileName = TicketCode + "_Close_" + Convert.ToString(i) + filetype;
                             //fileName = postfiles.FileName;
 
-                             imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImagePath"]);
+                            imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImagePath"]);
 
                             //string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + fileName);
                             // FileUpload_TicketImage.SaveAs(Server.MapPath("~/") + fileName);
@@ -262,62 +286,83 @@ namespace Upkeep_v3.Ticketing
 
                     i = i + 1;
                 }
+                //if (ddlAction.SelectedItem.Text != "In Progress")
+                //{
                 if (Lst_ValidImage.Contains(0))
                 {
-                    lblTicketErrorMsg.Text = "Image format not supported";
-                    FileUpload_TicketImage.Focus();
+                    if (ddlAction.SelectedItem.Text != "In Progress")
+                    {
+                        lblTicketErrorMsg.Text = "Image format not supported";
+                        FileUpload_TicketImage.Focus();
+                        return;
+                    }
+
                 }
                 else if (Lst_ImageSaved.Contains(0))
                 {
-                    lblTicketErrorMsg.Text = "Image upload failed, please try again";
+                    if (ddlAction.SelectedItem.Text != "In Progress")
+                    {
+                        lblTicketErrorMsg.Text = "Image upload failed, please try again";
+                        return;
+                    }
                     //txtTicketDesc.Focus(); //sam
                 }
-                else
+                //}
+                //else
+                //{
+                //Save details       
+                //DataSet dsTicketSave = new DataSet();
+                try
                 {
-                    //Save details       
-                    //DataSet dsTicketSave = new DataSet();
-                    try
+                    list_Images = String.Join(",", Lst_Images);
+
+                    string strTicketAction = string.Empty;
+                    strTicketAction = Convert.ToString(ddlAction.SelectedValue);
+
+
+                    string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
+
+                    //string title = "Greetings";
+                    //string body = "Welcome to ASPSnippets.com";
+                    //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
+
+                    dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);                        //mpeTicketSaveSuccess.Show();
+
+                    //Samvedna
+                    if (dsCloseTicket.Tables.Count > 0)
                     {
-                         list_Images = String.Join(",", Lst_Images);
-
-
-                            //string title = "Greetings";
-                            //string body = "Welcome to ASPSnippets.com";
-                            //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
-
-                            dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID,list_Images);                        //mpeTicketSaveSuccess.Show();
-
-
-                            //Samvedna
-                        //    if (dsTicketSave.Tables.Count > 0)
-                        //{
-                        //    if (dsTicketSave.Tables[0].Rows.Count > 0)
-                        //    {
-                        //        int Status = Convert.ToInt32(dsTicketSave.Tables[0].Rows[0]["Status"]);
-                        //        if (Status == 1)
-                        //        {
-                        //            lblTicketCode.Text = TicketCode;
-                        //            Session["NextTicketCode"] = "";
-                        //            mpeTicketSaveSuccess.Show();
-                        //        }
-                        //    }
-                        //}
-
-
+                        if (dsCloseTicket.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
+                            }
+                            else
+                            {
+                                lblTicketErrorMsg.Text = "Something went wrong, please try again";
+                            }
+                        }
                     }
 
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
+
                 }
+
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                //}
+                //}
+                //else
+                //{
+                //    if (ddlAction.SelectedItem.Text != "In Progress")
+                //    {
+                //        lblTicketErrorMsg.Text = "Please select image";
+                //        FileUpload_TicketImage.Focus();
+                //    }
+                //}
             }
-            else
-            {
-                lblTicketErrorMsg.Text = "Please select image";
-                FileUpload_TicketImage.Focus();
-            }
-        }
             catch (Exception ex)
             {
                 throw ex;
@@ -326,11 +371,35 @@ namespace Upkeep_v3.Ticketing
 
 
 
-}
+        }
 
-
-
+        protected void btnAccept_Click(object sender, EventArgs e)
+        {
+            DataSet dsTicket = new DataSet();
+            try
+            {
+                dsTicket = ObjUpkeep.Accept_Ticket(TicketID, LoggedInUserID);
+                if (dsTicket.Tables.Count > 0)
+                {
+                    if (dsTicket.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            Response.Redirect("~/Ticketing/MyActionable.aspx", false);
+                        }
+                        else if (Status == 2)
+                        {
+                            lblTicketErrorMsg.Text = "This ticket is already accepted by other user.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }
-    

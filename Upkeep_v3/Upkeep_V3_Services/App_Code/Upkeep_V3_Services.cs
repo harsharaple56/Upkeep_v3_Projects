@@ -446,7 +446,19 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
-
+    [WebMethod]
+    public DataSet Accept_Ticket(int TicketID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Accept_Ticket(TicketID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
     //[+][Feedback System Methods]
@@ -848,11 +860,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc,  string LoggedInUserID, string list_Images)
+    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc,  string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel)
     {
         try
         {
-            ds = ObjUpkeep.Close_Ticket_Details(TicketID, CloseTicketDesc, LoggedInUserID, list_Images);
+            ds = ObjUpkeep.Close_Ticket_Details(TicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);
         }
         catch (Exception ex)
         {

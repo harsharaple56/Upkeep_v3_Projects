@@ -262,18 +262,40 @@
 
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Close Ticket Description :</label>
+                                        <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
+                                            <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
+                                            <div class="col-xl-3 col-lg-4">
+                                                <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server">
+                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                    <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
+                                                    <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
+                                                    <asp:ListItem Value="Closed" Text="Close"></asp:ListItem>
+                                                </asp:DropDownList>
+
+                                            </div>
+                                            
+                                                <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Remarks :</label>
+                                                <div class="col-xl-5 col-lg-4">
+                                                    <asp:TextBox ID="txtCloseTicketDesc" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
+                                                </div>
+                                            
+                                        </div>
+
+
+                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;" id="dvActionRemark" runat="server">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Action Remark :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:TextBox ID="txtCloseTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
                                             </div>
-                                        </div>
+                                        </div>--%>
 
                                         <div class="form-group m-form__group row" id="dvClose" runat="server">
-                                            <div class="col-xl-5 col-lg-5"></div>
+                                            <div class="col-xl-3 col-lg-3"></div>
                                             <div class="btn-group col-xl-3 col-lg-3">
 
-                                                <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnClose_Click" Text="Close" />
+                                                <asp:Button ID="btnAccept" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAccept_Click" Text="Accept" />
+                                                &nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" Text="Submit" />
 
                                                 <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                                 <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
