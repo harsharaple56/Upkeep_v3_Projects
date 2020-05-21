@@ -18,12 +18,12 @@ namespace Upkeep_v3.AssetManagement
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]); 
+            LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
-                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-                //LoggedInUserID = "3";
+                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false); 
             }
             hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
@@ -77,7 +77,7 @@ namespace Upkeep_v3.AssetManagement
 
                         DataTable dtClose = new DataTable();
                         dtClose = ds.Tables[0].Copy();
-                        dtClose.DefaultView.RowFilter = "Status = 'Open' AND Assigned_To ='" + LoggedInUserID + "' ";
+                        dtClose.DefaultView.RowFilter = "Status = 'Open' AND Assigned_To_ID ='" + LoggedInUserID + "' ";
                         dtClose = dtClose.DefaultView.ToTable();
                         int count = Convert.ToInt32(dtClose.Rows.Count);
                         for (int i = 0; i < count; i++)

@@ -3733,12 +3733,12 @@
     <Content Include="TestMaster.Master" />
     <Content Include="UpkeepMaster.Master" />
     <Content Include="VMS\Visit_Configuration.aspx" />
+    <Content Include="VMS\Visit_Request.aspx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="VMS\Visit_Request.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

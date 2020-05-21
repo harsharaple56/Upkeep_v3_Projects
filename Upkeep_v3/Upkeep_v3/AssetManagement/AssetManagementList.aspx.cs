@@ -19,7 +19,7 @@ namespace Upkeep_v3.AssetManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            LoggedInUserID = "3";
+           // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -53,7 +53,7 @@ namespace Upkeep_v3.AssetManagement
                 }
                 else
                 {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
 
                 }
 
@@ -63,8 +63,8 @@ namespace Upkeep_v3.AssetManagement
                 }
                 else
                 {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                    To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
                 }
 
                 DataSet ds = new DataSet();

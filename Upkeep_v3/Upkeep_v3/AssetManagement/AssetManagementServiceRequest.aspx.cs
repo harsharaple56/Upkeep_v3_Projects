@@ -135,7 +135,7 @@ namespace Upkeep_v3.AssetManagement
                 {
                     ddlServiceAssignTo.DataSource = dsTitle.Tables[7];
                     ddlServiceAssignTo.DataTextField = "Name";
-                    ddlServiceAssignTo.DataValueField = "EmployeeID";
+                    ddlServiceAssignTo.DataValueField = "User_ID";
                     ddlServiceAssignTo.DataBind();
                     ddlServiceAssignTo.Items.Insert(0, new ListItem("--Select--", "0"));
                 }
@@ -469,7 +469,7 @@ namespace Upkeep_v3.AssetManagement
                         {
                             LocTxtActionGroup.DataSource = dtCopy;
                             LocTxtActionGroup.DataTextField = "Name";
-                            LocTxtActionGroup.DataValueField = "EmployeeID";
+                            LocTxtActionGroup.DataValueField = "User_ID";
                             LocTxtActionGroup.DataBind();
                             LocTxtActionGroup.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
@@ -605,7 +605,7 @@ namespace Upkeep_v3.AssetManagement
                         {
                             LocTxtActionGroup.DataSource = dtCopy;
                             LocTxtActionGroup.DataTextField = "Name";
-                            LocTxtActionGroup.DataValueField = "EmployeeID";
+                            LocTxtActionGroup.DataValueField = "User_ID";
                             LocTxtActionGroup.DataBind();
                             LocTxtActionGroup.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
