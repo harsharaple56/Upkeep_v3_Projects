@@ -967,6 +967,24 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                         txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
                         txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
 
+                        lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+
+                        switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        {
+                            case "Close":
+                                divAlertClosed.Visible = true;
+                                break;
+                            case "Expired":
+                                divAlertExpired.Visible = true;
+                                break;
+                            case "Open":
+                                divAlertOpen.Visible = true;
+                                break;
+                            case "Reject":
+                                divAlertRejected.Visible = true;
+                                break;
+                        }
+
                         foreach (RepeaterItem itemSection in rptSectionDetails.Items)
                         {
                             string DivId = (itemSection.FindControl("hfCustomerId") as HiddenField).Value;
@@ -1151,7 +1169,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
 
                 }
                 else
-                { 
+                {
                     //dvApprovalHistory.Attributes.Add("style", "display:none;");
                     dvApprovalDetails.Attributes.Add("style", "display:none;");
                     dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
