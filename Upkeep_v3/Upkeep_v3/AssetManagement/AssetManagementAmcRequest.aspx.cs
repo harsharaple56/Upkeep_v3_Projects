@@ -19,7 +19,7 @@ using System.Globalization;
 namespace Upkeep_v3.AssetManagement
 {
     public partial class AssetManagementAmcRequest : System.Web.UI.Page
-    { 
+    {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         string LoggedInUserID = string.Empty;
@@ -55,10 +55,21 @@ namespace Upkeep_v3.AssetManagement
                 Session["TransactionID"] = 0;
                 if (TransactionID > 0)
                 {
+                    DivIsNewAmc.Attributes.Add("style", "display:none");
                     Session["TransactionID"] = Convert.ToString(TransactionID);
                     DisplayData(TransactionID);
                 }
+                else
+                {
+                    customCheck.Checked = true;
+                    DivIsUpdateAMC.Attributes.Add("style", "display:none"); 
+                }
+
             }
+            //if (TransactionID > 0)
+            //{
+            //    customCheck.Checked = true;
+            //}
 
         }
         public void Fetch_Bind_DropDown()
@@ -158,6 +169,15 @@ namespace Upkeep_v3.AssetManagement
                         ddlCurrencyType.DataBind();
                         ddlCurrencyType.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
+                    if (dsTitle.Tables[8].Rows.Count > 0)
+                    {
+                        ddlAssetName.DataSource = dsTitle.Tables[8];
+                        ddlAssetName.DataTextField = "Asset_Name";
+                        ddlAssetName.DataValueField = "Asset_ID";
+                        ddlAssetName.DataBind();
+                        ddlAssetName.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -239,7 +259,7 @@ namespace Upkeep_v3.AssetManagement
                     }
 
                     if (dsAssestData.Tables[2].Rows.Count > 0)
-                    {
+                    { 
                         //Asset_AMC_ID Asset_AMC_Type_ID   Company_ID Asset_ID    AMC_Desc AMC_Start_Date  
                         //AMC_End_Date Assigned_Vendor AMC_Inclusions AMC_Exclusions  Additional Remarks  AMC_Docs AMC_Status
 
@@ -259,9 +279,9 @@ namespace Upkeep_v3.AssetManagement
                         {
                             btnRenewAMC.Attributes.Add("style", "display:none");
                         }
-                        else {
+                        else
+                        {
 
-                            
                             customCheck.Attributes.Add("disabled", "true");
                             ddlAmcType.Attributes.Add("disabled", "true");
                             txtAmcDescription.Attributes.Add("disabled", "true");
@@ -375,6 +395,16 @@ namespace Upkeep_v3.AssetManagement
             return data;
         }
 
+        protected void ddlAssetName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlAssetName.SelectedIndex > 0)
+            {
+                ViewState["TransactionID"] = ddlAssetName.SelectedValue.ToString();
+                Session["TransactionID"] = Convert.ToString(ddlAssetName.SelectedValue.ToString());
+                DisplayData(Convert.ToInt32(ddlAssetName.SelectedValue.ToString()));
+            }
+        }
+
         protected void ddlAssetType_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -445,20 +475,11 @@ namespace Upkeep_v3.AssetManagement
         protected void btnSave_Click(object sender, EventArgs e)
         {
             //SET FLAG
-            string CRUD_Flag = "";
-            if ((int)ViewState["TransactionID"] == 0)
-                CRUD_Flag = "Insert";
-            else
-                CRUD_Flag = "Update";
-
-            //CHECK VALIDATION
-            if (ValidateData(CRUD_Flag) == false)
-                return;
 
 
-            ////PROCESS DATA
+            ////PROCESS DATA 
             int OutputStatus = 0; 
-            OutputStatus = UpdateData();
+            OutputStatus = UpdateData(); 
 
             //DISPLAY RESPONSE
             int Status = Convert.ToInt32(OutputStatus);
@@ -489,12 +510,11 @@ namespace Upkeep_v3.AssetManagement
             //dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(LoggedInUserID);
 
 
-            string strAssetAMCData = "";
-            //if (customCheck.Checked == true)
-                strAssetAMCData = AssetRenewAMCData(0);
+            string strAssetAMCData = ""; 
+            strAssetAMCData = AssetRenewAMCData(0);
+    
 
-
-            ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, "", strAssetAMCData, "INSERT");
+            ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, ViewState["TransactionID"].ToString(), strAssetAMCData, "INSERT");
             if (ds.Tables.Count > 0)
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -512,14 +532,30 @@ namespace Upkeep_v3.AssetManagement
             DataSet ds = new DataSet();
 
             string strAssetAMCData = "";
-            if (customCheck.Checked == true)
-               strAssetAMCData = AssetAMCData((int)ViewState["TransactionID"]);
+
+
+            if (ddlAssetName.SelectedIndex > 0)
+            {
+                strAssetAMCData = AssetAMCData(Convert.ToInt32(ddlAssetName.SelectedValue.ToString()));
+                ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, ddlAssetName.SelectedValue.ToString(), strAssetAMCData, "UPDATE");
+            }
+            else
+            {
+                if (customCheck.Checked == true)
+                    strAssetAMCData = AssetAMCData((int)ViewState["TransactionID"]);
+
+                ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, Convert.ToString((int)ViewState["TransactionID"]), strAssetAMCData, "UPDATE");
+            }
+
+
 
             //string strAssetServiceData = "";
             //if (customCheck1.Checked == true)
             //    strAssetServiceData = AssetServiceData();
+            //if (customCheck.Checked == true)
+            //    strAssetAMCData = AssetAMCData((int)ViewState["TransactionID"]);
+            //ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, Convert.ToString((int)ViewState["TransactionID"]), strAssetAMCData, "UPDATE");
 
-            ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, Convert.ToString((int)ViewState["TransactionID"]), strAssetAMCData, "UPDATE");
             if (ds.Tables.Count > 0)
             {
                 if (ds.Tables[0].Rows.Count > 0)

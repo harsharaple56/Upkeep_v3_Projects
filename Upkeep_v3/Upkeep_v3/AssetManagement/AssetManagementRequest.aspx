@@ -980,8 +980,8 @@
                                                                         <th>Schedule Date</th>
                                                                         <th>Assigned To</th>
                                                                         <th>Alert Before(Days)</th>
-                                                                        <th>Remarks</th>
-                                                                        <th>Status</th>
+                                                                        <th style="display:none;" >Remarks</th>
+                                                                        <th style="display:none;" >Status</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>

@@ -75,49 +75,68 @@ namespace Upkeep_v3.AssetManagement
 
                 if (ds.Tables.Count > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+
+                    
+                    DataTable dtClose = new DataTable();
+                    dtClose = ds.Tables[0].Copy();
+                    dtClose.DefaultView.RowFilter = "IsAmc = 1";
+                    dtClose = dtClose.DefaultView.ToTable();
+
+
+                    if (dtClose.Rows.Count > 0)
                     {
-                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+                        int count = Convert.ToInt32(dtClose.Rows.Count);
 
                         for (int i = 0; i < count; i++)
                         {
-                            string Asset_ID = Convert.ToString(ds.Tables[0].Rows[i]["Asset_ID"]);
-                            string Asset_Name = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Name"]);
-                            string Asset_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Desc"]);
-                            string Asset_Make = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Make"]);
-                            string Asset_Serial_No = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Serial_No"]);
-                            string Asset_Type = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Type"]);
-                            string Asset_Category = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Category"]);
-                            string Vendor = Convert.ToString(ds.Tables[0].Rows[i]["Vendor"]);
-                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
-                            string Location = Convert.ToString(ds.Tables[0].Rows[i]["Location"]);
+                            string Asset_ID = Convert.ToString(dtClose.Rows[i]["Asset_ID"]);
+                            string Asset_Name = Convert.ToString(dtClose.Rows[i]["Asset_Name"]);
+                            //string Asset_Desc = Convert.ToString(dtClose.Rows[i]["Asset_Desc"]);
+                            //string Asset_Make = Convert.ToString(dtClose.Rows[i]["Asset_Make"]);
+                            //string Asset_Serial_No = Convert.ToString(dtClose.Rows[i]["Asset_Serial_No"]);
+                            //string Asset_Type = Convert.ToString(dtClose.Rows[i]["Asset_Type"]);
+                            //string Asset_Category = Convert.ToString(dtClose.Rows[i]["Asset_Category"]);
+                            //string Vendor = Convert.ToString(dtClose.Rows[i]["Vendor"]);
+                            //string Department = Convert.ToString(dtClose.Rows[i]["Department"]);
+                            //string Location = Convert.ToString(dtClose.Rows[i]["Location"]);
 
-                            string Asset_Cost = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Cost"]);
-                            string Currency_Type = Convert.ToString(ds.Tables[0].Rows[i]["Currency_Type"]);
-                            string Asset_Purchase_Date = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Purchase_Date"]);
-                            string Asset_Is_AMC_Active = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Is_AMC_Active"]);
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
-
+                            //string Asset_Cost = Convert.ToString(dtClose.Rows[i]["Asset_Cost"]);
+                            //string Currency_Type = Convert.ToString(dtClose.Rows[i]["Currency_Type"]);
+                            //string Asset_Purchase_Date = Convert.ToString(dtClose.Rows[i]["Asset_Purchase_Date"]);
+                            //string Asset_Is_AMC_Active = Convert.ToString(dtClose.Rows[i]["Asset_Is_AMC_Active"]);
+                            //string Created_By = Convert.ToString(dtClose.Rows[i]["Created_By"]);
+                            //string Created_Date = Convert.ToString(dtClose.Rows[i]["Created_Date"]);
+                             
+                            string AmcType = Convert.ToString(dtClose.Rows[i]["AmcType"]);
+                            string AMC_Start_Date = Convert.ToString(dtClose.Rows[i]["AMC_Start_Date"]);
+                            string AMC_End_Date = Convert.ToString(dtClose.Rows[i]["AMC_End_Date"]);
+                            string Vendor_Name = Convert.ToString(dtClose.Rows[i]["Vendor_Name"]);
+                            string AMC_Status = Convert.ToString(dtClose.Rows[i]["AMC_Status"]); 
 
                             //Asset_ID Asset_Name  Asset_Desc Asset_Make  Asset_Serial_No Asset_Type  Asset_Category Vendor  Department Location    
                             //    Asset_Cost Currency_Type   Asset_Purchase_Date Asset_Is_AMC_Active Created_By Created_Date
 
                             data += "<tr><td> <a href='AssetManagementAmcRequest.aspx?TransactionID=" + Asset_ID + "' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
-                                "<td>" + Asset_Desc + "</td>" +
-                                "<td>" + Asset_Make + "</td>" +
-                                "<td>" + Asset_Serial_No + "</td>" +
-                                "<td>" + Asset_Type + "</td>" +
-                                "<td>" + Asset_Category + "</td>" +
-                                "<td>" + Vendor + "</td>" +
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Location + "</td>" +
-                                "<td>" + Asset_Cost + "</td>" +
-                                "<td>" + Currency_Type + "</td>" +
-                                "<td>" + Asset_Purchase_Date + "</td>" +
-                                "<td>" + Asset_Is_AMC_Active + "</td>" +
-                                "<td>" + Created_By + "</td>" +
-                                "<td>" + Created_Date + "</td>" +
+                                //"<td>" + Asset_Desc + "</td>" +
+                                //"<td>" + Asset_Make + "</td>" +
+                                //"<td>" + Asset_Serial_No + "</td>" +
+                                //"<td>" + Asset_Type + "</td>" +
+                                //"<td>" + Asset_Category + "</td>" +
+                                //"<td>" + Vendor + "</td>" +
+                                //"<td>" + Department + "</td>" +
+                                //"<td>" + Location + "</td>" +
+                                //"<td>" + Asset_Cost + "</td>" +
+                                //"<td>" + Currency_Type + "</td>" +
+                                //"<td>" + Asset_Purchase_Date + "</td>" +
+                                //"<td>" + Asset_Is_AMC_Active + "</td>" +
+                                //"<td>" + Created_By + "</td>" +
+                                //"<td>" + Created_Date + "</td>" +
+
+                                "<td>" + AmcType + "</td>" +
+                                "<td>" + AMC_Start_Date + "</td>" +
+                                "<td>" + AMC_End_Date + "</td>" +
+                                "<td>" + Vendor_Name + "</td>" +
+                                "<td>" + AMC_Status + "</td>" + 
                                 "</tr>";
 
                         }

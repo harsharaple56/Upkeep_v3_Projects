@@ -8,6 +8,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Upkeep_GP_WP_Services", "Upkeep_GP_WP_Services\", "{756A2B8A-8AA7-4860-922C-25B53BFA3C36}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{d96fe1fd-c046-414a-939e-c74586be521d}|Upkeep_GP_WP_BL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_54306"
 		Debug.AspNetCompiler.PhysicalPath = "Upkeep_GP_WP_Services\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54306\"

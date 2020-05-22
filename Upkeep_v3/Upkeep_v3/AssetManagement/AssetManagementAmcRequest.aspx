@@ -366,6 +366,8 @@
 
                 alert("ff");
 
+
+
                 var value = <%= Session["TransactionID"].ToString() %>;
                 if (value != 0) {
 
@@ -378,6 +380,11 @@
                             alert("Please Select Proper AMC Vendor!");
                             return;
                         }
+                    }
+                } else{
+                    if ($("#ddlAssetName").val() === "") {
+                            alert("Please Select Asset!");
+                            return;
                     }
                 }
 
@@ -742,11 +749,10 @@
                                     </div>
 
                                 </div>
-
-
+                               
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                     <br />
-                                    <div id="Div3" runat="server" style="display: block;">
+                                    <div id="DivIsUpdateAMC" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset is covered by AMC :</label>
                                             <div class="col-xl-8 col-lg-8">
@@ -758,6 +764,22 @@
                                                     Text="RENEW" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
                                                     data-title="Add AMC" data-backdrop="static" data-keyboard="false" />
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div id="DivIsNewAmc" runat="server" style="display: block;">
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name:</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                  <asp:DropDownList ID="ddlAssetName" class="form-control m-input" runat="server" ClientIDMode="Static"
+                                                       OnSelectedIndexChanged="ddlAssetName_SelectedIndexChanged"   AutoPostBack="true" >
+                                                    </asp:DropDownList>
+                                                  <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="ddlAssetName" Visible="true"
+                                                        Display="Dynamic" ValidationGroup="validateAssetAddService" ForeColor="Red" InitialValue=""
+                                                        ErrorMessage="Please select Asset Type"></asp:RequiredFieldValidator>--%>
+                                                
+                                                    <asp:HiddenField ID="txtIsNewAmc" runat="server" ClientIDMode="Static" /> 
+                                                
+                                            </div> 
                                         </div>
                                     </div>
 

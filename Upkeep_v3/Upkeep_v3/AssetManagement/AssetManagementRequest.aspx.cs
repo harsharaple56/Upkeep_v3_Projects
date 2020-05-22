@@ -1079,6 +1079,9 @@ namespace Upkeep_v3.AssetManagement
                         System.Web.UI.WebControls.TextBox txtServiceRemarks = new System.Web.UI.WebControls.TextBox();
                         txtServiceRemarks.Attributes.Add("class", "form-control m-input");
                         txtServiceRemarks.Attributes.Add("style", "width: 250px");
+
+                        txtServiceRemarks.Attributes.Add("style", "display:none");
+
                         txtServiceRemarks.Attributes.Add("ID", "" + sCellId + "4" + "");
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[4].Controls.Add(txtServiceRemarks);
 
@@ -1087,6 +1090,9 @@ namespace Upkeep_v3.AssetManagement
                         System.Web.UI.WebControls.TextBox txtServiceStatus = new System.Web.UI.WebControls.TextBox();
                         txtServiceStatus.Attributes.Add("class", "form-control m-input");
                         txtServiceStatus.Attributes.Add("style", "width: 100px");
+
+                        txtServiceStatus.Attributes.Add("style", "display:none"); 
+
                         txtServiceStatus.ReadOnly = true;
                         txtServiceStatus.Text = "Open";
                         txtServiceStatus.Attributes.Add("ID", "" + sCellId + "5" + "");
