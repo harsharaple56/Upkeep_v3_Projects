@@ -862,14 +862,14 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to save VMS request 
-    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, strVMSCovidColorCode, strVMSCovidTestDate, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)

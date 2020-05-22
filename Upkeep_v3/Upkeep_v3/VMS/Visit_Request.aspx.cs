@@ -49,9 +49,9 @@ namespace Upkeep_v3.VMS
             WpTitleSelectedID = ddlVMSTitle.SelectedValue;
             //if (ValidateData() == false)
             //{
-            //    //ddlWorkPermitTitle.SelectedValue = "0";
-            //    //ddlWorkPermitTitle.SelectedValue = WpTitleSelectedID;
-            //    //setWorkPermitData();
+            //    //ddlVMSTitle.SelectedValue = "0";
+            //    //ddlVMSTitle.SelectedValue = WpTitleSelectedID;
+            //    //setVMSData();
             //    SetRepeater();
             //    return;
             //}
@@ -399,20 +399,28 @@ namespace Upkeep_v3.VMS
                 string LoggedInUser = LoggedInUserID;
                 string strVisitDate = txtVMSDate.Text;
                 string strMeetUsers = txtMeetUsers.Text;
+                string strCovidTestDate = txtMeetUsers.Text;
+                string strCovidColor = string.Empty;
+                if (rdbGreen.Checked == true)
+                { strCovidColor = "GREEN"; }
+                if (rdbOrange.Checked == true)
+                { strCovidColor = "ORANGE"; }
+                if (rdbRed.Checked == true)
+                { strCovidColor = "RED"; }
                 #endregion
 
 
-                #region SectionHeader
+                #region VisitQuestion
                 /*
                  Create table and store data in table and convert later in xml and pass in to Datatbase..
-                 Table Structure : SectionID | QuestionID | AnswerID | Data
+                 Table Structure :  QuestionID | AnswerID | Data
                 */
 
                 string strVMSData = "";
 
                 DataTable dt = new DataTable();
                 dt.Clear();
-                dt.TableName = "TableSectionQuestion";
+                dt.TableName = "TableVisitQuestion";
                 dt.Columns.Add("QuestionID");
                 dt.Columns.Add("AnswerID");
                 dt.Columns.Add("Data");
@@ -508,7 +516,7 @@ namespace Upkeep_v3.VMS
                             string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
                             string fileName = string.Empty;
 
-                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/WorkPermitImages/" + CurrentDate);
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/VMSImages/" + CurrentDate);
                             if (!Directory.Exists(fileUploadPath))
                             {
                                 Directory.CreateDirectory(fileUploadPath);
@@ -537,8 +545,8 @@ namespace Upkeep_v3.VMS
                                     {
                                         fileName = HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
                                         string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                                        string SaveLocation = Server.MapPath("~/WorkPermitImages/" + CurrentDate) + "/" + fileName;
-                                        string FileLocation = imgPath + "/WorkPermitImages/" + CurrentDate + "/" + fileName;// + "*WP";
+                                        string SaveLocation = Server.MapPath("~/VMSImages/" + CurrentDate) + "/" + fileName;
+                                        string FileLocation = imgPath + "/VMSImages/" + CurrentDate + "/" + fileName;// + "*WP";
                                         string ImageName = Path.GetFileName(postfiles.FileName);
                                         Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
                                         var targetFile = SaveLocation;
@@ -694,7 +702,7 @@ namespace Upkeep_v3.VMS
 
                 #region SaveDataToDB
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, ConfigID, strVisitDate,"", strVMSData, "strVMSFeedbackData", LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, ConfigID, strVisitDate, strMeetUsers, strVMSData, "strVMSFeedbackData", strCovidColor,strCovidTestDate, LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {

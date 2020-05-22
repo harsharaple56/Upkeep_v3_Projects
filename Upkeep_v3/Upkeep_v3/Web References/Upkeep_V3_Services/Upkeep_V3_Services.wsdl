@@ -1555,6 +1555,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="strMeetUsrs" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSData" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSFeedbackData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidColorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidTestDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>

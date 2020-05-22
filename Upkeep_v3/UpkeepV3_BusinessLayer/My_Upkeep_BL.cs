@@ -821,7 +821,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images,string strTicketAction,string CurrentLevel, string StrConn)
+        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel, string StrConn)
         {
             try
             {
@@ -1191,7 +1191,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1205,6 +1205,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
                 cmd.Parameters.AddWithValue("@VisitData", strVMSData);
                 cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
+                cmd.Parameters.AddWithValue("@CovidColorCode", strVMSCovidColorCode);
+                cmd.Parameters.AddWithValue("@CovidtestDate", strVMSCovidTestDate);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
