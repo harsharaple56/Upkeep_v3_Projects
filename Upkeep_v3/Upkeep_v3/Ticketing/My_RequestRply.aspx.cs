@@ -18,6 +18,7 @@ namespace Upkeep_v3.Ticketing
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
         int TicketID = 0;
+        int MyRequest = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,6 +26,7 @@ namespace Upkeep_v3.Ticketing
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
             TicketID = Convert.ToInt32(Request.QueryString["TicketID"]);
+            MyRequest = Convert.ToInt32(Request.QueryString["MyRequest"]);
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -39,7 +41,11 @@ namespace Upkeep_v3.Ticketing
             {
                 Session["TicketID"] = Convert.ToString(TicketID);
                 bind_Master(TicketID);
-
+                if (MyRequest == 1)
+                {
+                    dvApprovalDetails.Attributes.Add("style", "display:none;");
+                    dvClose.Attributes.Add("style", "display:none;");
+                }
             }
 
 
@@ -212,109 +218,155 @@ namespace Upkeep_v3.Ticketing
 
             try
             {
-                //if (FileUpload_TicketImage.HasFile)
-                //{
-                string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
-
-                if (!Directory.Exists(fileUploadPath))
+                if (Convert.ToString(ddlAction.SelectedValue) == "Closed")
                 {
-                    Directory.CreateDirectory(fileUploadPath);
-                }
-
-                int i = 0;
-
-                foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
-                {
-                    string filetype = Path.GetExtension(postfiles.FileName);
-                    if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                    if (FileUpload_TicketImage.HasFile)
                     {
-                        Lst_ValidImage.Add(1);
-                    }
-                    else
-                    {
-                        Lst_ValidImage.Add(0);
-                    }
-                }
-                foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
-                {
-                    //for (int i = 0; i < FileUpload_TicketImage.PostedFiles.Count; i++)
-                    //{
+                        string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
 
-                    string filetype = Path.GetExtension(postfiles.FileName);
-                    if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
-                    {
+                        if (!Directory.Exists(fileUploadPath))
+                        {
+                            Directory.CreateDirectory(fileUploadPath);
+                        }
+
+                        int i = 0;
+
+                        foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
+                        {
+                            string filetype = Path.GetExtension(postfiles.FileName);
+                            if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                            {
+                                Lst_ValidImage.Add(1);
+                            }
+                            else
+                            {
+                                Lst_ValidImage.Add(0);
+                            }
+                        }
+                        foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
+                        {
+                            //for (int i = 0; i < FileUpload_TicketImage.PostedFiles.Count; i++)
+                            //{
+
+                            string filetype = Path.GetExtension(postfiles.FileName);
+                            if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                            {
+                                try
+                                {
+                                    fileName = TicketCode + "_Close_" + Convert.ToString(i) + filetype;
+                                    //fileName = postfiles.FileName;
+
+                                    imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImagePath"]);
+
+                                    //string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + fileName);
+                                    // FileUpload_TicketImage.SaveAs(Server.MapPath("~/") + fileName);
+
+                                    string SaveLocation = Server.MapPath("~/TicketImages/" + CurrentDate) + "/" + fileName;
+                                    //string SaveLocation = Server.MapPath(filePath) + fileName;
+                                    //File.Copy(SaveLocation, imgPath);
+
+                                    //string SaveLocation = Server.MapPath(imgPath) + fileName;
+
+                                    if (!Lst_ValidImage.Contains(0))
+                                    {
+                                        //FileUpload_TicketImage.PostedFile.SaveAs(SaveLocation);
+                                        postfiles.SaveAs(SaveLocation);
+                                        Lst_Images.Add(SaveLocation);
+                                    }
+
+                                    //ImagesList.Append(fileName);
+                                    //abc += fileName;
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    //Is_ImageSaved = false;
+                                    Lst_ImageSaved.Add(0); // Image failed to save
+                                    throw ex;
+                                }
+                            }
+                            else
+                            {
+                                //Is_ValidImage = false;
+                                Lst_ValidImage.Add(0);  // image extension is not proper
+                            }
+                            //}
+
+                            i = i + 1;
+                        }
+                        //if (ddlAction.SelectedItem.Text != "In Progress")
+                        //{
+                        if (Lst_ValidImage.Contains(0))
+                        {
+                            //if (ddlAction.SelectedItem.Text != "In Progress")
+                            //{
+                                lblTicketErrorMsg.Text = "Image format not supported";
+                                FileUpload_TicketImage.Focus();
+                                return;
+                            //}
+
+                        }
+                        else if (Lst_ImageSaved.Contains(0))
+                        {
+                            //if (ddlAction.SelectedItem.Text != "In Progress")
+                            //{
+                                lblTicketErrorMsg.Text = "Image upload failed, please try again";
+                                return;
+                            //}
+                            //txtTicketDesc.Focus(); //sam
+                        }
+
                         try
                         {
-                            fileName = TicketCode + "_Close_" + Convert.ToString(i) + filetype;
-                            //fileName = postfiles.FileName;
+                            list_Images = String.Join(",", Lst_Images);
 
-                            imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImagePath"]);
+                            string strTicketAction = string.Empty;
+                            strTicketAction = Convert.ToString(ddlAction.SelectedValue);
 
-                            //string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + fileName);
-                            // FileUpload_TicketImage.SaveAs(Server.MapPath("~/") + fileName);
 
-                            string SaveLocation = Server.MapPath("~/TicketImages/" + CurrentDate) + "/" + fileName;
-                            //string SaveLocation = Server.MapPath(filePath) + fileName;
-                            //File.Copy(SaveLocation, imgPath);
+                            string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
 
-                            //string SaveLocation = Server.MapPath(imgPath) + fileName;
+                            dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);                        //mpeTicketSaveSuccess.Show();
 
-                            if (!Lst_ValidImage.Contains(0))
+                            //Samvedna
+                            if (dsCloseTicket.Tables.Count > 0)
                             {
-                                //FileUpload_TicketImage.PostedFile.SaveAs(SaveLocation);
-                                postfiles.SaveAs(SaveLocation);
-                                Lst_Images.Add(SaveLocation);
+                                if (dsCloseTicket.Tables[0].Rows.Count > 0)
+                                {
+                                    int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
+                                    if (Status == 1)
+                                    {
+                                        Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
+                                    }
+                                    else
+                                    {
+                                        lblTicketErrorMsg.Text = "Something went wrong, please try again";
+                                    }
+                                }
                             }
 
-                            //ImagesList.Append(fileName);
-                            //abc += fileName;
+
                         }
+
                         catch (Exception ex)
                         {
-
-                            //Is_ImageSaved = false;
-                            Lst_ImageSaved.Add(0); // Image failed to save
                             throw ex;
                         }
+                        //}
                     }
                     else
                     {
-                        //Is_ValidImage = false;
-                        Lst_ValidImage.Add(0);  // image extension is not proper
+                        //if (ddlAction.SelectedItem.Text != "In Progress")
+                        //{
+                            lblTicketErrorMsg.Text = "Please select image";
+                            FileUpload_TicketImage.Focus();
+                        //}
                     }
-                    //}
+                }
 
-                    i = i + 1;
-                }
-                //if (ddlAction.SelectedItem.Text != "In Progress")
-                //{
-                if (Lst_ValidImage.Contains(0))
+                else
                 {
-                    if (ddlAction.SelectedItem.Text != "In Progress")
-                    {
-                        lblTicketErrorMsg.Text = "Image format not supported";
-                        FileUpload_TicketImage.Focus();
-                        return;
-                    }
-
-                }
-                else if (Lst_ImageSaved.Contains(0))
-                {
-                    if (ddlAction.SelectedItem.Text != "In Progress")
-                    {
-                        lblTicketErrorMsg.Text = "Image upload failed, please try again";
-                        return;
-                    }
-                    //txtTicketDesc.Focus(); //sam
-                }
-                //}
-                //else
-                //{
-                //Save details       
-                //DataSet dsTicketSave = new DataSet();
-                try
-                {
-                    list_Images = String.Join(",", Lst_Images);
+                    // In progress, Hold
 
                     string strTicketAction = string.Empty;
                     strTicketAction = Convert.ToString(ddlAction.SelectedValue);
@@ -322,11 +374,7 @@ namespace Upkeep_v3.Ticketing
 
                     string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
 
-                    //string title = "Greetings";
-                    //string body = "Welcome to ASPSnippets.com";
-                    //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
-
-                    dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);                        //mpeTicketSaveSuccess.Show();
+                    dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel); 
 
                     //Samvedna
                     if (dsCloseTicket.Tables.Count > 0)
@@ -345,23 +393,8 @@ namespace Upkeep_v3.Ticketing
                         }
                     }
 
-
                 }
 
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                //}
-                //}
-                //else
-                //{
-                //    if (ddlAction.SelectedItem.Text != "In Progress")
-                //    {
-                //        lblTicketErrorMsg.Text = "Please select image";
-                //        FileUpload_TicketImage.Focus();
-                //    }
-                //}
             }
             catch (Exception ex)
             {

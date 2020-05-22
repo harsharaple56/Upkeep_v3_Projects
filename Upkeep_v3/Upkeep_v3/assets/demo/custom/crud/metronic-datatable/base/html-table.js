@@ -95,22 +95,25 @@ var DatatableHtmlTableDemo = {
             columns: [{ field: "DepositPaid", type: "number" },
                 {
                     field: "OrderDate", type: "date", format: "YYYY-MM-DD"
-                },
+                }
+                ,
                 
                 {
                     field: "RequestStatus", title: "RequestStatus", template: function (e) {
                         var t =
                         {
                             "Open": { title: "Open", class: "m-badge--danger" },
-                            "Transferred": { title: "Transferred", class: "m-badge--brand" },
-                            "FaultyTicket": { title: "FaultyTicket", class: " m-badge--primary" },
-                            "Closed": { title: "Closed", class: " m-badge--success" }
+                            //"Transferred": { title: "Transferred", class: "m-badge--brand" },
+                            //"FaultyTicket": { title: "FaultyTicket", class: " m-badge--primary" },
+                            "Closed": { title: "Closed", class: " m-badge--success" },
+                            "Parked": { title: "Parked", class: " m-badge--warning" }
                             //5: { title: "Info", class: " m-badge--info" },
                             //6: { title: "Danger", class: " m-badge--danger" },
                             //7: { title: "Warning", class: " m-badge--warning" }
                         }; return '<span class="m-badge ' + t[e.RequestStatus].class + ' m-badge--wide">' + t[e.RequestStatus].title + "</span>"
                     }
                 }
+
                 //,{
                     //field: "ActionStatus",
                     //title: "ActionStatus",
