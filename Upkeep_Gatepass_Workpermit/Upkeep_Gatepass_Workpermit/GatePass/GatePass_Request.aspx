@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Request.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.GatePass.GatePass_Request" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Request.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.GatePass.GatePass_Request" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -310,7 +310,7 @@
                                         </a>
                                         <div class="btn-group">
 
-                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
+                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="display: none;" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
 
                                             <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                             <cc1:ModalPopupExtender ID="mpeGpRequestSaveSuccess" runat="server" PopupControlID="pnlGpReqestSuccess" TargetControlID="btnTest"

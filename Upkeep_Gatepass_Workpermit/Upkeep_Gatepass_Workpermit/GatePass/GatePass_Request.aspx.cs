@@ -13,6 +13,9 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Upkeep_Gatepass_Workpermit.GatePass
 {
@@ -290,19 +293,9 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
             GenerateTable(colsCount, 1);
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-
-            //foreach (RepeaterItem item in rptTermsCondition.Items)
-            //{
-            //    if (((CheckBox)item.FindControl("chkTermsCondition")).Checked==false)
-            //    {
-            //        //Do something
-            //        lblErrorMsg1.Text = "Please select all Terms and Conditions";
-            //    }
-            //}
-
-
+         
             string GpHeader = Convert.ToString(hdnGpHeader.Value);
             string GpHeaderData = Convert.ToString(hdnGpHeaderData.Value);
 
@@ -391,80 +384,25 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                     int Status = Convert.ToInt32(dsGpHeaderData.Tables[0].Rows[0]["Status"]);
                     if (Status == 1)
                     {
+                        if (dsGpHeaderData.Tables.Count > 2)
+                        {
+                            foreach (DataRow dr in dsGpHeaderData.Tables[2].Rows)
+                            {
+                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+
+                                await SendNotification(TokenNO, "Ticket No: "+ Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                            }
+                        }
+
                         lblGPRequestCode.Text = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
 
                         mpeGpRequestSaveSuccess.Show();
+
+                        //await SendNotification("", "100", "From Local");
                     }
                 }
             }
 
-
-            //DataSet ds = new DataSet();
-            //ds.Tables.Add(dtHeader);
-            //string dsXml = ds.GetXml();
-
-            //System.IO.StringWriter writer = new System.IO.StringWriter();
-            //dtHeader.WriteXml(writer, XmlWriteMode.WriteSchema, false);
-            //string result = writer.ToString();
-
-            //int ie = 0;
-            //for (i = 0; i < recCount; i++)
-            //{
-            //    DataRow dr = dt.NewRow();
-            //    string[] LocArr = strArrayGpHeader[i].Split('#');
-            //    int recCount2 = LocArr.Length ;
-
-            //    for (int j = 0; j < recCount2; j++)
-            //    {
-            //        if (LocArr[j] != "")
-            //        {
-            //            //dr[dc] = GpHeader.Split(',')[i];
-            //            //dr[dc] = LocArr[j];
-            //            //dt.Rows.Add(dr);
-            //            dt.Columns.Add(LocArr[j]);
-
-            //        }
-            //    }
-
-            //    //dr[dc] = GpHeader.Split(',')[i];
-
-            //    dt.Rows.Add(dr);
-
-            //}
-
-
-
-
-            //XmlDocument xmlDocProm = null;
-            //xmlDocProm = new XmlDocument();
-            //int recCount = 0;
-            //recCount = strArrayGpHeader.Length - 1;
-
-            //StringBuilder strXmlGpHeader = new StringBuilder();
-            //strXmlGpHeader.Append(@"<?xml version=""1.0"" ?>");
-            //strXmlGpHeader.Append(@"<GP_HEADER_ROOT>");
-
-            //for (int intLocRowCtr = 0; intLocRowCtr <= recCount; intLocRowCtr++)
-            //{
-            //    if (!string.IsNullOrEmpty(Convert.ToString(strArrayGpHeader[intLocRowCtr])))
-            //    {
-            //        string[] LocArr = strArrayGpHeader[intLocRowCtr].Split('#');
-
-            //        strXmlGpHeader.Append(@"<GP_HEADER_DETAILS>");
-
-            //        strXmlGpHeader.Append(@"<level>" + LocArr[0] + "</level>");
-            //        strXmlGpHeader.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-
-            //        strXmlGpHeader.Append(@"</GP_HEADER_DETAILS>");
-            //    }
-            //}
-            //strXmlGpHeader.Append(@"</GP_HEADER_ROOT>");
-
-
-            //DataTable dtHeader = new DataTable();
-            //dtHeader = JsonStringToDataTable(GpHeaderData);
-
-            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(GpHeaderData);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -657,5 +595,61 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
         {
             Response.Redirect(Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx"), false);
         }
+
+        //public void SendNotification(string TokenNo, string TicketNo, string strMessage)
+        //{
+        //    static async Task RunAsync()
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
+        //            //Send HTTP requests from here.  
+        //            client.BaseAddress = new Uri("http://localhost:55587/");
+        //            client.DefaultRequestHeaders.Accept.Clear();
+        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //            //GET Method  
+        //            HttpResponseMessage response = await client.GetAsync("api/Department/1");
+
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                //Departmentdepartment = awaitresponse.Content.ReadAsAsync<Department>();
+        //                //Console.WriteLine("Id:{0}\tName:{1}", department.DepartmentId, department.DepartmentName);
+        //                //Console.WriteLine("No of Employee in Department: {0}", department.Employees.Count);
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Internal server Error");
+        //            }
+        //        }
+        //    }
+        //}
+
+       public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        {
+            //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
+            using (var client = new HttpClient())
+            {
+                //Send HTTP requests from here.  
+               string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
+                client.BaseAddress = new Uri(API_URL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //GET Method  
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber="+ TokenNo + "&TicketNo="+ TicketNo + "&StrMessage="+ strMessage + "");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Departmentdepartment = awaitresponse.Content.ReadAsAsync<Department>();
+                    //Console.WriteLine("Id:{0}\tName:{1}", department.DepartmentId, department.DepartmentName);
+                    //Console.WriteLine("No of Employee in Department: {0}", department.Employees.Count);
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+
+
+
     }
 }
