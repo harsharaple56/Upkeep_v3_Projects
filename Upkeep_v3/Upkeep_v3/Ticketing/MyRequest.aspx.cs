@@ -70,7 +70,7 @@ namespace Upkeep_v3.Ticketing
                             ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
 
                             //data += "<tr><td>" + TicketNumber + "</td><td>" + Zone + "</td><td>" + Location + "</td><td>" + SubLocation + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td><td><a href='Add_MyRequest.aspx?TicketID=" + TicketID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>   </td></tr>";
-                            data += "<tr><td> <a href='My_RequestRply.aspx?TicketID=" + TicketID + "' style='text-decoration: underline;' > " + TicketNumber + " </a></td><td>" + Location + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td></tr>";
+                            data += "<tr><td> <a href='My_RequestRply.aspx?TicketID=" + TicketID + "&MyRequest=1 ' style='text-decoration: underline;' > " + TicketNumber + " </a></td><td>" + Location + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td></tr>";
 
                         }
                     }
