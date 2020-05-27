@@ -398,8 +398,8 @@ namespace Upkeep_v3.VMS
                 int ConfigID = Convert.ToInt32(ddlVMSTitle.SelectedValue.ToString());
                 string LoggedInUser = LoggedInUserID;
                 string strVisitDate = txtVMSDate.Text;
-                string strMeetUsers = txtMeetUsers.Text;
-                string strCovidTestDate = txtMeetUsers.Text;
+                string strMeetUsers = hdnSelectedUserID.Value;
+                string strCovidTestDate = txtAsmmtDate.Text;
                 string strCovidColor = string.Empty;
                 if (rdbGreen.Checked == true)
                 { strCovidColor = "GREEN"; }

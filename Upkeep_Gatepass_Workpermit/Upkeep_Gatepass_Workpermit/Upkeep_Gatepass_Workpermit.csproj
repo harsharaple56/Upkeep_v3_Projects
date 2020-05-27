@@ -443,6 +443,7 @@
     <Content Include="assets\app\media\img\products\product7.jpg" />
     <Content Include="assets\app\media\img\products\product8.jpg" />
     <Content Include="assets\app\media\img\products\product9.jpg" />
+    <Content Include="assets\app\media\img\users\10.jpg" />
     <Content Include="assets\app\media\img\users\100_1.jpg" />
     <Content Include="assets\app\media\img\users\100_10.jpg" />
     <Content Include="assets\app\media\img\users\100_11.jpg" />
@@ -471,6 +472,9 @@
     <Content Include="assets\app\media\img\users\300_7.jpg" />
     <Content Include="assets\app\media\img\users\300_8.jpg" />
     <Content Include="assets\app\media\img\users\300_9.jpg" />
+    <Content Include="assets\app\media\img\users\65.jpg" />
+    <Content Include="assets\app\media\img\users\67.jpg" />
+    <Content Include="assets\app\media\img\users\8.jpg" />
     <Content Include="assets\app\media\img\users\user1.jpg" />
     <Content Include="assets\app\media\img\users\user2.jpg" />
     <Content Include="assets\app\media\img\users\user3.jpg" />
@@ -4947,6 +4951,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="assets\app\media\img\signature\" />
     <Folder Include="CheckListImages\" />
     <Folder Include="vendors\dropzone\.idea\" />
     <Folder Include="vendors\handlebars\.idea\copyright\" />

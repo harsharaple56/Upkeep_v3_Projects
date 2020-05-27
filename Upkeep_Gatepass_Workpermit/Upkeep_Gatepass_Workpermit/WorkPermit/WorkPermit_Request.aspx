@@ -477,7 +477,23 @@
                                         <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Work Permit Approval History</label>
                                     </div>
                                     <div>
-                                        <asp:GridView ID="gvApprovalHistory" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                        <asp:GridView ID="gvApprovalHistory" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="False">
+
+                                            <Columns>
+                                                <asp:BoundField DataField="Level" HeaderText="Level" />
+                                                <asp:BoundField DataField="Approver" HeaderText="Approver" />
+                                                <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
+                                                <asp:BoundField DataField="Action Date" HeaderText="Action Date" />
+                                                <asp:BoundField DataField="Status" HeaderText="Status" />
+                                                <asp:TemplateField HeaderText="Signature" HeaderStyle-Width="200px">
+                                                    <ItemTemplate>
+                                                        <asp:Image ID="imgSignature" Height="100" Width="100" runat="server" AlternateText="Signature Missing.."
+                                                            ImageUrl='<%# ResolveUrl("../assets/app/media/img/signature/"+Eval("Emp_Sign").ToString()) %>' />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                                 <br />

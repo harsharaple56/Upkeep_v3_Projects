@@ -1202,7 +1202,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
-                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strMeetUsrs);
                 cmd.Parameters.AddWithValue("@VisitData", strVMSData);
                 cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
                 cmd.Parameters.AddWithValue("@CovidColorCode", strVMSCovidColorCode);
