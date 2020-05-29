@@ -427,7 +427,7 @@
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span>Title :</label>
+                                    <label class="col-md-3  col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
                                     <div class="col-xl-4 col-lg-4">
                                         <asp:HiddenField ID="hdnVMSConfigID" ClientIDMode="Static" Value="0" runat="server" />
                                         <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
@@ -435,16 +435,10 @@
                                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>--%>
                                         <span class="error_title text-danger medium"></span>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-light">
-                                                <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
-                                        </div>
 
-                                    </div>
                                 </div>
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span>Description :</label>
+                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span>Description :</label>
                                     <div class="col-md-6">
                                         <asp:TextBox ID="txtVMSDesc" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
@@ -452,17 +446,44 @@
                                     </div>
 
                                 </div>
-                                <%--                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 col-form-label"><span style="color: red;">*</span> Company :</label>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlCompany" class="form-control m-input" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Company"></asp:RequiredFieldValidator>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Form For:</label>
+                                    <div class="col-3">
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio" for="rdbCustomer">
+                                                <asp:RadioButton ID="rdbCustomer" runat="server" ClientIDMode="Static" GroupName="Initiator" />
+                                                Customer
+													<span></span>
+                                            </label>
+                                            <label class="m-radio" for="rdbVisitor">
+                                                <asp:RadioButton ID="rdbVisitor" runat="server" ClientIDMode="Static" GroupName="Initiator" Checked="true" />
+                                                Visitor
+													<span></span>
+                                            </label>
+                                        </div>
+                                        <span id="error_question_for" class="text-danger small"></span>
                                     </div>
 
-
-                                </div>--%>
-
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-light">
+                                                <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-light">
+                                                <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group m-form__group row" style="padding-left: 1%;" id="divFeedback">
+                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
+                                      <div class="col-md-4">
+                                        <asp:DropDownList ID="ddFeedback" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
+                                    </div>
+                                   
+                                </div>
 
                                 <br />
 
@@ -535,7 +556,7 @@
                                                 </div>
                                                 <div class="col-lg-8">
 
-                                                    <input type="hidden" id="txtQuestionCount" ClientIDMode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
+                                                    <input type="hidden" id="txtQuestionCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
                                                     <label id="lblQuestionCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
                                                 </div>
                                                 <span id="error_question_repeater" class="text-danger medium"></span>
@@ -616,7 +637,7 @@
                                                 </div>
                                                 <div class="col-lg-8">
 
-                                                    <input type="hidden" ClientIDMode="Static" id="txtFeedbackCount" data-count="1" value="1" class="txtVMSFeedback_count" runat="server" />
+                                                    <input type="hidden" clientidmode="Static" id="txtFeedbackCount" data-count="1" value="1" class="txtVMSFeedback_count" runat="server" />
                                                     <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold VMSFeedback_count" data-count="1">1 VMS Feedback(s)</label>
                                                 </div>
                                                 <span id="error_VMSFeedback" class="text-danger medium"></span>
