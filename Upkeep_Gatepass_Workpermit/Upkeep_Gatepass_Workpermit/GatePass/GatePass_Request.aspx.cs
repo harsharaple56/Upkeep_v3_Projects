@@ -295,7 +295,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-         
+
             string GpHeader = Convert.ToString(hdnGpHeader.Value);
             string GpHeaderData = Convert.ToString(hdnGpHeaderData.Value);
 
@@ -307,7 +307,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
 
             DataTable dtHeader = new DataTable();
 
-           // string df = "1,2,1,3";
+            // string df = "1,2,1,3";
 
             int i;
 
@@ -342,7 +342,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
             dtHeader.Rows.InsertAt(row, 2);///insert row at 3rd index of datatable
 
 
-            for (int k = 0; k < strArrayGpHeaderData.Length-1; k++)
+            for (int k = 0; k < strArrayGpHeaderData.Length - 1; k++)
             {
 
                 string[] HValueArray = strArrayGpHeaderData[k].Split('#');
@@ -370,7 +370,10 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
 
             GP_ConfigID = Convert.ToInt32(ddlGatePassTitle.SelectedValue);
             strGatePassDate = Convert.ToString(txtGatePassDate.Text.Trim());
-            DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
+            if (Convert.ToString(ddlDepartment.SelectedValue) != "")
+            {
+                DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
+            }
             TypeID = Convert.ToInt32(ddlGatePassType.SelectedValue);
 
 
@@ -390,7 +393,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
 
-                                await SendNotification(TokenNO, "Ticket No: "+ Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
                             }
                         }
 
@@ -441,7 +444,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         //dvDepartment.Attributes.Add("class", "col-xl-3 col-lg-3");
                     }
 
-                    lblGatepassDescription.Text= Convert.ToString(dsConfig.Tables[0].Rows[0]["Gatepass_Description"]);
+                    lblGatepassDescription.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["Gatepass_Description"]);
 
                     string strUserType = Convert.ToString(dsConfig.Tables[1].Rows[0]["UserType"]);
                     if (strUserType == "E")
@@ -623,18 +626,18 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
         //    }
         //}
 
-       public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
         {
             //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
             using (var client = new HttpClient())
             {
                 //Send HTTP requests from here.  
-               string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
+                string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
                 client.BaseAddress = new Uri(API_URL);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber="+ TokenNo + "&TicketNo="+ TicketNo + "&StrMessage="+ strMessage + "");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "");
 
                 if (response.IsSuccessStatusCode)
                 {

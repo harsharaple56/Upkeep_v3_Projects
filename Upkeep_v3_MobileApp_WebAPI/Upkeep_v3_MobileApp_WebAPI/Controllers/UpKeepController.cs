@@ -7511,6 +7511,24 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.WP_RollCD);
                 ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
 
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            {
+                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request");
+                            }
+
+                        }
+                    }
+                }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
