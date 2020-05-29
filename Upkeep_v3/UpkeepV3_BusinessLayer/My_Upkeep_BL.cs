@@ -1091,7 +1091,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
-                cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
+                cmd.Parameters.AddWithValue("@ConfigDesc", strConfigDesc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@XmlVMS_Question", strXmlVMS_Question);
                 cmd.Parameters.AddWithValue("@XmlVMS_Feedback", strXmlVMS_Feedback);

@@ -40,15 +40,6 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// ChkFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkFeedback;
-        
-        /// <summary>
         /// txtVMSDesc control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,51 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// rdbCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbCustomer;
+        
+        /// <summary>
+        /// rdbVisitor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbVisitor;
+        
+        /// <summary>
+        /// ChkFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkFeedback;
+        
+        /// <summary>
+        /// ChkCovid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkCovid;
+        
+        /// <summary>
+        /// ddFeedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddFeedback;
         
         /// <summary>
         /// VMSQuestion control.

@@ -297,7 +297,7 @@ background-color: blanchedalmond;
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Visit Title :</label>
+                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Form Title :</label>
                                     <div class="col-md-4">
                                         <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
@@ -322,7 +322,7 @@ background-color: blanchedalmond;
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-2 col-form-label font-weight-bold" style="text-align: right;">Meeting with :</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Meeting with :</label>
                                     <div class="col-md-4 col-form-label">
                                         <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
@@ -353,7 +353,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <div class="col-md-3">
                                                 <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Eval("Is_Mandatory").ToString() == "Yes" ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
                                                 <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
                                                 <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
@@ -452,6 +452,17 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                     </div>
                                                 </div>
                                                 <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
+
+                                            </div>
+                                            <h5 class="mt-5">Temperature:</h5>
+                                            <div class="row">
+                                                <div class="input-group date">
+                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
+                                                    </div>
+                                                </div>
+                                                <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
 
                                             </div>
                                         </div>
@@ -567,7 +578,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:flex;">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: flex;">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">
