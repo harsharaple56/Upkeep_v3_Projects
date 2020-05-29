@@ -280,105 +280,105 @@
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmGatePass" method="post">--%>
-                            <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+                        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
-                            <asp:HiddenField ID="hdnGpHeaderData" runat="server" ClientIDMode="Static" />
-                            <asp:HiddenField ID="hdnGpHeader" runat="server" ClientIDMode="Static" />
-                            <p id="info" style="display: none;"></p>
-                            <p id="infox" style="display: none;"></p>
+                        <asp:HiddenField ID="hdnGpHeaderData" runat="server" ClientIDMode="Static" />
+                        <asp:HiddenField ID="hdnGpHeader" runat="server" ClientIDMode="Static" />
+                        <p id="info" style="display: none;"></p>
+                        <p id="infox" style="display: none;"></p>
 
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-progress">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-progress">
 
-                                    <!-- here can place a progress bar-->
-                                </div>
-                                <div class="m-portlet__head-wrapper">
-                                    <div class="m-portlet__head-caption">
-                                        <div class="m-portlet__head-title">
-                                            <h3 class="m-portlet__head-text">Gate Pass Request
-                                            </h3>
-                                        </div>
-                                    </div>
-
-                                    <div class="m-portlet__head-tools" style="width: 28%;">
-                                        <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                        <a href="<%= Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                            <span>
-                                                <i class="la la-arrow-left"></i>
-                                                <span>Back</span>
-                                            </span>
-                                        </a>
-                                        <div class="btn-group">
-
-                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="display: none;" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
-
-                                            <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                            <cc1:ModalPopupExtender ID="mpeGpRequestSaveSuccess" runat="server" PopupControlID="pnlGpReqestSuccess" TargetControlID="btnTest"
-                                                CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                            </cc1:ModalPopupExtender>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <!-- here can place a progress bar-->
                             </div>
+                            <div class="m-portlet__head-wrapper">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">Gate Pass Request
+                                        </h3>
+                                    </div>
+                                </div>
 
-                            <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
+                                <div class="m-portlet__head-tools" style="width: 28%;">
+                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <a href="<%= Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back</span>
+                                        </span>
+                                    </a>
+                                    <div class="btn-group">
 
-                                <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
-                                    <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                        <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold"><span style="color: red;">*</span> Gate Pass Title :</label>
-                                        <div class="col-xl-4 col-lg-4">
-                                            <asp:DropDownList ID="ddlGatePassTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlGatePassTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlGatePassTitle" Visible="true" Display="Dynamic"
-                                                ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Gate Pass Title"></asp:RequiredFieldValidator>
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="display: none;" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
+
+                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                        <cc1:ModalPopupExtender ID="mpeGpRequestSaveSuccess" runat="server" PopupControlID="pnlGpReqestSuccess" TargetControlID="btnTest"
+                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                        </cc1:ModalPopupExtender>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
+
+                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold"><span style="color: red;">*</span> Gate Pass Title :</label>
+                                    <div class="col-xl-4 col-lg-4">
+                                        <asp:DropDownList ID="ddlGatePassTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlGatePassTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlGatePassTitle" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Gate Pass Title"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Gatepass Description :</label>
+                                    <div class="col-xl-9 col-lg-9 col-form-label">
+                                        <asp:Label ID="lblGatepassDescription" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                    </div>
+                                </div>
+
+
+                                <br />
+
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Initiator Details</label>
+                                </div>
+
+                                <div id="dvEmployee" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Employee Name :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label">
+                                            <asp:Label ID="lblEmpName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
+
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Employee Code :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label">
+                                            <asp:Label ID="lblEmpCode" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="dvRetailer" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Store Name :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label">
+                                            <asp:Label ID="lblStoreName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                        </div>
+
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Manager Name :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label">
+                                            <asp:Label ID="lblRetailerName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                        </div>
+
                                     </div>
 
-                                    
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Gatepass Description :</label>
-                                            <div class="col-xl-9 col-lg-9 col-form-label">
-                                                <asp:Label ID="lblGatepassDescription" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                            </div>
-                                        </div>
-                                   
-
-                                    <br />
-
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Initiator Details</label>
-                                    </div>
-
-                                    <div id="dvEmployee" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Employee Name :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:Label ID="lblEmpName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                            </div>
-
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Employee Code :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:Label ID="lblEmpCode" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div id="dvRetailer" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Store Name :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:Label ID="lblStoreName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                            </div>
-
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Manager Name :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:Label ID="lblRetailerName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                            </div>
-
-                                        </div>
-
-                                        <%--<div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <%--<div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Mobile No. :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblRetailerMobileNo" runat="server" Text="" CssClass="form-control-label"></asp:Label>
@@ -390,7 +390,7 @@
                                             </div>
 
                                         </div>--%>
-                                        <%--<div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <%--<div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Request Date :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="Label5" runat="server" Text="" CssClass="form-control-label"></asp:Label>
@@ -400,174 +400,176 @@
                                                 <asp:Label ID="Label1" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                             </div>
                                         </div>--%>
-                                    </div>
-                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Mobile No. :</label>
-                                        <div class="col-xl-3 col-lg-3 col-form-label">
-                                            <asp:Label ID="lblMobileNo" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                        </div>
-
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Email ID :</label>
-                                        <div class="col-xl-3 col-lg-3 col-form-label">
-                                            <asp:Label ID="LblEmailID" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                        </div>
-
+                                </div>
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Mobile No. :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:Label ID="lblMobileNo" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                     </div>
 
-                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Gate Pass Date :</label>
-                                        <div class="col-xl-3 col-lg-3 col-form-label">
-                                            <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                            <div class="input-group date">
-                                                <asp:TextBox ID="txtGatePassDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Gate Pass date & time"></asp:TextBox>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                </div>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Email ID :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:Label ID="LblEmailID" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Gate Pass Date :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                        <div class="input-group date">
+                                            <asp:TextBox ID="txtGatePassDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Gate Pass date & time"></asp:TextBox>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
-                                            <span id="error_startDate" class="text-danger small"></span>
                                         </div>
+                                        <span id="error_startDate" class="text-danger small"></span>
+                                    </div>
 
-                                       <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Department :</label>
-                                        <div class="col-xl-3 col-lg-3 col-form-label">
-                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" runat="server"></asp:DropDownList>
-                                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
+                                    <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Department :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:DropDownList ID="ddlDepartment" class="form-control m-input" runat="server"></asp:DropDownList>
+                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
                                                 ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
-                                        </div>
-                                           <%-- </div>--%>
                                     </div>
+                                    <%-- </div>--%>
+                                </div>
 
 
 
 
 
-                                    <br />
+                                <br />
 
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Details</label>
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Details</label>
+                                </div>
+
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span> Gate Pass Type :</label>
+                                    <div class="col-xl-4 col-lg-4">
+                                        <asp:DropDownList ID="ddlGatePassType" class="form-control m-input" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlGatePassType" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Gate Pass Type"></asp:RequiredFieldValidator>
                                     </div>
+                                </div>
 
-                                    <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                        <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span> Gate Pass Type :</label>
-                                        <div class="col-xl-4 col-lg-4">
-                                            <asp:DropDownList ID="ddlGatePassType" class="form-control m-input" runat="server"></asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlGatePassType" Visible="true" Display="Dynamic"
-                                                ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Gate Pass Type"></asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-
-                                    <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>--%>
-                                    <div class="m-portlet__body" style="overflow-x: scroll;">
+                                <div class="m-portlet__body" style="overflow-x: scroll;">
 
-                                        <table class="table table-striped- table-bordered table-hover table-checkable" style="width: 100%" border="1" runat="server" id="tblGatePassHeader">
+                                    <table class="table table-striped- table-bordered table-hover table-checkable" style="width: 100%" border="1" runat="server" id="tblGatePassHeader">
+                                    </table>
+
+
+
+                                </div>
+                                <br />
+                                <input type="button" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" onclick="AddRow()" value="+ Add New" id="btnAddNew" />
+                                <%--<asp:Button ID="btnAddNew1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" UseSubmitBehavior="false" ClientIDMode="Static" Text="+ Add New" />--%>
+                                <%--</ContentTemplate></asp:UpdatePanel>--%>
+                                <br />
+                                <br />
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Terms & Conditions</label>
+                                </div>
+
+
+                                <asp:Repeater ID="rptTermsCondition" runat="server" ClientIDMode="Static">
+                                    <ItemTemplate>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td>
+                                                    <asp:CheckBox runat="server" ID="chkTermsCondition" />
+                                                </td>
+                                                <td style="width: 5%">
+                                                    <asp:Label ID="lblTermID" runat="server" Text='<%#Eval("GP_Terms_ID") %>' Style="display: none;"></asp:Label>
+                                                </td>
+                                                <td style="width: 90%" colspan="2">
+                                                    <asp:Label ID="lblTermDesc" runat="server" Text='<%#Eval("Terms_Desc") %>' ClientIDMode="Static" CssClass="form-control-label col-form-label font-weight-bold"></asp:Label>
+                                                </td>
+
+                                            </tr>
+                                            <br />
                                         </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
 
+                                <br />
 
-
-                                    </div>
-                                    <br />
-                                    <input type="button" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" onclick="AddRow()" value="+ Add New" id="btnAddNew" />
-                                    <%--<asp:Button ID="btnAddNew1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" UseSubmitBehavior="false" ClientIDMode="Static" Text="+ Add New" />--%>
-                                    <%--</ContentTemplate></asp:UpdatePanel>--%>
-                                    <br />
-                                    <br />
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Terms & Conditions</label>
-                                    </div>
-
-
-                                    <asp:Repeater ID="rptTermsCondition" runat="server" ClientIDMode="Static">
-                                        <ItemTemplate>
-                                            <table style="width: 100%">
-                                                <tr>
-                                                    <td>
-                                                        <asp:CheckBox runat="server" ID="chkTermsCondition" />
-                                                    </td>
-                                                    <td style="width: 5%">
-                                                        <asp:Label ID="lblTermID" runat="server" Text='<%#Eval("GP_Terms_ID") %>' Style="display: none;"></asp:Label>
-                                                    </td>
-                                                    <td style="width: 90%" colspan="2">
-                                                        <asp:Label ID="lblTermDesc" runat="server" Text='<%#Eval("Terms_Desc") %>' ClientIDMode="Static" CssClass="form-control-label col-form-label font-weight-bold"></asp:Label>
-                                                    </td>
-
-                                                </tr>
-                                                <br />
-                                            </table>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-
-                                    <br />
-
+                                <div id="dvApprovalMatrix" runat="server">
                                     <div class="form-group row" style="background-color: #00c5dc;">
                                         <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
                                     </div>
                                     <div>
                                         <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
                                     </div>
-                            <br />
+                                </div>
+                                <br />
 
-                            <div class="col-lg-9 ml-lg-auto">
-                                <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" OnClientClick="SubmitHeader()" Text="Submit" ValidationGroup="validateGatePass" />
+                                <div class="col-lg-9 ml-lg-auto">
+                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" OnClientClick="SubmitHeader()" Text="Submit" ValidationGroup="validateGatePass" />
 
-                                <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
+                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
 
-                                <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
-                            </div>
-                            <br />
-                            <br />
-                    </div>
-                </div>
-
-
-
-                <asp:Panel ID="pnlGpReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-                    <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document" style="max-width: 590px;">
-                            <div class="modal-content">
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel2">Gate Pass Request Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group m-form__group row">
-                                                <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Gate Pass Request has been saved successfully</label>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label for="message-text" class="col-xl-5 col-lg-3 form-control-label font-weight-bold">Ticket No :</label>
-                                                <asp:Label ID="lblGPRequestCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
-                                        </div>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-
-
+                                </div>
+                                <br />
+                                <br />
                             </div>
                         </div>
+
+
+
+                        <asp:Panel ID="pnlGpReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+                            <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                            <ContentTemplate>
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Gate Pass Request Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Gate Pass Request has been saved successfully</label>
+                                                    </div>
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="message-text" class="col-xl-5 col-lg-3 form-control-label font-weight-bold">Ticket No :</label>
+                                                        <asp:Label ID="lblGPRequestCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </asp:Panel>
+
+
+
+
+
+                        <%--</form>--%>
                     </div>
-
-                </asp:Panel>
-
-
-
-
-
-                <%--</form>--%>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
 </asp:Content>

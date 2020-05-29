@@ -528,6 +528,10 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                     }
                 }
 
+                if (Convert.ToInt32(dsConfig.Tables[0].Rows[0]["ShowApprovalMatrix"]) == 0)
+                {
+                    dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                }
 
 
 
