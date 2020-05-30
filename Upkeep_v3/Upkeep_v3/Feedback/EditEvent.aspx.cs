@@ -17,10 +17,12 @@ namespace Upkeep_v3.Feedback
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepFeedback = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
+        int CompanyID = 0;
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);
@@ -94,7 +96,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.bindEventDetails(EventID);
+                ds = ObjUpkeepFeedback.bindEventDetails(CompanyID,EventID);
 
                 if (ds.Tables.Count > 0)
                 {

@@ -596,7 +596,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet bindEventDetails(int EventID)
+    public DataSet bindEventDetails(int CompanyID,int EventID) //CompanyID added by sujata
     {
         DataSet ds = new DataSet();
 
@@ -604,7 +604,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.bindEventDetails(EventID);
+            ds = obj.bindEventDetails(CompanyID,EventID);
 
         }
         catch (Exception ex)
@@ -615,6 +615,33 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
         return ds;
     }
+
+
+
+    //Added by Sujata This function is used to save Feedback form
+
+    [WebMethod]
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string FeedbackData, string LoggedInUserID) //CompanyID added by sujata
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_FeedbackSystem obj = new My_FeedbackSystem();
+
+            ds = obj.Insert_FeedbackForm(CompanyID, EventID, FeedbackData, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
 
     [WebMethod]
     public DataSet Get_CustomerDetails()
@@ -725,12 +752,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod(Description = "Fetch event list for MIS")]
-    public DataSet GetEventList()
+    public DataSet GetEventList(int CompanyID)  //CompanyID Added by Sujata 
     {
         DataSet dsEventList = new DataSet();
         My_FeedbackSystem obj = new My_FeedbackSystem();
 
-        dsEventList = obj.GetEventList();
+        dsEventList = obj.GetEventList(CompanyID);
 
         return dsEventList;
     }
