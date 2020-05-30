@@ -13,22 +13,22 @@ namespace Upkeep_v3.VMS {
     public partial class Visit_Request {
         
         /// <summary>
-        /// hdnVMSHeaderData control.
+        /// hdnVMSQuestionData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnVMSHeaderData;
+        protected global::System.Web.UI.WebControls.HiddenField hdnVMSQuestionData;
         
         /// <summary>
-        /// hdnVMSHeader control.
+        /// hdnVMSQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnVMSHeader;
+        protected global::System.Web.UI.WebControls.HiddenField hdnVMSQuestion;
         
         /// <summary>
         /// lblErrorMsg control.
@@ -103,13 +103,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtMeetUsers;
         
         /// <summary>
-        /// rptHeaderDetails control.
+        /// rptQuestionDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHeaderDetails;
+        protected global::System.Web.UI.WebControls.Repeater rptQuestionDetails;
         
         /// <summary>
         /// rdbGreen control.
@@ -146,6 +146,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAsmmtDate;
+        
+        /// <summary>
+        /// txtTemperature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTemperature;
         
         /// <summary>
         /// pnlVMSReqestSuccess control.

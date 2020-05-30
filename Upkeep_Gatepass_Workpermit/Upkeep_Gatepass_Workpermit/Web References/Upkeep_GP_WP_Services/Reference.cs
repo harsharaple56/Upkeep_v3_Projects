@@ -468,7 +468,7 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID) {
+        public System.Data.DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_GatePassConfiguration", new object[] {
                         strConfigTitle,
                         CompanyID,
@@ -481,17 +481,18 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
                         strXmlApprovalMatrix,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        GatepassDescription,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID) {
-            this.Insert_GatePassConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, LoggedInUserID, null);
+        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            this.Insert_GatePassConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID, object userState) {
+        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, object userState) {
             if ((this.Insert_GatePassConfigurationOperationCompleted == null)) {
                 this.Insert_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_GatePassConfigurationOperationCompleted);
             }
@@ -507,6 +508,7 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
                         strXmlApprovalMatrix,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        GatepassDescription,
                         LoggedInUserID}, this.Insert_GatePassConfigurationOperationCompleted, userState);
         }
         
@@ -692,7 +694,7 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID) {
+        public System.Data.DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
             object[] results = this.Invoke("Update_GatePassConfiguration", new object[] {
                         GP_Config_ID,
                         strConfigTitle,
@@ -703,17 +705,18 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
                         strXmlApprovalMatrix,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        GatepassDescription,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID) {
-            this.Update_GatePassConfigurationAsync(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, LoggedInUserID, null);
+        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            this.Update_GatePassConfigurationAsync(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string LoggedInUserID, object userState) {
+        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, object userState) {
             if ((this.Update_GatePassConfigurationOperationCompleted == null)) {
                 this.Update_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_GatePassConfigurationOperationCompleted);
             }
@@ -727,6 +730,7 @@ namespace Upkeep_Gatepass_Workpermit.Upkeep_GP_WP_Services {
                         strXmlApprovalMatrix,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        GatepassDescription,
                         LoggedInUserID}, this.Update_GatePassConfigurationOperationCompleted, userState);
         }
         

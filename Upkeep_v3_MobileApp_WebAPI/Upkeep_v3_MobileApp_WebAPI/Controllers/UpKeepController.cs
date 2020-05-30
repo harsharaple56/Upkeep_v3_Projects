@@ -1751,7 +1751,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         #endregion
 
-         #region "Transaction"
+        #region "Transaction"
         /// <summary>
         /// Function For Login
         /// Modified By Ravindra Muthe on 19-Nov-2018
@@ -1790,19 +1790,19 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         {
                             ObjLocLogin = (from p in DsLocDataSet.Tables[0].AsEnumerable()
                                            select new ClsUpkeepLogin
-                                                       {
+                                           {
 
-                                                           ProPubStrEmployeeID = Convert.ToString(p.Field<decimal>("EmployeeID")),
-                                                           ProPubStrUsername = p.Field<string>("Username"),
-                                                           ProPubStrRights = p.Field<string>("Rights"),
-                                                           ProPubStrName = p.Field<string>("Name"),
-                                                           ProPubStrRollCd = p.Field<string>("rollcd"),
-                                                           ProPubStrEmpCd = p.Field<string>("empcd"),
-                                                           ProPubStrPrtycd = p.Field<string>("Prtycd"),
-                                                           ProPubStrGroupCompany = p.Field<string>("groupandcompany")
+                                               ProPubStrEmployeeID = Convert.ToString(p.Field<decimal>("EmployeeID")),
+                                               ProPubStrUsername = p.Field<string>("Username"),
+                                               ProPubStrRights = p.Field<string>("Rights"),
+                                               ProPubStrName = p.Field<string>("Name"),
+                                               ProPubStrRollCd = p.Field<string>("rollcd"),
+                                               ProPubStrEmpCd = p.Field<string>("empcd"),
+                                               ProPubStrPrtycd = p.Field<string>("Prtycd"),
+                                               ProPubStrGroupCompany = p.Field<string>("groupandcompany")
 
 
-                                                       }).ToList();
+                                           }).ToList();
                             return ObjLocLogin;
                         }
                     }
@@ -3967,7 +3967,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         /// <param name="strStatusID"></param>
         /// <returns></returns>
 
-       // [Route("api/UpKeep/FunPubFetchRequestList")]
+        // [Route("api/UpKeep/FunPubFetchRequestList")]
         [HttpGet]
         public List<ClsRequestList> FunPubFetchRequestList(double DblMyRequestID, double DblFlowID, string StrRollCD, string StrEmpCD, double DblCategoryId, double DblSubCategoryId, string StrUnitID, string StrTicketID, string StrRequestStatus, string strStatusID)
         {
@@ -4635,7 +4635,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        public ClsCheck FunPubSendChkRequest(string StrGroupID, string StrCompanyID, string StrUnitID, string StrLocationID, string StrSubLocationID, string QRrequest,string StrDepartmentName, string StrChkListHolderId, string StrScheduleDate, string StrStartTime, string StrUsername)
+        public ClsCheck FunPubSendChkRequest(string StrGroupID, string StrCompanyID, string StrUnitID, string StrLocationID, string StrSubLocationID, string QRrequest, string StrDepartmentName, string StrChkListHolderId, string StrScheduleDate, string StrStartTime, string StrUsername)
         {
             ClsCheck objlocClsCheck = new ClsCheck();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -4744,9 +4744,9 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         {
                             objlocClsDepartment = (from p in DsLocDSDepartment.Tables[0].AsEnumerable()
                                                    select new ClsDepartment
-                                                {
-                                                    ProPubStrDepartment = p.Field<string>("DepartmentName")
-                                                }).ToList();
+                                                   {
+                                                       ProPubStrDepartment = p.Field<string>("DepartmentName")
+                                                   }).ToList();
                             return objlocClsDepartment;
 
                         }
@@ -4949,7 +4949,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                                             // ProPubStrImagePath = "0x" + BitConverter.ToString(s.Field<Byte[]>("ImgPath")).Replace("-", string.Empty),
                                                             ProPubStrRemark = s.Field<string>("Remark"),
                                                             ProPubStrWeigthage = Convert.ToString(s.Field<decimal>("Weightege")),
-                                                             ProPubStrChkImgRequired = Convert.ToString(s.Field<string>("ImageRequired"))
+                                                            ProPubStrChkImgRequired = Convert.ToString(s.Field<string>("ImageRequired"))
 
                                                         }).ToList();
 
@@ -6925,38 +6925,38 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             ObjGatePass = (from p in DsDataSet.Tables[0].AsEnumerable()
-                                                    select new ClsGatePassRequestDetails
-                                                    {
-                                                        GP_TrancationID = Convert.ToString(p.Field<decimal>("GP_Trans_ID")),
-                                                        GP_TicketNo = p.Field<string>("TicketNo"),
-                                                        GP_Config_ID = Convert.ToString(p.Field<decimal>("Gp_Config_ID")),
-                                                        GP_Title = p.Field<string>("GP_Title"),
-                                                        GP_Department = p.Field<string>("DepartmentName"),
-                                                        GP_Type_Desc = p.Field<string>("GP_Type_Desc"),
-                                                        GP_Date = p.Field<string>("GatePassDate"),
-                                                        GP_RequestDate = p.Field<string>("RequestDate"),
-                                                        GP_Status = p.Field<string>("GP_Status"),
-                                                        GP_CreatedBy = p.Field<string>("Created_By")
-                                                    }).ToList();
-                            
+                                           select new ClsGatePassRequestDetails
+                                           {
+                                               GP_TrancationID = Convert.ToString(p.Field<decimal>("GP_Trans_ID")),
+                                               GP_TicketNo = p.Field<string>("TicketNo"),
+                                               GP_Config_ID = Convert.ToString(p.Field<decimal>("Gp_Config_ID")),
+                                               GP_Title = p.Field<string>("GP_Title"),
+                                               GP_Department = p.Field<string>("DepartmentName"),
+                                               GP_Type_Desc = p.Field<string>("GP_Type_Desc"),
+                                               GP_Date = p.Field<string>("GatePassDate"),
+                                               GP_RequestDate = p.Field<string>("RequestDate"),
+                                               GP_Status = p.Field<string>("GP_Status"),
+                                               GP_CreatedBy = p.Field<string>("Created_By")
+                                           }).ToList();
+
                             return Request.CreateResponse(HttpStatusCode.OK, ObjGatePass);
                         }
                         else
                         {
                             return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                            
+
                         }
                     }
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                        
+
                     }
                 }
                 else
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                    
+
                 }
                 throw new Exception("Error while processing request.");
             }
@@ -7014,24 +7014,24 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                                GP_Status = p.Field<string>("GP_Status"),
                                                GP_CreatedBy = p.Field<string>("Created_By")
                                            }).ToList();
-                            
+
                             return Request.CreateResponse(HttpStatusCode.OK, ObjGatePass);
                         }
                         else
                         {
                             return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                            
+
                         }
                     }
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                                            }
+                    }
                 }
                 else
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                    
+
                 }
                 throw new Exception("Error while processing request.");
             }
@@ -7078,7 +7078,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             //dt = DsDataSet.Tables[2];
-                            
+
                             //DataColumn dc = new DataColumn(dt.Columns);
                             //var stringArr=  dt.AsEnumerable().Select(r => r.Field<decimal>("GP_Header_ID")).ToArray();
                             //var stringArr = dt.Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
@@ -7088,19 +7088,19 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         else
                         {
                             return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                            
+
                         }
                     }
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                        
+
                     }
                 }
                 else
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                    
+
                 }
                 throw new Exception("Error while processing request.");
             }
@@ -7173,7 +7173,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                             //DataColumn dc = new DataColumn(dt.Columns);
                             //var stringArr=  dt.AsEnumerable().Select(r => r.Field<decimal>("GP_Header_ID")).ToArray();
-                           // var stringArr = dt.Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+                            // var stringArr = dt.Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
                             //var stringArr = dt.Columns.co .ItemArray.Select(x => x.ToString()).ToArray();
                             return Request.CreateResponse(HttpStatusCode.OK, jaggedArray);
                         }
@@ -7214,7 +7214,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         [Route("api/UpKeep/Update_GatePass_Action")]
         [HttpPost]
         public HttpResponseMessage Update_GatePass_Action([FromBody] ClsGatePassAction objInsert)
-        {           
+        {
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
@@ -7222,16 +7222,34 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             try
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-             
-                    SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
-                    ObjLocSqlParameter[0] = new SqlParameter("@TransactionID", objInsert.GP_TransacationID);
-                    ObjLocSqlParameter[1] = new SqlParameter("@CurrentLevel", objInsert.GP_CurrentLevel);
-                    ObjLocSqlParameter[2] = new SqlParameter("@ActionStatus", objInsert.GP_ActionStatus);
-                    ObjLocSqlParameter[3] = new SqlParameter("@Remarks", objInsert.GP_Remarks);
-                    ObjLocSqlParameter[4] = new SqlParameter("@Emp_CD", objInsert.GP_EmpCD);
-                    ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.GP_RollCD);
-                    ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_GP_Request_API", ObjLocSqlParameter);
-               
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                ObjLocSqlParameter[0] = new SqlParameter("@TransactionID", objInsert.GP_TransacationID);
+                ObjLocSqlParameter[1] = new SqlParameter("@CurrentLevel", objInsert.GP_CurrentLevel);
+                ObjLocSqlParameter[2] = new SqlParameter("@ActionStatus", objInsert.GP_ActionStatus);
+                ObjLocSqlParameter[3] = new SqlParameter("@Remarks", objInsert.GP_Remarks);
+                ObjLocSqlParameter[4] = new SqlParameter("@Emp_CD", objInsert.GP_EmpCD);
+                ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.GP_RollCD);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_GP_Request_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            {
+                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                var TicketNo= Convert.ToString(dr["TicketNo"]);
+
+                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request");
+                            }
+                            
+                        }
+                    }
+                }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -7240,7 +7258,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             }
             finally
             {
-                DsDataSet = null;                
+                DsDataSet = null;
             }
         }
 
@@ -7307,6 +7325,12 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         }
 
+        [HttpGet]
+        public string FunSendAppNotification(string StrTokenNumber, string TicketNo, string StrMessage)
+        {
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage);
+            return response;
+        }
 
 
         //[-]Gate Pass API by Ajay 7th March 2020
@@ -7487,6 +7511,24 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.WP_RollCD);
                 ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
 
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            {
+                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request");
+                            }
+
+                        }
+                    }
+                }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -7515,7 +7557,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             List<ClsWorkPermitSectionHeader> ObjSectionHeader = new List<ClsWorkPermitSectionHeader>();
 
             List<ClsWorkPermitApproverMatrix> ObjApproverMatrix = new List<ClsWorkPermitApproverMatrix>();
-			
+
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
             DataTable dt = new DataTable();
@@ -7595,21 +7637,21 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                                Date = Convert.ToString(p.Field<string>("Action_Date")),
                                                Status = Convert.ToString(p.Field<string>("Status")),
                                            }).ToList();
-										   
- ObjApproverMatrix = (from p in DsDataSet.Tables[6].AsEnumerable()
-                                           select new ClsWorkPermitApproverMatrix
-                                           {
-                                               Level = Convert.ToString(p.Field<decimal>("Level")),
-                                               LevelDescription = Convert.ToString(p.Field<string>("LevelDescription")),
-                                               User = Convert.ToString(p.Field<string>("Users")) 
-                                           }).ToList();
-										   
+
+                            ObjApproverMatrix = (from p in DsDataSet.Tables[6].AsEnumerable()
+                                                 select new ClsWorkPermitApproverMatrix
+                                                 {
+                                                     Level = Convert.ToString(p.Field<decimal>("Level")),
+                                                     LevelDescription = Convert.ToString(p.Field<string>("LevelDescription")),
+                                                     User = Convert.ToString(p.Field<string>("Users"))
+                                                 }).ToList();
+
                             ObjWorkPermit.ObjClsTransaction = ObjTransaction;
                             ObjWorkPermit.ObjClsInitiator = ObjInitiator;
                             ObjWorkPermit.ObjClsSection = ObjSection;
                             ObjWorkPermit.ObjClsApprover = ObjApprover;
                             ObjWorkPermit.ObjClsApproverMatrix = ObjApproverMatrix;
-							
+
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
                         }
                         else
@@ -7651,6 +7693,8 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
 
         #endregion
+
+
 
     }
 }

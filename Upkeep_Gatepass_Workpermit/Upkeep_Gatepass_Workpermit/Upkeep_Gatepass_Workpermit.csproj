@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Upkeep_V3\Upkeep_v3\Upkeep_v3\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\A1 LIVE\Upkeep_Gatepass_Workpermit_11_Apr_2020\Upkeep_Gatepass_Workpermit\Upkeep_Gatepass_Workpermit\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -53,8 +53,12 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -443,6 +447,7 @@
     <Content Include="assets\app\media\img\products\product7.jpg" />
     <Content Include="assets\app\media\img\products\product8.jpg" />
     <Content Include="assets\app\media\img\products\product9.jpg" />
+    <Content Include="assets\app\media\img\users\10.jpg" />
     <Content Include="assets\app\media\img\users\100_1.jpg" />
     <Content Include="assets\app\media\img\users\100_10.jpg" />
     <Content Include="assets\app\media\img\users\100_11.jpg" />
@@ -471,6 +476,9 @@
     <Content Include="assets\app\media\img\users\300_7.jpg" />
     <Content Include="assets\app\media\img\users\300_8.jpg" />
     <Content Include="assets\app\media\img\users\300_9.jpg" />
+    <Content Include="assets\app\media\img\users\65.jpg" />
+    <Content Include="assets\app\media\img\users\67.jpg" />
+    <Content Include="assets\app\media\img\users\8.jpg" />
     <Content Include="assets\app\media\img\users\user1.jpg" />
     <Content Include="assets\app\media\img\users\user2.jpg" />
     <Content Include="assets\app\media\img\users\user3.jpg" />
@@ -3690,6 +3698,7 @@
     <Content Include="vendors\waypoints\test\waypoint-spec.js" />
     <Content Include="vendors\wnumb\test.html" />
     <Content Include="vendors\wnumb\wNumb.js" />
+    <None Include="packages.config" />
     <None Include="Web References\Upkeep_GP_WP_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -4947,6 +4956,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="assets\app\media\img\signature\" />
     <Folder Include="CheckListImages\" />
     <Folder Include="vendors\dropzone\.idea\" />
     <Folder Include="vendors\handlebars\.idea\copyright\" />

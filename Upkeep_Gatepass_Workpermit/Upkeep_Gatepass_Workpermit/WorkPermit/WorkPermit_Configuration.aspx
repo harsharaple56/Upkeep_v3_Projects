@@ -389,7 +389,7 @@
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                         $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
                     }
-                    else 
+                    else
                         $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrAns[i]);
                     //var arrIDAns = arrAns[i].split("::");
 
@@ -675,6 +675,10 @@
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmWorkPermit" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
+                        <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
+                            <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
+
+                        </div>
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -682,14 +686,15 @@
                             </div>
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
+
                                     <div class="m-portlet__head-title">
+
                                         <h3 class="m-portlet__head-text">Work Permit Configuration
                                         </h3>
                                     </div>
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     <a href="<%= Page.ResolveClientUrl("~/WorkPermit/WPConfig_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -738,7 +743,7 @@
 													<span></span>
                                             </label>
                                             <label class="m-radio">
-                                                <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="Initiator" Checked="true"/>
+                                                <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="Initiator" Checked="true" />
                                                 Retailers
 													<span></span>
                                             </label>

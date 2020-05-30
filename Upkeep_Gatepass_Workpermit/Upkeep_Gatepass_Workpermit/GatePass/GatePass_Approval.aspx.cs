@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Text;
 using System.Data;
+using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Upkeep_Gatepass_Workpermit.GatePass
 {
@@ -48,6 +52,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                 if (dsApproval.Tables.Count > 0)
                 {
                     lblGatepassTitle.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Title"]);
+                    lblGatepassDescription.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["Gatepass_Description"]);
                     lblTicketNo.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["TicketNo"]);
                     lblDepartment.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["DepartmentName"]);
                     lblRequestDate.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GatePassDate"]);
@@ -199,11 +204,15 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         gvApprovalMatrix.DataSource = dsApproval.Tables[7];
                         gvApprovalMatrix.DataBind();
 
-                        if (Is_Initiator == "1")
-                        {
-                            dvApprovalMatrix.Attributes.Add("Style", "display:block;");
-                        }
-                        else
+                        //if (Is_Initiator == "1")
+                        //{
+                        //    dvApprovalMatrix.Attributes.Add("Style", "display:none;");
+                        //}
+                        //else
+                        //{
+                        //    dvApprovalMatrix.Attributes.Add("Style", "display:none;");
+                        //}
+                        if (Convert.ToInt32(dsApproval.Tables[0].Rows[0]["ShowApprovalMatrix"]) == 0)
                         {
                             dvApprovalMatrix.Attributes.Add("Style", "display:none;");
                         }
@@ -231,7 +240,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
             }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected async void btnSubmit_Click(object sender, EventArgs e)
         {
             string CurrentLevel =string.Empty;
             string TransactionID = string.Empty;
@@ -254,6 +263,20 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         int Status = Convert.ToInt32(dsApproval.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
+
+                            if (dsApproval.Tables.Count > 1)
+                            {
+                                if (dsApproval.Tables[1].Rows.Count > 0)
+                                {
+                                    foreach (DataRow dr in dsApproval.Tables[1].Rows)
+                                    {
+                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
+
+                                        await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
+                                    }
+                                }
+                            }
+
                             Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
                         }
                         else if (Status == 2)
@@ -274,5 +297,32 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
         {
             Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
         }
+
+        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        {
+            //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
+            using (var client = new HttpClient())
+            {
+                //Send HTTP requests from here.  
+                string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
+                client.BaseAddress = new Uri(API_URL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //GET Method  
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Departmentdepartment = awaitresponse.Content.ReadAsAsync<Department>();
+                    //Console.WriteLine("Id:{0}\tName:{1}", department.DepartmentId, department.DepartmentName);
+                    //Console.WriteLine("No of Employee in Department: {0}", department.Employees.Count);
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
+
     }
 }

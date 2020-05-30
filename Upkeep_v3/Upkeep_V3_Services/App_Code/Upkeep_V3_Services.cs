@@ -53,11 +53,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.UserTypeMaster_CRUD(User_Type_ID,User_Type_Desc, CompanyID, LoggedInUserID, Action);
+            ds = ObjUpkeep.UserTypeMaster_CRUD(User_Type_ID, User_Type_Desc, CompanyID, LoggedInUserID, Action);
         }
         catch (Exception ex)
         {
@@ -67,7 +67,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet DepartmentMaster_CRUD(int Department_ID,string Dept_Desc,int CompanyID, string LoggedInUserID,string Is_Deleted,string Action)
+    public DataSet DepartmentMaster_CRUD(int Department_ID, string Dept_Desc, int CompanyID, string LoggedInUserID, string Is_Deleted, string Action)
     {
         try
         {
@@ -88,7 +88,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             ds = ObjUpkeep.FetchZone();
         }
-         catch (Exception ex)
+        catch (Exception ex)
         {
             throw ex;
 
@@ -104,7 +104,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             ds = ObjUpkeep.FetchLocation(ZoneID);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
 
@@ -121,7 +121,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             ds = ObjUpkeep.FetchSubLocation(Loc_ID);
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
 
@@ -138,7 +138,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             ds = ObjUpkeep.FetchDepartment(CompanyID);
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
 
@@ -164,11 +164,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, string Approver_ID, string Profilephoto,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, string Approver_ID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.UserMaster_CRUD(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, Profilephoto, CompanyID, LoggedInUserID,  Action);
+            ds = ObjUpkeep.UserMaster_CRUD(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, Profilephoto, CompanyID, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -185,7 +185,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
         try
         {
-          
+
             ds = ObjUpkeep.LoginUser(UserId, strPassword);
 
         }
@@ -199,7 +199,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet PriorityMaster_CRUD(int Priority_ID, string Priority_Desc,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet PriorityMaster_CRUD(int Priority_ID, string Priority_Desc, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
@@ -214,12 +214,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet FrequencyMaster_CRUD(int Frquency_Id, string Frquency_Desc,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet FrequencyMaster_CRUD(int Frquency_Id, string Frquency_Desc, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
             ds = ObjUpkeep.FrequencyMaster_CRUD(Frquency_Id, Frquency_Desc, CompanyID, LoggedInUserID, Action);
-             
+
         }
         catch (Exception ex)
         {
@@ -229,7 +229,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet ZoneMaster_CRUD(int ZoneID,int CompanyID, string ZoneCode,string ZoneDesc, string LoggedInUserID, string Action)
+    public DataSet ZoneMaster_CRUD(int ZoneID, int CompanyID, string ZoneCode, string ZoneDesc, string LoggedInUserID, string Action)
     {
         try
         {
@@ -259,7 +259,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet SubLocationMaster_CRUD(int SubLocID,string LocName, string Zone, string SubLocCode, string SubLocDesc, string LoggedInUserID, string Action)
+    public DataSet SubLocationMaster_CRUD(int SubLocID, string LocName, string Zone, string SubLocCode, string SubLocDesc, string LoggedInUserID, string Action)
     {
         try
         {
@@ -275,11 +275,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet UserGroupMaster_CRUD(int Grp_Id, string Grp_Desc,string User_ID,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserGroupMaster_CRUD(int Grp_Id, string Grp_Desc, string User_ID, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.UserGroupMaster_CRUD(Grp_Id, Grp_Desc,User_ID, CompanyID, LoggedInUserID, Action);
+            ds = ObjUpkeep.UserGroupMaster_CRUD(Grp_Id, Grp_Desc, User_ID, CompanyID, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -294,9 +294,9 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjUpkeep.FetchUserGrp(GroupID,CompanyID);
+            ds = ObjUpkeep.FetchUserGrp(GroupID, CompanyID);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw ex;
         }
@@ -318,7 +318,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet WorkflowMaster_CRUD(int WorkflowID, string WorkflowDesc,int ZoneID, int CategoryID, int SubCategoryID, string xmlWorkflow,int CompanyID, string LoggedInUserID, string Action)
+    public DataSet WorkflowMaster_CRUD(int WorkflowID, string WorkflowDesc, int ZoneID, int CategoryID, int SubCategoryID, string xmlWorkflow, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
@@ -347,11 +347,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet CategoryMaster_CRUD(int CompanyID,int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action)
+    public DataSet CategoryMaster_CRUD(int CompanyID, int Category_ID, string Category_Desc, int DepartmentID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,Category_ID, Category_Desc, DepartmentID,LoggedInUserID, Action);
+            ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, Category_Desc, DepartmentID, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -366,7 +366,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action);
+            ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -405,7 +405,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID,string TicketPrefix,string LoggedInUserID)
+    public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID)
     {
         try
         {
@@ -419,11 +419,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage,string list_Images, string LoggedInUserID, string strAction)
+    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction)
     {
         try
         {
-            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID,strAction);
+            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction);
         }
         catch (Exception ex)
         {
@@ -433,7 +433,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_MyActionable(int CompanyID,string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID)
     {
         try
         {
@@ -480,7 +480,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -501,7 +501,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -522,7 +522,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -530,7 +530,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID,int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID, int CompanyID, string LoggedInUserID, string actionType)
     {
         DataSet ds = new DataSet();
 
@@ -544,13 +544,13 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
     }
 
-    
+
     [WebMethod]
     public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4)
     {
@@ -567,7 +567,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -589,7 +589,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -610,7 +610,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-             
+
         }
 
         return ds;
@@ -658,7 +658,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-           
+
         }
 
         return ds;
@@ -679,7 +679,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-           
+
         }
 
         return ds;
@@ -701,7 +701,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-            
+
         }
 
         return ds;
@@ -723,7 +723,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-            
+
         }
 
         return ds;
@@ -745,7 +745,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-            
+
         }
 
         return ds;
@@ -777,7 +777,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-           
+
         }
 
         return ds;
@@ -798,7 +798,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         catch (Exception ex)
         {
             throw ex;
-           
+
         }
 
         return ds;
@@ -808,12 +808,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //[-][Feedback System Methods]
 
     [WebMethod]
-    public DataSet AddChecklistMaster_CRUD(int ChecklistID, string ChecklistName, int DeptID, Boolean Chkapproval, Boolean ChkExpry, Boolean ChkSchedule, int ExpirytimeID, DateTime dtSchedule_Date, string StartTime, string EndTime, int CustFrequency, int Frquency_Id, int ZoneID, int LocationID, int SubLocationID,string strXmlChecklistPoint, string LoggedInUserID, string Action)
+    public DataSet AddChecklistMaster_CRUD(int ChecklistID, string ChecklistName, int DeptID, Boolean Chkapproval, Boolean ChkExpry, Boolean ChkSchedule, int ExpirytimeID, DateTime dtSchedule_Date, string StartTime, string EndTime, int CustFrequency, int Frquency_Id, int ZoneID, int LocationID, int SubLocationID, string strXmlChecklistPoint, string LoggedInUserID, string Action)
     {
         DataSet dsAddChecklist = new DataSet();
         try
         {
-            dsAddChecklist= ObjUpkeep.AddChecklistMaster_CRUD(ChecklistID, ChecklistName, DeptID, Chkapproval, ChkExpry, ChkSchedule, ExpirytimeID, dtSchedule_Date, StartTime, EndTime, CustFrequency, Frquency_Id, ZoneID, LocationID, SubLocationID, strXmlChecklistPoint, LoggedInUserID, Action);
+            dsAddChecklist = ObjUpkeep.AddChecklistMaster_CRUD(ChecklistID, ChecklistName, DeptID, Chkapproval, ChkExpry, ChkSchedule, ExpirytimeID, dtSchedule_Date, StartTime, EndTime, CustFrequency, Frquency_Id, ZoneID, LocationID, SubLocationID, strXmlChecklistPoint, LoggedInUserID, Action);
         }
         catch (Exception ex)
         {
@@ -838,7 +838,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //}
 
     [WebMethod]
-    public DataSet ChecklistPoint_CRUD(int ChecklistID, int ChecklistPointID,string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action)
+    public DataSet ChecklistPoint_CRUD(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action)
     {
         DataSet dsAddChecklist = new DataSet();
         try
@@ -853,11 +853,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet ChecklistRequest(string ScheduleDate,int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID,string StartTime,string TicketNumber, string LoggedInUserID, string strAction)
+    public DataSet ChecklistRequest(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction)
     {
         try
         {
-            ds = ObjUpkeep.ChecklistRequest(ScheduleDate, ZoneID, LocationID, SubLocationID, DepartmentID, ChecklistID, StartTime, TicketNumber,LoggedInUserID, strAction);
+            ds = ObjUpkeep.ChecklistRequest(ScheduleDate, ZoneID, LocationID, SubLocationID, DepartmentID, ChecklistID, StartTime, TicketNumber, LoggedInUserID, strAction);
 
         }
         catch (Exception ex)
@@ -870,7 +870,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Update_ChecklistPoints(string TicketNumber,  string strXmlChecklist, string list_Images, string LoggedInUserID)
+    public DataSet Update_ChecklistPoints(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID)
     {
         DataSet dsChecklist = new DataSet();
         try
@@ -887,7 +887,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc,  string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel)
+    public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel)
     {
         try
         {
@@ -932,7 +932,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Add_Update_Location_Node(int ParentID, string Location_Node,int CompanyID,string LoggedInUserID,string strAction)
+    public DataSet Add_Update_Location_Node(int ParentID, string Location_Node, int CompanyID, string LoggedInUserID, string strAction)
     {
         try
         {
@@ -1159,12 +1159,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, strVMSCovidColorCode, strVMSCovidTestDate, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1172,7 +1172,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
-    
+
     #endregion
 
     #region General Functions

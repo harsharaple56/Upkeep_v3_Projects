@@ -18,12 +18,12 @@ namespace Upkeep_v3.AssetManagement
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]); 
+            LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-                //LoggedInUserID = "3";
             }
             hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
@@ -73,11 +73,11 @@ namespace Upkeep_v3.AssetManagement
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                    
+
 
                         DataTable dtClose = new DataTable();
                         dtClose = ds.Tables[0].Copy();
-                        dtClose.DefaultView.RowFilter = "Status = 'Open' AND Assigned_To ='" + LoggedInUserID + "' ";
+                        dtClose.DefaultView.RowFilter = "Status = 'Open' AND Assigned_To_ID ='" + LoggedInUserID + "' ";
                         dtClose = dtClose.DefaultView.ToTable();
                         int count = Convert.ToInt32(dtClose.Rows.Count);
                         for (int i = 0; i < count; i++)
@@ -89,33 +89,28 @@ namespace Upkeep_v3.AssetManagement
                             string Schedule_ID = Convert.ToString(dtClose.Rows[i]["Schedule_ID"]);
                             string Service_Date = Convert.ToString(dtClose.Rows[i]["Service_Date"]);
                             string Assigned_To = Convert.ToString(dtClose.Rows[i]["Assigned_To"]);
-                            string Alert_Date = Convert.ToString(dtClose.Rows[i]["Alert_Date"]);
-                            string Remarks = Convert.ToString(dtClose.Rows[i]["Remarks"]);
+                            //string Alert_Date = Convert.ToString(dtClose.Rows[i]["Alert_Date"]);
+                            //string Remarks = Convert.ToString(dtClose.Rows[i]["Remarks"]);
                             string Asset_ID = Convert.ToString(dtClose.Rows[i]["Asset_ID"]);
                             string Asset_Name = Convert.ToString(dtClose.Rows[i]["Asset_Name"]);
                             string Asset_Type = Convert.ToString(dtClose.Rows[i]["Asset_Type"]);
                             string Asset_Category = Convert.ToString(dtClose.Rows[i]["Asset_Category"]);
-                            string Vendor = Convert.ToString(dtClose.Rows[i]["Vendor"]);
-                            string Department = Convert.ToString(dtClose.Rows[i]["Department"]);
-                            string Location = Convert.ToString(dtClose.Rows[i]["Location"]);
+                            //string Vendor = Convert.ToString(dtClose.Rows[i]["Vendor"]);
+                            //string Department = Convert.ToString(dtClose.Rows[i]["Department"]);
+                            //string Location = Convert.ToString(dtClose.Rows[i]["Location"]);
                             string Status = Convert.ToString(dtClose.Rows[i]["Status"]);
-                            string Created_By = Convert.ToString(dtClose.Rows[i]["Created_By"]);
-                            string Created_Date = Convert.ToString(dtClose.Rows[i]["Created_Date"]);
+                            //string Created_By = Convert.ToString(dtClose.Rows[i]["Created_By"]);
+                            //string Created_Date = Convert.ToString(dtClose.Rows[i]["Created_Date"]);
 
-                            data += "<tr><td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=2' style='text-decoration: underline;' > " + Service_Date + " </a></td>" +
-                                "<td>" + Assigned_To + "</td>" +
-                                "<td>" + Alert_Date + "</td>" +
-                                "<td>" + Remarks + "</td>" +
-                                "<td>" + Asset_Name + "</td>" +
-                                "<td>" + Asset_Type + "</td>" +
-                                "<td>" + Asset_Category + "</td>" +
-                                "<td>" + Vendor + "</td>" +
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Location + "</td>" +
-                                "<td>" + Status + "</td>" +
-                                "<td>" + Created_By + "</td>" +
-                                "<td>" + Created_Date + "</td>" +
-                                "</tr>";
+                            data += "<tr><td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=2' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
+                            //"<td>" + Asset_Name + "</td>" +
+                            "<td>" + Asset_Type + "</td>" +
+                            "<td>" + Asset_Category + "</td>" +
+                            "<td>" + Service_Date + "</td>" +
+                            "<td>" + Assigned_To + "</td>" +
+                            "<td>" + Status + "</td>" +
+                            "</tr>";
+
                         }
                     }
                     else

@@ -112,7 +112,7 @@ background-color: blanchedalmond;
         });
 
         //function AddRow() {
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
         //    var len = tbl.rows.length;
         //    var row = tbl.insertRow(len);
         //    for (var i = 0; i < tbl.rows[0].cells.length - 1; i++) {
@@ -128,28 +128,28 @@ background-color: blanchedalmond;
         //    while (row.nodeName.toLowerCase() != 'tr') {
         //        row = row.parentNode;
         //    }
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
         //    tbl.deleteRow(row.rowIndex);
 
         //}
 
 
-        //function SubmitHeader() {
+        //function SubmitQuestion() {
 
         //    var cols_len = 0;
-        //    $('#ContentPlaceHolder1_tblVMSHeader').find('tr:first td').each(function () {
+        //    $('#ContentPlaceHolder1_tblVMSQuestion').find('tr:first td').each(function () {
         //        var cspan = $(this).attr('colspan');
         //        if (!cspan) cspan = 1;
         //        cols_len += parseInt(cspan, 10);
         //    });
 
-        //    document.getElementById("hdnVMSHeaderData").value = '';
-        //    document.getElementById("hdnVMSHeader").value = '';
+        //    document.getElementById("hdnVMSQuestionData").value = '';
+        //    document.getElementById("hdnVMSQuestion").value = '';
 
         //    var arrDataParent = [];
         //    var arrDataChild = [];
         //    // loop over each table row (tr)
-        //    $("#ContentPlaceHolder1_tblVMSHeader tr").each(function () {
+        //    $("#ContentPlaceHolder1_tblVMSQuestion tr").each(function () {
         //        var currentRow = $(this);
         //        // debugger;
         //        var k = 0;
@@ -172,11 +172,11 @@ background-color: blanchedalmond;
         //    });
         //    // alert(infox.innerHTML);
         //    // alert(JSON.stringify(arrDataParent));
-        //    document.getElementById("hdnVMSHeader").value = infox.innerHTML;
-        //    var myTab = document.getElementById('ContentPlaceHolder1_tblVMSHeader');
+        //    document.getElementById("hdnVMSQuestion").value = infox.innerHTML;
+        //    var myTab = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
 
 
-        //    // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        //    // LOOP THROUGH EACH ROW OF THE TABLE AFTER Question.
         //    for (i = 2; i < myTab.rows.length; i++) {
 
         //        // GET THE CELLS COLLECTION OF THE CURRENT ROW.
@@ -191,7 +191,7 @@ background-color: blanchedalmond;
         //        }
         //        info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
         //    }
-        //    document.getElementById("hdnVMSHeaderData").value = info.innerHTML;
+        //    document.getElementById("hdnVMSQuestionData").value = info.innerHTML;
         //    //alert(info.innerHTML);
         //}
         var txtControl = null;
@@ -253,8 +253,8 @@ background-color: blanchedalmond;
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmVMS" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
-                        <asp:HiddenField ID="hdnVMSHeaderData" runat="server" ClientIDMode="Static" />
-                        <asp:HiddenField ID="hdnVMSHeader" runat="server" ClientIDMode="Static" />
+                        <asp:HiddenField ID="hdnVMSQuestionData" runat="server" ClientIDMode="Static" />
+                        <asp:HiddenField ID="hdnVMSQuestion" runat="server" ClientIDMode="Static" />
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
 
@@ -281,11 +281,11 @@ background-color: blanchedalmond;
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitHeader()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                            CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
                                         </cc1:ModalPopupExtender>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@ background-color: blanchedalmond;
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Visit Title :</label>
+                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Form Title :</label>
                                     <div class="col-md-4">
                                         <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
@@ -322,7 +322,7 @@ background-color: blanchedalmond;
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-2 col-form-label font-weight-bold" style="text-align: right;">Meeting with :</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Meeting with :</label>
                                     <div class="col-md-4 col-form-label">
                                         <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
@@ -344,7 +344,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
 
 
-                                <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
+                                <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
                                     <ItemTemplate>
 
                                         <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
@@ -352,10 +352,10 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <div class="col-md-3">
-                                                <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                                <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Eval("Is_Mandatory").ToString() == "Yes" ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
                                                 <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
-                                                <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                                <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
                                             <div class="col-md-9">
                                                 <div id="divText" style="display: none" runat="server">
@@ -380,7 +380,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                         <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
                                                             data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
                                                             <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                            <%--data-images="<%#Eval("Header_Data") %>"--%>
+                                                            <%--data-images="<%#Eval("Question_Data") %>"--%>
                                                         </button>
                                                         <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
                                                     </div>
@@ -454,6 +454,17 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                 <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
 
                                             </div>
+                                            <h5 class="mt-5">Temperature:</h5>
+                                            <div class="row">
+                                                <div class="input-group date">
+                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
+                                                    </div>
+                                                </div>
+                                                <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -473,7 +484,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             <ContentTemplate>
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -567,7 +578,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: flex;">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">

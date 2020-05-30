@@ -862,14 +862,14 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to save VMS request 
-    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID,VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, strVMSCovidColorCode, strVMSCovidTestDate, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -908,7 +908,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.Fetch_Asset_DropDown(UserID, StrConn);
         }
         catch (Exception ex)
@@ -923,7 +923,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.Fetch_Asset_Vendor_DropDown(VendorPrefix, UserID, StrConn);
         }
         catch (Exception ex)
@@ -938,7 +938,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.ASSET_Insert_AssetType(LoggedInUserID, companyID, AssetType, StrConn);
         }
         catch (Exception ex)
@@ -953,7 +953,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.ASSET_Insert_AssetCategory(LoggedInUserID, companyID, AssetTypeID, AssetCategory, StrConn);
         }
         catch (Exception ex)
@@ -969,7 +969,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue, StrConn);
         }
         catch (Exception ex)
@@ -985,7 +985,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.Fetch_MyAsset(LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
@@ -1000,7 +1000,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.Fetch_ASSET_REQUEST_Details(LoggedInUserID, TransactionID, StrConn);
             return ds;
@@ -1016,7 +1016,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.INSERT_ASSET_REQUEST_Details(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, StrConn);
             return ds;
@@ -1031,7 +1031,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.UPDATE_ASSET_REQUEST_Details(LoggedInUserID, TransactionID, AssetXml, AssetAmcXml, AssetServiceXml, StrConn);
             return ds;
@@ -1048,7 +1048,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, TransactionID, AssetAmcXml, Flag, StrConn);
             return ds;
@@ -1064,7 +1064,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.Fetch_MyAsset_Service(LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
@@ -1080,7 +1080,7 @@ public class My_Upkeep
         DataSet ds = new DataSet();
         try
         {
-            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.CRUD_ASSET_SERVICE_REQUEST_DATA(LoggedInUserID, AssetID, ServiceScheduleID, AssetServiceXml, Flag, StrConn);
             return ds;

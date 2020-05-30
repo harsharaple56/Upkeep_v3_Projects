@@ -154,6 +154,10 @@
                                             ClientIDMode="Static" />
                                         <%--OnClientClick="return FunSetXML();" --%>
                                         
+                                        
+                                         <asp:Button ID="btnClose" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                                            CausesValidation="true" ValidationGroup="validateAssetServiceClose" Text="Close" OnClick="btnSave_Click" Style="display: none" />
+
                                         <asp:Button ID="btnSaveEdit" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                                             CausesValidation="true" ValidationGroup="validateAssetService" Text="Save" OnClick="btnSave_Click" Style="display: none" />
 
@@ -279,14 +283,14 @@
                                         </div>
 
                                         <br />
-                                        <div id="Div5" runat="server" style="display: block;">
+                                        <div id="divServiceRemarks" runat="server" style="display: block;">
                                             <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                                 <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Service Remarks :</label>
                                                 <div class="col-xl-8 col-lg-8">
                                                     <asp:TextBox ID="txtServiceRemarks" runat="server" autocomplete="off" class="form-control m-input"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtServiceRemarks" Visible="true"
-                                                        Display="Dynamic" ValidationGroup="validateAssetService" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please enter Asset Name"></asp:RequiredFieldValidator>
+                                                        Display="Dynamic" ValidationGroup="validateAssetServiceClose" ForeColor="Red" InitialValue=""
+                                                        ErrorMessage="Please enter Closing Remarks"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>

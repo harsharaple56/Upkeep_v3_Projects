@@ -142,11 +142,12 @@
                                                 </div>--%>
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                            <div class="col-xl-5 col-lg-9">
+                                            <div class="col-xl-9 col-lg-9">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
                                         </div>
+                                      
                                         <%--<div class="form-group m-form__group row" style="padding-left: 15%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
                                                     <div class="col-xl-5 col-lg-9">

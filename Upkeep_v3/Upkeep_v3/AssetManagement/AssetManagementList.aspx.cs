@@ -19,7 +19,7 @@ namespace Upkeep_v3.AssetManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            LoggedInUserID = "3";
+           // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -53,7 +53,7 @@ namespace Upkeep_v3.AssetManagement
                 }
                 else
                 {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
 
                 }
 
@@ -63,8 +63,8 @@ namespace Upkeep_v3.AssetManagement
                 }
                 else
                 {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                    To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
                 }
 
                 DataSet ds = new DataSet();
@@ -80,8 +80,8 @@ namespace Upkeep_v3.AssetManagement
                         {
                             string Asset_ID = Convert.ToString(ds.Tables[0].Rows[i]["Asset_ID"]);
                             string Asset_Name = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Name"]);
-                            string Asset_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Desc"]);
-                            string Asset_Make = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Make"]);
+                            //string Asset_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Desc"]);
+                            //string Asset_Make = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Make"]);
                             string Asset_Serial_No = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Serial_No"]);
                             string Asset_Type = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Type"]);
                             string Asset_Category = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Category"]);
@@ -89,32 +89,34 @@ namespace Upkeep_v3.AssetManagement
                             string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
                             string Location = Convert.ToString(ds.Tables[0].Rows[i]["Location"]);
 
-                            string Asset_Cost = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Cost"]);
-                            string Currency_Type = Convert.ToString(ds.Tables[0].Rows[i]["Currency_Type"]);
-                            string Asset_Purchase_Date = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Purchase_Date"]);
-                            string Asset_Is_AMC_Active = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Is_AMC_Active"]);
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
-
+                            //string Asset_Cost = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Cost"]);
+                            //string Currency_Type = Convert.ToString(ds.Tables[0].Rows[i]["Currency_Type"]);
+                            //string Asset_Purchase_Date = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Purchase_Date"]);
+                            //string Asset_Is_AMC_Active = Convert.ToString(ds.Tables[0].Rows[i]["Asset_Is_AMC_Active"]);
+                            //string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
+                            //string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                            string AMC_Status = Convert.ToString(ds.Tables[0].Rows[i]["AMC_Status"]);
+                            
 
                             //Asset_ID Asset_Name  Asset_Desc Asset_Make  Asset_Serial_No Asset_Type  Asset_Category Vendor  Department Location    
                             //    Asset_Cost Currency_Type   Asset_Purchase_Date Asset_Is_AMC_Active Created_By Created_Date
 
                             data += "<tr><td> <a href='AssetManagementRequest.aspx?TransactionID=" + Asset_ID + "' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
-                                "<td>" + Asset_Desc + "</td>" + 
-                                "<td>" + Asset_Make + "</td>" +
+                                //"<td>" + Asset_Desc + "</td>" + 
+                                //"<td>" + Asset_Make + "</td>" +
                                 "<td>" + Asset_Serial_No + "</td>" +
                                 "<td>" + Asset_Type + "</td>" +
                                 "<td>" + Asset_Category + "</td>" +
                                 "<td>" + Vendor + "</td>" +
                                 "<td>" + Department + "</td>" +
                                 "<td>" + Location + "</td>" +
-                                "<td>" + Asset_Cost + "</td>" +
-                                "<td>" + Currency_Type + "</td>" +
-                                "<td>" + Asset_Purchase_Date + "</td>" +
-                                "<td>" + Asset_Is_AMC_Active + "</td>" +
-                                "<td>" + Created_By + "</td>" +
-                                "<td>" + Created_Date + "</td>" +
+                                //"<td>" + Asset_Cost + "</td>" +
+                                //"<td>" + Currency_Type + "</td>" +
+                                //"<td>" + Asset_Purchase_Date + "</td>" +
+                                //"<td>" + Asset_Is_AMC_Active + "</td>" +
+                                //"<td>" + Created_By + "</td>" +
+                                //"<td>" + Created_Date + "</td>" +
+                                "<td>" + AMC_Status + "</td>" +
                                 "</tr>";
 
                         }

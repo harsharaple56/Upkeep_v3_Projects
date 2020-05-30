@@ -13,6 +13,9 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Upkeep_Gatepass_Workpermit.WorkPermit
 {
@@ -493,7 +496,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
             Response.Redirect(Page.ResolveClientUrl("~/WorkPermit/MyWorkPermit.aspx"), false);
         }
 
-        private void SaveSectionHeaderData()
+        private async void SaveSectionHeaderData()
         {
             try
             {
@@ -819,6 +822,17 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                         int Status = Convert.ToInt32(dsWPHeaderData.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
+                            //[+][Ajay Prajapati]
+                            if (dsWPHeaderData.Tables.Count > 2)
+                            {
+                                foreach (DataRow dr in dsWPHeaderData.Tables[2].Rows)
+                                {
+                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+
+                                    await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
+                                }
+                            }
+                            //[-][Ajay Prajapati]
                             SetRepeater();
                             divInsertButton.Visible = false;
                             lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]);
@@ -967,6 +981,24 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                         txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
                         txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
 
+                        lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+
+                        switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        {
+                            case "Close":
+                                divAlertClosed.Visible = true;
+                                break;
+                            case "Expired":
+                                divAlertExpired.Visible = true;
+                                break;
+                            case "Open":
+                                divAlertOpen.Visible = true;
+                                break;
+                            case "Reject":
+                                divAlertRejected.Visible = true;
+                                break;
+                        }
+
                         foreach (RepeaterItem itemSection in rptSectionDetails.Items)
                         {
                             string DivId = (itemSection.FindControl("hfCustomerId") as HiddenField).Value;
@@ -1114,16 +1146,18 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                             gvApprovalHistory.DataSource = dsData.Tables[4];
                             gvApprovalHistory.DataBind();
 
-                            if (dsData.Tables[5].Rows.Count > 0)
-                            {
-                                MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
-                            }
                         }
                         else
                         {
                             dvApprovalHistory.Attributes.Add("style", "display:none;");
 
                         }
+
+                    }
+
+                    if (dsData.Tables[5].Rows.Count > 0)
+                    {
+                        MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
                     }
 
                 }
@@ -1164,7 +1198,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 throw ex;
             }
         }
-        protected void btnApprove_Click(object sender, EventArgs e)
+        protected async void btnApprove_Click(object sender, EventArgs e)
         {
             if (ddlAction.SelectedIndex < 1)
             {
@@ -1188,6 +1222,20 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                     int Status = Convert.ToInt32(dsWPAction.Tables[0].Rows[0]["Status"]);
                     if (Status == 1)
                     {
+                        //[+][Ajay]
+                        if (dsWPAction.Tables.Count > 1)
+                        {
+                            if (dsWPAction.Tables[1].Rows.Count > 0)
+                            {
+                                foreach (DataRow dr in dsWPAction.Tables[1].Rows)
+                                {
+                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+
+                                    await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                }
+                            }
+                        }
+                        //[-][Ajay]
                         Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
                         //lblWpRequestCode.Text = Convert.ToString(dsWPAction.Tables[1].Rows[0]["RequestID"]);
                         //mpeWpRequestSaveSuccess.Show();
@@ -1389,5 +1437,30 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
         //    //GenerateTable(colsCount, 1);
         //}
 
+        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        {
+            //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
+            using (var client = new HttpClient())
+            {
+                //Send HTTP requests from here.  
+                string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
+                client.BaseAddress = new Uri(API_URL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //GET Method  
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Departmentdepartment = awaitresponse.Content.ReadAsAsync<Department>();
+                    //Console.WriteLine("Id:{0}\tName:{1}", department.DepartmentId, department.DepartmentName);
+                    //Console.WriteLine("No of Employee in Department: {0}", department.Employees.Count);
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
     }
 }

@@ -85,6 +85,15 @@ namespace Upkeep_Gatepass_Workpermit.GatePass {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
+        /// lblGatepassDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGatepassDescription;
+        
+        /// <summary>
         /// dvEmployee control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace Upkeep_Gatepass_Workpermit.GatePass {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptTermsCondition;
+        
+        /// <summary>
+        /// dvApprovalMatrix control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvApprovalMatrix;
         
         /// <summary>
         /// gvApprovalMatrix control.

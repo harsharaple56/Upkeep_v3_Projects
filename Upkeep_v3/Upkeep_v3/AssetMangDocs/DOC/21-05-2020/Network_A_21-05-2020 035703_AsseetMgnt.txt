@@ -1,0 +1,36 @@
+
+            //$("#txtNoOfService").change(function () {
+
+            //    $("table tbody tr").each(function () {
+            //        $(this).remove();
+            //    });
+
+            //    var NoOfService = document.getElementById('#txtNoOfService').val();
+            //    for (var i = 0; i < NoOfService; i++) {
+            //        var markup = "<tr><td><input type = 'text' id = 'tblSceduleDate" + parseInt(i) + "' runat = 'server' ></td> <td><input type='text' id='tblAssignService" + parseInt(i) + "' runat='server'></td><td><input type='text' id= 'tblAlertdays" + parseInt(i) + "' runat='server'></td></tr> ";
+            //        $("table tbody").append(markup);
+            //    }
+            //});
+
+            ////customCheck divScheduleTable DivIsAssetCoveredInAmc
+            //$(".custom-control-input").click(function () {
+            //    if ($(this).attr('id') = 'customCheck') {
+            //        if ($(this).prop("checked") == true) {
+            //            $("div#DivIsAssetCoveredInAmc").hide("slow");
+            //        }
+            //        else {
+            //            $("div#DivIsAssetCoveredInAmc").show("slow");
+            //        }
+            //    }
+            //    else {
+            //        if ($(this).prop("checked") == true) {
+            //            $("div#divScheduleTable").hide("slow");
+            //        }
+            //        else {
+            //            $("div#divScheduleTable").show("slow");
+            //        }
+            //    }
+
+            //});
+
+ 

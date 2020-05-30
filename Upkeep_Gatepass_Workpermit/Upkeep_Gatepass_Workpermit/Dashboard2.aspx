@@ -1154,7 +1154,7 @@
                                             </span>
                                             <%--<asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" style="font-weight:bold;" Text="15" ></asp:Label>--%>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests raised
                                             </span>
                                         </div>
@@ -1166,7 +1166,7 @@
                                             <span class="m-widget17__subtitle">On Hold
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="72"></asp:Label>
+                                                <asp:Label ID="lblGPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1178,7 +1178,7 @@
                                             <span class="m-widget17__subtitle">Approve
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblGPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1216,12 +1216,19 @@
                                             <span class="m-widget17__subtitle">Closed
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblGPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
                                     </div>
 
+
+                                </div>
+                                <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvGPPendingApproval" runat="server">
+                                    <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
+                                    <span class="m-widget17__desc">
+                                        <asp:Label ID="lblGPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -1311,7 +1318,7 @@
                                             <span class="m-widget17__subtitle">Total
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests raised
                                             </span>
                                         </div>
@@ -1323,7 +1330,7 @@
                                             <span class="m-widget17__subtitle">On Hold
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1335,7 +1342,7 @@
                                             <span class="m-widget17__subtitle">Approve
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1348,7 +1355,7 @@
                                             <span class="m-widget17__subtitle">Open
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1360,7 +1367,7 @@
                                             <span class="m-widget17__subtitle">Rejected
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
@@ -1372,14 +1379,21 @@
                                             <span class="m-widget17__subtitle">Closed
                                             </span>
                                             <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                <asp:Label ID="lblWPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
                                                 Requests
                                             </span>
                                         </div>
 
                                     </div>
-
                                 </div>
+                                <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvWPPendingApproval" runat="server">
+                                    <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
+                                    <span class="m-widget17__desc">
+                                        <asp:Label ID="lblWPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                    </span>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

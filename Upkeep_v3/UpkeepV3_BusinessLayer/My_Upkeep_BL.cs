@@ -821,7 +821,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images,string strTicketAction,string CurrentLevel, string StrConn)
+        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel, string StrConn)
         {
             try
             {
@@ -1091,7 +1091,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
-                cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
+                cmd.Parameters.AddWithValue("@ConfigDesc", strConfigDesc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@XmlVMS_Question", strXmlVMS_Question);
                 cmd.Parameters.AddWithValue("@XmlVMS_Feedback", strXmlVMS_Feedback);
@@ -1191,7 +1191,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1202,9 +1202,11 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
-                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strMeetUsrs);
                 cmd.Parameters.AddWithValue("@VisitData", strVMSData);
                 cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
+                cmd.Parameters.AddWithValue("@CovidColorCode", strVMSCovidColorCode);
+                cmd.Parameters.AddWithValue("@CovidtestDate", strVMSCovidTestDate);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

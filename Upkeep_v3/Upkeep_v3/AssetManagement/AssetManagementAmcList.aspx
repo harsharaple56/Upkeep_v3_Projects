@@ -19,22 +19,25 @@
                     search: { input: $("#generalSearch") },
                     columns: [
                         {
-                        //field: "Status", title: "Status", template: function (e) {
-                        //    var t =
-                        //    {
-                        //        "Open": { title: "Open", class: "m-badge--danger" },
-                        //        "Close": { title: "Closed", class: " m-badge--success" },
-                        //        "Approve": { title: "Approved", class: " m-badge--success" },
-                        //        "Hold": { title: "Hold", class: " m-badge--warning" },
-                        //        "Reject": { title: "Rejected", class: " m-badge--danger" },
-                        //        "Expired": { title: "Expired", class: "bg-secondary text-black" },
-                        //        "In Progress": { title: "In Progress", class: "text-white bg-info" }
-                        //    }; return '<span class="m-badge ' + t[e.Status].class + ' m-badge--wide">' + t[e.Status].title + "</span>"
-                        //}
+                        field: "AMC_Status", title: "AMC_Status", template: function (e) {
+                            var t =
+                            {
+                               // "Open": { title: "Open", class: "m-badge--danger" },
+                                "IN-ACTIVE": { title: "IN-ACTIVE", class: "m-badge--danger" },
+                                
+                                "ACTIVE": { title: "ACTIVE", class: " m-badge--success" },
+                                "CLOSE": { title: "Closed", class: " m-badge--success" },
+                                "APPROVE": { title: "Approved", class: " m-badge--success" },
+                                "HOLD": { title: "Hold", class: " m-badge--warning" }, 
+                                "Expired": { title: "Expired", class: "bg-secondary text-black" },
+                                "In Progress": { title: "In Progress", class: "text-white bg-info" }
+                            }; return '<span class="m-badge ' + t[e.AMC_Status].class + ' m-badge--wide">' + t[e.AMC_Status].title + "</span>"
+                        }
                         } 
+                        
                     ]
                 }), 
-                    $("#m_form_status").on("change", function () { e.search($(this).val().toLowerCase(), "Status") }),
+                    $("#m_form_status").on("change", function () { e.search($(this).val().toLowerCase(), "AMC_Status") }),
                     $("#m_form_status").selectpicker()
 
             }
@@ -116,15 +119,15 @@
                             </div>
                         </div>
 
-                       <%-- <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                            <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementRequest.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementAmcRequest.aspx?") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                 <span>
                                     <i class="la la-plus"></i>
-                                    <span>New Asset</span>
+                                    <span>New AMC</span>
                                 </span>
                             </a>
                             <div class="m-separator m-separator--dashed d-xl-none"></div>
-                        </div>--%>
+                        </div>
 
                     </div>
                     <div class="m-portlet__body">
@@ -189,7 +192,7 @@
                                     <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
                                     <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
                                     <th title="Name" data-field="Asset_Name">Name</th>
-                                    <th title="Desc" data-field="Asset_Desc">Desc</th>
+                                   <%-- <th title="Desc" data-field="Asset_Desc">Desc</th>
                                     <th title="Maker" data-field="Asset_Make">Maker</th>
                                     <th title="Serial No" data-field="Asset_Serial_No">Serial No</th>
                                     <th title="Type" data-field="Asset_Type">Type</th>
@@ -202,8 +205,13 @@
                                     <th title="Purchase Date" data-field="Asset_Purchase_Date">Purchase Date</th>
                                     <th title="Is AMC Active" data-field="Asset_Is_AMC_Active">Is AMC Active</th>
                                     <th title="Created By" data-field="Created_By">Created By</th>
-                                    <th title="Created Date" data-field="Created_Date">Created Date</th>
+                                    <th title="Created Date" data-field="Created_Date">Created Date</th>--%> 
 
+                                    <th title="AMC Type" data-field="AmcType">AMC Type</th>
+                                    <th title="AMC Start Date" data-field="AMC_Start_Date">AMC Start Date</th>
+                                    <th title="AMC End Date" data-field="AMC_End_Date">AMC End Date</th>
+                                    <th title="Vendor" data-field="Vendor_Name">Vendor</th>
+                                    <th title="AMC_Status" data-field="AMC_Status">AMC_Status</th>
                                 </tr>
                             </thead>
                             <tbody>
