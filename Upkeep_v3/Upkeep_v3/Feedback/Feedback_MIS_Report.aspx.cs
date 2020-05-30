@@ -17,11 +17,13 @@ namespace Upkeep_v3.Feedback
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepFeedback = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
+        int CompanyID = 0;
         string LoggedInUserID = string.Empty;
         GridView dgGrid = new GridView();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);
@@ -41,7 +43,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.GetEventList();
+                ds = ObjUpkeepFeedback.GetEventList(CompanyID);
 
                 ddlEventName.DataSource = ds.Tables[0];
                 ddlEventName.DataValueField = "Event_ID";

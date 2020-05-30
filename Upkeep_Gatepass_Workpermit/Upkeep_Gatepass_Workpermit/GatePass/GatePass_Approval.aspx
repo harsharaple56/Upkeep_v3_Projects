@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.GatePass.GatePass_Approval" %>
+﻿<%@ Page Title="" Async="true"  Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.GatePass.GatePass_Approval" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -247,7 +247,7 @@
                                     </div>
                                 </div>
 
-                                <div id="dvApprovalMatrix" runat="server" style="display: none;">
+                                <div id="dvApprovalMatrix" runat="server">
                                     <div class="form-group row" style="background-color: #00c5dc;">
                                         <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
                                     </div>

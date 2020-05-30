@@ -17,10 +17,12 @@ namespace Upkeep_v3.Feedback
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepFeedback = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
+        int CompanyID = 0;
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             event_form.Action= @"EventDetails.aspx";
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -30,6 +32,7 @@ namespace Upkeep_v3.Feedback
             if (!IsPostBack)
             {
                 int EventID = Convert.ToInt32(Request.QueryString["EventID"]);
+                
 
                 int EventID_Delete = Convert.ToInt32(Request.QueryString["DelEventID"]);
 
@@ -83,9 +86,9 @@ namespace Upkeep_v3.Feedback
                 string QuesFor = string.Empty;
                 if (rdbCustomer.Checked == true)
                 { QuesFor = "C"; }
-                else if (rdbRetailer.Checked == true)
+                if (rdbRetailer.Checked == true)
                 { QuesFor = "R"; }
-                else if (rdbBoth.Checked == true)
+                if (rdbBoth.Checked == true)
                 { QuesFor = "B"; }
 
                 string EventMode = string.Empty;
@@ -211,7 +214,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.bindEventDetails(EventID);
+                ds = ObjUpkeepFeedback.bindEventDetails(CompanyID,EventID);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -283,7 +286,7 @@ namespace Upkeep_v3.Feedback
         {
             string data = "";
             DataSet ds = new DataSet();
-            ds = ObjUpkeepFeedback.bindEventDetails(3);
+            ds = ObjUpkeepFeedback.bindEventDetails(CompanyID,3);
 
             int rowCount = ds.Tables[0].Rows.Count;
 

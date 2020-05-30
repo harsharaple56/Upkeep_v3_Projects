@@ -204,11 +204,15 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
                         gvApprovalMatrix.DataSource = dsApproval.Tables[7];
                         gvApprovalMatrix.DataBind();
 
-                        if (Is_Initiator == "1")
-                        {
-                            dvApprovalMatrix.Attributes.Add("Style", "display:block;");
-                        }
-                        else
+                        //if (Is_Initiator == "1")
+                        //{
+                        //    dvApprovalMatrix.Attributes.Add("Style", "display:none;");
+                        //}
+                        //else
+                        //{
+                        //    dvApprovalMatrix.Attributes.Add("Style", "display:none;");
+                        //}
+                        if (Convert.ToInt32(dsApproval.Tables[0].Rows[0]["ShowApprovalMatrix"]) == 0)
                         {
                             dvApprovalMatrix.Attributes.Add("Style", "display:none;");
                         }
@@ -236,7 +240,7 @@ namespace Upkeep_Gatepass_Workpermit.GatePass
             }
         }
 
-        private async void btnSubmit_Click(object sender, EventArgs e)
+        protected async void btnSubmit_Click(object sender, EventArgs e)
         {
             string CurrentLevel =string.Empty;
             string TransactionID = string.Empty;

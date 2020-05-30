@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.WorkPermit.WorkPermit_Request" %>
+﻿<%@ Page Title="" Async="true"  Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.WorkPermit.WorkPermit_Request" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
