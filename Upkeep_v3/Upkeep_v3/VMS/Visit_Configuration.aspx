@@ -567,7 +567,7 @@
                                 </div>
                                 <br />
 
-                                <div class="form-group row" style="background-color: #00c5dc;">
+                               <%-- <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">VMS Feedback</label>
                                 </div>
                                 <br />
@@ -645,7 +645,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
 
                                 <br />
 

@@ -70,9 +70,9 @@ namespace Upkeep_v3.VMS
                 if (String.IsNullOrEmpty(txtQuestionCount.Value)) { Qln = 0; }
                 else { Qln = Convert.ToInt32(txtQuestionCount.Value); }
 
-                int Fln = 0;
-                if (String.IsNullOrEmpty(txtFeedbackCount.Value)) { Fln = 0; }
-                else { Fln = Convert.ToInt32(txtFeedbackCount.Value); }
+                //int Fln = 0;
+                //if (String.IsNullOrEmpty(txtFeedbackCount.Value)) { Fln = 0; }
+                //else { Fln = Convert.ToInt32(txtFeedbackCount.Value); }
 
                 for (int i = 0; i < Qln; i++)
                 {
@@ -138,64 +138,64 @@ namespace Upkeep_v3.VMS
 
                 }
 
-                for (int i = 0; i < Fln; i++)
-                {
-                    VMSFeedback = "";
-                    VMSFeedbackVisible = "0";
-                    VMSFeedbackMandatory = "0";
-                    VMSFeedbackAns = "";
-                    VMSFeedbackAnsData = "";
+                //for (int i = 0; i < Fln; i++)
+                //{
+                //    VMSFeedback = "";
+                //    VMSFeedbackVisible = "0";
+                //    VMSFeedbackMandatory = "0";
+                //    VMSFeedbackAns = "";
+                //    VMSFeedbackAnsData = "";
 
-                    VMSFeedback = Request.Form.GetValues("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$txtVMSFeedback]")[0];
-                    VMSFeedbackAns = Request.Form.GetValues("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ddlFAns]")[0];
-                    VMSFeedbackAnsData = Request.Form.GetValues("VMSFeedback[" + i + "][hdnFRepeaterAnswer]")[0];
+                //    VMSFeedback = Request.Form.GetValues("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$txtVMSFeedback]")[0];
+                //    VMSFeedbackAns = Request.Form.GetValues("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ddlFAns]")[0];
+                //    VMSFeedbackAnsData = Request.Form.GetValues("VMSFeedback[" + i + "][hdnFRepeaterAnswer]")[0];
 
-                    if (Request.Form.AllKeys.Contains("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ChkFVisible][]"))
-                        VMSFeedbackVisible = "1";
-                    if (Request.Form.AllKeys.Contains("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ChkFMandatory][]"))
-                        VMSFeedbackMandatory = "1";
+                //    if (Request.Form.AllKeys.Contains("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ChkFVisible][]"))
+                //        VMSFeedbackVisible = "1";
+                //    if (Request.Form.AllKeys.Contains("VMSFeedback[" + i + "][ctl00$ContentPlaceHolder1$ChkFMandatory][]"))
+                //        VMSFeedbackMandatory = "1";
 
-                    strXmlVMS_Feedback.Append(@"<Feedback_Desc>");
-                    strXmlVMS_Feedback.Append(@"<Feedback_Header>" + VMSFeedback + "</Feedback_Header>");
-                    strXmlVMS_Feedback.Append(@"<Feedback_Visible>" + VMSFeedbackVisible + "</Feedback_Visible>");
-                    strXmlVMS_Feedback.Append(@"<Feedback_Mandatory>" + VMSFeedbackMandatory + "</Feedback_Mandatory>");
-                    strXmlVMS_Feedback.Append(@"<Feedback_Ans>" + VMSFeedbackAns + "</Feedback_Ans>");
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Desc>");
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Header>" + VMSFeedback + "</Feedback_Header>");
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Visible>" + VMSFeedbackVisible + "</Feedback_Visible>");
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Mandatory>" + VMSFeedbackMandatory + "</Feedback_Mandatory>");
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Ans>" + VMSFeedbackAns + "</Feedback_Ans>");
 
-                    strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Root>");
-                    string[] strValueData = VMSFeedbackAnsData.Split(';');
+                //    strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Root>");
+                //    string[] strValueData = VMSFeedbackAnsData.Split(';');
 
-                    if (strValueData.Length == 1)
-                    {
-                        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data>");
+                //    if (strValueData.Length == 1)
+                //    {
+                //        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data>");
 
-                        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_ID></Feedback_Ans_Data_ID>");
-                        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Text></Feedback_Ans_Data_Text>");
-                        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_IsFlag></Feedback_Ans_Data_IsFlag>");
+                //        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_ID></Feedback_Ans_Data_ID>");
+                //        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Text></Feedback_Ans_Data_Text>");
+                //        strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_IsFlag></Feedback_Ans_Data_IsFlag>");
 
-                        strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data>");
-                    }
-                    else
-                    {
-                        for (int f = 0; f <= strValueData.Length - 1; f++)
-                        {
-                            //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
-                            string[] strValue = strValueData[f].Split(':');
+                //        strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data>");
+                //    }
+                //    else
+                //    {
+                //        for (int f = 0; f <= strValueData.Length - 1; f++)
+                //        {
+                //            //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
+                //            string[] strValue = strValueData[f].Split(':');
 
-                            //string isDefault = "0", isFlag = "0";
-                            //if (strValue[2].ToString() == "on") { isFlag = "1"; }
+                //            //string isDefault = "0", isFlag = "0";
+                //            //if (strValue[2].ToString() == "on") { isFlag = "1"; }
 
-                            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data>");
+                //            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data>");
 
-                            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_ID>" + strValue[0].ToString() + "</Feedback_Ans_Data_ID>");
-                            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Text>" + strValue[1].ToString() + "</Feedback_Ans_Data_Text>");
-                            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_IsFlag>0</Feedback_Ans_Data_IsFlag>");
+                //            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_ID>" + strValue[0].ToString() + "</Feedback_Ans_Data_ID>");
+                //            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_Text>" + strValue[1].ToString() + "</Feedback_Ans_Data_Text>");
+                //            strXmlVMS_Feedback.Append(@"<Feedback_Ans_Data_IsFlag>0</Feedback_Ans_Data_IsFlag>");
 
-                            strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data>");
-                        }
-                    }
-                    strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data_Root>");
-                    strXmlVMS_Feedback.Append(@"</Feedback_Desc>");
-                }
+                //            strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data>");
+                //        }
+                //    }
+                //    strXmlVMS_Feedback.Append(@"</Feedback_Ans_Data_Root>");
+                //    strXmlVMS_Feedback.Append(@"</Feedback_Desc>");
+                //}
 
 
                 strXmlVMS_Question.Append(@"</VMS_HEADER_ROOT>");
@@ -264,11 +264,11 @@ namespace Upkeep_v3.VMS
 
                         ddlAns.DataBind();
 
-                        ddlFAns.DataSource = ds.Tables[0];
-                        ddlFAns.DataTextField = "Ans_Type_Desc";
-                        ddlFAns.DataValueField = "Ans_Type_ID";
+                        //ddlFAns.DataSource = ds.Tables[0];
+                        //ddlFAns.DataTextField = "Ans_Type_Desc";
+                        //ddlFAns.DataValueField = "Ans_Type_ID";
 
-                        ddlFAns.DataBind();
+                        //ddlFAns.DataBind();
 
                         //ddlAns.Items.Insert(0, new ListItem("Select", "NA"));
                         //for (int i = 0; i < ddlAns.Items.Count; i++)
