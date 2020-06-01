@@ -239,7 +239,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet bindEventDetails(int EventID)
+    public DataSet bindEventDetails(int CompanyID,int EventID)  //CompanyID Added by sujata 
     {
         try
         {
@@ -247,7 +247,26 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.bindEventDetails(EventID, strConn);
+            ds = ObjFeedback_BL.bindEventDetails(CompanyID,EventID, strConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by Sujata This function is used to save Feedback form
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string FeedbackData, string LoggedInUserID)  //CompanyID Added by sujata 
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
+            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, FeedbackData, LoggedInUserID ,strConn);
 
             return ds;
         }
@@ -386,7 +405,7 @@ public class My_FeedbackSystem
     }
 
 
-    public DataSet GetEventList()
+    public DataSet GetEventList(int CompanyID) //CompanyID Added by Sujata 
     {
         try
         {
@@ -394,7 +413,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  obj = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.GetEventList(strConn);
+            ds = ObjFeedback_BL.GetEventList(CompanyID,strConn);
 
             return ds;
         }
