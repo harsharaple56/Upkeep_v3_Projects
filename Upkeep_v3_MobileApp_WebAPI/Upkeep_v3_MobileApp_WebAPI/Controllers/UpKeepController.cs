@@ -7509,7 +7509,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[3] = new SqlParameter("@Remarks", objInsert.WP_Remarks);
                 ObjLocSqlParameter[4] = new SqlParameter("@Emp_CD", objInsert.WP_EmpCD);
                 ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.WP_RollCD);
-                ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
+                DsDataSet= ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
 
                 if (DsDataSet != null)
                 {
@@ -7522,7 +7522,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request");
+                                FunSendAppNotification(TokenNO, TicketNo, "New Workpermit Request");
                             }
 
                         }
@@ -7543,7 +7543,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         [Route("api/UpKeep/Fetch_WorkPermit_Details")]
         [HttpGet]
-        public HttpResponseMessage Fetch_WorkPermit_Details(int TransactionID)
+        public HttpResponseMessage Fetch_WorkPermit_Details(int TransactionID, string EmpCD, string RollCD)
         {
 
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
@@ -7557,6 +7557,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             List<ClsWorkPermitSectionHeader> ObjSectionHeader = new List<ClsWorkPermitSectionHeader>();
 
             List<ClsWorkPermitApproverMatrix> ObjApproverMatrix = new List<ClsWorkPermitApproverMatrix>();
+            List<ClsWorkPermitActions> ObjActions = new List<ClsWorkPermitActions>();
 
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
@@ -7567,8 +7568,11 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 ObjLocSqlParameter[0] = new SqlParameter("@Transaction_ID", TransactionID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_SAVED_WP_REQUEST_DATA_API", ObjLocSqlParameter);
 
@@ -7646,11 +7650,20 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                                      User = Convert.ToString(p.Field<string>("Users"))
                                                  }).ToList();
 
+                            ObjActions = (from p in DsDataSet.Tables[7].AsEnumerable()
+                                          select new ClsWorkPermitActions
+                                          {
+                                              ActionID = Convert.ToString(p.Field<string>("ActionID")),
+                                              Action_Desc = Convert.ToString(p.Field<string>("Action_Desc"))
+                                          }).ToList();
+
                             ObjWorkPermit.ObjClsTransaction = ObjTransaction;
                             ObjWorkPermit.ObjClsInitiator = ObjInitiator;
                             ObjWorkPermit.ObjClsSection = ObjSection;
                             ObjWorkPermit.ObjClsApprover = ObjApprover;
                             ObjWorkPermit.ObjClsApproverMatrix = ObjApproverMatrix;
+                            ObjWorkPermit.ObjClsActions = ObjActions;
+
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
                         }
