@@ -2062,24 +2062,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEventList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet GetEventList(int CompanyID) {
+        public System.Data.DataSet GetEventList(int CompanyID, string EventFor) {
             object[] results = this.Invoke("GetEventList", new object[] {
-                        CompanyID});
+                        CompanyID,
+                        EventFor});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void GetEventListAsync(int CompanyID) {
-            this.GetEventListAsync(CompanyID, null);
+        public void GetEventListAsync(int CompanyID, string EventFor) {
+            this.GetEventListAsync(CompanyID, EventFor, null);
         }
         
         /// <remarks/>
-        public void GetEventListAsync(int CompanyID, object userState) {
+        public void GetEventListAsync(int CompanyID, string EventFor, object userState) {
             if ((this.GetEventListOperationCompleted == null)) {
                 this.GetEventListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEventListOperationCompleted);
             }
             this.InvokeAsync("GetEventList", new object[] {
-                        CompanyID}, this.GetEventListOperationCompleted, userState);
+                        CompanyID,
+                        EventFor}, this.GetEventListOperationCompleted, userState);
         }
         
         private void OnGetEventListOperationCompleted(object arg) {

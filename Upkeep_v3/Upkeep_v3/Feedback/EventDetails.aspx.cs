@@ -88,8 +88,10 @@ namespace Upkeep_v3.Feedback
                 { QuesFor = "C"; }
                 if (rdbRetailer.Checked == true)
                 { QuesFor = "R"; }
-                if (rdbBoth.Checked == true)
-                { QuesFor = "B"; }
+                if (rdbVisitor.Checked == true)
+                { QuesFor = "V"; }
+                if (rdbAll.Checked == true)
+                { QuesFor = "A"; }
 
                 string EventMode = string.Empty;
                 if (rdbDaily.Checked == true)

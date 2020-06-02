@@ -752,12 +752,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod(Description = "Fetch event list for MIS")]
-    public DataSet GetEventList(int CompanyID)  //CompanyID Added by Sujata 
+    public DataSet GetEventList(int CompanyID,String EventFor)  //CompanyID Added by Sujata 
     {
         DataSet dsEventList = new DataSet();
         My_FeedbackSystem obj = new My_FeedbackSystem();
 
-        dsEventList = obj.GetEventList(CompanyID);
+        dsEventList = obj.GetEventList(CompanyID,EventFor);
 
         return dsEventList;
     }

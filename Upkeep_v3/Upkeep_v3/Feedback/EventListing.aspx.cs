@@ -6,10 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
+using QRCoder;
 using System.Reflection;
 using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.Drawing;
 
 namespace Upkeep_v3.Feedback
 {
@@ -36,6 +38,8 @@ namespace Upkeep_v3.Feedback
                 DataSet ds = new DataSet();
                 ds = ObjUpkeepFeedback.EventDetails_CRUD(0, "Select");
 
+                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/");
+
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -51,8 +55,10 @@ namespace Upkeep_v3.Feedback
                             string CreatedOn = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
                             string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                             string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
+                            string URL = ServerURL + Convert.ToString(ds.Tables[0].Rows[i]["ShortURL"]);
+                            GenerateQRImage(URL);
 
-                            data += "<tr><td>" + EventName + "</td><td>" + Location + "</td><td>" + EventFor + "</td><td>" + CreatedOn + "</td><td>" + StartDate + "</td> <td>" + EndDate + "</td> <td><a href='EditEvent.aspx?EventID=" + EventID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='EventQuestions.aspx?EventID=" + EventID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View question list'><i class='la la-th-list'></i></a> <a href='EditEvent.aspx?DelEventID=" + EventID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a>  <a href='#' class='btn btn-warning m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='modal' data-target='#exampleModal' data-placement='top' title='QR CODE'> 	<i class='fa fa-qrcode'></i> </a>  <a href='#' class='btn btn-focus m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='modal' data-target='#exampleModal' data-placement='top' title='Link'> 	<i class='fa fa-link'></i> </a>    </td></tr>";
+                            data += "<tr><td>" + EventName + "</td><td>" + Location + "</td><td>" + EventFor + "</td><td>" + CreatedOn + "</td><td>" + StartDate + "</td> <td>" + EndDate + "</td> <td><a href='EditEvent.aspx?EventID=" + EventID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='EventQuestions.aspx?EventID=" + EventID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View question list'><i class='la la-th-list'></i></a> <a href='EditEvent.aspx?DelEventID=" + EventID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> <a href='#' class='btn btn-focus m-btn m-btn--icon btn-sm m-btn--icon-only btnModalLink' data-container='body' data-toggle='modal' data-target='#modalLink' data-placement='top'  data-url='" + URL + "' title='Link'> 	<i class='fa fa-link'></i> </a>    </td></tr>";
 
                         }
 
@@ -72,6 +78,29 @@ namespace Upkeep_v3.Feedback
                 throw ex;
             }
             return data;
+        }
+
+
+        public void GenerateQRImage(string URL)
+        {
+            string code = URL;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+            imgBarCode.Height = 300;
+            imgBarCode.Width = 300;
+            using (Bitmap bitMap = qrCode.GetGraphic(20))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+                    imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                    imgBarCode.Attributes.Add("id", URL.Substring(URL.Length - 5));
+                    imgBarCode.Style.Add("display", "none");
+                }
+                plBarCode.Controls.Add(imgBarCode);
+            }
         }
     }
 }
