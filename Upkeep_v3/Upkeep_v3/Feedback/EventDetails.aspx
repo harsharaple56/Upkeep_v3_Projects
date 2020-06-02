@@ -333,7 +333,11 @@
 																		<span></span>
 																	</label>
                                                                     <label class="m-radio">
-                                                                         <asp:RadioButton id="rdbBoth" runat="server" GroupName="question_for" /> Both
+                                                                         <asp:RadioButton id="rdbAll" runat="server" GroupName="question_for" /> All
+																		<span></span>
+																	</label>
+                                                                    <label class="m-radio">
+                                                                         <asp:RadioButton id="rdbVisitor" runat="server" GroupName="question_for" />Visitor
 																		<span></span>
 																	</label>
 																</div>
