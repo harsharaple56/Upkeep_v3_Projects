@@ -576,7 +576,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet GetEventList(int CompanyID,string strConn) //CompanyID added by sujata 
+        public DataSet GetEventList(int CompanyID,string EventFor,string strConn) //CompanyID added by sujata 
         {
             SqlConnection con = new SqlConnection(strConn);
             DataSet ds = new DataSet();
@@ -585,6 +585,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Feedback_Proc_Get_EventList_MIS", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@EventFor", EventFor);
 
                 con.Open();
 

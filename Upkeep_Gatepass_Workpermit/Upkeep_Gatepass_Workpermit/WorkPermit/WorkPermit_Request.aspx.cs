@@ -823,9 +823,9 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                         if (Status == 1)
                         {
                             //[+][Ajay Prajapati]
-                            if (dsWPHeaderData.Tables.Count > 2)
+                            if (dsWPHeaderData.Tables.Count > 1)
                             {
-                                foreach (DataRow dr in dsWPHeaderData.Tables[2].Rows)
+                                foreach (DataRow dr in dsWPHeaderData.Tables[1].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
 

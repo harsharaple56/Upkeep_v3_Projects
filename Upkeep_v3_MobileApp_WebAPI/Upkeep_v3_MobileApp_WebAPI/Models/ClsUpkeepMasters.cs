@@ -695,12 +695,20 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public List<ClsWorkPermitSection> ObjClsSection { get; set; }
         public List<ClsWorkPermitApprover> ObjClsApprover { get; set; }
         public List<ClsWorkPermitApproverMatrix> ObjClsApproverMatrix { get; set; }
-		
+        public List<ClsWorkPermitActions> ObjClsActions { get; set; }
         //public List<ClsWorkPermitTransaction> ObjClsTransaction = new List<ClsWorkPermitTransaction>();
         //public List<ClsWorkPermitInitiator> ObjClsInitiator = new List<ClsWorkPermitInitiator>();
         //public List<ClsWorkPermitSection> ObjClsSection = new List<ClsWorkPermitSection>();
         //public List<ClsWorkPermitApprover> ObjClsApprover = new List<ClsWorkPermitApprover>(); 
+
     }
+
+    public class ClsWorkPermitActions
+    {
+        public string ActionID { get; set; }
+        public string Action_Desc { get; set; }
+    }
+
     public class ClsWorkPermitTransaction
     {
         //0

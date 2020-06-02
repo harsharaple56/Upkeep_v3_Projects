@@ -13,7 +13,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
-using System.Drawing;
+//using System.Drawing;
 
 namespace Upkeep_Gatepass_Workpermit.Reports
 {
@@ -216,7 +216,7 @@ namespace Upkeep_Gatepass_Workpermit.Reports
                 {
                     PdfPCell cellHD1 = new PdfPCell(new Phrase(dtBaggageReport.Columns[IntLocColCnt].ColumnName, fnt));
                     cellHD1.PaddingBottom = 10.0F;
-                    cellHD1.BackgroundColor = Color.LIGHT_GRAY;
+                    cellHD1.BackgroundColor = iTextSharp.text.Color.LIGHT_GRAY;
                     cellHD1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                     cellHD1.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
                     grd.AddCell(cellHD1);

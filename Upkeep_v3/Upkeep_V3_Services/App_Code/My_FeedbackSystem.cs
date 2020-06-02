@@ -405,7 +405,7 @@ public class My_FeedbackSystem
     }
 
 
-    public DataSet GetEventList(int CompanyID) //CompanyID Added by Sujata 
+    public DataSet GetEventList(int CompanyID,String EventFor) //CompanyID Added by Sujata 
     {
         try
         {
@@ -413,7 +413,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  obj = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.GetEventList(CompanyID,strConn);
+            ds = ObjFeedback_BL.GetEventList(CompanyID,EventFor,strConn);
 
             return ds;
         }
