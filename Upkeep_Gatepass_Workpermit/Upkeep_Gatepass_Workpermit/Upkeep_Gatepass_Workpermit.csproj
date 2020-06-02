@@ -823,6 +823,10 @@
     <Content Include="GatePass\MyGatePass.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
+    <Content Include="Reports\BaggageReport.aspx" />
+    <Content Include="Reports\Gatepass_MIS.aspx" />
+    <Content Include="Reports\PowerBankReport.aspx" />
+    <Content Include="Reports\WorkPermit_MIS.aspx" />
     <Content Include="Security\Assign_RoleList.aspx" />
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
@@ -3894,6 +3898,34 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BaggageReport.aspx.cs">
+      <DependentUpon>BaggageReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\BaggageReport.aspx.designer.cs">
+      <DependentUpon>BaggageReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Gatepass_MIS.aspx.cs">
+      <DependentUpon>Gatepass_MIS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Gatepass_MIS.aspx.designer.cs">
+      <DependentUpon>Gatepass_MIS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PowerBankReport.aspx.cs">
+      <DependentUpon>PowerBankReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\PowerBankReport.aspx.designer.cs">
+      <DependentUpon>PowerBankReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\WorkPermit_MIS.aspx.cs">
+      <DependentUpon>WorkPermit_MIS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\WorkPermit_MIS.aspx.designer.cs">
+      <DependentUpon>WorkPermit_MIS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\Assign_RoleList.aspx.cs">
       <DependentUpon>Assign_RoleList.aspx</DependentUpon>
