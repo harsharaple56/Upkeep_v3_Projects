@@ -43,7 +43,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.GetEventList(CompanyID);
+                ds = ObjUpkeepFeedback.GetEventList(CompanyID,"*");
 
                 ddlEventName.DataSource = ds.Tables[0];
                 ddlEventName.DataValueField = "Event_ID";
