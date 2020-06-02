@@ -8,6 +8,7 @@ using System.Text;
 using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Configuration;
+using System.Linq;
 
 namespace Upkeep_v3.VMS
 {
@@ -17,8 +18,10 @@ namespace Upkeep_v3.VMS
         #region Global variables
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        string SessionVisitor = string.Empty;
         DataSet dsConfig = new DataSet();
         int CompanyID = 0;
+        int ConfigID = 0;
         #endregion
 
         #region Events
@@ -26,15 +29,41 @@ namespace Upkeep_v3.VMS
         {
             //LoggedInUserID = "admin";
             //LoggedInUserID = "121";
+
+            string strConfigID = string.Empty;
+
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            if (LoggedInUserID == "")
-            {
-                // redirect to custom error page -- session timeout
-                //Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-            }
+            SessionVisitor = Convert.ToString(Session["Visitor"]);
+
             if (!IsPostBack)
             {
+               
+                if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                {
+                    Response.Redirect("~/Login.aspx", false);
+                    return;
+                }
+                else if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
+                {
+                    divTitle.Visible = false;
+                    if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ConfigID"]))
+                    {
+                        strConfigID = Request.QueryString["ConfigID"].ToString();
+                        if (strConfigID.All(char.IsDigit))
+                        {
+                            ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
+                        }
+                        
+                        BindVMSConfig();
+                    }
+                }
+                else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                {
+                    divCovid.Visible = true;
+                    btnSave.Text = "Mark IN";
+                }
+
                 //GenerateTableQuestion();
                 //GenerateTable(3, 1);
                 Fetch_User_UserGroupList();
@@ -45,8 +74,8 @@ namespace Upkeep_v3.VMS
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string WpTitleSelectedID = "";
-            WpTitleSelectedID = ddlVMSTitle.SelectedValue;
+            //string WpTitleSelectedID = "";
+            //WpTitleSelectedID = ddlVMSTitle.SelectedValue;
             //if (ValidateData() == false)
             //{
             //    //ddlVMSTitle.SelectedValue = "0";
@@ -61,21 +90,15 @@ namespace Upkeep_v3.VMS
 
         protected void ddlVMSTitle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ConfigTitleID = 0;
+            //int ConfigTitleID = 0;
 
             try
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
 
-                ConfigTitleID = Convert.ToInt32(ddlVMSTitle.SelectedValue);
+                ViewState["ConfigID"] = Convert.ToInt32(ddlVMSTitle.SelectedValue);
 
-
-                dsConfig = ObjUpkeep.Bind_VMSRequestDetails(ConfigTitleID, LoggedInUserID);
-
-                rptQuestionDetails.DataSource = dsConfig.Tables[4];
-                rptQuestionDetails.DataBind();
-
-
+                BindVMSConfig();
             }
             catch (Exception ex)
             {
@@ -136,7 +159,7 @@ namespace Upkeep_v3.VMS
                 dsVMSQuestion = dsConfig.Copy(); //ObjUpkeep.Bind_VMSConfiguration(sPublicConfigId);
 
                 DataTable dt = new DataTable();
-                dt = dsVMSQuestion.Tables[3].Copy();
+                dt = dsVMSQuestion.Tables[2].Copy();
                 dt.DefaultView.RowFilter = "VMS_Qn_ID = " + Convert.ToString(HeadId) + "";
                 dt = dt.DefaultView.ToTable();
 
@@ -195,7 +218,6 @@ namespace Upkeep_v3.VMS
             var rows = grdInfodetails.Rows;
             int count = grdInfodetails.Rows.Count;
 
-
             for (int i = 0; i < count; i++)
             {
                 bool isChecked = ((CheckBox)rows[i].FindControl("chkUserID")).Checked;
@@ -251,6 +273,294 @@ namespace Upkeep_v3.VMS
 
         #region Functions
 
+        private void BindVMSConfig()
+        {
+            try
+            {
+                //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
+
+                ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
+                dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigID);
+
+                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString()))
+                {
+                    divDesc.Visible = true;
+                    spnDesc.InnerText = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+                }
+
+                rptQuestionDetails.DataSource = dsConfig.Tables[1];
+                rptQuestionDetails.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        private void FetchSectionHeaderData(int RequestID)
+        {
+            try
+            {
+                DataSet dsData = new DataSet();
+                dsData = ObjUpkeep.Bind_VMSRequestDetails(RequestID, LoggedInUserID);
+
+
+                if (dsData.Tables.Count > 0)
+                {
+                    ViewState["ConfigID"]  = Convert.ToInt32(dsData.Tables[0].Rows[0]["VMS_ConfigID"]);
+                    //TransInitiator = Convert.ToString(dsData.Tables[0].Rows[0]["U_Init"]);
+
+                    //BindVMSConfig();
+                    
+                    if (dsData.Tables[0].Rows.Count > 0)
+                    {
+                        //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
+                        BindVMSConfig();
+
+                        txtVMSDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
+                        //txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
+
+                        //lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+
+                        switch (dsData.Tables[0].Rows[0]["Status"].ToString())
+                        {
+                            case "Apply":
+                                divAlertApply.Visible = true;
+                                break;
+                            case "IN":
+                                divAlertOpen.Visible = true;
+                                break;
+                            case "OUT":
+                                divAlertClosed.Visible = true;
+                                break;
+                            case "Expired":
+                                divAlertExpired.Visible = true;
+                                break;
+                            case "Reject":
+                                divAlertRejected.Visible = true;
+                                break;
+                        }
+
+                        
+                            foreach (RepeaterItem itemHeader in rptQuestionDetails.Items)
+                            {
+                                int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                                string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
+
+                                DataTable dta = new DataTable();
+                                dta = dsData.Tables[2].Copy();
+                                //dta.DefaultView.RowFilter = "WP_Section_ID = " + Convert.ToString(DivId) + " AND WP_Header_ID =" + Convert.ToString(HeadId) + "  ";
+                                dta = dta.DefaultView.ToTable();
+
+                                if (dta.Rows.Count > 0)
+                                {
+                                    if (AnswerType == 1) //Multi Selection [CheckBox]
+                                    {
+                                        CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
+
+                                        for (int i = 0; i < divCheckBoxIDI.Items.Count; i++)
+                                        {
+                                            for (int j = 0; j < dta.Rows.Count; j++)
+                                            {
+                                                string vals = divCheckBoxIDI.Items[i].Value;
+                                                if (vals == dta.Rows[j]["Header_Data"].ToString())
+                                                {
+                                                    divCheckBoxIDI.Items[i].Selected = true;
+                                                }
+                                                divCheckBoxIDI.Items[i].Enabled = false;
+                                            }
+                                            divCheckBoxIDI.Attributes.Add("Enabled", "false");
+                                        }
+
+                                    }
+                                    else if (AnswerType == 2) //Single Selection [Radio Button]
+                                    {
+                                        RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+
+                                        for (int i = 0; i < divRadioButtonrdbYes.Items.Count; i++)
+                                        {
+                                            for (int j = 0; j < dta.Rows.Count; j++)
+                                            {
+                                                string vals = divRadioButtonrdbYes.Items[i].Value;
+                                                if (vals == dta.Rows[j]["Header_Data"].ToString())
+                                                {
+                                                    divRadioButtonrdbYes.Items[i].Selected = true;
+                                                }
+                                                divRadioButtonrdbYes.Items[i].Enabled = false;
+                                            }
+                                            divRadioButtonrdbYes.Attributes.Add("Enabled", "false");
+                                        }
+                                    }
+                                    else if (AnswerType == 3) //Image Upload  
+                                    {
+                                        HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
+                                        FileUpload ChecklistImage = (FileUpload)itemHeader.FindControl("FileUpload_ChecklistImage");
+
+                                        DataTable dtImg = new DataTable();
+                                        dtImg = dta.Copy();
+                                        dtImg.DefaultView.RowFilter = "IMAGEPATH <> '' ";
+                                        dtImg.DefaultView.ToTable();
+
+                                        string vals = "";
+                                        for (int j = 0; j < dtImg.Rows.Count; j++)
+                                        {
+                                            if (j == 0)
+                                            {
+                                                vals = dtImg.Rows[j]["IMAGEPATH"].ToString();
+                                            }
+                                            else
+                                            {
+                                                vals = "," + dtImg.Rows[j]["IMAGEPATH"].ToString();
+                                            }
+                                        }
+
+                                        ChecklistImage.Attributes.Add("style", "display:none;");
+
+                                        HiddenField hdImg = itemHeader.FindControl("hdnImg") as HiddenField;
+                                        hdImg.Value = vals;
+
+
+                                        HtmlGenericControl divsImgBtns = itemHeader.FindControl("divImgBtns") as HtmlGenericControl;
+                                        divsImgBtns.Attributes.Remove("style");
+
+                                        //Button BtnDivImg = itemHeader.FindControl("btnImg") as Button;
+                                        //BtnDivImg.Attributes.Remove("data-images");
+                                        //BtnDivImg.Attributes.Add("data-images", vals);
+
+                                    }
+                                    else if (AnswerType == 4) //Number Text Field
+                                    {
+                                        HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
+                                        string txtNum = sample.Controls[1].UniqueID;
+                                        //string sVal = Request.Form.GetValues(txtNum)[0];
+
+
+                                        HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
+                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
+                                    }
+                                    else if (AnswerType == 5) //Normal Text Field
+                                    {
+                                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                                        string txtNum = sample.Controls[1].UniqueID;
+                                        //string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                        HtmlInputText tb = FindControl(txtNum) as HtmlInputText;
+                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
+                                    }
+                                    else if (AnswerType == 6) // Textarea Field
+                                    {
+                                        HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
+                                        string txtNum = sample.Controls[1].UniqueID;
+                                        // string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                        HtmlTextArea tb = FindControl(txtNum) as HtmlTextArea;
+                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
+                                    }
+                                    else  //Normal Text Field
+                                    {
+                                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                                        string txtNum = sample.Controls[1].UniqueID;
+                                        //string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                        HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
+                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
+                                    }
+                                }
+                            }
+                        
+
+
+                    }
+
+
+                    //if (dsData.Tables.Count > 3)
+                    //{
+                    //    if (dsData.Tables[4].Rows.Count > 0)
+                    //    {
+                    //        gvApprovalHistory.DataSource = dsData.Tables[4];
+                    //        gvApprovalHistory.DataBind();
+
+                    //    }
+                    //    else
+                    //    {
+                    //        dvApprovalHistory.Attributes.Add("style", "display:none;");
+
+                    //    }
+
+                    //}
+
+                    //if (dsData.Tables[5].Rows.Count > 0)
+                    //{
+                    //    MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
+                    //}
+
+                }
+
+
+
+                //Disable controls
+                ModifyControls();
+
+                //if (MyActionFlag == "1")
+                //{
+
+                //    //dvApprovalDetHeader.Attributes.Add("Style", "display:block;");
+                //    //dvApprovalDetails.Attributes.Add("Style", "display:block;");
+                //    //dvSubmitSection.Attributes.Add("Style", "display:block;");
+
+                //    if (MyActionCompeletd != "")
+                //    {
+                //        dvApprovalDetails.Attributes.Add("style", "display:none;");
+                //        dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
+                //        divUpdateButton.Attributes.Add("style", "display:none;");
+                //    }
+
+                //}
+                //else
+                //{
+                //    //dvApprovalHistory.Attributes.Add("style", "display:none;");
+                //    dvApprovalDetails.Attributes.Add("style", "display:none;");
+                //    dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
+                //    divUpdateButton.Attributes.Add("style", "display:none;");
+                //    //dvApprovalDetails.Attributes.Add("Style", "display:none;");
+                //    //dvSubmitSection.Attributes.Add("Style", "display:none;"); ;
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void ModifyControls()
+        {
+            //btnSubmit.Attributes.Add("style", "display:none;");
+            //divUpdateButton.Attributes.Remove("style");
+            ////dvApprovalDetails.Attributes.Add("style", "display:Block;");
+            //divInsertButton.Attributes.Add("style", "display:none;");
+            ////ddlWorkPermitTitle.Attributes.Add("Enabled", "False");
+            ////txtWorkPermitDate.Attributes.Add("Enabled", "False");
+            //ddlWorkPermitTitle.Attributes.Add("disabled", "disabled");
+            //txtWorkPermitDate.Attributes.Add("disabled", "disabled");
+            //txtWorkPermitToDate.Attributes.Add("disabled", "disabled");
+            ////Select ALL TermsCondition
+
+            //foreach (RepeaterItem itemTerms in rptTermsCondition.Items)
+            //{
+            //    CheckBox divCheckBoxIDI = itemTerms.FindControl("chkTermsCondition") as CheckBox;
+            //    divCheckBoxIDI.Checked = true;
+            //    divCheckBoxIDI.Attributes.Add("Enabled", "false");
+            //}
+        }
 
         private void SetRepeater()
         {
@@ -389,17 +699,21 @@ namespace Upkeep_v3.VMS
             }
         }
 
-
         private void SaveVisitData()
         {
             try
             {
                 #region UserData
-                int ConfigID = Convert.ToInt32(ddlVMSTitle.SelectedValue.ToString());
+                int RequestID = 0;
+                char Action = 'N';
+                ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string LoggedInUser = LoggedInUserID;
+                string strEmail = txtEmail.Text;
+                string strPhone = txtPhone.Text;
                 string strVisitDate = txtVMSDate.Text;
                 string strMeetUsers = hdnSelectedUserID.Value;
                 string strCovidTestDate = txtAsmmtDate.Text;
+                string strTemperature = txtTemperature.Text;
                 string strCovidColor = string.Empty;
                 if (rdbGreen.Checked == true)
                 { strCovidColor = "GREEN"; }
@@ -408,7 +722,6 @@ namespace Upkeep_v3.VMS
                 if (rdbRed.Checked == true)
                 { strCovidColor = "RED"; }
                 #endregion
-
 
                 #region VisitQuestion
                 /*
@@ -699,10 +1012,9 @@ namespace Upkeep_v3.VMS
                 }
                 #endregion
 
-
                 #region SaveDataToDB
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, ConfigID, strVisitDate, strMeetUsers, strVMSData, "strVMSFeedbackData", strCovidColor,strCovidTestDate, LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, ConfigID, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {
@@ -719,6 +1031,7 @@ namespace Upkeep_v3.VMS
                         else
                         {
                             SetRepeater();
+                            divError.Visible = true;
                             lblErrorMsg.Text = "error occured !!!";
                         }
                     }

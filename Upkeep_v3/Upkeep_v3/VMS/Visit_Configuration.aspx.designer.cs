@@ -13,6 +13,24 @@ namespace Upkeep_v3.VMS {
     public partial class Visit_Configuration {
         
         /// <summary>
+        /// divError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divError;
+        
+        /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -94,13 +112,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.CheckBox ChkCovid;
         
         /// <summary>
-        /// ddFeedback control.
+        /// ddlFeedbackTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddFeedback;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFeedbackTitle;
         
         /// <summary>
         /// VMSQuestion control.
@@ -184,15 +202,6 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblQuestionCount;
         
         /// <summary>
-        /// lblErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
-        
-        /// <summary>
         /// hdnAnswerDataID control.
         /// </summary>
         /// <remarks>
@@ -236,5 +245,14 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHdn;
+        
+        /// <summary>
+        /// hdnVMSQns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVMSQns;
     }
 }
