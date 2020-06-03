@@ -65,9 +65,11 @@
     <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\QRCoder.dll</HintPath>
+    <Reference Include="QRCoder">
+      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="QRGenerator">
+      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRGenerator.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -702,6 +704,116 @@
     <Content Include="assets\demo\custom\crud\wizard\wizard.min.js" />
     <Content Include="assets\demo\custom\header\actions.js" />
     <Content Include="assets\demo\custom\header\actions.min.js" />
+    <Content Include="assets\demo\default\base\scripts.bundle.js" />
+    <Content Include="assets\demo\default\base\style.bundle.css" />
+    <Content Include="assets\demo\default\base\style.bundle.rtl.css" />
+    <Content Include="assets\demo\default\custom\components\base\blockui.js" />
+    <Content Include="assets\demo\default\custom\components\base\bootstrap-notify.js" />
+    <Content Include="assets\demo\default\custom\components\base\dropdown.js" />
+    <Content Include="assets\demo\default\custom\components\base\scrollable.js" />
+    <Content Include="assets\demo\default\custom\components\base\sweetalert2.js" />
+    <Content Include="assets\demo\default\custom\components\base\toastr.js" />
+    <Content Include="assets\demo\default\custom\components\base\treeview.js" />
+    <Content Include="assets\demo\default\custom\components\calendar\background-events.js" />
+    <Content Include="assets\demo\default\custom\components\calendar\basic.js" />
+    <Content Include="assets\demo\default\custom\components\calendar\external-events.js" />
+    <Content Include="assets\demo\default\custom\components\calendar\google.js" />
+    <Content Include="assets\demo\default\custom\components\calendar\list-view.js" />
+    <Content Include="assets\demo\default\custom\components\charts\amcharts\charts.js" />
+    <Content Include="assets\demo\default\custom\components\charts\amcharts\maps.js" />
+    <Content Include="assets\demo\default\custom\components\charts\amcharts\stock-charts.js" />
+    <Content Include="assets\demo\default\custom\components\charts\flotcharts.js" />
+    <Content Include="assets\demo\default\custom\components\charts\google-charts.js" />
+    <Content Include="assets\demo\default\custom\components\charts\morris-charts.js" />
+    <Content Include="assets\demo\default\custom\components\maps\google-maps.js" />
+    <Content Include="assets\demo\default\custom\components\maps\jqvmap.js" />
+    <Content Include="assets\demo\default\custom\components\maps\jvectormap.js" />
+    <Content Include="assets\demo\default\custom\components\portlets\draggable.js" />
+    <Content Include="assets\demo\default\custom\components\portlets\tools.js" />
+    <Content Include="assets\demo\default\custom\components\utils\idle-timer.js" />
+    <Content Include="assets\demo\default\custom\components\utils\session-timeout.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\column-rendering.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\column-visibility.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\footer-callback.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\multiple-controls.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\row-callback.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\advanced\row-grouping.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\basic\basic.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\basic\headers.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\basic\paginations.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\basic\scrollable.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\data-sources\ajax-client-side.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\data-sources\ajax-server-side.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\data-sources\html.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\data-sources\javascript.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\buttons.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\colreorder.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\fixedcolumns.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\fixedheader.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\keytable.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\responsive.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\rowgroup.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\rowreorder.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\scroller.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\extensions\select.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\search-options\advanced-search.js" />
+    <Content Include="assets\demo\default\custom\crud\datatables\search-options\column-search.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\validation\form-controls.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\validation\form-widgets.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\autosize.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-datepicker.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-daterangepicker.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-datetimepicker.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-markdown.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-maxlength.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-multipleselectsplitter.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-select.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-switch.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-timepicker.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\bootstrap-touchspin.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\clipboard.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\dropzone.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\form-repeater.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\google-recaptcha.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\input-mask.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\ion-range-slider.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\nouislider.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\select2.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\summernote.js" />
+    <Content Include="assets\demo\default\custom\crud\forms\widgets\typeahead.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\api\events.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\api\methods.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\column-rendering.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\column-width.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\data-ajax.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\data-json.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\data-local.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\html-table.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\local-sort.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\record-selection.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\responsive-columns.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\row-details.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\base\translation.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\child\data-ajax.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\child\data-local.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\locked\both.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\locked\html-table.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\locked\left.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\locked\right.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\scrolling\both.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\scrolling\horizontal.js" />
+    <Content Include="assets\demo\default\custom\crud\metronic-datatable\scrolling\vertical.js" />
+    <Content Include="assets\demo\default\custom\crud\wizard\wizard.js" />
+    <Content Include="assets\demo\default\custom\header\actions.js" />
+    <Content Include="assets\demo\default\media\img\logo\favicon.ico" />
+    <Content Include="assets\demo\default\media\img\logo\logo.png" />
+    <Content Include="assets\demo\default\media\img\logo\logo_compact.png" />
+    <Content Include="assets\demo\default\media\img\logo\logo_default_dark.png" />
+    <Content Include="assets\demo\default\media\img\logo\logo_default_light.png" />
+    <Content Include="assets\demo\default\media\img\logo\logo_large.png" />
+    <Content Include="assets\demo\default\media\img\misc\notification_bg.jpg" />
+    <Content Include="assets\demo\default\media\img\misc\quick_actions_bg.jpg" />
+    <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
     <Content Include="assets\demo\media\img\logo\client_logo.png" />
     <Content Include="assets\demo\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\media\img\logo\logo.png" />
@@ -805,6 +917,8 @@
     <Content Include="Checklist\MyChecklist.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
+    <Content Include="Error_Pages\404.aspx" />
+    <Content Include="Error_Pages\Error.html" />
     <Content Include="Feedback\AddEventQuestion.aspx" />
     <Content Include="Feedback\Customers.aspx" />
     <Content Include="Feedback\EditEvent.aspx" />
@@ -3743,6 +3857,8 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\VMSConfig_Listing.aspx" />
+    <Content Include="VMS\VMSRequest_Listing.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3860,6 +3976,13 @@
     </Compile>
     <Compile Include="Dashboard1.aspx.designer.cs">
       <DependentUpon>Dashboard1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error_Pages\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error_Pages\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Feedback\AddEventQuestion.aspx.cs">
       <DependentUpon>AddEventQuestion.aspx</DependentUpon>
@@ -4184,6 +4307,20 @@
     </Compile>
     <Compile Include="VMS\Visit_Request.aspx.designer.cs">
       <DependentUpon>Visit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\VMSConfig_Listing.aspx.cs">
+      <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\VMSConfig_Listing.aspx.designer.cs">
+      <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\VMSRequest_Listing.aspx.cs">
+      <DependentUpon>VMSRequest_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\VMSRequest_Listing.aspx.designer.cs">
+      <DependentUpon>VMSRequest_Listing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\Upkeep_V3_Services\Reference.cs">
       <AutoGen>True</AutoGen>

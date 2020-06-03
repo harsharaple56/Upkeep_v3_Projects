@@ -596,7 +596,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet bindEventDetails(int CompanyID,int EventID) //CompanyID added by sujata
+    public DataSet bindEventDetails(int CompanyID, int EventID) //CompanyID added by sujata
     {
         DataSet ds = new DataSet();
 
@@ -604,7 +604,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.bindEventDetails(CompanyID,EventID);
+            ds = obj.bindEventDetails(CompanyID, EventID);
 
         }
         catch (Exception ex)
@@ -1079,12 +1079,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID)
+    public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strXmlVMS_Question, strXmlVMS_Feedback, blFeedbackCompulsary, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1127,12 +1127,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to Fetch VMS Request list
     [WebMethod]
-    public DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyRequestVMS(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_VMSRequestList(LoggedInUserID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -1143,12 +1143,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to bind VMS request details
     [WebMethod]
-    public DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID)
+    public DataSet Bind_VMSRequestDetails(int RequestID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Bind_VMSRequestDetails(VMS_ConfigID, LoggedInUserID);
+            ds = ObjUpkeep.Bind_VMSRequestDetails(RequestID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1159,12 +1159,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string strVMSCovidColorCode, string strVMSCovidTestDate, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, VMS_ConfigID, strVMSDate, strMeetUsrs, strVMSData, strVMSFeedbackData, strVMSCovidColorCode, strVMSCovidTestDate, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1173,6 +1173,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    //Added by RC This function is used to Fetch Visit Form Url for Session less User 
+    [WebMethod]
+    public DataSet Fetch_VMSFormURL(string ShortUrl)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_VMSFormURL(ShortUrl);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     #region General Functions

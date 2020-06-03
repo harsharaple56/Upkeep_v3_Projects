@@ -36,6 +36,16 @@
             init_autosize();
             init_plugins();
 
+            $("#divFeedback").hide();
+            $("#divChkFeedback").click(function () {
+                //alert("hii");
+                if ($("#ChkFeedback").is(":checked")) {
+                    $("#divFeedback").hide(300);
+                } else {
+                    $("#divFeedback").show(200);
+                }
+            });
+
             $('.VMSQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -63,32 +73,32 @@
                 },
             });
 
-            $('.VMSFeedback_repeater').repeater({
-                initEmpty: false,
-                show: function () {
-                    $(this).slideDown();
-                    var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-                    var question_count = counter.data('count');
-                    question_count++;
-                    $('#txtFeedbackCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-                    $('#error_VMSFeedback').html('');
+            //$('.VMSFeedback_repeater').repeater({
+            //    initEmpty: false,
+            //    show: function () {
+            //        $(this).slideDown();
+            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
+            //        var question_count = counter.data('count');
+            //        question_count++;
+            //        $('#txtFeedbackCount').val(question_count);
+            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
+            //        $('#error_VMSFeedback').html('');
 
-                    init_autosize();
-                    init_plugins();
-                },
-                hide: function (deleteElement) {
-                    $(this).slideUp(deleteElement);
-                    var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-                    var question_count = counter.data('count');
-                    question_count--;
-                    $('#txtFeedbackCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-                    if (question_count == 0) {
-                        $('#error_VMSFeedback').html('Add at least one VMS Feedback.');
-                    }
-                },
-            });
+            //        init_autosize();
+            //        init_plugins();
+            //    },
+            //    hide: function (deleteElement) {
+            //        $(this).slideUp(deleteElement);
+            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
+            //        var question_count = counter.data('count');
+            //        question_count--;
+            //        $('#txtFeedbackCount').val(question_count);
+            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
+            //        if (question_count == 0) {
+            //            $('#error_VMSFeedback').html('Add at least one VMS Feedback.');
+            //        }
+            //    },
+            //});
 
 
             $('.AnswerType_repeater').repeater({
@@ -159,13 +169,7 @@
                 }
             });
 
-            $('body').on('change', '.TermComdition_repeater .TermCondition_textarea', function () {
-                var error_ele = $(this).parent().find('.error_TermCondition');
-                error_ele.html('').parents('.form-group').removeClass('has-error');
-                if ($(this).val().trim() == '') {
-                    $(this).parent().find('.error_TermCondition').html('Enter Term & Comdition').parents('.form-group').addClass('has-error');
-                }
-            });
+
 
             $('#frmVMS').submit(function (event) {
                 //alert('hiiiii');
@@ -196,21 +200,6 @@
                         $(this).parent().find('.error_question').html('Enter Question.').parents('.form-group').addClass('has-error');
                     }
                 });
-
-                $('.VMSFeedback_repeater .VMSFeedback_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_VMSFeedback').html('Enter Feedback.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
-                $('.TermComdition_repeater .TermCondition_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_TermCondition').html('Enter Terms and Condition.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
 
                 if ($('.VMSQuestion_repeater .question_textarea').length == 0) {
                     //alert('sdf');
@@ -392,6 +381,11 @@
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmVMS" method="post">--%>
                         <%--<cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>--%>
 
+                        <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
+                            <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
+
+                        </div>
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -465,8 +459,8 @@
                                     </div>
 
                                     <div class="col-md-3">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-light">
+                                        <div class="btn-group btn-group-toggle" id="divChkFeedback" data-toggle="buttons">
+                                            <label class="btn btn-light" id="lblChkFeedback">
                                                 <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
                                         </div>
                                     </div>
@@ -477,12 +471,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="form-group m-form__group row" style="padding-left: 1%;" id="divFeedback">
+                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divFeedback">
                                     <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
-                                      <div class="col-md-4">
-                                        <asp:DropDownList ID="ddFeedback" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
+                                    <div class="col-md-4">
+                                        <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
                                     </div>
-                                   
+
                                 </div>
 
                                 <br />
@@ -567,7 +561,7 @@
                                 </div>
                                 <br />
 
-                               <%-- <div class="form-group row" style="background-color: #00c5dc;">
+                                <%-- <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">VMS Feedback</label>
                                 </div>
                                 <br />
@@ -648,9 +642,6 @@
                                 </div>--%>
 
                                 <br />
-
-                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
                             </div>
                         </div>
 
@@ -710,6 +701,7 @@
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                        <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
 
                         <%--</form>--%>
                     </div>
