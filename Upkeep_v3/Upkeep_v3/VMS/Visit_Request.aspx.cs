@@ -31,6 +31,7 @@ namespace Upkeep_v3.VMS
             //LoggedInUserID = "121";
 
             string strConfigID = string.Empty;
+            string strRequestID = string.Empty;
 
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -38,7 +39,7 @@ namespace Upkeep_v3.VMS
 
             if (!IsPostBack)
             {
-               
+
                 if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
                 {
                     Response.Redirect("~/Login.aspx", false);
@@ -54,14 +55,27 @@ namespace Upkeep_v3.VMS
                         {
                             ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
                         }
-                        
+
                         BindVMSConfig();
                     }
                 }
                 else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
                 {
-                    divCovid.Visible = true;
+
                     btnSave.Text = "Mark IN";
+
+                    if (!System.String.IsNullOrWhiteSpace(Request.QueryString["RequestID"]))
+                    {
+                        strRequestID = Request.QueryString["RequestID"].ToString();
+                        if (strRequestID.All(char.IsDigit))
+                        {
+                            ViewState["RequestID"] = Convert.ToInt32(strRequestID);
+
+                            FetchSectionHeaderData();
+                        }
+
+                    }
+
                 }
 
                 //GenerateTableQuestion();
@@ -113,35 +127,35 @@ namespace Upkeep_v3.VMS
                 //Reference the Repeater Item.
                 RepeaterItem item = e.Item;
 
-                int AnswerType = Convert.ToInt32((e.Item.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                string AnswerType = (e.Item.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                 string HeadId = (e.Item.FindControl("hfQuestionId") as HiddenField).Value;
 
-                if (AnswerType == 1) //Multi Selection [CheckBox]
+                if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divCheckBox") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 2) //Single Selection [Radio Button]
+                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divRadioButton") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 3) //Image Upload  
+                else if (AnswerType == "IMAGE") //Image Upload  
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divImage") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 4) //Number Text Field
+                else if (AnswerType == "NUMBR") //Number Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divNumber") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 5) //Normal Text Field
+                else if (AnswerType == "STEXT") //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 6) // Textarea Field
+                else if (AnswerType == "LTEXT") // Textarea Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divTextArea") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
@@ -163,7 +177,7 @@ namespace Upkeep_v3.VMS
                 dt.DefaultView.RowFilter = "VMS_Qn_ID = " + Convert.ToString(HeadId) + "";
                 dt = dt.DefaultView.ToTable();
 
-                if (AnswerType == 2)
+                if (AnswerType == "SSLCT")
                 {
                     RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 
@@ -186,7 +200,7 @@ namespace Upkeep_v3.VMS
                     }
 
                 }
-                else if (AnswerType == 1)
+                else if (AnswerType == "MSLCT")
                 {
                     CheckBoxList divCheckBoxIDI = e.Item.FindControl("divCheckBoxIDI") as CheckBoxList;
                     if (dt.Rows.Count > 0)
@@ -266,7 +280,13 @@ namespace Upkeep_v3.VMS
 
         protected void btnSuccessOk_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Page.ResolveClientUrl("~/VMS/MyVMS.aspx"), false);
+            Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            ViewState["Action"] = 'R';
+            SaveVisitData();
         }
 
         #endregion
@@ -288,9 +308,16 @@ namespace Upkeep_v3.VMS
                     spnDesc.InnerText = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                 }
 
-                rptQuestionDetails.DataSource = dsConfig.Tables[1];
-                rptQuestionDetails.DataBind();
+                if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
+                {
+                    divCovid.Visible = true;
+                }
 
+                if (ViewState["RequestID"] == null)
+                {
+                    rptQuestionDetails.DataSource = dsConfig.Tables[1];
+                    rptQuestionDetails.DataBind();
+                }
 
             }
             catch (Exception ex)
@@ -301,272 +328,259 @@ namespace Upkeep_v3.VMS
         }
 
 
-        private void FetchSectionHeaderData(int RequestID)
+        private void FetchSectionHeaderData()
         {
             try
             {
+                int RequestID = Convert.ToInt32(ViewState["RequestID"]);
+
                 DataSet dsData = new DataSet();
                 dsData = ObjUpkeep.Bind_VMSRequestDetails(RequestID, LoggedInUserID);
 
-
                 if (dsData.Tables.Count > 0)
                 {
-                    ViewState["ConfigID"]  = Convert.ToInt32(dsData.Tables[0].Rows[0]["VMS_ConfigID"]);
-                    //TransInitiator = Convert.ToString(dsData.Tables[0].Rows[0]["U_Init"]);
 
-                    //BindVMSConfig();
-                    
                     if (dsData.Tables[0].Rows.Count > 0)
                     {
+
+                        ViewState["ConfigID"] = Convert.ToInt32(dsData.Tables[0].Rows[0]["VMS_Config_ID"]);
+
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         BindVMSConfig();
+                    }
+                    //Bind inserted Visit data
+                    if (dsData.Tables[1].Rows.Count > 0)
+                    {
+                        divTitle.Visible = false;
 
-                        txtVMSDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
+                        txtVMSDate.ReadOnly = true;
+                        txtEmail.ReadOnly = true;
+                        txtPhone.ReadOnly = true;
+
+                        txtVMSDate.Text = dsData.Tables[1].Rows[0]["Meeting_Time"].ToString();
+                        txtEmail.Text = dsData.Tables[1].Rows[0]["Email"].ToString();
+                        txtPhone.Text = dsData.Tables[1].Rows[0]["Phone"].ToString();
+
+
                         //txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
 
                         //lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
 
-                        switch (dsData.Tables[0].Rows[0]["Status"].ToString())
+                        switch (dsData.Tables[1].Rows[0]["Status"].ToString())
                         {
                             case "Apply":
                                 divAlertApply.Visible = true;
+                                btnReject.Visible = true;
+                                ViewState["Action"] = 'I';
                                 break;
                             case "IN":
                                 divAlertOpen.Visible = true;
+                                btnSave.Text = "Mark OUT";
+                                ViewState["Action"] = 'O';
                                 break;
                             case "OUT":
                                 divAlertClosed.Visible = true;
+                                btnSave.Visible = false;
                                 break;
                             case "Expired":
                                 divAlertExpired.Visible = true;
+                                btnSave.Visible = false;
                                 break;
                             case "Reject":
                                 divAlertRejected.Visible = true;
+                                btnSave.Visible = false;
                                 break;
                         }
 
-                        
-                            foreach (RepeaterItem itemHeader in rptQuestionDetails.Items)
+                    }
+                    //Bind inserted covid data
+                    if (dsData.Tables[2].Rows.Count > 0)
+                    {
+                        bool isCovidEnable = Convert.ToBoolean(dsData.Tables[0].Rows[0]["isCovidEnable"]);
+                        if (isCovidEnable)
+                        {
+                            string color = dsData.Tables[2].Rows[0]["ColorCode"].ToString();
+                            switch (color)
                             {
-                                int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
-                                string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
+                                case "GREEN":
+                                    rdbGreen.Checked = true;
+                                    break;
+                                case "ORANGE":
+                                    rdbOrange.Checked = true;
+                                    break;
+                                case "RED":
+                                    rdbRed.Checked = true;
+                                    break;
+                            }
 
-                                DataTable dta = new DataTable();
-                                dta = dsData.Tables[2].Copy();
-                                //dta.DefaultView.RowFilter = "WP_Section_ID = " + Convert.ToString(DivId) + " AND WP_Header_ID =" + Convert.ToString(HeadId) + "  ";
-                                dta = dta.DefaultView.ToTable();
+                            txtAsmmtDate.ReadOnly = true;
+                            txtTemperature.ReadOnly = true;
 
-                                if (dta.Rows.Count > 0)
+                            txtAsmmtDate.Text = dsData.Tables[2].Rows[0]["TestDate"].ToString();
+                            txtTemperature.Text = dsData.Tables[2].Rows[0]["Temperature"].ToString();
+                        }
+                    }
+                    //Bind configured Visit data
+                    if (dsData.Tables[3].Rows.Count > 0)
+                    {
+                        rptQuestionDetails.DataSource = dsData.Tables[3];
+                        rptQuestionDetails.DataBind();
+                    }
+                    //Bind configured Visit data
+                    if (dsData.Tables[4].Rows.Count > 0)
+                    {
+
+                        DataTable dta = new DataTable();
+                        dta = dsData.Tables[4].Copy();
+
+                        foreach (RepeaterItem itemHeader in rptQuestionDetails.Items)
+                        {
+                            string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                            string HeadId = (itemHeader.FindControl("hfQuestionId") as HiddenField).Value;
+
+                            DataTable dtQN = new DataTable();
+
+                            dta.DefaultView.RowFilter = "VMS_QN_ID = '" + HeadId + "' ";
+                            dtQN = dta.DefaultView.ToTable();
+                            //dta.DefaultView.RowFilter = "WP_Section_ID = " + Convert.ToString(DivId) + " AND WP_Header_ID =" + Convert.ToString(HeadId) + "  ";
+
+                            if (dta.Rows.Count > 0)
+                            {
+                                if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                                 {
-                                    if (AnswerType == 1) //Multi Selection [CheckBox]
-                                    {
-                                        CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
+                                    CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
 
-                                        for (int i = 0; i < divCheckBoxIDI.Items.Count; i++)
+                                    for (int i = 0; i < divCheckBoxIDI.Items.Count; i++)
+                                    {
+                                        for (int j = 0; j < dtQN.Rows.Count; j++)
                                         {
-                                            for (int j = 0; j < dta.Rows.Count; j++)
+                                            string vals = divCheckBoxIDI.Items[i].Value;
+                                            if (vals == dtQN.Rows[j]["Ans_Type_Data"].ToString() && Convert.ToBoolean(dtQN.Rows[j]["Selected"]))
                                             {
-                                                string vals = divCheckBoxIDI.Items[i].Value;
-                                                if (vals == dta.Rows[j]["Header_Data"].ToString())
-                                                {
-                                                    divCheckBoxIDI.Items[i].Selected = true;
-                                                }
-                                                divCheckBoxIDI.Items[i].Enabled = false;
+                                                divCheckBoxIDI.Items[i].Selected = true;
                                             }
-                                            divCheckBoxIDI.Attributes.Add("Enabled", "false");
+                                            divCheckBoxIDI.Items[i].Enabled = false;
                                         }
-
+                                        divCheckBoxIDI.Attributes.Add("Enabled", "false");
                                     }
-                                    else if (AnswerType == 2) //Single Selection [Radio Button]
-                                    {
-                                        RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 
-                                        for (int i = 0; i < divRadioButtonrdbYes.Items.Count; i++)
+                                }
+                                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
+                                {
+                                    RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+
+                                    for (int i = 0; i < divRadioButtonrdbYes.Items.Count; i++)
+                                    {
+                                        for (int j = 0; j < dtQN.Rows.Count; j++)
                                         {
-                                            for (int j = 0; j < dta.Rows.Count; j++)
+                                            string vals = divRadioButtonrdbYes.Items[i].Value;
+                                            if (vals == dtQN.Rows[j]["Ans_Type_Data"].ToString() && Convert.ToBoolean(dtQN.Rows[j]["Selected"]))
                                             {
-                                                string vals = divRadioButtonrdbYes.Items[i].Value;
-                                                if (vals == dta.Rows[j]["Header_Data"].ToString())
-                                                {
-                                                    divRadioButtonrdbYes.Items[i].Selected = true;
-                                                }
-                                                divRadioButtonrdbYes.Items[i].Enabled = false;
+                                                divRadioButtonrdbYes.Items[i].Selected = true;
                                             }
-                                            divRadioButtonrdbYes.Attributes.Add("Enabled", "false");
+                                            divRadioButtonrdbYes.Items[i].Enabled = false;
                                         }
-                                    }
-                                    else if (AnswerType == 3) //Image Upload  
-                                    {
-                                        HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
-                                        FileUpload ChecklistImage = (FileUpload)itemHeader.FindControl("FileUpload_ChecklistImage");
-
-                                        DataTable dtImg = new DataTable();
-                                        dtImg = dta.Copy();
-                                        dtImg.DefaultView.RowFilter = "IMAGEPATH <> '' ";
-                                        dtImg.DefaultView.ToTable();
-
-                                        string vals = "";
-                                        for (int j = 0; j < dtImg.Rows.Count; j++)
-                                        {
-                                            if (j == 0)
-                                            {
-                                                vals = dtImg.Rows[j]["IMAGEPATH"].ToString();
-                                            }
-                                            else
-                                            {
-                                                vals = "," + dtImg.Rows[j]["IMAGEPATH"].ToString();
-                                            }
-                                        }
-
-                                        ChecklistImage.Attributes.Add("style", "display:none;");
-
-                                        HiddenField hdImg = itemHeader.FindControl("hdnImg") as HiddenField;
-                                        hdImg.Value = vals;
-
-
-                                        HtmlGenericControl divsImgBtns = itemHeader.FindControl("divImgBtns") as HtmlGenericControl;
-                                        divsImgBtns.Attributes.Remove("style");
-
-                                        //Button BtnDivImg = itemHeader.FindControl("btnImg") as Button;
-                                        //BtnDivImg.Attributes.Remove("data-images");
-                                        //BtnDivImg.Attributes.Add("data-images", vals);
-
-                                    }
-                                    else if (AnswerType == 4) //Number Text Field
-                                    {
-                                        HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
-                                        string txtNum = sample.Controls[1].UniqueID;
-                                        //string sVal = Request.Form.GetValues(txtNum)[0];
-
-
-                                        HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
-                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
-                                    }
-                                    else if (AnswerType == 5) //Normal Text Field
-                                    {
-                                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
-                                        string txtNum = sample.Controls[1].UniqueID;
-                                        //string sVal = Request.Form.GetValues(txtNum)[0];
-
-                                        HtmlInputText tb = FindControl(txtNum) as HtmlInputText;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
-                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
-                                    }
-                                    else if (AnswerType == 6) // Textarea Field
-                                    {
-                                        HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
-                                        string txtNum = sample.Controls[1].UniqueID;
-                                        // string sVal = Request.Form.GetValues(txtNum)[0];
-
-                                        HtmlTextArea tb = FindControl(txtNum) as HtmlTextArea;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
-                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
-                                    }
-                                    else  //Normal Text Field
-                                    {
-                                        HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
-                                        string txtNum = sample.Controls[1].UniqueID;
-                                        //string sVal = Request.Form.GetValues(txtNum)[0];
-
-                                        HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
-                                        //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
+                                        divRadioButtonrdbYes.Attributes.Add("Enabled", "false");
                                     }
                                 }
+                                else if (AnswerType == "IMAGE") //Image Upload  
+                                {
+                                    HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
+                                    FileUpload ChecklistImage = (FileUpload)itemHeader.FindControl("FileUpload_ChecklistImage");
+
+                                    string vals = "";
+                                    for (int j = 0; j < dtQN.Rows.Count; j++)
+                                    {
+                                        if (j == 0)
+                                        {
+                                            vals = dtQN.Rows[j]["Ans_Type_Data"].ToString();
+                                        }
+                                        else
+                                        {
+                                            vals = vals + "," + dtQN.Rows[j]["Ans_Type_Data"].ToString();
+                                        }
+                                    }
+
+                                    ChecklistImage.Attributes.Add("style", "display:none;");
+
+                                    HiddenField hdImg = itemHeader.FindControl("hdnImg") as HiddenField;
+                                    hdImg.Value = vals;
+
+
+                                    HtmlGenericControl divsImgBtns = itemHeader.FindControl("divImgBtns") as HtmlGenericControl;
+                                    divsImgBtns.Attributes.Remove("style");
+
+                                    //Button BtnDivImg = itemHeader.FindControl("btnImg") as Button;
+                                    //BtnDivImg.Attributes.Remove("data-images");
+                                    //BtnDivImg.Attributes.Add("data-images", vals);
+
+                                }
+                                else if (AnswerType == "NUMBR") //Number Text Field
+                                {
+                                    HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    //string sVal = Request.Form.GetValues(txtNum)[0];
+
+
+                                    HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
+                                    tb.Value = dtQN.Rows[0]["Ans_Type_Data"].ToString();
+                                    tb.Disabled = true;
+                                    //Request.Form.Set(txtNum, dtQN.Rows[0]["Ans_Type_Data"].ToString());
+                                }
+                                else if (AnswerType == "STEXT") //Normal Text Field
+                                {
+                                    HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    //string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                    HtmlInputText tb = FindControl(txtNum) as HtmlInputText;
+                                    tb.Value = dtQN.Rows[0]["Ans_Type_Data"].ToString();
+                                    tb.Disabled = true;
+                                    //Request.Form.Set(txtNum, dtQN.Rows[0]["Ans_Type_Data"].ToString());
+                                }
+                                else if (AnswerType == "LTEXT") // Textarea Field
+                                {
+                                    HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    // string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                    HtmlTextArea tb = FindControl(txtNum) as HtmlTextArea;
+                                    tb.Value = dtQN.Rows[0]["Ans_Type_Data"].ToString();
+                                    tb.Disabled = true;
+                                    //Request.Form.Set(txtNum, dtQN.Rows[0]["Ans_Type_Data"].ToString());
+                                }
+                                else  //Normal Text Field
+                                {
+                                    HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    //string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                    HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
+                                    tb.Value = dtQN.Rows[0]["Ans_Type_Data"].ToString();
+                                    tb.Disabled = true;
+                                    //Request.Form.Set(txtNum, dta.Rows[0]["Ans_Type_Data"].ToString());
+                                }
                             }
-                        
+                        }
+
 
 
                     }
-
-
-                    //if (dsData.Tables.Count > 3)
-                    //{
-                    //    if (dsData.Tables[4].Rows.Count > 0)
-                    //    {
-                    //        gvApprovalHistory.DataSource = dsData.Tables[4];
-                    //        gvApprovalHistory.DataBind();
-
-                    //    }
-                    //    else
-                    //    {
-                    //        dvApprovalHistory.Attributes.Add("style", "display:none;");
-
-                    //    }
-
-                    //}
-
-                    //if (dsData.Tables[5].Rows.Count > 0)
-                    //{
-                    //    MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
-                    //}
-
+                    
                 }
-
-
-
-                //Disable controls
-                ModifyControls();
-
-                //if (MyActionFlag == "1")
-                //{
-
-                //    //dvApprovalDetHeader.Attributes.Add("Style", "display:block;");
-                //    //dvApprovalDetails.Attributes.Add("Style", "display:block;");
-                //    //dvSubmitSection.Attributes.Add("Style", "display:block;");
-
-                //    if (MyActionCompeletd != "")
-                //    {
-                //        dvApprovalDetails.Attributes.Add("style", "display:none;");
-                //        dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
-                //        divUpdateButton.Attributes.Add("style", "display:none;");
-                //    }
-
-                //}
-                //else
-                //{
-                //    //dvApprovalHistory.Attributes.Add("style", "display:none;");
-                //    dvApprovalDetails.Attributes.Add("style", "display:none;");
-                //    dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
-                //    divUpdateButton.Attributes.Add("style", "display:none;");
-                //    //dvApprovalDetails.Attributes.Add("Style", "display:none;");
-                //    //dvSubmitSection.Attributes.Add("Style", "display:none;"); ;
-                //}
-
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        private void ModifyControls()
-        {
-            //btnSubmit.Attributes.Add("style", "display:none;");
-            //divUpdateButton.Attributes.Remove("style");
-            ////dvApprovalDetails.Attributes.Add("style", "display:Block;");
-            //divInsertButton.Attributes.Add("style", "display:none;");
-            ////ddlWorkPermitTitle.Attributes.Add("Enabled", "False");
-            ////txtWorkPermitDate.Attributes.Add("Enabled", "False");
-            //ddlWorkPermitTitle.Attributes.Add("disabled", "disabled");
-            //txtWorkPermitDate.Attributes.Add("disabled", "disabled");
-            //txtWorkPermitToDate.Attributes.Add("disabled", "disabled");
-            ////Select ALL TermsCondition
-
-            //foreach (RepeaterItem itemTerms in rptTermsCondition.Items)
-            //{
-            //    CheckBox divCheckBoxIDI = itemTerms.FindControl("chkTermsCondition") as CheckBox;
-            //    divCheckBoxIDI.Checked = true;
-            //    divCheckBoxIDI.Attributes.Add("Enabled", "false");
-            //}
-        }
-
+        
         private void SetRepeater()
         {
             foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
             {
-                int AnswerType = Convert.ToInt32((itemQuestion.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                 string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
 
                 string HeadMandatoryId = (itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value;
@@ -577,32 +591,32 @@ namespace Upkeep_v3.VMS
                     sample.Attributes.Remove("style");
                 }
 
-                if (AnswerType == 1) //Multi Selection [CheckBox]
+                if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divCheckBox") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 2) //Single Selection [Radio Button]
+                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divRadioButton") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 3) //Image Upload  
+                else if (AnswerType == "IMAGE") //Image Upload  
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 4) //Number Text Field
+                else if (AnswerType == "NUMBR") //Number Text Field
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 5) //Normal Text Field
+                else if (AnswerType == "STEXT") //Normal Text Field
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 6) // Textarea Field
+                else if (AnswerType == "LTEXT") // Textarea Field
                 {
                     HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
@@ -706,13 +720,22 @@ namespace Upkeep_v3.VMS
                 #region UserData
                 int RequestID = 0;
                 char Action = 'N';
+                if ( ViewState["Action"] != null)
+                {
+                    Action = Convert.ToChar(ViewState["Action"]);
+                }
+                if (ViewState["RequestID"] != null)
+                {
+                    RequestID = Convert.ToInt32(ViewState["RequestID"]);
+                }
                 ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string LoggedInUser = LoggedInUserID;
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
-                string strVisitDate = txtVMSDate.Text;
+                DateTime temp;
+                string strVisitDate =(DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strMeetUsers = hdnSelectedUserID.Value;
-                string strCovidTestDate = txtAsmmtDate.Text;
+                string strCovidTestDate = (DateTime.TryParse(txtAsmmtDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strTemperature = txtTemperature.Text;
                 string strCovidColor = string.Empty;
                 if (rdbGreen.Checked == true)
@@ -731,6 +754,10 @@ namespace Upkeep_v3.VMS
 
                 string strVMSData = "";
 
+
+                if (Action != 'N')
+                    goto Save;
+
                 DataTable dt = new DataTable();
                 dt.Clear();
                 dt.TableName = "TableVisitQuestion";
@@ -745,15 +772,15 @@ namespace Upkeep_v3.VMS
                 foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
                 {
 
-                    int AnswerType = Convert.ToInt32((itemQuestion.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                    string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                     string Is_Mandatory = Convert.ToString((itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value);
                     Label lblQuestionErr = (itemQuestion.FindControl("lblQuestionErr") as Label);
                     string isField = "False";
 
-                    // int AnswerTypeData = Convert.ToInt32((itemQuestion.FindControl("hdnlblAnswerTypeData") as HiddenField).Value);
+                    int AnswerTypeID = Convert.ToInt32((itemQuestion.FindControl("hdnAnswerID") as HiddenField).Value);
                     string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
 
-                    if (AnswerType == 1) //Multi Selection [CheckBox]
+                    if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                     {
                         CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
                         List<String> chkStrList = new List<string>();
@@ -768,7 +795,7 @@ namespace Upkeep_v3.VMS
                                 chkStrList.Add(item.Value);
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerType;
+                                dtRow["AnswerID"] = AnswerTypeID;
                                 dtRow["Data"] = item.Value;
                                 dt.Rows.Add(dtRow);
                             }
@@ -785,7 +812,7 @@ namespace Upkeep_v3.VMS
 
                         //String YrStr = String.Join(";", chkStrList.ToArray());
                     }
-                    else if (AnswerType == 2) //Single Selection [Radio Button]
+                    else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                     {
                         RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
                         List<String> RadioStrList = new List<string>();
@@ -798,7 +825,7 @@ namespace Upkeep_v3.VMS
 
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerType;
+                                dtRow["AnswerID"] = AnswerTypeID;
                                 dtRow["Data"] = item.Value;
                                 dt.Rows.Add(dtRow);
                             }
@@ -814,7 +841,7 @@ namespace Upkeep_v3.VMS
                         //String YrStr = String.Join(";", RadioStrList.ToArray());
 
                     }
-                    else if (AnswerType == 3) //Image Upload  
+                    else if (AnswerType == "IMAGE") //Image Upload  
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
 
@@ -872,7 +899,7 @@ namespace Upkeep_v3.VMS
                                             isField = "True";
                                             DataRow dtRow = dt.NewRow();
                                             dtRow["QuestionID"] = HeadId;
-                                            dtRow["AnswerID"] = AnswerType;
+                                            dtRow["AnswerID"] = AnswerTypeID;
                                             dtRow["Data"] = FileLocation;
                                             dt.Rows.Add(dtRow);
                                         }
@@ -902,17 +929,16 @@ namespace Upkeep_v3.VMS
                         }
 
                     }
-                    else if (AnswerType == 4) //Number Text Field
+                    else if (AnswerType == "NUMBR") //Number Text Field
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
                         dt.Rows.Add(dtRow);
-
 
                         if (Is_Mandatory == "*")
                         {
@@ -924,14 +950,14 @@ namespace Upkeep_v3.VMS
                         }
 
                     }
-                    else if (AnswerType == 5) //Normal Text Field
+                    else if (AnswerType == "STEXT") //Normal Text Field
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
                         dt.Rows.Add(dtRow);
 
@@ -946,14 +972,14 @@ namespace Upkeep_v3.VMS
                             }
                         }
                     }
-                    else if (AnswerType == 6) // Textarea Field
+                    else if (AnswerType == "LTEXT") // Textarea Field
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
                         dt.Rows.Add(dtRow);
 
@@ -974,7 +1000,7 @@ namespace Upkeep_v3.VMS
                         string sVal = Request.Form.GetValues(txtNum)[0];
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerType;
+                        dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
                         dt.Rows.Add(dtRow);
 
@@ -1013,6 +1039,7 @@ namespace Upkeep_v3.VMS
                 #endregion
 
                 #region SaveDataToDB
+                Save:
                 DataSet dsVMSQuestionData = new DataSet();
                 dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, ConfigID, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
@@ -1020,19 +1047,24 @@ namespace Upkeep_v3.VMS
                 {
                     if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                     {
-                        int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["status"]);
-                        if (status == 1)
+                        int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
+                        if (status == 1 && Action=='N')
                         {
                             SetRepeater();
                             //divinsertbutton.visible = false;
-                            lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["requestid"]);
+                            lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
                             mpeVMSRequestSaveSuccess.Show();
+                        }
+                        else if(status == 1 && Action != 'N')
+                        {
+                            Response.Write("<script>alert('Status changed.');</script>");
+                            Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
                         else
                         {
                             SetRepeater();
                             divError.Visible = true;
-                            lblErrorMsg.Text = "error occured !!!";
+                            lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
                         }
                     }
                 }
@@ -1045,5 +1077,6 @@ namespace Upkeep_v3.VMS
         }
 
         #endregion
+
     }
 }

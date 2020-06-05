@@ -258,7 +258,7 @@ background-color: blanchedalmond;
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
 
-                        
+
                         <div class="alert m-alert--default m-alert--icon" id="divAlertExpired" visible="false" runat="server" role="alert">
                             <div class="m-alert__icon">
                                 <i class="la la-warning"></i>
@@ -318,7 +318,7 @@ background-color: blanchedalmond;
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
+                                <div class="m-portlet__head-tools">
                                     <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -327,13 +327,16 @@ background-color: blanchedalmond;
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
                                             CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
                                         </cc1:ModalPopupExtender>
                                     </div>
+
+                                    <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-danger m-btn m-btn--icon m-btn--wide m-btn--md" Text="Reject" />
+
                                 </div>
 
                             </div>
@@ -411,7 +414,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
                                     <ItemTemplate>
 
-                                        <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
+                                        <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                        <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
                                         <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
@@ -422,19 +426,21 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                 <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
                                             <div class="col-md-9">
+
                                                 <div id="divText" style="display: none" runat="server">
                                                     <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                                 </div>
+
                                                 <div id="divNumber" style="display: none" runat="server">
                                                     <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
                                                 </div>
+
                                                 <div id="divTextArea" style="display: none" runat="server">
                                                     <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                                 </div>
 
-
                                                 <div id="divRadioButton" style="display: none" runat="server">
-                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Vertical" ValidationGroup="Radio" ClientIDMode="Static" RepeatLayout="Flow" CellSpacing="1" CellPadding="1"></asp:RadioButtonList>
+                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
                                                 </div>
 
                                                 <div id="divImage" style="display: none" runat="server">
@@ -460,7 +466,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                     </div>
                                                 </div>
                                                 <div id="divCheckBox" style="display: none" runat="server">
-                                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
                                                 </div>
                                             </div>
                                         </div>
@@ -521,7 +527,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             <h5 class="mt-5">Temperature:</h5>
                                             <div class="row">
                                                 <div class="input-group date">
-                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
+                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" step=".01" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
                                                     </div>
@@ -553,11 +559,13 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been saved successfully</label>
+                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
                                                     </div>
                                                     <div class="form-group m-form__group row">
-                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Ticket No :</label>
+                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
                                                         <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                        <br />
+                                                        <strong>Please note down your Request ID.</strong>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -641,7 +649,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: flex;">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:block;">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">

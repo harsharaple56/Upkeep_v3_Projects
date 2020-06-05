@@ -48,7 +48,7 @@ namespace Upkeep_v3.VMS
                 }
                 else
                 {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    From_Date = DateTime.Now.AddDays(-29).ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
 
                 }
 
