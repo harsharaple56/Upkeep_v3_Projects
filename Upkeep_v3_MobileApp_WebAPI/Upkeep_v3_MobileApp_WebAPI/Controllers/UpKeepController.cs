@@ -7332,6 +7332,28 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             return response;
         }
 
+        [Route("api/UpKeep/Fetch_API_Version")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_API_Version()
+        {
+            string VersionNo = string.Empty;
+
+            try
+            {
+
+                VersionNo = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
+               
+                return Request.CreateResponse(HttpStatusCode.OK, VersionNo);
+                       
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            
+        }
 
         //[-]Gate Pass API by Ajay 7th March 2020
 
