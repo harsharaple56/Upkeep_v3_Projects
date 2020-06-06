@@ -21,10 +21,10 @@
                             field: "Status", title: "Status", template: function (e) {
                                 var t =
                                 {
-                                    "IN": { title: "IN", class: "m-badge--danger" },
+                                    "IN": { title: "IN", class: "m-badge--warning" },
                                     "OUT": { title: "OUT", class: " m-badge--success" },
                                     "Approve": { title: "Approved", class: " m-badge--success" },
-                                    "Apply": { title: "Apply", class: " m-badge--warning" },
+                                    "Apply": { title: "Apply", class: " m-badge--brand" },
                                     "Reject": { title: "Rejected", class: " m-badge--danger" },
                                     "Expired": { title: "Expired", class: "bg-secondary text-black" },
                                     "In Progress": { title: "In Progress", class: "text-white bg-info" }
@@ -71,9 +71,9 @@
             $('.m_selectpicker').selectpicker();
             //alert('1111');
             var picker = $('#daterangepicker');
-            //var start = moment().subtract(29, 'days');
+            var start = moment().subtract(29, 'days');
             //var end = moment();
-            var start = moment();
+            //var start = moment();
             var end = moment().add(30, 'days');
 
 
@@ -96,7 +96,7 @@
                 
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
-
+                //alert(start);
                 $('#start_date').val(start.format('DD/MM/YYYY'));
                 $('#end_date').val(end.format('DD/MM/YYYY'));
                 $('#date_range_title').val(title + range);
