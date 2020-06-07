@@ -220,11 +220,11 @@
 
             var name = "";
             $(document).on('change', '.ddlAns', function () {
-                var ddlansval = $(this).val();
-                if (ddlansval === "")
+                var isMulti = $(this).find(':selected').attr("data-ismulti");
+                if (isMulti === "")
                     return
-                //alert(ddlansval+"===");
-                if (ddlansval == '1' || ddlansval == '2') {
+                //alert(isMulti+"===");
+                if (isMulti === 'True') {
                     //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
@@ -236,11 +236,13 @@
 
                     $('#btnModal').click();
                     //alert($(this).val())
-                    if ($(this).val() == "1")
-                        $(".modal-title").text("Add Multi Select Answers");
-                    else if ($(this).val() == "2")
-                        $(".modal-title").text("Add Single Select Answers");
 
+                    //Commented by RC
+                    //if ($(this).val() == "1")
+                    //    $(".modal-title").text("Add Multi Select Answers");
+                    //else if ($(this).val() == "2")
+                    //    $(".modal-title").text("Add Single Select Answers");
+                    //Commented by RC END
                 }
                 else {
                     //alert($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"));

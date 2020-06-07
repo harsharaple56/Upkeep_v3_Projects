@@ -44,11 +44,13 @@ namespace Upkeep_v3_MobileApp_WebAPI
         {
             public string title { get; set; }
             public string body { get; set; }
+            public string click_action { get; set; }
 
-            public Notification(string title, string body)
+            public Notification(string title, string body, string click_action)
             {
                 this.title = title;
                 this.body = body;
+                this.click_action = click_action;
             }
         }
 
@@ -66,7 +68,7 @@ namespace Upkeep_v3_MobileApp_WebAPI
             }
         }
 
-        public static string SendNotification(string token, string title, string message)
+        public static string SendNotification(string token, string title, string message, string click_action)
         {
             var client = new RestClient("https://fcm.googleapis.com");
             // client.Authenticator = new HttpBasicAuthenticator(username, password);
@@ -77,7 +79,7 @@ namespace Upkeep_v3_MobileApp_WebAPI
             // request.AddBody(new Push(token, new Notification(title, message), new Data(title, message)));
             // request.RequestFormat = DataFormat.Json;
 
-            string data = JsonConvert.SerializeObject(new Push(token, new Notification(title, message), new Data(title, message)));
+            string data = JsonConvert.SerializeObject(new Push(token, new Notification(title, message, click_action), new Data(title, message)));
             request.AddParameter("application/json", data, ParameterType.RequestBody);
 
             //  Push push = new Push(title, message);
