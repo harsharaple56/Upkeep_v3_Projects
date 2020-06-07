@@ -310,7 +310,7 @@ namespace Upkeep_v3.VMS
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.GetEventList(CompanyID);
+                dsTitle = ObjUpkeep.GetEventList(CompanyID,"*");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)

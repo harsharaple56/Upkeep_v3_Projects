@@ -20,6 +20,47 @@ using System.IO;
 public class Upkeep_V3_Services : System.Web.Services.WebService
 {
 
+    //#region Private Variable
+    //private string strFname, strLname, strPhone, strEmailID, strGender;
+
+    //#endregion
+
+
+    //#region Properties
+     
+
+    //public string Fname
+    //{
+    //    get { return strFname; }
+
+    //    set { strFname = value; }
+    //}
+    //public string Lname
+    //{
+    //    get { return strLname; }
+
+    //    set { strLname = value; }
+    //}
+    //public string Phone
+    //{
+    //    get { return strPhone; }
+
+    //    set { strPhone = value; }
+    //}
+    //public string EmailID
+    //{
+    //    get { return strEmailID; }
+
+    //    set { strEmailID = value; }
+    //}
+    //public string Gender
+    //{
+    //    get { return strGender; }
+
+    //    set { strGender = value; }
+    //}
+    //#endregion
+
     My_Upkeep ObjUpkeep = new My_Upkeep();
     DataSet ds = new DataSet();
 
@@ -621,7 +662,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //Added by Sujata This function is used to save Feedback form
 
     [WebMethod]
-    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string FeedbackData, string LoggedInUserID) //CompanyID added by sujata
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID) //CompanyID added by sujata
     {
         DataSet ds = new DataSet();
 
@@ -629,7 +670,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Insert_FeedbackForm(CompanyID, EventID, FeedbackData, LoggedInUserID);
+            ds = obj.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID);
 
         }
         catch (Exception ex)
@@ -752,12 +793,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod(Description = "Fetch event list for MIS")]
-    public DataSet GetEventList(int CompanyID,String EventFor)  //CompanyID Added by Sujata 
+    public DataSet GetEventList(int CompanyID, String EventFor)  //CompanyID Added by Sujata 
     {
         DataSet dsEventList = new DataSet();
         My_FeedbackSystem obj = new My_FeedbackSystem();
 
-        dsEventList = obj.GetEventList(CompanyID,EventFor);
+        dsEventList = obj.GetEventList(CompanyID, EventFor);
 
         return dsEventList;
     }

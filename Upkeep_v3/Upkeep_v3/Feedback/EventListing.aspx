@@ -19,7 +19,7 @@
                 var newUrl = $(this).data('url');
                 $(".modal-body #aLink").html(newUrl);
                 //$(".modal-body #aLink").attr("href", newUrl)
-                alert("#" + newUrl.substr(newUrl.length - 5));
+                //alert("#" + newUrl.substr(newUrl.length - 5));
                 $("#" + newUrl.substr(newUrl.length - 5)).show();
 
                 // As pointed out in comments, 

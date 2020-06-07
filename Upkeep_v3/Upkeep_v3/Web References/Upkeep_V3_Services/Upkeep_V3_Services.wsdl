@@ -877,6 +877,11 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strLname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPhoneno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmailID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="FeedbackData" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
