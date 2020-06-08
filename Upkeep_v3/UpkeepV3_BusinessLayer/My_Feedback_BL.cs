@@ -11,6 +11,48 @@ namespace UpkeepV3_BusinessLayer
 {
   public class My_Feedback_BL
     {
+        //#region Private Variable
+        //private string strFname, strLname, strPhone, strEmailID, strGender;
+
+        //#endregion
+
+
+        //#region Properties
+
+
+        //public string Fname
+        //{
+        //    get { return strFname; }
+
+        //    set { strFname = value; }
+        //}
+        //public string Lname
+        //{
+        //    get { return strLname; }
+
+        //    set { strLname = value; }
+        //}
+        //public string Phone
+        //{
+        //    get { return strPhone; }
+
+        //    set { strPhone = value; }
+        //}
+        //public string EmailID
+        //{
+        //    get { return strEmailID; }
+
+        //    set { strEmailID = value; }
+        //}
+        //public string Gender
+        //{
+        //    get { return strGender; }
+
+        //    set { strGender = value; }
+        //}
+        //#endregion
+
+
         public DataSet LoginUser(string UserName, string strPassword, string strConn)
         {
             DataSet ds = new DataSet();
@@ -333,7 +375,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet bindEventDetails(int EventID, string strConn)
+        public DataSet bindEventDetails(int CompanyID,int EventID, string strConn) // companyID Added by sujata
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -344,6 +386,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
             con.Open();
 
@@ -352,6 +395,38 @@ namespace UpkeepV3_BusinessLayer
 
             return ds;
         }
+
+
+        //Added by Sujata This function is used to save Feedback form  
+        public DataSet Insert_FeedbackForm(int CompanyID, int EventID,string strFname,string strLname,string strPhoneno,string strGender,string strEmailID,  string FeedbackData,string LoggedInUserID, string strConn) // companyID Added by sujata
+        {
+            DataSet ds = new DataSet();
+            string strOutput = string.Empty;
+
+            SqlConnection con = new SqlConnection(strConn);
+
+            SqlCommand cmd = new SqlCommand("SPR_INSERT_FEEDBACK_REQUEST", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+            cmd.Parameters.AddWithValue("@Fname",strFname);
+            cmd.Parameters.AddWithValue("@Lname", strLname);
+            cmd.Parameters.AddWithValue("@PhoneNo", strPhoneno);
+            cmd.Parameters.AddWithValue("@EmailID", strEmailID);
+            cmd.Parameters.AddWithValue("@Gender", strGender);
+            cmd.Parameters.AddWithValue("@FeedbackData", FeedbackData);
+            cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+            
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            return ds;
+        }
+
+
 
         public DataTable Update_CustomerImage(string filePath, int UserID, string strConn)
         {
@@ -548,7 +623,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet GetEventList(string strConn)
+        public DataSet GetEventList(int CompanyID,string EventFor,string strConn) //CompanyID added by sujata 
         {
             SqlConnection con = new SqlConnection(strConn);
             DataSet ds = new DataSet();
@@ -556,6 +631,8 @@ namespace UpkeepV3_BusinessLayer
             {
                 SqlCommand cmd = new SqlCommand("Feedback_Proc_Get_EventList_MIS", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@EventFor", EventFor);
 
                 con.Open();
 

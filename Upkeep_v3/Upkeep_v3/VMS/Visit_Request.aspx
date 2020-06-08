@@ -97,11 +97,11 @@ background-color: blanchedalmond;
                 todayHighlight: true,
                 autoclose: true,
                 pickerPosition: 'bottom-right',
-                format: 'dd/mm/yyyy HH:ii P',
+                format: 'dd-MM-yyyy HH:ii P',
                 showMeridian: true,
-                startDate: moment().format('YYYY-MM-DD'),
+                startDate: moment().format('dd-MM-yyyy'),
             }).on('changeDate', function (event) {
-                var startDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var startDate = moment($('#txtVMSDate').val(), 'dd-MM-yyyy hh:mm A').valueOf();
                 //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
                 //if(endDate < startDate)
@@ -258,6 +258,53 @@ background-color: blanchedalmond;
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
 
+
+                        <div class="alert m-alert--default m-alert--icon" id="divAlertExpired" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Expired!</strong> This Request is Expired.
+                            </div>
+                        </div>
+                        <div class="alert alert-warning m-alert--icon" id="divAlertOpen" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>IN!</strong> This Request is Open.
+                            </div>
+                        </div>
+                        <div class="alert alert-success m-alert--icon" id="divAlertClosed" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>OUT!</strong> This Request is Closed.
+                            </div>
+                        </div>
+                        <div class="alert alert-brand m-alert--icon" id="divAlertApply" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Apply!</strong> This Request is Applied.
+                            </div>
+                        </div>
+                        <div class="alert alert-danger m-alert--icon" id="divAlertRejected" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Rejected!</strong> This Request is Rejected.
+                            </div>
+                        </div>
+
+                        <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
+                            <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
+
+                        </div>
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -271,9 +318,8 @@ background-color: blanchedalmond;
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-md-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                    <a href="<%= Page.ResolveClientUrl("~/VMS/MyVMS.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                <div class="m-portlet__head-tools">
+                                    <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
@@ -281,13 +327,16 @@ background-color: blanchedalmond;
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
                                             CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
                                         </cc1:ModalPopupExtender>
                                     </div>
+
+                                    <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-danger m-btn m-btn--icon m-btn--wide m-btn--md" Text="Reject" />
+
                                 </div>
 
                             </div>
@@ -296,8 +345,8 @@ background-color: blanchedalmond;
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Visit Title :</label>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
+                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Form Title :</label>
                                     <div class="col-md-4">
                                         <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
@@ -306,11 +355,32 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <br />
-
+                                <div id="divDesc" runat="server" class="alert alert-primary alert-dismissible fade show   m-alert m-alert--air m-alert--outline" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    </button>
+                                    <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
+                                </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Visit Date :</label>
-                                    <div class="col-md-3 col-form-label">
+                                    <label class="col-md-1 col-form-label font-weight-bold">Email :</label>
+                                    <div class="col-md-5 col-form-label">
+                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
+
+                                    </div>
+
+                                    <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
+                                    <label class="col-md-1 col-form-label font-weight-bold">Phone :</label>
+                                    <div class="col-md-5 col-form-label">
+                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Phone no. to receive visit confirmation on yor phone.."></asp:TextBox>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-md-1 col-form-label font-weight-bold">Visit Date :</label>
+                                    <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
                                             <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
@@ -322,8 +392,8 @@ background-color: blanchedalmond;
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-2 col-form-label font-weight-bold" style="text-align: right;">Meeting with :</label>
-                                    <div class="col-md-4 col-form-label">
+                                    <label class="col-md-1 col-form-label font-weight-bold">Meeting with :</label>
+                                    <div class="col-md-5 col-form-label">
                                         <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
@@ -332,9 +402,6 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                     </div>
                                     <%-- </div>--%>
                                 </div>
-
-
-
 
 
                                 <br />
@@ -347,30 +414,33 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
                                     <ItemTemplate>
 
-                                        <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
+                                        <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                        <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
                                         <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <div class="col-md-3">
                                                 <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Eval("Is_Mandatory").ToString() == "Yes" ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
                                                 <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
                                                 <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
                                             <div class="col-md-9">
+
                                                 <div id="divText" style="display: none" runat="server">
                                                     <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                                 </div>
+
                                                 <div id="divNumber" style="display: none" runat="server">
                                                     <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
                                                 </div>
+
                                                 <div id="divTextArea" style="display: none" runat="server">
                                                     <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                                 </div>
 
-
                                                 <div id="divRadioButton" style="display: none" runat="server">
-                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Vertical" ValidationGroup="Radio" ClientIDMode="Static" RepeatLayout="Flow" CellSpacing="1" CellPadding="1"></asp:RadioButtonList>
+                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
                                                 </div>
 
                                                 <div id="divImage" style="display: none" runat="server">
@@ -396,7 +466,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                     </div>
                                                 </div>
                                                 <div id="divCheckBox" style="display: none" runat="server">
-                                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,7 +481,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                 <br />
                                 <%-- Covid19 assessment --%>
-                                <div>
+                                <div id="divCovid" runat="server" visible="false">
                                     <div class="form-group row" style="background-color: #00c5dc;">
                                         <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Covid-19 Assessment Test</label>
                                     </div>
@@ -454,6 +524,16 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                 <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
 
                                             </div>
+                                            <h5 class="mt-5">Temperature:</h5>
+                                            <div class="row">
+                                                <div class="input-group date">
+                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" step=".01" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
+                                                    </div>
+                                                </div>
+                                                <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -479,11 +559,13 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been saved successfully</label>
+                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
                                                     </div>
                                                     <div class="form-group m-form__group row">
-                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Ticket No :</label>
+                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
                                                         <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                        <br />
+                                                        <strong>Please note down your Request ID.</strong>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -567,7 +649,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:block;">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">

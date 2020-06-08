@@ -15,12 +15,14 @@ namespace Upkeep_v3
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
-        
+        string SessionVisitor = string.Empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-           
-            if (string.IsNullOrEmpty(LoggedInUserID))
+            SessionVisitor = Convert.ToString(Session["Visitor"]);
+
+            if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
             {
                 Response.Redirect("~/Login.aspx", false);
                 return;
@@ -93,5 +95,10 @@ namespace Upkeep_v3
             }
         }
 
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("~/Login.aspx");
+        }
     }
 }

@@ -821,7 +821,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images,string strTicketAction,string CurrentLevel, string StrConn)
+        public DataSet Close_Ticket_Details(string TicketID, string CloseTicketDesc, string LoggedInUserID, string list_Images, string strTicketAction, string CurrentLevel, string StrConn)
         {
             try
             {
@@ -1082,7 +1082,7 @@ namespace UpkeepV3_BusinessLayer
         #region VMS
 
         //Added by RC This function is used to save VMS Configuration
-        public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strXmlVMS_Question, string strXmlVMS_Feedback, bool blFeedbackCompulsary, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1091,11 +1091,13 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
-                cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
+                cmd.Parameters.AddWithValue("@ConfigDesc", strConfigDesc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Initiator", strInitiator);
                 cmd.Parameters.AddWithValue("@XmlVMS_Question", strXmlVMS_Question);
-                cmd.Parameters.AddWithValue("@XmlVMS_Feedback", strXmlVMS_Feedback);
                 cmd.Parameters.AddWithValue("@isFeedbackCompulsary", blFeedbackCompulsary);
+                cmd.Parameters.AddWithValue("@FeedbackID", FeedbackTitle);
+                cmd.Parameters.AddWithValue("@EnableCovid", blEnableCovid);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -1127,7 +1129,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        //Added by RC This function is used to Bind VMS Configuration
+        //Added by RC This function is used to Bind VMS Configuration 
         public DataSet Bind_VMSConfiguration(int VMS_ConfigID, string StrConn)
         {
             DataSet ds = new DataSet();
@@ -1148,13 +1150,13 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to Fetch VMS Request list
-        public DataSet Fetch_MyRequestVMS(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        public DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("SPR_FETCH_MYREQUEST_VMS", con);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_REQUEST_LIST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
@@ -1170,7 +1172,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to bind VMS request details
-        public DataSet Bind_VMSRequestDetails(int VMS_ConfigID, string LoggedInUserID, string StrConn)
+        public DataSet Bind_VMSRequestDetails(int RequestID, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1178,7 +1180,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_REQUEST_DATA", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -1191,7 +1193,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, int VMS_ConfigID, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSFeedbackData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1200,13 +1202,39 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@Phone", Phone);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);
-                cmd.Parameters.AddWithValue("@MeetUsers", strVMSDate);
+                cmd.Parameters.AddWithValue("@MeetUsers", strMeetUsrs);
                 cmd.Parameters.AddWithValue("@VisitData", strVMSData);
-                cmd.Parameters.AddWithValue("@FeedbackData", strVMSFeedbackData);
+                cmd.Parameters.AddWithValue("@CovidColorCode", strVMSCovidColorCode);
+                cmd.Parameters.AddWithValue("@CovidtestDate", strVMSCovidTestDate);
+                cmd.Parameters.AddWithValue("@Temperature", strTemperature);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to Fetch Visit Form Url for Session less User 
+        public DataSet Fetch_VMSFormURL(string ShortUrl, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_FORMLINK", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ShortUrl", ShortUrl);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

@@ -349,10 +349,12 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                         }
                         else if (Status == 3)
                         {
+                            divError.Visible = true;
                             lblErrorMsg.Text = "Title already exists";
                         }
                         else if (Status == 2)
                         {
+                            divError.Visible = true;
                             lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
                     }

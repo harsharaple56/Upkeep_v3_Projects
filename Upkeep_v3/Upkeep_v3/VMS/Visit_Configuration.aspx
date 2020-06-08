@@ -36,6 +36,16 @@
             init_autosize();
             init_plugins();
 
+            $("#divFeedback").hide();
+            $("#divChkFeedback").click(function () {
+                //alert("hii");
+                if ($("#ChkFeedback").is(":checked")) {
+                    $("#divFeedback").hide(300);
+                } else {
+                    $("#divFeedback").show(200);
+                }
+            });
+
             $('.VMSQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -63,32 +73,32 @@
                 },
             });
 
-            $('.VMSFeedback_repeater').repeater({
-                initEmpty: false,
-                show: function () {
-                    $(this).slideDown();
-                    var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-                    var question_count = counter.data('count');
-                    question_count++;
-                    $('#txtFeedbackCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-                    $('#error_VMSFeedback').html('');
+            //$('.VMSFeedback_repeater').repeater({
+            //    initEmpty: false,
+            //    show: function () {
+            //        $(this).slideDown();
+            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
+            //        var question_count = counter.data('count');
+            //        question_count++;
+            //        $('#txtFeedbackCount').val(question_count);
+            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
+            //        $('#error_VMSFeedback').html('');
 
-                    init_autosize();
-                    init_plugins();
-                },
-                hide: function (deleteElement) {
-                    $(this).slideUp(deleteElement);
-                    var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-                    var question_count = counter.data('count');
-                    question_count--;
-                    $('#txtFeedbackCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-                    if (question_count == 0) {
-                        $('#error_VMSFeedback').html('Add at least one VMS Feedback.');
-                    }
-                },
-            });
+            //        init_autosize();
+            //        init_plugins();
+            //    },
+            //    hide: function (deleteElement) {
+            //        $(this).slideUp(deleteElement);
+            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
+            //        var question_count = counter.data('count');
+            //        question_count--;
+            //        $('#txtFeedbackCount').val(question_count);
+            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
+            //        if (question_count == 0) {
+            //            $('#error_VMSFeedback').html('Add at least one VMS Feedback.');
+            //        }
+            //    },
+            //});
 
 
             $('.AnswerType_repeater').repeater({
@@ -159,13 +169,7 @@
                 }
             });
 
-            $('body').on('change', '.TermComdition_repeater .TermCondition_textarea', function () {
-                var error_ele = $(this).parent().find('.error_TermCondition');
-                error_ele.html('').parents('.form-group').removeClass('has-error');
-                if ($(this).val().trim() == '') {
-                    $(this).parent().find('.error_TermCondition').html('Enter Term & Comdition').parents('.form-group').addClass('has-error');
-                }
-            });
+
 
             $('#frmVMS').submit(function (event) {
                 //alert('hiiiii');
@@ -197,21 +201,6 @@
                     }
                 });
 
-                $('.VMSFeedback_repeater .VMSFeedback_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_VMSFeedback').html('Enter Feedback.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
-                $('.TermComdition_repeater .TermCondition_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_TermCondition').html('Enter Terms and Condition.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
-
                 if ($('.VMSQuestion_repeater .question_textarea').length == 0) {
                     //alert('sdf');
                     is_valid = false;
@@ -231,11 +220,11 @@
 
             var name = "";
             $(document).on('change', '.ddlAns', function () {
-                var ddlansval = $(this).val();
-                if (ddlansval === "")
+                var isMulti = $(this).find(':selected').attr("data-ismulti");
+                if (isMulti === "")
                     return
-                //alert(ddlansval+"===");
-                if (ddlansval == '1' || ddlansval == '2') {
+                //alert(isMulti+"===");
+                if (isMulti === 'True') {
                     //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
@@ -247,11 +236,13 @@
 
                     $('#btnModal').click();
                     //alert($(this).val())
-                    if ($(this).val() == "1")
-                        $(".modal-title").text("Add Multi Select Answers");
-                    else if ($(this).val() == "2")
-                        $(".modal-title").text("Add Single Select Answers");
 
+                    //Commented by RC
+                    //if ($(this).val() == "1")
+                    //    $(".modal-title").text("Add Multi Select Answers");
+                    //else if ($(this).val() == "2")
+                    //    $(".modal-title").text("Add Single Select Answers");
+                    //Commented by RC END
                 }
                 else {
                     //alert($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"));
@@ -392,6 +383,11 @@
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmVMS" method="post">--%>
                         <%--<cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>--%>
 
+                        <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
+                            <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
+
+                        </div>
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -427,7 +423,7 @@
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span>Title :</label>
+                                    <label class="col-md-3  col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
                                     <div class="col-xl-4 col-lg-4">
                                         <asp:HiddenField ID="hdnVMSConfigID" ClientIDMode="Static" Value="0" runat="server" />
                                         <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
@@ -435,16 +431,10 @@
                                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>--%>
                                         <span class="error_title text-danger medium"></span>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-light">
-                                                <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
-                                        </div>
 
-                                    </div>
                                 </div>
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span>Description :</label>
+                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span>Description :</label>
                                     <div class="col-md-6">
                                         <asp:TextBox ID="txtVMSDesc" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
@@ -452,17 +442,44 @@
                                     </div>
 
                                 </div>
-                                <%--                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 col-form-label"><span style="color: red;">*</span> Company :</label>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlCompany" class="form-control m-input" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Company"></asp:RequiredFieldValidator>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Form For:</label>
+                                    <div class="col-3">
+                                        <div class="m-radio-inline">
+                                            <label class="m-radio" for="rdbCustomer">
+                                                <asp:RadioButton ID="rdbCustomer" runat="server" ClientIDMode="Static" GroupName="Initiator" />
+                                                Customer
+													<span></span>
+                                            </label>
+                                            <label class="m-radio" for="rdbVisitor">
+                                                <asp:RadioButton ID="rdbVisitor" runat="server" ClientIDMode="Static" GroupName="Initiator" Checked="true" />
+                                                Visitor
+													<span></span>
+                                            </label>
+                                        </div>
+                                        <span id="error_question_for" class="text-danger small"></span>
                                     </div>
 
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-toggle" id="divChkFeedback" data-toggle="buttons">
+                                            <label class="btn btn-light" id="lblChkFeedback">
+                                                <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-light">
+                                                <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divFeedback">
+                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
+                                    <div class="col-md-4">
+                                        <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
+                                    </div>
 
-                                </div>--%>
-
+                                </div>
 
                                 <br />
 
@@ -535,7 +552,7 @@
                                                 </div>
                                                 <div class="col-lg-8">
 
-                                                    <input type="hidden" id="txtQuestionCount" ClientIDMode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
+                                                    <input type="hidden" id="txtQuestionCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
                                                     <label id="lblQuestionCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
                                                 </div>
                                                 <span id="error_question_repeater" class="text-danger medium"></span>
@@ -546,7 +563,7 @@
                                 </div>
                                 <br />
 
-                                <div class="form-group row" style="background-color: #00c5dc;">
+                                <%-- <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">VMS Feedback</label>
                                 </div>
                                 <br />
@@ -616,7 +633,7 @@
                                                 </div>
                                                 <div class="col-lg-8">
 
-                                                    <input type="hidden" ClientIDMode="Static" id="txtFeedbackCount" data-count="1" value="1" class="txtVMSFeedback_count" runat="server" />
+                                                    <input type="hidden" clientidmode="Static" id="txtFeedbackCount" data-count="1" value="1" class="txtVMSFeedback_count" runat="server" />
                                                     <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold VMSFeedback_count" data-count="1">1 VMS Feedback(s)</label>
                                                 </div>
                                                 <span id="error_VMSFeedback" class="text-danger medium"></span>
@@ -624,12 +641,9 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
 
                                 <br />
-
-                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
                             </div>
                         </div>
 
@@ -689,6 +703,7 @@
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                        <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
 
                         <%--</form>--%>
                     </div>

@@ -12,6 +12,48 @@ using System.Reflection;
 /// </summary>
 public class My_FeedbackSystem
 {
+
+    //#region Private Variable
+    //private string strFname, strLname, strPhone, strEmailID, strGender;
+
+    //#endregion
+
+
+    //#region Properties
+
+
+    //public string Fname
+    //{
+    //    get { return strFname; }
+
+    //    set { strFname = value; }
+    //}
+    //public string Lname
+    //{
+    //    get { return strLname; }
+
+    //    set { strLname = value; }
+    //}
+    //public string Phone
+    //{
+    //    get { return strPhone; }
+
+    //    set { strPhone = value; }
+    //}
+    //public string EmailID
+    //{
+    //    get { return strEmailID; }
+
+    //    set { strEmailID = value; }
+    //}
+    //public string Gender
+    //{
+    //    get { return strGender; }
+
+    //    set { strGender = value; }
+    //}
+    //#endregion
+
     UpkeepV3_BusinessLayer.My_Feedback_BL ObjFeedback_BL = new UpkeepV3_BusinessLayer.My_Feedback_BL();
     string strConn;
 	public My_FeedbackSystem()
@@ -239,7 +281,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet bindEventDetails(int EventID)
+    public DataSet bindEventDetails(int CompanyID,int EventID)  //CompanyID Added by sujata 
     {
         try
         {
@@ -247,7 +289,26 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.bindEventDetails(EventID, strConn);
+            ds = ObjFeedback_BL.bindEventDetails(CompanyID,EventID, strConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by Sujata This function is used to save Feedback form
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID)  //CompanyID Added by sujata 
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
+            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID ,strConn);
 
             return ds;
         }
@@ -386,7 +447,7 @@ public class My_FeedbackSystem
     }
 
 
-    public DataSet GetEventList()
+    public DataSet GetEventList(int CompanyID,String EventFor) //CompanyID Added by Sujata 
     {
         try
         {
@@ -394,7 +455,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  obj = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.GetEventList(strConn);
+            ds = ObjFeedback_BL.GetEventList(CompanyID,EventFor,strConn);
 
             return ds;
         }

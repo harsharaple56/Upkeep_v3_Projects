@@ -695,12 +695,20 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public List<ClsWorkPermitSection> ObjClsSection { get; set; }
         public List<ClsWorkPermitApprover> ObjClsApprover { get; set; }
         public List<ClsWorkPermitApproverMatrix> ObjClsApproverMatrix { get; set; }
-		
+        public List<ClsWorkPermitActions> ObjClsActions { get; set; }
         //public List<ClsWorkPermitTransaction> ObjClsTransaction = new List<ClsWorkPermitTransaction>();
         //public List<ClsWorkPermitInitiator> ObjClsInitiator = new List<ClsWorkPermitInitiator>();
         //public List<ClsWorkPermitSection> ObjClsSection = new List<ClsWorkPermitSection>();
         //public List<ClsWorkPermitApprover> ObjClsApprover = new List<ClsWorkPermitApprover>(); 
+
     }
+
+    public class ClsWorkPermitActions
+    {
+        public string ActionID { get; set; }
+        public string Action_Desc { get; set; }
+    }
+
     public class ClsWorkPermitTransaction
     {
         //0
@@ -774,6 +782,59 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
 
     #endregion
 
+    #region Ticketing
 
+    public class ClsMyActionableTicket
+    {
+        public string TicketID { get; set; }
+        public string TicketCode { get; set; }
+        public string LocID { get; set; }
+        public string Loc_Desc { get; set; }
+        public string CategoryID { get; set; }
+        public string Category_Desc { get; set; }
+        public string SubCategoryID { get; set; }
+        public string SubCategory_Desc { get; set; }
+        public string Ticket_Date { get; set; }
+        public string Ticket_Status { get; set; }
+        public string Ticket_ActionStatus { get; set; }
+        public string Ticket_Message { get; set; }
+        public string Ticket_ImagePath { get; set; }
+
+    }
+
+    public class ClsTicketRaise
+    {
+        //public string TicketPrefix { get; set; }
+        public string LocationID { get; set; }
+        public string CategoryID { get; set; }
+        public string SubCategoryID { get; set; }
+        public string Ticket_Message { get; set; }
+        //public string Ticket_ImagePath { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+
+    }
+
+    public class ClsTicketUpdateAction
+    {
+        public string TicketID { get; set; }
+        public string CloseTicketDesc { get; set; }
+        public string TicketAction { get; set; }
+        public string CurrentLevel { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+
+    }
+
+    public class ClsTicketImage
+    {
+        public string TicketID { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+        public string Ticket_ImagePath { get; set; }
+        public string TicketFlag { get; set; }
+    }
+
+    #endregion
 
 }

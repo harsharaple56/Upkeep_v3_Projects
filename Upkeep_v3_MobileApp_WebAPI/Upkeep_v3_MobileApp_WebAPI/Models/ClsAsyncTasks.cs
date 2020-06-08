@@ -79,7 +79,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
                         DblRequestID = Convert.ToDouble(ObjLocSqlParameters[33].Value);
                         Dblflowid = Convert.ToDouble(ObjLocSqlParameters[34].Value);
 
-                        string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + Convert.ToString(ObjLocSqlParameters[35].Value), "New request recieved");
+                        string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + Convert.ToString(ObjLocSqlParameters[35].Value), "New request recieved","TICKET");
 
                     }
 

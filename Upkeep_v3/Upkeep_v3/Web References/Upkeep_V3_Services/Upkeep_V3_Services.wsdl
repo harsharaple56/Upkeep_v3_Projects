@@ -853,6 +853,7 @@
       <s:element name="bindEventDetails">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -861,6 +862,35 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="bindEventDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_FeedbackForm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strLname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPhoneno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FeedbackData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_FeedbackFormResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_FeedbackFormResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -991,7 +1021,12 @@
         </s:complexType>
       </s:element>
       <s:element name="GetEventList">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventFor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetEventListResponse">
         <s:complexType>
@@ -1438,9 +1473,11 @@
             <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strConfigDesc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strXmlVMS_Question" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlVMS_Feedback" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="blFeedbackCompulsary" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FeedbackTitle" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="blEnableCovid" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -1501,7 +1538,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MyRequestVMS">
+      <s:element name="Fetch_VMSRequestList">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
@@ -1510,10 +1547,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MyRequestVMSResponse">
+      <s:element name="Fetch_VMSRequestListResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestVMSResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestListResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1527,7 +1564,7 @@
       <s:element name="Bind_VMSRequestDetails">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -1550,11 +1587,17 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Action" type="s1:char" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strMeetUsrs" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSData" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSFeedbackData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidColorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidTestDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTemperature" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -1563,6 +1606,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSFormURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShortUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSFormURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSFormURLResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2098,6 +2162,12 @@
   <wsdl:message name="bindEventDetailsSoapOut">
     <wsdl:part name="parameters" element="tns:bindEventDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="Insert_FeedbackFormSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_FeedbackForm" />
+  </wsdl:message>
+  <wsdl:message name="Insert_FeedbackFormSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_FeedbackFormResponse" />
+  </wsdl:message>
   <wsdl:message name="Get_CustomerDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Get_CustomerDetails" />
   </wsdl:message>
@@ -2260,11 +2330,11 @@
   <wsdl:message name="Bind_VMSConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Bind_VMSConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MyRequestVMSSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyRequestVMS" />
+  <wsdl:message name="Fetch_VMSRequestListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MyRequestVMSSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyRequestVMSResponse" />
+  <wsdl:message name="Fetch_VMSRequestListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestListResponse" />
   </wsdl:message>
   <wsdl:message name="Bind_VMSRequestDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetails" />
@@ -2277,6 +2347,12 @@
   </wsdl:message>
   <wsdl:message name="Insert_VMSRequestSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_VMSRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSFormURLSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURL" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSFormURLSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURLResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Answer" />
@@ -2501,6 +2577,10 @@
       <wsdl:input message="tns:bindEventDetailsSoapIn" />
       <wsdl:output message="tns:bindEventDetailsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Insert_FeedbackForm">
+      <wsdl:input message="tns:Insert_FeedbackFormSoapIn" />
+      <wsdl:output message="tns:Insert_FeedbackFormSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Get_CustomerDetails">
       <wsdl:input message="tns:Get_CustomerDetailsSoapIn" />
       <wsdl:output message="tns:Get_CustomerDetailsSoapOut" />
@@ -2610,9 +2690,9 @@
       <wsdl:input message="tns:Bind_VMSConfigurationSoapIn" />
       <wsdl:output message="tns:Bind_VMSConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestVMS">
-      <wsdl:input message="tns:Fetch_MyRequestVMSSoapIn" />
-      <wsdl:output message="tns:Fetch_MyRequestVMSSoapOut" />
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <wsdl:input message="tns:Fetch_VMSRequestListSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSRequestListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Bind_VMSRequestDetails">
       <wsdl:input message="tns:Bind_VMSRequestDetailsSoapIn" />
@@ -2621,6 +2701,10 @@
     <wsdl:operation name="Insert_VMSRequest">
       <wsdl:input message="tns:Insert_VMSRequestSoapIn" />
       <wsdl:output message="tns:Insert_VMSRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <wsdl:input message="tns:Fetch_VMSFormURLSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSFormURLSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
@@ -3001,6 +3085,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Insert_FeedbackForm">
+      <soap:operation soapAction="http://tempuri.org/Insert_FeedbackForm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Get_CustomerDetails">
       <soap:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
       <wsdl:input>
@@ -3244,8 +3337,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestVMS">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestVMS" style="document" />
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3264,6 +3357,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_VMSRequest">
       <soap:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3715,6 +3817,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Insert_FeedbackForm">
+      <soap12:operation soapAction="http://tempuri.org/Insert_FeedbackForm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Get_CustomerDetails">
       <soap12:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
       <wsdl:input>
@@ -3958,8 +4069,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestVMS">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestVMS" style="document" />
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3978,6 +4089,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_VMSRequest">
       <soap12:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

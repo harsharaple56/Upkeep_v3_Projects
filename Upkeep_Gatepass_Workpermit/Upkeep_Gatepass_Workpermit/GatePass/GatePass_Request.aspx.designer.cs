@@ -220,6 +220,15 @@ namespace Upkeep_Gatepass_Workpermit.GatePass {
         protected global::System.Web.UI.WebControls.Repeater rptTermsCondition;
         
         /// <summary>
+        /// dvApprovalMatrix control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvApprovalMatrix;
+        
+        /// <summary>
         /// gvApprovalMatrix control.
         /// </summary>
         /// <remarks>
