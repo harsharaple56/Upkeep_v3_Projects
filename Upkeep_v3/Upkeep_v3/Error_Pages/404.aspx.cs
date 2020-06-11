@@ -16,20 +16,28 @@ namespace Upkeep_v3.Error_Pages
             //Check for visitor
             Session["Visitor"] = null;
             string path = HttpContext.Current.Request.RawUrl.Replace("/", "");
-            string VisitFormURL = "/VMS/Visit_Request.aspx?ConfigID=";
+            Char FormType = ' ';
+            string VisitFormURL = "../Login.aspx";
             DataSet dsURL = new DataSet();
             dsURL = ObjUpkeep.Fetch_VMSFormURL(path);
             if (dsURL.Tables[0] != null)
             {
                 if (dsURL.Tables[0].Rows.Count > 0)
                 {
+                    FormType = Convert.ToChar(dsURL.Tables[0].Rows[0]["FormType"]);
+                    if (FormType == 'V')
+                    { VisitFormURL = "/VMS/Visit_Request.aspx?ConfigID="; }
+                    else if (FormType == 'F')
+                    { VisitFormURL = "/Feedback/Feedback_Request.aspx?EventID="; }
                     VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
+
                     Session["Visitor"] = "Visitor";
+                    //Session["Visitor"]
                     Response.Redirect(VisitFormURL);
                 }
                 else
                 {
-                    
+
                 }
             }
         }
