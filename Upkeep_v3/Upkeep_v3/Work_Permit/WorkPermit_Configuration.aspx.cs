@@ -802,7 +802,7 @@ namespace Upkeep_v3.WorkPermit
             {
                 Initiator = "E"; //Approvers only be employee not retailer
                 DataSet dsApprovalMatrix = new DataSet();
-                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupListGPWP(Initiator);
+                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList();   //changed function RC
 
                 if (dsApprovalMatrix.Tables.Count > 0)
                 {
