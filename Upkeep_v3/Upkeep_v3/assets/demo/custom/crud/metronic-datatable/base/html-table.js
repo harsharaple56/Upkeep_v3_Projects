@@ -103,7 +103,7 @@ var DatatableHtmlTableDemo = {
                         var t =
                         {
                             "Open": { title: "Open", class: "m-badge--danger" },
-                            //"Transferred": { title: "Transferred", class: "m-badge--brand" },
+                            "Expired": { title: "Expired", class: "m-badge--brand" },
                             //"FaultyTicket": { title: "FaultyTicket", class: " m-badge--primary" },
                             "Closed": { title: "Closed", class: " m-badge--success" },
                             "Parked": { title: "Parked", class: " m-badge--warning" }
