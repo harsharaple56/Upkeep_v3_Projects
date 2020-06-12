@@ -779,16 +779,16 @@
                                                                 <br />
                                                                 <asp:GridView class="m-datatable" ID="html_table" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable" AutoGenerateColumns="false" SkinID="grdSearch">
                                                                     <Columns>
-                                                                        <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
+                                                                        <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
 
                                                                         <asp:TemplateField HeaderText="Action/Info Description" SortExpression="Name">
                                                                             <ItemTemplate>
-                                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"ActionInfoId")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"ActionInfoDesc")) %>')">
-                                                                                    <%# (DataBinder.Eval(Container.DataItem, "ActionInfoDesc"))%>
+                                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
+                                                                                    <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
                                                                                 </a>
                                                                             </ItemTemplate>
                                                                         </asp:TemplateField>
-                                                                        <asp:BoundField DataField="Empname" SortExpression="Empname" HeaderText="Empname"></asp:BoundField>
+                                                                        <asp:BoundField DataField="User_Name_Code" SortExpression="Empname" HeaderText="Empname"></asp:BoundField>
                                                                     </Columns>
 
                                                                     <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
@@ -799,16 +799,16 @@
                                                             <div class="tab-pane" id="t2">
                                                                 <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable" runat="server" SkinID="grdSearch">
                                                                     <Columns>
-                                                                        <asp:BoundField DataField="ActionInfoGId" Visible="false"></asp:BoundField>
+                                                                        <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
 
-                                                                        <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="ActionInfoGroupDesc">
+                                                                        <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
                                                                             <ItemTemplate>
-                                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"ActionInfoGId")) %>','<%# (DataBinder.Eval(Container.DataItem,"ActionInfoGroupDesc")) %>')">
-                                                                                    <%# (DataBinder.Eval(Container.DataItem, "ActionInfoGroupDesc"))%>
+                                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
+                                                                                    <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
                                                                                 </a>
                                                                             </ItemTemplate>
                                                                         </asp:TemplateField>
-                                                                        <asp:BoundField DataField="ActionInfoDesc" SortExpression="ActionInfoDesc" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                        <asp:BoundField DataField="User_Name" SortExpression="User_Name" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
 
                                                                     </Columns>
 

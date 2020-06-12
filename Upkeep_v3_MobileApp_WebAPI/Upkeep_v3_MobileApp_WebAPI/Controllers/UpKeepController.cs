@@ -7541,7 +7541,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO, TicketNo, "New Workpermit Request", "WORKPERMIT");
+                                FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
                             }
 
                         }

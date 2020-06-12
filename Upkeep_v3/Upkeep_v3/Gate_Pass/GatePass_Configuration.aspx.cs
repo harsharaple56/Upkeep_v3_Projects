@@ -586,7 +586,7 @@ namespace Upkeep_v3.GatePass
             {
                 Initiator = "E"; //Approvers only be employee not retailer
                 DataSet dsApprovalMatrix = new DataSet();
-                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupListGPWP(Initiator);
+                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList();  // changed function
 
                 if (dsApprovalMatrix.Tables.Count > 0)
                 {

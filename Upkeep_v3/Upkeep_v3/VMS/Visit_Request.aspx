@@ -421,8 +421,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <div class="col-md-3">
                                                 <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Eval("Is_Mandatory").ToString() == "Yes" ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
-                                                <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                                <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
                                                 <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
                                             <div class="col-md-9">
@@ -651,7 +651,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
                                                                         AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:block;">
                                                                         <Columns>
-                                                                            <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
+                                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">
                                                                                 <ItemTemplate>
                                                                                     <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
@@ -662,7 +662,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                                     <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="ActionInfoDesc">
+                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
                                                                                 <ItemTemplate>
                                                                                     <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
                                                                                         <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
@@ -701,9 +701,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                                             <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableGroup" runat="server" SkinID="grdSearch">
                                                                 <Columns>
-                                                                    <asp:BoundField DataField="ActionInfoGId" Visible="false"></asp:BoundField>
+                                                                    <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
 
-                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="ActionInfoGroupDesc">
+                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
                                                                         <ItemTemplate>
                                                                             <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
                                                                                 <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
