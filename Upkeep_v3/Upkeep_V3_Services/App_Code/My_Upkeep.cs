@@ -232,14 +232,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet LoginUser(string UserName, string strPassword)
+    public DataSet LoginUser(string UserName, string strPassword, string UserType)
     {
         try
         {
             StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
-            ds = ObjUpkeepCC_BL.LoginUser(UserName, strPassword, StrConn);
+            ds = ObjUpkeepCC_BL.LoginUser(UserName, strPassword, UserType, StrConn);
             return ds;
         }
         catch (Exception ex)

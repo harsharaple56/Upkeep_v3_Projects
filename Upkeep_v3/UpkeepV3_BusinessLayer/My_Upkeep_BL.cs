@@ -369,7 +369,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet LoginUser(string UserName, string strPassword, string strConn)
+        public DataSet LoginUser(string UserName, string strPassword,string UserType, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -381,7 +381,7 @@ namespace UpkeepV3_BusinessLayer
 
                 cmd.Parameters.AddWithValue("@UserName", UserName);
                 cmd.Parameters.AddWithValue("@Password", strPassword);
-
+                cmd.Parameters.AddWithValue("@UserType", UserType);
                 con.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

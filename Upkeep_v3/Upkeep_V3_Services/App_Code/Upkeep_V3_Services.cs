@@ -220,14 +220,14 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet LoginUser(string UserId, string strPassword)
+    public DataSet LoginUser(string UserId, string strPassword, string UserType)
     {
         DataSet ds = new DataSet();
 
         try
         {
 
-            ds = ObjUpkeep.LoginUser(UserId, strPassword);
+            ds = ObjUpkeep.LoginUser(UserId, strPassword, UserType);
 
         }
         catch (Exception ex)
