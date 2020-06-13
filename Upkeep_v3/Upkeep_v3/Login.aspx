@@ -97,7 +97,9 @@
                                         <asp:Button ID="btnLogin" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" Text=" Sign In" OnClick="btnLogin_Click"></asp:Button>
                                     </div>
 
-
+                                    <div class="col m--align-right">
+                                          Version No: <asp:Label id="lblVersion" Text="" runat="server"></asp:Label>
+                                        </div>
 
                                 </form>
                             </div>

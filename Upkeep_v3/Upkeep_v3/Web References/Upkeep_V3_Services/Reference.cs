@@ -2316,26 +2316,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet LoginUser(string UserId, string strPassword) {
+        public System.Data.DataSet LoginUser(string UserId, string strPassword, string UserType) {
             object[] results = this.Invoke("LoginUser", new object[] {
                         UserId,
-                        strPassword});
+                        strPassword,
+                        UserType});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword) {
-            this.LoginUserAsync(UserId, strPassword, null);
+        public void LoginUserAsync(string UserId, string strPassword, string UserType) {
+            this.LoginUserAsync(UserId, strPassword, UserType, null);
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword, object userState) {
+        public void LoginUserAsync(string UserId, string strPassword, string UserType, object userState) {
             if ((this.LoginUserOperationCompleted == null)) {
                 this.LoginUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUserOperationCompleted);
             }
             this.InvokeAsync("LoginUser", new object[] {
                         UserId,
-                        strPassword}, this.LoginUserOperationCompleted, userState);
+                        strPassword,
+                        UserType}, this.LoginUserOperationCompleted, userState);
         }
         
         private void OnLoginUserOperationCompleted(object arg) {
