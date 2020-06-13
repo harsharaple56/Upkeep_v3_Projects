@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EventQuestions.aspx.cs" Inherits="Upkeep_v3.Feedback.EventQuestions" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EventQuestions.aspx.cs" Inherits="Upkeep_v3.Feedback.EventQuestions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <form class="m-form m-form--label-align-left- m-form--state-" id="EditEvent_form" runat="server">
+     
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
@@ -76,5 +76,5 @@
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
-    </form>
+    
 </asp:Content>

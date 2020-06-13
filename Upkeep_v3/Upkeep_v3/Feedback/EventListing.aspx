@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EventListing.aspx.cs" Inherits="Upkeep_v3.Feedback.EventListing" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EventListing.aspx.cs" Inherits="Upkeep_v3.Feedback.EventListing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -33,8 +33,7 @@
             });
         });
     </script>
-
-    <form method="post" runat="server" id="frmMain">
+     
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
@@ -109,5 +108,5 @@
         </div>
 
 
-    </form>
+    
 </asp:Content>

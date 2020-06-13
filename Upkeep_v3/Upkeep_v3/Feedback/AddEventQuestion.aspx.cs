@@ -120,6 +120,14 @@ namespace Upkeep_v3.Feedback
                     {
                         type.SelectedValue = "3";
                     }
+                    else if (strAnsType == "Star")
+                    {
+                        type.SelectedValue = "4";
+                    }
+                    else if (strAnsType == "NPS")
+                    {
+                        type.SelectedValue = "5";
+                    }
                     //type.SelectedItem.Text = Convert.ToString(ds.Tables[0].Rows[0]["Answer_Type"]);
                     string OptionType = Convert.ToString(ds.Tables[0].Rows[0]["Answer_Type"]);
                     if (OptionType == "Options")
