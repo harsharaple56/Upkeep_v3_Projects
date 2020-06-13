@@ -299,11 +299,11 @@ namespace Upkeep_v3.VMS
 
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
-                       + s.Field<string>("Is_Mandatory").ToString() + "||" + s.Field<string>("Is_Visible").ToString() + "||"
+                       + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
                        + s.Field<decimal>("Ans_Type_ID") + "||"
                        + string.Join(";", dsConfig.Tables[1].AsEnumerable().Where(ans =>
                        ans.Field<decimal>("VMS_Qn_Id").ToString() == s.Field<decimal>("VMS_Qn_Id").ToString()).Select(ans =>
-                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
+                       ans.Field<string>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
 
                     hdnVMSQns.Value = string.Join("~", QnValues);
                 }

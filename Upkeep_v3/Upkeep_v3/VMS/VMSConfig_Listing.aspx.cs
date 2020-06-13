@@ -36,7 +36,7 @@ namespace Upkeep_v3.VMS
                 ds = ObjUpkeep.Fetch_VMSConfiguration("");
 
 
-                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/");
+                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
                 //// http://localhost:1302/TESTERS/Default6.aspx
 
                 //string path = HttpContext.Current.Request.Url.AbsolutePath;
@@ -99,7 +99,7 @@ namespace Upkeep_v3.VMS
                     byte[] byteImage = ms.ToArray();
                     imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
                     imgBarCode.Attributes.Add("id", URL.Substring(URL.Length - 5));
-                    imgBarCode.Style.Add("display","none");
+                    imgBarCode.Style.Add("display", "none");
                 }
                 plBarCode.Controls.Add(imgBarCode);
             }
