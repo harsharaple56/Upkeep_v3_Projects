@@ -38,7 +38,7 @@ namespace Upkeep_v3.Feedback
                 DataSet ds = new DataSet();
                 ds = ObjUpkeepFeedback.EventDetails_CRUD(0, "Select");
 
-                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
+                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
 
                 if (ds.Tables.Count > 0)
                 {

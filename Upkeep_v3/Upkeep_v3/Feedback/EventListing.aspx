@@ -97,7 +97,7 @@
                 </div>--%>
                     <div class="modal-body">
                         <figure class="figure">
-                            <div id="plBarCode" runat="server"></div>
+                            <div id="plBarCode" runat="server" class="text-center"></div>
 
                             <h5 class="text-center text-primary" id="aLink"></h5>
                         </figure>
