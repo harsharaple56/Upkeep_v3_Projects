@@ -1580,7 +1580,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
-
+    [WebMethod]
+    public DataSet Delete_WPConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_WPConfiguration(ConfigID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     #region Checklist
@@ -1660,6 +1673,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    //Added by Sujata this function is used to delete CHK config 
+    [WebMethod]
+    public DataSet Delete_CHKConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_CHKConfiguration(ConfigID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     #region VMS
@@ -1768,6 +1796,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.Fetch_VMSFormURL(ShortUrl);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    //Added by Sujata this function is used to delete VMS config 
+    [WebMethod]
+    public DataSet Delete_VMSConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
         }
         catch (Exception ex)
         {

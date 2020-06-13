@@ -1767,6 +1767,28 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        //Added by sujata This function is used to delete WP ConfigID
+        public DataSet Delete_WPConfiguration(int ConfigID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_DELETE_WP_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Checklist
@@ -1881,7 +1903,27 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+        //Added by sujata This function is used to delete CHK ConfigID
+        public DataSet Delete_CHKConfiguration(int ConfigID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_DELETE_CHK_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         #endregion
 
@@ -2051,6 +2093,27 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        //Added by sujata This function is used to delete VMS ConfigID
+        public DataSet Delete_VMSConfiguration(int ConfigID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_DELETE_VMS_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region General Functions
