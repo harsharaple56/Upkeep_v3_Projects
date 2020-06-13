@@ -23,7 +23,7 @@ namespace Upkeep_v3.Feedback
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            frmMain.Action = @"EventListing.aspx";
+           // frmMain.Action = @"EventListing.aspx"; //commented by suju removed form type 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);

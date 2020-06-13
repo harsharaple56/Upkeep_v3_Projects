@@ -13,6 +13,24 @@ namespace Upkeep_v3 {
     public partial class Login {
         
         /// <summary>
+        /// rdbEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEmployee;
+        
+        /// <summary>
+        /// rdbRetailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbRetailer;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>

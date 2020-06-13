@@ -22,7 +22,7 @@ namespace Upkeep_v3.Feedback
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            Customer_form.Action = @"Customers.aspx";
+            //Customer_form.Action = @"Customers.aspx";     //commented by suju removed for
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);
