@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EditEvent.aspx.cs" Inherits="Upkeep_v3.Feedback.EditEvent" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EditEvent.aspx.cs" Inherits="Upkeep_v3.Feedback.EditEvent" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -148,7 +148,7 @@
 								<!--begin::Portlet-->
 								<div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 									
-                                    <form class="m-form m-form--label-align-left- m-form--state-" id="EditEvent_form" runat="server" >
+                                    
 
                                     <div class="m-portlet__head">
 										<div class="m-portlet__head-progress">
@@ -265,7 +265,7 @@
 											</div>
 										
 									</div>
-                                        </form>
+                                        
 								</div>
 								<!--end::Portlet-->
 							</div>

@@ -148,6 +148,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Delete_WPConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_WPConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_WPConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Chk_Answer">
         <s:complexType />
       </s:element>
@@ -252,6 +274,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklistResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CHKConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CHKConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_CHKConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -422,6 +466,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSFormURLResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_VMSConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2834,6 +2900,12 @@
   <wsdl:message name="Fetch_WorkPermit_MISSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_WorkPermit_MISResponse" />
   </wsdl:message>
+  <wsdl:message name="Delete_WPConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_WPConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_WPConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_WPConfigurationResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Chk_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Chk_Answer" />
   </wsdl:message>
@@ -2863,6 +2935,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_MyChecklistSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CHKConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_CHKConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CHKConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_CHKConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Insert_VMSConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_VMSConfiguration" />
@@ -2905,6 +2983,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_VMSFormURLSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_VMSFormURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_VMSConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_AnswerForAllSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
@@ -3525,6 +3609,10 @@
       <wsdl:input message="tns:Fetch_WorkPermit_MISSoapIn" />
       <wsdl:output message="tns:Fetch_WorkPermit_MISSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <wsdl:input message="tns:Delete_WPConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_WPConfigurationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <wsdl:input message="tns:Fetch_Chk_AnswerSoapIn" />
       <wsdl:output message="tns:Fetch_Chk_AnswerSoapOut" />
@@ -3544,6 +3632,10 @@
     <wsdl:operation name="Fetch_MyChecklist">
       <wsdl:input message="tns:Fetch_MyChecklistSoapIn" />
       <wsdl:output message="tns:Fetch_MyChecklistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <wsdl:input message="tns:Delete_CHKConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_CHKConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Insert_VMSConfiguration">
       <wsdl:input message="tns:Insert_VMSConfigurationSoapIn" />
@@ -3572,6 +3664,10 @@
     <wsdl:operation name="Fetch_VMSFormURL">
       <wsdl:input message="tns:Fetch_VMSFormURLSoapIn" />
       <wsdl:output message="tns:Fetch_VMSFormURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <wsdl:input message="tns:Delete_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_VMSConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
@@ -4027,6 +4123,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_WPConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <soap:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
       <wsdl:input>
@@ -4065,6 +4170,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklist">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_CHKConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -4128,6 +4242,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSFormURL">
       <soap:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -5083,6 +5206,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_WPConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
       <wsdl:input>
@@ -5121,6 +5253,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklist">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_CHKConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5184,6 +5325,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSFormURL">
       <soap12:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

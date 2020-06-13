@@ -1263,6 +1263,22 @@ public class My_Upkeep
             throw ex;
         }
     }
+    //Added by sujata delete wp config
+    public DataSet Delete_WPConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Delete_WPConfiguration(ConfigID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     #endregion
 
@@ -1348,7 +1364,22 @@ public class My_Upkeep
         }
     }
 
-
+    //Added by sujata delete CHK config
+    public DataSet Delete_CHKConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Delete_CHKConfiguration(ConfigID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
     #endregion
 
     #region VMS
@@ -1473,7 +1504,22 @@ public class My_Upkeep
             throw ex;
         }
     }
-
+    //Added by sujata delete VMS config
+    public DataSet Delete_VMSConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Delete_VMSConfiguration(ConfigID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
     #endregion
 
     #region General Functions

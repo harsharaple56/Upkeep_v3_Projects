@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddEventQuestion.aspx.cs" Inherits="Upkeep_v3.Feedback.AddEventQuestion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AddEventQuestion.aspx.cs" Inherits="Upkeep_v3.Feedback.AddEventQuestion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -86,7 +86,7 @@
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                        <form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="question_form" method="POST">
+                        <form class="m-form m-form--label-align-left- m-form--state-"  id="question_form" method="POST">
 
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-progress">
@@ -158,6 +158,8 @@
                                                                             <asp:ListItem Value="1" Text="Emoji"></asp:ListItem>
                                                                             <asp:ListItem Value="2" Text="Text"></asp:ListItem>
                                                                             <asp:ListItem Value="3" Text="Options"></asp:ListItem>
+                                                                            <asp:ListItem Value="4" Text="Star"></asp:ListItem>
+                                                                            <asp:ListItem Value="512qsz3rfvc " Text="NPS"></asp:ListItem>
                                                                         </asp:DropDownList>
                                                                         <span id="error_type" class="text-danger large"></span>
                                                                     </div>

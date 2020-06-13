@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Customers.aspx.cs" Inherits="Upkeep_v3.Feedback.Customers" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Customers.aspx.cs" Inherits="Upkeep_v3.Feedback.Customers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -23,7 +23,7 @@
             });
         </script>
 
-    <form class="m-form m-form--label-align-left- m-form--state-" id="Customer_form" runat="server">
+    <form class="m-form m-form--label-align-left- m-form--state-" id="Customer_form" >
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">

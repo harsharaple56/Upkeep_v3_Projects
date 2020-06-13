@@ -28,20 +28,29 @@ namespace Upkeep_v3.Checklist
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
                 //LoggedInUserID = "3";
             }
-            if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ChkConfigID"]))
-            {
-                strChkConfigID = Request.QueryString["ChkConfigID"].ToString();
-                if (strChkConfigID.All(char.IsDigit))
-                    Chk_ConfigID = Convert.ToInt32(strChkConfigID);
-            }
             if (!IsPostBack)
             {
                 Fetch_Chk_Answer();
                 string Initiator = string.Empty;
                 Initiator = Convert.ToString(Session["UserType"]);
 
-                if (Chk_ConfigID != 0)
-                    Bind_ChecklistConfiguration(Convert.ToInt32(Chk_ConfigID));
+                if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ChkConfigID"]))
+                {
+                    strChkConfigID = Request.QueryString["ChkConfigID"].ToString();
+                    if (strChkConfigID.All(char.IsDigit))
+                        Chk_ConfigID = Convert.ToInt32(strChkConfigID);
+                    if (Chk_ConfigID != 0)
+                        Bind_ChecklistConfiguration(Convert.ToInt32(Chk_ConfigID));
+                }
+                else if (!System.String.IsNullOrWhiteSpace(Request.QueryString["DelCHKConfigID"]))
+                {
+                    strChkConfigID = Request.QueryString["DelCHKConfigID"].ToString();
+                    if (strChkConfigID.All(char.IsDigit))
+                        Chk_ConfigID = Convert.ToInt32(strChkConfigID);
+                    if (Chk_ConfigID != 0)
+                        ObjUpkeep.Delete_CHKConfiguration(Chk_ConfigID, LoggedInUserID);
+                }
+
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)

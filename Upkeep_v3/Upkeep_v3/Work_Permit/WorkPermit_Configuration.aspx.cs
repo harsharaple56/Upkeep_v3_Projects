@@ -27,12 +27,7 @@ namespace Upkeep_v3.WorkPermit
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
-            if (!System.String.IsNullOrWhiteSpace(Request.QueryString["WPConfigID"]))
-            {
-                strWPConfigID = Request.QueryString["WPConfigID"].ToString();
-                if (strWPConfigID.All(char.IsDigit))
-                    WP_ConfigID = Convert.ToInt32(strWPConfigID);
-            }
+
             if (!IsPostBack)
             {
                 Fetch_Answer();
@@ -45,10 +40,24 @@ namespace Upkeep_v3.WorkPermit
                 {
                     Initiator = "R";
                 }
+                if (!System.String.IsNullOrWhiteSpace(Request.QueryString["WPConfigID"]))
+                {
+                    strWPConfigID = Request.QueryString["WPConfigID"].ToString();
+                    if (strWPConfigID.All(char.IsDigit))
+                        WP_ConfigID = Convert.ToInt32(strWPConfigID);
+                    if (WP_ConfigID != 0)
+                        Bind_WorkPermitConfiguration(Convert.ToInt32(WP_ConfigID));
+                }
+                else if (!System.String.IsNullOrWhiteSpace(Request.QueryString["DelWPConfigID"]))
+                {
+                    strWPConfigID = Request.QueryString["DelWPConfigID"].ToString();
+                    if (strWPConfigID.All(char.IsDigit))
+                        WP_ConfigID = Convert.ToInt32(strWPConfigID);
+                    if (WP_ConfigID != 0)
+                        ObjUpkeep.Delete_WPConfiguration(WP_ConfigID, LoggedInUserID);
+                }
 
                 Fetch_User_UserGroupList(Initiator);
-                if (WP_ConfigID != 0)
-                    Bind_WorkPermitConfiguration(Convert.ToInt32(WP_ConfigID));
             }
         }
 
@@ -93,7 +102,7 @@ namespace Upkeep_v3.WorkPermit
 
                     hdnWPHeaders.Value = string.Join("~", HeaderValues);
 
-                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace( "<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
+                    var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace("<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
 
                     hdnWPTerms.Value = string.Join("~", TermsValues);
 

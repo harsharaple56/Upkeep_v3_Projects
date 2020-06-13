@@ -36,7 +36,7 @@ namespace Upkeep_v3.VMS
                 ds = ObjUpkeep.Fetch_VMSConfiguration("");
 
 
-                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
+                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
                 //// http://localhost:1302/TESTERS/Default6.aspx
 
                 //string path = HttpContext.Current.Request.Url.AbsolutePath;
