@@ -390,8 +390,8 @@
                     $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']").val(arrQnData[0]);
                     $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']").val(arrQnData[1]);
                     if (arrQnData[2] == "True") {
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").parent().parent().addClass("active");
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").prop("checked", true)
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").parent().parent().addClass("active");
                     }
                     if (arrQnData[3] == "True") {
                         $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
