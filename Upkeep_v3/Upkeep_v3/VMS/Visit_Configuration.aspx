@@ -381,14 +381,23 @@
                 //$(".dltSection").click();
                 var qns = $('#hdnVMSQns').val();
                 var arrQns = qns.split("~");
-                //alert(arrTerms);
-                for (var i = 0; i < arrTerms.length; i++) {
+                alert(qns);
+                for (var i = 0; i < arrQns.length; i++) {
                     $("#divQnAdd").click();
-                    //alert(arrTerms[i]);
+                    //alert(arrTerms[i]);VMSQuestion[0][ctl00$ContentPlaceHolder1$ChkVisible][]
 
-                    var arrIDTerm = arrTerms[i].split("||");
-                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']").val(arrIDTerm[0]);
-                    $("textarea[name~='WorkPermitTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]']").val(arrIDTerm[1]);
+                    var arrQnData = arrQns[i].split("||");
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']").val(arrQnData[0]);
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']").val(arrQnData[1]);
+                    if (arrQnData[2] == "True") {
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").prop("checked", true)
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").parent().parent().addClass("active");
+                    }
+                    if (arrQnData[3] == "True") {
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").parent().parent().addClass("active");
+                    }
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").val(arrQnData[4]);
 
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
