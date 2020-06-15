@@ -24,7 +24,7 @@ namespace Upkeep_v3.General_Masters
             //retailer_form.Action = @"Add_Retailer.aspx";
             if (LoggedInUserID == "")
             {
-                //Response.Redirect("~/Login.aspx", false);
+                Response.Redirect("~/Login.aspx", false);
             }
 
             if (!IsPostBack)
@@ -60,6 +60,8 @@ namespace Upkeep_v3.General_Masters
                     Retailer_ID = Convert.ToInt32(Session["RetailerID"]);
                 }
                 string Action = "";
+                string Username = string.Empty;
+                string Password = string.Empty;
 
                 if (Retailer_ID > 0)
                 {
@@ -70,8 +72,11 @@ namespace Upkeep_v3.General_Masters
                     Action = "C";
                 }
 
+                Username = Convert.ToString(txtUsername.Text.Trim());
+                Password = Convert.ToString(txtPassword.Text.Trim());
+
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, CompanyID, LoggedInUserID, Action);
+                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, CompanyID, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -113,7 +118,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID, CompanyID,LoggedInUserID, "R");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -124,7 +129,8 @@ namespace Upkeep_v3.General_Masters
                         last_name.Text = Convert.ToString(ds.Tables[0].Rows[0]["StoreManagerLastName"]);
                         email.Text = Convert.ToString(ds.Tables[0].Rows[0]["EmailID"]);
                         contact.Text = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNo"]);
-
+                        txtUsername.Text = Convert.ToString(ds.Tables[0].Rows[0]["Username"]);
+                        txtPassword.Text = Convert.ToString(ds.Tables[0].Rows[0]["Password"]);
                     }
 
                 }
@@ -144,7 +150,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID, CompanyID,LoggedInUserID, "D");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

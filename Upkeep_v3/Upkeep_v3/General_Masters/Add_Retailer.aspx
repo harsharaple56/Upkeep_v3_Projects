@@ -4,6 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+    <script>
+      $(document).ready(function()  {
+        $("#email").blur(function()  {
+          $("#txtUsername").val($("#email").val());
+        });
+      });
+    </script>
+
     <div class="m-content">
         <div class="row">
             <div class="col-lg-12">
@@ -11,8 +20,6 @@
                 <!--begin::Portlet-->
                 <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
                     <div class="m-form m-form--label-align-left- m-form--state-" id="retailer_form" runat="server">
-
-
 
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
@@ -36,7 +43,6 @@
                                     <div class="btn-group">
 
                                         <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateRetailer" OnClick="btnSave_Click" Text="Save" />
-
 
                                     </div>
                                 </div>
@@ -102,6 +108,26 @@
                                                     <span id="error_contact" class="text-danger small"></span>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Username:</label>
+                                                <div class="col-xl-6 col-lg-9">
+                                                    <%--<input type="text" name="email" id="email" class="form-control m-input" placeholder="Enter Email" value="">--%>
+                                                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control m-input" ClientIDMode="Static" placeholder="Enter Username"></asp:TextBox>
+                                                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" Display="Dynamic" ControlToValidate="txtUsername" Visible="true" ValidationGroup="validateRetailer" ForeColor="Red" ErrorMessage="Please enter Username"></asp:RequiredFieldValidator>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Password:</label>
+                                                <div class="col-xl-6 col-lg-9">
+                                                    <%--<input type="text" name="email" id="email" class="form-control m-input" placeholder="Enter Email" value="">--%>
+                                                    <asp:TextBox ID="txtPassword" runat="server" class="form-control m-input" placeholder="Enter Password"></asp:TextBox>
+                                                   <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" Display="Dynamic" ControlToValidate="txtpassword" Visible="true" ValidationGroup="validateRetailer" ForeColor="Red" ErrorMessage="Please enter Password"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group m-form__group row">
                                                     <div class="col-xl-9 col-lg-9">
                                                         <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>

@@ -3102,7 +3102,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Retailer_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, int CompanyID, string LoggedInUserID, string actionType) {
+        public System.Data.DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType) {
             object[] results = this.Invoke("Retailer_CRUD", new object[] {
                         storeName,
                         firstName,
@@ -3110,6 +3110,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         email,
                         phone,
                         RetailerID,
+                        Username,
+                        Password,
                         CompanyID,
                         LoggedInUserID,
                         actionType});
@@ -3117,12 +3119,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Retailer_CRUDAsync(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, int CompanyID, string LoggedInUserID, string actionType) {
-            this.Retailer_CRUDAsync(storeName, firstName, lastName, email, phone, RetailerID, CompanyID, LoggedInUserID, actionType, null);
+        public void Retailer_CRUDAsync(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType) {
+            this.Retailer_CRUDAsync(storeName, firstName, lastName, email, phone, RetailerID, Username, Password, CompanyID, LoggedInUserID, actionType, null);
         }
         
         /// <remarks/>
-        public void Retailer_CRUDAsync(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, int CompanyID, string LoggedInUserID, string actionType, object userState) {
+        public void Retailer_CRUDAsync(string storeName, string firstName, string lastName, string email, long phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType, object userState) {
             if ((this.Retailer_CRUDOperationCompleted == null)) {
                 this.Retailer_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetailer_CRUDOperationCompleted);
             }
@@ -3133,6 +3135,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         email,
                         phone,
                         RetailerID,
+                        Username,
+                        Password,
                         CompanyID,
                         LoggedInUserID,
                         actionType}, this.Retailer_CRUDOperationCompleted, userState);
