@@ -313,7 +313,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string ProPubStrImagePath { get; set; }
         public string ProPubStrRemark { get; set; }
 
-       public string ProPubStrChkImgRequired { get; set; }
+        public string ProPubStrChkImgRequired { get; set; }
 
     }
     public class ClsCheckRadio
@@ -763,15 +763,15 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
 
     }
 
-	    public class ClsWorkPermitApproverMatrix
+    public class ClsWorkPermitApproverMatrix
     {
         //3
         public string Level { get; set; }
         public string LevelDescription { get; set; }
-        public string User { get; set; } 
+        public string User { get; set; }
 
     }
-	
+
     public class ClsWorkPermitSectionHeaderData
     {
         //XXX
@@ -779,6 +779,71 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public List<ClsWorkPermitSectionHeader> ObjSectionHeader = new List<ClsWorkPermitSectionHeader>();
     }
     #endregion
+
+    #endregion
+
+
+    #region Checklist
+
+    public class ClChecklistConfig
+    {
+        public List<ClChecklistConfigHead> ObjClChecklistConfigHead { get; set; }
+        public List<ClChecklistConfigSection> ObjClChecklistConfigSection { get; set; }
+        public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
+
+    }
+    public class ClChecklistConfigHead
+    {
+        //XXX
+        public int Chk_Config_ID { get; set; }
+        public string Chk_Title { get; set; }
+        public string Chk_Desc { get; set; }
+        public bool Is_Enable_Score { get; set; }
+        public int TotalScore { get; set; }
+    }
+    public class ClChecklistConfigSection
+    {
+        //XXX
+        //public int SrNo { get; set; }
+        public int Chk_Section_ID { get; set; }
+        public int Chk_Config_ID { get; set; }
+        public string Chk_Section_Desc { get; set; }
+        public List<ClChecklistConfigQuestion> ObjClChecklistConfigQuestion { get; set; }
+
+    }
+    public class ClChecklistConfigQuestion
+    {
+        //XXX
+        public int CHK_Question_ID { get; set; }
+        public int Chk_Section_ID { get; set; }
+        public string Qn_Desc { get; set; }
+        public bool Is_Attach_Mandatory { get; set; }
+        public bool Is_Qn_Mandatory { get; set; }
+        public int Qn_Score { get; set; }
+        public string Chk_Qn_Ref_Desc { get; set; }
+        public string Chk_Qn_Ref_Photo { get; set; }
+        public int Chk_Ans_Type_ID { get; set; }
+        public bool Is_Raise_Flag_Issue { get; set; }
+        public List<ClChecklistConfigAnswer> ObjClChecklistConfigAnswer { get; set; }
+    }
+    public class ClChecklistConfigAnswer
+    {
+        //XXX
+        public int Chk_Ans_Value_ID { get; set; }
+        public int CHK_Question_ID { get; set; }
+        public bool Ans_Is_Flag { get; set; }
+        public bool Is_Default { get; set; }
+        public string Chk_Ans_Desc { get; set; }
+        public int Chk_Ans_Type_ID { get; set; }
+    }
+    public class ClChecklistConfigAnswerType
+    {
+        //XXX 
+        public int Ans_Type_ID { get; set; }
+        public string Ans_Type_Desc { get; set; }
+        public string SDesc { get; set; }
+        public bool Is_MultiValue { get; set; }
+    }
 
     #endregion
 

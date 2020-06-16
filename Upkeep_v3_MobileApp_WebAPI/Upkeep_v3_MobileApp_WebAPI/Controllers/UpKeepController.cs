@@ -8224,12 +8224,10 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         [Route("api/UpKeep/Fetch_CheckList_Config_List")]
         [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Config_List()
+        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyCode) //int UserID,
         {
-
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
             ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
-
 
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
@@ -8240,10 +8238,9 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
-                //ObjLocSqlParameter[0] = new SqlParameter("@USERID", TransactionID);
-                //ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", EmpCD);
+               // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyCode", CompanyCode);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
 
@@ -8263,7 +8260,6 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
                     }
                 }
                 else
@@ -8292,17 +8288,14 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         {
 
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
-            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+            ClChecklistConfig ObjChecklistConfig = new ClChecklistConfig();
 
-            //List<ClsWorkPermitTransaction> ObjTransaction = new List<ClsWorkPermitTransaction>();
-            //List<ClsWorkPermitInitiator> ObjInitiator = new List<ClsWorkPermitInitiator>();
-            //List<ClsWorkPermitApprover> ObjApprover = new List<ClsWorkPermitApprover>();
-            //List<ClsWorkPermitSection> ObjSection = new List<ClsWorkPermitSection>();
-            //List<ClsWorkPermitHeader> ObjHeader = new List<ClsWorkPermitHeader>();
-            //List<ClsWorkPermitSectionHeader> ObjSectionHeader = new List<ClsWorkPermitSectionHeader>();
+            List<ClChecklistConfigHead> ObjChecklistConfigHead = new List<ClChecklistConfigHead>();
+            List<ClChecklistConfigSection> ObjChecklistConfigSection = new List<ClChecklistConfigSection>();
+            //List<ClChecklistConfigQuestion> ObjChecklistConfigQuestion = new List<ClChecklistConfigQuestion>();
+            //List<ClChecklistConfigAnswer> ObjChecklistConfigAnswer = new List<ClChecklistConfigAnswer>();
+            List<ClChecklistConfigAnswerType> ObjChecklistConfigAnswerType = new List<ClChecklistConfigAnswerType>(); 
 
-            //List<ClsWorkPermitApproverMatrix> ObjApproverMatrix = new List<ClsWorkPermitApproverMatrix>();
-            //List<ClsWorkPermitActions> ObjActions = new List<ClsWorkPermitActions>();
 
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
@@ -8319,7 +8312,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 //ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                 //ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
 
-                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_DETAILS", ObjLocSqlParameter);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_DETAILS_API", ObjLocSqlParameter);
 
                 if (DsDataSet != null)
                 {
@@ -8328,86 +8321,73 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
 
-                            //ObjTransaction = (from p in DsDataSet.Tables[0].AsEnumerable()
-                            //                  select new ClsWorkPermitTransaction
-                            //                  {
-                            //                      WP_Config_ID = Convert.ToString(p.Field<decimal>("WP_Config_ID")),
-                            //                      Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                      TicketNo = Convert.ToString(p.Field<string>("TicketNo")),
-                            //                      Wp_Status = Convert.ToString(p.Field<string>("Wp_Status")),
-                            //                      WP_Title = Convert.ToString(p.Field<string>("WP_Title")),
-                            //                      Initiator = Convert.ToString(p.Field<string>("Initiator")),
-                            //                      Created_By = Convert.ToString(p.Field<string>("Created_By")),
-                            //                      Created_Date = Convert.ToString(p.Field<string>("Created_Date")),
-                            //                      Wp_date = Convert.ToString(p.Field<string>("Wp_date")),
-                            //                      Wp_To_date = Convert.ToString(p.Field<string>("Wp_To_date"))
-                            //                  }).ToList();
+                            ObjChecklistConfigHead = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                              select new ClChecklistConfigHead
+                                              {
+                                                  Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")), 
+                                                  Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
+                                                  Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
+                                                  Is_Enable_Score = Convert.ToBoolean(p.Field<bool>("Is_Enable_Score")),
+                                                  TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore")) 
+                                              }).ToList();
 
-                            //ObjInitiator = (from p in DsDataSet.Tables[1].AsEnumerable()
-                            //                select new ClsWorkPermitInitiator
-                            //                {
-                            //                    UserType = Convert.ToString(p.Field<string>("UserType")),
-                            //                    Username = Convert.ToString(p.Field<string>("Username")),
-                            //                    Store_Name = Convert.ToString(p.Field<string>("Store_Name")),
-                            //                    Name = Convert.ToString(p.Field<string>("Name")),
-                            //                    PhoneNo = Convert.ToString(p.Field<decimal>("PhoneNo")),
-                            //                    EmailID = Convert.ToString(p.Field<string>("EmailID")),
-                            //                }).ToList();
+                            ObjChecklistConfigSection = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                          select new ClChecklistConfigSection
+                                          {
+                                             // SrNo = Convert.ToInt32(p.Field<decimal>("SrNo")),
+                                              Chk_Section_ID = Convert.ToInt32(p.Field<decimal>("Chk_Section_ID")),
+                                              Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
+                                              Chk_Section_Desc = Convert.ToString(p.Field<string>("Chk_Section_Desc")),
 
-                            //ObjSection = (from p in DsDataSet.Tables[2].AsEnumerable()
-                            //              select new ClsWorkPermitSection
-                            //              {
-                            //                  SectionName = Convert.ToString(p.Field<string>("Section")),
-                            //                  ObjHeader = (from x in DsDataSet.Tables[3].AsEnumerable()
-                            //                               where x.Field<decimal>("WP_Section_ID") == p.Field<decimal>("WP_Section_ID")
-                            //                               select new ClsWorkPermitHeader
-                            //                               {
-                            //                                   ObjSectionHeader = (from y in DsDataSet.Tables[4].AsEnumerable()
-                            //                                                       where y.Field<decimal>("WP_Section_ID") == p.Field<decimal>("WP_Section_ID")
-                            //                                                       where y.Field<decimal>("Wp_Header_ID") == x.Field<decimal>("Wp_Header_ID")
-                            //                                                       select new ClsWorkPermitSectionHeader
-                            //                                                       {
-                            //                                                           Header = Convert.ToString(y.Field<string>("Header")),
-                            //                                                           Type = Convert.ToString(y.Field<string>("ANS_Type")),
-                            //                                                           Value = Convert.ToString(y.Field<string>("Record")),
-                            //                                                       }).ToList()
-                            //                               }).ToList()
-                            //              }).ToList();
+                                              ObjClChecklistConfigQuestion = (from x in DsDataSet.Tables[2].AsEnumerable()
+                                                                              where x.Field<decimal>("Chk_Section_ID") == p.Field<decimal>("Chk_Section_ID")
+                                                                              select new ClChecklistConfigQuestion
+                                                                              {
 
-                            //ObjApprover = (from p in DsDataSet.Tables[5].AsEnumerable()
-                            //               select new ClsWorkPermitApprover
-                            //               {
-                            //                   Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                   Approver = Convert.ToString(p.Field<string>("Approver")),
-                            //                   Remarks = Convert.ToString(p.Field<string>("Remarks")),
-                            //                   Date = Convert.ToString(p.Field<string>("Action_Date")),
-                            //                   Status = Convert.ToString(p.Field<string>("Status")),
-                            //               }).ToList();
+                                                                                  CHK_Question_ID = Convert.ToInt32(x.Field<decimal>("CHK_Question_ID")),
+                                                                                  Chk_Section_ID = Convert.ToInt32(x.Field<decimal>("Chk_Section_ID")),
+                                                                                  Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                                                  Is_Attach_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Attach_Mandatory")),
+                                                                                  Is_Qn_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Qn_Mandatory")),
+                                                                                  Qn_Score = Convert.ToInt32(x.Field<decimal>("Qn_Score")),
+                                                                                  Chk_Qn_Ref_Desc = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Desc")),
+                                                                                  Chk_Qn_Ref_Photo = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Photo")),
+                                                                                  Chk_Ans_Type_ID = Convert.ToInt32(x.Field<decimal>("Chk_Ans_Type_ID")),
+                                                                                  Is_Raise_Flag_Issue = Convert.ToBoolean(x.Field<bool>("Is_Raise_Flag_Issue")) ,
 
-                            //ObjApproverMatrix = (from p in DsDataSet.Tables[6].AsEnumerable()
-                            //                     select new ClsWorkPermitApproverMatrix
-                            //                     {
-                            //                         Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                         LevelDescription = Convert.ToString(p.Field<string>("LevelDescription")),
-                            //                         User = Convert.ToString(p.Field<string>("Users"))
-                            //                     }).ToList();
+                                                                                  ObjClChecklistConfigAnswer = (from y in DsDataSet.Tables[3].AsEnumerable()
+                                                                                                                    // where y.field<decimal>("chk_question_id ") == p.field<decimal>("chk_question_id ")
+                                                                                                                where y.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
+                                                                                                                select new ClChecklistConfigAnswer
+                                                                                                                {
+                                                                                                                    Chk_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_value_id")),
+                                                                                                                    CHK_Question_ID = Convert.ToInt32(y.Field<decimal>("chk_question_id")),
+                                                                                                                    Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                                                    Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                                                    Chk_Ans_Desc = Convert.ToString(y.Field<string>("chk_ans_desc")),
+                                                                                                                    Chk_Ans_Type_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_type_id"))
+                                                                                                                }).ToList()
+                                                                              }).ToList()
+                                          }).ToList();
 
-                            //ObjActions = (from p in DsDataSet.Tables[7].AsEnumerable()
-                            //              select new ClsWorkPermitActions
-                            //              {
-                            //                  ActionID = Convert.ToString(p.Field<string>("ActionID")),
-                            //                  Action_Desc = Convert.ToString(p.Field<string>("Action_Desc"))
-                            //              }).ToList();
-
-                            //ObjWorkPermit.ObjClsTransaction = ObjTransaction;
-                            //ObjWorkPermit.ObjClsInitiator = ObjInitiator;
-                            //ObjWorkPermit.ObjClsSection = ObjSection;
-                            //ObjWorkPermit.ObjClsApprover = ObjApprover;
-                            //ObjWorkPermit.ObjClsApproverMatrix = ObjApproverMatrix;
-                            //ObjWorkPermit.ObjClsActions = ObjActions;
+                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                           select new ClChecklistConfigAnswerType
+                                           {
+                                               Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                                               Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                                               SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                                               Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                                           }).ToList();
 
 
-                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+
+                            ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
+                            ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
+                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
+                            //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
                         }
                         else
                         {
@@ -8443,228 +8423,6 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
  
         #endregion
 
-        #region "CheckList"
-
-        [Route("api/UpKeep/Fetch_CheckList_Config_List")]
-        [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Config_List()
-        {
-
-            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
-            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
-
-
-            ClsCommunication ObjLocComm = new ClsCommunication();
-            DataSet DsDataSet = new DataSet();
-            DataTable dt = new DataTable();
-            string StrLocConnection = null;
-
-            try
-            {
-                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-
-
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
-                //ObjLocSqlParameter[0] = new SqlParameter("@USERID", TransactionID);
-                //ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", EmpCD);
-
-                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
-
-                if (DsDataSet != null)
-                {
-                    if (DsDataSet.Tables.Count > 0)
-                    {
-                        if (DsDataSet.Tables[0].Rows.Count > 0)
-                        {
-                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
-                    }
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
-                }
-                throw new Exception("Error while processing request.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-
-            }
-            finally
-            {
-                DsDataSet = null;
-                //  ObjGatePass = null;
-            }
-
-        }
-
-        [Route("api/UpKeep/Fetch_CheckList_Config_Details")]
-        [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Config_Details(int ConfigID) //, string EmpCD, string RollCD
-        {
-
-            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
-            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
-
-            //List<ClsWorkPermitTransaction> ObjTransaction = new List<ClsWorkPermitTransaction>();
-            //List<ClsWorkPermitInitiator> ObjInitiator = new List<ClsWorkPermitInitiator>();
-            //List<ClsWorkPermitApprover> ObjApprover = new List<ClsWorkPermitApprover>();
-            //List<ClsWorkPermitSection> ObjSection = new List<ClsWorkPermitSection>();
-            //List<ClsWorkPermitHeader> ObjHeader = new List<ClsWorkPermitHeader>();
-            //List<ClsWorkPermitSectionHeader> ObjSectionHeader = new List<ClsWorkPermitSectionHeader>();
-
-            //List<ClsWorkPermitApproverMatrix> ObjApproverMatrix = new List<ClsWorkPermitApproverMatrix>();
-            //List<ClsWorkPermitActions> ObjActions = new List<ClsWorkPermitActions>();
-
-            ClsCommunication ObjLocComm = new ClsCommunication();
-            DataSet DsDataSet = new DataSet();
-            DataTable dt = new DataTable();
-            string StrLocConnection = null;
-
-            try
-            {
-                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-
-
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
-                ObjLocSqlParameter[0] = new SqlParameter("@CHK_ConfigID", ConfigID);
-                //ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
-                //ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
-
-                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_DETAILS", ObjLocSqlParameter);
-
-                if (DsDataSet != null)
-                {
-                    if (DsDataSet.Tables.Count > 0)
-                    {
-                        if (DsDataSet.Tables[0].Rows.Count > 0)
-                        {
-
-                            //ObjTransaction = (from p in DsDataSet.Tables[0].AsEnumerable()
-                            //                  select new ClsWorkPermitTransaction
-                            //                  {
-                            //                      WP_Config_ID = Convert.ToString(p.Field<decimal>("WP_Config_ID")),
-                            //                      Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                      TicketNo = Convert.ToString(p.Field<string>("TicketNo")),
-                            //                      Wp_Status = Convert.ToString(p.Field<string>("Wp_Status")),
-                            //                      WP_Title = Convert.ToString(p.Field<string>("WP_Title")),
-                            //                      Initiator = Convert.ToString(p.Field<string>("Initiator")),
-                            //                      Created_By = Convert.ToString(p.Field<string>("Created_By")),
-                            //                      Created_Date = Convert.ToString(p.Field<string>("Created_Date")),
-                            //                      Wp_date = Convert.ToString(p.Field<string>("Wp_date")),
-                            //                      Wp_To_date = Convert.ToString(p.Field<string>("Wp_To_date"))
-                            //                  }).ToList();
-
-                            //ObjInitiator = (from p in DsDataSet.Tables[1].AsEnumerable()
-                            //                select new ClsWorkPermitInitiator
-                            //                {
-                            //                    UserType = Convert.ToString(p.Field<string>("UserType")),
-                            //                    Username = Convert.ToString(p.Field<string>("Username")),
-                            //                    Store_Name = Convert.ToString(p.Field<string>("Store_Name")),
-                            //                    Name = Convert.ToString(p.Field<string>("Name")),
-                            //                    PhoneNo = Convert.ToString(p.Field<decimal>("PhoneNo")),
-                            //                    EmailID = Convert.ToString(p.Field<string>("EmailID")),
-                            //                }).ToList();
-
-                            //ObjSection = (from p in DsDataSet.Tables[2].AsEnumerable()
-                            //              select new ClsWorkPermitSection
-                            //              {
-                            //                  SectionName = Convert.ToString(p.Field<string>("Section")),
-                            //                  ObjHeader = (from x in DsDataSet.Tables[3].AsEnumerable()
-                            //                               where x.Field<decimal>("WP_Section_ID") == p.Field<decimal>("WP_Section_ID")
-                            //                               select new ClsWorkPermitHeader
-                            //                               {
-                            //                                   ObjSectionHeader = (from y in DsDataSet.Tables[4].AsEnumerable()
-                            //                                                       where y.Field<decimal>("WP_Section_ID") == p.Field<decimal>("WP_Section_ID")
-                            //                                                       where y.Field<decimal>("Wp_Header_ID") == x.Field<decimal>("Wp_Header_ID")
-                            //                                                       select new ClsWorkPermitSectionHeader
-                            //                                                       {
-                            //                                                           Header = Convert.ToString(y.Field<string>("Header")),
-                            //                                                           Type = Convert.ToString(y.Field<string>("ANS_Type")),
-                            //                                                           Value = Convert.ToString(y.Field<string>("Record")),
-                            //                                                       }).ToList()
-                            //                               }).ToList()
-                            //              }).ToList();
-
-                            //ObjApprover = (from p in DsDataSet.Tables[5].AsEnumerable()
-                            //               select new ClsWorkPermitApprover
-                            //               {
-                            //                   Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                   Approver = Convert.ToString(p.Field<string>("Approver")),
-                            //                   Remarks = Convert.ToString(p.Field<string>("Remarks")),
-                            //                   Date = Convert.ToString(p.Field<string>("Action_Date")),
-                            //                   Status = Convert.ToString(p.Field<string>("Status")),
-                            //               }).ToList();
-
-                            //ObjApproverMatrix = (from p in DsDataSet.Tables[6].AsEnumerable()
-                            //                     select new ClsWorkPermitApproverMatrix
-                            //                     {
-                            //                         Level = Convert.ToString(p.Field<decimal>("Level")),
-                            //                         LevelDescription = Convert.ToString(p.Field<string>("LevelDescription")),
-                            //                         User = Convert.ToString(p.Field<string>("Users"))
-                            //                     }).ToList();
-
-                            //ObjActions = (from p in DsDataSet.Tables[7].AsEnumerable()
-                            //              select new ClsWorkPermitActions
-                            //              {
-                            //                  ActionID = Convert.ToString(p.Field<string>("ActionID")),
-                            //                  Action_Desc = Convert.ToString(p.Field<string>("Action_Desc"))
-                            //              }).ToList();
-
-                            //ObjWorkPermit.ObjClsTransaction = ObjTransaction;
-                            //ObjWorkPermit.ObjClsInitiator = ObjInitiator;
-                            //ObjWorkPermit.ObjClsSection = ObjSection;
-                            //ObjWorkPermit.ObjClsApprover = ObjApprover;
-                            //ObjWorkPermit.ObjClsApproverMatrix = ObjApproverMatrix;
-                            //ObjWorkPermit.ObjClsActions = ObjActions;
-
-
-                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
-                    }
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
-                }
-                throw new Exception("Error while processing request.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-
-            }
-            finally
-            {
-                DsDataSet = null;
-                //  ObjGatePass = null;
-            }
-
-        }
-
-
-        #endregion
 
 
     }
