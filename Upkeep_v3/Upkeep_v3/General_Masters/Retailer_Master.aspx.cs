@@ -33,10 +33,10 @@ namespace Upkeep_v3.General_Masters
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
             //frmMain.Action = @"Retailer_Master.aspx";
-            //if (string.IsNullOrEmpty(LoggedInUserID))
-            //{
-            //    //Response.Redirect("~/Login.aspx", false);
-            //}
+            if (string.IsNullOrEmpty(LoggedInUserID))
+            {
+                Response.Redirect("~/Login.aspx", false);
+            }
         }
 
         public string fetchRetailerDetails()
@@ -46,7 +46,7 @@ namespace Upkeep_v3.General_Masters
             {
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, 0, CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, 0,"","", CompanyID, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -87,8 +87,8 @@ namespace Upkeep_v3.General_Masters
         }
         protected void btnImportExcel_Click(object sender, EventArgs e)
         {
-            //ImportFromExcel();
-             UploadRetailer();
+            ImportFromExcel();
+             //UploadRetailer();
         }
         protected void btnExport_Click(object sender, EventArgs e)
         {
@@ -99,7 +99,7 @@ namespace Upkeep_v3.General_Masters
         {
 
             DataSet dsRetailer = new DataSet();
-            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, 0, CompanyID, LoggedInUserID, "R");
+            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, 0,"","", CompanyID, LoggedInUserID, "R");
 
             System.Data.DataTable dtRetailer = new System.Data.DataTable();
             dtRetailer = dsRetailer.Tables[0];
@@ -277,6 +277,7 @@ namespace Upkeep_v3.General_Masters
                         {
                             //Set the database table name
                             //[OPTIONAL]: Map the Excel columns with that of the database table
+                            //bulkInsert.DestinationTableName = "Tbl_RetailerImport";
                             sqlBulkCopy.ColumnMappings.Add("StoreName", "Store_Name");
                             sqlBulkCopy.ColumnMappings.Add("FirstName", "FirstName");
                             sqlBulkCopy.ColumnMappings.Add("LastName", "LastName");
@@ -321,6 +322,22 @@ namespace Upkeep_v3.General_Masters
                 throw ex;
 
             }
+        }
+
+        protected void lnkSampleFile_Click(object sender, EventArgs e)
+        {
+            string filePath = "~/General_Masters/Template/RetailerData.xlsx";
+
+            //string filePath = "~/Feedback/Template/RetailerData.xls";
+            //string filePath = Page.ResolveClientUrl("~/Feedback/Template/RetailerData.xls");
+
+            Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
+            Response.TransmitFile(Server.MapPath(filePath));
+
+            Response.End();
+
+
+
         }
 
     }

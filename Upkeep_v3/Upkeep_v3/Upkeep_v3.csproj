@@ -3850,6 +3850,7 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
+    <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
