@@ -23,7 +23,7 @@ namespace Upkeep_v3.Feedback
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            frmMain.Action = @"EventListing.aspx";
+           // frmMain.Action = @"EventListing.aspx"; //commented by suju removed form type 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);
@@ -38,7 +38,7 @@ namespace Upkeep_v3.Feedback
                 DataSet ds = new DataSet();
                 ds = ObjUpkeepFeedback.EventDetails_CRUD(0, "Select");
 
-                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "/");
+                string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
 
                 if (ds.Tables.Count > 0)
                 {

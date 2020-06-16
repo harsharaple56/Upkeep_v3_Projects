@@ -3,6 +3,841 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_MyActionableWorkPermit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyActionableWorkPermitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyActionableWorkPermitResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_DashboardCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_DashboardCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_DashboardCountResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_GatePassConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_GatePassConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_GatePassConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_WorkPermitConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_Config_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_TermCondition" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_WorkPermitConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_WorkPermitConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_WorkPermitSavedConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_WorkPermitSavedConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_WorkPermitSavedConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermit_MIS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermit_MISResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermit_MISResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_WPConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_WPConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_WPConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Chk_Answer">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_Chk_AnswerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Chk_AnswerResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_ChecklistConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chk_Config_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitleDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsScoreEnable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalScore" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlChecklist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_ChecklistConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_ChecklistConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ChecklistConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitleDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsScoreEnable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalScore" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlChecklist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ChecklistConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_ChecklistConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_ChecklistConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CHK_ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_ChecklistConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_ChecklistConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklistResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CHKConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CHKConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_CHKConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlVMS_Question" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="blFeedbackCompulsary" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FeedbackTitle" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="blEnableCovid" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSRequestList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSRequestListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_VMSRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Action" type="s1:char" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMeetUsrs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidColorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidTestDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTemperature" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_VMSRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSFormURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShortUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMSFormURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSFormURLResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_VMSConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_VMSConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_VMSConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_AnswerForAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Key" type="s1:char" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_AnswerForAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AnswerForAllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_User_UserGroupListGPWP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_User_UserGroupListGPWPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_User_UserGroupListGPWPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Company">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_CompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CompanyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VendorPrefix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Vendor_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssetTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetCategory" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetCategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_INSERT_GRNL_MASTER">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dept_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationXmlValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VendorXmlValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_INSERT_GRNL_MASTERResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_INSERT_GRNL_MASTERResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAssetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset_Service">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset_ServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAsset_ServiceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceScheduleID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CRUD_ASSET_SERVICE_REQUEST_DATAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -241,6 +1076,7 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1467,25 +2303,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSConfiguration">
+      <s:element name="Insert_GatePassConfiguration">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strConfigDesc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlVMS_Question" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="blFeedbackCompulsary" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="FeedbackTitle" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="blEnableCovid" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlGatepass_Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlGatepass_Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlGatepass_TermCondition" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPClosureBy" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatepassDescription" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSConfigurationResponse">
+      <s:element name="Insert_GatePassConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSConfigurationResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_GatePassConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1496,17 +2336,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_VMSConfiguration">
+      <s:element name="Fetch_GatePassConfiguration">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_VMSConfigurationResponse">
+      <s:element name="Fetch_GatePassConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSConfigurationResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePassConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1517,17 +2357,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_VMSConfiguration">
+      <s:element name="Bind_GatePassConfiguration">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_VMSConfigurationResponse">
+      <s:element name="Bind_GatePassConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSConfigurationResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_GatePassConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1538,7 +2378,164 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_VMSRequestList">
+      <s:element name="GatePassHeader_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GatePassHeaderID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderNumeric" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderUnit" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassHeader_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassType_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_TypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GP_TypeDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassType_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassType_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassTerm_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_TermID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GP_TermDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassTerm_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassTerm_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_GatePassConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_Config_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPClosureBy" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatepassDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_GatePassConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_GatePassConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_GatePassRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_GatePassRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_GatePassRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_GatePassRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGatePassDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GPTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPHeader" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPHeaderData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_GatePassRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_GatePassRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyRequestGatePass">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
@@ -1547,10 +2544,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_VMSRequestListResponse">
+      <s:element name="Fetch_MyRequestGatePassResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestListResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestGatePassResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1561,18 +2558,41 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_VMSRequestDetails">
+      <s:element name="Fetch_MyActionableGatePass">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyActionableGatePassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyActionableGatePassResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePassRequest_Approval_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_VMSRequestDetailsResponse">
+      <s:element name="Fetch_GatePassRequest_Approval_DetailsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Bind_VMSRequestDetailsResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePassRequest_Approval_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1583,50 +2603,74 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSRequest">
+      <s:element name="UpdateAction_GatePassRequest">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRemarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAction_GatePassRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAction_GatePassRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePass_MIS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePass_MISResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePass_MISResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_WorkPermitConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Action" type="s1:char" />
-            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strMeetUsrs" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSData" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidColorCode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strVMSCovidTestDate" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strTemperature" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_TermCondition" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ShowApprovalMatrix" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSRequestResponse">
+      <s:element name="Insert_WorkPermitConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSRequestResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_VMSFormURL">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ShortUrl" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_VMSFormURLResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSFormURLResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_WorkPermitConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1638,11 +2682,7 @@
         </s:complexType>
       </s:element>
       <s:element name="Fetch_Answer">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Key" type="s1:char" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="Fetch_AnswerResponse">
         <s:complexType>
@@ -1658,17 +2698,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Asset_DropDown">
+      <s:element name="Fetch_WorkPermitConfiguration">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Asset_DropDownResponse">
+      <s:element name="Fetch_WorkPermitConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_DropDownResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1679,18 +2719,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Asset_Vendor_DropDown">
+      <s:element name="Bind_WorkPermitConfiguration">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="VendorPrefix" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Asset_Vendor_DropDownResponse">
+      <s:element name="Bind_WorkPermitConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Vendor_DropDownResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_WorkPermitConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1701,19 +2740,18 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_Insert_AssetType">
+      <s:element name="Bind_WorkPermitRequestDetails">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetType" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_Insert_AssetTypeResponse">
+      <s:element name="Bind_WorkPermitRequestDetailsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_WorkPermitRequestDetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1724,20 +2762,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_Insert_AssetCategory">
+      <s:element name="Insert_WorkPermitRequest">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="AssetTypeID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetCategory" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strWpDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strWpTpDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strWpSectionHeaderData" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_Insert_AssetCategoryResponse">
+      <s:element name="Insert_WorkPermitRequestResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetCategoryResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_WorkPermitRequestResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1748,21 +2787,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_INSERT_GRNL_MASTER">
+      <s:element name="Fetch_WorkPermitRequestSavedData">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Transaction_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="MasterType" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Dept_Value" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LocationXmlValue" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="VendorXmlValue" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_INSERT_GRNL_MASTERResponse">
+      <s:element name="Fetch_WorkPermitRequestSavedDataResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_INSERT_GRNL_MASTERResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitRequestSavedDataResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1773,65 +2810,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MyAsset">
+      <s:element name="Update_WorkPermitRequest">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyAssetResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAssetResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_ASSET_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_ASSET_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_ASSET_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_ASSET_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="INSERT_ASSET_REQUEST_DetailsResponse">
+      <s:element name="Update_WorkPermitRequestResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_REQUEST_DetailsResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Update_WorkPermitRequestResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1842,56 +2834,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UPDATE_ASSET_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UPDATE_ASSET_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_ASSET_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyAsset_Service">
+      <s:element name="Fetch_MyRequestWorkPermit">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
@@ -1900,35 +2843,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MyAsset_ServiceResponse">
+      <s:element name="Fetch_MyRequestWorkPermitResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAsset_ServiceResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ServiceScheduleID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATAResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CRUD_ASSET_SERVICE_REQUEST_DATAResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestWorkPermitResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1946,6 +2864,222 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_MyActionableWorkPermitSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableWorkPermit" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyActionableWorkPermitSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableWorkPermitResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_DashboardCountSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_DashboardCount" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_DashboardCountSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_DashboardCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_GatePassConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_GatePassConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_GatePassConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_GatePassConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Update_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_WorkPermitSavedConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitSavedConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_WorkPermitSavedConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitSavedConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermit_MISSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermit_MIS" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermit_MISSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermit_MISResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_WPConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_WPConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_WPConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_WPConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Chk_AnswerSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Chk_Answer" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Chk_AnswerSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Chk_AnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_ChecklistConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_ChecklistConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Update_ChecklistConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_ChecklistConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ChecklistConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_ChecklistConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ChecklistConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_ChecklistConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_ChecklistConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_ChecklistConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_ChecklistConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_ChecklistConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklistSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklist" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklistSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CHKConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_CHKConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CHKConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_CHKConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSRequestListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSRequestListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_VMSRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_VMSRequest" />
+  </wsdl:message>
+  <wsdl:message name="Insert_VMSRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_VMSRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSFormURLSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURL" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMSFormURLSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_VMSConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_VMSConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AnswerForAllSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AnswerForAllSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWP" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWPResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CompanySoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Company" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CompanySoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTERResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
+  </wsdl:message>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapOut">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATAResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -2312,47 +3446,95 @@
   <wsdl:message name="Fetch_RoleListingSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_RoleListingResponse" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_VMSConfiguration" />
+  <wsdl:message name="Insert_GatePassConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_GatePassConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_VMSConfigurationResponse" />
+  <wsdl:message name="Insert_GatePassConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_GatePassConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSConfiguration" />
+  <wsdl:message name="Fetch_GatePassConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSConfigurationResponse" />
+  <wsdl:message name="Fetch_GatePassConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Bind_VMSConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Bind_VMSConfiguration" />
+  <wsdl:message name="Bind_GatePassConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_GatePassConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Bind_VMSConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Bind_VMSConfigurationResponse" />
+  <wsdl:message name="Bind_GatePassConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_GatePassConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSRequestListSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList" />
+  <wsdl:message name="GatePassHeader_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUD" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSRequestListSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSRequestListResponse" />
+  <wsdl:message name="GatePassHeader_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="Bind_VMSRequestDetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetails" />
+  <wsdl:message name="GatePassType_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassType_CRUD" />
   </wsdl:message>
-  <wsdl:message name="Bind_VMSRequestDetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Bind_VMSRequestDetailsResponse" />
+  <wsdl:message name="GatePassType_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassType_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSRequestSoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_VMSRequest" />
+  <wsdl:message name="GatePassTerm_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassTerm_CRUD" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSRequestSoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_VMSRequestResponse" />
+  <wsdl:message name="GatePassTerm_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassTerm_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSFormURLSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURL" />
+  <wsdl:message name="Update_GatePassConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_GatePassConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Fetch_VMSFormURLSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_VMSFormURLResponse" />
+  <wsdl:message name="Update_GatePassConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_GatePassConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_GatePassRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_GatePassRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_GatePassRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_GatePassRequestDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_GatePassRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_GatePassRequest" />
+  </wsdl:message>
+  <wsdl:message name="Insert_GatePassRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_GatePassRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestGatePassSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestGatePass" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestGatePassSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestGatePassResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyActionableGatePassSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePass" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyActionableGatePassSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePassResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAction_GatePassRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAction_GatePassRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePass_MISSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MIS" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePass_MISSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MISResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Insert_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Answer" />
@@ -2360,79 +3542,193 @@
   <wsdl:message name="Fetch_AnswerSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Asset_DropDownSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDown" />
+  <wsdl:message name="Fetch_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Asset_DropDownSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDownResponse" />
+  <wsdl:message name="Fetch_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDown" />
+  <wsdl:message name="Bind_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
+  <wsdl:message name="Bind_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
+  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetails" />
   </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
+  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
+  <wsdl:message name="Insert_WorkPermitRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitRequest" />
   </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
+  <wsdl:message name="Insert_WorkPermitRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
+  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedData" />
   </wsdl:message>
-  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTERResponse" />
+  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedDataResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MyAssetSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAsset" />
+  <wsdl:message name="Update_WorkPermitRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequest" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MyAssetSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAssetResponse" />
+  <wsdl:message name="Update_WorkPermitRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_Details" />
+  <wsdl:message name="Fetch_MyRequestWorkPermitSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermit" />
   </wsdl:message>
-  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
-  </wsdl:message>
-  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
-    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
-  </wsdl:message>
-  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapOut">
-    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATAResponse" />
+  <wsdl:message name="Fetch_MyRequestWorkPermitSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermitResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_MyActionableWorkPermit">
+      <wsdl:input message="tns:Fetch_MyActionableWorkPermitSoapIn" />
+      <wsdl:output message="tns:Fetch_MyActionableWorkPermitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_DashboardCount">
+      <wsdl:input message="tns:Fetch_DashboardCountSoapIn" />
+      <wsdl:output message="tns:Fetch_DashboardCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_GatePassConfiguration">
+      <wsdl:input message="tns:Delete_GatePassConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_GatePassConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_WorkPermitConfiguration">
+      <wsdl:input message="tns:Update_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Update_WorkPermitConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_WorkPermitSavedConfiguration">
+      <wsdl:input message="tns:Bind_WorkPermitSavedConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_WorkPermitSavedConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermit_MIS">
+      <wsdl:input message="tns:Fetch_WorkPermit_MISSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermit_MISSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <wsdl:input message="tns:Delete_WPConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_WPConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chk_Answer">
+      <wsdl:input message="tns:Fetch_Chk_AnswerSoapIn" />
+      <wsdl:output message="tns:Fetch_Chk_AnswerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistConfiguration">
+      <wsdl:input message="tns:Update_ChecklistConfigurationSoapIn" />
+      <wsdl:output message="tns:Update_ChecklistConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ChecklistConfiguration">
+      <wsdl:input message="tns:Insert_ChecklistConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_ChecklistConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_ChecklistConfiguration">
+      <wsdl:input message="tns:Bind_ChecklistConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_ChecklistConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist">
+      <wsdl:input message="tns:Fetch_MyChecklistSoapIn" />
+      <wsdl:output message="tns:Fetch_MyChecklistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <wsdl:input message="tns:Delete_CHKConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_CHKConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSConfiguration">
+      <wsdl:input message="tns:Insert_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <wsdl:input message="tns:Fetch_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <wsdl:input message="tns:Bind_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <wsdl:input message="tns:Fetch_VMSRequestListSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSRequestListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <wsdl:input message="tns:Bind_VMSRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_VMSRequestDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <wsdl:input message="tns:Insert_VMSRequestSoapIn" />
+      <wsdl:output message="tns:Insert_VMSRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <wsdl:input message="tns:Fetch_VMSFormURLSoapIn" />
+      <wsdl:output message="tns:Fetch_VMSFormURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <wsdl:input message="tns:Delete_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_VMSConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
+      <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <wsdl:input message="tns:Fetch_User_UserGroupListGPWPSoapIn" />
+      <wsdl:output message="tns:Fetch_User_UserGroupListGPWPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Company">
+      <wsdl:input message="tns:Fetch_CompanySoapIn" />
+      <wsdl:output message="tns:Fetch_CompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_DropDownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
+      <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <wsdl:input message="tns:Fetch_MyAssetSoapIn" />
+      <wsdl:output message="tns:Fetch_MyAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
+      <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
+      <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -2678,89 +3974,425 @@
       <wsdl:input message="tns:Fetch_RoleListingSoapIn" />
       <wsdl:output message="tns:Fetch_RoleListingSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <wsdl:input message="tns:Insert_VMSConfigurationSoapIn" />
-      <wsdl:output message="tns:Insert_VMSConfigurationSoapOut" />
+    <wsdl:operation name="Insert_GatePassConfiguration">
+      <wsdl:input message="tns:Insert_GatePassConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_GatePassConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSConfiguration">
-      <wsdl:input message="tns:Fetch_VMSConfigurationSoapIn" />
-      <wsdl:output message="tns:Fetch_VMSConfigurationSoapOut" />
+    <wsdl:operation name="Fetch_GatePassConfiguration">
+      <wsdl:input message="tns:Fetch_GatePassConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_GatePassConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSConfiguration">
-      <wsdl:input message="tns:Bind_VMSConfigurationSoapIn" />
-      <wsdl:output message="tns:Bind_VMSConfigurationSoapOut" />
+    <wsdl:operation name="Bind_GatePassConfiguration">
+      <wsdl:input message="tns:Bind_GatePassConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_GatePassConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSRequestList">
-      <wsdl:input message="tns:Fetch_VMSRequestListSoapIn" />
-      <wsdl:output message="tns:Fetch_VMSRequestListSoapOut" />
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <wsdl:input message="tns:GatePassHeader_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassHeader_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSRequestDetails">
-      <wsdl:input message="tns:Bind_VMSRequestDetailsSoapIn" />
-      <wsdl:output message="tns:Bind_VMSRequestDetailsSoapOut" />
+    <wsdl:operation name="GatePassType_CRUD">
+      <wsdl:input message="tns:GatePassType_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassType_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSRequest">
-      <wsdl:input message="tns:Insert_VMSRequestSoapIn" />
-      <wsdl:output message="tns:Insert_VMSRequestSoapOut" />
+    <wsdl:operation name="GatePassTerm_CRUD">
+      <wsdl:input message="tns:GatePassTerm_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassTerm_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSFormURL">
-      <wsdl:input message="tns:Fetch_VMSFormURLSoapIn" />
-      <wsdl:output message="tns:Fetch_VMSFormURLSoapOut" />
+    <wsdl:operation name="Update_GatePassConfiguration">
+      <wsdl:input message="tns:Update_GatePassConfigurationSoapIn" />
+      <wsdl:output message="tns:Update_GatePassConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_GatePassRequestDetails">
+      <wsdl:input message="tns:Bind_GatePassRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_GatePassRequestDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_GatePassRequest">
+      <wsdl:input message="tns:Insert_GatePassRequestSoapIn" />
+      <wsdl:output message="tns:Insert_GatePassRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestGatePass">
+      <wsdl:input message="tns:Fetch_MyRequestGatePassSoapIn" />
+      <wsdl:output message="tns:Fetch_MyRequestGatePassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <wsdl:input message="tns:Fetch_MyActionableGatePassSoapIn" />
+      <wsdl:output message="tns:Fetch_MyActionableGatePassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <wsdl:input message="tns:Fetch_GatePassRequest_Approval_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_GatePassRequest_Approval_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <wsdl:input message="tns:UpdateAction_GatePassRequestSoapIn" />
+      <wsdl:output message="tns:UpdateAction_GatePassRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <wsdl:input message="tns:Fetch_GatePass_MISSoapIn" />
+      <wsdl:output message="tns:Fetch_GatePass_MISSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <wsdl:input message="tns:Insert_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <wsdl:input message="tns:Fetch_Asset_DropDownSoapIn" />
-      <wsdl:output message="tns:Fetch_Asset_DropDownSoapOut" />
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <wsdl:input message="tns:Fetch_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
-      <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
+    <wsdl:operation name="Bind_WorkPermitConfiguration">
+      <wsdl:input message="tns:Bind_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
-      <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <wsdl:input message="tns:Bind_WorkPermitRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_WorkPermitRequestDetailsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
-      <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
+    <wsdl:operation name="Insert_WorkPermitRequest">
+      <wsdl:input message="tns:Insert_WorkPermitRequestSoapIn" />
+      <wsdl:output message="tns:Insert_WorkPermitRequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
-      <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <wsdl:input message="tns:Fetch_WorkPermitRequestSavedDataSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermitRequestSavedDataSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset">
-      <wsdl:input message="tns:Fetch_MyAssetSoapIn" />
-      <wsdl:output message="tns:Fetch_MyAssetSoapOut" />
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <wsdl:input message="tns:Update_WorkPermitRequestSoapIn" />
+      <wsdl:output message="tns:Update_WorkPermitRequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
-      <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
-      <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <wsdl:input message="tns:Fetch_MyRequestWorkPermitSoapIn" />
+      <wsdl:output message="tns:Fetch_MyRequestWorkPermitSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_MyActionableWorkPermit">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableWorkPermit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_DashboardCount">
+      <soap:operation soapAction="http://tempuri.org/Fetch_DashboardCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_GatePassConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_GatePassConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Update_WorkPermitConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_WorkPermitSavedConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitSavedConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermit_MIS">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermit_MIS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_WPConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chk_Answer">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Update_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ChecklistConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_ChecklistConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_CHKConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <soap:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <soap:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <soap:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Company">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Company" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -3310,8 +4942,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+    <wsdl:operation name="Insert_GatePassConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3319,8 +4951,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+    <wsdl:operation name="Fetch_GatePassConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3328,8 +4960,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+    <wsdl:operation name="Bind_GatePassConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3337,8 +4969,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSRequestList">
-      <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3346,8 +4978,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSRequestDetails">
-      <soap:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+    <wsdl:operation name="GatePassType_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3355,8 +4987,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSRequest">
-      <soap:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+    <wsdl:operation name="GatePassTerm_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassTerm_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3364,8 +4996,80 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSFormURL">
-      <soap:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+    <wsdl:operation name="Update_GatePassConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Update_GatePassConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_GatePassRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_GatePassRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_GatePassRequest">
+      <soap:operation soapAction="http://tempuri.org/Insert_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestGatePass">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestGatePass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <soap:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3382,8 +5086,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3391,8 +5095,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+    <wsdl:operation name="Bind_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3400,8 +5104,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3409,8 +5113,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+    <wsdl:operation name="Insert_WorkPermitRequest">
+      <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitRequest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3418,8 +5122,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3427,8 +5131,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <soap:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3436,53 +5140,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3493,6 +5152,330 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_MyActionableWorkPermit">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableWorkPermit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_DashboardCount">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_DashboardCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_GatePassConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_GatePassConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Update_WorkPermitConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_WorkPermitSavedConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitSavedConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermit_MIS">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermit_MIS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_WPConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_WPConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chk_Answer">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Update_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ChecklistConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_ChecklistConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_ChecklistConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CHKConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_CHKConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSRequestList">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_VMSRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_VMSRequest">
+      <soap12:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMSFormURL">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Company">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Company" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -4042,8 +6025,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+    <wsdl:operation name="Insert_GatePassConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4051,8 +6034,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSConfiguration" style="document" />
+    <wsdl:operation name="Fetch_GatePassConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4060,8 +6043,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Bind_VMSConfiguration" style="document" />
+    <wsdl:operation name="Bind_GatePassConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_GatePassConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4069,8 +6052,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSRequestList">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList" style="document" />
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4078,8 +6061,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_VMSRequestDetails">
-      <soap12:operation soapAction="http://tempuri.org/Bind_VMSRequestDetails" style="document" />
+    <wsdl:operation name="GatePassType_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4087,8 +6070,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSRequest">
-      <soap12:operation soapAction="http://tempuri.org/Insert_VMSRequest" style="document" />
+    <wsdl:operation name="GatePassTerm_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassTerm_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4096,8 +6079,80 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_VMSFormURL">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_VMSFormURL" style="document" />
+    <wsdl:operation name="Update_GatePassConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Update_GatePassConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_GatePassRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_GatePassRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_GatePassRequest">
+      <soap12:operation soapAction="http://tempuri.org/Insert_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestGatePass">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestGatePass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4114,8 +6169,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4123,8 +6178,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+    <wsdl:operation name="Bind_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4132,8 +6187,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4141,8 +6196,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+    <wsdl:operation name="Insert_WorkPermitRequest">
+      <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4150,8 +6205,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4159,8 +6214,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <soap12:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4168,53 +6223,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

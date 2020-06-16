@@ -13,15 +13,6 @@ namespace Upkeep_v3.Feedback {
     public partial class EditEvent {
         
         /// <summary>
-        /// EditEvent_form control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm EditEvent_form;
-        
-        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

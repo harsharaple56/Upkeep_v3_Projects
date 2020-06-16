@@ -14,7 +14,7 @@ namespace Upkeep_v3.VMS
     public partial class Visit_Configuration : System.Web.UI.Page
     {
         int CompanyID = 0;
-        
+
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int ConfigID = 0;
@@ -31,7 +31,7 @@ namespace Upkeep_v3.VMS
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
-            
+
             if (!IsPostBack)
             {
 
@@ -45,6 +45,14 @@ namespace Upkeep_v3.VMS
                         ConfigID = Convert.ToInt32(strConfigID);
 
                     BindVMSConfig(ConfigID);
+                }
+                else if (!System.String.IsNullOrWhiteSpace(Request.QueryString["DelVMSConfigID"]))
+                {
+                    strConfigID = Request.QueryString["DelVMSConfigID"].ToString();
+                    if (strConfigID.All(char.IsDigit))
+                        ConfigID = Convert.ToInt32(strConfigID);
+
+                    ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
                 }
             }
         }
@@ -132,7 +140,7 @@ namespace Upkeep_v3.VMS
                             //if (strValue[2].ToString() == "on") { isFlag = "1"; }
 
                             strXmlVMS_Question.Append(@"<Question_Ans_Data>");
-                            strXmlVMS_Question.Append(@"<Question_Ans_Sequence>"+f+"</Question_Ans_Sequence>");
+                            strXmlVMS_Question.Append(@"<Question_Ans_Sequence>" + f + "</Question_Ans_Sequence>");
 
                             strXmlVMS_Question.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString() + "</Question_Ans_Data_ID>");
                             strXmlVMS_Question.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString() + "</Question_Ans_Data_Text>");
@@ -148,7 +156,7 @@ namespace Upkeep_v3.VMS
 
                 }
 
-                
+
 
                 strXmlVMS_Question.Append(@"</VMS_HEADER_ROOT>");
                 //strXmlVMS_Feedback.Append(@"</VMS_FEEDBACK_ROOT>");
@@ -168,7 +176,7 @@ namespace Upkeep_v3.VMS
                 if (rdbVisitor.Checked == true)
                 { strInitiator = "V"; }
 
-                if(ddlFeedbackTitle.SelectedValue.All(char.IsDigit))
+                if (ddlFeedbackTitle.SelectedValue.All(char.IsDigit))
                     FeedbackTitle = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
                 blFeedbackCompulsary = Convert.ToBoolean(ChkFeedback.Checked);
                 blEnableCovid = Convert.ToBoolean(ChkCovid.Checked);
@@ -213,7 +221,7 @@ namespace Upkeep_v3.VMS
             try
             {
 
-                ds = ObjUpkeep.Fetch_Answer('V');
+                ds = ObjUpkeep.Fetch_AnswerForAll('V');
 
 
 
@@ -233,7 +241,7 @@ namespace Upkeep_v3.VMS
 
                         //ddlFAns.DataBind();
 
-                        for (int i = 0; i < ddlAns.Items.Count-1; i++)
+                        for (int i = 0; i < ddlAns.Items.Count - 1; i++)
                             ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
 
                         //ddlAns.Items.Insert(0, new ListItem("Select", "NA"));
@@ -254,7 +262,7 @@ namespace Upkeep_v3.VMS
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.GetEventList(CompanyID,"V");
+                dsTitle = ObjUpkeep.GetEventList(CompanyID, "V");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -287,11 +295,11 @@ namespace Upkeep_v3.VMS
                 {
                     //divDesc.Visible = true;
                     hdnVMSConfigID.Value = ConfigTitleID.ToString();
-                    txtTitle.Text= dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     txtVMSDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
-                    if(dsConfig.Tables[0].Rows[0]["Initiator"].ToString()=="C")
+                    if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
                     { rdbCustomer.Checked = true; }
-                    else if(dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
+                    else if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
                     { rdbVisitor.Checked = true; }
                     ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
                     ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
@@ -299,11 +307,11 @@ namespace Upkeep_v3.VMS
 
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
-                       + s.Field<string>("Is_Mandatory").ToString() + "||" + s.Field<string>("Is_Visible").ToString() + "||"
+                       + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
                        + s.Field<decimal>("Ans_Type_ID") + "||"
                        + string.Join(";", dsConfig.Tables[1].AsEnumerable().Where(ans =>
                        ans.Field<decimal>("VMS_Qn_Id").ToString() == s.Field<decimal>("VMS_Qn_Id").ToString()).Select(ans =>
-                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
+                       ans.Field<string>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
 
                     hdnVMSQns.Value = string.Join("~", QnValues);
                 }

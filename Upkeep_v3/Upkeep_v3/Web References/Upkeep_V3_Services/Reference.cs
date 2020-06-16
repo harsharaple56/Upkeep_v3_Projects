@@ -24,11 +24,83 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
+        
+        private System.Threading.SendOrPostCallback Fetch_MyActionableWorkPermitOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_DashboardCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_GatePassConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Update_WorkPermitConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_WorkPermitSavedConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_WorkPermit_MISOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_WPConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Chk_AnswerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Update_ChecklistConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_ChecklistConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_ChecklistConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyChecklistOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_CHKConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_VMSRequestListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_VMSRequestDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_VMSRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_VMSFormURLOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_VMSConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_CompanyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Asset_DropDownOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Asset_Vendor_DropDownOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ASSET_Insert_AssetTypeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ASSET_Insert_AssetCategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ASSET_INSERT_GRNL_MASTEROperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyAssetOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback INSERT_ASSET_REQUEST_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UPDATE_ASSET_REQUEST_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyAsset_ServiceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -152,45 +224,51 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_RoleListingOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Insert_GatePassConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_GatePassConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Bind_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Bind_GatePassConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_VMSRequestListOperationCompleted;
+        private System.Threading.SendOrPostCallback GatePassHeader_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Bind_VMSRequestDetailsOperationCompleted;
+        private System.Threading.SendOrPostCallback GatePassType_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_VMSRequestOperationCompleted;
+        private System.Threading.SendOrPostCallback GatePassTerm_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_VMSFormURLOperationCompleted;
+        private System.Threading.SendOrPostCallback Update_GatePassConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_GatePassRequestDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_GatePassRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyRequestGatePassOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyActionableGatePassOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_GatePassRequest_Approval_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateAction_GatePassRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_GatePass_MISOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_WorkPermitConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_AnswerOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_Asset_DropDownOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_WorkPermitConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_Asset_Vendor_DropDownOperationCompleted;
+        private System.Threading.SendOrPostCallback Bind_WorkPermitConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ASSET_Insert_AssetTypeOperationCompleted;
+        private System.Threading.SendOrPostCallback Bind_WorkPermitRequestDetailsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ASSET_Insert_AssetCategoryOperationCompleted;
+        private System.Threading.SendOrPostCallback Insert_WorkPermitRequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ASSET_INSERT_GRNL_MASTEROperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestSavedDataOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_MyAssetOperationCompleted;
+        private System.Threading.SendOrPostCallback Update_WorkPermitRequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback INSERT_ASSET_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback UPDATE_ASSET_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_MyAsset_ServiceOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_MyRequestWorkPermitOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -229,6 +307,114 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_MyActionableWorkPermitCompletedEventHandler Fetch_MyActionableWorkPermitCompleted;
+        
+        /// <remarks/>
+        public event Fetch_DashboardCountCompletedEventHandler Fetch_DashboardCountCompleted;
+        
+        /// <remarks/>
+        public event Delete_GatePassConfigurationCompletedEventHandler Delete_GatePassConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Update_WorkPermitConfigurationCompletedEventHandler Update_WorkPermitConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_WorkPermitSavedConfigurationCompletedEventHandler Bind_WorkPermitSavedConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_WorkPermit_MISCompletedEventHandler Fetch_WorkPermit_MISCompleted;
+        
+        /// <remarks/>
+        public event Delete_WPConfigurationCompletedEventHandler Delete_WPConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Chk_AnswerCompletedEventHandler Fetch_Chk_AnswerCompleted;
+        
+        /// <remarks/>
+        public event Update_ChecklistConfigurationCompletedEventHandler Update_ChecklistConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Insert_ChecklistConfigurationCompletedEventHandler Insert_ChecklistConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_ChecklistConfigurationCompletedEventHandler Bind_ChecklistConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyChecklistCompletedEventHandler Fetch_MyChecklistCompleted;
+        
+        /// <remarks/>
+        public event Delete_CHKConfigurationCompletedEventHandler Delete_CHKConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_VMSConfigurationCompletedEventHandler Bind_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_VMSRequestListCompletedEventHandler Fetch_VMSRequestListCompleted;
+        
+        /// <remarks/>
+        public event Bind_VMSRequestDetailsCompletedEventHandler Bind_VMSRequestDetailsCompleted;
+        
+        /// <remarks/>
+        public event Insert_VMSRequestCompletedEventHandler Insert_VMSRequestCompleted;
+        
+        /// <remarks/>
+        public event Fetch_VMSFormURLCompletedEventHandler Fetch_VMSFormURLCompleted;
+        
+        /// <remarks/>
+        public event Delete_VMSConfigurationCompletedEventHandler Delete_VMSConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
+        
+        /// <remarks/>
+        public event Fetch_User_UserGroupListGPWPCompletedEventHandler Fetch_User_UserGroupListGPWPCompleted;
+        
+        /// <remarks/>
+        public event Fetch_CompanyCompletedEventHandler Fetch_CompanyCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Asset_DropDownCompletedEventHandler Fetch_Asset_DropDownCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Asset_Vendor_DropDownCompletedEventHandler Fetch_Asset_Vendor_DropDownCompleted;
+        
+        /// <remarks/>
+        public event ASSET_Insert_AssetTypeCompletedEventHandler ASSET_Insert_AssetTypeCompleted;
+        
+        /// <remarks/>
+        public event ASSET_Insert_AssetCategoryCompletedEventHandler ASSET_Insert_AssetCategoryCompleted;
+        
+        /// <remarks/>
+        public event ASSET_INSERT_GRNL_MASTERCompletedEventHandler ASSET_INSERT_GRNL_MASTERCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyAssetCompletedEventHandler Fetch_MyAssetCompleted;
+        
+        /// <remarks/>
+        public event Fetch_ASSET_REQUEST_DetailsCompletedEventHandler Fetch_ASSET_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event INSERT_ASSET_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event UPDATE_ASSET_REQUEST_DetailsCompletedEventHandler UPDATE_ASSET_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventHandler INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyAsset_ServiceCompletedEventHandler Fetch_MyAsset_ServiceCompleted;
+        
+        /// <remarks/>
+        public event CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventHandler CRUD_ASSET_SERVICE_REQUEST_DATACompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -414,64 +600,1287 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_RoleListingCompletedEventHandler Fetch_RoleListingCompleted;
         
         /// <remarks/>
-        public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
+        public event Insert_GatePassConfigurationCompletedEventHandler Insert_GatePassConfigurationCompleted;
         
         /// <remarks/>
-        public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
+        public event Fetch_GatePassConfigurationCompletedEventHandler Fetch_GatePassConfigurationCompleted;
         
         /// <remarks/>
-        public event Bind_VMSConfigurationCompletedEventHandler Bind_VMSConfigurationCompleted;
+        public event Bind_GatePassConfigurationCompletedEventHandler Bind_GatePassConfigurationCompleted;
         
         /// <remarks/>
-        public event Fetch_VMSRequestListCompletedEventHandler Fetch_VMSRequestListCompleted;
+        public event GatePassHeader_CRUDCompletedEventHandler GatePassHeader_CRUDCompleted;
         
         /// <remarks/>
-        public event Bind_VMSRequestDetailsCompletedEventHandler Bind_VMSRequestDetailsCompleted;
+        public event GatePassType_CRUDCompletedEventHandler GatePassType_CRUDCompleted;
         
         /// <remarks/>
-        public event Insert_VMSRequestCompletedEventHandler Insert_VMSRequestCompleted;
+        public event GatePassTerm_CRUDCompletedEventHandler GatePassTerm_CRUDCompleted;
         
         /// <remarks/>
-        public event Fetch_VMSFormURLCompletedEventHandler Fetch_VMSFormURLCompleted;
+        public event Update_GatePassConfigurationCompletedEventHandler Update_GatePassConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_GatePassRequestDetailsCompletedEventHandler Bind_GatePassRequestDetailsCompleted;
+        
+        /// <remarks/>
+        public event Insert_GatePassRequestCompletedEventHandler Insert_GatePassRequestCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyRequestGatePassCompletedEventHandler Fetch_MyRequestGatePassCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyActionableGatePassCompletedEventHandler Fetch_MyActionableGatePassCompleted;
+        
+        /// <remarks/>
+        public event Fetch_GatePassRequest_Approval_DetailsCompletedEventHandler Fetch_GatePassRequest_Approval_DetailsCompleted;
+        
+        /// <remarks/>
+        public event UpdateAction_GatePassRequestCompletedEventHandler UpdateAction_GatePassRequestCompleted;
+        
+        /// <remarks/>
+        public event Fetch_GatePass_MISCompletedEventHandler Fetch_GatePass_MISCompleted;
+        
+        /// <remarks/>
+        public event Insert_WorkPermitConfigurationCompletedEventHandler Insert_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
         public event Fetch_AnswerCompletedEventHandler Fetch_AnswerCompleted;
         
         /// <remarks/>
-        public event Fetch_Asset_DropDownCompletedEventHandler Fetch_Asset_DropDownCompleted;
+        public event Fetch_WorkPermitConfigurationCompletedEventHandler Fetch_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
-        public event Fetch_Asset_Vendor_DropDownCompletedEventHandler Fetch_Asset_Vendor_DropDownCompleted;
+        public event Bind_WorkPermitConfigurationCompletedEventHandler Bind_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
-        public event ASSET_Insert_AssetTypeCompletedEventHandler ASSET_Insert_AssetTypeCompleted;
+        public event Bind_WorkPermitRequestDetailsCompletedEventHandler Bind_WorkPermitRequestDetailsCompleted;
         
         /// <remarks/>
-        public event ASSET_Insert_AssetCategoryCompletedEventHandler ASSET_Insert_AssetCategoryCompleted;
+        public event Insert_WorkPermitRequestCompletedEventHandler Insert_WorkPermitRequestCompleted;
         
         /// <remarks/>
-        public event ASSET_INSERT_GRNL_MASTERCompletedEventHandler ASSET_INSERT_GRNL_MASTERCompleted;
+        public event Fetch_WorkPermitRequestSavedDataCompletedEventHandler Fetch_WorkPermitRequestSavedDataCompleted;
         
         /// <remarks/>
-        public event Fetch_MyAssetCompletedEventHandler Fetch_MyAssetCompleted;
+        public event Update_WorkPermitRequestCompletedEventHandler Update_WorkPermitRequestCompleted;
         
         /// <remarks/>
-        public event Fetch_ASSET_REQUEST_DetailsCompletedEventHandler Fetch_ASSET_REQUEST_DetailsCompleted;
+        public event Fetch_MyRequestWorkPermitCompletedEventHandler Fetch_MyRequestWorkPermitCompleted;
         
         /// <remarks/>
-        public event INSERT_ASSET_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_REQUEST_DetailsCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyActionableWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyActionableWorkPermit(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyActionableWorkPermit", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
         
         /// <remarks/>
-        public event UPDATE_ASSET_REQUEST_DetailsCompletedEventHandler UPDATE_ASSET_REQUEST_DetailsCompleted;
+        public void Fetch_MyActionableWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyActionableWorkPermitAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
         
         /// <remarks/>
-        public event INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventHandler INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted;
+        public void Fetch_MyActionableWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyActionableWorkPermitOperationCompleted == null)) {
+                this.Fetch_MyActionableWorkPermitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyActionableWorkPermitOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyActionableWorkPermit", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyActionableWorkPermitOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyActionableWorkPermitOperationCompleted(object arg) {
+            if ((this.Fetch_MyActionableWorkPermitCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyActionableWorkPermitCompleted(this, new Fetch_MyActionableWorkPermitCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
-        public event Fetch_MyAsset_ServiceCompletedEventHandler Fetch_MyAsset_ServiceCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_DashboardCount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_DashboardCount(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_DashboardCount", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
         
         /// <remarks/>
-        public event CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventHandler CRUD_ASSET_SERVICE_REQUEST_DATACompleted;
+        public void Fetch_DashboardCountAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_DashboardCountAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_DashboardCountAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_DashboardCountOperationCompleted == null)) {
+                this.Fetch_DashboardCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_DashboardCountOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_DashboardCount", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_DashboardCountOperationCompleted, userState);
+        }
+        
+        private void OnFetch_DashboardCountOperationCompleted(object arg) {
+            if ((this.Fetch_DashboardCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_DashboardCountCompleted(this, new Fetch_DashboardCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_GatePassConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_GatePassConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_GatePassConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_GatePassConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_GatePassConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_GatePassConfigurationOperationCompleted == null)) {
+                this.Delete_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_GatePassConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_GatePassConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_GatePassConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_GatePassConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_GatePassConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_GatePassConfigurationCompleted(this, new Delete_GatePassConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+            object[] results = this.Invoke("Update_WorkPermitConfiguration", new object[] {
+                        WP_Config_ID,
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlWorkPermit_Header,
+                        strXmlWorkPermit_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+            this.Update_WorkPermitConfigurationAsync(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, object userState) {
+            if ((this.Update_WorkPermitConfigurationOperationCompleted == null)) {
+                this.Update_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_WorkPermitConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Update_WorkPermitConfiguration", new object[] {
+                        WP_Config_ID,
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlWorkPermit_Header,
+                        strXmlWorkPermit_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        LoggedInUserID}, this.Update_WorkPermitConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_WorkPermitConfigurationOperationCompleted(object arg) {
+            if ((this.Update_WorkPermitConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_WorkPermitConfigurationCompleted(this, new Update_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitSavedConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_WorkPermitSavedConfiguration(int WP_ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_WorkPermitSavedConfiguration", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_WorkPermitSavedConfigurationAsync(int WP_ConfigID, string LoggedInUserID) {
+            this.Bind_WorkPermitSavedConfigurationAsync(WP_ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_WorkPermitSavedConfigurationAsync(int WP_ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Bind_WorkPermitSavedConfigurationOperationCompleted == null)) {
+                this.Bind_WorkPermitSavedConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_WorkPermitSavedConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_WorkPermitSavedConfiguration", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID}, this.Bind_WorkPermitSavedConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_WorkPermitSavedConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_WorkPermitSavedConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_WorkPermitSavedConfigurationCompleted(this, new Bind_WorkPermitSavedConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermit_MIS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_WorkPermit_MIS(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_WorkPermit_MIS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermit_MISAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_WorkPermit_MISAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermit_MISAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_WorkPermit_MISOperationCompleted == null)) {
+                this.Fetch_WorkPermit_MISOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermit_MISOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_WorkPermit_MIS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_WorkPermit_MISOperationCompleted, userState);
+        }
+        
+        private void OnFetch_WorkPermit_MISOperationCompleted(object arg) {
+            if ((this.Fetch_WorkPermit_MISCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_WorkPermit_MISCompleted(this, new Fetch_WorkPermit_MISCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_WPConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_WPConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_WPConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_WPConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_WPConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_WPConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_WPConfigurationOperationCompleted == null)) {
+                this.Delete_WPConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_WPConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_WPConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_WPConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_WPConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_WPConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_WPConfigurationCompleted(this, new Delete_WPConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Chk_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Chk_Answer() {
+            object[] results = this.Invoke("Fetch_Chk_Answer", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Chk_AnswerAsync() {
+            this.Fetch_Chk_AnswerAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Chk_AnswerAsync(object userState) {
+            if ((this.Fetch_Chk_AnswerOperationCompleted == null)) {
+                this.Fetch_Chk_AnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Chk_AnswerOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Chk_Answer", new object[0], this.Fetch_Chk_AnswerOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Chk_AnswerOperationCompleted(object arg) {
+            if ((this.Fetch_Chk_AnswerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Chk_AnswerCompleted(this, new Fetch_Chk_AnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_ChecklistConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_ChecklistConfiguration(int Chk_Config_ID, string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID) {
+            object[] results = this.Invoke("Update_ChecklistConfiguration", new object[] {
+                        Chk_Config_ID,
+                        strConfigTitle,
+                        strConfigTitleDesc,
+                        IsScoreEnable,
+                        TotalScore,
+                        strXmlChecklist,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_ChecklistConfigurationAsync(int Chk_Config_ID, string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID) {
+            this.Update_ChecklistConfigurationAsync(Chk_Config_ID, strConfigTitle, strConfigTitleDesc, IsScoreEnable, TotalScore, strXmlChecklist, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Update_ChecklistConfigurationAsync(int Chk_Config_ID, string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID, object userState) {
+            if ((this.Update_ChecklistConfigurationOperationCompleted == null)) {
+                this.Update_ChecklistConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_ChecklistConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Update_ChecklistConfiguration", new object[] {
+                        Chk_Config_ID,
+                        strConfigTitle,
+                        strConfigTitleDesc,
+                        IsScoreEnable,
+                        TotalScore,
+                        strXmlChecklist,
+                        LoggedInUserID}, this.Update_ChecklistConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_ChecklistConfigurationOperationCompleted(object arg) {
+            if ((this.Update_ChecklistConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_ChecklistConfigurationCompleted(this, new Update_ChecklistConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_ChecklistConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_ChecklistConfiguration(string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_ChecklistConfiguration", new object[] {
+                        strConfigTitle,
+                        strConfigTitleDesc,
+                        IsScoreEnable,
+                        TotalScore,
+                        strXmlChecklist,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_ChecklistConfigurationAsync(string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID) {
+            this.Insert_ChecklistConfigurationAsync(strConfigTitle, strConfigTitleDesc, IsScoreEnable, TotalScore, strXmlChecklist, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_ChecklistConfigurationAsync(string strConfigTitle, string strConfigTitleDesc, bool IsScoreEnable, int TotalScore, string strXmlChecklist, string LoggedInUserID, object userState) {
+            if ((this.Insert_ChecklistConfigurationOperationCompleted == null)) {
+                this.Insert_ChecklistConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_ChecklistConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Insert_ChecklistConfiguration", new object[] {
+                        strConfigTitle,
+                        strConfigTitleDesc,
+                        IsScoreEnable,
+                        TotalScore,
+                        strXmlChecklist,
+                        LoggedInUserID}, this.Insert_ChecklistConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnInsert_ChecklistConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_ChecklistConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_ChecklistConfigurationCompleted(this, new Insert_ChecklistConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_ChecklistConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_ChecklistConfiguration(int CHK_ConfigID) {
+            object[] results = this.Invoke("Bind_ChecklistConfiguration", new object[] {
+                        CHK_ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_ChecklistConfigurationAsync(int CHK_ConfigID) {
+            this.Bind_ChecklistConfigurationAsync(CHK_ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_ChecklistConfigurationAsync(int CHK_ConfigID, object userState) {
+            if ((this.Bind_ChecklistConfigurationOperationCompleted == null)) {
+                this.Bind_ChecklistConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_ChecklistConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_ChecklistConfiguration", new object[] {
+                        CHK_ConfigID}, this.Bind_ChecklistConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_ChecklistConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_ChecklistConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_ChecklistConfigurationCompleted(this, new Bind_ChecklistConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklist", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyChecklist", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyChecklistAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyChecklistOperationCompleted == null)) {
+                this.Fetch_MyChecklistOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyChecklist", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyChecklistOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyChecklistOperationCompleted(object arg) {
+            if ((this.Fetch_MyChecklistCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyChecklistCompleted(this, new Fetch_MyChecklistCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_CHKConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_CHKConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_CHKConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_CHKConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_CHKConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_CHKConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_CHKConfigurationOperationCompleted == null)) {
+                this.Delete_CHKConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_CHKConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_CHKConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_CHKConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_CHKConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_CHKConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_CHKConfigurationCompleted(this, new Delete_CHKConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
+                        strConfigTitle,
+                        strConfigDesc,
+                        CompanyID,
+                        strInitiator,
+                        strXmlVMS_Question,
+                        blFeedbackCompulsary,
+                        FeedbackTitle,
+                        blEnableCovid,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
+            this.Insert_VMSConfigurationAsync(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, object userState) {
+            if ((this.Insert_VMSConfigurationOperationCompleted == null)) {
+                this.Insert_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Insert_VMSConfiguration", new object[] {
+                        strConfigTitle,
+                        strConfigDesc,
+                        CompanyID,
+                        strInitiator,
+                        strXmlVMS_Question,
+                        blFeedbackCompulsary,
+                        FeedbackTitle,
+                        blEnableCovid,
+                        LoggedInUserID}, this.Insert_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnInsert_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_VMSConfigurationCompleted(this, new Insert_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_VMSConfiguration(string Initiator) {
+            object[] results = this.Invoke("Fetch_VMSConfiguration", new object[] {
+                        Initiator});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSConfigurationAsync(string Initiator) {
+            this.Fetch_VMSConfigurationAsync(Initiator, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSConfigurationAsync(string Initiator, object userState) {
+            if ((this.Fetch_VMSConfigurationOperationCompleted == null)) {
+                this.Fetch_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_VMSConfiguration", new object[] {
+                        Initiator}, this.Fetch_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnFetch_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Fetch_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_VMSConfigurationCompleted(this, new Fetch_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_VMSConfiguration(int VMS_ConfigID) {
+            object[] results = this.Invoke("Bind_VMSConfiguration", new object[] {
+                        VMS_ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSConfigurationAsync(int VMS_ConfigID) {
+            this.Bind_VMSConfigurationAsync(VMS_ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSConfigurationAsync(int VMS_ConfigID, object userState) {
+            if ((this.Bind_VMSConfigurationOperationCompleted == null)) {
+                this.Bind_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_VMSConfiguration", new object[] {
+                        VMS_ConfigID}, this.Bind_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_VMSConfigurationCompleted(this, new Bind_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSRequestList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_VMSRequestList", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_VMSRequestListAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_VMSRequestListOperationCompleted == null)) {
+                this.Fetch_VMSRequestListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSRequestListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_VMSRequestList", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_VMSRequestListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_VMSRequestListOperationCompleted(object arg) {
+            if ((this.Fetch_VMSRequestListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_VMSRequestListCompleted(this, new Fetch_VMSRequestListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_VMSRequestDetails(int RequestID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_VMSRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSRequestDetailsAsync(int RequestID, string LoggedInUserID) {
+            this.Bind_VMSRequestDetailsAsync(RequestID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_VMSRequestDetailsAsync(int RequestID, string LoggedInUserID, object userState) {
+            if ((this.Bind_VMSRequestDetailsOperationCompleted == null)) {
+                this.Bind_VMSRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSRequestDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Bind_VMSRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID}, this.Bind_VMSRequestDetailsOperationCompleted, userState);
+        }
+        
+        private void OnBind_VMSRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_VMSRequestDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_VMSRequestDetailsCompleted(this, new Bind_VMSRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_VMSRequest", new object[] {
+                        CompanyID,
+                        Action,
+                        RequestID,
+                        VMS_ConfigID,
+                        Email,
+                        Phone,
+                        strVMSDate,
+                        strMeetUsrs,
+                        strVMSData,
+                        strVMSCovidColorCode,
+                        strVMSCovidTestDate,
+                        strTemperature,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
+            if ((this.Insert_VMSRequestOperationCompleted == null)) {
+                this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
+            }
+            this.InvokeAsync("Insert_VMSRequest", new object[] {
+                        CompanyID,
+                        Action,
+                        RequestID,
+                        VMS_ConfigID,
+                        Email,
+                        Phone,
+                        strVMSDate,
+                        strMeetUsrs,
+                        strVMSData,
+                        strVMSCovidColorCode,
+                        strVMSCovidTestDate,
+                        strTemperature,
+                        LoggedInUserID}, this.Insert_VMSRequestOperationCompleted, userState);
+        }
+        
+        private void OnInsert_VMSRequestOperationCompleted(object arg) {
+            if ((this.Insert_VMSRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_VMSRequestCompleted(this, new Insert_VMSRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSFormURL", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_VMSFormURL(string ShortUrl) {
+            object[] results = this.Invoke("Fetch_VMSFormURL", new object[] {
+                        ShortUrl});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSFormURLAsync(string ShortUrl) {
+            this.Fetch_VMSFormURLAsync(ShortUrl, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSFormURLAsync(string ShortUrl, object userState) {
+            if ((this.Fetch_VMSFormURLOperationCompleted == null)) {
+                this.Fetch_VMSFormURLOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSFormURLOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_VMSFormURL", new object[] {
+                        ShortUrl}, this.Fetch_VMSFormURLOperationCompleted, userState);
+        }
+        
+        private void OnFetch_VMSFormURLOperationCompleted(object arg) {
+            if ((this.Fetch_VMSFormURLCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_VMSFormURLCompleted(this, new Fetch_VMSFormURLCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_VMSConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_VMSConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_VMSConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_VMSConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_VMSConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_VMSConfigurationOperationCompleted == null)) {
+                this.Delete_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_VMSConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_VMSConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_VMSConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_VMSConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_VMSConfigurationCompleted(this, new Delete_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AnswerForAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_AnswerForAll(char Key) {
+            object[] results = this.Invoke("Fetch_AnswerForAll", new object[] {
+                        Key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerForAllAsync(char Key) {
+            this.Fetch_AnswerForAllAsync(Key, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerForAllAsync(char Key, object userState) {
+            if ((this.Fetch_AnswerForAllOperationCompleted == null)) {
+                this.Fetch_AnswerForAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerForAllOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_AnswerForAll", new object[] {
+                        Key}, this.Fetch_AnswerForAllOperationCompleted, userState);
+        }
+        
+        private void OnFetch_AnswerForAllOperationCompleted(object arg) {
+            if ((this.Fetch_AnswerForAllCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_AnswerForAllCompleted(this, new Fetch_AnswerForAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupListGPWP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_User_UserGroupListGPWP(string Initiator) {
+            object[] results = this.Invoke("Fetch_User_UserGroupListGPWP", new object[] {
+                        Initiator});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_User_UserGroupListGPWPAsync(string Initiator) {
+            this.Fetch_User_UserGroupListGPWPAsync(Initiator, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_User_UserGroupListGPWPAsync(string Initiator, object userState) {
+            if ((this.Fetch_User_UserGroupListGPWPOperationCompleted == null)) {
+                this.Fetch_User_UserGroupListGPWPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_User_UserGroupListGPWPOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_User_UserGroupListGPWP", new object[] {
+                        Initiator}, this.Fetch_User_UserGroupListGPWPOperationCompleted, userState);
+        }
+        
+        private void OnFetch_User_UserGroupListGPWPOperationCompleted(object arg) {
+            if ((this.Fetch_User_UserGroupListGPWPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_User_UserGroupListGPWPCompleted(this, new Fetch_User_UserGroupListGPWPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Company", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Company() {
+            object[] results = this.Invoke("Fetch_Company", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyAsync() {
+            this.Fetch_CompanyAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyAsync(object userState) {
+            if ((this.Fetch_CompanyOperationCompleted == null)) {
+                this.Fetch_CompanyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CompanyOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Company", new object[0], this.Fetch_CompanyOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CompanyOperationCompleted(object arg) {
+            if ((this.Fetch_CompanyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CompanyCompleted(this, new Fetch_CompanyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Asset_DropDown(int UserID) {
+            object[] results = this.Invoke("Fetch_Asset_DropDown", new object[] {
+                        UserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_DropDownAsync(int UserID) {
+            this.Fetch_Asset_DropDownAsync(UserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_DropDownAsync(int UserID, object userState) {
+            if ((this.Fetch_Asset_DropDownOperationCompleted == null)) {
+                this.Fetch_Asset_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_DropDownOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Asset_DropDown", new object[] {
+                        UserID}, this.Fetch_Asset_DropDownOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Asset_DropDownOperationCompleted(object arg) {
+            if ((this.Fetch_Asset_DropDownCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Asset_DropDownCompleted(this, new Fetch_Asset_DropDownCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_Vendor_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Asset_Vendor_DropDown(string VendorPrefix, int UserID) {
+            object[] results = this.Invoke("Fetch_Asset_Vendor_DropDown", new object[] {
+                        VendorPrefix,
+                        UserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_Vendor_DropDownAsync(string VendorPrefix, int UserID) {
+            this.Fetch_Asset_Vendor_DropDownAsync(VendorPrefix, UserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_Vendor_DropDownAsync(string VendorPrefix, int UserID, object userState) {
+            if ((this.Fetch_Asset_Vendor_DropDownOperationCompleted == null)) {
+                this.Fetch_Asset_Vendor_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_Vendor_DropDownOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Asset_Vendor_DropDown", new object[] {
+                        VendorPrefix,
+                        UserID}, this.Fetch_Asset_Vendor_DropDownOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Asset_Vendor_DropDownOperationCompleted(object arg) {
+            if ((this.Fetch_Asset_Vendor_DropDownCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Asset_Vendor_DropDownCompleted(this, new Fetch_Asset_Vendor_DropDownCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ASSET_Insert_AssetType(string LoggedInUserID, int companyID, string AssetType) {
+            object[] results = this.Invoke("ASSET_Insert_AssetType", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetType});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetTypeAsync(string LoggedInUserID, int companyID, string AssetType) {
+            this.ASSET_Insert_AssetTypeAsync(LoggedInUserID, companyID, AssetType, null);
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetTypeAsync(string LoggedInUserID, int companyID, string AssetType, object userState) {
+            if ((this.ASSET_Insert_AssetTypeOperationCompleted == null)) {
+                this.ASSET_Insert_AssetTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetTypeOperationCompleted);
+            }
+            this.InvokeAsync("ASSET_Insert_AssetType", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetType}, this.ASSET_Insert_AssetTypeOperationCompleted, userState);
+        }
+        
+        private void OnASSET_Insert_AssetTypeOperationCompleted(object arg) {
+            if ((this.ASSET_Insert_AssetTypeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ASSET_Insert_AssetTypeCompleted(this, new ASSET_Insert_AssetTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
+            object[] results = this.Invoke("ASSET_Insert_AssetCategory", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetTypeID,
+                        AssetCategory});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
+            this.ASSET_Insert_AssetCategoryAsync(LoggedInUserID, companyID, AssetTypeID, AssetCategory, null);
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory, object userState) {
+            if ((this.ASSET_Insert_AssetCategoryOperationCompleted == null)) {
+                this.ASSET_Insert_AssetCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetCategoryOperationCompleted);
+            }
+            this.InvokeAsync("ASSET_Insert_AssetCategory", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetTypeID,
+                        AssetCategory}, this.ASSET_Insert_AssetCategoryOperationCompleted, userState);
+        }
+        
+        private void OnASSET_Insert_AssetCategoryOperationCompleted(object arg) {
+            if ((this.ASSET_Insert_AssetCategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ASSET_Insert_AssetCategoryCompleted(this, new ASSET_Insert_AssetCategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_INSERT_GRNL_MASTER", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
+            object[] results = this.Invoke("ASSET_INSERT_GRNL_MASTER", new object[] {
+                        LoggedInUserID,
+                        MasterType,
+                        Dept_Value,
+                        LocationXmlValue,
+                        VendorXmlValue});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
+            this.ASSET_INSERT_GRNL_MASTERAsync(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue, null);
+        }
+        
+        /// <remarks/>
+        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue, object userState) {
+            if ((this.ASSET_INSERT_GRNL_MASTEROperationCompleted == null)) {
+                this.ASSET_INSERT_GRNL_MASTEROperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_INSERT_GRNL_MASTEROperationCompleted);
+            }
+            this.InvokeAsync("ASSET_INSERT_GRNL_MASTER", new object[] {
+                        LoggedInUserID,
+                        MasterType,
+                        Dept_Value,
+                        LocationXmlValue,
+                        VendorXmlValue}, this.ASSET_INSERT_GRNL_MASTEROperationCompleted, userState);
+        }
+        
+        private void OnASSET_INSERT_GRNL_MASTEROperationCompleted(object arg) {
+            if ((this.ASSET_INSERT_GRNL_MASTERCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ASSET_INSERT_GRNL_MASTERCompleted(this, new ASSET_INSERT_GRNL_MASTERCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyAsset(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyAsset", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAssetAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyAssetAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAssetAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyAssetOperationCompleted == null)) {
+                this.Fetch_MyAssetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAssetOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyAsset", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyAssetOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyAssetOperationCompleted(object arg) {
+            if ((this.Fetch_MyAssetCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyAssetCompleted(this, new Fetch_MyAssetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID) {
+            object[] results = this.Invoke("Fetch_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID) {
+            this.Fetch_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID, object userState) {
+            if ((this.Fetch_ASSET_REQUEST_DetailsOperationCompleted == null)) {
+                this.Fetch_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_ASSET_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID}, this.Fetch_ASSET_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_ASSET_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_ASSET_REQUEST_DetailsCompleted(this, new Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            object[] results = this.Invoke("INSERT_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            this.INSERT_ASSET_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
+            if ((this.INSERT_ASSET_REQUEST_DetailsOperationCompleted == null)) {
+                this.INSERT_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml}, this.INSERT_ASSET_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.INSERT_ASSET_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_ASSET_REQUEST_DetailsCompleted(this, new INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UPDATE_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            object[] results = this.Invoke("UPDATE_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UPDATE_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            this.UPDATE_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, AssetXml, AssetAmcXml, AssetServiceXml, null);
+        }
+        
+        /// <remarks/>
+        public void UPDATE_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
+            if ((this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted == null)) {
+                this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUPDATE_ASSET_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("UPDATE_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml}, this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnUPDATE_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.UPDATE_ASSET_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UPDATE_ASSET_REQUEST_DetailsCompleted(this, new UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag) {
+            object[] results = this.Invoke("INSERT_UPDATE_ASSET_AMC_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID,
+                        AssetAmcXml,
+                        Flag});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag) {
+            this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, AssetAmcXml, Flag, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag, object userState) {
+            if ((this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted == null)) {
+                this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_UPDATE_ASSET_AMC_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID,
+                        AssetAmcXml,
+                        Flag}, this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted(this, new INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset_Service", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyAsset_Service", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyAsset_ServiceAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyAsset_ServiceOperationCompleted == null)) {
+                this.Fetch_MyAsset_ServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAsset_ServiceOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyAsset_Service", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyAsset_ServiceOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyAsset_ServiceOperationCompleted(object arg) {
+            if ((this.Fetch_MyAsset_ServiceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyAsset_ServiceCompleted(this, new Fetch_MyAsset_ServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CRUD_ASSET_SERVICE_REQUEST_DATA(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag) {
+            object[] results = this.Invoke("CRUD_ASSET_SERVICE_REQUEST_DATA", new object[] {
+                        LoggedInUserID,
+                        AssetID,
+                        ServiceScheduleID,
+                        AssetServiceXml,
+                        Flag});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CRUD_ASSET_SERVICE_REQUEST_DATAAsync(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag) {
+            this.CRUD_ASSET_SERVICE_REQUEST_DATAAsync(LoggedInUserID, AssetID, ServiceScheduleID, AssetServiceXml, Flag, null);
+        }
+        
+        /// <remarks/>
+        public void CRUD_ASSET_SERVICE_REQUEST_DATAAsync(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag, object userState) {
+            if ((this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted == null)) {
+                this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted);
+            }
+            this.InvokeAsync("CRUD_ASSET_SERVICE_REQUEST_DATA", new object[] {
+                        LoggedInUserID,
+                        AssetID,
+                        ServiceScheduleID,
+                        AssetServiceXml,
+                        Flag}, this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted, userState);
+        }
+        
+        private void OnCRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted(object arg) {
+            if ((this.CRUD_ASSET_SERVICE_REQUEST_DATACompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CRUD_ASSET_SERVICE_REQUEST_DATACompleted(this, new CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -907,26 +2316,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet LoginUser(string UserId, string strPassword) {
+        public System.Data.DataSet LoginUser(string UserId, string strPassword, string UserType) {
             object[] results = this.Invoke("LoginUser", new object[] {
                         UserId,
-                        strPassword});
+                        strPassword,
+                        UserType});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword) {
-            this.LoginUserAsync(UserId, strPassword, null);
+        public void LoginUserAsync(string UserId, string strPassword, string UserType) {
+            this.LoginUserAsync(UserId, strPassword, UserType, null);
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword, object userState) {
+        public void LoginUserAsync(string UserId, string strPassword, string UserType, object userState) {
             if ((this.LoginUserOperationCompleted == null)) {
                 this.LoginUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUserOperationCompleted);
             }
             this.InvokeAsync("LoginUser", new object[] {
                         UserId,
-                        strPassword}, this.LoginUserOperationCompleted, userState);
+                        strPassword,
+                        UserType}, this.LoginUserOperationCompleted, userState);
         }
         
         private void OnLoginUserOperationCompleted(object arg) {
@@ -2790,112 +4201,356 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_GatePassConfiguration", new object[] {
                         strConfigTitle,
-                        strConfigDesc,
                         CompanyID,
                         strInitiator,
-                        strXmlVMS_Question,
-                        blFeedbackCompulsary,
-                        FeedbackTitle,
-                        blEnableCovid,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlGatepass_Header,
+                        strXmlGatepass_Type,
+                        strXmlGatepass_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        strGPClosureBy,
+                        GatepassDescription,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            this.Insert_VMSConfigurationAsync(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID, null);
+        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            this.Insert_GatePassConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, object userState) {
-            if ((this.Insert_VMSConfigurationOperationCompleted == null)) {
-                this.Insert_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSConfigurationOperationCompleted);
+        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, object userState) {
+            if ((this.Insert_GatePassConfigurationOperationCompleted == null)) {
+                this.Insert_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_GatePassConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Insert_VMSConfiguration", new object[] {
+            this.InvokeAsync("Insert_GatePassConfiguration", new object[] {
                         strConfigTitle,
-                        strConfigDesc,
                         CompanyID,
                         strInitiator,
-                        strXmlVMS_Question,
-                        blFeedbackCompulsary,
-                        FeedbackTitle,
-                        blEnableCovid,
-                        LoggedInUserID}, this.Insert_VMSConfigurationOperationCompleted, userState);
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlGatepass_Header,
+                        strXmlGatepass_Type,
+                        strXmlGatepass_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        strGPClosureBy,
+                        GatepassDescription,
+                        LoggedInUserID}, this.Insert_GatePassConfigurationOperationCompleted, userState);
         }
         
-        private void OnInsert_VMSConfigurationOperationCompleted(object arg) {
-            if ((this.Insert_VMSConfigurationCompleted != null)) {
+        private void OnInsert_GatePassConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_GatePassConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_VMSConfigurationCompleted(this, new Insert_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Insert_GatePassConfigurationCompleted(this, new Insert_GatePassConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_VMSConfiguration(string Initiator) {
-            object[] results = this.Invoke("Fetch_VMSConfiguration", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_GatePassConfiguration(string Initiator) {
+            object[] results = this.Invoke("Fetch_GatePassConfiguration", new object[] {
                         Initiator});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_VMSConfigurationAsync(string Initiator) {
-            this.Fetch_VMSConfigurationAsync(Initiator, null);
+        public void Fetch_GatePassConfigurationAsync(string Initiator) {
+            this.Fetch_GatePassConfigurationAsync(Initiator, null);
         }
         
         /// <remarks/>
-        public void Fetch_VMSConfigurationAsync(string Initiator, object userState) {
-            if ((this.Fetch_VMSConfigurationOperationCompleted == null)) {
-                this.Fetch_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSConfigurationOperationCompleted);
+        public void Fetch_GatePassConfigurationAsync(string Initiator, object userState) {
+            if ((this.Fetch_GatePassConfigurationOperationCompleted == null)) {
+                this.Fetch_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_GatePassConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Fetch_VMSConfiguration", new object[] {
-                        Initiator}, this.Fetch_VMSConfigurationOperationCompleted, userState);
+            this.InvokeAsync("Fetch_GatePassConfiguration", new object[] {
+                        Initiator}, this.Fetch_GatePassConfigurationOperationCompleted, userState);
         }
         
-        private void OnFetch_VMSConfigurationOperationCompleted(object arg) {
-            if ((this.Fetch_VMSConfigurationCompleted != null)) {
+        private void OnFetch_GatePassConfigurationOperationCompleted(object arg) {
+            if ((this.Fetch_GatePassConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_VMSConfigurationCompleted(this, new Fetch_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_GatePassConfigurationCompleted(this, new Fetch_GatePassConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_VMSConfiguration(int VMS_ConfigID) {
-            object[] results = this.Invoke("Bind_VMSConfiguration", new object[] {
-                        VMS_ConfigID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_GatePassConfiguration(int GP_ConfigID) {
+            object[] results = this.Invoke("Bind_GatePassConfiguration", new object[] {
+                        GP_ConfigID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Bind_VMSConfigurationAsync(int VMS_ConfigID) {
-            this.Bind_VMSConfigurationAsync(VMS_ConfigID, null);
+        public void Bind_GatePassConfigurationAsync(int GP_ConfigID) {
+            this.Bind_GatePassConfigurationAsync(GP_ConfigID, null);
         }
         
         /// <remarks/>
-        public void Bind_VMSConfigurationAsync(int VMS_ConfigID, object userState) {
-            if ((this.Bind_VMSConfigurationOperationCompleted == null)) {
-                this.Bind_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSConfigurationOperationCompleted);
+        public void Bind_GatePassConfigurationAsync(int GP_ConfigID, object userState) {
+            if ((this.Bind_GatePassConfigurationOperationCompleted == null)) {
+                this.Bind_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_GatePassConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Bind_VMSConfiguration", new object[] {
-                        VMS_ConfigID}, this.Bind_VMSConfigurationOperationCompleted, userState);
+            this.InvokeAsync("Bind_GatePassConfiguration", new object[] {
+                        GP_ConfigID}, this.Bind_GatePassConfigurationOperationCompleted, userState);
         }
         
-        private void OnBind_VMSConfigurationOperationCompleted(object arg) {
-            if ((this.Bind_VMSConfigurationCompleted != null)) {
+        private void OnBind_GatePassConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_GatePassConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_VMSConfigurationCompleted(this, new Bind_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Bind_GatePassConfigurationCompleted(this, new Bind_GatePassConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSRequestList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_VMSRequestList", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GatePassHeader_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GatePassHeader_CRUD(int GatePassHeaderID, string GatePassHeader, bool GPHeaderNumeric, int GPHeaderUnit, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            object[] results = this.Invoke("GatePassHeader_CRUD", new object[] {
+                        GatePassHeaderID,
+                        GatePassHeader,
+                        GPHeaderNumeric,
+                        GPHeaderUnit,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GatePassHeader_CRUDAsync(int GatePassHeaderID, string GatePassHeader, bool GPHeaderNumeric, int GPHeaderUnit, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            this.GatePassHeader_CRUDAsync(GatePassHeaderID, GatePassHeader, GPHeaderNumeric, GPHeaderUnit, GatePass_ConfigID, LoggedInUserID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void GatePassHeader_CRUDAsync(int GatePassHeaderID, string GatePassHeader, bool GPHeaderNumeric, int GPHeaderUnit, int GatePass_ConfigID, string LoggedInUserID, string strAction, object userState) {
+            if ((this.GatePassHeader_CRUDOperationCompleted == null)) {
+                this.GatePassHeader_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGatePassHeader_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("GatePassHeader_CRUD", new object[] {
+                        GatePassHeaderID,
+                        GatePassHeader,
+                        GPHeaderNumeric,
+                        GPHeaderUnit,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction}, this.GatePassHeader_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnGatePassHeader_CRUDOperationCompleted(object arg) {
+            if ((this.GatePassHeader_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GatePassHeader_CRUDCompleted(this, new GatePassHeader_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GatePassType_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GatePassType_CRUD(int GP_TypeID, string GP_TypeDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            object[] results = this.Invoke("GatePassType_CRUD", new object[] {
+                        GP_TypeID,
+                        GP_TypeDesc,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GatePassType_CRUDAsync(int GP_TypeID, string GP_TypeDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            this.GatePassType_CRUDAsync(GP_TypeID, GP_TypeDesc, GatePass_ConfigID, LoggedInUserID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void GatePassType_CRUDAsync(int GP_TypeID, string GP_TypeDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction, object userState) {
+            if ((this.GatePassType_CRUDOperationCompleted == null)) {
+                this.GatePassType_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGatePassType_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("GatePassType_CRUD", new object[] {
+                        GP_TypeID,
+                        GP_TypeDesc,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction}, this.GatePassType_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnGatePassType_CRUDOperationCompleted(object arg) {
+            if ((this.GatePassType_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GatePassType_CRUDCompleted(this, new GatePassType_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GatePassTerm_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GatePassTerm_CRUD(int GP_TermID, string GP_TermDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            object[] results = this.Invoke("GatePassTerm_CRUD", new object[] {
+                        GP_TermID,
+                        GP_TermDesc,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GatePassTerm_CRUDAsync(int GP_TermID, string GP_TermDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction) {
+            this.GatePassTerm_CRUDAsync(GP_TermID, GP_TermDesc, GatePass_ConfigID, LoggedInUserID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void GatePassTerm_CRUDAsync(int GP_TermID, string GP_TermDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction, object userState) {
+            if ((this.GatePassTerm_CRUDOperationCompleted == null)) {
+                this.GatePassTerm_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGatePassTerm_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("GatePassTerm_CRUD", new object[] {
+                        GP_TermID,
+                        GP_TermDesc,
+                        GatePass_ConfigID,
+                        LoggedInUserID,
+                        strAction}, this.GatePassTerm_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnGatePassTerm_CRUDOperationCompleted(object arg) {
+            if ((this.GatePassTerm_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GatePassTerm_CRUDCompleted(this, new GatePassTerm_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            object[] results = this.Invoke("Update_GatePassConfiguration", new object[] {
+                        GP_Config_ID,
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        strGPClosureBy,
+                        GatepassDescription,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID) {
+            this.Update_GatePassConfigurationAsync(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Update_GatePassConfigurationAsync(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, object userState) {
+            if ((this.Update_GatePassConfigurationOperationCompleted == null)) {
+                this.Update_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_GatePassConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Update_GatePassConfiguration", new object[] {
+                        GP_Config_ID,
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        strGPClosureBy,
+                        GatepassDescription,
+                        LoggedInUserID}, this.Update_GatePassConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_GatePassConfigurationOperationCompleted(object arg) {
+            if ((this.Update_GatePassConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_GatePassConfigurationCompleted(this, new Update_GatePassConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_GatePassRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_GatePassRequestDetails(int GP_ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_GatePassRequestDetails", new object[] {
+                        GP_ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_GatePassRequestDetailsAsync(int GP_ConfigID, string LoggedInUserID) {
+            this.Bind_GatePassRequestDetailsAsync(GP_ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_GatePassRequestDetailsAsync(int GP_ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Bind_GatePassRequestDetailsOperationCompleted == null)) {
+                this.Bind_GatePassRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_GatePassRequestDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Bind_GatePassRequestDetails", new object[] {
+                        GP_ConfigID,
+                        LoggedInUserID}, this.Bind_GatePassRequestDetailsOperationCompleted, userState);
+        }
+        
+        private void OnBind_GatePassRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_GatePassRequestDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_GatePassRequestDetailsCompleted(this, new Bind_GatePassRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_GatePassRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_GatePassRequest", new object[] {
+                        GP_ConfigID,
+                        strGatePassDate,
+                        DeptID,
+                        GPTypeID,
+                        strGPHeader,
+                        strGPHeaderData,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID) {
+            this.Insert_GatePassRequestAsync(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID, object userState) {
+            if ((this.Insert_GatePassRequestOperationCompleted == null)) {
+                this.Insert_GatePassRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_GatePassRequestOperationCompleted);
+            }
+            this.InvokeAsync("Insert_GatePassRequest", new object[] {
+                        GP_ConfigID,
+                        strGatePassDate,
+                        DeptID,
+                        GPTypeID,
+                        strGPHeader,
+                        strGPHeaderData,
+                        LoggedInUserID}, this.Insert_GatePassRequestOperationCompleted, userState);
+        }
+        
+        private void OnInsert_GatePassRequestOperationCompleted(object arg) {
+            if ((this.Insert_GatePassRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_GatePassRequestCompleted(this, new Insert_GatePassRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyRequestGatePass(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyRequestGatePass", new object[] {
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -2903,161 +4558,227 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_VMSRequestListAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyRequestGatePassAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestGatePassAsync(LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_VMSRequestListOperationCompleted == null)) {
-                this.Fetch_VMSRequestListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSRequestListOperationCompleted);
+        public void Fetch_MyRequestGatePassAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyRequestGatePassOperationCompleted == null)) {
+                this.Fetch_MyRequestGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestGatePassOperationCompleted);
             }
-            this.InvokeAsync("Fetch_VMSRequestList", new object[] {
+            this.InvokeAsync("Fetch_MyRequestGatePass", new object[] {
                         LoggedInUserID,
                         From_Date,
-                        To_Date}, this.Fetch_VMSRequestListOperationCompleted, userState);
+                        To_Date}, this.Fetch_MyRequestGatePassOperationCompleted, userState);
         }
         
-        private void OnFetch_VMSRequestListOperationCompleted(object arg) {
-            if ((this.Fetch_VMSRequestListCompleted != null)) {
+        private void OnFetch_MyRequestGatePassOperationCompleted(object arg) {
+            if ((this.Fetch_MyRequestGatePassCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_VMSRequestListCompleted(this, new Fetch_VMSRequestListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_MyRequestGatePassCompleted(this, new Fetch_MyRequestGatePassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_VMSRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_VMSRequestDetails(int RequestID, string LoggedInUserID) {
-            object[] results = this.Invoke("Bind_VMSRequestDetails", new object[] {
-                        RequestID,
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyActionableGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyActionableGatePass(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyActionableGatePass", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyActionableGatePassAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyActionableGatePassAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyActionableGatePassAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyActionableGatePassOperationCompleted == null)) {
+                this.Fetch_MyActionableGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyActionableGatePassOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyActionableGatePass", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyActionableGatePassOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyActionableGatePassOperationCompleted(object arg) {
+            if ((this.Fetch_MyActionableGatePassCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyActionableGatePassCompleted(this, new Fetch_MyActionableGatePassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GatePassRequest_Approval_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_GatePassRequest_Approval_Details(int TransactionID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_GatePassRequest_Approval_Details", new object[] {
+                        TransactionID,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Bind_VMSRequestDetailsAsync(int RequestID, string LoggedInUserID) {
-            this.Bind_VMSRequestDetailsAsync(RequestID, LoggedInUserID, null);
+        public void Fetch_GatePassRequest_Approval_DetailsAsync(int TransactionID, string LoggedInUserID) {
+            this.Fetch_GatePassRequest_Approval_DetailsAsync(TransactionID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Bind_VMSRequestDetailsAsync(int RequestID, string LoggedInUserID, object userState) {
-            if ((this.Bind_VMSRequestDetailsOperationCompleted == null)) {
-                this.Bind_VMSRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_VMSRequestDetailsOperationCompleted);
+        public void Fetch_GatePassRequest_Approval_DetailsAsync(int TransactionID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_GatePassRequest_Approval_DetailsOperationCompleted == null)) {
+                this.Fetch_GatePassRequest_Approval_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_GatePassRequest_Approval_DetailsOperationCompleted);
             }
-            this.InvokeAsync("Bind_VMSRequestDetails", new object[] {
-                        RequestID,
-                        LoggedInUserID}, this.Bind_VMSRequestDetailsOperationCompleted, userState);
+            this.InvokeAsync("Fetch_GatePassRequest_Approval_Details", new object[] {
+                        TransactionID,
+                        LoggedInUserID}, this.Fetch_GatePassRequest_Approval_DetailsOperationCompleted, userState);
         }
         
-        private void OnBind_VMSRequestDetailsOperationCompleted(object arg) {
-            if ((this.Bind_VMSRequestDetailsCompleted != null)) {
+        private void OnFetch_GatePassRequest_Approval_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_GatePassRequest_Approval_DetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_VMSRequestDetailsCompleted(this, new Bind_VMSRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_GatePassRequest_Approval_DetailsCompleted(this, new Fetch_GatePassRequest_Approval_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
-            object[] results = this.Invoke("Insert_VMSRequest", new object[] {
-                        CompanyID,
-                        Action,
-                        RequestID,
-                        VMS_ConfigID,
-                        Email,
-                        Phone,
-                        strVMSDate,
-                        strMeetUsrs,
-                        strVMSData,
-                        strVMSCovidColorCode,
-                        strVMSCovidTestDate,
-                        strTemperature,
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateAction_GatePassRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet UpdateAction_GatePassRequest(string TransactionID, string CurrentLevel, string ActionStatus, string strRemarks, string LoggedInUserID) {
+            object[] results = this.Invoke("UpdateAction_GatePassRequest", new object[] {
+                        TransactionID,
+                        CurrentLevel,
+                        ActionStatus,
+                        strRemarks,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
+        public void UpdateAction_GatePassRequestAsync(string TransactionID, string CurrentLevel, string ActionStatus, string strRemarks, string LoggedInUserID) {
+            this.UpdateAction_GatePassRequestAsync(TransactionID, CurrentLevel, ActionStatus, strRemarks, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
-            if ((this.Insert_VMSRequestOperationCompleted == null)) {
-                this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
+        public void UpdateAction_GatePassRequestAsync(string TransactionID, string CurrentLevel, string ActionStatus, string strRemarks, string LoggedInUserID, object userState) {
+            if ((this.UpdateAction_GatePassRequestOperationCompleted == null)) {
+                this.UpdateAction_GatePassRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateAction_GatePassRequestOperationCompleted);
             }
-            this.InvokeAsync("Insert_VMSRequest", new object[] {
-                        CompanyID,
-                        Action,
-                        RequestID,
-                        VMS_ConfigID,
-                        Email,
-                        Phone,
-                        strVMSDate,
-                        strMeetUsrs,
-                        strVMSData,
-                        strVMSCovidColorCode,
-                        strVMSCovidTestDate,
-                        strTemperature,
-                        LoggedInUserID}, this.Insert_VMSRequestOperationCompleted, userState);
+            this.InvokeAsync("UpdateAction_GatePassRequest", new object[] {
+                        TransactionID,
+                        CurrentLevel,
+                        ActionStatus,
+                        strRemarks,
+                        LoggedInUserID}, this.UpdateAction_GatePassRequestOperationCompleted, userState);
         }
         
-        private void OnInsert_VMSRequestOperationCompleted(object arg) {
-            if ((this.Insert_VMSRequestCompleted != null)) {
+        private void OnUpdateAction_GatePassRequestOperationCompleted(object arg) {
+            if ((this.UpdateAction_GatePassRequestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_VMSRequestCompleted(this, new Insert_VMSRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.UpdateAction_GatePassRequestCompleted(this, new UpdateAction_GatePassRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSFormURL", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_VMSFormURL(string ShortUrl) {
-            object[] results = this.Invoke("Fetch_VMSFormURL", new object[] {
-                        ShortUrl});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GatePass_MIS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_GatePass_MIS(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_GatePass_MIS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_VMSFormURLAsync(string ShortUrl) {
-            this.Fetch_VMSFormURLAsync(ShortUrl, null);
+        public void Fetch_GatePass_MISAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_GatePass_MISAsync(LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_VMSFormURLAsync(string ShortUrl, object userState) {
-            if ((this.Fetch_VMSFormURLOperationCompleted == null)) {
-                this.Fetch_VMSFormURLOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSFormURLOperationCompleted);
+        public void Fetch_GatePass_MISAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_GatePass_MISOperationCompleted == null)) {
+                this.Fetch_GatePass_MISOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_GatePass_MISOperationCompleted);
             }
-            this.InvokeAsync("Fetch_VMSFormURL", new object[] {
-                        ShortUrl}, this.Fetch_VMSFormURLOperationCompleted, userState);
+            this.InvokeAsync("Fetch_GatePass_MIS", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_GatePass_MISOperationCompleted, userState);
         }
         
-        private void OnFetch_VMSFormURLOperationCompleted(object arg) {
-            if ((this.Fetch_VMSFormURLCompleted != null)) {
+        private void OnFetch_GatePass_MISOperationCompleted(object arg) {
+            if ((this.Fetch_GatePass_MISCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_VMSFormURLCompleted(this, new Fetch_VMSFormURLCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_GatePass_MISCompleted(this, new Fetch_GatePass_MISCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_WorkPermitConfiguration", new object[] {
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlWorkPermit_Header,
+                        strXmlWorkPermit_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+            this.Insert_WorkPermitConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, object userState) {
+            if ((this.Insert_WorkPermitConfigurationOperationCompleted == null)) {
+                this.Insert_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WorkPermitConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Insert_WorkPermitConfiguration", new object[] {
+                        strConfigTitle,
+                        CompanyID,
+                        strInitiator,
+                        LinkDepartment,
+                        strTransactionPrefix,
+                        strXmlWorkPermit_Header,
+                        strXmlWorkPermit_TermCondition,
+                        strXmlApprovalMatrix,
+                        ShowApprovalMatrix,
+                        LoggedInUserID}, this.Insert_WorkPermitConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnInsert_WorkPermitConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_WorkPermitConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_WorkPermitConfigurationCompleted(this, new Insert_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Answer(char Key) {
-            object[] results = this.Invoke("Fetch_Answer", new object[] {
-                        Key});
+        public System.Data.DataSet Fetch_Answer() {
+            object[] results = this.Invoke("Fetch_Answer", new object[0]);
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_AnswerAsync(char Key) {
-            this.Fetch_AnswerAsync(Key, null);
+        public void Fetch_AnswerAsync() {
+            this.Fetch_AnswerAsync(null);
         }
         
         /// <remarks/>
-        public void Fetch_AnswerAsync(char Key, object userState) {
+        public void Fetch_AnswerAsync(object userState) {
             if ((this.Fetch_AnswerOperationCompleted == null)) {
                 this.Fetch_AnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerOperationCompleted);
             }
-            this.InvokeAsync("Fetch_Answer", new object[] {
-                        Key}, this.Fetch_AnswerOperationCompleted, userState);
+            this.InvokeAsync("Fetch_Answer", new object[0], this.Fetch_AnswerOperationCompleted, userState);
         }
         
         private void OnFetch_AnswerOperationCompleted(object arg) {
@@ -3068,174 +4789,203 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Asset_DropDown(int UserID) {
-            object[] results = this.Invoke("Fetch_Asset_DropDown", new object[] {
-                        UserID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_WorkPermitConfiguration(string Initiator) {
+            object[] results = this.Invoke("Fetch_WorkPermitConfiguration", new object[] {
+                        Initiator});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID) {
-            this.Fetch_Asset_DropDownAsync(UserID, null);
+        public void Fetch_WorkPermitConfigurationAsync(string Initiator) {
+            this.Fetch_WorkPermitConfigurationAsync(Initiator, null);
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID, object userState) {
-            if ((this.Fetch_Asset_DropDownOperationCompleted == null)) {
-                this.Fetch_Asset_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_DropDownOperationCompleted);
+        public void Fetch_WorkPermitConfigurationAsync(string Initiator, object userState) {
+            if ((this.Fetch_WorkPermitConfigurationOperationCompleted == null)) {
+                this.Fetch_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Fetch_Asset_DropDown", new object[] {
-                        UserID}, this.Fetch_Asset_DropDownOperationCompleted, userState);
+            this.InvokeAsync("Fetch_WorkPermitConfiguration", new object[] {
+                        Initiator}, this.Fetch_WorkPermitConfigurationOperationCompleted, userState);
         }
         
-        private void OnFetch_Asset_DropDownOperationCompleted(object arg) {
-            if ((this.Fetch_Asset_DropDownCompleted != null)) {
+        private void OnFetch_WorkPermitConfigurationOperationCompleted(object arg) {
+            if ((this.Fetch_WorkPermitConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Asset_DropDownCompleted(this, new Fetch_Asset_DropDownCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_WorkPermitConfigurationCompleted(this, new Fetch_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_Vendor_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Asset_Vendor_DropDown(string VendorPrefix, int UserID) {
-            object[] results = this.Invoke("Fetch_Asset_Vendor_DropDown", new object[] {
-                        VendorPrefix,
-                        UserID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_WorkPermitConfiguration(int WP_ConfigID) {
+            object[] results = this.Invoke("Bind_WorkPermitConfiguration", new object[] {
+                        WP_ConfigID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Asset_Vendor_DropDownAsync(string VendorPrefix, int UserID) {
-            this.Fetch_Asset_Vendor_DropDownAsync(VendorPrefix, UserID, null);
+        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID) {
+            this.Bind_WorkPermitConfigurationAsync(WP_ConfigID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Asset_Vendor_DropDownAsync(string VendorPrefix, int UserID, object userState) {
-            if ((this.Fetch_Asset_Vendor_DropDownOperationCompleted == null)) {
-                this.Fetch_Asset_Vendor_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_Vendor_DropDownOperationCompleted);
+        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID, object userState) {
+            if ((this.Bind_WorkPermitConfigurationOperationCompleted == null)) {
+                this.Bind_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_WorkPermitConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Fetch_Asset_Vendor_DropDown", new object[] {
-                        VendorPrefix,
-                        UserID}, this.Fetch_Asset_Vendor_DropDownOperationCompleted, userState);
+            this.InvokeAsync("Bind_WorkPermitConfiguration", new object[] {
+                        WP_ConfigID}, this.Bind_WorkPermitConfigurationOperationCompleted, userState);
         }
         
-        private void OnFetch_Asset_Vendor_DropDownOperationCompleted(object arg) {
-            if ((this.Fetch_Asset_Vendor_DropDownCompleted != null)) {
+        private void OnBind_WorkPermitConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_WorkPermitConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Asset_Vendor_DropDownCompleted(this, new Fetch_Asset_Vendor_DropDownCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Bind_WorkPermitConfigurationCompleted(this, new Bind_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetType", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ASSET_Insert_AssetType(string LoggedInUserID, int companyID, string AssetType) {
-            object[] results = this.Invoke("ASSET_Insert_AssetType", new object[] {
-                        LoggedInUserID,
-                        companyID,
-                        AssetType});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_WorkPermitRequestDetails(int WP_ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_WorkPermitRequestDetails", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void ASSET_Insert_AssetTypeAsync(string LoggedInUserID, int companyID, string AssetType) {
-            this.ASSET_Insert_AssetTypeAsync(LoggedInUserID, companyID, AssetType, null);
+        public void Bind_WorkPermitRequestDetailsAsync(int WP_ConfigID, string LoggedInUserID) {
+            this.Bind_WorkPermitRequestDetailsAsync(WP_ConfigID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void ASSET_Insert_AssetTypeAsync(string LoggedInUserID, int companyID, string AssetType, object userState) {
-            if ((this.ASSET_Insert_AssetTypeOperationCompleted == null)) {
-                this.ASSET_Insert_AssetTypeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetTypeOperationCompleted);
+        public void Bind_WorkPermitRequestDetailsAsync(int WP_ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Bind_WorkPermitRequestDetailsOperationCompleted == null)) {
+                this.Bind_WorkPermitRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_WorkPermitRequestDetailsOperationCompleted);
             }
-            this.InvokeAsync("ASSET_Insert_AssetType", new object[] {
-                        LoggedInUserID,
-                        companyID,
-                        AssetType}, this.ASSET_Insert_AssetTypeOperationCompleted, userState);
+            this.InvokeAsync("Bind_WorkPermitRequestDetails", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID}, this.Bind_WorkPermitRequestDetailsOperationCompleted, userState);
         }
         
-        private void OnASSET_Insert_AssetTypeOperationCompleted(object arg) {
-            if ((this.ASSET_Insert_AssetTypeCompleted != null)) {
+        private void OnBind_WorkPermitRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_WorkPermitRequestDetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ASSET_Insert_AssetTypeCompleted(this, new ASSET_Insert_AssetTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Bind_WorkPermitRequestDetailsCompleted(this, new Bind_WorkPermitRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
-            object[] results = this.Invoke("ASSET_Insert_AssetCategory", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_WorkPermitRequest(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
+            object[] results = this.Invoke("Insert_WorkPermitRequest", new object[] {
+                        WP_ConfigID,
                         LoggedInUserID,
-                        companyID,
-                        AssetTypeID,
-                        AssetCategory});
+                        strWpDate,
+                        strWpTpDate,
+                        strWpSectionHeaderData});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
-            this.ASSET_Insert_AssetCategoryAsync(LoggedInUserID, companyID, AssetTypeID, AssetCategory, null);
+        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
+            this.Insert_WorkPermitRequestAsync(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData, null);
         }
         
         /// <remarks/>
-        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory, object userState) {
-            if ((this.ASSET_Insert_AssetCategoryOperationCompleted == null)) {
-                this.ASSET_Insert_AssetCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetCategoryOperationCompleted);
+        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData, object userState) {
+            if ((this.Insert_WorkPermitRequestOperationCompleted == null)) {
+                this.Insert_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WorkPermitRequestOperationCompleted);
             }
-            this.InvokeAsync("ASSET_Insert_AssetCategory", new object[] {
+            this.InvokeAsync("Insert_WorkPermitRequest", new object[] {
+                        WP_ConfigID,
                         LoggedInUserID,
-                        companyID,
-                        AssetTypeID,
-                        AssetCategory}, this.ASSET_Insert_AssetCategoryOperationCompleted, userState);
+                        strWpDate,
+                        strWpTpDate,
+                        strWpSectionHeaderData}, this.Insert_WorkPermitRequestOperationCompleted, userState);
         }
         
-        private void OnASSET_Insert_AssetCategoryOperationCompleted(object arg) {
-            if ((this.ASSET_Insert_AssetCategoryCompleted != null)) {
+        private void OnInsert_WorkPermitRequestOperationCompleted(object arg) {
+            if ((this.Insert_WorkPermitRequestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ASSET_Insert_AssetCategoryCompleted(this, new ASSET_Insert_AssetCategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Insert_WorkPermitRequestCompleted(this, new Insert_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_INSERT_GRNL_MASTER", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
-            object[] results = this.Invoke("ASSET_INSERT_GRNL_MASTER", new object[] {
-                        LoggedInUserID,
-                        MasterType,
-                        Dept_Value,
-                        LocationXmlValue,
-                        VendorXmlValue});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestSavedData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_WorkPermitRequestSavedData", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
-            this.ASSET_INSERT_GRNL_MASTERAsync(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue, null);
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+            this.Fetch_WorkPermitRequestSavedDataAsync(WP_ConfigID, Transaction_ID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue, object userState) {
-            if ((this.ASSET_INSERT_GRNL_MASTEROperationCompleted == null)) {
-                this.ASSET_INSERT_GRNL_MASTEROperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_INSERT_GRNL_MASTEROperationCompleted);
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_WorkPermitRequestSavedDataOperationCompleted == null)) {
+                this.Fetch_WorkPermitRequestSavedDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitRequestSavedDataOperationCompleted);
             }
-            this.InvokeAsync("ASSET_INSERT_GRNL_MASTER", new object[] {
-                        LoggedInUserID,
-                        MasterType,
-                        Dept_Value,
-                        LocationXmlValue,
-                        VendorXmlValue}, this.ASSET_INSERT_GRNL_MASTEROperationCompleted, userState);
+            this.InvokeAsync("Fetch_WorkPermitRequestSavedData", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID}, this.Fetch_WorkPermitRequestSavedDataOperationCompleted, userState);
         }
         
-        private void OnASSET_INSERT_GRNL_MASTEROperationCompleted(object arg) {
-            if ((this.ASSET_INSERT_GRNL_MASTERCompleted != null)) {
+        private void OnFetch_WorkPermitRequestSavedDataOperationCompleted(object arg) {
+            if ((this.Fetch_WorkPermitRequestSavedDataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ASSET_INSERT_GRNL_MASTERCompleted(this, new ASSET_INSERT_GRNL_MASTERCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_WorkPermitRequestSavedDataCompleted(this, new Fetch_WorkPermitRequestSavedDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyAsset(string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyAsset", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_WorkPermitRequest(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
+            object[] results = this.Invoke("Update_WorkPermitRequest", new object[] {
+                        TransactionID,
+                        LoggedInUserID,
+                        ActionStatus,
+                        Remarks});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
+            this.Update_WorkPermitRequestAsync(TransactionID, LoggedInUserID, ActionStatus, Remarks, null);
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks, object userState) {
+            if ((this.Update_WorkPermitRequestOperationCompleted == null)) {
+                this.Update_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_WorkPermitRequestOperationCompleted);
+            }
+            this.InvokeAsync("Update_WorkPermitRequest", new object[] {
+                        TransactionID,
+                        LoggedInUserID,
+                        ActionStatus,
+                        Remarks}, this.Update_WorkPermitRequestOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_WorkPermitRequestOperationCompleted(object arg) {
+            if ((this.Update_WorkPermitRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_WorkPermitRequestCompleted(this, new Update_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyRequestWorkPermit", new object[] {
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -3243,233 +4993,25 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_MyAssetAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyAssetAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestWorkPermitAsync(LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyAssetAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyAssetOperationCompleted == null)) {
-                this.Fetch_MyAssetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAssetOperationCompleted);
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyRequestWorkPermitOperationCompleted == null)) {
+                this.Fetch_MyRequestWorkPermitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestWorkPermitOperationCompleted);
             }
-            this.InvokeAsync("Fetch_MyAsset", new object[] {
+            this.InvokeAsync("Fetch_MyRequestWorkPermit", new object[] {
                         LoggedInUserID,
                         From_Date,
-                        To_Date}, this.Fetch_MyAssetOperationCompleted, userState);
+                        To_Date}, this.Fetch_MyRequestWorkPermitOperationCompleted, userState);
         }
         
-        private void OnFetch_MyAssetOperationCompleted(object arg) {
-            if ((this.Fetch_MyAssetCompleted != null)) {
+        private void OnFetch_MyRequestWorkPermitOperationCompleted(object arg) {
+            if ((this.Fetch_MyRequestWorkPermitCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyAssetCompleted(this, new Fetch_MyAssetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID) {
-            object[] results = this.Invoke("Fetch_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID) {
-            this.Fetch_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID, object userState) {
-            if ((this.Fetch_ASSET_REQUEST_DetailsOperationCompleted == null)) {
-                this.Fetch_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_ASSET_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID}, this.Fetch_ASSET_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnFetch_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.Fetch_ASSET_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_ASSET_REQUEST_DetailsCompleted(this, new Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            object[] results = this.Invoke("INSERT_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            this.INSERT_ASSET_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, null);
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
-            if ((this.INSERT_ASSET_REQUEST_DetailsOperationCompleted == null)) {
-                this.INSERT_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("INSERT_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml}, this.INSERT_ASSET_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnINSERT_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.INSERT_ASSET_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INSERT_ASSET_REQUEST_DetailsCompleted(this, new INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UPDATE_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            object[] results = this.Invoke("UPDATE_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void UPDATE_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            this.UPDATE_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, AssetXml, AssetAmcXml, AssetServiceXml, null);
-        }
-        
-        /// <remarks/>
-        public void UPDATE_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
-            if ((this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted == null)) {
-                this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUPDATE_ASSET_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("UPDATE_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml}, this.UPDATE_ASSET_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnUPDATE_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.UPDATE_ASSET_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UPDATE_ASSET_REQUEST_DetailsCompleted(this, new UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag) {
-            object[] results = this.Invoke("INSERT_UPDATE_ASSET_AMC_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID,
-                        AssetAmcXml,
-                        Flag});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag) {
-            this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, AssetAmcXml, Flag, null);
-        }
-        
-        /// <remarks/>
-        public void INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsAsync(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag, object userState) {
-            if ((this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted == null)) {
-                this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("INSERT_UPDATE_ASSET_AMC_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID,
-                        AssetAmcXml,
-                        Flag}, this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnINSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted(this, new INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset_Service", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyAsset_Service", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyAsset_ServiceAsync(LoggedInUserID, From_Date, To_Date, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyAsset_ServiceOperationCompleted == null)) {
-                this.Fetch_MyAsset_ServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAsset_ServiceOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_MyAsset_Service", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date}, this.Fetch_MyAsset_ServiceOperationCompleted, userState);
-        }
-        
-        private void OnFetch_MyAsset_ServiceOperationCompleted(object arg) {
-            if ((this.Fetch_MyAsset_ServiceCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyAsset_ServiceCompleted(this, new Fetch_MyAsset_ServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CRUD_ASSET_SERVICE_REQUEST_DATA(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag) {
-            object[] results = this.Invoke("CRUD_ASSET_SERVICE_REQUEST_DATA", new object[] {
-                        LoggedInUserID,
-                        AssetID,
-                        ServiceScheduleID,
-                        AssetServiceXml,
-                        Flag});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CRUD_ASSET_SERVICE_REQUEST_DATAAsync(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag) {
-            this.CRUD_ASSET_SERVICE_REQUEST_DATAAsync(LoggedInUserID, AssetID, ServiceScheduleID, AssetServiceXml, Flag, null);
-        }
-        
-        /// <remarks/>
-        public void CRUD_ASSET_SERVICE_REQUEST_DATAAsync(string LoggedInUserID, string AssetID, string ServiceScheduleID, string AssetServiceXml, string Flag, object userState) {
-            if ((this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted == null)) {
-                this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted);
-            }
-            this.InvokeAsync("CRUD_ASSET_SERVICE_REQUEST_DATA", new object[] {
-                        LoggedInUserID,
-                        AssetID,
-                        ServiceScheduleID,
-                        AssetServiceXml,
-                        Flag}, this.CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted, userState);
-        }
-        
-        private void OnCRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted(object arg) {
-            if ((this.CRUD_ASSET_SERVICE_REQUEST_DATACompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CRUD_ASSET_SERVICE_REQUEST_DATACompleted(this, new CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_MyRequestWorkPermitCompleted(this, new Fetch_MyRequestWorkPermitCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3493,44 +5035,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyActionableWorkPermitCompletedEventHandler(object sender, Fetch_MyActionableWorkPermitCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_MyActionableWorkPermitCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal HelloWorldCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void MenuMaster_CRUDCompletedEventHandler(object sender, MenuMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MenuMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal MenuMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_MyActionableWorkPermitCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3545,18 +5061,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void UserTypeMaster_CRUDCompletedEventHandler(object sender, UserTypeMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_DashboardCountCompletedEventHandler(object sender, Fetch_DashboardCountCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UserTypeMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_DashboardCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UserTypeMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_DashboardCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3571,18 +5087,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void DepartmentMaster_CRUDCompletedEventHandler(object sender, DepartmentMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Delete_GatePassConfigurationCompletedEventHandler(object sender, Delete_GatePassConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class DepartmentMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Delete_GatePassConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal DepartmentMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Delete_GatePassConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3597,18 +5113,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_ZoneCompletedEventHandler(object sender, Fetch_ZoneCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_WorkPermitConfigurationCompletedEventHandler(object sender, Update_WorkPermitConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_ZoneCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Update_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_ZoneCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Update_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3623,18 +5139,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_LocationCompletedEventHandler(object sender, Fetch_LocationCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_WorkPermitSavedConfigurationCompletedEventHandler(object sender, Bind_WorkPermitSavedConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_LocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Bind_WorkPermitSavedConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_LocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Bind_WorkPermitSavedConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3649,18 +5165,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_Sub_LocationCompletedEventHandler(object sender, Fetch_Sub_LocationCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_WorkPermit_MISCompletedEventHandler(object sender, Fetch_WorkPermit_MISCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Sub_LocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_WorkPermit_MISCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_Sub_LocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_WorkPermit_MISCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3675,18 +5191,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_DepartmentCompletedEventHandler(object sender, Fetch_DepartmentCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Delete_WPConfigurationCompletedEventHandler(object sender, Delete_WPConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_DepartmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Delete_WPConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_DepartmentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Delete_WPConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3701,18 +5217,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_User_TypeCompletedEventHandler(object sender, Fetch_User_TypeCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Chk_AnswerCompletedEventHandler(object sender, Fetch_Chk_AnswerCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_User_TypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_Chk_AnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_User_TypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_Chk_AnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3727,18 +5243,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void UserMaster_CRUDCompletedEventHandler(object sender, UserMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_ChecklistConfigurationCompletedEventHandler(object sender, Update_ChecklistConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UserMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Update_ChecklistConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UserMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Update_ChecklistConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3753,18 +5269,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void LoginUserCompletedEventHandler(object sender, LoginUserCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_ChecklistConfigurationCompletedEventHandler(object sender, Insert_ChecklistConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Insert_ChecklistConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LoginUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Insert_ChecklistConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3779,18 +5295,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void PriorityMaster_CRUDCompletedEventHandler(object sender, PriorityMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_ChecklistConfigurationCompletedEventHandler(object sender, Bind_ChecklistConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class PriorityMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Bind_ChecklistConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal PriorityMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Bind_ChecklistConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3805,18 +5321,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void FrequencyMaster_CRUDCompletedEventHandler(object sender, FrequencyMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyChecklistCompletedEventHandler(object sender, Fetch_MyChecklistCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FrequencyMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_MyChecklistCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal FrequencyMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_MyChecklistCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3831,18 +5347,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void ZoneMaster_CRUDCompletedEventHandler(object sender, ZoneMaster_CRUDCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Delete_CHKConfigurationCompletedEventHandler(object sender, Delete_CHKConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ZoneMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Delete_CHKConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ZoneMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Delete_CHKConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -3857,1233 +5373,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void LocationMaster_CRUDCompletedEventHandler(object sender, LocationMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LocationMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal LocationMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void SubLocationMaster_CRUDCompletedEventHandler(object sender, SubLocationMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SubLocationMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal SubLocationMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void UserGroupMaster_CRUDCompletedEventHandler(object sender, UserGroupMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UserGroupMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal UserGroupMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void FetchUserGrpCompletedEventHandler(object sender, FetchUserGrpCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FetchUserGrpCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FetchUserGrpCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_CategorySubCategoryCompletedEventHandler(object sender, Fetch_CategorySubCategoryCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_CategorySubCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_CategorySubCategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void WorkflowMaster_CRUDCompletedEventHandler(object sender, WorkflowMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class WorkflowMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal WorkflowMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_User_UserGroupListCompletedEventHandler(object sender, Fetch_User_UserGroupListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_User_UserGroupListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_User_UserGroupListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void CategoryMaster_CRUDCompletedEventHandler(object sender, CategoryMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CategoryMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void SubCategoryMaster_CRUDCompletedEventHandler(object sender, SubCategoryMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SubCategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal SubCategoryMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void BindLocationDetailsCompletedEventHandler(object sender, BindLocationDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class BindLocationDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal BindLocationDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_LocationTreeCompletedEventHandler(object sender, Fetch_LocationTreeCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_LocationTreeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_LocationTreeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_Ticket_WorkflowCompletedEventHandler(object sender, Fetch_Ticket_WorkflowCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Ticket_WorkflowCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Ticket_WorkflowCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Insert_Ticket_DetailsCompletedEventHandler(object sender, Insert_Ticket_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_Ticket_MyActionableCompletedEventHandler(object sender, Fetch_Ticket_MyActionableCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Ticket_MyActionableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Ticket_MyActionableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Accept_TicketCompletedEventHandler(object sender, Accept_TicketCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Accept_TicketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Accept_TicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Employee_CRUDCompletedEventHandler(object sender, Employee_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Employee_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Employee_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void ChangePasswordCompletedEventHandler(object sender, ChangePasswordCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ChangePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ChangePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void fetchStoreCompletedEventHandler(object sender, fetchStoreCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class fetchStoreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal fetchStoreCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Retailer_CRUDCompletedEventHandler(object sender, Retailer_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Retailer_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Retailer_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Event_InsertCompletedEventHandler(object sender, Event_InsertCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Event_InsertCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Event_InsertCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void EventDetails_CRUDCompletedEventHandler(object sender, EventDetails_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EventDetails_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal EventDetails_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void bindEventDetailsCompletedEventHandler(object sender, bindEventDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class bindEventDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal bindEventDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Insert_FeedbackFormCompletedEventHandler(object sender, Insert_FeedbackFormCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_FeedbackFormCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_FeedbackFormCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Get_CustomerDetailsCompletedEventHandler(object sender, Get_CustomerDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Get_CustomerDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Get_CustomerDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Get_EventQuestionsCompletedEventHandler(object sender, Get_EventQuestionsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Get_EventQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Get_EventQuestionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Event_QuestionIUCompletedEventHandler(object sender, Event_QuestionIUCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Event_QuestionIUCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Event_QuestionIUCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_MIS_ReportCompletedEventHandler(object sender, Fetch_MIS_ReportCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MIS_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MIS_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Event_UpdateCompletedEventHandler(object sender, Event_UpdateCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Event_UpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Event_UpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void GetEventListCompletedEventHandler(object sender, GetEventListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetEventListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetEventListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_MIS_Report_ExcelCompletedEventHandler(object sender, Fetch_MIS_Report_ExcelCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MIS_Report_ExcelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MIS_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void ImportRetailerCompletedEventHandler(object sender, ImportRetailerCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ImportRetailerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ImportRetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void AddChecklistMaster_CRUDCompletedEventHandler(object sender, AddChecklistMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AddChecklistMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal AddChecklistMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void ChecklistPoint_CRUDCompletedEventHandler(object sender, ChecklistPoint_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ChecklistPoint_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ChecklistPoint_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void ChecklistRequestCompletedEventHandler(object sender, ChecklistRequestCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ChecklistRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ChecklistRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Update_ChecklistPointsCompletedEventHandler(object sender, Update_ChecklistPointsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Update_ChecklistPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Update_ChecklistPointsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Close_Ticket_DetailsCompletedEventHandler(object sender, Close_Ticket_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Close_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Close_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Location_PopulateRootLevelCompletedEventHandler(object sender, Location_PopulateRootLevelCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Location_PopulateRootLevelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Location_PopulateRootLevelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Location_PopulateSubLevelCompletedEventHandler(object sender, Location_PopulateSubLevelCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Location_PopulateSubLevelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Location_PopulateSubLevelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Add_Update_Location_NodeCompletedEventHandler(object sender, Add_Update_Location_NodeCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Add_Update_Location_NodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Add_Update_Location_NodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void FetchMenuCompletedEventHandler(object sender, FetchMenuCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FetchMenuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FetchMenuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void RoleMaster_CRUDCompletedEventHandler(object sender, RoleMaster_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class RoleMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal RoleMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_Assigned_RoleCompletedEventHandler(object sender, Fetch_Assigned_RoleCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_Role_MenuCompletedEventHandler(object sender, Fetch_Role_MenuCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Role_MenuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Role_MenuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void FETCH_Saved_Role_MENU_RightsCompletedEventHandler(object sender, FETCH_Saved_Role_MENU_RightsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FETCH_Saved_Role_MENU_RightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FETCH_Saved_Role_MENU_RightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Insert_RoleMenuRightsCompletedEventHandler(object sender, Insert_RoleMenuRightsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_RoleMenuRightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_RoleMenuRightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Insert_Assigned_RoleCompletedEventHandler(object sender, Insert_Assigned_RoleCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_RoleListingCompletedEventHandler(object sender, Fetch_RoleListingCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_RoleListingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_RoleListingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Insert_VMSConfigurationCompletedEventHandler(object sender, Insert_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Insert_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5105,11 +5399,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_VMSConfigurationCompletedEventHandler(object sender, Fetch_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5131,11 +5425,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Bind_VMSConfigurationCompletedEventHandler(object sender, Bind_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Bind_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5157,11 +5451,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_VMSRequestListCompletedEventHandler(object sender, Fetch_VMSRequestListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_VMSRequestListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5183,11 +5477,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Bind_VMSRequestDetailsCompletedEventHandler(object sender, Bind_VMSRequestDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Bind_VMSRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5209,11 +5503,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Insert_VMSRequestCompletedEventHandler(object sender, Insert_VMSRequestCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Insert_VMSRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5235,11 +5529,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_VMSFormURLCompletedEventHandler(object sender, Fetch_VMSFormURLCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_VMSFormURLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5261,18 +5555,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
-    public delegate void Fetch_AnswerCompletedEventHandler(object sender, Fetch_AnswerCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Delete_VMSConfigurationCompletedEventHandler(object sender, Delete_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_AnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Delete_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_AnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Delete_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -5287,11 +5581,89 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_AnswerForAllCompletedEventHandler(object sender, Fetch_AnswerForAllCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_AnswerForAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_AnswerForAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_User_UserGroupListGPWPCompletedEventHandler(object sender, Fetch_User_UserGroupListGPWPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_User_UserGroupListGPWPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_User_UserGroupListGPWPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_CompanyCompletedEventHandler(object sender, Fetch_CompanyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CompanyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CompanyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_Asset_DropDownCompletedEventHandler(object sender, Fetch_Asset_DropDownCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Asset_DropDownCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5313,11 +5685,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_Asset_Vendor_DropDownCompletedEventHandler(object sender, Fetch_Asset_Vendor_DropDownCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Asset_Vendor_DropDownCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5339,11 +5711,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ASSET_Insert_AssetTypeCompletedEventHandler(object sender, ASSET_Insert_AssetTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ASSET_Insert_AssetTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5365,11 +5737,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ASSET_Insert_AssetCategoryCompletedEventHandler(object sender, ASSET_Insert_AssetCategoryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ASSET_Insert_AssetCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5391,11 +5763,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void ASSET_INSERT_GRNL_MASTERCompletedEventHandler(object sender, ASSET_INSERT_GRNL_MASTERCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ASSET_INSERT_GRNL_MASTERCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5417,11 +5789,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_MyAssetCompletedEventHandler(object sender, Fetch_MyAssetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_MyAssetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5443,11 +5815,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, Fetch_ASSET_REQUEST_DetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5469,11 +5841,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void INSERT_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_ASSET_REQUEST_DetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class INSERT_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5495,11 +5867,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void UPDATE_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5521,11 +5893,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5547,11 +5919,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Fetch_MyAsset_ServiceCompletedEventHandler(object sender, Fetch_MyAsset_ServiceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_MyAsset_ServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5573,11 +5945,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventHandler(object sender, CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5585,6 +5957,2190 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal HelloWorldCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void MenuMaster_CRUDCompletedEventHandler(object sender, MenuMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MenuMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MenuMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void UserTypeMaster_CRUDCompletedEventHandler(object sender, UserTypeMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserTypeMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserTypeMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void DepartmentMaster_CRUDCompletedEventHandler(object sender, DepartmentMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DepartmentMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DepartmentMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_ZoneCompletedEventHandler(object sender, Fetch_ZoneCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_ZoneCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_ZoneCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_LocationCompletedEventHandler(object sender, Fetch_LocationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_LocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_LocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Sub_LocationCompletedEventHandler(object sender, Fetch_Sub_LocationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Sub_LocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Sub_LocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_DepartmentCompletedEventHandler(object sender, Fetch_DepartmentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_DepartmentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_DepartmentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_User_TypeCompletedEventHandler(object sender, Fetch_User_TypeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_User_TypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_User_TypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void UserMaster_CRUDCompletedEventHandler(object sender, UserMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void LoginUserCompletedEventHandler(object sender, LoginUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void PriorityMaster_CRUDCompletedEventHandler(object sender, PriorityMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PriorityMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PriorityMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void FrequencyMaster_CRUDCompletedEventHandler(object sender, FrequencyMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FrequencyMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FrequencyMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ZoneMaster_CRUDCompletedEventHandler(object sender, ZoneMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ZoneMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ZoneMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void LocationMaster_CRUDCompletedEventHandler(object sender, LocationMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LocationMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LocationMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SubLocationMaster_CRUDCompletedEventHandler(object sender, SubLocationMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SubLocationMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SubLocationMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void UserGroupMaster_CRUDCompletedEventHandler(object sender, UserGroupMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UserGroupMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UserGroupMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void FetchUserGrpCompletedEventHandler(object sender, FetchUserGrpCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FetchUserGrpCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FetchUserGrpCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_CategorySubCategoryCompletedEventHandler(object sender, Fetch_CategorySubCategoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CategorySubCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CategorySubCategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void WorkflowMaster_CRUDCompletedEventHandler(object sender, WorkflowMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class WorkflowMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal WorkflowMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_User_UserGroupListCompletedEventHandler(object sender, Fetch_User_UserGroupListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_User_UserGroupListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_User_UserGroupListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void CategoryMaster_CRUDCompletedEventHandler(object sender, CategoryMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CategoryMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void SubCategoryMaster_CRUDCompletedEventHandler(object sender, SubCategoryMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SubCategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SubCategoryMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void BindLocationDetailsCompletedEventHandler(object sender, BindLocationDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class BindLocationDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal BindLocationDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_LocationTreeCompletedEventHandler(object sender, Fetch_LocationTreeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_LocationTreeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_LocationTreeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Ticket_WorkflowCompletedEventHandler(object sender, Fetch_Ticket_WorkflowCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Ticket_WorkflowCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Ticket_WorkflowCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_Ticket_DetailsCompletedEventHandler(object sender, Insert_Ticket_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Ticket_MyActionableCompletedEventHandler(object sender, Fetch_Ticket_MyActionableCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Ticket_MyActionableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Ticket_MyActionableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Accept_TicketCompletedEventHandler(object sender, Accept_TicketCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Accept_TicketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Accept_TicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Employee_CRUDCompletedEventHandler(object sender, Employee_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Employee_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Employee_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ChangePasswordCompletedEventHandler(object sender, ChangePasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChangePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChangePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void fetchStoreCompletedEventHandler(object sender, fetchStoreCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class fetchStoreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal fetchStoreCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Retailer_CRUDCompletedEventHandler(object sender, Retailer_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Retailer_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Retailer_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Event_InsertCompletedEventHandler(object sender, Event_InsertCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Event_InsertCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Event_InsertCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void EventDetails_CRUDCompletedEventHandler(object sender, EventDetails_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EventDetails_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal EventDetails_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void bindEventDetailsCompletedEventHandler(object sender, bindEventDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class bindEventDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal bindEventDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_FeedbackFormCompletedEventHandler(object sender, Insert_FeedbackFormCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_FeedbackFormCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_FeedbackFormCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Get_CustomerDetailsCompletedEventHandler(object sender, Get_CustomerDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Get_CustomerDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Get_CustomerDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Get_EventQuestionsCompletedEventHandler(object sender, Get_EventQuestionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Get_EventQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Get_EventQuestionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Event_QuestionIUCompletedEventHandler(object sender, Event_QuestionIUCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Event_QuestionIUCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Event_QuestionIUCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MIS_ReportCompletedEventHandler(object sender, Fetch_MIS_ReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MIS_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MIS_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Event_UpdateCompletedEventHandler(object sender, Event_UpdateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Event_UpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Event_UpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GetEventListCompletedEventHandler(object sender, GetEventListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetEventListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetEventListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MIS_Report_ExcelCompletedEventHandler(object sender, Fetch_MIS_Report_ExcelCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MIS_Report_ExcelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MIS_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ImportRetailerCompletedEventHandler(object sender, ImportRetailerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ImportRetailerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ImportRetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void AddChecklistMaster_CRUDCompletedEventHandler(object sender, AddChecklistMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddChecklistMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddChecklistMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ChecklistPoint_CRUDCompletedEventHandler(object sender, ChecklistPoint_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChecklistPoint_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChecklistPoint_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ChecklistRequestCompletedEventHandler(object sender, ChecklistRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChecklistRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChecklistRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_ChecklistPointsCompletedEventHandler(object sender, Update_ChecklistPointsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_ChecklistPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_ChecklistPointsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Close_Ticket_DetailsCompletedEventHandler(object sender, Close_Ticket_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Close_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Close_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Location_PopulateRootLevelCompletedEventHandler(object sender, Location_PopulateRootLevelCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Location_PopulateRootLevelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Location_PopulateRootLevelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Location_PopulateSubLevelCompletedEventHandler(object sender, Location_PopulateSubLevelCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Location_PopulateSubLevelCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Location_PopulateSubLevelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Add_Update_Location_NodeCompletedEventHandler(object sender, Add_Update_Location_NodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Add_Update_Location_NodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Add_Update_Location_NodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void FetchMenuCompletedEventHandler(object sender, FetchMenuCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FetchMenuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FetchMenuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void RoleMaster_CRUDCompletedEventHandler(object sender, RoleMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RoleMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RoleMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Assigned_RoleCompletedEventHandler(object sender, Fetch_Assigned_RoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Role_MenuCompletedEventHandler(object sender, Fetch_Role_MenuCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Role_MenuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Role_MenuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void FETCH_Saved_Role_MENU_RightsCompletedEventHandler(object sender, FETCH_Saved_Role_MENU_RightsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FETCH_Saved_Role_MENU_RightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FETCH_Saved_Role_MENU_RightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_RoleMenuRightsCompletedEventHandler(object sender, Insert_RoleMenuRightsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_RoleMenuRightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_RoleMenuRightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_Assigned_RoleCompletedEventHandler(object sender, Insert_Assigned_RoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_RoleListingCompletedEventHandler(object sender, Fetch_RoleListingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_RoleListingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_RoleListingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_GatePassConfigurationCompletedEventHandler(object sender, Insert_GatePassConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_GatePassConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_GatePassConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_GatePassConfigurationCompletedEventHandler(object sender, Fetch_GatePassConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_GatePassConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_GatePassConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_GatePassConfigurationCompletedEventHandler(object sender, Bind_GatePassConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_GatePassConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_GatePassConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GatePassHeader_CRUDCompletedEventHandler(object sender, GatePassHeader_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GatePassHeader_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GatePassHeader_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GatePassType_CRUDCompletedEventHandler(object sender, GatePassType_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GatePassType_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GatePassType_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GatePassTerm_CRUDCompletedEventHandler(object sender, GatePassTerm_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GatePassTerm_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GatePassTerm_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_GatePassConfigurationCompletedEventHandler(object sender, Update_GatePassConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_GatePassConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_GatePassConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_GatePassRequestDetailsCompletedEventHandler(object sender, Bind_GatePassRequestDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_GatePassRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_GatePassRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_GatePassRequestCompletedEventHandler(object sender, Insert_GatePassRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_GatePassRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_GatePassRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyRequestGatePassCompletedEventHandler(object sender, Fetch_MyRequestGatePassCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyRequestGatePassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyRequestGatePassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyActionableGatePassCompletedEventHandler(object sender, Fetch_MyActionableGatePassCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyActionableGatePassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyActionableGatePassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_GatePassRequest_Approval_DetailsCompletedEventHandler(object sender, Fetch_GatePassRequest_Approval_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_GatePassRequest_Approval_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_GatePassRequest_Approval_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void UpdateAction_GatePassRequestCompletedEventHandler(object sender, UpdateAction_GatePassRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateAction_GatePassRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateAction_GatePassRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_GatePass_MISCompletedEventHandler(object sender, Fetch_GatePass_MISCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_GatePass_MISCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_GatePass_MISCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_WorkPermitConfigurationCompletedEventHandler(object sender, Insert_WorkPermitConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_AnswerCompletedEventHandler(object sender, Fetch_AnswerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_AnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_AnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_WorkPermitConfigurationCompletedEventHandler(object sender, Fetch_WorkPermitConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_WorkPermitConfigurationCompletedEventHandler(object sender, Bind_WorkPermitConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_WorkPermitRequestDetailsCompletedEventHandler(object sender, Bind_WorkPermitRequestDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_WorkPermitRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_WorkPermitRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_WorkPermitRequestCompletedEventHandler(object sender, Insert_WorkPermitRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_WorkPermitRequestSavedDataCompletedEventHandler(object sender, Fetch_WorkPermitRequestSavedDataCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_WorkPermitRequestSavedDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_WorkPermitRequestSavedDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_WorkPermitRequestCompletedEventHandler(object sender, Update_WorkPermitRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyRequestWorkPermitCompletedEventHandler(object sender, Fetch_MyRequestWorkPermitCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyRequestWorkPermitCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyRequestWorkPermitCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

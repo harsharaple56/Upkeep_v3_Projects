@@ -46,7 +46,7 @@
             //$.ajax({
             //    type: "POST",
             //    dataType: "json",
-            //    url: "Upkeep_GP_WP_Services.asmx/Get_Role_MENU_Rights?RoleID=1&ParentMenuId=3",
+            //    url: "Upkeep_V3_Services.asmx/Get_Role_MENU_Rights?RoleID=1&ParentMenuId=3",
             //    success: function (data) {
 
     --%>

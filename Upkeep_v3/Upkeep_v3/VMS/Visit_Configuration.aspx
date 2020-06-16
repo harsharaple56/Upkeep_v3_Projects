@@ -366,6 +366,76 @@
                 //alert(answers);
             });
 
+
+            if ($('#hdnVMSConfigID').val() != "0") {
+
+
+                //$('#AnsModal').modal('show');
+                //$('#AnsModal').modal('toggle');
+                Bind_VMSConfiguration($('#hdnVMSConfigID').val());
+            }
+
+            function Bind_VMSConfiguration(VMSConfigID) {
+                //alert(WPConfigID);
+                //Bind VMS Questions
+                //$(".dltSection").click();
+                var qns = $('#hdnVMSQns').val();
+                var arrQns = qns.split("~");
+                alert(qns);
+                for (var i = 0; i < arrQns.length; i++) {
+                    $("#divQnAdd").click();
+                    //alert(arrTerms[i]);VMSQuestion[0][ctl00$ContentPlaceHolder1$ChkVisible][]
+
+                    var arrQnData = arrQns[i].split("||");
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']").val(arrQnData[0]);
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']").val(arrQnData[1]);
+                    if (arrQnData[2] == "True") {
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").prop("checked", true)
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").parent().parent().addClass("active");
+                    }
+                    if (arrQnData[3] == "True") {
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
+                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").parent().parent().addClass("active");
+                    }
+                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").val(arrQnData[4]);
+
+                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
+                }
+                return;
+                //Bind WP Headers with answesrs
+                var headers = $('#hdnWPHeaders').val();
+                var arrHeaders = headers.split("~");
+                //alert(arrTerms);
+                for (var i = 0; i < arrHeaders.length; i++) {
+                    //$("#divSectionAdd").click();
+                    //alert(arrTerms[i]);   
+                    var arrHeaderData = arrHeaders[i].split("||");
+                    var section = $("div[data-SectionID~='" + arrHeaderData[0] + "']");
+                    section.children().find(".divHeaderAdd").click();
+                    section.children().find(".dvWorkPermitHeader").not(".updated").attr("data-HeaderID", arrHeaderData[1]);
+                    section.children().find(".dvWorkPermitHeader").addClass("updated");
+                    var header = section.find("div[data-HeaderID~='" + arrHeaderData[1] + "']");
+                    header.children().find("#hdnWorkPermitHeader").val(arrHeaderData[1]);
+                    header.children().find(".question_textarea").val(arrHeaderData[2]);
+                    //section.children().find(".question_textarea").val(arrHeaderData[2]);
+                    //alert(arrHeaderData[4]);
+                    //alert(section.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
+                    //alert(header.children().find("select").val());
+                    header.children().find("select").val(arrHeaderData[4]);
+                    header.children().find("select").selectpicker('refresh');
+                    header.children().find(".hdnRepeaterAnswer").val(arrHeaderData[5]);
+                    header.children().find(".hdnRepeaterAnswer").change();
+                    if (arrHeaderData[4] == "1" || arrHeaderData[4] == "2") {
+                        header.children().find(".lblAnswerCnt").show();
+                    }
+                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").parents('.dvWorkPermitSection').attr("data-SectionID",arrIDSection[0]);
+                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").val(arrIDSection[0]);
+                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$txtWorkPermitSection]']").val(arrIDSection[1]);
+
+                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitSection[0][ctl00$ContentPlaceHolder1$txtWorkPermitSection]
+                }
+
+            }
         });
     </script>
 
@@ -498,6 +568,7 @@
                                                         <div class="col-md-5">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
+                                                                    <asp:HiddenField ID="hdnQnID" ClientIDMode="Static" Value="0" runat="server" />
                                                                     <asp:TextBox ID="txtVMSQuestion" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter VMS Question" Rows="1"></asp:TextBox>
                                                                     <span class="error_question text-danger medium"></span>
                                                                 </div>
@@ -543,7 +614,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide divQnAdd">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add Question</span>
