@@ -1049,26 +1049,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklist", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_MyChecklist", new object[] {
                         LoggedInUserID,
+                        CompanyID,
                         From_Date,
                         To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyChecklistAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            this.Fetch_MyChecklistAsync(LoggedInUserID, CompanyID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_MyChecklistOperationCompleted == null)) {
                 this.Fetch_MyChecklistOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistOperationCompleted);
             }
             this.InvokeAsync("Fetch_MyChecklist", new object[] {
                         LoggedInUserID,
+                        CompanyID,
                         From_Date,
                         To_Date}, this.Fetch_MyChecklistOperationCompleted, userState);
         }

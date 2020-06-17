@@ -1348,14 +1348,14 @@ public class My_Upkeep
     }
 
 
-    public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_MyChecklist(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)

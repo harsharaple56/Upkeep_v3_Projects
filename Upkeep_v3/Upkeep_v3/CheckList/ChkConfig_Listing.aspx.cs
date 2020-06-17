@@ -66,7 +66,7 @@ namespace Upkeep_v3.CheckList
                 }
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Session["CompanyID"].ToString() , From_Date, To_Date);
 
                 if (ds.Tables.Count > 0)
                 {

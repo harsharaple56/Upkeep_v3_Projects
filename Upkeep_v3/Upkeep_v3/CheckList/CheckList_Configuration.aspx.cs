@@ -399,7 +399,7 @@ namespace Upkeep_v3.CheckList
                         }
                         else if (Status == 1)
                         {
-                            Response.Redirect(Page.ResolveClientUrl("~/Checklist/ChkConfig_Listing.aspx"), false);
+                            Response.Redirect(Page.ResolveClientUrl("~/CheckList/ChkConfig_Listing.aspx"), false);
                         }
                         else if (Status == 3)
                         {

@@ -1659,12 +1659,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, CompanyID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
