@@ -900,6 +900,15 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string TicketFlag { get; set; }
     }
 
+
+    public class ClsTicketWorkflow
+    {
+        public string Level { get; set; }
+        public string User_Desc { get; set; }
+        public string Group_Desc { get; set; }
+        public string Escalate_Time { get; set; }
+    }
+
     #endregion
 
 }

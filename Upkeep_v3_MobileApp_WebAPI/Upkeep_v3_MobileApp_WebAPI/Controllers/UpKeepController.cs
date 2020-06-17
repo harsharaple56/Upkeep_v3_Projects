@@ -12,6 +12,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Text;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 {
@@ -8007,6 +8009,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             DataSet DsDataSet = new DataSet();
             string TicketPrefix = string.Empty;
             string StrLocConnection = null;
+            string TicketID = string.Empty;
             try
             {
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
@@ -8030,6 +8033,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
+                            TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
@@ -8037,12 +8041,15 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                                 FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
                             }
-
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
                         }
                     }
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
             }
             catch (Exception ex)
             {
@@ -8190,8 +8197,56 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
             string StrLocConnection = null;
+            Dictionary<string, object> dict = new Dictionary<string, object>();
             try
             {
+                // Image save
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                var message1 = "";
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+
+                            postedFile.SaveAs(filePath);
+                        }
+                    }
+
+                    message1 = string.Format("Image Updated Successfully.");
+                    //return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+
+                // Image save
+
+
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
@@ -8203,9 +8258,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
 
-
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, message1);
             }
             catch (Exception ex)
             {
@@ -8216,6 +8269,151 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 DsDataSet = null;
             }
         }
+
+
+        [Route("api/UpKeep/PostTicketImage")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImageUploadURL"]);
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            string fileUploadPath = imgPath + CurrentDate;
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+                            var ImageName = TicketCode;
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            var filePath = fileUploadPath + "/" + ImageName + extension;
+
+                            postedFile.SaveAs(filePath);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+
+        [Route("api/UpKeep/Fetch_Ticket_Workflow")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Ticket_Workflow(int CategoryID, int SubCategoryID)
+        {
+            List<ClsTicketWorkflow> Objticket = new List<ClsTicketWorkflow>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@CategoryID", CategoryID);
+                ObjLocSqlParameter[1] = new SqlParameter("@SubCategoryID", SubCategoryID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_TKT_Fetch_Workflow_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                         select new ClsTicketWorkflow
+                                         {
+                                             Level = Convert.ToString(p.Field<decimal>("Level")),
+                                             User_Desc = p.Field<string>("UserDescription"),
+                                             Group_Desc = p.Field<string>("GroupDescription"),
+                                             Escalate_Time = Convert.ToString(p.Field<decimal>("EscalateTime"))
+
+                                         }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
+
+
 
         #endregion
 

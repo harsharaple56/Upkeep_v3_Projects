@@ -33,8 +33,7 @@
 
                                     <div class="m-portlet__head-tools">
 
-                                 <asp:Label ID="lblUserErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" style="font-size: large;font-weight: bold;"  ></asp:Label>
-
+                                
                                         <a href="<%= Page.ResolveClientUrl("User_Mst.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                             <span>
                                                 <i class="la la-arrow-left"></i>
@@ -250,6 +249,7 @@
 
                                                 <div class="form-group m-form__group row">
                                                     <div class="col-xl-9 col-lg-9">
+                                                         <asp:Label ID="lblUserErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" style="font-size: large;font-weight: bold;"  ></asp:Label>
                                                         <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                                     </div>
                                                 </div>
