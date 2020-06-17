@@ -276,7 +276,7 @@
 
                 //Validate TextBox value against the Regex.
                 //var isValid = regex.test($(this).val());
-                if ($(this).val().includes("||") || $(this).val().includes(";") || $(this).val().includes("::")) {
+                if ($(this).val().includes("||") || $(this).val().includes(";") || $(this).val().includes(":")) {
                     alert("Contains Special Characters.");
                     $(this).val("");
                 }
@@ -303,8 +303,9 @@
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
                 if ($('#hdnVMSConfigID').val() != "0") {
-                    answers = "ii:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
+                    answers = "ii:on:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
+               //alert(answers);
                 var arrAns = answers.split(";");
 
                 for (var i = 0; i < arrAns.length; i++) {
@@ -329,10 +330,10 @@
                 $('.divTxtAnswer input[type="text"]').each(function () {
                     // Do your magic here 
                     //alert($(this).val());
-                    if ($(this).val() === "||") {
+                    if ($(this).val() === "||" || $(this).val() === "") {
                         //alert("jjjj");
                         //alert($(this).siblings('.dltrptanswer').html());
-                        $(this).parent().siblings('.dltrptanswer').click();
+                        $(this).siblings('.dltrptanswer').click();
                     }
                 });
                 $('#btnModal').click();
@@ -372,19 +373,20 @@
 
                 //$('#AnsModal').modal('show');
                 //$('#AnsModal').modal('toggle');
+                //$(".divQnDel").click();
                 Bind_VMSConfiguration($('#hdnVMSConfigID').val());
             }
 
             function Bind_VMSConfiguration(VMSConfigID) {
                 //alert(WPConfigID);
                 //Bind VMS Questions
-                //$(".dltSection").click();
                 var qns = $('#hdnVMSQns').val();
                 var arrQns = qns.split("~");
                 alert(qns);
                 for (var i = 0; i < arrQns.length; i++) {
-                    $("#divQnAdd").click();
-                    //alert(arrTerms[i]);VMSQuestion[0][ctl00$ContentPlaceHolder1$ChkVisible][]
+                    if(i!==0)
+                        $("#divQnAdd").click();
+                    //alert(arrTerms[i]);VMSQuestion[0][hdnRepeaterAnswer]
 
                     var arrQnData = arrQns[i].split("||");
                     $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']").val(arrQnData[0]);
@@ -397,8 +399,15 @@
                         $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
                         $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").parent().parent().addClass("active");
                     }
-                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").val(arrQnData[4]);
+                    $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").val(arrQnData[4]);
+                    $("input[name~='VMSQuestion[" + i + "][hdnRepeaterAnswer]']").val(arrQnData[5]);
+                    $("input[name~='VMSQuestion[" + i + "][hdnRepeaterAnswer]']").change();
 
+                    var isMulti = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected').attr("data-ismulti");
+                    if (isMulti === 'True') {
+                        //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
+                        $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").parent().parent().find(".lblAnswerCnt").show();
+                    }
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
                 return;
@@ -602,7 +611,7 @@
                                                             <div class="d-md-none m--margin-bottom-10"></div>
                                                         </div>
                                                         <div class="col-md-1">
-                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divQnDel">
                                                                 <i class="la la-trash"></i>
                                                             </div>
                                                         </div>
@@ -614,7 +623,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide divQnAdd">
+                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divQnAdd">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add Question</span>

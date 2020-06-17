@@ -2041,7 +2041,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2053,6 +2053,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@VName", Name);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@Phone", Phone);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);

@@ -61,6 +61,7 @@ namespace Upkeep_v3.VMS
         {
             try
             {
+                string VMSQuestionID = string.Empty;
                 string VMSQuestion = string.Empty;
                 string VMSQuestionMandatory = string.Empty;
                 string VMSQuestionVisible = string.Empty;
@@ -91,13 +92,14 @@ namespace Upkeep_v3.VMS
 
                 for (int i = 0; i < Qln; i++)
                 {
-
+                    VMSQuestionID = "0";
                     VMSQuestion = "";
                     VMSQuestionVisible = "0";
                     VMSQuestionMandatory = "0";
                     VMSQuestionAns = "";
                     VMSQuestionAnsData = "";
 
+                    VMSQuestionID= Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
                     VMSQuestion = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]")[0];
                     VMSQuestionAns = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]")[0];
                     VMSQuestionAnsData = Request.Form.GetValues("VMSQuestion[" + i + "][hdnRepeaterAnswer]")[0];
@@ -110,6 +112,7 @@ namespace Upkeep_v3.VMS
 
                     strXmlVMS_Question.Append(@"<Question_Desc>");
                     strXmlVMS_Question.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
+                    strXmlVMS_Question.Append(@"<Question_Id>" + VMSQuestionID + "</Question_Id>");
                     strXmlVMS_Question.Append(@"<Question_Header>" + VMSQuestion + "</Question_Header>");
                     strXmlVMS_Question.Append(@"<Question_Visible>" + VMSQuestionVisible + "</Question_Visible>");
                     strXmlVMS_Question.Append(@"<Question_Mandatory>" + VMSQuestionMandatory + "</Question_Mandatory>");
@@ -291,11 +294,11 @@ namespace Upkeep_v3.VMS
 
                 dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigTitleID);
 
-                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString()))
+                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Title"].ToString()))
                 {
                     //divDesc.Visible = true;
                     hdnVMSConfigID.Value = ConfigTitleID.ToString();
-                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Title"].ToString();
                     txtVMSDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
                     { rdbCustomer.Checked = true; }
@@ -309,9 +312,9 @@ namespace Upkeep_v3.VMS
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
                        + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
                        + s.Field<decimal>("Ans_Type_ID") + "||"
-                       + string.Join(";", dsConfig.Tables[1].AsEnumerable().Where(ans =>
+                       + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
                        ans.Field<decimal>("VMS_Qn_Id").ToString() == s.Field<decimal>("VMS_Qn_Id").ToString()).Select(ans =>
-                       ans.Field<string>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
+                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
 
                     hdnVMSQns.Value = string.Join("~", QnValues);
                 }

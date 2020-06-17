@@ -360,7 +360,14 @@ background-color: blanchedalmond;
                                     </button>
                                     <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
                                 </div>
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-md-1 col-form-label font-weight-bold">Name :</label>
+                                    <div class="col-md-5 col-form-label">
+                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
 
+                                    </div>
+                                </div>
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                     <label class="col-md-1 col-form-label font-weight-bold">Email :</label>
                                     <div class="col-md-5 col-form-label">
@@ -649,7 +656,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:block;">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">
