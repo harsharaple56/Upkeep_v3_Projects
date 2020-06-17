@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="CheckList_Configuration.aspx.cs" Inherits="Upkeep_v3.Checklist.CheckList_Configuration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="CheckList_Configuration.aspx.cs" Inherits="Upkeep_v3.CheckList.CheckList_Configuration" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
@@ -247,9 +248,7 @@
                         $(this).parent().find('.error_question').html('Enter Question.').parents('.form-group').addClass('has-error');
                     }
                 });
-
-
-
+                 
                 $('.CheckListType_repeater .CheckListType_textarea').each(function (index, element) {
                     if ($(this).val().trim() == '') {
                         is_valid = false;
@@ -372,14 +371,33 @@
                 for (var i = 0; i < arrAns.length; i++) {
                     //if (arrAns[i] != "ii:||") {
                     $("#divAnswerAdd").click();
-                    alert(arrAns[i]);
+                  //  alert(arrAns[i]);
                     //alert(arrAns[i]); AnswerType[0][ctl00$ContentPlaceHolder1$hdnAnswerDataID]
                     var arrIDAns = arrAns[i].split(":");
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
-                    $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
-                    $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").val(arrIDAns[3]);
+                     
+
+                    //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
+                    //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").val(arrIDAns[3]);
+ 
+                     
+                    var isMand = arrIDAns[2];
+                    var isAttc = arrIDAns[3];
+                    //alert(isMand);
+                   // alert(isAttc);
+                    if (isMand == "True") { 
+                        //alert(":f:");
+                       $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true);
+                       $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass('active');
+                    } 
+                    if (isAttc == "True") { 
+                       // alert(":oof:");
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").prop( "checked", true );
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").parent().parent().addClass('active');
+                    } 
+
                     //alert(arrIDAns[1]);AnswerType[0][ctl00$ContentPlaceHolder1$ChkAnsDef][]
                     //alert("input[name~='AnswerType[" + i + "][txtAnswer]']");
                     //alert(arrIDAns[1]);
@@ -389,15 +407,26 @@
 
                 }
 
-                $('.divTxtAnswer input[type="text"]').each(function () {
+                //$('.divTxtAnswer input[type="text"]').each(function () {
+                //    // Do your magic here 
+                //    //alert($(this).val());
+                //    if ($(this).val() === "||") {
+                //        alert("jjjj");
+                //        alert($(this).siblings('.dltrptanswer').html());
+                //        $(this).parent().siblings('.dltrptanswer').click();
+                //    }
+                //});
+
+                  $('.divTxtAnswer input[type="text"]').each(function () {
                     // Do your magic here 
                     //alert($(this).val());
-                    if ($(this).val() === "||") {
-                        alert("jjjj");
-                        alert($(this).siblings('.dltrptanswer').html());
-                        $(this).parent().siblings('.dltrptanswer').click();
+                    if ($(this).val() === "||" || $(this).val() === "") {//RC 19 May
+                        //alert("jjjj");
+                        //alert($(this).siblings('.dltrptanswer').html());
+                        $(this).siblings('.dltrptanswer').click(); //RC 19 May
                     }
                 });
+
                 $('#btnModal').click();
             });
 
@@ -412,12 +441,31 @@
                     if ($(this).val() === "||") {
                         $(this).parent().siblings('.dltrptanswer').click();
                     }
+
+                    var isChkAnsFlag = 0;
+                    var isChkAnsDef = 0;
+                    if ($(this).parent().find('#ChkAnsFlag').prop('checked') == true) {
+                        //do something
+                        isChkAnsFlag = 1;
+                    } if ($(this).parent().find('#ChkAnsDef').prop('checked') == true) {
+                        //do something
+                        isChkAnsDef = 1;
+                    }
+
+                    //if (answers == "") {
+                    //    answers += $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val() + ":" + $(this).parent().find('#ChkAnsDef').val();
+                    //}
+                    //else {
+                    //    answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val() + ":" + $(this).parent().find('#ChkAnsDef').val();;
+                    //}
+
                     if (answers == "") {
-                        answers += $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val() + ":" + $(this).parent().find('#ChkAnsDef').val();
+                        answers += $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + isChkAnsFlag + ":" + isChkAnsDef;
                     }
                     else {
-                        answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val() + ":" + $(this).parent().find('#ChkAnsDef').val();;
+                        answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + isChkAnsFlag + ":" + isChkAnsDef;
                     }
+
                     cnt++;
 
                 });
@@ -430,8 +478,6 @@
             });
 
             if ($('#hdnCLConfigID').val() != "0") {
-
-
                 //$('#AnsModal').modal('show');
                 //$('#AnsModal').modal('toggle');
                 Bind_CheckListConfiguration($('#hdnCLConfigID').val());
@@ -473,27 +519,73 @@
                 //Bind CL Questions with answesrs
                 var Questions = $('#hdnCLQuestions').val();
                 var arrQuestions = Questions.split("~");
-                //alert(arrTerms);
+                alert(Questions);
                 for (var i = 0; i < arrQuestions.length; i++) {
                     //$("#divGroupAdd").click();
                     //alert(arrTerms[i]);   
                     var arrQuestionData = arrQuestions[i].split("||");
                     var Group = $("div[data-GroupID~='" + arrQuestionData[0] + "']");
-                    Group.children().find(".divQuestionAdd").click();
+
+                    var chkGrpDa = "";
+                    if (i != 0) {
+                        var arrRefOldQuestionData = arrQuestions[i - 1].split("||");
+                        if (arrQuestionData[0] != arrRefOldQuestionData[0]) {
+                            chkGrpDa = "0";
+                        }
+                    }
+
+                    if (i != 0 && chkGrpDa != "0") {
+                        Group.children().find(".divQuestionAdd").click();
+                    }
+
                     Group.children().find(".dvCheckListQuestion").not(".updated").attr("data-QuestionID", arrQuestionData[1]);
                     Group.children().find(".dvCheckListQuestion").addClass("updated");
                     var Question = Group.find("div[data-QuestionID~='" + arrQuestionData[1] + "']");
                     Question.children().find("#hdnCheckListQuestion").val(arrQuestionData[1]);
                     Question.children().find(".question_textarea").val(arrQuestionData[2]);
                     //Group.children().find(".question_textarea").val(arrQuestionData[2]);
-                    //alert(arrQuestionData[4]);
+                    //alert("FG"); 
+                    //alert(arrQuestionData[7]);
+                    //alert(arrQuestionData[8]);
+                    //alert(arrQuestionData[9]);
                     //alert(Group.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
                     //alert(Question.children().find("select").val());
-                    Question.children().find("select").val(arrQuestionData[4]);
+
+
+                    //ChkAttach
+                    //ChkMandatory 
+                    var isMand = arrQuestionData[3];
+                    var isAttc = arrQuestionData[4];
+                    //alert(isMand);
+                    //alert(isAttc);
+
+                    Question.children().find(".hdnRefDesc").val(arrQuestionData[6]);
+                    Question.children().find(".hdnRefPathUploaded").val(arrQuestionData[7]);
+                    //Question.children().find(".hdnflRefImage").val(arrQuestionData[7]);
+                    //Question.children().find(".hdnRefPath").val(arrQuestionData[7]);
+
+
+                    if (isMand == "True") {
+                        //do something
+                        //alert(":f:");
+                        Question.children().find('.ChkMandatory').children().prop("checked", true);
+                        Question.children().find('.ChkMandatory').parent().addClass('active');
+                    } 
+                    if (isAttc == "True") {
+                        //do something
+                        //alert(":oof:");
+                        Question.children().find('.ChkAttach').children().prop( "checked", true );
+                        Question.children().find('.ChkAttach').parent().addClass('active');
+                    } 
+
+                    Question.children().find("select").val(arrQuestionData[9]);
                     Question.children().find("select").selectpicker('refresh');
-                    Question.children().find(".hdnRepeaterAnswer").val(arrQuestionData[5]);
+                    Question.children().find(".hdnRepeaterAnswer").val(arrQuestionData[10]);
                     Question.children().find(".hdnRepeaterAnswer").change();
-                    if (arrQuestionData[4] == "1" || arrQuestionData[4] == "2") {
+                    // if (arrQuestionData[9] == "1" || arrQuestionData[9] == "2")
+                    //Option for multi
+                    if (arrQuestionData[9] == "1" || arrQuestionData[9] == "2")
+                    {
                         Question.children().find(".lblAnswerCnt").show();
                     }
                     //$("input[name~='CheckListGroup[" + i + "][ctl00$ContentPlaceHolder1$hdnCLGroupID]']").parents('.dvCheckListGroup').attr("data-GroupID",arrIDGroup[0]);
@@ -694,13 +786,13 @@
                                                                                         <div class="col-md-6">
                                                                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                                                                 <label class="btn btn-light">
-                                                                                                    <asp:CheckBox ID="ChkMandatory" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i>Mandatory</label>
+                                                                                                    <asp:CheckBox ID="ChkMandatory" class="ChkMandatory" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i>Mandatory</label>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-md-6">
                                                                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                                                                 <label class="btn btn-light">
-                                                                                                    <asp:CheckBox ID="ChkAttach" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i>Attachment</label>
+                                                                                                    <asp:CheckBox ID="ChkAttach" class="ChkAttach" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i>Attachment</label>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -721,6 +813,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-2">
                                                                                     <input type="hidden" name="hdnRefDesc" id="hdnRefDesc" />
+                                                                                    <input type="hidden" name="hdnRefDescUpload" id="hdnRefDescUpload" />
                                                                                     <button type="button" class="btn btn-light" name="btnAddRef" id="btnAddRef" data-toggle="modal" data-target="#RefModal"><i class="fa fa-image"></i>Reference</button>
                                                                                     <asp:TextBox ID="txtScore" TextMode="Number" runat="server" data-toggle="tooltip" data-placement="right"
                                                                                         title="Question wise score.." class="form-control m-input autosize_textarea qscore txtvalidate mt-3" placeholder="Score"></asp:TextBox>
@@ -826,12 +919,12 @@
 
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                         <label class="btn btn-light">
-                                                            <input id="ChkAnsFlag" type="checkbox" />
-                                                            <%--<asp:CheckBox ID="" autocomplete="off" runat="server" ClientIDMode="Static" />--%>Flag</label>
+                                                            <%--<input id="ChkAnsFlag" type="checkbox" />--%>
+                                                            <asp:CheckBox ID="ChkAnsFlag" class="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
                                                     </div>
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                         <label class="btn btn-light">
-                                                            <asp:CheckBox ID="ChkAnsDef" autocomplete="off" runat="server" ClientIDMode="Static" />Default</label>
+                                                            <asp:CheckBox ID="ChkAnsDef" class="ChkAnsDef" autocomplete="off" runat="server" ClientIDMode="Static" />Default</label>
                                                     </div>
                                                     <div data-repeater-delete="" class="dltrptanswer answer btn">
                                                         <i class="la la-remove"></i>
@@ -870,3 +963,4 @@
     </div>
 
 </asp:Content>
+

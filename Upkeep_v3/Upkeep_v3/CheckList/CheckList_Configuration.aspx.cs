@@ -11,7 +11,7 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 
-namespace Upkeep_v3.Checklist
+namespace Upkeep_v3.CheckList
 {
     public partial class CheckList_Configuration : System.Web.UI.Page
     {
@@ -25,8 +25,14 @@ namespace Upkeep_v3.Checklist
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
-                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-                //LoggedInUserID = "3";
+                //Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                LoggedInUserID = "3";
+            }
+            if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ChkConfigID"]))
+            {
+                strChkConfigID = Request.QueryString["ChkConfigID"].ToString();
+                if (strChkConfigID.All(char.IsDigit))
+                    Chk_ConfigID = Convert.ToInt32(strChkConfigID);
             }
             if (!IsPostBack)
             {
@@ -34,23 +40,8 @@ namespace Upkeep_v3.Checklist
                 string Initiator = string.Empty;
                 Initiator = Convert.ToString(Session["UserType"]);
 
-                if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ChkConfigID"]))
-                {
-                    strChkConfigID = Request.QueryString["ChkConfigID"].ToString();
-                    if (strChkConfigID.All(char.IsDigit))
-                        Chk_ConfigID = Convert.ToInt32(strChkConfigID);
-                    if (Chk_ConfigID != 0)
-                        Bind_ChecklistConfiguration(Convert.ToInt32(Chk_ConfigID));
-                }
-                else if (!System.String.IsNullOrWhiteSpace(Request.QueryString["DelCHKConfigID"]))
-                {
-                    strChkConfigID = Request.QueryString["DelCHKConfigID"].ToString();
-                    if (strChkConfigID.All(char.IsDigit))
-                        Chk_ConfigID = Convert.ToInt32(strChkConfigID);
-                    if (Chk_ConfigID != 0)
-                        ObjUpkeep.Delete_CHKConfiguration(Chk_ConfigID, LoggedInUserID);
-                }
-
+                if (Chk_ConfigID != 0)
+                    Bind_ChecklistConfiguration(Convert.ToInt32(Chk_ConfigID));
             }
         }
         protected void btnSave_Click(object sender, EventArgs e)
@@ -71,8 +62,8 @@ namespace Upkeep_v3.Checklist
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         ddlAns.DataSource = ds.Tables[0];
-                        ddlAns.DataTextField = "Chk_Ans_Type_Desc";
-                        ddlAns.DataValueField = "Chk_Ans_Type_ID";
+                        ddlAns.DataTextField = "Ans_Type_Desc";
+                        ddlAns.DataValueField = "Ans_Type_ID";
                         ddlAns.DataBind();
 
                         for (int i = 0; i < ddlAns.Items.Count; i++)
@@ -111,22 +102,25 @@ namespace Upkeep_v3.Checklist
 
 
                     var SectionValues = ds.Tables[1].AsEnumerable().Select(s => s.Field<decimal>("Chk_Section_ID").ToString() + "||" + s.Field<string>("Chk_Section_Desc")).ToArray();
-
                     hdnCLGroups.Value = string.Join("~", SectionValues);
+
 
                     var HeaderValues = ds.Tables[2].AsEnumerable().Select(s =>
                                 s.Field<decimal>("Chk_Section_ID").ToString() + "||" + s.Field<decimal>("CHK_Question_ID").ToString() + "||"
-                                + s.Field<string>("Qn_Desc").ToString() + "||" + s.Field<string>("Is_Qn_Mandatory").ToString() + "||"
-                                + s.Field<string>("Is_Attach_Mandatory").ToString() + "||" + s.Field<string>("Qn_Score").ToString() + "||"
+                                + s.Field<string>("Qn_Desc").ToString() + "||" + s.Field<bool>("Is_Qn_Mandatory").ToString() + "||"
+                                + s.Field<bool>("Is_Attach_Mandatory").ToString() + "||" + s.Field<decimal>("Qn_Score").ToString() + "||"
                                 + s.Field<string>("Chk_Qn_Ref_Desc").ToString() + "||" + s.Field<string>("Chk_Qn_Ref_Photo").ToString() + "||"
-                                + s.Field<string>("Is_Raise_Flag_Issue").ToString() + "||"
+                                + s.Field<bool>("Is_Raise_Flag_Issue").ToString() + "||"
                                 + s.Field<decimal>("Chk_Ans_Type_ID") + "||"
                                 + string.Join(";", ds.Tables[3].AsEnumerable().Where(ans =>
                                 ans.Field<decimal>("CHK_Question_ID").ToString() == s.Field<decimal>("CHK_Question_ID").ToString()).Select(ans =>
                                 ans.Field<decimal>("Chk_Ans_Value_ID").ToString() + ":" + ans.Field<string>("Chk_Ans_Desc").ToString()
-                                + ":" + ans.Field<string>("Is_Default").ToString() + ":" + ans.Field<string>("Ans_Is_Flag").ToString()))).ToArray();
+                                + ":" + ans.Field<bool>("Is_Default").ToString() + ":" + ans.Field<bool>("Ans_Is_Flag").ToString()))
+                                ).ToArray();
+
 
                     hdnCLQuestions.Value = string.Join("~", HeaderValues);
+
                 }
 
             }
@@ -145,7 +139,7 @@ namespace Upkeep_v3.Checklist
                 string ChkQuestionAns = string.Empty, ChkQuestionAttachment = string.Empty, ChkQuestionRaisedFlag = string.Empty;
                 //string ChkQuestionRefID = string.Empty;
                 string ChkQuestionUploadImgID = string.Empty;
-                string ChkQuestionImgID = string.Empty, ChkQuestionRefPath = string.Empty, ChkQuestionRefDesc = string.Empty;
+                string ChkQuestionImgID = string.Empty, ChkQuestionRefPath = string.Empty, ChkQuestionRefDesc = string.Empty, ChkQuestionRefPathUploaded = string.Empty;
                 string ChkAnsData = string.Empty, ChkQuestionScore = string.Empty, ChecklistType = string.Empty;
 
                 StringBuilder strXmlCHECKLIST_QUESTION = new StringBuilder();
@@ -157,7 +151,7 @@ namespace Upkeep_v3.Checklist
                 {
                     ChecklistQuestion = ""; ChkQuestionAns = ""; ChkQuestionMandatory = "0"; ChecklistType = "";
                     //ChkQuestionRefID = "";
-                    ChkQuestionImgID = ""; ChkQuestionRefPath = ""; ChkQuestionRefDesc = "";
+                    ChkQuestionImgID = ""; ChkQuestionRefPath = ""; ChkQuestionRefDesc = ""; ChkQuestionRefPathUploaded = "";
                     ChkQuestionAttachment = "0"; ChkQuestionScore = "0"; ChkQuestionRaisedFlag = "";
 
                     string[] ChecklistGROUPArray = Request.Form.GetValues("CheckListGroup[" + i + "][ctl00$ContentPlaceHolder1$txtCheckListGroup]");
@@ -192,6 +186,9 @@ namespace Upkeep_v3.Checklist
                             string[] ChecklistQuestion_Ref_Path_Array = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][hdnRefPath]");
                             string[] ChecklistQuestion_Ref_Desc_Array = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][hdnRefDesc]");
 
+                            string[] ChecklistQuestion_Ref_PathUploaded_Array = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][hdnRefPathUploaded]");
+
+
                             string[] ChecklistQuestionIDArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$hdnCheckListQuestion]");
                             string[] ChecklistQuestion_AnsArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$ddlAns]");
                             string[] ChecklistQuestion_AnsData = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][hdnRepeaterAnswer]");
@@ -221,6 +218,8 @@ namespace Upkeep_v3.Checklist
                                 ChkQuestionRefPath = ChecklistQuestion_Ref_Path_Array[0];
                             if (ChecklistQuestion_Ref_Desc_Array != null)
                                 ChkQuestionRefDesc = ChecklistQuestion_Ref_Desc_Array[0];
+                            if (ChecklistQuestion_Ref_PathUploaded_Array != null)
+                                ChkQuestionRefPathUploaded = ChecklistQuestion_Ref_PathUploaded_Array[0];
 
                             if (ChecklistQuestionArray != null && ChecklistQuestion_AnsArray != null)
                             {
@@ -228,6 +227,9 @@ namespace Upkeep_v3.Checklist
 
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_GROUP_NAME>" + ChkGROUPName + "</CHECKLIST_GROUP_NAME>");
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_GROUP_ID>" + ChkGROUPID + "</CHECKLIST_GROUP_ID>");
+
+                                strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_GROUP_SEQ>" + i + "</CHECKLIST_GROUP_SEQ>");
+                                strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION_SEQ>" + h + "</CHECKLIST_QUESTION_SEQ>");
 
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION_ID>" + ChecklistQuestionID + "</CHECKLIST_QUESTION_ID>");
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION>" + ChecklistQuestion + "</CHECKLIST_QUESTION>");
@@ -258,7 +260,18 @@ namespace Upkeep_v3.Checklist
                                 string RefImgPath = UploadImage(ChkQuestionUploadImgID, ChkGROUPName, ChecklistQuestion);
                                 // strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_REF_PATH>" + ChkQuestionRefPath.ToString() + "</CHECKLIST_REF_PATH>"); 
 
-                                strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_REF_PATH>" + RefImgPath.ToString() + "</CHECKLIST_REF_PATH>");
+                                if (RefImgPath != "")
+                                {
+                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_REF_PATH>" + RefImgPath.ToString() + "</CHECKLIST_REF_PATH>");
+                                }
+                                else if (ChkQuestionRefPathUploaded.ToString() != "" && Chk_ConfigID != 0)
+                                {
+                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_REF_PATH>" + ChkQuestionRefPathUploaded.ToString() + "</CHECKLIST_REF_PATH>");
+                                }
+                                else
+                                {
+                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_REF_PATH>" + "" + "</CHECKLIST_REF_PATH>");
+                                }
 
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER>" + ChkQuestionAns + "</CHECKLIST_ANSWER>");
 
@@ -269,10 +282,23 @@ namespace Upkeep_v3.Checklist
                                 {
                                     strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION_ANSWER_VALUES_DATA>");
 
-                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID></CHECKLIST_ANSWER_DATA_ID>");
-                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + ChkAnsData + "</CHECKLIST_ANSWER_DATA>");
-                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
-                                    strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+                                    if (Chk_ConfigID != 0)
+                                    {
+                                        string[] strValue = ChkAnsData.Split(':');
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>1</CHECKLIST_ANSWER_DATA_SEQ>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID>" + strValue[0].ToString() + "</CHECKLIST_ANSWER_DATA_ID>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + strValue[1].ToString() + "</CHECKLIST_ANSWER_DATA>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+                                    }
+                                    else
+                                    {
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>1</CHECKLIST_ANSWER_DATA_SEQ>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID></CHECKLIST_ANSWER_DATA_ID>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + ChkAnsData + "</CHECKLIST_ANSWER_DATA>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+                                    }
 
                                     strXmlCHECKLIST_QUESTION.Append(@"</CHECKLIST_QUESTION_ANSWER_VALUES_DATA>");
                                 }
@@ -283,19 +309,53 @@ namespace Upkeep_v3.Checklist
                                         //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
                                         string[] strValue = strValueData[f].Split(':');
 
-                                        //string isDefault = "0", iFlag;
+                                        //string isDefault = "0", iFlag = "0";
                                         //if (strValue[2].ToString() == "on") { isDefault = "1"; }
                                         //if (strValue[3].ToString() == "on") { iFlag = "1"; }
 
                                         strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_QUESTION_ANSWER_VALUES_DATA>");
 
+                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>" + f + "</CHECKLIST_ANSWER_DATA_SEQ>");
                                         strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID>" + strValue[0].ToString() + "</CHECKLIST_ANSWER_DATA_ID>");
                                         strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + strValue[1].ToString() + "</CHECKLIST_ANSWER_DATA>");
 
-                                        //strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT>" + isDefault + "</CHECKLIST_IS_DEFAULT>");
-                                        //strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG>" + iFlag + "</CHECKLIST_IS_FLAG>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT>0</CHECKLIST_IS_DEFAULT>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG>0</CHECKLIST_IS_FLAG>");
+                                        if (Chk_ConfigID != 0)
+                                        {
+                                            string isDefault = "0", iFlag = "0";
+                                            if (strValue[2].ToString() == "True")
+                                            {
+                                                isDefault = "1";
+                                            }
+                                            else if (strValue[2].ToString() == "False")
+                                            {
+                                                isDefault = "0";
+                                            }
+                                            else
+                                            {
+                                                isDefault = strValue[2].ToString();
+                                            }
+
+                                            if (strValue[3].ToString() == "True")
+                                            {
+                                                iFlag = "1";
+                                            }
+                                            else if (strValue[3].ToString() == "False")
+                                            {
+                                                iFlag = "0";
+                                            }
+                                            else
+                                            {
+                                                iFlag = strValue[3].ToString();
+                                            }
+
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT>" + isDefault + "</CHECKLIST_IS_DEFAULT>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG>" + iFlag + "</CHECKLIST_IS_FLAG>");
+                                        }
+                                        else
+                                        {
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT>" + strValue[2].ToString() + "</CHECKLIST_IS_DEFAULT>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG>" + strValue[3].ToString() + "</CHECKLIST_IS_FLAG>");
+                                        }
 
                                         strXmlCHECKLIST_QUESTION.Append(@"</CHECKLIST_QUESTION_ANSWER_VALUES_DATA>");
                                     }
@@ -397,11 +457,12 @@ namespace Upkeep_v3.Checklist
             }
             catch (Exception ex)
             {
+                //throw ex;
                 return "";
-                throw ex;
             }
         }
         #endregion
+
 
     }
 }

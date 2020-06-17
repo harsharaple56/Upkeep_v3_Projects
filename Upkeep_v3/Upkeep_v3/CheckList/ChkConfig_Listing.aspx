@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="ChkConfig_Listing.aspx.cs" Inherits="Upkeep_v3.Checklist.ChkConfig_Listing" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="ChkConfig_Listing.aspx.cs"  Inherits="Upkeep_v3.CheckList.ChkConfig_Listing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -215,8 +215,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                 <%=fetchWPRequestListing()%>
+                                 <%=fetchChkRequestListing()%>  
                             </tbody>
                         </table>
 
