@@ -571,7 +571,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID, int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID,string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
     {
         DataSet ds = new DataSet();
 
@@ -579,7 +579,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Retailer_CRUD(storeName, firstName, lastName, email, phone, RetailerID, CompanyID, LoggedInUserID, actionType);
+            ds = obj.Retailer_CRUD(storeName, firstName, lastName, email, phone, RetailerID, Username, Password, CompanyID, LoggedInUserID, actionType);
 
         }
         catch (Exception ex)
@@ -1659,12 +1659,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, CompanyID, From_Date, To_Date);
         }
         catch (Exception ex)
         {

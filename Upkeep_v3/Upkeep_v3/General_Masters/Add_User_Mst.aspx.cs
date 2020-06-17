@@ -103,7 +103,7 @@ namespace Upkeep_v3.General_Masters
             location = 0;       //Commented by sujata       Convert.ToInt32(ddlLocation.SelectedValue);
             subLocation = 0;    //Commented by sujata       Convert.ToInt32(ddlSublocation.SelectedValue);
             Department = 0;     //Commented by sujata       Convert.ToInt32(ddlDepartment.SelectedValue);
-
+            Department = Convert.ToInt32(ddlDepartment.SelectedValue);
 
             if (chk_IsApproval.Checked == true)
             {
@@ -144,11 +144,7 @@ namespace Upkeep_v3.General_Masters
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                    if (Status == 0)
-                    {
-
-                    }
-                    else if (Status == 1)
+                    if (Status == 1)
                     {
                         Session["User_ID"] = "";
 

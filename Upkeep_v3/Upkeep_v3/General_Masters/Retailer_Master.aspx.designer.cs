@@ -40,6 +40,15 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.Button btnExport;
         
         /// <summary>
+        /// lnkSampleFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSampleFile;
+        
+        /// <summary>
         /// fileUpload control.
         /// </summary>
         /// <remarks>

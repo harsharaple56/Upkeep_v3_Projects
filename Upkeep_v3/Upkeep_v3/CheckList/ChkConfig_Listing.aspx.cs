@@ -9,7 +9,8 @@ using System.Xml;
 using System.Text;
 using System.Data;
 using System.Globalization;
-namespace Upkeep_v3.Checklist
+
+namespace Upkeep_v3.CheckList
 {
     public partial class ChkConfig_Listing : System.Web.UI.Page
     {
@@ -28,15 +29,15 @@ namespace Upkeep_v3.Checklist
             {
                 hdn_IsPostBack.Value = "no";
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
-            }
+            } 
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            fetchWPRequestListing();
+            fetchChkRequestListing();
         }
 
-        public string fetchWPRequestListing()
+        public string fetchChkRequestListing()
         {
             string data = "";
             string From_Date = string.Empty;
@@ -65,7 +66,7 @@ namespace Upkeep_v3.Checklist
                 }
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Session["CompanyID"].ToString() , From_Date, To_Date);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -86,7 +87,7 @@ namespace Upkeep_v3.Checklist
                             string Updated_By = Convert.ToString(ds.Tables[0].Rows[i]["Updated_By"]);
                             string Updated_date = Convert.ToString(ds.Tables[0].Rows[i]["Updated_date"]);
 
-                            data += "<tr><td> <a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' style='text-decoration: underline;' > " + Chk_Title + " </a></td>" +
+                            data += "<tr><td> <a href='~/CheckList/CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' style='text-decoration: underline;' > " + Chk_Title + " </a></td>" +
                                 "<td>" + Chk_Desc + "</td>" +
                                 "<td>" + Is_Enable_Score + "</td>" +
                                 "<td>" + Total_Score + "</td>" +
@@ -95,9 +96,7 @@ namespace Upkeep_v3.Checklist
                                 "<td>" + Updated_By + "</td>" +
                                 "<td>" + Updated_date + "</td>" + 
                                 "</tr>";
-
                         }
-
                     }
                     else
                     {
@@ -115,8 +114,8 @@ namespace Upkeep_v3.Checklist
             }
             return data;
         }
+
+
     }
-
-
 
 }

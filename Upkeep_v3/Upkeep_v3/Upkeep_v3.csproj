@@ -66,10 +66,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="QRCoder">
-      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRCoder.dll</HintPath>
+      <HintPath>..\..\..\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="QRGenerator">
-      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRGenerator.dll</HintPath>
+      <HintPath>..\..\..\QRGenerator.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
@@ -3850,6 +3850,7 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
+    <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

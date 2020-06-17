@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Checklist {
+namespace Upkeep_v3.CheckList {
     
     
     public partial class ChkConfig_Listing {

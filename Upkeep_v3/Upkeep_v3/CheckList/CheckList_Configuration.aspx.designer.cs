@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Checklist {
+namespace Upkeep_v3.CheckList {
     
     
     public partial class CheckList_Configuration {
@@ -263,6 +263,15 @@ namespace Upkeep_v3.Checklist {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnAnswerDataID;
+        
+        /// <summary>
+        /// ChkAnsFlag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkAnsFlag;
         
         /// <summary>
         /// ChkAnsDef control.

@@ -22,15 +22,6 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmAddUser;
         
         /// <summary>
-        /// lblUserErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserErrorMsg;
-        
-        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -263,6 +254,15 @@ namespace Upkeep_v3.General_Masters {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUserPassword;
+        
+        /// <summary>
+        /// lblUserErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserErrorMsg;
         
         /// <summary>
         /// lblErrorMsg control.
