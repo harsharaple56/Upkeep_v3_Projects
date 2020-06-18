@@ -445,6 +445,7 @@ namespace Upkeep_v3.Feedback
                             //divinsertbutton.visible = false;
                             //lblFeedbackRequestCode.Text = Convert.ToString(dsFeedbackQuestionData.Tables[0].Rows[0]["requestid"]);
                             mpeFeedbackRequestSaveSuccess.Show();
+                            Response.Redirect("~/Dashboard.aspx");
                         }
                         else
                         {

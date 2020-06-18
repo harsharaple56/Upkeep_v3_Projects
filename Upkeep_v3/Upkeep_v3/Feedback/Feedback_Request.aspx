@@ -315,7 +315,7 @@ background-color: blanchedalmond;
 
 
         function SubmitHeader() {
-
+            
             var cols_len = 0;
             $('#ContentPlaceHolder1_tblFeedbackHeader').find('tr:first td').each(function () {
                 var cspan = $(this).attr('colspan');
@@ -435,8 +435,8 @@ background-color: blanchedalmond;
                                         </span>
                                     </a>
                                     <div class="btn-group">
-
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitHeader()" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Save" />
+                                  
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeFeedbackRequestSaveSuccess" runat="server" PopupControlID="pnlFeedbackReqestSuccess" TargetControlID="btnTest"
