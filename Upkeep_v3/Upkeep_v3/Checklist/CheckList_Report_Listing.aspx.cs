@@ -10,10 +10,12 @@ using System.Text;
 using System.Data;
 using System.Globalization;
 
+
 namespace Upkeep_v3.CheckList
 {
-    public partial class ChkConfig_Listing : System.Web.UI.Page
+    public partial class CheckList_Report_Listing : System.Web.UI.Page
     {
+
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
@@ -29,15 +31,15 @@ namespace Upkeep_v3.CheckList
             {
                 hdn_IsPostBack.Value = "no";
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
-            } 
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            fetchChkRequestListing();
+            fetchChkReportListing();
         }
 
-        public string fetchChkRequestListing()
+        public string fetchChkReportListing()
         {
             string data = "";
             string From_Date = string.Empty;
@@ -66,13 +68,7 @@ namespace Upkeep_v3.CheckList
                 }
 
                 DataSet ds = new DataSet();
-
-                if (LoggedInUserID == "")
-                {
-                    return "";
-                }
-
-                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Session["CompanyID"].ToString() , From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -82,25 +78,22 @@ namespace Upkeep_v3.CheckList
 
                         for (int i = 0; i < count; i++)
                         {
-                            string SrNO = Convert.ToString(ds.Tables[0].Rows[i]["SrNo"]);
+                            string Ans_Response_ID = Convert.ToString(ds.Tables[0].Rows[i]["Ans_Response_ID"]);
                             string Chk_Config_ID = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Config_ID"]);
-                            string Chk_Title = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Title"]);
-                            string Chk_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Desc"]);
-                            string Is_Enable_Score = Convert.ToString(ds.Tables[0].Rows[i]["Is_Enable_Score"]);
-                            string Total_Score = Convert.ToString(ds.Tables[0].Rows[i]["Total_Score"]);
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
-                            string Updated_By = Convert.ToString(ds.Tables[0].Rows[i]["Updated_By"]);
-                            string Updated_date = Convert.ToString(ds.Tables[0].Rows[i]["Updated_date"]);
+                            string ChecklistName = Convert.ToString(ds.Tables[0].Rows[i]["Checklist Name"]);
+                            string StartTime = Convert.ToString(ds.Tables[0].Rows[i]["Start Time"]);
+                            string EndTime = Convert.ToString(ds.Tables[0].Rows[i]["End Time"]);
+                            string TotalHrs = Convert.ToString(ds.Tables[0].Rows[i]["Total Hrs"]);
+                            string Generated_By = Convert.ToString(ds.Tables[0].Rows[i]["Generated_By"]);
+                            string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]); 
 
-                            data += "<tr><td> <a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' style='text-decoration: underline;' > " + Chk_Title + " </a></td>" +
-                                "<td>" + Chk_Desc + "</td>" +
-                                "<td>" + Is_Enable_Score + "</td>" +
-                                "<td>" + Total_Score + "</td>" +
-                                "<td>" + Created_By + "</td>" +
-                                "<td>" + Created_Date + "</td>" +
-                                "<td>" + Updated_By + "</td>" +
-                                "<td>" + Updated_date + "</td>" + 
+                            data += "<tr><td> <a href='~/CheckList/CheckList_Report_Details.aspx?Ans_Response_ID=" + Ans_Response_ID + "' style='text-decoration: underline;' > " + Ans_Response_ID + " </a></td>" +
+                                "<td>" + ChecklistName + "</td>" +
+                                "<td>" + StartTime + "</td>" +
+                                "<td>" + EndTime + "</td>" +
+                                "<td>" + TotalHrs + "</td>" +
+                                "<td>" + Generated_By + "</td>" +
+                                "<td>" + Status + "</td>" + 
                                 "</tr>";
                         }
                     }
@@ -121,7 +114,5 @@ namespace Upkeep_v3.CheckList
             return data;
         }
 
-
     }
-
 }

@@ -56,6 +56,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Delete_CHKConfigurationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_MyChecklistReportListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
@@ -346,6 +348,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Delete_CHKConfigurationCompletedEventHandler Delete_CHKConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyChecklistReportListCompletedEventHandler Fetch_MyChecklistReportListCompleted;
         
         /// <remarks/>
         public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
@@ -1110,6 +1115,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Delete_CHKConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Delete_CHKConfigurationCompleted(this, new Delete_CHKConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklistReportList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyChecklistReportList", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            this.Fetch_MyChecklistReportListAsync(LoggedInUserID, CompanyID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyChecklistReportListOperationCompleted == null)) {
+                this.Fetch_MyChecklistReportListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistReportListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyChecklistReportList", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyChecklistReportListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyChecklistReportListOperationCompleted(object arg) {
+            if ((this.Fetch_MyChecklistReportListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyChecklistReportListCompleted(this, new Fetch_MyChecklistReportListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5365,6 +5405,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Delete_CHKConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyChecklistReportListCompletedEventHandler(object sender, Fetch_MyChecklistReportListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyChecklistReportListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyChecklistReportListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

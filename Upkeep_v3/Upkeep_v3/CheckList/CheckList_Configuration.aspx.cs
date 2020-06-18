@@ -71,6 +71,9 @@ namespace Upkeep_v3.CheckList
                             ddlAns.Items[i].Attributes["data-multi"] = ds.Tables[0].Rows[i]["Is_MultiValue"].ToString();
                             //ddlAns.Items[i].Attributes["data-content"] = "<i class='fa fa-" + ds.Tables[0].Rows[i]["Icon"] + "'  > " + ds.Tables[0].Rows[i]["Chk_Ans_Type_Desc"] + "</i>";
                         }
+
+                       // ddlAns.Items.Insert(0, new ListItem("select", ""));
+
                     }
                 }
             }
@@ -378,6 +381,18 @@ namespace Upkeep_v3.CheckList
                 int TotalScore = 0;
                 strConfigTitle = txtTitle.Text.Trim();
                 strConfigDesc = txtCLDesc.Text.Trim();
+
+
+                if (txtTotScore.InnerText != "")
+                {
+
+                    if (Convert.ToInt32(txtTotScore.InnerText) > 0)
+                    {
+                        IsEnableScoring = true;
+                        TotalScore = Convert.ToInt32(txtTotScore.InnerText);
+                    }
+                }
+
 
                 string X = strXmlCHECKLIST_QUESTION.ToString().Replace("&", "&amp;");
 
