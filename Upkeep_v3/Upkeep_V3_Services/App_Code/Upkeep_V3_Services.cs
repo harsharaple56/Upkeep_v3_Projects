@@ -474,11 +474,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int TicketID,int CompanyID, string LoggedInUserID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID);
         }
         catch (Exception ex)
         {

@@ -12,6 +12,19 @@
         $(document).ready(function () {
             //DatatableHtmlTableDemo.init();
             DatatableHtmlTableDemoGroup.init();
+
+             //$("#ddlDepartment").on("change", function () {
+             //           //alert('department clicked');
+             //           var selection = $("#ddlDepartment option:selected").html();
+             //           var dataset = $('#grdInfodetails tbody').find('tr');
+             //           // show all rows first
+             //           dataset.show();
+             //           // filter the rows that should be hidden
+             //           dataset.filter(function (index, item) {
+             //               return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+             //           }).hide();
+             //           //e.search($(this).val().toLowerCase(), "Department")
+             //       })
         });
 
         var DatatableHtmlTableDemo = {
@@ -28,11 +41,11 @@
                     //    init_plugins();
                     //}
                 })
-                ,
-            $("#ddlDepartment").on("change", function () {
-                    alert('department clicked');
-                e.search($(this).val().toLowerCase(), "Department")
-                    })
+            //    ,
+            //$("#ddlDepartment").on("change", function () {
+            //        alert('department clicked');
+            //    e.search($(this).val().toLowerCase(), "Department")
+            //        })
                     //$("#ddlDepartment").selectpicker()
             }
         };
@@ -99,6 +112,18 @@
             txtControl = obj;
         }
 
+         function funddl() {
+             //alert('department clicked');
+                        var selection = $("#ddlDepartment option:selected").html();
+                        var dataset = $('#grdInfodetails tbody').find('tr');
+                        // show all rows first
+                        dataset.show();
+                        // filter the rows that should be hidden
+                        dataset.filter(function (index, item) {
+                            return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+                        }).hide();
+        }
+
         function FunEditClick(ID, Desc) {
             //debugger;
             //alert(ID);
@@ -146,7 +171,7 @@
         }
 
         function FunSetXML() {
-            debugger;
+            //debugger;
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
@@ -294,7 +319,7 @@
                                         <div class="modal-body">
                                             <div class="row" style="margin-bottom: 0;">
                                                 <div class="col-xs-8 col-lg-6 form-inline">
-                                                    <label for="message-text" class="col-xl-4 col-lg-3 form-control-label" style="text-align: center;">Workflow Description :</label>
+                                                    <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Workflow Description :</label>
                                                     <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkflowDesc" Visible="true"
                                                         Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
@@ -308,11 +333,12 @@
 
                                             </div>
 
-                                            <div class="row" style="margin-bottom: 0;">
+                                            <%--<div class="row" >--%>
                                                 <asp:UpdatePanel runat="server" style="width: 100%;">
                                                     <ContentTemplate>
+                                                        <div class="form-group row" style="margin-bottom: 0;">
                                                         <div class="col-xs-8 col-lg-6 form-inline">
-                                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
+                                                            <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Category :</label>
                                                             <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
                                                             <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;"
                                                                 ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
@@ -321,12 +347,13 @@
                                                         <div class="col-xs-8 col-lg-6 form-inline" style="margin-bottom: 0;">
                                                             <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-Category :</label>
                                                             <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>
-                                                            <asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
-                                                                ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>
+                                                            <%--<asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
+                                                                ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                                         </div>
+                                                            </div>
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
-                                            </div>
+                                           <%-- </div>--%>
                                             <%--<div class="form-group row" style="margin-bottom: 0;">
                                                     <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
                                                     <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 25%;" runat="server"></asp:DropDownList>
@@ -335,7 +362,7 @@
                                                 </div>--%>
                                             <div class="form-group row" style="margin-bottom: 0;">
                                                 <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
-                                                <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
+                                                <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%; margin-left: 4%;"></asp:TextBox>
 
                                                 <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationWorkflow" />
 
@@ -436,7 +463,7 @@
                                                                         </div>
                                                                         <div class="col-md-6 row">
                                                                             <label class="col-form-label col-xl-4 col-lg-3 ">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"  runat="server"></asp:DropDownList>
+                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;"  onchange="funddl();"  OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"  runat="server"></asp:DropDownList>
 
                                                                         </div>
                                                                         <div class="col-md-3" style="text-align: right;">
