@@ -15,9 +15,11 @@ namespace Upkeep_v3.GatePass
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             //frmGatePass.Action = @"GatePass_Configuration.aspx";
             if (LoggedInUserID == "")
             {
@@ -586,7 +588,7 @@ namespace Upkeep_v3.GatePass
             {
                 Initiator = "E"; //Approvers only be employee not retailer
                 DataSet dsApprovalMatrix = new DataSet();
-                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList();  // changed function
+                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);  // changed function
 
                 if (dsApprovalMatrix.Tables.Count > 0)
                 {

@@ -4,6 +4,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+      <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript" ></script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $('#m_table_1').DataTable({
+                    //responsive: true,
+                    pagingType: 'full_numbers',
+                    scrollX: true,
+                    //'fnDrawCallback': function(){
+                    //    init_plugins();
+                    //}
+                });
+            });
+        </script>
+
     <div runat="server" id="frmMain">
 
         <div class="m-grid__item m-grid__item--fluid m-wrapper">

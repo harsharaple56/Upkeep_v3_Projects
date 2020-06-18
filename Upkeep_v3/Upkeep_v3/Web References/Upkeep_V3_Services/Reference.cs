@@ -2192,7 +2192,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
@@ -2217,6 +2218,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_Approver,
                         Is_GobalApprover,
                         Approver_ID,
+                        RoleID,
                         Profilephoto,
                         CompanyID,
                         LoggedInUserID,
@@ -2244,12 +2246,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
                     string Action) {
-            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, Profilephoto, CompanyID, LoggedInUserID, Action, null);
+            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, Profilephoto, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -2272,7 +2275,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
@@ -2301,6 +2305,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_Approver,
                         Is_GobalApprover,
                         Approver_ID,
+                        RoleID,
                         Profilephoto,
                         CompanyID,
                         LoggedInUserID,
@@ -2686,22 +2691,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_User_UserGroupList() {
-            object[] results = this.Invoke("Fetch_User_UserGroupList", new object[0]);
+        public System.Data.DataSet Fetch_User_UserGroupList(int CompanyID) {
+            object[] results = this.Invoke("Fetch_User_UserGroupList", new object[] {
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_User_UserGroupListAsync() {
-            this.Fetch_User_UserGroupListAsync(null);
+        public void Fetch_User_UserGroupListAsync(int CompanyID) {
+            this.Fetch_User_UserGroupListAsync(CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_User_UserGroupListAsync(object userState) {
+        public void Fetch_User_UserGroupListAsync(int CompanyID, object userState) {
             if ((this.Fetch_User_UserGroupListOperationCompleted == null)) {
                 this.Fetch_User_UserGroupListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_User_UserGroupListOperationCompleted);
             }
-            this.InvokeAsync("Fetch_User_UserGroupList", new object[0], this.Fetch_User_UserGroupListOperationCompleted, userState);
+            this.InvokeAsync("Fetch_User_UserGroupList", new object[] {
+                        CompanyID}, this.Fetch_User_UserGroupListOperationCompleted, userState);
         }
         
         private void OnFetch_User_UserGroupListOperationCompleted(object arg) {

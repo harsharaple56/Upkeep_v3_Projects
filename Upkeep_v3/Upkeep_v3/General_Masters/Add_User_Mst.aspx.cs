@@ -84,8 +84,9 @@ namespace Upkeep_v3.General_Masters
             int Is_Approver = 0;
             string ProfilePhoto = string.Empty;
             string User_Email = string.Empty;
-            string Approver_ID = string.Empty;
+            int Approver_ID = 0;
             int Is_GobalApprover = 0;
+            int RoleID = 0;
 
 
             User_Code = txtUserCode.Text.Trim();
@@ -108,7 +109,7 @@ namespace Upkeep_v3.General_Masters
             if (chk_IsApproval.Checked == true)
             {
                 Is_Approver = 1;
-                Approver_ID = txtApprovalId.Text.Trim();
+                //Approver_ID = txtApprovalId.Text.Trim();
             }
             else
             {
@@ -137,7 +138,11 @@ namespace Upkeep_v3.General_Masters
                 //User_Code = "";
             }
 
-            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, ProfilePhoto, CompanyID, LoggedInUserID, Action);
+
+            Approver_ID = Convert.ToInt32(ddlApprover.SelectedValue);
+            RoleID = Convert.ToInt32(ddlRole.SelectedValue);
+
+            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto, CompanyID, LoggedInUserID, Action);
 
             if (ds.Tables.Count > 0)
             {
@@ -353,6 +358,22 @@ namespace Upkeep_v3.General_Masters
                         ddlTypeUser.DataBind();
                         ddlTypeUser.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        ddlApprover.DataSource = ds.Tables[1];
+                        ddlApprover.DataTextField = "Approver";
+                        ddlApprover.DataValueField = "User_ID";
+                        ddlApprover.DataBind();
+                        ddlApprover.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        ddlRole.DataSource = ds.Tables[2];
+                        ddlRole.DataTextField = "Role_Name";
+                        ddlRole.DataValueField = "Role_ID";
+                        ddlRole.DataBind();
+                        ddlRole.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
                 }
             }
             catch (Exception ex)
@@ -369,7 +390,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "", CompanyID, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -419,8 +440,8 @@ namespace Upkeep_v3.General_Masters
                             chk_IsGobalApproval.Checked = false;
                         }
 
-
-
+                        ddlApprover.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Approver_ID"]);
+                        ddlRole.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Role_ID"]);
                     }
                 }
 
@@ -442,7 +463,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "D");
+                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "", CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

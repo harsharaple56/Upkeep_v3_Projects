@@ -88,7 +88,7 @@
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Department:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
-                                                        <asp:DropDownList ID="ddlDepartment" class="form-control m-input" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"   runat="server"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDepartment" class="form-control m-input" runat="server"></asp:DropDownList>
 
 
                                                     </div>
@@ -97,7 +97,7 @@
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span>User Type:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
-                                                       <asp:DropDownList ID="ddlTypeUser" class="form-control m-input" OnSelectedIndexChanged="ddlTypeUser_SelectedIndexChanged"   runat="server" ></asp:DropDownList>
+                                                       <asp:DropDownList ID="ddlTypeUser" class="form-control m-input" runat="server" ></asp:DropDownList>
                                                      
 
                                                     </div>
@@ -170,8 +170,7 @@
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
                                                         <asp:TextBox ID="txtAlterMobile" runat="server" class="form-control m-input" placeholder="Alter Mobile Number"></asp:TextBox>
                                                         <span id="error_txtAlterMobile" class="text-danger small"></span>
-                                                      <%--  <asp:RequiredFieldValidator ID="rfvAltermobile" runat="server" ControlToValidate="txtAlteMobile"
-                                                        ErrorMessage="Please select Mobile" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                                    
                                                     </div>
                                                 </div>
                                                  <div class="form-group m-form__group row">
@@ -180,8 +179,7 @@
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
                                                         <asp:TextBox ID="TxtLandline" runat="server" class="form-control m-input" placeholder="Landline Mobile Number"></asp:TextBox>
                                                         <span id="error_txtLandlineMobile" class="text-danger small"></span>
-                                                      <%--  <asp:RequiredFieldValidator ID="rfvAltermobile" runat="server" ControlToValidate="txtAlteMobile"
-                                                        ErrorMessage="Please select Mobile" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                                   
                                                     </div>
                                                 </div>
                                              
@@ -201,8 +199,6 @@
                                                     </div>
                                                     <label class="col-xl-8 col-lg-3 col-form-label">Check the Box if User is Approval.</label>
                                                    
-                                                    <%--OnCheckedChanged="chk_IsApproval_CheckedChanged"--%>
-
                                                 </div>
                                                 <div class="form-group m-form__group row">
                                                     <div class="col-xl-1 col-lg-3 col-form-label">
@@ -210,17 +206,20 @@
                                                     </div>
                                                     <label class="col-xl-8 col-lg-3 col-form-label">Check the box if User is Gobal Approval.</label>
 
-                                                    <%-- OnCheckedChanged="chk_IsGobalApproval_CheckedChanged"--%>
-                                                   
                                                 </div>
 
                                                 <div id="dvApprovalID" runat="server" visible="True" >
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Approval ID:</label>
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Approver :</label>
                                                     <div class="col-xl-9 col-lg-9">
-                                                        <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                        <asp:TextBox ID="txtApprovalId" runat="server" class="form-control m-input" placeholder="Enter Approval ID"></asp:TextBox>
-                                                        <span id="error_txtApprovalID" class="text-danger small"></span>
+                                                        <asp:DropDownList ID="ddlApprover" class="form-control m-input" runat="server"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="form-group m-form__group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Role :</label>
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <asp:DropDownList ID="ddlRole" class="form-control m-input" runat="server"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 

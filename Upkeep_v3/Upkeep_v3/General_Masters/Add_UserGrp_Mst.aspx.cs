@@ -222,6 +222,13 @@ namespace Upkeep_v3.General_Masters
 
         protected void Usernm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+
             //if ((e.Row.RowType == DataControlRowType.DataRow))
             //{
             //    //System.Web.UI.HtmlControls.HtmlInputCheckBox Chk = new System.Web.UI.HtmlControls.HtmlInputCheckBox();

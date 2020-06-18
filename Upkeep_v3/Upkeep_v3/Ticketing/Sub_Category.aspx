@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Sub_Category.aspx.cs" Inherits="Upkeep_v3.Ticketing.Sub_Category" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Sub_Category.aspx.cs" Inherits="Upkeep_v3.Ticketing.Sub_Category" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -39,7 +39,7 @@
             });
         </script>
 
-    <form method="post" runat="server" id="frmMain">
+    <div runat="server" >
         <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
 
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="form-group m-form__group row">
                                                     <%--<div class="col-xl-1 col-lg-3 col-form-label">--%>
-                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Check the Box if Approval Required :</label>
+                                             <label for="message-text" class="col-xl-6 col-lg-6 form-control-label">Check the Box if Approval Required :</label>
                                            
                                                    <%-- <span style="color: red;">*</span><asp:CheckBox ID="chk_Approval" OnCheckedChanged="chk_Approval_CheckedChanged"  runat="server" style="margin-left: 3px;" />--%>
                                            
@@ -171,7 +171,7 @@
             });
         </script>--%>
 
-    </form>
+    </div>
 
 
 

@@ -10,23 +10,30 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            DatatableHtmlTableDemo.init();
+            //DatatableHtmlTableDemo.init();
             DatatableHtmlTableDemoGroup.init();
         });
 
         var DatatableHtmlTableDemo = {
             init: function () {
-                var e; e = $(".m-datatable").mDatatable({
+                var e; e = $(".m-datatableUser").mDatatable({
                     data: { saveState: { cookie: !1 } },
                     search: { input: $("#generalSearch") }
 
-                    , responsive: true,
-                    pagingType: 'full_numbers',
-                    scrollX: true,
-                    'fnDrawCallback': function () {
-                        init_plugins();
-                    }
+                    //, responsive: true,
+                    //pagingType: 'full_numbers',
+                    //scrollX: true,
+                    //scrollY: true,
+                    //'fnDrawCallback': function () {
+                    //    init_plugins();
+                    //}
                 })
+                ,
+            $("#ddlDepartment").on("change", function () {
+                    alert('department clicked');
+                e.search($(this).val().toLowerCase(), "Department")
+                    })
+                    //$("#ddlDepartment").selectpicker()
             }
         };
 
@@ -96,7 +103,7 @@
             //debugger;
             //alert(ID);
             //alert(Desc);
-            txtControl.value = Desc.replace("$",",") ;
+            txtControl.value = Desc.replace("$", ",");
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
             //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeWorkflowUsers.ClientID %>').hide();
@@ -110,12 +117,18 @@
             var SelectedUsersID = null;
             var SelectedUsersName = null;
 
-            
+            //$('#grdInfodetails').DataTable({
+            //    responsive: true,
+            //    pagingType: 'full_numbers',
+            //    'fnDrawCallback': function () {
+            //        init_plugins();
+            //    }
+            //});
 
             //var hiddenValue = $('#hdnSelectedUserID').val();
             //var hiddenValue2 = $('#hdnSelectedUserName').val();  
 
-            SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value+"#0";
+            SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value + "#0";
             SelectedUsersName = document.getElementById('<%= hdnSelectedUserName.ClientID%>').value;
 
             //SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
@@ -124,7 +137,7 @@
             //alert(SelectedUsersID);
             //alert(SelectedUsersName);
 
-            FunEditClick(SelectedUsersID,SelectedUsersName);
+            FunEditClick(SelectedUsersID, SelectedUsersName);
         }
 
         function removeRows() {
@@ -241,7 +254,7 @@
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-progress">
 
-                                   
+
 
                                     <!-- here can place a progress bar-->
                                 </div>
@@ -423,7 +436,7 @@
                                                                         </div>
                                                                         <div class="col-md-6 row">
                                                                             <label class="col-form-label col-xl-4 col-lg-3 ">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"  runat="server"></asp:DropDownList>
 
                                                                         </div>
                                                                         <div class="col-md-3" style="text-align: right;">
@@ -432,10 +445,10 @@
                                                                     </div>
                                                                     <br />
 
-                                                                     <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
-                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
-                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableUser"
                                                                         AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
@@ -457,6 +470,7 @@
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
                                                                             <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
+                                                                            <asp:BoundField DataField="Department" SortExpression="Department" HeaderText="Department"></asp:BoundField>
                                                                         </Columns>
 
                                                                         <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>

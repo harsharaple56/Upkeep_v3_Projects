@@ -21,7 +21,7 @@ namespace Upkeep_v3.Ticketing
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]); //Added by Sujata
             // frmDepartment.Action = @"General_Masters/Add_Department.aspx";
-            frmMain.Action = @"Frm_Category.aspx";
+            //frmMain.Action = @"Frm_Category.aspx";
 
             if (!IsPostBack)
             {

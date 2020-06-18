@@ -665,7 +665,7 @@ namespace Upkeep_v3.VMS
             try
             {
 
-                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList();
+                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {
