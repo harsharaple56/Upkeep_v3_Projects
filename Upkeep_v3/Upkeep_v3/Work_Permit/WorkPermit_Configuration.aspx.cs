@@ -16,11 +16,12 @@ namespace Upkeep_v3.WorkPermit
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int WP_ConfigID = 0;
-
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             string strWPConfigID = string.Empty;
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             //frmWorkPermit.Action = @"WorkPermit_Configuration.aspx";
             if (LoggedInUserID == "")
             {
@@ -811,7 +812,7 @@ namespace Upkeep_v3.WorkPermit
             {
                 Initiator = "E"; //Approvers only be employee not retailer
                 DataSet dsApprovalMatrix = new DataSet();
-                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList();   //changed function RC
+                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);   //changed function RC
 
                 if (dsApprovalMatrix.Tables.Count > 0)
                 {

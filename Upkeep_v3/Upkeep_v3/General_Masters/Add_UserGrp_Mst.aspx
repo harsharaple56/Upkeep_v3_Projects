@@ -12,6 +12,29 @@
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DatatableHtmlTableDemo.init();
+        });
+
+        var DatatableHtmlTableDemo = {
+            init: function () {
+                var e; e = $(".m-datatable").mDatatable({
+                    data: { saveState: { cookie: !1 } },
+                    search: { input: $("#generalSearch") }
+
+                    , responsive: true,
+                    pagingType: 'full_numbers',
+                    scrollX: true,
+                    'fnDrawCallback': function () {
+                        init_plugins();
+                    }
+                })
+            }
+        };
+
+
+    </script>
     <%--<script src="<%= Page.ResolveClientUrl("~/assets/jquery-1.7.2.min.js") %>" type="text/javascript"></script>--%>
     <%--<script src="assets/jquery-1.7.2.min.js"></script>--%>
 
@@ -30,7 +53,7 @@
             });
         });--%>
 
-        
+
         function Search_Gridview(strKey, strGV) {
 
             var strData = strKey.value.toLowerCase().split(" ");
@@ -198,12 +221,11 @@
 
                                                 </div>
 
-                                                <div class="form-group m-form__group row">
-                                                    <%--<label class="col-xl-4 col-form-label">Search User Name:</label>--%>
+                                              <%--  <div class="form-group m-form__group row">
                                                     <div class="col-xl-6">
                                                         <asp:TextBox ID="txtSearchUserName" runat="server" placeholder="Search UserName" class="form-control" onkeyup="Search_Gridview(this, 'ContentPlaceHolder1_Usernm')"></asp:TextBox>
                                                     </div>
-                                                </div>
+                                                </div>--%>
 
 
                                                 <div class="form-group m-form__group row">
@@ -215,32 +237,44 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-12">
-                                            <asp:GridView ID="Usernm" runat="server" AutoGenerateColumns="False"
-                                                CssClass="table table-striped- table-bordered table-hover table-checkable"
-                                                OnRowDataBound="Usernm_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
-                                                <Columns>
-                                                    <%--<asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                        <div class="col-md-3">
+                                            <div class="m-input-icon m-input-icon--left">
+                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                    <span><i class="la la-search"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="" id="m_table_1">
+                                                <asp:GridView ID="Usernm" runat="server" AutoGenerateColumns="False"
+                                                    CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                    OnRowDataBound="Usernm_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
+                                                    <Columns>
+                                                        <%--<asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="table-checkbox" />
                                                     </asp:TemplateField>--%>
 
-                                                    <asp:TemplateField HeaderText="Select">
-                                                        <ItemTemplate>
-                                                            <asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />
-                                                            <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
+                                                        <asp:TemplateField HeaderText="Select" HeaderStyle-Width="100" ItemStyle-Width="100" HeaderStyle-BorderWidth="0">
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />
+                                                                <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
 
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
 
-                                                    <asp:BoundField DataField="User_ID" HeaderText="User_ID"
-                                                        SortExpression="User_ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                                    <asp:BoundField DataField="F_Name" HeaderText="User name" ReadOnly="True" SortExpression="F_Name" />
+                                                        <%--<asp:BoundField DataField="User_ID" HeaderText="User_ID" 
+                                                            SortExpression="User_ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />--%>
+                                                        <asp:BoundField DataField="F_Name" HeaderText="User Name" ReadOnly="True" SortExpression="F_Name" HeaderStyle-Width="300" ItemStyle-Width="300" />
 
-                                                </Columns>
-                                                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
-                                            </asp:GridView>
+                                                    </Columns>
+                                                    <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
+                                                </asp:GridView>
+
+                                            </div>
                                         </div>
 
                                         <asp:TextBox ID="TxtMembers" runat="server" Width="100%" Style="display: none;"></asp:TextBox>

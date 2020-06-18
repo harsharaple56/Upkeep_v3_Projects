@@ -454,6 +454,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="Action" type="s1:char" />
             <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="VMS_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strVMSDate" type="s:string" />
@@ -1074,7 +1075,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Is_Approver" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Is_GobalApprover" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Approver_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Approver_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Profilephoto" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
@@ -1347,7 +1349,11 @@
         </s:complexType>
       </s:element>
       <s:element name="Fetch_User_UserGroupList">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="Fetch_User_UserGroupListResponse">
         <s:complexType>
@@ -1516,6 +1522,7 @@
       <s:element name="Fetch_Ticket_MyActionable">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TicketID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>

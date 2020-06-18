@@ -325,7 +325,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, string Approver_ID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -351,7 +351,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Password", Password);
                 cmd.Parameters.AddWithValue("@Is_Approver", Is_Approver);
                 cmd.Parameters.AddWithValue("@Is_GlobalApprover", Is_GobalApprover);
-                cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID);
+                cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID); 
+                cmd.Parameters.AddWithValue("@RoleID", RoleID);
                 cmd.Parameters.AddWithValue("@Profile_photo", Profilephoto);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
@@ -492,14 +493,14 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_User_UserGroupList(string StrConn)
+        public DataSet Fetch_User_UserGroupList(int CompanyID,string StrConn)
         {
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_FetchUser_UserGroup", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -649,13 +650,14 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int TicketID,int CompanyID, string LoggedInUserID, string StrConn)
         {
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Ticket_Fetch_MyActionable", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketID", TicketID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
@@ -2066,7 +2068,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2078,6 +2080,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@VName", Name);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@Phone", Phone);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);

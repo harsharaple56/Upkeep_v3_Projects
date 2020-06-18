@@ -13,15 +13,6 @@ namespace Upkeep_v3.Ticketing {
     public partial class Sub_Category {
         
         /// <summary>
-        /// frmMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
-        
-        /// <summary>
         /// btnAddSubCategory control.
         /// </summary>
         /// <remarks>

@@ -354,10 +354,12 @@ namespace Upkeep_v3.VMS
                         divTitle.Visible = false;
 
                         txtVMSDate.ReadOnly = true;
+                        txtName.ReadOnly = true;
                         txtEmail.ReadOnly = true;
                         txtPhone.ReadOnly = true;
 
                         txtVMSDate.Text = dsData.Tables[1].Rows[0]["Meeting_Time"].ToString();
+                        txtName.Text = dsData.Tables[1].Rows[0]["VName"].ToString();
                         txtEmail.Text = dsData.Tables[1].Rows[0]["Email"].ToString();
                         txtPhone.Text = dsData.Tables[1].Rows[0]["Phone"].ToString();
 
@@ -665,7 +667,7 @@ namespace Upkeep_v3.VMS
             try
             {
 
-                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList();
+                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -730,6 +732,7 @@ namespace Upkeep_v3.VMS
                 }
                 ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string LoggedInUser = LoggedInUserID;
+                string strName = txtName.Text;
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
                 DateTime temp;
@@ -1041,7 +1044,7 @@ namespace Upkeep_v3.VMS
                 #region SaveDataToDB
                 Save:
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, ConfigID, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {

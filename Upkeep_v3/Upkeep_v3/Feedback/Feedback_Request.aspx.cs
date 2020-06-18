@@ -279,17 +279,16 @@ namespace Upkeep_v3.Feedback
 
                     if (AnswerType == "Options") //Multi Selection [CheckBox]
                     {
-                        CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
-                        List<String> chkStrList = new List<string>();
 
-
-                        foreach (ListItem item in divCheckBoxIDI.Items)
+                        RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+                        List<String> RadioStrList = new List<string>();
+                        foreach (ListItem item in divRadioButtonrdbYes.Items)
                         {
                             if (item.Selected)
                             {
                                 isField = "True";
 
-                                chkStrList.Add(item.Value);
+                                RadioStrList.Add(item.Value);
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerType;
@@ -446,6 +445,7 @@ namespace Upkeep_v3.Feedback
                             //divinsertbutton.visible = false;
                             //lblFeedbackRequestCode.Text = Convert.ToString(dsFeedbackQuestionData.Tables[0].Rows[0]["requestid"]);
                             mpeFeedbackRequestSaveSuccess.Show();
+                            Response.Redirect("~/Dashboard.aspx");
                         }
                         else
                         {

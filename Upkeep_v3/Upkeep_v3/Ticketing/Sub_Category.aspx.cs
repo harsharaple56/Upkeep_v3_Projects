@@ -16,11 +16,11 @@ namespace Upkeep_v3.Ticketing
         string LoggedInUserID = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]); //Added by Sujata
             if (LoggedInUserID == "")
             {
-                //Response.Redirect("~/Login.aspx", false);
+                Response.Redirect("~/Login.aspx", false);
             }
 
             if (!IsPostBack)

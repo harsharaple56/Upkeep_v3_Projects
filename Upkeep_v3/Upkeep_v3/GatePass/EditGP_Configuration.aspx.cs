@@ -17,9 +17,12 @@ namespace Upkeep_v3.GatePass
         string LoggedInUserID = string.Empty;
         int GP_ConfigID = 0;
         int Del_GPConfigID = 0;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
             GP_ConfigID = Convert.ToInt32(Request.QueryString["GPConfigID"]);
             Del_GPConfigID = Convert.ToInt32(Request.QueryString["DelGPConfigID"]);
             if (LoggedInUserID == "")
@@ -101,7 +104,7 @@ namespace Upkeep_v3.GatePass
             try
             {
                 DataSet dsApprovalMatrix = new DataSet();
-                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList();    // changed function 
+                dsApprovalMatrix = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);    // changed function 
 
                 if (dsApprovalMatrix.Tables.Count > 0)
                 {

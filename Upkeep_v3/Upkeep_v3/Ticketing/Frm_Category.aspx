@@ -76,7 +76,7 @@
             });
         </script>
 
-    <form method="post" runat="server" id="frmMain">
+    <div runat="server">
          <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
 
 
@@ -248,7 +248,7 @@
 
 
 
-    </form>
+    </div>
 
 
 

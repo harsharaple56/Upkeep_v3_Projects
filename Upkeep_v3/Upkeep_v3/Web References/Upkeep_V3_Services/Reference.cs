@@ -1322,12 +1322,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_VMSRequest", new object[] {
                         CompanyID,
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        Name,
                         Email,
                         Phone,
                         strVMSDate,
@@ -1341,12 +1342,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
             if ((this.Insert_VMSRequestOperationCompleted == null)) {
                 this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
             }
@@ -1355,6 +1356,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        Name,
                         Email,
                         Phone,
                         strVMSDate,
@@ -2234,7 +2236,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
@@ -2259,6 +2262,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_Approver,
                         Is_GobalApprover,
                         Approver_ID,
+                        RoleID,
                         Profilephoto,
                         CompanyID,
                         LoggedInUserID,
@@ -2286,12 +2290,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
                     string Action) {
-            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, Profilephoto, CompanyID, LoggedInUserID, Action, null);
+            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, Profilephoto, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -2314,7 +2319,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Password, 
                     int Is_Approver, 
                     int Is_GobalApprover, 
-                    string Approver_ID, 
+                    int Approver_ID, 
+                    int RoleID, 
                     string Profilephoto, 
                     int CompanyID, 
                     string LoggedInUserID, 
@@ -2343,6 +2349,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_Approver,
                         Is_GobalApprover,
                         Approver_ID,
+                        RoleID,
                         Profilephoto,
                         CompanyID,
                         LoggedInUserID,
@@ -2728,22 +2735,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_User_UserGroupList() {
-            object[] results = this.Invoke("Fetch_User_UserGroupList", new object[0]);
+        public System.Data.DataSet Fetch_User_UserGroupList(int CompanyID) {
+            object[] results = this.Invoke("Fetch_User_UserGroupList", new object[] {
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_User_UserGroupListAsync() {
-            this.Fetch_User_UserGroupListAsync(null);
+        public void Fetch_User_UserGroupListAsync(int CompanyID) {
+            this.Fetch_User_UserGroupListAsync(CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_User_UserGroupListAsync(object userState) {
+        public void Fetch_User_UserGroupListAsync(int CompanyID, object userState) {
             if ((this.Fetch_User_UserGroupListOperationCompleted == null)) {
                 this.Fetch_User_UserGroupListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_User_UserGroupListOperationCompleted);
             }
-            this.InvokeAsync("Fetch_User_UserGroupList", new object[0], this.Fetch_User_UserGroupListOperationCompleted, userState);
+            this.InvokeAsync("Fetch_User_UserGroupList", new object[] {
+                        CompanyID}, this.Fetch_User_UserGroupListOperationCompleted, userState);
         }
         
         private void OnFetch_User_UserGroupListOperationCompleted(object arg) {
@@ -2977,24 +2986,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_MyActionable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID) {
             object[] results = this.Invoke("Fetch_Ticket_MyActionable", new object[] {
+                        TicketID,
                         CompanyID,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID) {
-            this.Fetch_Ticket_MyActionableAsync(CompanyID, LoggedInUserID, null);
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID) {
+            this.Fetch_Ticket_MyActionableAsync(TicketID, CompanyID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID, object userState) {
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID, object userState) {
             if ((this.Fetch_Ticket_MyActionableOperationCompleted == null)) {
                 this.Fetch_Ticket_MyActionableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_MyActionableOperationCompleted);
             }
             this.InvokeAsync("Fetch_Ticket_MyActionable", new object[] {
+                        TicketID,
                         CompanyID,
                         LoggedInUserID}, this.Fetch_Ticket_MyActionableOperationCompleted, userState);
         }
