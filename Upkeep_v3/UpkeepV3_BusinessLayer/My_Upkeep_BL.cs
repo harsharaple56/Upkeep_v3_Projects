@@ -1884,7 +1884,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1893,6 +1893,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_CHK_MYCHECKLIST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2042,7 +2043,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2054,6 +2055,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@VName", Name);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@Phone", Phone);
                 cmd.Parameters.AddWithValue("@MeetDate", strVMSDate);

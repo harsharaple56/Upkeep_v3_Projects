@@ -1348,14 +1348,14 @@ public class My_Upkeep
     }
 
 
-    public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_MyChecklist(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1472,14 +1472,14 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to save VMS request 
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID,string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID,Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)

@@ -1049,26 +1049,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklist", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_MyChecklist", new object[] {
                         LoggedInUserID,
+                        CompanyID,
                         From_Date,
                         To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyChecklistAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            this.Fetch_MyChecklistAsync(LoggedInUserID, CompanyID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyChecklistAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MyChecklistAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_MyChecklistOperationCompleted == null)) {
                 this.Fetch_MyChecklistOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistOperationCompleted);
             }
             this.InvokeAsync("Fetch_MyChecklist", new object[] {
                         LoggedInUserID,
+                        CompanyID,
                         From_Date,
                         To_Date}, this.Fetch_MyChecklistOperationCompleted, userState);
         }
@@ -1280,12 +1282,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+        public System.Data.DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_VMSRequest", new object[] {
                         CompanyID,
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        Name,
                         Email,
                         Phone,
                         strVMSDate,
@@ -1299,12 +1302,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID) {
+            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
+        public void Insert_VMSRequestAsync(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, object userState) {
             if ((this.Insert_VMSRequestOperationCompleted == null)) {
                 this.Insert_VMSRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSRequestOperationCompleted);
             }
@@ -1313,6 +1316,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        Name,
                         Email,
                         Phone,
                         strVMSDate,

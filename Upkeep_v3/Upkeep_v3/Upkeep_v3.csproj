@@ -930,13 +930,13 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
-    <Content Include="Gate_Pass\EditGP_Configuration.aspx" />
-    <Content Include="Gate_Pass\GatePassConfig_Listing.aspx" />
-    <Content Include="Gate_Pass\GatePass_Approval.aspx" />
-    <Content Include="Gate_Pass\GatePass_Configuration.aspx" />
-    <Content Include="Gate_Pass\GatePass_Request.aspx" />
-    <Content Include="Gate_Pass\MyActionable_GatePass.aspx" />
-    <Content Include="Gate_Pass\MyGatePass.aspx" />
+    <Content Include="GatePass\EditGP_Configuration.aspx" />
+    <Content Include="GatePass\GatePassConfig_Listing.aspx" />
+    <Content Include="GatePass\GatePass_Approval.aspx" />
+    <Content Include="GatePass\GatePass_Configuration.aspx" />
+    <Content Include="GatePass\GatePass_Request.aspx" />
+    <Content Include="GatePass\MyActionable_GatePass.aspx" />
+    <Content Include="GatePass\MyGatePass.aspx" />
     <Content Include="General_Masters\Add_Department.aspx" />
     <Content Include="General_Masters\Add_Frequency.aspx" />
     <Content Include="General_Masters\Add_Locations_Mst.aspx" />
@@ -4070,53 +4070,53 @@
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\EditGP_Configuration.aspx.cs">
+    <Compile Include="GatePass\EditGP_Configuration.aspx.cs">
       <DependentUpon>EditGP_Configuration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\EditGP_Configuration.aspx.designer.cs">
+    <Compile Include="GatePass\EditGP_Configuration.aspx.designer.cs">
       <DependentUpon>EditGP_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\GatePassConfig_Listing.aspx.cs">
+    <Compile Include="GatePass\GatePassConfig_Listing.aspx.cs">
       <DependentUpon>GatePassConfig_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\GatePassConfig_Listing.aspx.designer.cs">
+    <Compile Include="GatePass\GatePassConfig_Listing.aspx.designer.cs">
       <DependentUpon>GatePassConfig_Listing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Approval.aspx.cs">
+    <Compile Include="GatePass\GatePass_Approval.aspx.cs">
       <DependentUpon>GatePass_Approval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Approval.aspx.designer.cs">
+    <Compile Include="GatePass\GatePass_Approval.aspx.designer.cs">
       <DependentUpon>GatePass_Approval.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Configuration.aspx.cs">
+    <Compile Include="GatePass\GatePass_Configuration.aspx.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Configuration.aspx.designer.cs">
+    <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Request.aspx.cs">
+    <Compile Include="GatePass\GatePass_Request.aspx.cs">
       <DependentUpon>GatePass_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\GatePass_Request.aspx.designer.cs">
+    <Compile Include="GatePass\GatePass_Request.aspx.designer.cs">
       <DependentUpon>GatePass_Request.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\MyActionable_GatePass.aspx.cs">
+    <Compile Include="GatePass\MyActionable_GatePass.aspx.cs">
       <DependentUpon>MyActionable_GatePass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\MyActionable_GatePass.aspx.designer.cs">
+    <Compile Include="GatePass\MyActionable_GatePass.aspx.designer.cs">
       <DependentUpon>MyActionable_GatePass.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gate_Pass\MyGatePass.aspx.cs">
+    <Compile Include="GatePass\MyGatePass.aspx.cs">
       <DependentUpon>MyGatePass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gate_Pass\MyGatePass.aspx.designer.cs">
+    <Compile Include="GatePass\MyGatePass.aspx.designer.cs">
       <DependentUpon>MyGatePass.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Add_Department.aspx.cs">

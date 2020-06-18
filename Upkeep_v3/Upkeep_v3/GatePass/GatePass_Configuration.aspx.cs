@@ -28,7 +28,7 @@ namespace Upkeep_v3.GatePass
             }
             if (!IsPostBack)
             {
-                Fetch_Company();
+                //Fetch_Company();
                 string Initiator = string.Empty;
                 if (rdbEmployee.Checked == true)
                 {

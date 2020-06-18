@@ -1659,12 +1659,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_MyChecklist(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklist(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, CompanyID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -1774,12 +1774,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name,string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID,Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
         }
         catch (Exception ex)
         {
