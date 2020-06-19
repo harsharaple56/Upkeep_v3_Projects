@@ -87,7 +87,7 @@ namespace Upkeep_v3.CheckList
                             string Generated_By = Convert.ToString(ds.Tables[0].Rows[i]["Generated_By"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]); 
 
-                            data += "<tr><td> <a href='~/CheckList/CheckList_Report_Details.aspx?Ans_Response_ID=" + Ans_Response_ID + "' style='text-decoration: underline;' > " + Ans_Response_ID + " </a></td>" +
+                            data += "<tr><td> <a href='CheckList_Report_Details.aspx?Ans_Response_ID=" + Ans_Response_ID + "' style='text-decoration: underline;' > " + Ans_Response_ID + " </a></td>" +
                                 "<td>" + ChecklistName + "</td>" +
                                 "<td>" + StartTime + "</td>" +
                                 "<td>" + EndTime + "</td>" +

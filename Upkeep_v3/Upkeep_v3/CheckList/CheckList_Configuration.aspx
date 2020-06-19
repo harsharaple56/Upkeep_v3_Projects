@@ -558,11 +558,14 @@
                     //ChkMandatory 
                     var isMand = arrQuestionData[3];
                     var isAttc = arrQuestionData[4];
-                    //alert(isMand);
-                    //alert(isAttc);
+
+
+                    alert(arrQuestionData[6]);
+                    alert(arrQuestionData[7]);
 
                     Question.children().find(".hdnRefDesc").val(arrQuestionData[6]);
                     Question.children().find(".hdnRefPathUploaded").val(arrQuestionData[7]);
+
                     //Question.children().find(".hdnflRefImage").val(arrQuestionData[7]);
                     //Question.children().find(".hdnRefPath").val(arrQuestionData[7]);
 
@@ -623,6 +626,16 @@
 
             $('#RefModal').on('show.bs.modal', function (e) {
                 opener = document.activeElement.name;
+                var DescName = opener.replace("btnAddRef", "hdnRefDesc");
+                var flName = opener.replace("btnAddRef", "hdnRefPathUploaded");
+                if ($('#hdnCLConfigID').val() != "0") {
+                    $("#RefModal input").val();
+                    $("#RefModal textarea").val($("input[name~='" + DescName + "']").val());
+                    $("#RefModal img").attr('src', $("input[name~='" + flName + "']").val())
+                        .width('400px')
+                        .height('250px');; 
+
+                }
             });
 
             $('#RefModal button').click(function () {
@@ -814,8 +827,9 @@
                                                                                     <%--<div class="d-md-none m--margin-bottom-10"></div>--%>
                                                                                 </div>
                                                                                 <div class="col-md-2">
-                                                                                    <input type="hidden" name="hdnRefDesc" id="hdnRefDesc" />
-                                                                                    <input type="hidden" name="hdnRefDescUpload" id="hdnRefDescUpload" />
+                                                                                    <input type="hidden" name="hdnRefDesc" id="hdnRefDesc" class="hdnRefDesc"/>
+                                                                                    <input type="hidden" name="hdnRefPathUploaded" id="hdnRefPathUploaded" class="hdnRefPathUploaded" />
+                                                                                    <input type="hidden" name="hdnRefDescUpload" id="hdnRefDescUpload" class="hdnRefDescUpload" />
                                                                                     <button type="button" class="btn btn-light" name="btnAddRef" id="btnAddRef" data-toggle="modal" data-target="#RefModal"><i class="fa fa-image"></i>Reference</button>
                                                                                     <asp:TextBox ID="txtScore" TextMode="Number" runat="server" data-toggle="tooltip" data-placement="right"
                                                                                         title="Question wise score.." class="form-control m-input autosize_textarea qscore txtvalidate mt-3" placeholder="Score"></asp:TextBox>

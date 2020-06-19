@@ -49,7 +49,6 @@ namespace Upkeep_v3.CheckList
             SaveData();
         }
 
-
         #region "Functions"
         public void Fetch_Chk_Answer()
         {
@@ -76,7 +75,6 @@ namespace Upkeep_v3.CheckList
                             ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
 
                         // ddlAns.Items.Insert(0, new ListItem("select", ""));
-
                     }
                 }
             }
@@ -106,10 +104,8 @@ namespace Upkeep_v3.CheckList
                     else
                         ChkScoring.Checked = false;
 
-
                     var SectionValues = ds.Tables[1].AsEnumerable().Select(s => s.Field<decimal>("Chk_Section_ID").ToString() + "||" + s.Field<string>("Chk_Section_Desc")).ToArray();
                     hdnCLGroups.Value = string.Join("~", SectionValues);
-
 
                     var HeaderValues = ds.Tables[2].AsEnumerable().Select(s =>
                                 s.Field<decimal>("Chk_Section_ID").ToString() + "||" + s.Field<decimal>("CHK_Question_ID").ToString() + "||"
@@ -123,7 +119,6 @@ namespace Upkeep_v3.CheckList
                                 ans.Field<decimal>("Chk_Ans_Value_ID").ToString() + ":" + ans.Field<string>("Chk_Ans_Desc").ToString()
                                 + ":" + ans.Field<bool>("Is_Default").ToString() + ":" + ans.Field<bool>("Ans_Is_Flag").ToString()))
                                 ).ToArray();
-
 
                     hdnCLQuestions.Value = string.Join("~", HeaderValues);
 
@@ -480,7 +475,6 @@ namespace Upkeep_v3.CheckList
             }
         }
         #endregion
-
 
     }
 }
