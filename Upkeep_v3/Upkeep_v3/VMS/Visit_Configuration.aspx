@@ -46,6 +46,16 @@
                 }
             });
 
+            $("#divCount").hide();
+            $("#divChkCovid").click(function () {
+                //alert("hii");
+                if ($("#ChkCovid").is(":checked")) {
+                    $("#divCount").hide(300);
+                } else {
+                    $("#divCount").show(200);
+                }
+            });
+
             $('.VMSQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -73,47 +83,10 @@
                 },
             });
 
-            //$('.VMSFeedback_repeater').repeater({
-            //    initEmpty: false,
-            //    show: function () {
-            //        $(this).slideDown();
-            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-            //        var question_count = counter.data('count');
-            //        question_count++;
-            //        $('#txtFeedbackCount').val(question_count);
-            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-            //        $('#error_VMSFeedback').html('');
-
-            //        init_autosize();
-            //        init_plugins();
-            //    },
-            //    hide: function (deleteElement) {
-            //        $(this).slideUp(deleteElement);
-            //        var counter = $(this).parents('.VMSFeedback_repeater').find('.VMSFeedback_count');
-            //        var question_count = counter.data('count');
-            //        question_count--;
-            //        $('#txtFeedbackCount').val(question_count);
-            //        counter.data('count', question_count).html(question_count + ' VMS Feedback(s)');
-            //        if (question_count == 0) {
-            //            $('#error_VMSFeedback').html('Add at least one VMS Feedback.');
-            //        }
-            //    },
-            //});
-
-
             $('.AnswerType_repeater').repeater({
                 initEmpty: false,
                 show: function () {
                     $(this).slideDown();
-                    //var txtcounter = $(this).parents('.cntr').find('.txtquestion_count');
-                    //var counter = $(this).parents('.AnswerType_repeater').find('.question_count');
-                    //var question_count = counter.data('count');
-                    //var txtquestion_count = txtcounter.data('count');
-                    //question_count++;
-                    //txtquestion_count++;
-                    //alert(question_count);
-                    //counter.data('count', question_count).html(question_count + ' Header(s)');
-                    //txtcounter.data('count', txtquestion_count).val(txtquestion_count);
                     $('#error_question_repeater').html('');
 
                     init_autosize();
@@ -121,18 +94,6 @@
                 },
                 hide: function (deleteElement) {
                     $(this).slideUp(deleteElement);
-                    //var counter = $(this).parents('.AnswerType_repeater').find('.question_count');
-                    //var txtcounter = $(this).parents('.cntr').find('.txtquestion_count');
-                    //var question_count = counter.data('count');
-                    //var txtquestion_count = txtcounter.data('count');
-                    //question_count--;
-                    //txtquestion_count--;
-                    ////alert(question_count);
-                    //counter.data('count', question_count).html(question_count + ' Header(s)');
-                    //txtcounter.data('count', txtquestion_count).val(txtquestion_count);
-                    //if (question_count == 0) {
-                    //	$('#error_question_repeater').html('Add at least one Header.');
-                    //}
                 },
             });
 
@@ -225,17 +186,11 @@
                     return
                 //alert(isMulti+"===");
                 if (isMulti === 'True') {
-                    //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
                     $('.dltrptanswer').click();
-                    //WorkPermitSection[0][WorkPermitHeader][0][ctl00$ContentPlaceHolder1$ddlAns]  btnModalAdd
-                    name = $(this).siblings('.hdnRepeaterAnswer').attr("name");//.replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer");
-                    //$("#hdnAns").val(name);
-                    //ModalHTML = $(".divTxtAnswer").html();
-
+                    name = $(this).siblings('.hdnRepeaterAnswer').attr("name");
                     $('#btnModal').click();
-                    //alert($(this).val())
 
                     //Commented by RC
                     //if ($(this).val() == "1")
@@ -303,9 +258,9 @@
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
                 if ($('#hdnVMSConfigID').val() != "0") {
-                    answers = "ii:on:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
+                    answers = "ii:||:on;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
-               //alert(answers);
+                alert(answers);
                 var arrAns = answers.split(";");
 
                 for (var i = 0; i < arrAns.length; i++) {
@@ -317,7 +272,10 @@
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
-                    $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
+                    if (arrIDAns[2] == "True") {
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true)
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass("active");
+                    }
                     //alert(arrIDAns[1]);AnswerType[0][ctl00$ContentPlaceHolder1$ChkAnsDef][]
                     //alert("input[name~='AnswerType[" + i + "][txtAnswer]']");
                     //alert(arrIDAns[1]);
@@ -351,10 +309,10 @@
                         $(this).parent().siblings('.dltrptanswer').click();
                     }
                     if (answers == "") {
-                        answers += $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val();
+                        answers += $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').is(":checked");
                     }
                     else {
-                        answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').val();
+                        answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + $(this).parent().find('#ChkAnsFlag').is(":checked");
                     }
                     cnt++;
 
@@ -380,69 +338,88 @@
             function Bind_VMSConfiguration(VMSConfigID) {
                 //alert(WPConfigID);
                 //Bind VMS Questions
+                if ($("#ChkFeedback").is(":checked")) {
+                    $("#divFeedback").show(300);
+                    $("#ChkFeedback").parent().parent().addClass("active");
+                }
+                if ($("#ChkCovid").is(":checked")) {
+                    $("#divCount").show(300);
+                    $("#ChkCovid").parent().parent().addClass("active");
+                }
                 var qns = $('#hdnVMSQns').val();
                 var arrQns = qns.split("~");
-                alert(qns);
+                //alert(qns);
                 for (var i = 0; i < arrQns.length; i++) {
-                    if(i!==0)
+                    if (i !== 0)
                         $("#divQnAdd").click();
                     //alert(arrTerms[i]);VMSQuestion[0][hdnRepeaterAnswer]
 
+                    var QuestionID = $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']");
+                    var Question = $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']");
+                    var isMandatory = $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']");
+                    var isVisible = $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']");
+                    var Answer = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']");
+                    var hdnAnswer = $("input[name~='VMSQuestion[" + i + "][hdnRepeaterAnswer]']");
+
                     var arrQnData = arrQns[i].split("||");
-                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]']").val(arrQnData[0]);
-                    $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]']").val(arrQnData[1]);
+                    QuestionID.val(arrQnData[0]);
+                    Question.val(arrQnData[1]);
                     if (arrQnData[2] == "True") {
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").prop("checked", true)
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]']").parent().parent().addClass("active");
+                        isMandatory.prop("checked", true)
+                        isMandatory.parent().parent().addClass("active");
                     }
                     if (arrQnData[3] == "True") {
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").prop("checked", true)
-                        $("input[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]']").parent().parent().addClass("active");
+                        isVisible.prop("checked", true)
+                        isVisible.parent().parent().addClass("active");
                     }
-                    $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").val(arrQnData[4]);
-                    $("input[name~='VMSQuestion[" + i + "][hdnRepeaterAnswer]']").val(arrQnData[5]);
-                    $("input[name~='VMSQuestion[" + i + "][hdnRepeaterAnswer]']").change();
-
-                    var isMulti = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected').attr("data-ismulti");
+                    Answer.val(arrQnData[4]);
+                    hdnAnswer.val(arrQnData[5]);
+                    hdnAnswer.change();
+                    //alert($("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected'));
+                    var isMulti = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]'] option[value='"+arrQnData[4]+"']").attr("data-ismulti");
                     if (isMulti === 'True') {
+
                         //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
-                        $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").parent().parent().find(".lblAnswerCnt").show();
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").show();
+                    }
+                    else {
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").hide();
                     }
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
                 return;
                 //Bind WP Headers with answesrs
-                var headers = $('#hdnWPHeaders').val();
-                var arrHeaders = headers.split("~");
-                //alert(arrTerms);
-                for (var i = 0; i < arrHeaders.length; i++) {
-                    //$("#divSectionAdd").click();
-                    //alert(arrTerms[i]);   
-                    var arrHeaderData = arrHeaders[i].split("||");
-                    var section = $("div[data-SectionID~='" + arrHeaderData[0] + "']");
-                    section.children().find(".divHeaderAdd").click();
-                    section.children().find(".dvWorkPermitHeader").not(".updated").attr("data-HeaderID", arrHeaderData[1]);
-                    section.children().find(".dvWorkPermitHeader").addClass("updated");
-                    var header = section.find("div[data-HeaderID~='" + arrHeaderData[1] + "']");
-                    header.children().find("#hdnWorkPermitHeader").val(arrHeaderData[1]);
-                    header.children().find(".question_textarea").val(arrHeaderData[2]);
-                    //section.children().find(".question_textarea").val(arrHeaderData[2]);
-                    //alert(arrHeaderData[4]);
-                    //alert(section.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
-                    //alert(header.children().find("select").val());
-                    header.children().find("select").val(arrHeaderData[4]);
-                    header.children().find("select").selectpicker('refresh');
-                    header.children().find(".hdnRepeaterAnswer").val(arrHeaderData[5]);
-                    header.children().find(".hdnRepeaterAnswer").change();
-                    if (arrHeaderData[4] == "1" || arrHeaderData[4] == "2") {
-                        header.children().find(".lblAnswerCnt").show();
-                    }
-                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").parents('.dvWorkPermitSection').attr("data-SectionID",arrIDSection[0]);
-                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").val(arrIDSection[0]);
-                    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$txtWorkPermitSection]']").val(arrIDSection[1]);
+                //var headers = $('#hdnWPHeaders').val();
+                //var arrHeaders = headers.split("~");
+                //alert(headers);
+                //for (var i = 0; i < arrHeaders.length; i++) {
+                //    //$("#divSectionAdd").click();
+                //    //alert(arrTerms[i]);   
+                //    var arrHeaderData = arrHeaders[i].split("||");
+                //    var section = $("div[data-SectionID~='" + arrHeaderData[0] + "']");
+                //    section.children().find(".divHeaderAdd").click();
+                //    section.children().find(".dvWorkPermitHeader").not(".updated").attr("data-HeaderID", arrHeaderData[1]);
+                //    section.children().find(".dvWorkPermitHeader").addClass("updated");
+                //    var header = section.find("div[data-HeaderID~='" + arrHeaderData[1] + "']");
+                //    header.children().find("#hdnWorkPermitHeader").val(arrHeaderData[1]);
+                //    header.children().find(".question_textarea").val(arrHeaderData[2]);
+                //    //section.children().find(".question_textarea").val(arrHeaderData[2]);
+                //    //alert(arrHeaderData[4]);
+                //    //alert(section.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
+                //    //alert(header.children().find("select").val());
+                //    header.children().find("select").val(arrHeaderData[4]);
+                //    header.children().find("select").selectpicker('refresh');
+                //    header.children().find(".hdnRepeaterAnswer").val(arrHeaderData[5]);
+                //    header.children().find(".hdnRepeaterAnswer").change();
+                //    if (arrHeaderData[4] == "1" || arrHeaderData[4] == "2") {
+                //        header.children().find(".lblAnswerCnt").show();
+                //    }
+                //    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").parents('.dvWorkPermitSection').attr("data-SectionID",arrIDSection[0]);
+                //    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").val(arrIDSection[0]);
+                //    //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$txtWorkPermitSection]']").val(arrIDSection[1]);
 
-                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitSection[0][ctl00$ContentPlaceHolder1$txtWorkPermitSection]
-                }
+                //    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitSection[0][ctl00$ContentPlaceHolder1$txtWorkPermitSection]
+                //}
 
             }
         });
@@ -490,7 +467,7 @@
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateVMS" OnClientClick="return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateVMS" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
 
                                     </div>
                                 </div>
@@ -546,18 +523,33 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-light">
+                                        <div class="btn-group btn-group-toggle" id="divChkCovid" data-toggle="buttons">
+                                            <label class="btn btn-light" id="lblChkCovid">
                                                 <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divFeedback">
-                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <div class="col-md-7" id="divFeedback">
+                                        <div class="row">
+                                            <label class="col-6  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5" id="divCount">
+                                        <div class="row">
+                                            <label class="col-6 col-form-label font-weight-bold"><span style="color: red;">*</span> Entry Count:</label>
+                                            <div class="col-md-6">
+                                                <asp:TextBox ID="txtCount" TextMode="Number" Text="0" runat="server" class="form-control" AutoPostBack="False"></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
 
+
+                                </div>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
                                 </div>
 
                                 <br />
@@ -750,7 +742,7 @@
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                         <label class="btn btn-light">
                                                             <%--<input id="ChkAnsFlag" type="checkbox" />--%>
-                                                            <asp:CheckBox ID="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
+                                                            <asp:CheckBox ID="ChkAnsFlag" CssClass="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
                                                     </div>
                                                     <%--<div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                         <label class="btn btn-light">

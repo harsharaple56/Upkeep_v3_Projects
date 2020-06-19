@@ -36,15 +36,16 @@ namespace Upkeep_v3.VMS
             {
 
                 Fetch_Answer();
-
+                ViewState["ConfigID"] = 0;
                 BindFeedbackEventTitle();
                 if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ConfigID"]))
                 {
                     strConfigID = Request.QueryString["ConfigID"].ToString();
                     if (strConfigID.All(char.IsDigit))
-                        ConfigID = Convert.ToInt32(strConfigID);
+                        ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
 
-                    BindVMSConfig(ConfigID);
+                    btnSave.Text = "Update";
+                    BindVMSConfig();
                 }
                 else if (!System.String.IsNullOrWhiteSpace(Request.QueryString["DelVMSConfigID"]))
                 {
@@ -99,7 +100,7 @@ namespace Upkeep_v3.VMS
                     VMSQuestionAns = "";
                     VMSQuestionAnsData = "";
 
-                    VMSQuestionID= Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
+                    VMSQuestionID = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
                     VMSQuestion = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]")[0];
                     VMSQuestionAns = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]")[0];
                     VMSQuestionAnsData = Request.Form.GetValues("VMSQuestion[" + i + "][hdnRepeaterAnswer]")[0];
@@ -147,7 +148,7 @@ namespace Upkeep_v3.VMS
 
                             strXmlVMS_Question.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString() + "</Question_Ans_Data_ID>");
                             strXmlVMS_Question.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString() + "</Question_Ans_Data_Text>");
-                            strXmlVMS_Question.Append(@"<Question_Ans_Data_IsFlag>0</Question_Ans_Data_IsFlag>");
+                            strXmlVMS_Question.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString() + "</Question_Ans_Data_IsFlag>");
 
                             strXmlVMS_Question.Append(@"</Question_Ans_Data>");
                         }
@@ -159,11 +160,10 @@ namespace Upkeep_v3.VMS
 
                 }
 
-
-
                 strXmlVMS_Question.Append(@"</VMS_HEADER_ROOT>");
                 //strXmlVMS_Feedback.Append(@"</VMS_FEEDBACK_ROOT>");
 
+                int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string strConfigTitle = string.Empty;
                 string strConfigDesc = string.Empty;
                 int CompanyID = 0;
@@ -171,9 +171,12 @@ namespace Upkeep_v3.VMS
                 bool blFeedbackCompulsary = false;
                 bool blEnableCovid = false;
                 int FeedbackTitle = 0;
+                int EntryCount = 0;
 
                 strConfigTitle = txtTitle.Text.Trim();
                 strConfigDesc = txtVMSDesc.Text.Trim();
+                if (txtCount.Text.All(char.IsDigit))
+                    EntryCount = Convert.ToInt32(txtCount.Text);
                 if (rdbCustomer.Checked == true)
                 { strInitiator = "C"; }
                 if (rdbVisitor.Checked == true)
@@ -185,7 +188,7 @@ namespace Upkeep_v3.VMS
                 blEnableCovid = Convert.ToBoolean(ChkCovid.Checked);
 
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_VMSConfiguration(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -286,12 +289,12 @@ namespace Upkeep_v3.VMS
             }
         }
 
-        private void BindVMSConfig(int ConfigTitleID)
+        private void BindVMSConfig()
         {
             try
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
-
+                int ConfigTitleID = Convert.ToInt32(ViewState["ConfigID"]);
                 dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigTitleID);
 
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Title"].ToString()))
@@ -300,6 +303,7 @@ namespace Upkeep_v3.VMS
                     hdnVMSConfigID.Value = ConfigTitleID.ToString();
                     txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Title"].ToString();
                     txtVMSDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+                    txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
                     if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
                     { rdbCustomer.Checked = true; }
                     else if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
@@ -307,14 +311,14 @@ namespace Upkeep_v3.VMS
                     ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
                     ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
                     ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();
-
+                    
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
                        + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
-                       + s.Field<decimal>("Ans_Type_ID") + "||"
-                       + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
+                       + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
                        ans.Field<decimal>("VMS_Qn_Id").ToString() == s.Field<decimal>("VMS_Qn_Id").ToString()).Select(ans =>
-                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + "::" + ans.Field<string>("Ans_Type_Data").ToString()))).ToArray();
+                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
+                       ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
                     hdnVMSQns.Value = string.Join("~", QnValues);
                 }

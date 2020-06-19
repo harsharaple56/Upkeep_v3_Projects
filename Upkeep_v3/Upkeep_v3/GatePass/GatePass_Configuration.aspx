@@ -859,7 +859,7 @@
                                                                             </a>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField DataField="Empname" SortExpression="Empname" HeaderText="Empname"></asp:BoundField>
+                                                                    <asp:BoundField DataField="User_Name" SortExpression="User_Name" HeaderText="User_Name"></asp:BoundField>
                                                                 </Columns>
 
                                                                 <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
@@ -879,7 +879,7 @@
                                                                             </a>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField DataField="User_Name" SortExpression="User_Name" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                    <asp:BoundField DataField="GroupName" SortExpression="GroupName" HeaderText="GroupName" ControlStyle-Width="100%"></asp:BoundField>
 
                                                                 </Columns>
 

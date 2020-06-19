@@ -307,9 +307,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSConfiguration">
+      <s:element name="Insert_Update_VMSConfiguration">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strConfigDesc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
@@ -318,14 +319,15 @@
             <s:element minOccurs="1" maxOccurs="1" name="blFeedbackCompulsary" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="FeedbackTitle" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="blEnableCovid" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="EntryCount" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_VMSConfigurationResponse">
+      <s:element name="Insert_Update_VMSConfigurationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_VMSConfigurationResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_Update_VMSConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2951,11 +2953,11 @@
   <wsdl:message name="Delete_CHKConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Delete_CHKConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_VMSConfiguration" />
+  <wsdl:message name="Insert_Update_VMSConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Update_VMSConfiguration" />
   </wsdl:message>
-  <wsdl:message name="Insert_VMSConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_VMSConfigurationResponse" />
+  <wsdl:message name="Insert_Update_VMSConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Update_VMSConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_VMSConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_VMSConfiguration" />
@@ -3646,9 +3648,9 @@
       <wsdl:input message="tns:Delete_CHKConfigurationSoapIn" />
       <wsdl:output message="tns:Delete_CHKConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <wsdl:input message="tns:Insert_VMSConfigurationSoapIn" />
-      <wsdl:output message="tns:Insert_VMSConfigurationSoapOut" />
+    <wsdl:operation name="Insert_Update_VMSConfiguration">
+      <wsdl:input message="tns:Insert_Update_VMSConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_Update_VMSConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSConfiguration">
       <wsdl:input message="tns:Fetch_VMSConfigurationSoapIn" />
@@ -4195,8 +4197,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+    <wsdl:operation name="Insert_Update_VMSConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_Update_VMSConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -5278,8 +5280,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_VMSConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Insert_VMSConfiguration" style="document" />
+    <wsdl:operation name="Insert_Update_VMSConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Update_VMSConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

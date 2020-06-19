@@ -56,7 +56,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Delete_CHKConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Insert_Update_VMSConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
         
@@ -348,7 +348,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Delete_CHKConfigurationCompletedEventHandler Delete_CHKConfigurationCompleted;
         
         /// <remarks/>
-        public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
+        public event Insert_Update_VMSConfigurationCompletedEventHandler Insert_Update_VMSConfigurationCompleted;
         
         /// <remarks/>
         public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
@@ -1114,9 +1114,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
+                        ConfigID,
                         strConfigTitle,
                         strConfigDesc,
                         CompanyID,
@@ -1125,21 +1126,23 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
+                        EntryCount,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            this.Insert_VMSConfigurationAsync(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID, null);
+        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, object userState) {
-            if ((this.Insert_VMSConfigurationOperationCompleted == null)) {
-                this.Insert_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSConfigurationOperationCompleted);
+        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID, object userState) {
+            if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
+                this.Insert_Update_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Update_VMSConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Insert_VMSConfiguration", new object[] {
+            this.InvokeAsync("Insert_Update_VMSConfiguration", new object[] {
+                        ConfigID,
                         strConfigTitle,
                         strConfigDesc,
                         CompanyID,
@@ -1148,13 +1151,14 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
-                        LoggedInUserID}, this.Insert_VMSConfigurationOperationCompleted, userState);
+                        EntryCount,
+                        LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         
-        private void OnInsert_VMSConfigurationOperationCompleted(object arg) {
-            if ((this.Insert_VMSConfigurationCompleted != null)) {
+        private void OnInsert_Update_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_Update_VMSConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_VMSConfigurationCompleted(this, new Insert_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Insert_Update_VMSConfigurationCompleted(this, new Insert_Update_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5389,17 +5393,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Insert_VMSConfigurationCompletedEventHandler(object sender, Insert_VMSConfigurationCompletedEventArgs e);
+    public delegate void Insert_Update_VMSConfigurationCompletedEventHandler(object sender, Insert_Update_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Insert_Update_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Insert_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Insert_Update_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
