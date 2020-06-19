@@ -283,35 +283,37 @@
             //var ModalHTML = "";
             var name = "";
             $(document).on('change', '.ddlAns', function () {
-                var ddlansval = $('option:selected', this).attr("data-multi");
-                if (ddlansval === "")
+                //var ddlansval = $('option:selected', this).attr("data-multi"); 
+                //if (ddlansval === "")
+                //    return
+                ////alert(ddlansval + "===");
+                //if (ddlansval == "1") {
+                //    $(this).parent().parent().find(".lblAnswerCnt").show();
+                //    $('.dltrptanswer').click();
+                //    name = $(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer");
+                //    $(this).parent().parent().find(".hdnRepeaterAnswer").attr('type', 'hidden');
+                //    $('#btnModal').click(); 
+                //}
+                //else { 
+                //    $(this).parent().parent().find(".hdnRepeaterAnswer").attr('type', 'text');
+                //    $(this).parent().parent().find(".hdnRepeaterAnswer").val(""); 
+                //    $(this).parent().parent().find(".lblAnswerCnt").hide();
+                //}
+
+                var isMulti = $(this).find(':selected').attr("data-ismulti");
+                if (isMulti === "")
                     return
-                //alert(ddlansval + "===");
-                if (ddlansval == "1") {
+
+                if (isMulti === 'True') {
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
                     $('.dltrptanswer').click();
                     name = $(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer");
-
-                    $(this).parent().parent().find(".hdnRepeaterAnswer").attr('type', 'hidden');
+                    //name = $(this).siblings('.hdnRepeaterAnswer').attr("name");
                     $('#btnModal').click();
-                    //alert($(this).val())
-
-                    //if ($(this).val() == "1")
-                    //    $(".modal-title").text("Add Multi Select Answers");
-                    //else if ($(this).val() == "2")
-                    //    $(".modal-title").text("Add Single Select Answers");
-
                 }
-                else {
-                    //alert($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"));
-                    //var ddlname = $(this).attr("name");
-                    //var ansname = ddlname.replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer");
-                    //alert("llll");
-                    $(this).parent().parent().find(".hdnRepeaterAnswer").attr('type', 'text');
-                    $(this).parent().parent().find(".hdnRepeaterAnswer").val("");
-                    //document.getElementsByName(ansname)[0].value = "";
-                    //document.getElementsByName(ansname)[0].setAttribute('type', 'text');
+                else { 
+                    $(this).parent().parent().find(".hdnRepeaterAnswer").val(""); 
                     $(this).parent().parent().find(".lblAnswerCnt").hide();
                 }
 

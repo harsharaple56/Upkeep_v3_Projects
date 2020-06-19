@@ -117,7 +117,7 @@
                                         <div class="col-xl-10 offset-xl-2">--%>
                                     <div class="m-form__section m-form__section--first">
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 15%; display:none;">
                                             <label class="col-xl-3 col-lg-3 form-control-label">Company :</label>
                                             <div class="col-xl-3 col-lg-3">
                                                 <asp:Label ID="lblCompanyName" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -131,7 +131,7 @@
                                         <asp:UpdatePanel runat="server" style="width: 100%;">
                                             <ContentTemplate>
 
-                                                <div class="form-group m-form__group row" style="padding-left: 15%; display:none;">
+                                                <div class="form-group m-form__group row" style="padding-left: 10%; display:none;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Zone :</label>
                                                     <div class="col-xl-5 col-lg-9">
                                                         <asp:DropDownList ID="ddlZone" class="form-control m-input" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
@@ -142,18 +142,18 @@
                                                         <asp:Button ID="btnAddZone" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem;" OnClick="btnSave_Click" Text="Add Zone" />
                                                     </div>
                                                 </div>
-                                                <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                                <div class="form-group m-form__group row" style="padding-left: 10%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                                    <div class="col-xl-5 col-lg-9">
+                                                    <div class="col-xl-9 col-lg-9">
                                                         <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
                                                             ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
                                                     </div>
-                                                    <div class="col-xl-3 col-lg-9" style="display:none;">
+                                                    <%--<div class="col-xl-3 col-lg-9" style="display:none;">
                                                         <asp:Button ID="btnAddLocation" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem;" OnClick="btnSave_Click" Text="Add Location" />
-                                                    </div>
+                                                    </div>--%>
                                                 </div>
-                                                <div class="form-group m-form__group row" style="padding-left: 15%;display:none;">
+                                                <div class="form-group m-form__group row" style="padding-left: 10%;display:none;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
                                                     <div class="col-xl-5 col-lg-9">
                                                         <asp:DropDownList ID="ddlSublocation" class="form-control m-input" OnSelectedIndexChanged="ddlSublocation_SelectedIndexChanged" runat="server"></asp:DropDownList>
@@ -183,7 +183,7 @@
 
                                         <%--<asp:UpdatePanel runat="server" style="width: 100%;">
                                             <ContentTemplate>--%>
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Category :</label>
                                             <div class="col-xl-5 col-lg-9">
                                                 <asp:DropDownList ID="ddlCategory" class="form-control m-input" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
@@ -192,12 +192,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub Category :</label>
                                             <div class="col-xl-5 col-lg-9">
                                                 <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Display="Dynamic"
-                                                    ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>
+                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Display="Dynamic"
+                                                    ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                             </div>
                                             <%--</div>--%>
                                             <%--   </ContentTemplate>

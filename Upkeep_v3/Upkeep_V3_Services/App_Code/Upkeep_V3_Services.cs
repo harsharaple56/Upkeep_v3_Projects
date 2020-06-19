@@ -474,11 +474,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int TicketID,int CompanyID, string LoggedInUserID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1688,6 +1688,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+
+    [WebMethod]
+    public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     #endregion
 
     #region VMS

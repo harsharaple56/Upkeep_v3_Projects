@@ -25,8 +25,8 @@ namespace Upkeep_v3.CheckList
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
-                //Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-                LoggedInUserID = "3";
+                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                //LoggedInUserID = "3";
             }
             if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ChkConfigID"]))
             {
@@ -66,11 +66,17 @@ namespace Upkeep_v3.CheckList
                         ddlAns.DataValueField = "Ans_Type_ID";
                         ddlAns.DataBind();
 
-                        for (int i = 0; i < ddlAns.Items.Count; i++)
-                        {
-                            ddlAns.Items[i].Attributes["data-multi"] = ds.Tables[0].Rows[i]["Is_MultiValue"].ToString();
-                            //ddlAns.Items[i].Attributes["data-content"] = "<i class='fa fa-" + ds.Tables[0].Rows[i]["Icon"] + "'  > " + ds.Tables[0].Rows[i]["Chk_Ans_Type_Desc"] + "</i>";
-                        }
+                        //for (int i = 0; i < ddlAns.Items.Count; i++)
+                        //{
+                        //    ddlAns.Items[i].Attributes["data-multi"] = ds.Tables[0].Rows[i]["Is_MultiValue"].ToString();
+                        //    //ddlAns.Items[i].Attributes["data-content"] = "<i class='fa fa-" + ds.Tables[0].Rows[i]["Icon"] + "'  > " + ds.Tables[0].Rows[i]["Chk_Ans_Type_Desc"] + "</i>";
+                        //}
+
+                        for (int i = 0; i < ddlAns.Items.Count - 1; i++)
+                            ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
+
+                        // ddlAns.Items.Insert(0, new ListItem("select", ""));
+
                     }
                 }
             }
@@ -378,6 +384,18 @@ namespace Upkeep_v3.CheckList
                 int TotalScore = 0;
                 strConfigTitle = txtTitle.Text.Trim();
                 strConfigDesc = txtCLDesc.Text.Trim();
+
+
+                if (txtTotScore.InnerText != "")
+                {
+
+                    if (Convert.ToInt32(txtTotScore.InnerText) > 0)
+                    {
+                        IsEnableScoring = true;
+                        TotalScore = Convert.ToInt32(txtTotScore.InnerText);
+                    }
+                }
+
 
                 string X = strXmlCHECKLIST_QUESTION.ToString().Replace("&", "&amp;");
 

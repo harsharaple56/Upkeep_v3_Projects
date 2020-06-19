@@ -40,18 +40,23 @@ namespace Upkeep_v3.Ticketing
             if (TicketID > 0)
             {
                 Session["TicketID"] = Convert.ToString(TicketID);
-                bind_Master(TicketID);
+                
                 if (MyRequest == 1)
                 {
+                    Fetch_My_Request_Ticket_Details(TicketID);
                     dvApprovalDetails.Attributes.Add("style", "display:none;");
                     dvClose.Attributes.Add("style", "display:none;");
+                }
+                else
+                {
+                    Fetch_My_Actionable_Ticket_Details(TicketID);
                 }
             }
 
 
         }
 
-        public string bind_Master(int TicketID)
+        public string Fetch_My_Request_Ticket_Details(int TicketID)
         {
             string data = "";
             DataSet dsTicket = new DataSet();
@@ -92,7 +97,7 @@ namespace Upkeep_v3.Ticketing
                             rptTicketImage.DataSource = dsTicket.Tables[0];
                             rptTicketImage.DataBind();
 
-                            Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
+                            //Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
 
                             ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
                             if (ActionStatus == "Assigned")
@@ -126,6 +131,11 @@ namespace Upkeep_v3.Ticketing
 
                         }
                     }
+
+                    if (dsTicket.Tables[1].Rows.Count > 0)
+                    {
+                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
+                    }
                     else
                     {
 
@@ -143,6 +153,84 @@ namespace Upkeep_v3.Ticketing
             return data;
         }
 
+        public string Fetch_My_Actionable_Ticket_Details(int TicketID)
+        {
+            string data = "";
+            DataSet dsTicket = new DataSet();
+            try
+            {
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID);
+
+                // int TicketID = 0;
+                string TicketNumber = string.Empty;
+                string Zone = string.Empty;
+                string Location = string.Empty;
+                string SubLocation = string.Empty;
+                string Category = string.Empty;
+                string SubCategory = string.Empty;
+                string RequestDate = string.Empty;
+                string RequestStatus = string.Empty;
+                string ActionStatus = string.Empty;
+
+
+                if (dsTicket.Tables.Count > 0)
+                {
+                    if (dsTicket.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(dsTicket.Tables[0].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            Session["TicketCode"] = dsTicket.Tables[0].Rows[i].Field<string>("Tkt_Code"); //ajay
+                            lblTicketID.Text = dsTicket.Tables[0].Rows[i].Field<string>("Tkt_Code");
+                            //lblZone.Text = dsTicket.Tables[0].Rows[i].Field<string>("Zone_Desc");
+                            lblLocation.Text = dsTicket.Tables[0].Rows[i].Field<string>("Loc_Desc");
+                            //lblSubLocation.Text = dsTicket.Tables[0].Rows[i].Field<string>("SubLoc_Desc");
+                            lblCategory.Text = dsTicket.Tables[0].Rows[i].Field<string>("Category_Desc");
+                            lblSubCategory.Text = dsTicket.Tables[0].Rows[i].Field<string>("SubCategory_Desc");
+                            lblRequestDate.Text = dsTicket.Tables[0].Rows[i].Field<string>("Ticket_Date");
+                            lblTicketdesc.Text = dsTicket.Tables[0].Rows[i].Field<string>("Tkt_Message");
+
+                            rptTicketImage.DataSource = dsTicket.Tables[0];
+                            rptTicketImage.DataBind();
+
+                            //Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
+
+                            ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
+                            if (ActionStatus == "Assigned")
+                            {
+                                btnClose.Attributes.Add("style", "display:none;");
+                                dvApprovalDetails.Attributes.Add("style", "display:none;");
+                            }
+                            else
+                            {
+                                btnAccept.Attributes.Add("style", "display:none;");
+                            }
+
+                          
+                        }
+                    }
+
+                    //if (dsTicket.Tables[1].Rows.Count > 0)
+                    //{
+                    //    Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
+                    //}
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+        }
 
         protected void btnViewWorkflow_Click(object sender, EventArgs e)
         {
@@ -300,9 +388,9 @@ namespace Upkeep_v3.Ticketing
                         {
                             //if (ddlAction.SelectedItem.Text != "In Progress")
                             //{
-                                lblTicketErrorMsg.Text = "Image format not supported";
-                                FileUpload_TicketImage.Focus();
-                                return;
+                            lblTicketErrorMsg.Text = "Image format not supported";
+                            FileUpload_TicketImage.Focus();
+                            return;
                             //}
 
                         }
@@ -310,8 +398,8 @@ namespace Upkeep_v3.Ticketing
                         {
                             //if (ddlAction.SelectedItem.Text != "In Progress")
                             //{
-                                lblTicketErrorMsg.Text = "Image upload failed, please try again";
-                                return;
+                            lblTicketErrorMsg.Text = "Image upload failed, please try again";
+                            return;
                             //}
                             //txtTicketDesc.Focus(); //sam
                         }
@@ -358,8 +446,8 @@ namespace Upkeep_v3.Ticketing
                     {
                         //if (ddlAction.SelectedItem.Text != "In Progress")
                         //{
-                            lblTicketErrorMsg.Text = "Please select image";
-                            FileUpload_TicketImage.Focus();
+                        lblTicketErrorMsg.Text = "Please select image";
+                        FileUpload_TicketImage.Focus();
                         //}
                     }
                 }
@@ -374,7 +462,7 @@ namespace Upkeep_v3.Ticketing
 
                     string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
 
-                    dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel); 
+                    dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);
 
                     //Samvedna
                     if (dsCloseTicket.Tables.Count > 0)

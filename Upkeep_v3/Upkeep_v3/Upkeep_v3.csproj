@@ -914,6 +914,8 @@
     <Content Include="CheckList\Checklist.aspx" />
     <Content Include="CheckList\Checklist_Action.aspx" />
     <Content Include="CheckList\CheckList_Configuration.aspx" />
+    <Content Include="CheckList\CheckList_Report_Details.aspx" />
+    <Content Include="CheckList\CheckList_Report_Listing.aspx" />
     <Content Include="CheckList\Checklist_Request.aspx" />
     <Content Include="CheckList\ChkConfig_Listing.aspx" />
     <Content Include="CheckList\Edit_Checklist.aspx" />
@@ -3964,6 +3966,20 @@
     </Compile>
     <Compile Include="CheckList\CheckList_Configuration.aspx.designer.cs">
       <DependentUpon>CheckList_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Details.aspx.cs">
+      <DependentUpon>CheckList_Report_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Details.aspx.designer.cs">
+      <DependentUpon>CheckList_Report_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Listing.aspx.cs">
+      <DependentUpon>CheckList_Report_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Listing.aspx.designer.cs">
+      <DependentUpon>CheckList_Report_Listing.aspx</DependentUpon>
     </Compile>
     <Compile Include="CheckList\Checklist_Request.aspx.cs">
       <DependentUpon>Checklist_Request.aspx</DependentUpon>

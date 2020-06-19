@@ -448,13 +448,13 @@ public class My_Upkeep
         //return ds;
     }
 
-    public DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1380,6 +1380,26 @@ public class My_Upkeep
             throw ex;
         }
     }
+
+
+
+    public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
     #endregion
 
     #region VMS

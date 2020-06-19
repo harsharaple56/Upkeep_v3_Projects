@@ -56,7 +56,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Delete_CHKConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_Update_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_MyChecklistReportListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
         
@@ -348,7 +350,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Delete_CHKConfigurationCompletedEventHandler Delete_CHKConfigurationCompleted;
         
         /// <remarks/>
-        public event Insert_Update_VMSConfigurationCompletedEventHandler Insert_Update_VMSConfigurationCompleted;
+        public event Fetch_MyChecklistReportListCompletedEventHandler Fetch_MyChecklistReportListCompleted;
+        
+        /// <remarks/>
+        public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
         
         /// <remarks/>
         public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
@@ -1114,10 +1119,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
-            object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
-                        ConfigID,
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
                         strConfigTitle,
                         strConfigDesc,
                         CompanyID,
@@ -2950,24 +2954,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_MyActionable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Ticket_MyActionable(int CompanyID, string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID) {
             object[] results = this.Invoke("Fetch_Ticket_MyActionable", new object[] {
+                        TicketID,
                         CompanyID,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID) {
-            this.Fetch_Ticket_MyActionableAsync(CompanyID, LoggedInUserID, null);
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID) {
+            this.Fetch_Ticket_MyActionableAsync(TicketID, CompanyID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int CompanyID, string LoggedInUserID, object userState) {
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID, object userState) {
             if ((this.Fetch_Ticket_MyActionableOperationCompleted == null)) {
                 this.Fetch_Ticket_MyActionableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_MyActionableOperationCompleted);
             }
             this.InvokeAsync("Fetch_Ticket_MyActionable", new object[] {
+                        TicketID,
                         CompanyID,
                         LoggedInUserID}, this.Fetch_Ticket_MyActionableOperationCompleted, userState);
         }
@@ -5393,7 +5399,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Insert_Update_VMSConfigurationCompletedEventHandler(object sender, Insert_Update_VMSConfigurationCompletedEventArgs e);
+    public delegate void Insert_VMSConfigurationCompletedEventHandler(object sender, Insert_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
