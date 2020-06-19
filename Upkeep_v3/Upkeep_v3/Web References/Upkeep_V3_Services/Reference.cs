@@ -1119,41 +1119,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklistReportList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyChecklistReportList", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        From_Date,
-                        To_Date});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
-            this.Fetch_MyChecklistReportListAsync(LoggedInUserID, CompanyID, From_Date, To_Date, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyChecklistReportListOperationCompleted == null)) {
-                this.Fetch_MyChecklistReportListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistReportListOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_MyChecklistReportList", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        From_Date,
-                        To_Date}, this.Fetch_MyChecklistReportListOperationCompleted, userState);
-        }
-        
-        private void OnFetch_MyChecklistReportListOperationCompleted(object arg) {
-            if ((this.Fetch_MyChecklistReportListCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyChecklistReportListCompleted(this, new Fetch_MyChecklistReportListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
@@ -1165,21 +1130,23 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
+                        EntryCount,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            this.Insert_VMSConfigurationAsync(strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, LoggedInUserID, null);
+        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_VMSConfigurationAsync(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, object userState) {
-            if ((this.Insert_VMSConfigurationOperationCompleted == null)) {
-                this.Insert_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_VMSConfigurationOperationCompleted);
+        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID, object userState) {
+            if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
+                this.Insert_Update_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Update_VMSConfigurationOperationCompleted);
             }
-            this.InvokeAsync("Insert_VMSConfiguration", new object[] {
+            this.InvokeAsync("Insert_Update_VMSConfiguration", new object[] {
+                        ConfigID,
                         strConfigTitle,
                         strConfigDesc,
                         CompanyID,
@@ -1188,13 +1155,14 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
-                        LoggedInUserID}, this.Insert_VMSConfigurationOperationCompleted, userState);
+                        EntryCount,
+                        LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         
-        private void OnInsert_VMSConfigurationOperationCompleted(object arg) {
-            if ((this.Insert_VMSConfigurationCompleted != null)) {
+        private void OnInsert_Update_VMSConfigurationOperationCompleted(object arg) {
+            if ((this.Insert_Update_VMSConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_VMSConfigurationCompleted(this, new Insert_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Insert_Update_VMSConfigurationCompleted(this, new Insert_Update_VMSConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5431,43 +5399,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Fetch_MyChecklistReportListCompletedEventHandler(object sender, Fetch_MyChecklistReportListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MyChecklistReportListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MyChecklistReportListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Insert_VMSConfigurationCompletedEventHandler(object sender, Insert_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Insert_Update_VMSConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Insert_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Insert_Update_VMSConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -1105,7 +1105,7 @@
                                                                             </a>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField DataField="User_Name_Code" SortExpression="Empname" HeaderText="Empname"></asp:BoundField>
+                                                                    <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name" HeaderText="User_Name"></asp:BoundField>
                                                                 </Columns>
 
                                                                 <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>

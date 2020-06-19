@@ -1957,14 +1957,15 @@ namespace UpkeepV3_BusinessLayer
         #region VMS
 
         //Added by RC This function is used to save VMS Configuration
-        public DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID, string StrConn)
+        public DataSet Insert_Update_VMSConfiguration(int ConfigID,string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount,string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_CONFIG", con);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_UPDATE_VMS_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
                 cmd.Parameters.AddWithValue("@ConfigTitle", strConfigTitle);
                 cmd.Parameters.AddWithValue("@ConfigDesc", strConfigDesc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
@@ -1973,6 +1974,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@isFeedbackCompulsary", blFeedbackCompulsary);
                 cmd.Parameters.AddWithValue("@FeedbackID", FeedbackTitle);
                 cmd.Parameters.AddWithValue("@EnableCovid", blEnableCovid);
+                cmd.Parameters.AddWithValue("@EntryCount", EntryCount);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
