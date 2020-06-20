@@ -58,7 +58,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_MyChecklistReportListOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_VMSConfigurationOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_Checklist_ReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_Update_VMSConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
         
@@ -353,7 +355,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_MyChecklistReportListCompletedEventHandler Fetch_MyChecklistReportListCompleted;
         
         /// <remarks/>
-        public event Insert_VMSConfigurationCompletedEventHandler Insert_VMSConfigurationCompleted;
+        public event Fetch_Checklist_ReportCompletedEventHandler Fetch_Checklist_ReportCompleted;
+        
+        /// <remarks/>
+        public event Insert_Update_VMSConfigurationCompletedEventHandler Insert_Update_VMSConfigurationCompleted;
         
         /// <remarks/>
         public event Fetch_VMSConfigurationCompletedEventHandler Fetch_VMSConfigurationCompleted;
@@ -1119,9 +1124,76 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_VMSConfiguration(string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, string LoggedInUserID) {
-            object[] results = this.Invoke("Insert_VMSConfiguration", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyChecklistReportList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyChecklistReportList", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date) {
+            this.Fetch_MyChecklistReportListAsync(LoggedInUserID, CompanyID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyChecklistReportListAsync(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyChecklistReportListOperationCompleted == null)) {
+                this.Fetch_MyChecklistReportListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyChecklistReportListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyChecklistReportList", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyChecklistReportListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyChecklistReportListOperationCompleted(object arg) {
+            if ((this.Fetch_MyChecklistReportListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyChecklistReportListCompleted(this, new Fetch_MyChecklistReportListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Checklist_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Checklist_Report(string Response_ID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Checklist_Report", new object[] {
+                        Response_ID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Checklist_ReportAsync(string Response_ID, string LoggedInUserID) {
+            this.Fetch_Checklist_ReportAsync(Response_ID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Checklist_ReportAsync(string Response_ID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_Checklist_ReportOperationCompleted == null)) {
+                this.Fetch_Checklist_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Checklist_ReportOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Checklist_Report", new object[] {
+                        Response_ID,
+                        LoggedInUserID}, this.Fetch_Checklist_ReportOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Checklist_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_Checklist_ReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Checklist_ReportCompleted(this, new Fetch_Checklist_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
+                        ConfigID,
                         strConfigTitle,
                         strConfigDesc,
                         CompanyID,
@@ -5399,7 +5471,59 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Insert_VMSConfigurationCompletedEventHandler(object sender, Insert_VMSConfigurationCompletedEventArgs e);
+    public delegate void Fetch_MyChecklistReportListCompletedEventHandler(object sender, Fetch_MyChecklistReportListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyChecklistReportListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyChecklistReportListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_Checklist_ReportCompletedEventHandler(object sender, Fetch_Checklist_ReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Checklist_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Checklist_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Insert_Update_VMSConfigurationCompletedEventHandler(object sender, Insert_Update_VMSConfigurationCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
