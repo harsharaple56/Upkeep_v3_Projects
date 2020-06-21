@@ -1989,6 +1989,26 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Checklist_Report(string Response_ID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_CHK_REPORT", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Chk_Response_ID", Response_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID); 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         #endregion
 
