@@ -439,6 +439,7 @@
     <Content Include="assets\app\media\img\icons\logout.svg" />
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
+    <Content Include="assets\app\media\img\icons\workflow.png" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
     <Content Include="assets\app\media\img\logos\logo-2.png" />
     <Content Include="assets\app\media\img\logos\logo-3.png" />
@@ -982,6 +983,8 @@
     <Content Include="Ticketing\My_RequestRply.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
     <Content Include="Ticketing\Ticket.aspx" />
+    <Content Include="Ticketing\Ticket_CTT_Report.aspx" />
+    <Content Include="Ticketing\View_Ticket_Details.aspx" />
     <Content Include="Ticketing\Workflow_Details.aspx" />
     <Content Include="Ticketing\Workflow_Master.aspx" />
     <Content Include="vendors\animate.css\animate.css" />
@@ -4367,6 +4370,20 @@
     </Compile>
     <Compile Include="Ticketing\Ticket.aspx.designer.cs">
       <DependentUpon>Ticket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report.aspx.cs">
+      <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report.aspx.designer.cs">
+      <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\View_Ticket_Details.aspx.cs">
+      <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\View_Ticket_Details.aspx.designer.cs">
+      <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\Workflow_Details.aspx.cs">
       <DependentUpon>Workflow_Details.aspx</DependentUpon>

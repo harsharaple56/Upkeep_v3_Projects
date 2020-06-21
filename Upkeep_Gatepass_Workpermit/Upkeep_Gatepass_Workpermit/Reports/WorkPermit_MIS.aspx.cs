@@ -121,5 +121,97 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
             return data;
         }
 
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            GridView dgGrid = new GridView();
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
+            DataSet dsExport = new DataSet();
+            try
+            {
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    DateTime FrsmDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(-5);
+                    From_Date = FrsmDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(25);
+                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                dsExport = ObjUpkeep.Fetch_WorkPermit_MIS(LoggedInUserID, From_Date, To_Date);
+
+                System.Data.DataTable dtWP_Report = new System.Data.DataTable();
+
+                if (dsExport.Tables.Count > 0)
+                {
+                    if (dsExport.Tables[0].Rows.Count > 0)
+                    {
+                        dtWP_Report = dsExport.Tables[0];
+
+                        dtWP_Report.Columns.Remove("WP_Trans_ID");
+                        dtWP_Report.Columns.Remove("Wp_Config_ID");
+                        dtWP_Report.AcceptChanges();
+
+                        dgGrid.DataSource = dtWP_Report;
+                        dgGrid.DataBind();
+
+                        System.IO.StringWriter tw = new System.IO.StringWriter();
+                        System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+
+                        string filename = "WORKPERMIT REPORT FOR " + From_Date + " to " + To_Date + ".xls";
+
+                        string HeaderText = "WORKPERMIT REPORT FOR " + From_Date + " to " + To_Date;
+
+                        Style textStyle = new Style();
+                        textStyle.ForeColor = System.Drawing.Color.DarkCyan;
+                        hw.EnterStyle(textStyle);
+
+                        hw.Write("<h2><center>" + HeaderText + "</center></h2> </br>");
+                        hw.ExitStyle(textStyle);
+
+                        dgGrid.RenderControl(hw);
+
+                        Response.ContentType = "application/vnd.ms-excel";
+                        Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                        this.EnableViewState = false;
+                        Response.Write(tw.ToString());
+                        Response.End();
+                        return;
+
+                    }
+                    else
+                    {
+                        dgGrid.DataSource = null;
+                        dgGrid.DataBind();
+
+                        return;
+                    }
+                }
+                else
+                {
+                    dgGrid.DataSource = null;
+                    dgGrid.DataBind();
+
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
     }
 }
