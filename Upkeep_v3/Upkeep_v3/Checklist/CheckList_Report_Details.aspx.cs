@@ -78,17 +78,17 @@ namespace Upkeep_v3.CheckList
 
             if (ds.Tables[0].Rows.Count > 0)
             { 
-                lblChecklisID.Text = ds.Tables[0].["Chk_Response_No"].tostring();
-                lblChecklistName.Text = ds.Tables[0].["Checklist Name"].tostring();
-                lblChecklistDesc.Text = ds.Tables[0].["Checklist Desc"].tostring();
+                lblChecklisID.Text = ds.Tables[0].Rows[0]["Chk_Response_No"].ToString();
+                lblChecklistName.Text = ds.Tables[0].Rows[0]["Checklist Name"].ToString();
+                lblChecklistDesc.Text = ds.Tables[0].Rows[0]["Checklist Desc"].ToString();
 
-                lblDepartment.Text = ds.Tables[0].["Department"].tostring();
-                lblLocation.Text = ds.Tables[0].["Location"].tostring();
-                lblstartTime.Text = ds.Tables[0].["Start Time"].tostring();
-                lblEndTime.Text = ds.Tables[0].["End Time"].tostring();
-                lblTotalScore.Text = ds.Tables[0].["Total Hrs"].tostring();
-                lblGeneratedBy.Text = ds.Tables[0].["Generated_By"].tostring();
-                lblStatus.Text = ds.Tables[0].["Status"].tostring();
+                lblDepartment.Text = ds.Tables[0].Rows[0]["Department"].ToString();
+                lblLocation.Text = ds.Tables[0].Rows[0]["Location"].ToString();
+                lblstartTime.Text = ds.Tables[0].Rows[0]["Start Time"].ToString();
+                lblEndTime.Text = ds.Tables[0].Rows[0]["End Time"].ToString();
+                lblTotalScore.Text = ds.Tables[0].Rows[0]["Total Hrs"].ToString();
+                lblGeneratedBy.Text = ds.Tables[0].Rows[0]["Generated_By"].ToString();
+                lblStatus.Text = ds.Tables[0].Rows[0]["Status"].ToString();
             }
 
 
