@@ -121,6 +121,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.DropDownList ddlFeedbackTitle;
         
         /// <summary>
+        /// txtCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCount;
+        
+        /// <summary>
         /// VMSQuestion control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvVMSQuestion;
+        
+        /// <summary>
+        /// hdnQnID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnQnID;
         
         /// <summary>
         /// txtVMSQuestion control.

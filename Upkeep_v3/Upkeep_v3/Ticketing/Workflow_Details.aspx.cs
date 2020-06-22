@@ -487,8 +487,7 @@ namespace Upkeep_v3.Ticketing
             //int CategoryID = 0;
             try
             {
-
-                ds = ObjUpkeep.Fetch_User_UserGroupList();
+                ds = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -645,6 +644,9 @@ namespace Upkeep_v3.Ticketing
             ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName" , $"SelectUser();", true);
             //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>", true);
             //this.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "xx", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>");
+
+            Fetch_User_UserGroupList();
+
         }
 
         protected void grdInfodetails_RowDataBound(object sender, GridViewRowEventArgs e)

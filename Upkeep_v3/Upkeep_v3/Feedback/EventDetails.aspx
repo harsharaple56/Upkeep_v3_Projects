@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EventDetails.aspx.cs" Inherits="Upkeep_v3.Feedback.EventDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EventDetails.aspx.cs" Inherits="Upkeep_v3.Feedback.EventDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -284,7 +284,7 @@
                             <!--begin::Portlet-->
                             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                                <form class="m-form m-form--label-align-left- m-form--state-" id="event_form" runat="server" method="post">
+                                <form class="m-form m-form--label-align-left- m-form--state-" id="event_form"   method="post">
 
                                     <div class="m-portlet__head">
                                         <div class="m-portlet__head-wrapper">
@@ -333,11 +333,11 @@
 																		<span></span>
 																	</label>
                                                                     <label class="m-radio">
-                                                                         <asp:RadioButton id="rdbAll" runat="server" GroupName="question_for" /> All
+                                                                         <asp:RadioButton id="rdbVisitor" runat="server" GroupName="question_for" />Visitor
 																		<span></span>
 																	</label>
                                                                     <label class="m-radio">
-                                                                         <asp:RadioButton id="rdbVisitor" runat="server" GroupName="question_for" />Visitor
+                                                                         <asp:RadioButton id="rdbAll" runat="server" GroupName="question_for" /> All
 																		<span></span>
 																	</label>
 																</div>
@@ -454,22 +454,22 @@
 																				<div class="col-md-12 m--margin-bottom-10 font-weight-bold">Enter Options</div>
 																				<div class="col-md-6 m--margin-bottom-10">
 																					<%--<input type="text" name="option1" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                                    <asp:TextBox ID="option1" runat="server" class="form-control m-input text_option" placeholder="Enter option" Text="" ></asp:TextBox>
+                                                                                    <asp:TextBox ID="option1" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" Text="" ></asp:TextBox>
 																					<span class="error_option text-danger small"></span>
 																				</div>
 																				<div class="col-md-6 m--margin-bottom-10">
 																					<%--<input type="text" name="option2" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                                    <asp:TextBox ID="option2" runat="server" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
+                                                                                    <asp:TextBox ID="option2" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
 																					<span class="error_option text-danger small"></span>
 																				</div>
 																				<div class="col-md-6 m--margin-bottom-10">
 																					<%--<input type="text" name="option3" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                                    <asp:TextBox ID="option3" runat="server" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
+                                                                                    <asp:TextBox ID="option3" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
 																					<span class="error_option text-danger small"></span>
 																				</div>
 																				<div class="col-md-6 m--margin-bottom-10">
 																					<%--<input type="text" name="option4" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                                     <asp:TextBox ID="option4" runat="server" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
+                                                                                     <asp:TextBox ID="option4" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" ></asp:TextBox>
 																					<span class="error_option text-danger small"></span>
 																				</div>
 																			</div>

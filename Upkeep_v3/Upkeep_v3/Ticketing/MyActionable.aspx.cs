@@ -35,7 +35,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(CompanyID, LoggedInUserID);
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(0,CompanyID, LoggedInUserID);
 
                 int TicketID = 0;
                 string TicketNumber = string.Empty;

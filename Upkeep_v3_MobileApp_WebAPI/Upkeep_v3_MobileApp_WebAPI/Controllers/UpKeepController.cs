@@ -12,6 +12,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Text;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 {
@@ -1928,7 +1930,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         [HttpGet]
         public string FunTestDemoNotification(string StrTokenNumber)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Upkeep", "New request recieved");
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Upkeep", "New request recieved", "TICKET");
             return response;
         }
 
@@ -2056,7 +2058,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                     StrTKTID = Convert.ToString(ObjLocSqlParameters[35].Value);
 
-                    string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + StrTKTID, "New request recieved");
+                    string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + StrTKTID, "New request recieved", "TICKET");
 
                     //if (StrParkedId > 0 && StrParkedId != null)
                     //{
@@ -7241,11 +7243,11 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                var TicketNo= Convert.ToString(dr["TicketNo"]);
+                                var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request");
+                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request", "GATEPASS");
                             }
-                            
+
                         }
                     }
                 }
@@ -7326,9 +7328,9 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         }
 
         [HttpGet]
-        public string FunSendAppNotification(string StrTokenNumber, string TicketNo, string StrMessage)
+        public string FunSendAppNotification(string StrTokenNumber, string TicketNo, string StrMessage, string click_action)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage);
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage, click_action);
             return response;
         }
 
@@ -7342,9 +7344,9 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             {
 
                 VersionNo = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
-               
+
                 return Request.CreateResponse(HttpStatusCode.OK, VersionNo);
-                       
+
                 throw new Exception("Error while processing request.");
             }
             catch (Exception ex)
@@ -7352,7 +7354,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 throw new Exception(ex.Message);
 
             }
-            
+
         }
 
         //[-]Gate Pass API by Ajay 7th March 2020
@@ -7360,9 +7362,6 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         #endregion
 
         #region Work permit
-
-
-        #region "WorkPermit"
         [Route("api/UpKeep/Fetch_MyRequest_WorkPermit")]
         [HttpGet]
         public HttpResponseMessage Fetch_MyRequest_WorkPermit(string EmpCD, string RollCD)
@@ -7531,7 +7530,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[3] = new SqlParameter("@Remarks", objInsert.WP_Remarks);
                 ObjLocSqlParameter[4] = new SqlParameter("@Emp_CD", objInsert.WP_EmpCD);
                 ObjLocSqlParameter[5] = new SqlParameter("@Roll_CD", objInsert.WP_RollCD);
-                DsDataSet= ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_UpdateAction_WP_Request_API", ObjLocSqlParameter);
 
                 if (DsDataSet != null)
                 {
@@ -7544,7 +7543,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO, TicketNo, "New Workpermit Request");
+                                FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
                             }
 
                         }
@@ -7722,10 +7721,963 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         #endregion
 
+        #region Ticketing
+
+        [Route("api/UpKeep/Fetch_Location_Tree")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Location_Tree(int CompanyID)
+        {
+            List<ClsGatePassRequestDetails> ObjGatePass = new List<ClsGatePassRequestDetails>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_LocationTree", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                ObjGatePass = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Fetch_MyActionable_Ticket")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_MyActionable_Ticket(int CompanyID, string EmpCD, string RollCD)
+        {
+            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Fetch_MyActionable_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                         select new ClsMyActionableTicket
+                                         {
+                                             TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
+                                             TicketCode = p.Field<string>("Tkt_Code"),
+                                             LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
+                                             Loc_Desc = p.Field<string>("Loc_Desc"),
+                                             CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
+                                             Category_Desc = p.Field<string>("Category_Desc"),
+                                             SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
+                                             SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
+                                             Ticket_Date = p.Field<string>("Ticket_Date"),
+                                             Ticket_Status = p.Field<string>("Tkt_Status"),
+                                             Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
+                                             Ticket_Message = p.Field<string>("Tkt_Message"),
+                                             Ticket_ImagePath = p.Field<string>("ImagePath")
+                                         }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Fetch_MyRequest_Ticket")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_MyRequest_Ticket(int CompanyID, string EmpCD, string RollCD)
+        {
+            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Fetch_MyRequest_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                         select new ClsMyActionableTicket
+                                         {
+                                             TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
+                                             TicketCode = p.Field<string>("Tkt_Code"),
+                                             LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
+                                             Loc_Desc = p.Field<string>("Loc_Desc"),
+                                             CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
+                                             Category_Desc = p.Field<string>("Category_Desc"),
+                                             SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
+                                             SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
+                                             Ticket_Date = p.Field<string>("Ticket_Date"),
+                                             Ticket_Status = p.Field<string>("Tkt_Status"),
+                                             Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
+                                             Ticket_Message = p.Field<string>("Tkt_Message"),
+                                             Ticket_ImagePath = p.Field<string>("ImagePath")
+                                         }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Accept_Ticket")]
+        [HttpPost]
+        public HttpResponseMessage Accept_Ticket(int TicketID, string EmpCD, string RollCD)
+        {
+            //List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+            int iStatus = 0;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@TicketID", TicketID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Accept_Ticket_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            iStatus = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
+                            if (iStatus == 1)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.OK);
+                            }
+                            else
+                            {
+                                return Request.CreateResponse(HttpStatusCode.NotFound, "This ticket already accepted by other user");
+                            }
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+
+                }
+
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //Objticket = null;
+            }
+
+        }
+
+
+        [Route("api/UpKeep/Request_Ticket")]
+        [HttpPost]
+        public HttpResponseMessage Request_Ticket([FromBody] ClsTicketRaise objInsert)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string TicketPrefix = string.Empty;
+            string StrLocConnection = null;
+            string TicketID = string.Empty;
+            try
+            {
+                TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
+                ObjLocSqlParameter[0] = new SqlParameter("@TicketPrefix", TicketPrefix);
+                ObjLocSqlParameter[1] = new SqlParameter("@LocationID", objInsert.LocationID);
+                ObjLocSqlParameter[2] = new SqlParameter("@CategoryID", objInsert.CategoryID);
+                ObjLocSqlParameter[3] = new SqlParameter("@SubCategoryID", objInsert.SubCategoryID);
+                ObjLocSqlParameter[4] = new SqlParameter("@TicketMessage", objInsert.Ticket_Message);
+                //ObjLocSqlParameter[3] = new SqlParameter("@TicketImages", objInsert.Ticket_ImagePath);
+                ObjLocSqlParameter[5] = new SqlParameter("@EmpCD", objInsert.EmpCD);
+                ObjLocSqlParameter[6] = new SqlParameter("@RollCD", objInsert.RollCD);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Request_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            {
+                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                                FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
+                            }
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+        [Route("api/UpKeep/Fetch_Ticket_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Ticket_Details(int TicketID, int CompanyID, string EmpCD, string RollCD)
+        {
+            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
+                ObjLocSqlParameter[0] = new SqlParameter("@TicketID", TicketID);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[2] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Ticket_Details_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                         select new ClsMyActionableTicket
+                                         {
+                                             TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
+                                             TicketCode = p.Field<string>("Tkt_Code"),
+                                             LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
+                                             Loc_Desc = p.Field<string>("Loc_Desc"),
+                                             CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
+                                             Category_Desc = p.Field<string>("Category_Desc"),
+                                             SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
+                                             SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
+                                             Ticket_Date = p.Field<string>("Ticket_Date"),
+                                             Ticket_Status = p.Field<string>("Tkt_Status"),
+                                             Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
+                                             Ticket_Message = p.Field<string>("Tkt_Message"),
+                                             Ticket_ImagePath = p.Field<string>("ImagePath")
+                                         }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Update_Ticket_Action")]
+        [HttpPost]
+        public HttpResponseMessage Update_Ticket_Action([FromBody] ClsTicketUpdateAction objInsert)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                ObjLocSqlParameter[0] = new SqlParameter("@TicketID", objInsert.TicketID);
+                ObjLocSqlParameter[1] = new SqlParameter("@CloseTicketDesc", objInsert.CloseTicketDesc);
+                ObjLocSqlParameter[2] = new SqlParameter("@TicketAction", objInsert.TicketAction);
+                ObjLocSqlParameter[3] = new SqlParameter("@CurrentLevel", objInsert.CurrentLevel);
+                ObjLocSqlParameter[4] = new SqlParameter("@EmpCD", objInsert.EmpCD);
+                ObjLocSqlParameter[5] = new SqlParameter("@RollCD", objInsert.RollCD);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Action_API", ObjLocSqlParameter);
+
+                //if (DsDataSet != null)
+                //{
+                //    if (DsDataSet.Tables.Count > 0)
+                //    {
+                //        if (DsDataSet.Tables[0].Rows.Count > 0)
+                //        {
+                //            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                //            {
+                //                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                //                var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                //                FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
+                //            }
+
+                //        }
+                //    }
+                //}
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+        [Route("api/UpKeep/Save_Ticket_Image")]
+        [HttpPost]
+        public HttpResponseMessage Save_Ticket_Image([FromBody] ClsTicketImage objInsert)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                // Image save
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                var message1 = "";
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+
+                            postedFile.SaveAs(filePath);
+                        }
+                    }
+
+                    message1 = string.Format("Image Updated Successfully.");
+                    //return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+
+                // Image save
+
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                ObjLocSqlParameter[0] = new SqlParameter("@TicketID", objInsert.TicketID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", objInsert.EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", objInsert.RollCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", objInsert.Ticket_ImagePath);
+                ObjLocSqlParameter[4] = new SqlParameter("@TicketFlag", objInsert.TicketFlag);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
+
+                return Request.CreateResponse(HttpStatusCode.OK, message1);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+
+        [Route("api/UpKeep/PostTicketImage")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImageUploadURL"]);
+
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            string fileUploadPath = imgPath + CurrentDate;
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+                            var ImageName = TicketCode;
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            var filePath = fileUploadPath + "/" + ImageName + extension;
+
+                            postedFile.SaveAs(filePath);
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+
+        [Route("api/UpKeep/Fetch_Ticket_Workflow")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Ticket_Workflow(int CategoryID, int SubCategoryID)
+        {
+            List<ClsTicketWorkflow> Objticket = new List<ClsTicketWorkflow>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@CategoryID", CategoryID);
+                ObjLocSqlParameter[1] = new SqlParameter("@SubCategoryID", SubCategoryID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_TKT_Fetch_Workflow_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                         select new ClsTicketWorkflow
+                                         {
+                                             Level = Convert.ToString(p.Field<decimal>("Level")),
+                                             User_Desc = p.Field<string>("UserDescription"),
+                                             Group_Desc = p.Field<string>("GroupDescription"),
+                                             Escalate_Time = Convert.ToString(p.Field<decimal>("EscalateTime"))
+
+                                         }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
 
 
 
+        #endregion
 
+
+        #region "CheckList"
+
+        [Route("api/UpKeep/Fetch_CheckList_Config_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyCode) //int UserID,
+        {
+            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyCode", CompanyCode);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Fetch_CheckList_Config_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Config_Details(int ConfigID) //, string EmpCD, string RollCD
+        {
+
+            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+            ClChecklistConfig ObjChecklistConfig = new ClChecklistConfig();
+
+            List<ClChecklistConfigHead> ObjChecklistConfigHead = new List<ClChecklistConfigHead>();
+            List<ClChecklistConfigSection> ObjChecklistConfigSection = new List<ClChecklistConfigSection>();
+            //List<ClChecklistConfigQuestion> ObjChecklistConfigQuestion = new List<ClChecklistConfigQuestion>();
+            //List<ClChecklistConfigAnswer> ObjChecklistConfigAnswer = new List<ClChecklistConfigAnswer>();
+            List<ClChecklistConfigAnswerType> ObjChecklistConfigAnswerType = new List<ClChecklistConfigAnswerType>();
+
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@CHK_ConfigID", ConfigID);
+                //ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                //ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_DETAILS_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+
+                            ObjChecklistConfigHead = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                                      select new ClChecklistConfigHead
+                                                      {
+                                                          Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
+                                                          Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
+                                                          Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
+                                                          Is_Enable_Score = Convert.ToBoolean(p.Field<bool>("Is_Enable_Score")),
+                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore"))
+                                                      }).ToList();
+
+                            ObjChecklistConfigSection = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                                         select new ClChecklistConfigSection
+                                                         {
+                                                             // SrNo = Convert.ToInt32(p.Field<decimal>("SrNo")),
+                                                             Chk_Section_ID = Convert.ToInt32(p.Field<decimal>("Chk_Section_ID")),
+                                                             Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
+                                                             Chk_Section_Desc = Convert.ToString(p.Field<string>("Chk_Section_Desc")),
+
+                                                             ObjClChecklistConfigQuestion = (from x in DsDataSet.Tables[2].AsEnumerable()
+                                                                                             where x.Field<decimal>("Chk_Section_ID") == p.Field<decimal>("Chk_Section_ID")
+                                                                                             select new ClChecklistConfigQuestion
+                                                                                             {
+
+                                                                                                 CHK_Question_ID = Convert.ToInt32(x.Field<decimal>("CHK_Question_ID")),
+                                                                                                 Chk_Section_ID = Convert.ToInt32(x.Field<decimal>("Chk_Section_ID")),
+                                                                                                 Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                                                                 Is_Attach_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Attach_Mandatory")),
+                                                                                                 Is_Qn_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Qn_Mandatory")),
+                                                                                                 Qn_Score = Convert.ToInt32(x.Field<decimal>("Qn_Score")),
+                                                                                                 Chk_Qn_Ref_Desc = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Desc")),
+                                                                                                 Chk_Qn_Ref_Photo = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Photo")),
+                                                                                                 Chk_Ans_Type_ID = Convert.ToInt32(x.Field<decimal>("Chk_Ans_Type_ID")),
+                                                                                                 Is_Raise_Flag_Issue = Convert.ToBoolean(x.Field<bool>("Is_Raise_Flag_Issue")),
+
+                                                                                                 ObjClChecklistConfigAnswer = (from y in DsDataSet.Tables[3].AsEnumerable()
+                                                                                                                                   // where y.field<decimal>("chk_question_id ") == p.field<decimal>("chk_question_id ")
+                                                                                                                               where y.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
+                                                                                                                               select new ClChecklistConfigAnswer
+                                                                                                                               {
+                                                                                                                                   Chk_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_value_id")),
+                                                                                                                                   CHK_Question_ID = Convert.ToInt32(y.Field<decimal>("chk_question_id")),
+                                                                                                                                   Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                                                                   Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                                                                   Chk_Ans_Desc = Convert.ToString(y.Field<string>("chk_ans_desc")),
+                                                                                                                                   Chk_Ans_Type_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_type_id"))
+                                                                                                                               }).ToList()
+                                                                                             }).ToList()
+                                                         }).ToList();
+
+                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                                            select new ClChecklistConfigAnswerType
+                                                            {
+                                                                Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                                                                Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                                                                SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                                                                Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                                                            }).ToList();
+
+
+
+                            ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
+                            ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
+                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
+                            //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+         
+
+
+        [Route("api/UpKeep/Insert_Checklist_Response")]
+        [HttpPost]
+        public HttpResponseMessage Insert_Checklist_Response([FromBody] ClsChecklist_Response objInsert)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
+                ObjLocSqlParameter[2] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
+                ObjLocSqlParameter[3] = new SqlParameter("@User_Code", objInsert.User_Code);
+                ObjLocSqlParameter[4] = new SqlParameter("@CompanyID", objInsert.CompanyID);
+                ObjLocSqlParameter[5] = new SqlParameter("@LocationID", objInsert.LocationID);
+                ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
+
+                //NEED TO CONVERT DATA TO XML AND PASSED IN SP
+
+                ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", objInsert.ChkResponseData);
+
+
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                            //    FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                            //}
+
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
 
         #endregion
 

@@ -66,11 +66,12 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="QRCoder">
-      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRCoder.dll</HintPath>
+      <HintPath>..\..\..\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="QRGenerator">
-      <HintPath>..\..\..\QRGenerator\QRGenerator\QRGenerator\bin\QRGenerator.dll</HintPath>
+      <HintPath>..\..\..\QRGenerator.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -438,6 +439,7 @@
     <Content Include="assets\app\media\img\icons\logout.svg" />
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
+    <Content Include="assets\app\media\img\icons\workflow.png" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
     <Content Include="assets\app\media\img\logos\logo-2.png" />
     <Content Include="assets\app\media\img\logos\logo-3.png" />
@@ -909,12 +911,16 @@
     <Content Include="bin\Upkeep_v3.dll" />
     <Content Include="bin\Upkeep_v3.pdb" />
     <Content Include="bin\Upkeep_v3.XmlSerializers.dll" />
-    <Content Include="Checklist\Add_Checklist.aspx" />
-    <Content Include="Checklist\Checklist.aspx" />
-    <Content Include="Checklist\Checklist_Action.aspx" />
-    <Content Include="Checklist\Checklist_Request.aspx" />
-    <Content Include="Checklist\Edit_Checklist.aspx" />
-    <Content Include="Checklist\MyChecklist.aspx" />
+    <Content Include="CheckList\Add_Checklist.aspx" />
+    <Content Include="CheckList\Checklist.aspx" />
+    <Content Include="CheckList\Checklist_Action.aspx" />
+    <Content Include="CheckList\CheckList_Configuration.aspx" />
+    <Content Include="CheckList\CheckList_Report_Details.aspx" />
+    <Content Include="CheckList\CheckList_Report_Listing.aspx" />
+    <Content Include="CheckList\Checklist_Request.aspx" />
+    <Content Include="CheckList\ChkConfig_Listing.aspx" />
+    <Content Include="CheckList\Edit_Checklist.aspx" />
+    <Content Include="CheckList\MyChecklist.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -927,6 +933,13 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="GatePass\EditGP_Configuration.aspx" />
+    <Content Include="GatePass\GatePassConfig_Listing.aspx" />
+    <Content Include="GatePass\GatePass_Approval.aspx" />
+    <Content Include="GatePass\GatePass_Configuration.aspx" />
+    <Content Include="GatePass\GatePass_Request.aspx" />
+    <Content Include="GatePass\MyActionable_GatePass.aspx" />
+    <Content Include="GatePass\MyGatePass.aspx" />
     <Content Include="General_Masters\Add_Department.aspx" />
     <Content Include="General_Masters\Add_Frequency.aspx" />
     <Content Include="General_Masters\Add_Locations_Mst.aspx" />
@@ -970,6 +983,8 @@
     <Content Include="Ticketing\My_RequestRply.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
     <Content Include="Ticketing\Ticket.aspx" />
+    <Content Include="Ticketing\Ticket_CTT_Report.aspx" />
+    <Content Include="Ticketing\View_Ticket_Details.aspx" />
     <Content Include="Ticketing\Workflow_Details.aspx" />
     <Content Include="Ticketing\Workflow_Master.aspx" />
     <Content Include="vendors\animate.css\animate.css" />
@@ -3840,6 +3855,17 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
+    <Content Include="General_Masters\Template\RetailerData.xlsx" />
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="Work_Permit\MyActionable_WorkPermit.aspx" />
+    <Content Include="Work_Permit\MyWorkPermit.aspx" />
+    <Content Include="Work_Permit\WorkPermit_Configuration.aspx" />
+    <Content Include="Work_Permit\WorkPermit_Request.aspx" />
+    <Content Include="Work_Permit\WPConfig_Listing.aspx" />
     <None Include="Properties\PublishProfiles\App_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -3852,11 +3878,6 @@
     <Content Include="UpkeepMaster.Master" />
     <Content Include="VMS\Visit_Configuration.aspx" />
     <Content Include="VMS\Visit_Request.aspx" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="VMS\VMSConfig_Listing.aspx" />
     <Content Include="VMS\VMSRequest_Listing.aspx" />
     <Content Include="Web.config">
@@ -3921,46 +3942,74 @@
     <Compile Include="AssetManagement\AssetManagementServiceRequest.aspx.designer.cs">
       <DependentUpon>AssetManagementServiceRequest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\Add_Checklist.aspx.cs">
+    <Compile Include="CheckList\Add_Checklist.aspx.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\Add_Checklist.aspx.designer.cs">
+    <Compile Include="CheckList\Add_Checklist.aspx.designer.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\Checklist.aspx.cs">
+    <Compile Include="CheckList\Checklist.aspx.cs">
       <DependentUpon>Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\Checklist.aspx.designer.cs">
+    <Compile Include="CheckList\Checklist.aspx.designer.cs">
       <DependentUpon>Checklist.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\Checklist_Action.aspx.cs">
+    <Compile Include="CheckList\Checklist_Action.aspx.cs">
       <DependentUpon>Checklist_Action.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\Checklist_Action.aspx.designer.cs">
+    <Compile Include="CheckList\Checklist_Action.aspx.designer.cs">
       <DependentUpon>Checklist_Action.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\Checklist_Request.aspx.cs">
+    <Compile Include="CheckList\CheckList_Configuration.aspx.cs">
+      <DependentUpon>CheckList_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Configuration.aspx.designer.cs">
+      <DependentUpon>CheckList_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Details.aspx.cs">
+      <DependentUpon>CheckList_Report_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Details.aspx.designer.cs">
+      <DependentUpon>CheckList_Report_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Listing.aspx.cs">
+      <DependentUpon>CheckList_Report_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\CheckList_Report_Listing.aspx.designer.cs">
+      <DependentUpon>CheckList_Report_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Request.aspx.cs">
       <DependentUpon>Checklist_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\Checklist_Request.aspx.designer.cs">
+    <Compile Include="CheckList\Checklist_Request.aspx.designer.cs">
       <DependentUpon>Checklist_Request.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\Edit_Checklist.aspx.cs">
+    <Compile Include="CheckList\ChkConfig_Listing.aspx.cs">
+      <DependentUpon>ChkConfig_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\ChkConfig_Listing.aspx.designer.cs">
+      <DependentUpon>ChkConfig_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Edit_Checklist.aspx.cs">
       <DependentUpon>Edit_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\Edit_Checklist.aspx.designer.cs">
+    <Compile Include="CheckList\Edit_Checklist.aspx.designer.cs">
       <DependentUpon>Edit_Checklist.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Checklist\MyChecklist.aspx.cs">
+    <Compile Include="CheckList\MyChecklist.aspx.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checklist\MyChecklist.aspx.designer.cs">
+    <Compile Include="CheckList\MyChecklist.aspx.designer.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
@@ -4039,6 +4088,55 @@
     </Compile>
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\EditGP_Configuration.aspx.cs">
+      <DependentUpon>EditGP_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\EditGP_Configuration.aspx.designer.cs">
+      <DependentUpon>EditGP_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\GatePassConfig_Listing.aspx.cs">
+      <DependentUpon>GatePassConfig_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\GatePassConfig_Listing.aspx.designer.cs">
+      <DependentUpon>GatePassConfig_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Approval.aspx.cs">
+      <DependentUpon>GatePass_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Approval.aspx.designer.cs">
+      <DependentUpon>GatePass_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Configuration.aspx.cs">
+      <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
+      <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Request.aspx.cs">
+      <DependentUpon>GatePass_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Request.aspx.designer.cs">
+      <DependentUpon>GatePass_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\MyActionable_GatePass.aspx.cs">
+      <DependentUpon>MyActionable_GatePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\MyActionable_GatePass.aspx.designer.cs">
+      <DependentUpon>MyActionable_GatePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\MyGatePass.aspx.cs">
+      <DependentUpon>MyGatePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\MyGatePass.aspx.designer.cs">
+      <DependentUpon>MyGatePass.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Add_Department.aspx.cs">
       <DependentUpon>Add_Department.aspx</DependentUpon>
@@ -4273,6 +4371,20 @@
     <Compile Include="Ticketing\Ticket.aspx.designer.cs">
       <DependentUpon>Ticket.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report.aspx.cs">
+      <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report.aspx.designer.cs">
+      <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\View_Ticket_Details.aspx.cs">
+      <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\View_Ticket_Details.aspx.designer.cs">
+      <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ticketing\Workflow_Details.aspx.cs">
       <DependentUpon>Workflow_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4326,6 +4438,41 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Work_Permit\MyActionable_WorkPermit.aspx.cs">
+      <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Work_Permit\MyActionable_WorkPermit.aspx.designer.cs">
+      <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Work_Permit\MyWorkPermit.aspx.cs">
+      <DependentUpon>MyWorkPermit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Work_Permit\MyWorkPermit.aspx.designer.cs">
+      <DependentUpon>MyWorkPermit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Work_Permit\WorkPermit_Configuration.aspx.cs">
+      <DependentUpon>WorkPermit_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Work_Permit\WorkPermit_Configuration.aspx.designer.cs">
+      <DependentUpon>WorkPermit_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Work_Permit\WorkPermit_Request.aspx.cs">
+      <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Work_Permit\WorkPermit_Request.aspx.designer.cs">
+      <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Work_Permit\WPConfig_Listing.aspx.cs">
+      <DependentUpon>WPConfig_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Work_Permit\WPConfig_Listing.aspx.designer.cs">
+      <DependentUpon>WPConfig_Listing.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -5213,7 +5360,6 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Gate_Pass\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
     <Folder Include="vendors\handlebars\node_modules\.bin\" />
@@ -5221,7 +5367,6 @@
     <Folder Include="vendors\handlebars\node_modules\source-map\lib\source-map\" />
     <Folder Include="vendors\markdown\bin\" />
     <Folder Include="vendors\markdown\node_modules\.bin\" />
-    <Folder Include="Work_Permit\" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/Upkeep_V3_Services.asmx">

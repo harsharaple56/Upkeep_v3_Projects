@@ -10,23 +10,43 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            DatatableHtmlTableDemo.init();
+            //DatatableHtmlTableDemo.init();
             DatatableHtmlTableDemoGroup.init();
+
+             //$("#ddlDepartment").on("change", function () {
+             //           //alert('department clicked');
+             //           var selection = $("#ddlDepartment option:selected").html();
+             //           var dataset = $('#grdInfodetails tbody').find('tr');
+             //           // show all rows first
+             //           dataset.show();
+             //           // filter the rows that should be hidden
+             //           dataset.filter(function (index, item) {
+             //               return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+             //           }).hide();
+             //           //e.search($(this).val().toLowerCase(), "Department")
+             //       })
         });
 
         var DatatableHtmlTableDemo = {
             init: function () {
-                var e; e = $(".m-datatable").mDatatable({
+                var e; e = $(".m-datatableUser").mDatatable({
                     data: { saveState: { cookie: !1 } },
                     search: { input: $("#generalSearch") }
 
-                    , responsive: true,
-                    pagingType: 'full_numbers',
-                    scrollX: true,
-                    'fnDrawCallback': function () {
-                        init_plugins();
-                    }
+                    //, responsive: true,
+                    //pagingType: 'full_numbers',
+                    //scrollX: true,
+                    //scrollY: true,
+                    //'fnDrawCallback': function () {
+                    //    init_plugins();
+                    //}
                 })
+            //    ,
+            //$("#ddlDepartment").on("change", function () {
+            //        alert('department clicked');
+            //    e.search($(this).val().toLowerCase(), "Department")
+            //        })
+                    //$("#ddlDepartment").selectpicker()
             }
         };
 
@@ -92,11 +112,23 @@
             txtControl = obj;
         }
 
+         function funddl() {
+             //alert('department clicked');
+                        var selection = $("#ddlDepartment option:selected").html();
+                        var dataset = $('#grdInfodetails tbody').find('tr');
+                        // show all rows first
+                        dataset.show();
+                        // filter the rows that should be hidden
+                        dataset.filter(function (index, item) {
+                            return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+                        }).hide();
+        }
+
         function FunEditClick(ID, Desc) {
             //debugger;
             //alert(ID);
             //alert(Desc);
-            txtControl.value = Desc.replace("$",",") ;
+            txtControl.value = Desc.replace("$", ",");
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
             //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeWorkflowUsers.ClientID %>').hide();
@@ -110,12 +142,18 @@
             var SelectedUsersID = null;
             var SelectedUsersName = null;
 
-            
+            //$('#grdInfodetails').DataTable({
+            //    responsive: true,
+            //    pagingType: 'full_numbers',
+            //    'fnDrawCallback': function () {
+            //        init_plugins();
+            //    }
+            //});
 
             //var hiddenValue = $('#hdnSelectedUserID').val();
             //var hiddenValue2 = $('#hdnSelectedUserName').val();  
 
-            SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value+"#0";
+            SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value + "#0";
             SelectedUsersName = document.getElementById('<%= hdnSelectedUserName.ClientID%>').value;
 
             //SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
@@ -124,7 +162,7 @@
             //alert(SelectedUsersID);
             //alert(SelectedUsersName);
 
-            FunEditClick(SelectedUsersID,SelectedUsersName);
+            FunEditClick(SelectedUsersID, SelectedUsersName);
         }
 
         function removeRows() {
@@ -133,7 +171,7 @@
         }
 
         function FunSetXML() {
-            debugger;
+            //debugger;
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
@@ -241,7 +279,7 @@
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-progress">
 
-                                   
+
 
                                     <!-- here can place a progress bar-->
                                 </div>
@@ -281,7 +319,7 @@
                                         <div class="modal-body">
                                             <div class="row" style="margin-bottom: 0;">
                                                 <div class="col-xs-8 col-lg-6 form-inline">
-                                                    <label for="message-text" class="col-xl-4 col-lg-3 form-control-label" style="text-align: center;">Workflow Description :</label>
+                                                    <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Workflow Description :</label>
                                                     <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkflowDesc" Visible="true"
                                                         Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
@@ -295,11 +333,12 @@
 
                                             </div>
 
-                                            <div class="row" style="margin-bottom: 0;">
+                                            <%--<div class="row" >--%>
                                                 <asp:UpdatePanel runat="server" style="width: 100%;">
                                                     <ContentTemplate>
+                                                        <div class="form-group row" style="margin-bottom: 0;">
                                                         <div class="col-xs-8 col-lg-6 form-inline">
-                                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
+                                                            <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Category :</label>
                                                             <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
                                                             <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;"
                                                                 ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
@@ -308,12 +347,13 @@
                                                         <div class="col-xs-8 col-lg-6 form-inline" style="margin-bottom: 0;">
                                                             <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-Category :</label>
                                                             <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>
-                                                            <asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
-                                                                ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>
+                                                            <%--<asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
+                                                                ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                                         </div>
+                                                            </div>
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
-                                            </div>
+                                           <%-- </div>--%>
                                             <%--<div class="form-group row" style="margin-bottom: 0;">
                                                     <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
                                                     <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 25%;" runat="server"></asp:DropDownList>
@@ -322,7 +362,7 @@
                                                 </div>--%>
                                             <div class="form-group row" style="margin-bottom: 0;">
                                                 <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
-                                                <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
+                                                <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%; margin-left: 4%;"></asp:TextBox>
 
                                                 <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationWorkflow" />
 
@@ -423,7 +463,7 @@
                                                                         </div>
                                                                         <div class="col-md-6 row">
                                                                             <label class="col-form-label col-xl-4 col-lg-3 ">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;"  onchange="funddl();"  OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"  runat="server"></asp:DropDownList>
 
                                                                         </div>
                                                                         <div class="col-md-3" style="text-align: right;">
@@ -432,10 +472,10 @@
                                                                     </div>
                                                                     <br />
 
-                                                                     <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
-                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
-                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableUser"
                                                                         AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound">
                                                                         <Columns>
                                                                             <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
@@ -457,6 +497,7 @@
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
                                                                             <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
+                                                                            <asp:BoundField DataField="Department" SortExpression="Department" HeaderText="Department"></asp:BoundField>
                                                                         </Columns>
 
                                                                         <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>

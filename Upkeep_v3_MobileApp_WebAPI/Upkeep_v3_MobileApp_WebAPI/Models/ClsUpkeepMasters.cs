@@ -313,7 +313,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string ProPubStrImagePath { get; set; }
         public string ProPubStrRemark { get; set; }
 
-       public string ProPubStrChkImgRequired { get; set; }
+        public string ProPubStrChkImgRequired { get; set; }
 
     }
     public class ClsCheckRadio
@@ -763,15 +763,15 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
 
     }
 
-	    public class ClsWorkPermitApproverMatrix
+    public class ClsWorkPermitApproverMatrix
     {
         //3
         public string Level { get; set; }
         public string LevelDescription { get; set; }
-        public string User { get; set; } 
+        public string User { get; set; }
 
     }
-	
+
     public class ClsWorkPermitSectionHeaderData
     {
         //XXX
@@ -783,5 +783,159 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
     #endregion
 
 
+    #region Checklist
+
+    public class ClChecklistConfig
+    {
+        public List<ClChecklistConfigHead> ObjClChecklistConfigHead { get; set; }
+        public List<ClChecklistConfigSection> ObjClChecklistConfigSection { get; set; }
+        public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
+
+    }
+    public class ClChecklistConfigHead
+    {
+        //XXX
+        public int Chk_Config_ID { get; set; }
+        public string Chk_Title { get; set; }
+        public string Chk_Desc { get; set; }
+        public bool Is_Enable_Score { get; set; }
+        public int TotalScore { get; set; }
+    }
+    public class ClChecklistConfigSection
+    {
+        //XXX
+        //public int SrNo { get; set; }
+        public int Chk_Section_ID { get; set; }
+        public int Chk_Config_ID { get; set; }
+        public string Chk_Section_Desc { get; set; }
+        public List<ClChecklistConfigQuestion> ObjClChecklistConfigQuestion { get; set; }
+
+    }
+    public class ClChecklistConfigQuestion
+    {
+        //XXX
+        public int CHK_Question_ID { get; set; }
+        public int Chk_Section_ID { get; set; }
+        public string Qn_Desc { get; set; }
+        public bool Is_Attach_Mandatory { get; set; }
+        public bool Is_Qn_Mandatory { get; set; }
+        public int Qn_Score { get; set; }
+        public string Chk_Qn_Ref_Desc { get; set; }
+        public string Chk_Qn_Ref_Photo { get; set; }
+        public int Chk_Ans_Type_ID { get; set; }
+        public bool Is_Raise_Flag_Issue { get; set; }
+        public List<ClChecklistConfigAnswer> ObjClChecklistConfigAnswer { get; set; }
+    }
+    public class ClChecklistConfigAnswer
+    {
+        //XXX
+        public int Chk_Ans_Value_ID { get; set; }
+        public int CHK_Question_ID { get; set; }
+        public bool Ans_Is_Flag { get; set; }
+        public bool Is_Default { get; set; }
+        public string Chk_Ans_Desc { get; set; }
+        public int Chk_Ans_Type_ID { get; set; }
+    }
+    public class ClChecklistConfigAnswerType
+    {
+        //XXX 
+        public int Ans_Type_ID { get; set; }
+        public string Ans_Type_Desc { get; set; }
+        public string SDesc { get; set; }
+        public bool Is_MultiValue { get; set; }
+    }
+
+
+
+    public class ClsChecklist_Response
+    {
+        public int Chk_Response_ID { get; set; }
+        public int Chk_Config_ID { get; set; }
+        public string User_Code { get; set; }
+        public int CompanyID { get; set; }
+        public int LocationID { get; set; }
+        public int DepartmentID { get; set; }
+        public string ChkResponseData { get; set; }
+        public List<ClsChecklist_Response_Data> ObjChkResponseData { get; set; }
+    }
+
+    public class ClsChecklist_Response_Data
+    {
+        public int SectionID { get; set; }
+        public int QuestionID { get; set; }
+        public string AnswerID { get; set; }
+        public int AnswerTypeID { get; set; }
+        public List<ClsChecklist_Response_Data_Values> ObjChkResponseDataValue { get; set; }
+    }
+    public class ClsChecklist_Response_Data_Values
+    {
+        public int value { get; set; }
+    }
+
+        #endregion
+
+        #region Ticketing
+
+        public class ClsMyActionableTicket
+    {
+        public string TicketID { get; set; }
+        public string TicketCode { get; set; }
+        public string LocID { get; set; }
+        public string Loc_Desc { get; set; }
+        public string CategoryID { get; set; }
+        public string Category_Desc { get; set; }
+        public string SubCategoryID { get; set; }
+        public string SubCategory_Desc { get; set; }
+        public string Ticket_Date { get; set; }
+        public string Ticket_Status { get; set; }
+        public string Ticket_ActionStatus { get; set; }
+        public string Ticket_Message { get; set; }
+        public string Ticket_ImagePath { get; set; }
+
+    }
+
+    public class ClsTicketRaise
+    {
+        //public string TicketPrefix { get; set; }
+        public string LocationID { get; set; }
+        public string CategoryID { get; set; }
+        public string SubCategoryID { get; set; }
+        public string Ticket_Message { get; set; }
+        //public string Ticket_ImagePath { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+
+    }
+
+    public class ClsTicketUpdateAction
+    {
+        public string TicketID { get; set; }
+        public string CloseTicketDesc { get; set; }
+        public string TicketAction { get; set; }
+        public string CurrentLevel { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+
+    }
+
+    public class ClsTicketImage
+    {
+        public string TicketID { get; set; }
+        public string EmpCD { get; set; }
+        public string RollCD { get; set; }
+        public string Ticket_ImagePath { get; set; }
+        public string TicketFlag { get; set; }
+    }
+
+
+    public class ClsTicketWorkflow
+    {
+        public string Level { get; set; }
+        public string User_Desc { get; set; }
+        public string Group_Desc { get; set; }
+        public string Escalate_Time { get; set; }
+    }
+
+    #endregion
 
 }

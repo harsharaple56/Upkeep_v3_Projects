@@ -68,6 +68,7 @@
                         <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
 
                         <div class="pull-right">
+                            <asp:LinkButton ID="lnkSampleFile" runat="server" Text="Download Sample File" OnClick="lnkSampleFile_Click" ></asp:LinkButton>
                             <asp:FileUpload ID="fileUpload" runat="server" />
                             <asp:Button ID="btnImportExcel" runat="server" OnClick="btnImportExcel_Click" Text="Import From Excel" class="btn btn-primary btn-success" />
 

@@ -327,7 +327,7 @@ background-color: blanchedalmond;
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -360,7 +360,14 @@ background-color: blanchedalmond;
                                     </button>
                                     <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
                                 </div>
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-md-1 col-form-label font-weight-bold">Name :</label>
+                                    <div class="col-md-5 col-form-label">
+                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
 
+                                    </div>
+                                </div>
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                     <label class="col-md-1 col-form-label font-weight-bold">Email :</label>
                                     <div class="col-md-5 col-form-label">
@@ -421,8 +428,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <div class="col-md-3">
                                                 <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Eval("Is_Mandatory").ToString() == "Yes" ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
-                                                <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
+                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                                <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
                                                 <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                             </div>
                                             <div class="col-md-9">
@@ -649,9 +656,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" style="display:block;">
+                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
                                                                         <Columns>
-                                                                            <asp:BoundField DataField="ActionInfoId" Visible="false"></asp:BoundField>
+                                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
                                                                             <asp:TemplateField HeaderText="Select">
                                                                                 <ItemTemplate>
                                                                                     <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
@@ -662,7 +669,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                                     <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="ActionInfoDesc">
+                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
                                                                                 <ItemTemplate>
                                                                                     <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
                                                                                         <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
@@ -701,9 +708,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                                             <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableGroup" runat="server" SkinID="grdSearch">
                                                                 <Columns>
-                                                                    <asp:BoundField DataField="ActionInfoGId" Visible="false"></asp:BoundField>
+                                                                    <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
 
-                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="ActionInfoGroupDesc">
+                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
                                                                         <ItemTemplate>
                                                                             <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
                                                                                 <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>

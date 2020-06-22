@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Feedback_MIS_Report.aspx.cs" Inherits="Upkeep_v3.Feedback.Feedback_MIS_Report" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Feedback_MIS_Report.aspx.cs" Inherits="Upkeep_v3.Feedback.Feedback_MIS_Report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -73,7 +73,7 @@
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
                 <div class="m-content">
 
-                    <form class="m-form m-form--label-align-left- m-form--state-" id="event_form" runat="server">
+                     
                         <div class="m-portlet m-portlet--mobile">
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-caption">
@@ -133,8 +133,7 @@
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
 
-                       
-                    </form>
+                   
                 </div>
             </div>
 

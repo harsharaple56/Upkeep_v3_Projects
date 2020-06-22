@@ -180,7 +180,8 @@ background-color: blanchedalmond;
             font-size: 50px;
             /*margin-left: -10px;*/
         }
-        bfm                                                                            
+
+        bfm
         .selectedSmiley {
             font-size: 85px;
         }
@@ -265,14 +266,14 @@ background-color: blanchedalmond;
                 var emoji = ["😶", "😠", "🙁", "😐", "😊", "😍"];
                 for (var i = 1; i <= 5; i++) {
                     if (i <= rating) {
-                        $(".rating" + i).text(emoji[rating]);
-                        $(".rating" + i).addClass("selectedSmiley");
+                        $(this).parent().find(".rating" + i).text(emoji[rating]);
+                        $(this).parent().find(".rating" + i).addClass("selectedSmiley");
 
 
                     }
                     else {
-                        $(".rating" + i).text(emoji[0]);
-                        $(".rating" + i).removeClass("selectedSmiley");
+                        $(this).parent().find(".rating" + i).text(emoji[0]);
+                        $(this).parent().find(".rating" + i).removeClass("selectedSmiley");
 
                     }
                 }
@@ -314,7 +315,7 @@ background-color: blanchedalmond;
 
 
         function SubmitHeader() {
-
+            
             var cols_len = 0;
             $('#ContentPlaceHolder1_tblFeedbackHeader').find('tr:first td').each(function () {
                 var cspan = $(this).attr('colspan');
@@ -409,7 +410,10 @@ background-color: blanchedalmond;
                         <asp:HiddenField ID="hdnFeedbackHeader" runat="server" ClientIDMode="Static" />
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
+                        <div class="alert alert-danger" id="divStatus" visible="False" runat="server" role="alert">
+                            <asp:Label ID="lblStatus" Text="" runat="server"></asp:Label>
 
+                        </div>
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -424,7 +428,6 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-md-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -432,8 +435,8 @@ background-color: blanchedalmond;
                                         </span>
                                     </a>
                                     <div class="btn-group">
-
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="SubmitHeader()" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Save" />
+                                  
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeFeedbackRequestSaveSuccess" runat="server" PopupControlID="pnlFeedbackReqestSuccess" TargetControlID="btnTest"
@@ -448,7 +451,7 @@ background-color: blanchedalmond;
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
                                     <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
                                     <div class="col-md-4">
                                         <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlFeedbackTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -464,68 +467,68 @@ background-color: blanchedalmond;
 
                                 <br />
 
-
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Customer Details</label>
-                                </div>
-
-
-                                <div class="m-form__section m-form__section--first">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">* First Name::</label>
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:TextBox ID="First_name" runat="server" class="form-control m-input" placeholder="First name"></asp:TextBox>
-                                            <span id="error_First_name" class="text-danger small"></span>
-                                        </div>
+                                <div id="divCustomer" runat="server">
+                                    <div class="form-group row" style="background-color: #00c5dc;">
+                                        <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Customer Details</label>
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">* Last Name:</label>
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:TextBox ID="Last_Name" runat="server" class="form-control m-input" placeholder="Last Name"></asp:TextBox>
-                                            <span id="error_Last_Name" class="text-danger small"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">* Phone No:</label>
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:TextBox ID="phone_no" runat="server" class="form-control m-input" placeholder="Phone No."></asp:TextBox>
-                                            <span id="error_Phone_No" class="text-danger small"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">* EmailID:</label>
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="EmailID"></asp:TextBox>
-                                            <span id="error_EmailID" class="text-danger small"></span>
-                                        </div>
-                                    </div>
-                                    <div class="m-form__group form-group row">
-                                        <label class="col-3 col-form-label">* Gender:</label>
-                                        <div class="col-9">
-                                            <div class="m-radio-inline">
-                                                <label class="m-radio">
-                                                    <asp:RadioButton ID="rdbMale" runat="server" GroupName="Gender" Checked="true" />
-                                                    Male
-																			<span></span>
-                                                </label>
-                                                <label class="m-radio">
-                                                    <asp:RadioButton ID="rdbFemale" runat="server" GroupName="Gender" />
-                                                    Female
-																			<span></span>
-                                                </label>
 
-                                                <label class="m-radio">
-                                                    <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
-                                                    Other
-																			<span></span>
-                                                </label>
+
+                                    <div class="m-form__section m-form__section--first">
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">First Name::</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="First name"></asp:TextBox>
+                                                <span id="error_First_name" class="text-danger small"></span>
                                             </div>
-                                            <span id="error_Gender" class="text-danger small"></span>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Last Name:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Last Name"></asp:TextBox>
+                                                <span id="error_Last_Name" class="text-danger small"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Phone No:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <asp:TextBox ID="Phoneno" TextMode="Phone" runat="server" class="form-control m-input" placeholder="Phone No."></asp:TextBox>
+                                                <span id="error_Phone_No" class="text-danger small"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">EmailID:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <asp:TextBox ID="EmailID" TextMode="Email" runat="server" class="form-control m-input" placeholder="EmailID"></asp:TextBox>
+                                                <span id="error_EmailID" class="text-danger small"></span>
+                                            </div>
+                                        </div>
+                                        <div class="m-form__group form-group row">
+                                            <label class="col-3 col-form-label">Gender:</label>
+                                            <div class="col-9">
+                                                <div class="m-radio-inline">
+                                                    <label class="m-radio">
+                                                        <asp:RadioButton ID="rdbMale" runat="server" GroupName="Gender" Checked="true" />
+                                                        Male
+																			<span></span>
+                                                    </label>
+                                                    <label class="m-radio">
+                                                        <asp:RadioButton ID="rdbFemale" runat="server" GroupName="Gender" />
+                                                        Female
+																			<span></span>
+                                                    </label>
+
+                                                    <label class="m-radio">
+                                                        <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
+                                                        Other
+																			<span></span>
+                                                    </label>
+                                                </div>
+                                                <span id="error_Gender" class="text-danger small"></span>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
-
-
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Feedback Details</label>
@@ -537,8 +540,8 @@ background-color: blanchedalmond;
 
                                         <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
                                         <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
-                                        
-                                        <div class="form-group" style="padding-left: 1%;;margin-top:4%;">
+
+                                        <div class="form-group" style="padding-left: 1%; margin-top: 4%;">
                                             <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
                                             <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
                                             <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
@@ -568,8 +571,6 @@ background-color: blanchedalmond;
                                                         </ul>
                                                     </div>
                                                     <div>
-
-
                                                     </div>
 
                                                     <div class='success-box' style="display: none;">
@@ -590,14 +591,14 @@ background-color: blanchedalmond;
                                             <div id="divTextArea" style="display: none" runat="server">
                                                 <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                             </div>
-<%--                                            <div id="divRadioButton" style="display: none" runat="server">
-                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Vertical" ValidationGroup="Radio" ClientIDMode="Static" RepeatLayout="Flow" CellSpacing="1" CellPadding="1"></asp:RadioButtonList>
-                                            </div>--%>
                                             <div id="divOptions" style="display: none" runat="server">
+                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
+                                            </div>
+                                            <div id="divOptions1" style="display: none" runat="server">
                                                 <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
                                             </div>
                                             <div id="divEmoji" style="display: none" runat="server">
-                                                <div class="ratingSmiley text-center" >
+                                                <div class="ratingSmiley text-center">
                                                     <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
                                                     <span class="rating1">😶</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
 
@@ -621,16 +622,49 @@ background-color: blanchedalmond;
                         </div>
 
 
-
-                        <cc1:ModalPopupExtender ID="mpeMeetingUsers" runat="server" PopupControlID="pnlMeetingUsers" TargetControlID="pop2"
-                            CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
-                        </cc1:ModalPopupExtender>
-
                         <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
 
+                        <asp:Panel ID="pnlFeedbackReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+                            <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                            <ContentTemplate>
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Feedback Request Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
+                                                    </div>
+                                                    <%-- <div class="form-group m-form__group row">
+                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
+                                                        <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                        <br />
+                                                        <strong>Please note down your Request ID.</strong>
+                                                    </div>--%>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" />
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </asp:Panel>
                         <%--</form>--%>
                     </div>
                 </div>

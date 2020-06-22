@@ -376,8 +376,17 @@ namespace Upkeep_v3.Ticketing
             int CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
             Fetch_CategorySubCategory(CategoryID);
 
-            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon dark disabled");
-            btnViewWorkflow.Attributes.Add("style", "pointer-events: none;;padding: 0.45rem 1.15rem;");
+            //btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon dark disabled");
+            //btnViewWorkflow.Attributes.Add("style", "pointer-events: none;;padding: 0.45rem 1.15rem;");
+
+            int SubCategoryID = 0;
+            SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
+            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
+            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
+
+            BindWorkflow(CategoryID, SubCategoryID);
+
+            dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
         }
 
         protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace Upkeep_v3.Feedback
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            event_form.Action= @"EventDetails.aspx";
+            //event_form.Action= @"EventDetails.aspx";  // commentd by suju removed form type 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 Response.Redirect("~/Login.aspx", false);
@@ -122,25 +122,25 @@ namespace Upkeep_v3.Feedback
                         CustQuesType = CustQuestypeArray[0];
                     }
 
-                    string[] Arr_option1 = Request.Form.GetValues("Customer[" + i + "][option1]");
+                    string[] Arr_option1 = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$option1]");
                     if (Arr_option1 != null)
                     {
                         option1 = Arr_option1[0];
                     }
 
-                    string[] Arr_option2 = Request.Form.GetValues("Customer[" + i + "][option2]");
+                    string[] Arr_option2 = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$option2]");
                     if (Arr_option2 != null)
                     {
                         option2 = Arr_option2[0];
                     }
 
-                    string[] Arr_option3 = Request.Form.GetValues("Customer[" + i + "][option3]");
+                    string[] Arr_option3 = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$option3]");
                     if (Arr_option3 != null)
                     {
                         option3 = Arr_option3[0];
                     }
 
-                    string[] Arr_option4 = Request.Form.GetValues("Customer[" + i + "][option4]");
+                    string[] Arr_option4 = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$option4]");
                     if (Arr_option4 != null)
                     {
                         option4 = Arr_option4[0];

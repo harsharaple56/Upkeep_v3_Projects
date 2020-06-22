@@ -17,8 +17,11 @@ namespace Upkeep_v3.Feedback
         #region Global variables
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        string SessionVisitor = string.Empty;
         DataSet dsConfig = new DataSet();
         int CompanyID = 0;
+        int EventID = 0;
+
         #endregion
 
         #region Event 
@@ -27,15 +30,40 @@ namespace Upkeep_v3.Feedback
         {
             //LoggedInUserID = "admin";
             //LoggedInUserID = "121";
+            string strEventID = string.Empty;
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            if (LoggedInUserID == "")
-            {
-                // redirect to custom error page -- session timeout
-                //Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-            }
+            SessionVisitor = Convert.ToString(Session["Visitor"]);
+                
+           
             if (!IsPostBack)
             {
+                if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                {
+                    Response.Redirect("~/Login.aspx", false);
+                    return;
+                }
+                else if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
+                {
+                    divTitle.Visible = false;
+                    if (!System.String.IsNullOrWhiteSpace(Request.QueryString["EventID"]))
+                    {
+                        strEventID = Request.QueryString["EventID"].ToString();
+                        if (strEventID.All(char.IsDigit))
+                        {
+                            ViewState["EventID"] = Convert.ToInt32(strEventID);
+                        }
+
+                        BindEvent();
+                    }
+                }
+
+                else if(!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                {
+
+                    divCustomer.Visible = false;
+                }
+
                 BindFeedbackEventTitle();
             }
             //if (!System.String.IsNullOrWhiteSpace(Request.QueryString["WPEventID"]))
@@ -48,19 +76,17 @@ namespace Upkeep_v3.Feedback
 
         protected void ddlFeedbackTitle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int ConfigTitleID = 0;
-
+            
             try
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
 
-                ConfigTitleID = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
+               ViewState["EventID"] = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
 
+               
 
-                dsConfig = ObjUpkeep.bindEventDetails(CompanyID, ConfigTitleID);
+                BindEvent();
 
-                rptHeaderDetails.DataSource = dsConfig.Tables[0];
-                rptHeaderDetails.DataBind();
 
 
             }
@@ -122,18 +148,24 @@ namespace Upkeep_v3.Feedback
                 dt.DefaultView.RowFilter = "Question_ID = " + Convert.ToString(HeadId) + "";
                 dt = dt.DefaultView.ToTable();
 
-                if (AnswerType == "Option1")
+                if (AnswerType == "Options")
                 {
                     RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 
+
+
                     if (dt.Rows.Count > 0)
                     {
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option1"].ToString(), "1"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option2"].ToString(), "2"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option3"].ToString(), "3"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option4"].ToString(), "4"));
                         //rptRadio.DataSource = dt;
                         //rptRadio.DataBind(); 
-                        divRadioButtonrdbYes.DataTextField = "Ans_Type_Data"; // "Ans_Type_Desc";
-                        divRadioButtonrdbYes.DataValueField = "Ans_Type_Data_ID";  // "Ans_Type_ID";// 
-                        divRadioButtonrdbYes.DataSource = dt;
-                        divRadioButtonrdbYes.DataBind();
+                        //divRadioButtonrdbYes.DataTextField = "Ans_Type_Data"; // "Ans_Type_Desc";
+                        //divRadioButtonrdbYes.DataValueField = "Ans_Type_Data_ID";  // "Ans_Type_ID";// 
+                        //divRadioButtonrdbYes.DataSource = dt;
+                        //divRadioButtonrdbYes.DataBind();
                     }
                     else
                     {
@@ -168,7 +200,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.GetEventList(CompanyID,"*");
+                dsTitle = ObjUpkeep.GetEventList(CompanyID,"R");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -195,9 +227,23 @@ namespace Upkeep_v3.Feedback
             try
             {
                 #region UserData
-                int EventID = Convert.ToInt32(ddlFeedbackTitle.SelectedValue.ToString());
+                int EventID = Convert.ToInt32(ViewState["EventID"]);
                 string LoggedInUser = LoggedInUserID;
+                string strFname = Fname.Text;
+                string strLname = Lname.Text;
+                string strPhone = Phoneno.Text;
+                string strEmailID = EmailID.Text;
+                string strGender=string.Empty;
+                if (rdbMale.Checked == true)
+                { strGender = "Male"; }
+                if (rdbFemale.Checked == true)
+                { strGender = "Female"; }
+                if (rdbOther.Checked == true)
+                { strGender = "Other"; }
                  
+
+
+
                 #endregion
 
 
@@ -233,17 +279,16 @@ namespace Upkeep_v3.Feedback
 
                     if (AnswerType == "Options") //Multi Selection [CheckBox]
                     {
-                        CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
-                        List<String> chkStrList = new List<string>();
 
-
-                        foreach (ListItem item in divCheckBoxIDI.Items)
+                        RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+                        List<String> RadioStrList = new List<string>();
+                        foreach (ListItem item in divRadioButtonrdbYes.Items)
                         {
                             if (item.Selected)
                             {
                                 isField = "True";
 
-                                chkStrList.Add(item.Value);
+                                RadioStrList.Add(item.Value);
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerType;
@@ -379,24 +424,35 @@ namespace Upkeep_v3.Feedback
 
                 #region SaveDataToDB
                 DataSet dsFeedbackQuestionData = new DataSet();
-                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFeedbackData, LoggedInUserID);
+
+                if(!string.IsNullOrEmpty(SessionVisitor))
+                {
+
+                }
+                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhone,strGender, strEmailID, strFeedbackData, LoggedInUserID);
 
                 if (dsFeedbackQuestionData.Tables.Count > 0)
                 {
                     if (dsFeedbackQuestionData.Tables[0].Rows.Count > 0)
                     {
-                        int status = Convert.ToInt32(dsFeedbackQuestionData.Tables[0].Rows[0]["status"]);
+                        int status = Convert.ToInt32(dsFeedbackQuestionData.Tables[0].Rows[0]["Status"]);
                         if (status == 1)
                         {
                             SetRepeater();
+                            //divStatus.Visible = true;
+                            //lblStatus.Text = "Save Successfully..!";
+
                             //divinsertbutton.visible = false;
                             //lblFeedbackRequestCode.Text = Convert.ToString(dsFeedbackQuestionData.Tables[0].Rows[0]["requestid"]);
                             mpeFeedbackRequestSaveSuccess.Show();
+                            Response.Redirect("~/Dashboard.aspx");
                         }
                         else
                         {
                             SetRepeater();
-                            lblErrorMsg.Text = "error occured !!!";
+                            divStatus.Visible = true;
+                            lblStatus.Text = "Error Occured..!";
+
                         }
                     }
                 }
@@ -446,6 +502,27 @@ namespace Upkeep_v3.Feedback
                     sample.Attributes.Remove("style");
                 }
 
+            }
+
+        }
+
+
+        private void BindEvent()
+        {
+            try
+            {
+                //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
+
+                EventID = Convert.ToInt32(ViewState["EventID"]);
+                dsConfig = ObjUpkeep.bindEventDetails(CompanyID, EventID);
+
+                rptHeaderDetails.DataSource = dsConfig.Tables[0];
+                rptHeaderDetails.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
         }

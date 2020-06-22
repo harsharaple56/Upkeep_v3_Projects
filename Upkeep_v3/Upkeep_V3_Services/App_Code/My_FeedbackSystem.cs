@@ -12,6 +12,48 @@ using System.Reflection;
 /// </summary>
 public class My_FeedbackSystem
 {
+
+    //#region Private Variable
+    //private string strFname, strLname, strPhone, strEmailID, strGender;
+
+    //#endregion
+
+
+    //#region Properties
+
+
+    //public string Fname
+    //{
+    //    get { return strFname; }
+
+    //    set { strFname = value; }
+    //}
+    //public string Lname
+    //{
+    //    get { return strLname; }
+
+    //    set { strLname = value; }
+    //}
+    //public string Phone
+    //{
+    //    get { return strPhone; }
+
+    //    set { strPhone = value; }
+    //}
+    //public string EmailID
+    //{
+    //    get { return strEmailID; }
+
+    //    set { strEmailID = value; }
+    //}
+    //public string Gender
+    //{
+    //    get { return strGender; }
+
+    //    set { strGender = value; }
+    //}
+    //#endregion
+
     UpkeepV3_BusinessLayer.My_Feedback_BL ObjFeedback_BL = new UpkeepV3_BusinessLayer.My_Feedback_BL();
     string strConn;
 	public My_FeedbackSystem()
@@ -93,7 +135,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID,int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
     {
         try
         {
@@ -101,7 +143,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Retailer_CRUD(storeName, firstName, lastName, email, phone, RetailerID, CompanyID, LoggedInUserID, actionType, strConn);
+            ds = ObjFeedback_BL.Retailer_CRUD(storeName, firstName, lastName, email, phone, RetailerID, Username, Password, CompanyID, LoggedInUserID, actionType, strConn);
 
             return ds;
         }
@@ -258,7 +300,7 @@ public class My_FeedbackSystem
     }
 
     //Added by Sujata This function is used to save Feedback form
-    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string FeedbackData, string LoggedInUserID)  //CompanyID Added by sujata 
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID)  //CompanyID Added by sujata 
     {
         try
         {
@@ -266,7 +308,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, FeedbackData, LoggedInUserID ,strConn);
+            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID ,strConn);
 
             return ds;
         }

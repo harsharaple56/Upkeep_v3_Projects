@@ -5,7 +5,19 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+      <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript" ></script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $('#m_table_1').DataTable({
+                    //responsive: true,
+                    pagingType: 'full_numbers',
+                    scrollX: true,
+                    //'fnDrawCallback': function(){
+                    //    init_plugins();
+                    //}
+                });
+            });
+        </script>
      
      <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
@@ -44,12 +56,13 @@
 
                         <thead>
                             <tr>
-                                <th>User_Code</th>
+                                <th>User Code</th>
                                 <th>Name</th>
-                                <th>UserDesignation</th>
-                                <th>Usermobile</th>
-                                <th>Is_Approver</th>
-                                <th>Is_GlobalApprover</th>
+                                <th>Designation</th>
+                                <th>Email ID</th>
+                                <th>Mobile No</th>
+                                <th>Approver</th>
+                                <th>Global Approver</th>
                                 <th>Created On</th>
                                 <th>Actions</th>
                             </tr>

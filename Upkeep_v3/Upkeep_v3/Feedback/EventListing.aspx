@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EventListing.aspx.cs" Inherits="Upkeep_v3.Feedback.EventListing" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EventListing.aspx.cs" Inherits="Upkeep_v3.Feedback.EventListing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -19,7 +19,7 @@
                 var newUrl = $(this).data('url');
                 $(".modal-body #aLink").html(newUrl);
                 //$(".modal-body #aLink").attr("href", newUrl)
-                alert("#" + newUrl.substr(newUrl.length - 5));
+                //alert("#" + newUrl.substr(newUrl.length - 5));
                 $("#" + newUrl.substr(newUrl.length - 5)).show();
 
                 // As pointed out in comments, 
@@ -33,8 +33,7 @@
             });
         });
     </script>
-
-    <form method="post" runat="server" id="frmMain">
+     
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
@@ -97,7 +96,7 @@
                 </div>--%>
                     <div class="modal-body">
                         <figure class="figure">
-                            <div id="plBarCode" runat="server"></div>
+                            <div id="plBarCode" runat="server" class="text-center"></div>
 
                             <h5 class="text-center text-primary" id="aLink"></h5>
                         </figure>
@@ -109,5 +108,5 @@
         </div>
 
 
-    </form>
+    
 </asp:Content>
