@@ -7,7 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
-
+    <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>
+   
     <script type="text/javascript">
         $(document).ready(function () {
             DatatableHtmlTableDemo.init();
@@ -104,7 +105,7 @@
                             <div class="form-group m-form__group row" style="padding-left: 1%;">
 
                                 <div class="" id="m_table_1">
-                                    <asp:GridView ID="gvCTT_Report" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                    <asp:GridView ID="gvCTT_Report" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
                                         OnRowDataBound="gvCTT_Report_RowDataBound" OnRowCommand="gvCTT_Report_RowCommand" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
                                         AutoGenerateColumns="false">
                                         <Columns>
@@ -117,9 +118,9 @@
                                             <asp:BoundField DataField="Dept_Desc" HeaderText="Department" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="Category_Desc" HeaderText="Category" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="SubCategory_Desc" HeaderText="Sub Category" ItemStyle-Width="150" />
-                                             <asp:BoundField DataField="Ticket_Date" HeaderText="Ticket Date" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Tkt_Status" HeaderText="Ticket Status" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Tkt_ActionStatus" HeaderText="Action Status" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Ticket_Date" HeaderText="Ticket Date" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="RequestStatus" HeaderText="Ticket Status" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="ActionStatus" HeaderText="Action Status" ItemStyle-Width="150" />
 
                                         </Columns>
                                         <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
