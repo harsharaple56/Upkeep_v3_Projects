@@ -8494,7 +8494,6 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
             //List<ClChecklistConfigAnswer> ObjChecklistConfigAnswer = new List<ClChecklistConfigAnswer>();
             List<ClChecklistConfigAnswerType> ObjChecklistConfigAnswerType = new List<ClChecklistConfigAnswerType>();
 
-
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
             DataTable dt = new DataTable();
@@ -8618,9 +8617,6 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         }
 
-         
-
-
         [Route("api/UpKeep/Insert_Checklist_Response")]
         [HttpPost]
         public HttpResponseMessage Insert_Checklist_Response([FromBody] ClsChecklist_Response objInsert)
@@ -8641,11 +8637,38 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[5] = new SqlParameter("@LocationID", objInsert.LocationID);
                 ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
 
-                //NEED TO CONVERT DATA TO XML AND PASSED IN SP
+                //NEED TO CONVERT DATA TO XML AND PASSED IN SP 
+                StringBuilder strXml = new StringBuilder();
+                strXml.Append(@"<DocumentElement>");
 
-                ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", objInsert.ChkResponseData);
+                foreach (ClsChecklist_Response_Data objs in objInsert.ObjChkResponseData)
+                {
+                    strXml.Append(@"<Section>");
+                    strXml.Append(@"<SectionID>" + objs.SectionID.ToString() + "</SectionID>");
+                    strXml.Append(@"<QuestionID>" + objs.QuestionID.ToString() + "</QuestionID>");
+                    //strXml.Append(@"<AnswerID>" + objs.AnswerID.ToString() + "</AnswerID>");
+                    strXml.Append(@"<AnswerTypeID>" + objs.AnswerTypeID.ToString() + "</AnswerTypeID>");
 
+                    strXml.Append(@"<AnswerData>");
 
+                    foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
+                    {
+                        strXml.Append(@"<AnswerValue>");
+                       
+                        strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
+                        strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
+
+                        strXml.Append(@"</AnswerValue>");
+                    }
+                    strXml.Append(@"</AnswerData>");
+                    strXml.Append(@"</Section>");
+                }
+
+                strXml.Append(@"</DocumentElement>");
+
+                ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", strXml.ToString());
+
+                // ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", objInsert.ChkResponseData);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
 
@@ -8678,6 +8701,70 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 DsDataSet = null;
             }
         }
+
+        //CHECKLIST RESPONSE LIST
+        [Route("api/UpKeep/Fetch_CheckList_Response")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Response(string EmpCd,int CompanyID) //int UserID,
+        {
+            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCd", EmpCd);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_MY_RESPONSE_LIST", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+       
 
         #endregion
 

@@ -854,8 +854,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string User_Code { get; set; }
         public int CompanyID { get; set; }
         public int LocationID { get; set; }
-        public int DepartmentID { get; set; }
-        public string ChkResponseData { get; set; }
+        public int DepartmentID { get; set; } 
         public List<ClsChecklist_Response_Data> ObjChkResponseData { get; set; }
     }
 
@@ -863,13 +862,15 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
     {
         public int SectionID { get; set; }
         public int QuestionID { get; set; }
-        public string AnswerID { get; set; }
+        //public string AnswerID { get; set; }
         public int AnswerTypeID { get; set; }
         public List<ClsChecklist_Response_Data_Values> ObjChkResponseDataValue { get; set; }
     }
     public class ClsChecklist_Response_Data_Values
     {
-        public int value { get; set; }
+        
+        public int AnswerID { get; set; }
+        public string value { get; set; }
     }
 
         #endregion
