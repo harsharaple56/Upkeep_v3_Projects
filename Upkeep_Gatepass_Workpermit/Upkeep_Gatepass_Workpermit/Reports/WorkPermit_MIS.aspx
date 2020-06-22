@@ -218,7 +218,8 @@
                                                         </button>
                                                     </span>
                                                     <div class="btn-group" style="margin-left: 50px;">
-                                                        <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
+                                                        <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />  &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:Button ID="btnExport" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnExport_Click" Text="Excel" />
                                                     </div>
                                                 </div>
                                             </div>
