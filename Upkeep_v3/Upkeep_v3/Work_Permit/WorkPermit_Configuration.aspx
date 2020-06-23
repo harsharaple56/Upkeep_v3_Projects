@@ -292,11 +292,11 @@
             //var ModalHTML = "";
             var name = "";
             $(document).on('change', '.ddlAns', function () {
-                var ddlansval = $(this).val();
-                if (ddlansval === "")
+                var isMulti = $(this).find(':selected').attr("data-ismulti");
+                if (isMulti === "")
                     return
-                //alert(ddlansval+"===");
-                if (ddlansval == '1' || ddlansval == '2') {
+                //alert(isMulti+"===");
+                if (isMulti === 'True') {
                     //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
@@ -1125,7 +1125,7 @@
                                                                             </a>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField DataField="User_Name" SortExpression="User_Name" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                    <asp:BoundField DataField="GroupName" SortExpression="GroupName" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
 
                                                                 </Columns>
 

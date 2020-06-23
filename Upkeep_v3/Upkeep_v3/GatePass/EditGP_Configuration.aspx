@@ -808,7 +808,7 @@
                                                                                 </a>
                                                                             </ItemTemplate>
                                                                         </asp:TemplateField>
-                                                                        <asp:BoundField DataField="User_Name" SortExpression="User_Name" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                        <asp:BoundField DataField="GroupName" SortExpression="GroupName" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
 
                                                                     </Columns>
 

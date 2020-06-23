@@ -29,6 +29,7 @@ namespace Upkeep_v3.GatePass
             if (!IsPostBack)
             {
                 //Fetch_Company();
+                Fetch_Answer();
                 string Initiator = string.Empty;
                 if (rdbEmployee.Checked == true)
                 {
@@ -192,7 +193,7 @@ namespace Upkeep_v3.GatePass
                 bool ShowApprovalMatrix = false;
 
                 strConfigTitle = txtTitle.Text.Trim();
-                CompanyID = Convert.ToInt32(ddlCompany.SelectedValue);
+                CompanyID = Convert.ToInt32(Convert.ToString(Session["LoggedInUserID"]));
                 LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
                 ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
 
@@ -656,6 +657,50 @@ namespace Upkeep_v3.GatePass
                         ddlUnit.DataValueField = "Unit_ID";
                         ddlUnit.DataBind();
                         ddlUnit.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public void Fetch_Answer()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                ds = ObjUpkeep.Fetch_AnswerForAll('G');
+
+
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlUnit.DataSource = ds.Tables[0];
+                        ddlUnit.DataTextField = "Ans_Type_Desc";
+                        ddlUnit.DataValueField = "Ans_Type_ID";
+
+
+                        ddlUnit.DataBind();
+
+                        for (int i = 0; i < ddlUnit.Items.Count - 1; i++)
+                            ddlUnit.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString(); //ddlAns.Items.Insert(0, new ListItem("--Select--", "0"));
+                        //ddlAns.SelectedIndex = 0;
+
+                        //ddlAns.Items[0].Attributes["disabled"] = "disabled";
+                        //ddlAns.Items[1].Attributes["data-icon"] = "glyphicon-music";
+                        //ddlAns.Items[2].Attributes["data-content"] = "<i class='fa fa-calculator' aria-hidden='true'></i>";
+
+                        //foreach (DataRow row in ds.Tables[0].Rows)
+                        //{
+                        //    sltest.InnerHtml += "<option data-icon = 'glyphicon-music> "+row.Field<string>("Ans_Type_Desc") +" </ option >";
+                        //}
+                        //sltest.InnerHtml = "";
                     }
                 }
             }
