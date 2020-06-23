@@ -445,6 +445,10 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    #region Ticketing
+
+
     [WebMethod]
     public DataSet Fetch_Ticket_Workflow(int CompanyID, int CategoryID, int SubCategoryID, string TicketPrefix, string LoggedInUserID)
     {
@@ -501,6 +505,37 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    [WebMethod]
+    public DataSet Fetch_CTT_Report(int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_CTT_Report(CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Bind_Ticket_Details(int TicketID, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Bind_Ticket_Details(TicketID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    #endregion
 
     //[+][Feedback System Methods]
     #region Feedback System Methods
@@ -1704,6 +1739,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Fetch_Checklist_Report(string Response_ID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Checklist_Report(Response_ID, LoggedInUserID );
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
     #endregion
 

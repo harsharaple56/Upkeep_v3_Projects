@@ -845,11 +845,39 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public bool Is_MultiValue { get; set; }
     }
 
-    #endregion
 
-    #region Ticketing
 
-    public class ClsMyActionableTicket
+    public class ClsChecklist_Response
+    {
+        public int Chk_Response_ID { get; set; }
+        public int Chk_Config_ID { get; set; }
+        public string User_Code { get; set; }
+        public int CompanyID { get; set; }
+        public int LocationID { get; set; }
+        public int DepartmentID { get; set; } 
+        public List<ClsChecklist_Response_Data> ObjChkResponseData { get; set; }
+    }
+
+    public class ClsChecklist_Response_Data
+    {
+        public int SectionID { get; set; }
+        public int QuestionID { get; set; }
+        //public string AnswerID { get; set; }
+        public int AnswerTypeID { get; set; }
+        public List<ClsChecklist_Response_Data_Values> ObjChkResponseDataValue { get; set; }
+    }
+    public class ClsChecklist_Response_Data_Values
+    {
+        
+        public int AnswerID { get; set; }
+        public string value { get; set; }
+    }
+
+        #endregion
+
+        #region Ticketing
+
+        public class ClsMyActionableTicket
     {
         public string TicketID { get; set; }
         public string TicketCode { get; set; }

@@ -103,7 +103,7 @@ var DatatableHtmlTableDemo = {
                         var t =
                         {
                             "Open": { title: "Open", class: "m-badge--danger" },
-                            "Expired": { title: "Expired", class: "m-badge--brand" },
+                            "Expired": { title: "Expired", class: "m-badge--secondary" },
                             //"FaultyTicket": { title: "FaultyTicket", class: " m-badge--primary" },
                             "Closed": { title: "Closed", class: " m-badge--success" },
                             "Parked": { title: "Parked", class: " m-badge--warning" }
@@ -114,18 +114,20 @@ var DatatableHtmlTableDemo = {
                     }
                 }
 
-                //,{
-                    //field: "ActionStatus",
-                    //title: "ActionStatus",
-                    //template: function (e) {
-                    //    var t1 = {
-                    //        "Assigned": { title: "Assigned", state: "danger" },
-                    //        "Reassigned": { title: "Reassigned", state: "primary" },
-                    //        "Parked": { title: "Parked", state: "text-secondary" },
-                    //        "ApprovalSent": { title: "ApprovalSent", state: "accent" }
-                    //    }; return '<span class="m-badge m-badge--' + t1[e.ActionStatus].state + ' m-badge--dot"></span>&nbsp;<span class="m--font-bold m--font-' + t1[e.ActionStatus].state + '">' + t1[e.ActionStatus].title + "</span>"
-                    //}
-                    //}
+                ,{
+                    field: "ActionStatus",
+                    title: "ActionStatus",
+                    template: function (e) {
+                        var t1 = {
+                            "Assigned": { title: "Assigned", state: "info" },
+                            "Accepted": { title: "Accepted", state: "success" },
+                            "In Progress": { title: "In Progress", state: "accent" },
+                            "Hold": { title: "Hold", state: "warning" },
+                            "Closed": { title: "Closed", state: "success" },
+                            "Expired": { title: "Expired", state: "secondary" }
+                        }; return '<span class="m-badge m-badge--' + t1[e.ActionStatus].state + ' m-badge--dot"></span>&nbsp;<span class="m--font-bold m--font-' + t1[e.ActionStatus].state + '">' + t1[e.ActionStatus].title + "</span>"
+                    }
+                    }
 
             ]
         }),
