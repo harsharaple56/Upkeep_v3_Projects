@@ -40,7 +40,7 @@ namespace Upkeep_v3.Ticketing
             if (TicketID > 0)
             {
                 Session["TicketID"] = Convert.ToString(TicketID);
-                
+
                 if (MyRequest == 1)
                 {
                     Fetch_My_Request_Ticket_Details(TicketID);
@@ -159,7 +159,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID);
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID);
 
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -207,14 +207,14 @@ namespace Upkeep_v3.Ticketing
                                 btnAccept.Attributes.Add("style", "display:none;");
                             }
 
-                          
+
                         }
                     }
 
-                    //if (dsTicket.Tables[1].Rows.Count > 0)
-                    //{
-                    //    Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
-                    //}
+                    if (dsTicket.Tables[1].Rows.Count > 0)
+                    {
+                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
+                    }
                     else
                     {
 
@@ -333,7 +333,7 @@ namespace Upkeep_v3.Ticketing
                         }
                         foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
                         {
-                            //for (int i = 0; i < FileUpload_TicketImage.PostedFiles.Count; i++)
+                            //for (int i = 0; i < FileUpload_TicketImage.PostedFiles.Count; i++) 
                             //{
 
                             string filetype = Path.GetExtension(postfiles.FileName);
@@ -344,12 +344,13 @@ namespace Upkeep_v3.Ticketing
                                     fileName = TicketCode + "_Close_" + Convert.ToString(i) + filetype;
                                     //fileName = postfiles.FileName;
 
-                                    imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImagePath"]);
+                                    imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
 
                                     //string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + fileName);
                                     // FileUpload_TicketImage.SaveAs(Server.MapPath("~/") + fileName);
 
                                     string SaveLocation = Server.MapPath("~/TicketImages/" + CurrentDate) + "/" + fileName;
+                                    string FileLocation = imgPath + "/TicketImages/" + CurrentDate + "/" + fileName;
                                     //string SaveLocation = Server.MapPath(filePath) + fileName;
                                     //File.Copy(SaveLocation, imgPath);
 
@@ -359,7 +360,7 @@ namespace Upkeep_v3.Ticketing
                                     {
                                         //FileUpload_TicketImage.PostedFile.SaveAs(SaveLocation);
                                         postfiles.SaveAs(SaveLocation);
-                                        Lst_Images.Add(SaveLocation);
+                                        Lst_Images.Add(FileLocation);
                                     }
 
                                     //ImagesList.Append(fileName);

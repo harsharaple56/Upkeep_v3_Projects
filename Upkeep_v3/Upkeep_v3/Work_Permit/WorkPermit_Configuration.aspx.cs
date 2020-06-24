@@ -843,7 +843,7 @@ namespace Upkeep_v3.WorkPermit
             try
             {
 
-                ds = ObjUpkeep.Fetch_Answer();
+                ds = ObjUpkeep.Fetch_AnswerForAll('W');
 
 
 
@@ -858,8 +858,8 @@ namespace Upkeep_v3.WorkPermit
 
                         ddlAns.DataBind();
 
-                        for (int i = 0; i < ddlAns.Items.Count; i++)
-                            ddlAns.Items[i].Attributes["data-content"] = "<i class='fa fa-" + ds.Tables[0].Rows[i]["Icon"] + "'> " + ds.Tables[0].Rows[i]["Ans_Type_Desc"] + "</i>";
+                        for (int i = 0; i < ddlAns.Items.Count - 1; i++)
+                            ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
 
                         //ddlAns.Items.Insert(0, new ListItem("--Select--", "0"));
                         //ddlAns.SelectedIndex = 0;

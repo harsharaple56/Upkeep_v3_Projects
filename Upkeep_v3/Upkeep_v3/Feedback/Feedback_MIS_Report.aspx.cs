@@ -125,13 +125,14 @@ namespace Upkeep_v3.Feedback
 
                             string Question = string.Empty;
 
-                            if (UserType == "C")
+                            if (UserType == "R")
                             {
-                                data = "<tr> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th> ";
+
+                                data = "<tr> <th>Store Name</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
                             }
                             else
                             {
-                                data = "<tr> <th>Store Name</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th> ";
                             }
                             //for (int k = 1; k <= ds.Tables[0].Columns.Count; k++)
                             //{
@@ -247,30 +248,9 @@ namespace Upkeep_v3.Feedback
                                 FeedbackDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["FeedbackTakenDate"]);
                                 FeedbackTakenDate = FeedbackDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                                if (UserType == "C")
+                                if (UserType == "R")
                                 {
-                                    //int EventID = Convert.ToInt32(ds.Tables[0].Rows[i]["Event_ID"]);
-                                    Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
-                                    EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
-                                    MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["MobileNo"]);
-                                    Gender = Convert.ToString(ds.Tables[0].Rows[i]["Gender"]);
-                                    //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
-                                    //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
-
-                                    ColumnCount = (ds.Tables[0].Columns.Count);
-
-                                    for (int j = 9; j < ColumnCount; j++)
-                                    {
-                                        Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
-                                        data += "<td>" + Answer + "</td>";
-
-
-                                    }
-                                }
-                                else
-                                {
                                     StoreName = Convert.ToString(ds.Tables[0].Rows[i]["Store_name"]);
                                     Name = Convert.ToString(ds.Tables[0].Rows[i]["Manager_Name"]);
                                     EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
@@ -284,6 +264,30 @@ namespace Upkeep_v3.Feedback
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
                                     for (int j = 9; j < ColumnCount - 1; j++)
+                                    {
+                                        Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
+                                        data += "<td>" + Answer + "</td>";
+
+
+                                    }
+
+                                }
+                                else
+                                {
+
+                                    //int EventID = Convert.ToInt32(ds.Tables[0].Rows[i]["Event_ID"]);
+                                    Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
+                                    EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
+                                    MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["MobileNo"]);
+                                    Gender = Convert.ToString(ds.Tables[0].Rows[i]["Gender"]);
+                                    //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
+                                    //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
+
+                                    data += "<tr><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
+
+                                    ColumnCount = (ds.Tables[0].Columns.Count);
+
+                                    for (int j = 9; j < ColumnCount; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";

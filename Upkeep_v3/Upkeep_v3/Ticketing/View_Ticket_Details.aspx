@@ -136,42 +136,27 @@
                                             </div>
 
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> Sub Category :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                            <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblSubCategory" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
-                                            <div class="col-lg-2">
+                                        </div>
 
-                                                <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" style="height: 53%;" />
-                                               <%-- <asp:Button ID="btnViewWorkflow" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem; pointer-events: none;"
-                                                    OnClick="btnViewWorkflow_Click" Text="View Workflow" />--%>
-
+                                      <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> View Workflow :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                 <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
                                                 <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                                 <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="imgbtnViewWorkflow"
                                                     CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
                                                 </cc1:ModalPopupExtender>
-
-                                                <%--<asp:Button ID="btnWorkflow" runat="server" Visible="false" />--%>
-
-                                            </div>
-                                        </div>
-
-                                       <%-- <div class="row" style="padding-left: 2%;" id="dvDepartment" runat="server">
-                                            <label class="col-form-label">This Ticket is assigned to </label>
-                                            <asp:Label ID="lblDepartmentName" CssClass="col-form-label" runat="server" Text=""></asp:Label>
-                                            <label class="col-form-label">department</label>
-                                        </div>--%>
-                             
-                                       
-
-                                        <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Ticket Description :</label>
-                                            <div class="col-xl-8 col-lg-8 col-form-label" style="margin-left: -8%;">
-                                                <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
-                                          <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
-                                            <div class="col-xl-1 col-lg-1">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Uploaded Image Count :</label>
+                                            <div class="col-xl-2 col-lg-2 col-form-label">
+                                                <asp:Label ID="lblRaisedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                           <div class="col-xl-1 col-lg-1">
                                             <asp:Repeater ID="rptTicketImage" runat="server">
                                                 <ItemTemplate>
                                                     <table>
@@ -186,6 +171,16 @@
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                                 </div>
+                                        </div>
+
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Ticket Description :</label>
+                                            <div class="col-xl-8 col-lg-8 col-form-label" style="margin-left: -8%;">
+                                                <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+
+                                          <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
+                                           
                                         </div>
                                         <br />
 
@@ -221,7 +216,28 @@
                                                 <asp:Label ID="lblDowntime" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                            
+                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Uploaded Image Count :</label>
+                                            <div class="col-xl-1 col-lg-1 col-form-label">
+                                                <asp:Label ID="lblClosedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                             <div class="col-xl-2 col-lg-2">
+                                            <asp:Repeater ID="rptTicketClosingImage" runat="server">
+                                                <ItemTemplate>
+                                                    <table>
+                                                        <tr>
+                                                            <td style="width: 5%">
+                                                                <button type='button' data-toggle='modal' id="btnShowImageClose" data-target="#exampleModal" data-images="<%#Eval("CloseImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Ticket Closing Image'>
+                                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                                </div>
+
                                         </div>
+                                        <br />
 
                                          <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action History</label>

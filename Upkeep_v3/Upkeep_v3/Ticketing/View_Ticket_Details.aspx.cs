@@ -58,10 +58,16 @@ namespace Upkeep_v3.Ticketing
                         rptTicketImage.DataSource = dsTicket.Tables[0];
                         rptTicketImage.DataBind();
 
+                        rptTicketClosingImage.DataSource = dsTicket.Tables[0];
+                        rptTicketClosingImage.DataBind();
+
                         lblAssignedDept.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Dept_Desc"]);
                         lblCurrentLevel.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["CurrentLevel"]);
                         lblActionStatus.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Tkt_ActionStatus"]);
                         lblTicketStatus.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Tkt_Status"]);
+
+                        lblRaisedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]);
+                        lblClosedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketClosed_Image_Count"]);
 
                         int SubCategoryID = 0;
                         int CategoryID = 0;

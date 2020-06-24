@@ -30,10 +30,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback Update_WorkPermitRequestOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_MyRequestWorkPermitOperationCompleted;
-        
         private System.Threading.SendOrPostCallback Fetch_MyActionableWorkPermitOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_DashboardCountOperationCompleted;
@@ -166,10 +162,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Accept_TicketOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_CTT_ReportOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Bind_Ticket_DetailsOperationCompleted;
-        
         private System.Threading.SendOrPostCallback Employee_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback ChangePasswordOperationCompleted;
@@ -276,6 +268,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestSavedDataOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Update_WorkPermitRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyRequestWorkPermitOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -313,12 +309,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
-        
-        /// <remarks/>
-        public event Update_WorkPermitRequestCompletedEventHandler Update_WorkPermitRequestCompleted;
-        
-        /// <remarks/>
-        public event Fetch_MyRequestWorkPermitCompletedEventHandler Fetch_MyRequestWorkPermitCompleted;
         
         /// <remarks/>
         public event Fetch_MyActionableWorkPermitCompletedEventHandler Fetch_MyActionableWorkPermitCompleted;
@@ -519,12 +509,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Accept_TicketCompletedEventHandler Accept_TicketCompleted;
         
         /// <remarks/>
-        public event Fetch_CTT_ReportCompletedEventHandler Fetch_CTT_ReportCompleted;
-        
-        /// <remarks/>
-        public event Bind_Ticket_DetailsCompletedEventHandler Bind_Ticket_DetailsCompleted;
-        
-        /// <remarks/>
         public event Employee_CRUDCompletedEventHandler Employee_CRUDCompleted;
         
         /// <remarks/>
@@ -684,72 +668,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_WorkPermitRequestSavedDataCompletedEventHandler Fetch_WorkPermitRequestSavedDataCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Update_WorkPermitRequest(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
-            object[] results = this.Invoke("Update_WorkPermitRequest", new object[] {
-                        TransactionID,
-                        LoggedInUserID,
-                        ActionStatus,
-                        Remarks});
-            return ((System.Data.DataSet)(results[0]));
-        }
+        public event Update_WorkPermitRequestCompletedEventHandler Update_WorkPermitRequestCompleted;
         
         /// <remarks/>
-        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
-            this.Update_WorkPermitRequestAsync(TransactionID, LoggedInUserID, ActionStatus, Remarks, null);
-        }
-        
-        /// <remarks/>
-        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks, object userState) {
-            if ((this.Update_WorkPermitRequestOperationCompleted == null)) {
-                this.Update_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_WorkPermitRequestOperationCompleted);
-            }
-            this.InvokeAsync("Update_WorkPermitRequest", new object[] {
-                        TransactionID,
-                        LoggedInUserID,
-                        ActionStatus,
-                        Remarks}, this.Update_WorkPermitRequestOperationCompleted, userState);
-        }
-        
-        private void OnUpdate_WorkPermitRequestOperationCompleted(object arg) {
-            if ((this.Update_WorkPermitRequestCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Update_WorkPermitRequestCompleted(this, new Update_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyRequestWorkPermit", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyRequestWorkPermitAsync(LoggedInUserID, From_Date, To_Date, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyRequestWorkPermitOperationCompleted == null)) {
-                this.Fetch_MyRequestWorkPermitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestWorkPermitOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_MyRequestWorkPermit", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date}, this.Fetch_MyRequestWorkPermitOperationCompleted, userState);
-        }
-        
-        private void OnFetch_MyRequestWorkPermitOperationCompleted(object arg) {
-            if ((this.Fetch_MyRequestWorkPermitCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyRequestWorkPermitCompleted(this, new Fetch_MyRequestWorkPermitCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        public event Fetch_MyRequestWorkPermitCompletedEventHandler Fetch_MyRequestWorkPermitCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyActionableWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3131,66 +3053,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CTT_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CTT_Report(int CompanyID) {
-            object[] results = this.Invoke("Fetch_CTT_Report", new object[] {
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_CTT_ReportAsync(int CompanyID) {
-            this.Fetch_CTT_ReportAsync(CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_CTT_ReportAsync(int CompanyID, object userState) {
-            if ((this.Fetch_CTT_ReportOperationCompleted == null)) {
-                this.Fetch_CTT_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CTT_ReportOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_CTT_Report", new object[] {
-                        CompanyID}, this.Fetch_CTT_ReportOperationCompleted, userState);
-        }
-        
-        private void OnFetch_CTT_ReportOperationCompleted(object arg) {
-            if ((this.Fetch_CTT_ReportCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_CTT_ReportCompleted(this, new Fetch_CTT_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_Ticket_Details(int TicketID, int CompanyID) {
-            object[] results = this.Invoke("Bind_Ticket_Details", new object[] {
-                        TicketID,
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Bind_Ticket_DetailsAsync(int TicketID, int CompanyID) {
-            this.Bind_Ticket_DetailsAsync(TicketID, CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void Bind_Ticket_DetailsAsync(int TicketID, int CompanyID, object userState) {
-            if ((this.Bind_Ticket_DetailsOperationCompleted == null)) {
-                this.Bind_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_Ticket_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("Bind_Ticket_Details", new object[] {
-                        TicketID,
-                        CompanyID}, this.Bind_Ticket_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnBind_Ticket_DetailsOperationCompleted(object arg) {
-            if ((this.Bind_Ticket_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_Ticket_DetailsCompleted(this, new Bind_Ticket_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Employee_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Employee_CRUD(string firstName, string lastName, string email, long phone, string EmpID, string LoggedInUserID, string role, string Username, string Password, string actionType) {
             object[] results = this.Invoke("Employee_CRUD", new object[] {
@@ -5147,6 +5009,74 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_WorkPermitRequest(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
+            object[] results = this.Invoke("Update_WorkPermitRequest", new object[] {
+                        TransactionID,
+                        LoggedInUserID,
+                        ActionStatus,
+                        Remarks});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks) {
+            this.Update_WorkPermitRequestAsync(TransactionID, LoggedInUserID, ActionStatus, Remarks, null);
+        }
+        
+        /// <remarks/>
+        public void Update_WorkPermitRequestAsync(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks, object userState) {
+            if ((this.Update_WorkPermitRequestOperationCompleted == null)) {
+                this.Update_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_WorkPermitRequestOperationCompleted);
+            }
+            this.InvokeAsync("Update_WorkPermitRequest", new object[] {
+                        TransactionID,
+                        LoggedInUserID,
+                        ActionStatus,
+                        Remarks}, this.Update_WorkPermitRequestOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_WorkPermitRequestOperationCompleted(object arg) {
+            if ((this.Update_WorkPermitRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_WorkPermitRequestCompleted(this, new Update_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyRequestWorkPermit", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestWorkPermitAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyRequestWorkPermitOperationCompleted == null)) {
+                this.Fetch_MyRequestWorkPermitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestWorkPermitOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyRequestWorkPermit", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyRequestWorkPermitOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyRequestWorkPermitOperationCompleted(object arg) {
+            if ((this.Fetch_MyRequestWorkPermitCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyRequestWorkPermitCompleted(this, new Fetch_MyRequestWorkPermitCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -5162,58 +5092,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Update_WorkPermitRequestCompletedEventHandler(object sender, Update_WorkPermitRequestCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Update_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Update_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Fetch_MyRequestWorkPermitCompletedEventHandler(object sender, Fetch_MyRequestWorkPermitCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MyRequestWorkPermitCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MyRequestWorkPermitCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
         }
     }
     
@@ -6935,58 +6813,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Fetch_CTT_ReportCompletedEventHandler(object sender, Fetch_CTT_ReportCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_CTT_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_CTT_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Bind_Ticket_DetailsCompletedEventHandler(object sender, Bind_Ticket_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Bind_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Bind_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Employee_CRUDCompletedEventHandler(object sender, Employee_CRUDCompletedEventArgs e);
     
     /// <remarks/>
@@ -8350,6 +8176,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_WorkPermitRequestSavedDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_WorkPermitRequestCompletedEventHandler(object sender, Update_WorkPermitRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_MyRequestWorkPermitCompletedEventHandler(object sender, Fetch_MyRequestWorkPermitCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyRequestWorkPermitCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyRequestWorkPermitCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

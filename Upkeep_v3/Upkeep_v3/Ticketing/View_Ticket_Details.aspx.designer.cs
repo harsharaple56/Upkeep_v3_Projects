@@ -112,13 +112,13 @@ namespace Upkeep_v3.Ticketing {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeWorkflow;
         
         /// <summary>
-        /// lblTicketdesc control.
+        /// lblRaisedImageCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTicketdesc;
+        protected global::System.Web.UI.WebControls.Label lblRaisedImageCount;
         
         /// <summary>
         /// rptTicketImage control.
@@ -128,6 +128,15 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptTicketImage;
+        
+        /// <summary>
+        /// lblTicketdesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTicketdesc;
         
         /// <summary>
         /// lblAssignedDept control.
@@ -173,6 +182,24 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDowntime;
+        
+        /// <summary>
+        /// lblClosedImageCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClosedImageCount;
+        
+        /// <summary>
+        /// rptTicketClosingImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptTicketClosingImage;
         
         /// <summary>
         /// gvActionHistory control.
