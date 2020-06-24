@@ -48,7 +48,7 @@
                         <div>
                             <div class="m-login__logo">
                                 <%--<a href="#">--%>
-                                <img style="margin-left: 8%;" src="assets/demo/media/img/logo/logo_login.gif" />
+                                <img style="margin-left: 8%;" src="assets/app/media/img/logo/efacilito_s.png" />
 
                             </div>
                             <div class="m-login__signin">
