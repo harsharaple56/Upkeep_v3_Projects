@@ -13,6 +13,24 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit {
     public partial class WorkPermit_Request {
         
         /// <summary>
+        /// mpeWpRequestSaveSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeWpRequestSaveSuccess;
+        
+        /// <summary>
+        /// main_portlet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_portlet;
+        
+        /// <summary>
         /// hdnWpHeaderData control.
         /// </summary>
         /// <remarks>
@@ -92,15 +110,6 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTest;
-        
-        /// <summary>
-        /// mpeWpRequestSaveSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeWpRequestSaveSuccess;
         
         /// <summary>
         /// ddlWorkPermitTitle control.

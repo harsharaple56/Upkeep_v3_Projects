@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Async="true"  Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs" Inherits="Upkeep_Gatepass_Workpermit.WorkPermit.WorkPermit_Request" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs"
+    Inherits="Upkeep_Gatepass_Workpermit.WorkPermit.WorkPermit_Request" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -156,7 +157,11 @@
                 <div class="col-lg-12">
 
                     <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+
+                    <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
+                        CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                    </cc1:ModalPopupExtender>
+                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet" runat="server">
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmWorkPermit" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
@@ -197,7 +202,7 @@
                                 <strong>Rejected!</strong> This Request is Rejected.
                             </div>
                         </div>
-                        <div class="m-portlet__head">
+                        <div class="m-portlet__head d-print-none">
                             <div class="m-portlet__head-progress">
                             </div>
                             <div class="m-portlet__head-wrapper">
@@ -209,7 +214,7 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: 16pt; font-weight: bold;"></asp:Label>
                                     <%--<a href="<%= Page.ResolveClientUrl("~/WorkPermit/MyWorkPermit.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                             <span>
                                                 <i class="la la-arrow-left"></i>
@@ -226,9 +231,8 @@
 
                                         <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" Style="display: none" />
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
+                                        <%--<button runat="server" id="btnPDF" class="btn m-btn--hover-brand" visible="true" onserverclick="btnPDF_ServerClick"><i class="la la-file-pdf-o" aria-hidden="true">Export</i></button>--%>
+
                                     </div>
                                 </div>
 
@@ -245,10 +249,10 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlWorkPermitTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Work Permit Title"></asp:RequiredFieldValidator>
                                     </div>
-                                    <label class="col-xl-2 col-form-label font-weight-bold">Ticket No. :</label>
+                                    <label class="col-xl-2 col-form-label font-weight-bold">Permit No. :</label>
                                     <div class="col-xl-3">
                                         <div class="col-form-label">
-                                            <asp:Label ID="lblTicket" runat="server" Text="" CssClass="form-control-label">#12345</asp:Label>
+                                            <asp:Label ID="lblTicket" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -266,7 +270,7 @@
                                             <asp:Label ID="lblEmpName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
 
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Employee Code :</label>
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"">Employee Code :</label>
                                         <div class="col-xl-3 col-lg-3 col-form-label">
                                             <asp:Label ID="lblEmpCode" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
@@ -281,7 +285,7 @@
                                             <asp:Label ID="lblStoreName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
 
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Manager Name :</label>
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Manager Name :</label>
                                         <div class="col-xl-3 col-lg-3 col-form-label">
                                             <asp:Label ID="lblRetailerName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
@@ -295,7 +299,7 @@
                                         <asp:Label ID="lblMobileNo" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Email ID :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Email ID :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <asp:Label ID="LblEmailID" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                     </div>
@@ -378,9 +382,9 @@
                                                         <label class="form-control-label font-weight-bold" id=' <%#Eval("WP_Header_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp;  <%#Eval("Header_Name") %>  :</label>
                                                         <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
 
-                                                        <asp:Label ID="lblIsMandatory" Text="*" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold; display: none;"></asp:Label>
+                                                        <asp:Label ID="lblIsMandatory" Text="*" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: 16pt; font-weight: bold; display: none;"></asp:Label>
 
-                                                        <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                                        <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: 16pt; font-weight: bold;"></asp:Label>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <div id="divText" style="display: none" runat="server">
@@ -521,12 +525,12 @@
                                     <%--OnClientClick="SubmitHeader()" --%>
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateWorkPermit" />
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
-                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: 16pt; font-weight: bold;"></asp:Label>
                                 </div>
 
                                 <div class="col-lg-9 ml-lg-auto" style="display: none" id="divUpdateButton" runat="server">
                                     <asp:Button ID="btnApprove" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" Text="Submit" OnClick="btnApprove_Click" ValidationGroup="validateWP" />
-                                    <asp:Label ID="LabelERRORmsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <asp:Label ID="LabelERRORmsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: 16pt; font-weight: bold;"></asp:Label>
                                 </div>
 
                                 <br />

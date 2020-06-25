@@ -3,6 +3,53 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Update_WorkPermitRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_WorkPermitRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_WorkPermitRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyRequestWorkPermit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyRequestWorkPermitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestWorkPermitResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_MyActionableWorkPermit">
         <s:complexType>
           <s:sequence>
@@ -321,6 +368,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklistReportListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Checklist_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Response_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Checklist_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Checklist_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1556,6 +1625,49 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Accept_TicketResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CTT_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CTT_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CTT_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_Ticket_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TicketID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_Ticket_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_Ticket_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2846,53 +2958,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Update_WorkPermitRequest">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Update_WorkPermitRequestResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Update_WorkPermitRequestResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyRequestWorkPermit">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyRequestWorkPermitResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyRequestWorkPermitResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -2900,6 +2965,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Update_WorkPermitRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequest" />
+  </wsdl:message>
+  <wsdl:message name="Update_WorkPermitRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestWorkPermitSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermit" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyRequestWorkPermitSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermitResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_MyActionableWorkPermitSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_MyActionableWorkPermit" />
   </wsdl:message>
@@ -2983,6 +3060,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_MyChecklistReportListSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyChecklistReportListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Checklist_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Checklist_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Checklist_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Checklist_ReportResponse" />
   </wsdl:message>
   <wsdl:message name="Insert_Update_VMSConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_Update_VMSConfiguration" />
@@ -3295,6 +3378,18 @@
   </wsdl:message>
   <wsdl:message name="Accept_TicketSoapOut">
     <wsdl:part name="parameters" element="tns:Accept_TicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CTT_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CTT_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CTT_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CTT_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_Ticket_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_Ticket_Details" />
+  </wsdl:message>
+  <wsdl:message name="Bind_Ticket_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_Ticket_DetailsResponse" />
   </wsdl:message>
   <wsdl:message name="Employee_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:Employee_CRUD" />
@@ -3614,19 +3709,15 @@
   <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedDataResponse" />
   </wsdl:message>
-  <wsdl:message name="Update_WorkPermitRequestSoapIn">
-    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequest" />
-  </wsdl:message>
-  <wsdl:message name="Update_WorkPermitRequestSoapOut">
-    <wsdl:part name="parameters" element="tns:Update_WorkPermitRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyRequestWorkPermitSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermit" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyRequestWorkPermitSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyRequestWorkPermitResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <wsdl:input message="tns:Update_WorkPermitRequestSoapIn" />
+      <wsdl:output message="tns:Update_WorkPermitRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <wsdl:input message="tns:Fetch_MyRequestWorkPermitSoapIn" />
+      <wsdl:output message="tns:Fetch_MyRequestWorkPermitSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableWorkPermit">
       <wsdl:input message="tns:Fetch_MyActionableWorkPermitSoapIn" />
       <wsdl:output message="tns:Fetch_MyActionableWorkPermitSoapOut" />
@@ -3682,6 +3773,10 @@
     <wsdl:operation name="Fetch_MyChecklistReportList">
       <wsdl:input message="tns:Fetch_MyChecklistReportListSoapIn" />
       <wsdl:output message="tns:Fetch_MyChecklistReportListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Report">
+      <wsdl:input message="tns:Fetch_Checklist_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Checklist_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Insert_Update_VMSConfiguration">
       <wsdl:input message="tns:Insert_Update_VMSConfigurationSoapIn" />
@@ -3890,6 +3985,14 @@
     <wsdl:operation name="Accept_Ticket">
       <wsdl:input message="tns:Accept_TicketSoapIn" />
       <wsdl:output message="tns:Accept_TicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CTT_Report">
+      <wsdl:input message="tns:Fetch_CTT_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_CTT_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_Ticket_Details">
+      <wsdl:input message="tns:Bind_Ticket_DetailsSoapIn" />
+      <wsdl:output message="tns:Bind_Ticket_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Employee_CRUD">
       <wsdl:input message="tns:Employee_CRUDSoapIn" />
@@ -4104,17 +4207,27 @@
       <wsdl:input message="tns:Fetch_WorkPermitRequestSavedDataSoapIn" />
       <wsdl:output message="tns:Fetch_WorkPermitRequestSavedDataSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Update_WorkPermitRequest">
-      <wsdl:input message="tns:Update_WorkPermitRequestSoapIn" />
-      <wsdl:output message="tns:Update_WorkPermitRequestSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestWorkPermit">
-      <wsdl:input message="tns:Fetch_MyRequestWorkPermitSoapIn" />
-      <wsdl:output message="tns:Fetch_MyRequestWorkPermitSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <soap:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableWorkPermit">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableWorkPermit" style="document" />
       <wsdl:input>
@@ -4234,6 +4347,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklistReportList">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklistReportList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -4702,6 +4824,24 @@
     </wsdl:operation>
     <wsdl:operation name="Accept_Ticket">
       <soap:operation soapAction="http://tempuri.org/Accept_Ticket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CTT_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CTT_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_Ticket_Details">
+      <soap:operation soapAction="http://tempuri.org/Bind_Ticket_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -5186,27 +5326,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Update_WorkPermitRequest">
-      <soap:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestWorkPermit">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Update_WorkPermitRequest">
+      <soap12:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyRequestWorkPermit">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableWorkPermit">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableWorkPermit" style="document" />
       <wsdl:input>
@@ -5326,6 +5466,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklistReportList">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklistReportList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -5794,6 +5943,24 @@
     </wsdl:operation>
     <wsdl:operation name="Accept_Ticket">
       <soap12:operation soapAction="http://tempuri.org/Accept_Ticket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CTT_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CTT_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_Ticket_Details">
+      <soap12:operation soapAction="http://tempuri.org/Bind_Ticket_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -6271,24 +6438,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
       <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Update_WorkPermitRequest">
-      <soap12:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyRequestWorkPermit">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestWorkPermit" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -16,6 +16,8 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 
 namespace Upkeep_Gatepass_Workpermit.WorkPermit
 {
@@ -62,10 +64,12 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 if (TransactionID > 0)
                 {
                     Session["TransactionID"] = Convert.ToString(TransactionID);
+                    btnPDF.Visible = true;
                     FetchSectionHeaderData(TransactionID);
                 }
                 else
                 {
+
                     BindWorkPermitTitle();
                     btnApprove.Attributes.Add("style", "display:none;");
                 }
@@ -1462,5 +1466,28 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 }
             }
         }
+
+        //protected void btnPDF_ServerClick(object sender, EventArgs e)
+        //{
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("content-disposition", "attachment;filename=Panel.pdf");
+        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //    StringWriter stringWriter = new StringWriter();
+        //    iTextSharp.text.FontFactory.GetFont("Segoe UI", 18.0f, iTextSharp.text.Color.BLACK);
+        //    HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
+        //    main_portlet.RenderControl(htmlTextWriter);
+        //    StringReader stringReader = new StringReader(stringWriter.ToString());
+        //    iTextSharp.text.Document Doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 10f, 10f, 100f, 1f);
+        //    HTMLWorker htmlparser = new HTMLWorker(Doc);
+        //    PdfWriter.GetInstance(Doc, Response.OutputStream);
+        //    Doc.Open();
+        //    htmlparser.Parse(stringReader);
+        //    Doc.Close();
+        //    Response.Write(Doc);
+        //    Response.End();
+
+        //}
+
+        //public override void VerifyRenderingInServerForm(Control control) { }
     }
 }
