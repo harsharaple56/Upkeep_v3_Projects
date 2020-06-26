@@ -1053,7 +1053,7 @@ namespace Upkeep_v3.VMS
                         int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
                         if (status == 1 && Action=='N')
                         {
-                            SetRepeater();
+                            //SetRepeater();
                             //divinsertbutton.visible = false;
                             lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
                             mpeVMSRequestSaveSuccess.Show();

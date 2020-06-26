@@ -64,7 +64,7 @@ namespace Upkeep_Gatepass_Workpermit.WorkPermit
                 if (TransactionID > 0)
                 {
                     Session["TransactionID"] = Convert.ToString(TransactionID);
-                    btnPDF.Visible = true;
+                    //btnPDF.Visible = true;
                     FetchSectionHeaderData(TransactionID);
                 }
                 else

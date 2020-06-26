@@ -20,6 +20,7 @@
                 $(".modal-body #aLink").html(newUrl);
                 //$(".modal-body #aLink").attr("href", newUrl)
                 //alert("#" + newUrl.substr(newUrl.length - 5));
+                $("#ContentPlaceHolder1_plBarCode img").hide();
                 $("#" + newUrl.substr(newUrl.length - 5)).show();
 
                 // As pointed out in comments, 
