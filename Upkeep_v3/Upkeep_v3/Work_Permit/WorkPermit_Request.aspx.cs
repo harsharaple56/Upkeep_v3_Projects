@@ -232,7 +232,8 @@ namespace Upkeep_v3.WorkPermit
                 //Reference the Repeater Item.
                 RepeaterItem item = e.Item;
 
-                int AnswerType = Convert.ToInt32((e.Item.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                //int AnswerType = Convert.ToInt32((e.Item.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                string AnswerType = (e.Item.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                 string HeadId = (e.Item.FindControl("hfHeaderId") as HiddenField).Value;
 
                 string HeadMandatoryId = (e.Item.FindControl("hdnIs_Mandatory") as HiddenField).Value;
@@ -243,32 +244,32 @@ namespace Upkeep_v3.WorkPermit
                     sample.Attributes.Remove("style");
                 }
 
-                if (AnswerType == 1) //Multi Selection [CheckBox]
+                if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divCheckBox") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 2) //Single Selection [Radio Button]
+                else if (AnswerType == "SSLCT" ) //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divRadioButton") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 3) //Image Upload  
+                else if (AnswerType == "IMAGE") //Image Upload  
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divImage") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 4) //Number Text Field
+                else if (AnswerType == "NUMBR") //Number Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divNumber") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 5) //Normal Text Field
+                else if (AnswerType == "STEXT") //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == 6) // Textarea Field
+                else if (AnswerType == "LTEXT") // Textarea Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divTextArea") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
@@ -298,7 +299,7 @@ namespace Upkeep_v3.WorkPermit
                 dt.DefaultView.RowFilter = "WP_Header_ID = " + Convert.ToString(HeadId) + "";
                 dt = dt.DefaultView.ToTable();
 
-                if (AnswerType == 2)
+                if (AnswerType == "MSLCT")
                 {
                     RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 
@@ -321,7 +322,7 @@ namespace Upkeep_v3.WorkPermit
                     }
 
                 }
-                else if (AnswerType == 1)
+                else if (AnswerType == "MSLCT")
                 {
                     CheckBoxList divCheckBoxIDI = e.Item.FindControl("divCheckBoxIDI") as CheckBoxList;
                     if (dt.Rows.Count > 0)
@@ -431,7 +432,8 @@ namespace Upkeep_v3.WorkPermit
 
                 foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                 {
-                    int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                   // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                    string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                     string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
                     string HeadMandatoryId = (itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value;
@@ -442,32 +444,32 @@ namespace Upkeep_v3.WorkPermit
                         sample.Attributes.Remove("style");
                     }
 
-                    if (AnswerType == 1) //Multi Selection [CheckBox]
+                    if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divCheckBox") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == 2) //Single Selection [Radio Button]
+                    else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divRadioButton") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == 3) //Image Upload  
+                    else if (AnswerType == "IMAGE") //Image Upload  
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == 4) //Number Text Field
+                    else if (AnswerType == "NUMBR" ) //Number Text Field
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == 5) //Normal Text Field
+                    else if (AnswerType == "STEXT") //Normal Text Field
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == 6) // Textarea Field
+                    else if (AnswerType == "LTEXT") // Textarea Field
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
@@ -535,7 +537,8 @@ namespace Upkeep_v3.WorkPermit
                     foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                     {
 
-                        int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                        //int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                        string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                         string Is_Mandatory = Convert.ToString((itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value);
                         Label lblHeaderErr = (itemHeader.FindControl("lblHeaderErr") as Label);
                         string isField = "False";
@@ -544,7 +547,7 @@ namespace Upkeep_v3.WorkPermit
                         string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
 
-                        if (AnswerType == 1) //Multi Selection [CheckBox]
+                        if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                         {
                             CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
                             List<String> chkStrList = new List<string>();
@@ -577,7 +580,7 @@ namespace Upkeep_v3.WorkPermit
 
                             //String YrStr = String.Join(";", chkStrList.ToArray());
                         }
-                        else if (AnswerType == 2) //Single Selection [Radio Button]
+                        else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                         {
                             RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
                             List<String> RadioStrList = new List<string>();
@@ -607,7 +610,7 @@ namespace Upkeep_v3.WorkPermit
                             //String YrStr = String.Join(";", RadioStrList.ToArray());
 
                         }
-                        else if (AnswerType == 3) //Image Upload  
+                        else if (AnswerType == "IMAGE") //Image Upload  
                         {
                             HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
 
@@ -696,7 +699,7 @@ namespace Upkeep_v3.WorkPermit
                             }
 
                         }
-                        else if (AnswerType == 4) //Number Text Field
+                        else if (AnswerType == "NUMBR") //Number Text Field
                         {
                             HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
                             string txtNum = sample.Controls[1].UniqueID;
@@ -719,7 +722,7 @@ namespace Upkeep_v3.WorkPermit
                             }
 
                         }
-                        else if (AnswerType == 5) //Normal Text Field
+                        else if (AnswerType == "STEXT") //Normal Text Field
                         {
                             HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
                             string txtNum = sample.Controls[1].UniqueID;
@@ -742,7 +745,7 @@ namespace Upkeep_v3.WorkPermit
                                 }
                             }
                         }
-                        else if (AnswerType == 6) // Textarea Field
+                        else if (AnswerType == "LTEXT") // Textarea Field
                         {
                             HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
                             string txtNum = sample.Controls[1].UniqueID;
@@ -1006,7 +1009,8 @@ namespace Upkeep_v3.WorkPermit
 
                             foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                             {
-                                int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                                //int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                                string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                                 string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
                                 DataTable dta = new DataTable();
@@ -1016,7 +1020,7 @@ namespace Upkeep_v3.WorkPermit
 
                                 if (dta.Rows.Count > 0)
                                 {
-                                    if (AnswerType == 1) //Multi Selection [CheckBox]
+                                    if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                                     {
                                         CheckBoxList divCheckBoxIDI = itemHeader.FindControl("divCheckBoxIDI") as CheckBoxList;
 
@@ -1035,7 +1039,7 @@ namespace Upkeep_v3.WorkPermit
                                         }
 
                                     }
-                                    else if (AnswerType == 2) //Single Selection [Radio Button]
+                                    else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                                     {
                                         RadioButtonList divRadioButtonrdbYes = itemHeader.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 
@@ -1053,7 +1057,7 @@ namespace Upkeep_v3.WorkPermit
                                             divRadioButtonrdbYes.Attributes.Add("Enabled", "false");
                                         }
                                     }
-                                    else if (AnswerType == 3) //Image Upload  
+                                    else if (AnswerType == "IMAGE") //Image Upload  
                                     {
                                         HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
                                         FileUpload ChecklistImage = (FileUpload)itemHeader.FindControl("FileUpload_ChecklistImage");
@@ -1090,7 +1094,7 @@ namespace Upkeep_v3.WorkPermit
                                         //BtnDivImg.Attributes.Add("data-images", vals);
 
                                     }
-                                    else if (AnswerType == 4) //Number Text Field
+                                    else if (AnswerType == "NUMBR") //Number Text Field
                                     {
                                         HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
                                         string txtNum = sample.Controls[1].UniqueID;
@@ -1101,7 +1105,7 @@ namespace Upkeep_v3.WorkPermit
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
-                                    else if (AnswerType == 5) //Normal Text Field
+                                    else if (AnswerType == "STEXT") //Normal Text Field
                                     {
                                         HtmlGenericControl sample = itemHeader.FindControl("divText") as HtmlGenericControl;
                                         string txtNum = sample.Controls[1].UniqueID;
@@ -1111,7 +1115,7 @@ namespace Upkeep_v3.WorkPermit
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
-                                    else if (AnswerType == 6) // Textarea Field
+                                    else if (AnswerType == "LTEXT") // Textarea Field
                                     {
                                         HtmlGenericControl sample = itemHeader.FindControl("divTextArea") as HtmlGenericControl;
                                         string txtNum = sample.Controls[1].UniqueID;
