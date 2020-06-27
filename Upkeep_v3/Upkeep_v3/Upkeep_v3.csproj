@@ -324,6 +324,7 @@
     <Content Include="assets1\demo\default\custom\crud\wizard\wizard.js" />
     <Content Include="assets1\demo\default\custom\header\actions.js" />
     <Content Include="assets1\demo\default\media\img\logo\favicon.ico" />
+    <Content Include="assets1\demo\default\media\img\logo\favicon_old.ico" />
     <Content Include="assets1\demo\default\media\img\logo\logo.png" />
     <Content Include="assets1\demo\default\media\img\logo\logo_compact.png" />
     <Content Include="assets1\demo\default\media\img\logo\logo_default_dark.png" />

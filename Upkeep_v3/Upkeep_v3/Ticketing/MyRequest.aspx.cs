@@ -48,7 +48,7 @@ namespace Upkeep_v3.Ticketing
                 string RequestDate = string.Empty;
                 string RequestStatus = string.Empty;
                 string ActionStatus = string.Empty;
-
+                string RaisedBy = string.Empty;
 
                 if (dsTicket.Tables.Count > 0)
                 {
@@ -64,13 +64,14 @@ namespace Upkeep_v3.Ticketing
                             Location = Convert.ToString(dsTicket.Tables[0].Rows[i]["Loc_Desc"]);
                             //SubLocation = Convert.ToString(dsTicket.Tables[0].Rows[i]["SubLoc_Desc"]);
                             Category = Convert.ToString(dsTicket.Tables[0].Rows[i]["Category_Desc"]);
-                            SubCategory = Convert.ToString(dsTicket.Tables[0].Rows[i]["SubCategory_Desc"]);
+                            SubCategory = Convert.ToString(dsTicket.Tables[0].Rows[i]["SubCategory_Desc"]);                      
                             RequestDate = Convert.ToString(dsTicket.Tables[0].Rows[i]["Ticket_Date"]);
+                            RaisedBy = Convert.ToString(dsTicket.Tables[0].Rows[i]["RaisedBy"]);
                             RequestStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_Status"]);
                             ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
 
                             //data += "<tr><td>" + TicketNumber + "</td><td>" + Zone + "</td><td>" + Location + "</td><td>" + SubLocation + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td><td><a href='Add_MyRequest.aspx?TicketID=" + TicketID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>   </td></tr>";
-                            data += "<tr><td> <a href='My_RequestRply.aspx?TicketID=" + TicketID + "&MyRequest=1 ' style='text-decoration: underline;' > " + TicketNumber + " </a></td><td>" + Location + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td></tr>";
+                            data += "<tr><td> <a href='My_RequestRply.aspx?TicketID=" + TicketID + "&MyRequest=1 ' style='text-decoration: underline;' > " + TicketNumber + " </a></td><td>" + Location + "</td><td>" + Category + "</td><td>" + SubCategory + "</td><td>" + RequestDate + "</td><td>" + RaisedBy + "</td><td>" + RequestStatus + "</td><td>" + ActionStatus + "</td></tr>";
 
                         }
                     }

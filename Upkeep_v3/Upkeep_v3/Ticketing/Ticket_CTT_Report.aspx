@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>
+    <%--<script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>--%>
    
     <script type="text/javascript">
         $(document).ready(function () {
@@ -18,14 +18,14 @@
             init: function () {
                 var e; e = $(".m-datatable").mDatatable({
                     data: { saveState: { cookie: !1 } },
-                    search: { input: $("#generalSearch") }
+                    search: { input: $("#generalSearch") },
 
-                    , responsive: true,
-                    pagingType: 'full_numbers',
+                    //responsive: true,
+                    //pagingType: 'full_numbers',
                     scrollX: true,
-                    'fnDrawCallback': function () {
-                        init_plugins();
-                    }
+                    //'fnDrawCallback': function () {
+                    //    init_plugins();
+                    //}
                 })               
             }
         };
@@ -55,6 +55,20 @@
             display: none;
         }
     </style>
+
+    <style>
+     th {
+        /*background: cornflowerblue !important;
+        color:white !important;
+        position: sticky !important;*/
+        top: 0;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        
+    }
+    th, td {
+        padding: 0.25rem;
+    }
+</style>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
@@ -104,7 +118,7 @@
 
                             <div class="form-group m-form__group row" style="padding-left: 1%;">
 
-                                <div class="" id="m_table_1">
+                                <div class="" id="m_table_1" style="overflow-x:auto;">
                                     <asp:GridView ID="gvCTT_Report" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
                                         OnRowDataBound="gvCTT_Report_RowDataBound" OnRowCommand="gvCTT_Report_RowCommand" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
                                         AutoGenerateColumns="false">
@@ -121,7 +135,7 @@
                                             <asp:BoundField DataField="Ticket_Date" HeaderText="Ticket Date" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="RequestStatus" HeaderText="Ticket Status" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="ActionStatus" HeaderText="Action Status" ItemStyle-Width="150" />
-
+                                            <asp:BoundField DataField="Down_Time" HeaderText="Down Time" ItemStyle-Width="150" />
                                         </Columns>
                                         <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                                     </asp:GridView>

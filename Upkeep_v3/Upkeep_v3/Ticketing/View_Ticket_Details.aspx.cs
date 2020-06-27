@@ -74,6 +74,7 @@ namespace Upkeep_v3.Ticketing
                         CategoryID = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Category_ID"]);
                         SubCategoryID = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["SubCategory_ID"]);
                         BindWorkflow(CategoryID, SubCategoryID);
+                        lblDowntime.Text = Convert.ToString(Session["Downtime"]);
 
                     }
 
