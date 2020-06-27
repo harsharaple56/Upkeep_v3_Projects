@@ -3864,11 +3864,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="Work_Permit\MyActionable_WorkPermit.aspx" />
-    <Content Include="Work_Permit\MyWorkPermit.aspx" />
-    <Content Include="Work_Permit\WorkPermit_Configuration.aspx" />
-    <Content Include="Work_Permit\WorkPermit_Request.aspx" />
-    <Content Include="Work_Permit\WPConfig_Listing.aspx" />
+    <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
+    <Content Include="WorkPermit\MyWorkPermit.aspx" />
+    <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
+    <Content Include="WorkPermit\WorkPermit_Request.aspx" />
+    <Content Include="WorkPermit\WPConfig_Listing.aspx" />
     <None Include="Properties\PublishProfiles\App_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -4442,39 +4442,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Work_Permit\MyActionable_WorkPermit.aspx.cs">
+    <Compile Include="WorkPermit\MyActionable_WorkPermit.aspx.cs">
       <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Work_Permit\MyActionable_WorkPermit.aspx.designer.cs">
+    <Compile Include="WorkPermit\MyActionable_WorkPermit.aspx.designer.cs">
       <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Work_Permit\MyWorkPermit.aspx.cs">
+    <Compile Include="WorkPermit\MyWorkPermit.aspx.cs">
       <DependentUpon>MyWorkPermit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Work_Permit\MyWorkPermit.aspx.designer.cs">
+    <Compile Include="WorkPermit\MyWorkPermit.aspx.designer.cs">
       <DependentUpon>MyWorkPermit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Work_Permit\WorkPermit_Configuration.aspx.cs">
+    <Compile Include="WorkPermit\WorkPermit_Configuration.aspx.cs">
       <DependentUpon>WorkPermit_Configuration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Work_Permit\WorkPermit_Configuration.aspx.designer.cs">
+    <Compile Include="WorkPermit\WorkPermit_Configuration.aspx.designer.cs">
       <DependentUpon>WorkPermit_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Work_Permit\WorkPermit_Request.aspx.cs">
+    <Compile Include="WorkPermit\WorkPermit_Request.aspx.cs">
       <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Work_Permit\WorkPermit_Request.aspx.designer.cs">
+    <Compile Include="WorkPermit\WorkPermit_Request.aspx.designer.cs">
       <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Work_Permit\WPConfig_Listing.aspx.cs">
+    <Compile Include="WorkPermit\WPConfig_Listing.aspx.cs">
       <DependentUpon>WPConfig_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Work_Permit\WPConfig_Listing.aspx.designer.cs">
+    <Compile Include="WorkPermit\WPConfig_Listing.aspx.designer.cs">
       <DependentUpon>WPConfig_Listing.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://localhost:57330/UpkeepControlCenter_Service.asmx?wsdl" filename="UpkeepControlCenter_Service.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://localhost:57330/UpkeepControlCenter_Service.asmx?disco" filename="UpkeepControlCenter_Service.disco" />
+  </Results>
+</DiscoveryClientResultsFile>

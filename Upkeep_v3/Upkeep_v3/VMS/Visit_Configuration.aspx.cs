@@ -113,11 +113,11 @@ namespace Upkeep_v3.VMS
 
                     strXmlVMS_Question.Append(@"<Question_Desc>");
                     strXmlVMS_Question.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
-                    strXmlVMS_Question.Append(@"<Question_Id>" + VMSQuestionID + "</Question_Id>");
-                    strXmlVMS_Question.Append(@"<Question_Header>" + VMSQuestion + "</Question_Header>");
-                    strXmlVMS_Question.Append(@"<Question_Visible>" + VMSQuestionVisible + "</Question_Visible>");
-                    strXmlVMS_Question.Append(@"<Question_Mandatory>" + VMSQuestionMandatory + "</Question_Mandatory>");
-                    strXmlVMS_Question.Append(@"<Question_Ans>" + VMSQuestionAns + "</Question_Ans>");
+                    strXmlVMS_Question.Append(@"<Question_Id>" + VMSQuestionID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
+                    strXmlVMS_Question.Append(@"<Question_Header>" + VMSQuestion.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
+                    strXmlVMS_Question.Append(@"<Question_Visible>" + VMSQuestionVisible.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Visible>");
+                    strXmlVMS_Question.Append(@"<Question_Mandatory>" + VMSQuestionMandatory.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Mandatory>");
+                    strXmlVMS_Question.Append(@"<Question_Ans>" + VMSQuestionAns.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans>");
 
                     strXmlVMS_Question.Append(@"<Question_Ans_Data_Root>");
                     string[] strValueData = VMSQuestionAnsData.Split(';');
@@ -146,9 +146,9 @@ namespace Upkeep_v3.VMS
                             strXmlVMS_Question.Append(@"<Question_Ans_Data>");
                             strXmlVMS_Question.Append(@"<Question_Ans_Sequence>" + f + "</Question_Ans_Sequence>");
 
-                            strXmlVMS_Question.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString() + "</Question_Ans_Data_ID>");
-                            strXmlVMS_Question.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString() + "</Question_Ans_Data_Text>");
-                            strXmlVMS_Question.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString() + "</Question_Ans_Data_IsFlag>");
+                            strXmlVMS_Question.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_ID>");
+                            strXmlVMS_Question.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_Text>");
+                            strXmlVMS_Question.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_IsFlag>");
 
                             strXmlVMS_Question.Append(@"</Question_Ans_Data>");
                         }

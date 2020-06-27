@@ -373,28 +373,30 @@
                 for (var i = 0; i < arrAns.length; i++) {
                     //if (arrAns[i] != "ii:||") {
                     $("#divAnswerAdd").click();
-                  //  alert(arrAns[i]);
+                   alert(arrAns[i]);
                     //alert(arrAns[i]); AnswerType[0][ctl00$ContentPlaceHolder1$hdnAnswerDataID]
                     var arrIDAns = arrAns[i].split(":");
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
+
+
                      
 
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").val(arrIDAns[3]);
  
                      
-                    var isMand = arrIDAns[2];
-                    var isAttc = arrIDAns[3];
+                    var isMand = arrIDAns[2].toLowerCase();
+                    var isAttc = arrIDAns[3].toLowerCase();
                     //alert(isMand);
                    // alert(isAttc);
-                    if (isMand == "True") { 
+                    if (isMand == "1" || isMand == "true") { 
                         //alert(":f:");
                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true);
                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass('active');
                     } 
-                    if (isAttc == "True") { 
+                    if (isAttc == "1" || isAttc == "true") { 
                        // alert(":oof:");
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").prop( "checked", true );
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").parent().parent().addClass('active');
@@ -521,7 +523,7 @@
                 //Bind CL Questions with answesrs
                 var Questions = $('#hdnCLQuestions').val();
                 var arrQuestions = Questions.split("~");
-                alert(Questions);
+                //alert(Questions);
                 for (var i = 0; i < arrQuestions.length; i++) {
                     //$("#divGroupAdd").click();
                     //alert(arrTerms[i]);   
@@ -560,8 +562,8 @@
                     var isAttc = arrQuestionData[4];
 
 
-                    alert(arrQuestionData[6]);
-                    alert(arrQuestionData[7]);
+                    //alert(arrQuestionData[6]);
+                    //alert(arrQuestionData[7]);
 
                     Question.children().find(".hdnRefDesc").val(arrQuestionData[6]);
                     Question.children().find(".hdnRefPathUploaded").val(arrQuestionData[7]);
@@ -588,8 +590,10 @@
                     Question.children().find(".hdnRepeaterAnswer").val(arrQuestionData[10]);
                     Question.children().find(".hdnRepeaterAnswer").change();
                     // if (arrQuestionData[9] == "1" || arrQuestionData[9] == "2")
-                    //Option for multi
-                    if (arrQuestionData[9] == "1" || arrQuestionData[9] == "2")
+                    //Option for multi  
+                    //alert();
+                    var isMulti = Question.children().find("select").find('option:selected').attr("data-ismulti").toLowerCase();
+                    if (isMulti == "1" || isMulti == "true")
                     {
                         Question.children().find(".lblAnswerCnt").show();
                     }

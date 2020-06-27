@@ -17,7 +17,7 @@
                 var newUrl = $(this).data('url');
                 $(".modal-body #hLink").html(newUrl);
                 $(".modal-body #hLink").attr("href", newUrl)
-
+                $("#ContentPlaceHolder1_plBarCode img").hide();
                 $("#" + newUrl.substr(newUrl.length - 5)).show();
 
                 // As pointed out in comments, 

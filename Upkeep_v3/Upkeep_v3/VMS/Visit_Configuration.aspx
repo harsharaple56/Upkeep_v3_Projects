@@ -260,7 +260,7 @@
                 if ($('#hdnVMSConfigID').val() != "0") {
                     answers = "ii:||:on;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
-                alert(answers);
+                //alert(answers);
                 var arrAns = answers.split(";");
 
                 for (var i = 0; i < arrAns.length; i++) {
@@ -272,7 +272,7 @@
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
-                    if (arrIDAns[2] == "True") {
+                    if (arrIDAns[2].toLowerCase() == "true") {
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true)
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass("active");
                     }
@@ -740,7 +740,7 @@
                                                     <input type="text" class="txtAnswer txtvalidate" name="txtAnswer" placeholder="Enter Value" id="txtAnswer" />
 
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-light">
+                                                        <label class="btn btn-sm btn-light">
                                                             <%--<input id="ChkAnsFlag" type="checkbox" />--%>
                                                             <asp:CheckBox ID="ChkAnsFlag" CssClass="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
                                                     </div>
