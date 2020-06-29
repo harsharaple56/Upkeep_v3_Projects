@@ -441,6 +441,9 @@
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\logos\efacilito_250.png" />
+    <Content Include="assets\app\media\img\logos\efacilito_350.png" />
+    <Content Include="assets\app\media\img\logos\efacilito.png" />
     <Content Include="assets\app\media\img\logos\efacilito_no_bg.png" />
     <Content Include="assets\app\media\img\logos\efacilito_s.png" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
@@ -820,6 +823,8 @@
     <Content Include="assets\demo\default\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
     <Content Include="assets\demo\media\img\logo\client_logo.png" />
+    <Content Include="assets\demo\media\img\logo\efacilito_banner.png" />
+    <Content Include="assets\demo\media\img\logo\efacilito_White.png" />
     <Content Include="assets\demo\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\media\img\logo\logo.png" />
     <Content Include="assets\demo\media\img\logo\logo_compact.png" />
@@ -3859,10 +3864,10 @@
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
-    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
