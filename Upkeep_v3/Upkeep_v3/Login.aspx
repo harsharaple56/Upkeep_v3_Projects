@@ -6,7 +6,7 @@
 <head runat="server">
     <%--  --%>
     <meta charset="utf-8" />
-    <title>Upkeep | Login Page</title>
+    <title>eFacilito | Login Page</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -48,9 +48,9 @@
                         <div>
                             <div class="m-login__logo">
                                 <%--<a href="#">--%>
-                                <img style="width: 400px; height: 400px; margin-left: -24px;" src="assets/app/media/img/logos/efacilito_s.png" />
+                                <img style="width: 300px; height: 300px; margin-left: 55px;" src="assets/app/media/img/logos/efacilito_250.png" />
 
-                            </div>
+                            </div><br />
                             <div class="m-login__signin">
                                 <div class="m-login__head">
                                     <h3 style="text-align: center;" class="m-login__title">Sign In To Your Account</h3>
@@ -175,7 +175,7 @@
                 <br />
 
                 <div class="m-grid__item">
-                    <h3 class="m-login__welcome">Welcome to UpKeep v3.0</h3>
+                    <h3 class="m-login__welcome">Welcome to eFacilito</h3>
                     <p class="m-login__msg">
                         Manage all your Facilty Operations at a single instance<br />
                         Simple , Easy , Convenient
