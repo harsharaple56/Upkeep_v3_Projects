@@ -24,46 +24,19 @@ namespace Upkeep_v3.CheckList
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
-            hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
             {
-                hdn_IsPostBack.Value = "no";
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
-            } 
+            }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            fetchChkRequestListing();
-        }
 
         public string fetchChkRequestListing()
         {
             string data = "";
-            string From_Date = string.Empty;
-            string To_Date = string.Empty;
 
             try
             {
-                if (start_date.Value != "")
-                {
-                    From_Date = Convert.ToString(start_date.Value);
-                }
-                else
-                {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
-
-                }
-
-                if (end_date.Value != "")
-                {
-                    To_Date = Convert.ToString(end_date.Value);
-                }
-                else
-                {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
-                }
 
                 DataSet ds = new DataSet();
 
@@ -72,7 +45,7 @@ namespace Upkeep_v3.CheckList
                     return "";
                 }
 
-                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Session["CompanyID"].ToString() , From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Session["CompanyID"].ToString(), "", "");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -93,15 +66,30 @@ namespace Upkeep_v3.CheckList
                             string Updated_By = Convert.ToString(ds.Tables[0].Rows[i]["Updated_By"]);
                             string Updated_date = Convert.ToString(ds.Tables[0].Rows[i]["Updated_date"]);
 
-                            data += "<tr><td> <a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' style='text-decoration: underline;' > " + Chk_Title + " </a></td>" +
+                            //data += "<tr><td> <a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' style='text-decoration: underline;' > " + Chk_Title + " </a></td>" +
+                            //    "<td>" + Chk_Desc + "</td>" +
+                            //    "<td>" + Is_Enable_Score + "</td>" +
+                            //    "<td>" + Total_Score + "</td>" +
+                            //    "<td>" + Created_By + "</td>" +
+                            //    "<td>" + Created_Date + "</td>" +
+                            //    "<td>" + Updated_By + "</td>" +
+                            //    "<td>" + Updated_date + "</td>" + 
+                            //    "</tr>";
+
+                            data += "<tr>" +
+                                "<td>" + Chk_Title + "</td>" +
                                 "<td>" + Chk_Desc + "</td>" +
                                 "<td>" + Is_Enable_Score + "</td>" +
                                 "<td>" + Total_Score + "</td>" +
                                 "<td>" + Created_By + "</td>" +
                                 "<td>" + Created_Date + "</td>" +
                                 "<td>" + Updated_By + "</td>" +
-                                "<td>" + Updated_date + "</td>" + 
+                                "<td>" + Updated_date + "</td>" +
+                                "<td><a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
+                                "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Chk_Config_ID + "'><i class='la la-trash'></i> </a> " +
                                 "</tr>";
+
+
                         }
                     }
                     else
@@ -120,8 +108,21 @@ namespace Upkeep_v3.CheckList
             }
             return data;
         }
+         
+        public string DeleteChkRequestListing()
+        { 
+            if (hdnDeleteID.Value != "")
+            {
+               ObjUpkeep.Delete_CHKConfiguration(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
+            }
+            hdnDeleteID.Value = "";
 
-
+            return "";
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteChkRequestListing();
+        }
     }
 
 }
