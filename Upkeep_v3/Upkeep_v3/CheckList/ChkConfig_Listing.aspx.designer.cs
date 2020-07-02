@@ -13,48 +13,30 @@ namespace Upkeep_v3.CheckList {
     public partial class ChkConfig_Listing {
         
         /// <summary>
-        /// start_date control.
+        /// hdnDeleteID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField start_date;
+        protected global::System.Web.UI.WebControls.HiddenField hdnDeleteID;
         
         /// <summary>
-        /// end_date control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField end_date;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
-        /// hdn_IsPostBack control.
+        /// HiddenField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
-        
-        /// <summary>
-        /// date_range_title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField date_range_title;
-        
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
     }
 }
