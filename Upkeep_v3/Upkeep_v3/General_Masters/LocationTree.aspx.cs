@@ -52,16 +52,7 @@ namespace Upkeep_v3.General_Masters
             }
 
 
-            //StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
-
-            //SqlConnection objConn = new SqlConnection(StrConn);
-            ////SqlCommand objCommand = new SqlCommand(("select id,title,(select count(*) FROM Tbl_Test_Location_Tree " + "WHERE parentid=sc.id) childnodecount FROM Tbl_Test_Location_Tree sc where parentID IS NULL"), objConn);
-            //SqlCommand objCommand = new SqlCommand("Spr_Fetch_Location_RootLevel", objConn);
-            //objCommand.CommandType = CommandType.StoredProcedure;
-            //SqlDataAdapter da = new SqlDataAdapter(objCommand);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //PopulateNodes(dt, TreeView1.Nodes);
+           
         }
 
         private void PopulateNodes(DataTable dt, TreeNodeCollection nodes)
@@ -104,29 +95,17 @@ namespace Upkeep_v3.General_Masters
 
 
 
-            //StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
-
-            //SqlConnection objConn = new SqlConnection(StrConn);
-            ////SqlCommand objCommand = new SqlCommand(("select id,title,(select count(*) FROM Tbl_Test_Location_Tree " + "WHERE parentid=sc.id) childnodecount FROM Tbl_Test_Location_Tree sc where parentID=@parentID"), objConn);
-            //SqlCommand objCommand = new SqlCommand("Spr_Fetch_Location_SubLevel", objConn);
-            //objCommand.CommandType = CommandType.StoredProcedure;
-
-            //objCommand.Parameters.Add("@parentID", SqlDbType.Int).Value = parentid;
-            //SqlDataAdapter da = new SqlDataAdapter(objCommand);
-            //DataTable dt = new DataTable();
-            //da.Fill(dt);
-            //PopulateNodes(dt, parentNode.ChildNodes);
         }
 
         protected void TreeView1_TreeNodePopulate(object sender, System.Web.UI.WebControls.TreeNodeEventArgs e)
         {
             PopulateSubLevel(int.Parse(e.Node.Value), e.Node);
-            //txtbox.Text = e.Node.Text;
+           
         }
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
-            //txtbox.Text = Convert.ToString(TreeView1.SelectedNode.Value);
+
             hdnNode.Value = Convert.ToString(TreeView1.SelectedNode.Value);
             lblSelectedLocation.Text = TreeView1.SelectedNode.Text;
         }
@@ -152,7 +131,7 @@ namespace Upkeep_v3.General_Masters
                 }
                 Location_Node = txtNewNode.Text.Trim();
                 strAction = "Update";
-                dsParent =ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
+                dsParent = ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
 
                 if (dsParent.Tables.Count > 0)
                 {
@@ -163,7 +142,7 @@ namespace Upkeep_v3.General_Masters
                         {
                             TreeView1.SelectedNode.Text = txtNewNode.Text.Trim();
                             txtNewNode.Text = "";
-                            //hdnNode.Value = "";
+
                             lblErrorMsg.Text = "";
                         }
                         else if (Status == 2)
@@ -177,8 +156,7 @@ namespace Upkeep_v3.General_Masters
             {
                 throw ex;
             }
-            //TreeView1.SelectedNode.Text = txtNewNode.Text.Trim();
-            //txtNewNode.Text = "";
+
         }
 
         protected void btnAddChild_Click(object sender, EventArgs e)
@@ -206,10 +184,10 @@ namespace Upkeep_v3.General_Masters
                         if (Status == 1)
                         {
                             TreeNode node = new TreeNode(txtNewNode.Text.Trim());
-                            //TreeView1.Nodes.Add(node);
+
                             TreeView1.SelectedNode.ChildNodes.Add(node);
                             txtNewNode.Text = "";
-                            //hdnNode.Value = "";
+
                             lblErrorMsg.Text = "";
                         }
                         else if (Status == 2)
@@ -223,9 +201,7 @@ namespace Upkeep_v3.General_Masters
             {
                 throw ex;
             }
-            //TreeNode node = new TreeNode(txtNewNode.Text.Trim());
-            //TreeView1.SelectedNode.ChildNodes.Add(node);
-            //txtNewNode.Text = "";
+
         }
 
         protected void btnAddParent_Click(object sender, EventArgs e)
@@ -243,7 +219,7 @@ namespace Upkeep_v3.General_Masters
                 }
                 Location_Node = txtNewNode.Text.Trim();
                 strAction = "Add";
-                dsParent =ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
+                dsParent = ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
 
                 if (dsParent.Tables.Count > 0)
                 {
@@ -255,7 +231,7 @@ namespace Upkeep_v3.General_Masters
                             TreeNode node = new TreeNode(txtNewNode.Text.Trim());
                             TreeView1.Nodes.Add(node);
                             txtNewNode.Text = "";
-                            //hdnNode.Value = "";
+
                             lblErrorMsg.Text = "";
                         }
                         else if (Status == 2)

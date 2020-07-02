@@ -77,12 +77,12 @@
 					<div class="m-login__container">
 						<div class="m-login__logo">
 							<a href="#">
-								<img src="assets/app/media/img/logos/logo_login.png" class="img-fluid">
+								<img src="assets/app/media/img/logos/efacilito_250.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="m-login__signin">
 							<div class="m-login__head">
-								<h3 class="m-login__title">Upkeep Login</h3>
+								<h3 class="m-login__title">eFacilito Login</h3>
 							</div>
 							<%--<form class="m-login__form m-form" action="">
 								<div class="form-group m-form__group">

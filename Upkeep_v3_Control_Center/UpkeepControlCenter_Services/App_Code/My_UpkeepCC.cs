@@ -196,4 +196,23 @@ public class My_UpkeepCC
             throw ex;
         }
     }
+
+    public DataSet Subscription_Package_CRUD(int PackageID, string PackageName, int NoOfDays, int Price, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["UpkeepCC_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+            ds = objUpkeepCC_BL.Subscription_Package_CRUD(PackageID, PackageName, NoOfDays, Price, LoggedInUserID, Action, strConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 }

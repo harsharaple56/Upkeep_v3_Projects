@@ -59,39 +59,39 @@ namespace Upkeep_v3_Control_Center
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
                             string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
-                            string Activation_Dt = Activation_Date.Substring(0, 10);
-                            DateTime Activationdt;
+                            //string Activation_Dt = Activation_Date.Substring(0, 10);
+                            //DateTime Activationdt;
 
-                            if (DateTime.TryParseExact(Activation_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Activationdt))
-                            {
-                                Activation_Dt = Activationdt.ToString("dd/MMM/yyyy");
-                            }
+                            //if (DateTime.TryParseExact(Activation_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Activationdt))
+                            //{
+                            //    Activation_Dt = Activationdt.ToString("dd/MMM/yyyy");
+                            //}
 
-                            string Expiry_Dt = Expiry_Date.Substring(0, 10);
-                            DateTime Expirydt;
+                            //string Expiry_Dt = Expiry_Date.Substring(0, 10);
+                            //DateTime Expirydt;
 
-                            if (DateTime.TryParseExact(Expiry_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Expirydt))
-                            {
-                                Expiry_Dt = Expirydt.ToString("dd/MMM/yyyy");
-                            }
+                            //if (DateTime.TryParseExact(Expiry_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Expirydt))
+                            //{
+                            //    Expiry_Dt = Expirydt.ToString("dd/MMM/yyyy");
+                            //}
 
-                            string Due_Dt = Due_Date.Substring(0, 10);
-                            DateTime DueDt;
+                            //string Due_Dt = Due_Date.Substring(0, 10);
+                            //DateTime DueDt;
 
-                            if (DateTime.TryParseExact(Due_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out DueDt))
-                            {
-                                Due_Dt = DueDt.ToString("dd/MMM/yyyy");
-                            }
+                            //if (DateTime.TryParseExact(Due_Dt, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out DueDt))
+                            //{
+                            //    Due_Dt = DueDt.ToString("dd/MMM/yyyy");
+                            //}
 
-                            string Created_On = Created_Date.Substring(0, 10);
-                            DateTime dt;
+                            //string Created_On = Created_Date.Substring(0, 10);
+                            //DateTime dt;
 
-                            if (DateTime.TryParseExact(Created_On, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out dt))
-                            {
-                                Created_On = dt.ToString("dd/MMM/yyyy");
-                            }
+                            //if (DateTime.TryParseExact(Created_On, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out dt))
+                            //{
+                            //    Created_On = dt.ToString("dd/MMM/yyyy");
+                            //}
 
-                            data += "<tr><td>" + Client_ID + "</td><td>" + Company_Desc + "</td><td>" + Subs_Pack_Desc + "</td><td>" + Activation_Dt + "</td><td>" + Expiry_Dt + "</td><td>" + Due_Dt + "</td><td>" + Modules + "</td><td>" + User_Limit_No + "</td><td>" + Status + "</td><td>" + Created_On + "</td><td><a href='Add_License.aspx?LicenseID=" + License_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_License.aspx?DelLicense_Id=" + License_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Company_Desc + "</td><td>" + Subs_Pack_Desc + "</td><td>" + Activation_Date + "</td><td>" + Expiry_Date + "</td><td>" + Due_Date + "</td><td>" + Modules + "</td><td>" + User_Limit_No + "</td><td>" + Status + "</td><td>" + Created_Date + "</td><td><a href='Add_License.aspx?LicenseID=" + License_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_License.aspx?DelLicense_Id=" + License_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else

@@ -210,21 +210,24 @@ namespace Upkeep_v3_Control_Center
                         string strExpiryDate = Convert.ToString(ds.Tables[0].Rows[0]["Expiry_Date"]);
                         string strDueDate = Convert.ToString(ds.Tables[0].Rows[0]["Due_Date"]);
 
-                        string ExpiryDate = strExpiryDate.Substring(0, 10);
-                        DateTime Expirydt;
+                        txtExpDate.Text = Convert.ToString(ds.Tables[0].Rows[0]["Expiry_Date"]);
+                        txtDueDate.Text = Convert.ToString(ds.Tables[0].Rows[0]["Due_Date"]);
 
-                        if (DateTime.TryParseExact(ExpiryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Expirydt))
-                        {
-                            txtExpDate.Text = Expirydt.ToString("dd/MMM/yyyy");
-                        }
+                        //string ExpiryDate = strExpiryDate.Substring(0, 10);
+                        //DateTime Expirydt;
 
-                        string DueDate = strDueDate.Substring(0, 10);
-                        DateTime Duedt;
+                        //if (DateTime.TryParseExact(ExpiryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Expirydt))
+                        //{
+                        //    txtExpDate.Text = Expirydt.ToString("dd/MMM/yyyy");
+                        //}
 
-                        if (DateTime.TryParseExact(DueDate, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Duedt))
-                        {
-                            txtDueDate.Text = Duedt.ToString("dd/MMM/yyyy");
-                        }
+                        //string DueDate = strDueDate.Substring(0, 10);
+                        //DateTime Duedt;
+
+                        //if (DateTime.TryParseExact(DueDate, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Duedt))
+                        //{
+                        //    txtDueDate.Text = Duedt.ToString("dd/MMM/yyyy");
+                        //}
                     }
 
                 }

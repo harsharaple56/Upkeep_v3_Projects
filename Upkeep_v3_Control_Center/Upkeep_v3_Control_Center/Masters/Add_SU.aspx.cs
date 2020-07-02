@@ -72,11 +72,12 @@ namespace Upkeep_v3_Control_Center.Masters
                         }
                         else if (Status == 1)
                         {
-                           // Response.Redirect("~/Masters/Group_Mst.aspx", false);
+                            Response.Redirect(Page.ResolveClientUrl("~/Masters/SU_Mst.aspx"), false);
+                            //Response.Redirect("~/Masters/Group_Mst.aspx", false);
                         }
                         else if (Status == 3)
                         {
-                            lblErrorMsg.Text = "Group Code/ Group Description already exists";
+                            lblErrorMsg.Text = "User already exists";
                         }
                     }
                 }
@@ -140,8 +141,7 @@ namespace Upkeep_v3_Control_Center.Masters
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                       // Response.Redirect("~/Masters/Group_Mst.aspx", false);
-
+                        Response.Redirect(Page.ResolveClientUrl("~/Masters/SU_Mst.aspx"), false);
                     }
 
                 }
