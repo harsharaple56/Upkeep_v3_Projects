@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <%-- <script src="<%= Page.ResolveClientUrl("~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js") %>" type="text/javascript"></script>--%>
+    <script src="<%= Page.ResolveClientUrl("~/assets1/demo/default/custom/crud/forms/widgets/bootstrap-datetimepicker.js") %>" type="text/javascript"></script>
 
     <style type="text/css">
         .modalBackground {
@@ -28,46 +29,64 @@
     </style>
 
     <script>
-        function init_autosize() {
-            var autosize_textarea = $('.autosize_textarea');
-            autosize(autosize_textarea);
-            autosize.update(autosize_textarea);
-        }
+        //function init_autosize() {
+        //    var autosize_textarea = $('.autosize_textarea');
+        //    autosize(autosize_textarea);
+        //    autosize.update(autosize_textarea);
+        //}
 
         $(document).ready(function () {
             //init_autosize();
             //init_plugins();
+            BootstrapTimepicker.init()
+            //$('.datetimepicker').datetimepicker({
+            //    todayHighlight: true,
+            //    autoclose: true,
+            //    pickerPosition: 'bottom-right',
+            //    format: 'dd/mm/yyyy',
+            //    //showMeridian: true,
+            //   // ActivationDate: moment().format('YYYY-MM-DD'),
+            //}).on('changeDate', function (event) {
+            //    var ActivationDate = moment($('#ActivationDate').val(), 'DD/MM/YYYY').valueOf();
+            //    //alert(ActivationDate.val);
+            //    //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+            //    //$('#error_endDate').html('').parents('.form-group').removeClass('has-error');
+            //    //if (endDate < startDate) {
+            //    //    $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
+            //    //}
+            //});
 
-            $('.datetimepicker').datetimepicker({
-                todayHighlight: true,
-                autoclose: true,
-                pickerPosition: 'bottom-right',
-                format: 'dd/mm/yyyy',
-                //showMeridian: true,
-                ActivationDate: moment().format('YYYY-MM-DD'),
-            }).on('changeDate', function (event) {
-                var ActivationDate = moment($('#ActivationDate').val(), 'DD/MM/YYYY').valueOf();
-                //alert(ActivationDate.val);
-                //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                //$('#error_endDate').html('').parents('.form-group').removeClass('has-error');
-                //if (endDate < startDate) {
-                //    $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
-                //}
-            });
+            //$('.datetimepicker').on('click', function () {
 
-            $('.datetimepicker').on('click', function () {
+            //    if ($(this).is('#ActivationDate')) {
+            //        //$('#endDate').datetimepicker('hide');
+            //    }
+            //    //if ($(this).is('#endDate')) {
+            //    //    $('#startDate').datetimepicker('hide');
+            //    //}
+            //});
 
-                if ($(this).is('#ActivationDate')) {
-                    //$('#endDate').datetimepicker('hide');
-                }
-                //if ($(this).is('#endDate')) {
-                //    $('#startDate').datetimepicker('hide');
-                //}
-            });
+
+
         });
+
+        var BootstrapTimepicker = {
+            init: function () {
+                $("#ActivationDate").datetimepicker(
+                    { format: "dd/mm/yyyy", todayHighlight: !0, autoclose: !0, startView: 2, minView: 2, forceParse: 0, pickerPosition: "bottom-left" }
+                    //, { minDate: today }
+                );
+                $('#ActivationDate').datetimepicker({
+                    minDate:new Date()
+                });
+            }
+        };
+
+      
+
     </script>
 
-    
+
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
@@ -113,7 +132,7 @@
 
 
                                 <!--begin: Form Body -->
-                                <div class="m-portlet__body">
+                                <div class="">
                                     <div class="row">
 
                                         <div class="col-xl-12 offset-xl-2">
@@ -155,9 +174,9 @@
                                                 </div>--%>
 
 
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Client ID:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                <div class="form-group m-form__group row" style="display: none;">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Client ID:</label>
+                                                    <div class="col-xl-4 col-lg-4">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:TextBox ID="txtClient_ID" runat="server" class="form-control m-input" placeholder="Enter Client ID"></asp:TextBox>
 
@@ -166,8 +185,8 @@
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Select Company:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Select Company:</label>
+                                                    <div class="col-xl-6 col-lg-6">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:DropDownList ID="ddlcompanyName" class="form-control m-input" runat="server"></asp:DropDownList>
                                                         <span id="error_Company" class="text-danger small"></span>
@@ -176,8 +195,8 @@
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Select Subscription Pack:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Select Subscription Pack:</label>
+                                                    <div class="col-xl-4 col-lg-4">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:DropDownList ID="ddlSubscription" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlSubscription_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                                         <span id="error_Company_Code2" class="text-danger small"></span>
@@ -185,15 +204,23 @@
                                                     </div>
                                                 </div>
 
-                                              <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>--%>
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Select Activation Date:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Select Activation Date:</label>
+                                                    <div class="col-xl-4 col-lg-4">
                                                         <div class="input-group date">
-                                                            <asp:TextBox ID="ActivationDate" runat="server" AutoCompleteType="Disabled" class="form-control m-input datetimepicker" OnTextChanged="ActivationDate_TextChanged" AutoPostBack="true" placeholder="Select activation date"></asp:TextBox>
+                                                            <%--<asp:TextBox ID="ActivationDate" runat="server" AutoCompleteType="Disabled" class="form-control m-input datetimepicker" OnTextChanged="ActivationDate_TextChanged" AutoPostBack="true" placeholder="Select activation date"></asp:TextBox>
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                            </div>--%>
+                                                            <asp:TextBox ID="ActivationDate" runat="server" ClientIDMode="Static" autocomplete="off" class="form-control m-input datetimepicker m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm btn-secondary m-btn m-btn--label-primary"
+                                                                OnTextChanged="ActivationDate_TextChanged" AutoPostBack="true" placeholder="Select activation date"></asp:TextBox>
+
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="la la-calendar glyphicon-th"></i>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                         <span id="error_Company_Code" class="text-danger small"></span>
@@ -202,10 +229,10 @@
 
                                                 </div>
 
-                                              
+
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Expiration Date:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Expiration Date:</label>
+                                                    <div class="col-xl-4 col-lg-4">
 
                                                         <asp:Label ID="txtExpDate" runat="server" ForeColor="Orange" Font-Bold="true" class="form-control m-input" placeholder="Enter User name"></asp:Label>
 
@@ -214,8 +241,8 @@
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Due Date:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Due Date:</label>
+                                                    <div class="col-xl-4 col-lg-4">
 
                                                         <asp:Label ID="txtDueDate" runat="server" ForeColor="Red" Font-Bold="true" class="form-control m-input" placeholder="Enter User name"></asp:Label>
 
@@ -223,11 +250,11 @@
                                                     </div>
                                                 </div>
 
-                                    <%--</ContentTemplate>
+                                                <%--</ContentTemplate>
                                                     </asp:UpdatePanel>--%>
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Select User Limit:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Select User Limit:</label>
+                                                    <div class="col-xl-4 col-lg-4">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:DropDownList ID="ddlUserLimit" class="form-control m-input" runat="server"></asp:DropDownList>
                                                         <span id="error_drpUserLimit" class="text-danger small"></span>
@@ -236,8 +263,8 @@
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Select Modules to activate:</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <label class="col-xl-4 col-lg-4 col-form-label">* Select Modules to activate:</label>
+                                                    <div class="col-xl-4 col-lg-4">
 
                                                         <div>
                                                             <asp:CheckBoxList ID="chkModules" runat="server" class="checkbox m-radio m-checkbox  m-checkbox--bold m-checkbox--state-success" AutoPostBack="false">

@@ -266,6 +266,23 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         }
         return dsLogin;
     }
+
+    [WebMethod]
+    public DataSet Subscription_Package_CRUD(int PackageID, string PackageName, int NoOfDays, int Price, string LoggedInUserID, string Action)
+    {
+        DataSet dsLogin = new DataSet();
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+            dsLogin = obj.Subscription_Package_CRUD(PackageID, PackageName, NoOfDays, Price, LoggedInUserID, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsLogin;
+    }
+
 }
 
 public class AuthenticationHeader : SoapHeader

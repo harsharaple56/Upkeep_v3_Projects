@@ -249,6 +249,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Subscription_Package_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PackageName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NoOfDays" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Subscription_Package_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Subscription_Package_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -317,6 +343,12 @@
   <wsdl:message name="UpdatedsLicenseActionSoapOut">
     <wsdl:part name="parameters" element="tns:UpdatedsLicenseActionResponse" />
   </wsdl:message>
+  <wsdl:message name="Subscription_Package_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:Subscription_Package_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="Subscription_Package_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:Subscription_Package_CRUDResponse" />
+  </wsdl:message>
   <wsdl:portType name="UpkeepControlCenter_ServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -361,6 +393,10 @@
     <wsdl:operation name="UpdatedsLicenseAction">
       <wsdl:input message="tns:UpdatedsLicenseActionSoapIn" />
       <wsdl:output message="tns:UpdatedsLicenseActionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Subscription_Package_CRUD">
+      <wsdl:input message="tns:Subscription_Package_CRUDSoapIn" />
+      <wsdl:output message="tns:Subscription_Package_CRUDSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UpkeepControlCenter_ServiceSoap" type="tns:UpkeepControlCenter_ServiceSoap">
@@ -464,6 +500,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Subscription_Package_CRUD">
+      <soap:operation soapAction="http://tempuri.org/Subscription_Package_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="UpkeepControlCenter_ServiceSoap12" type="tns:UpkeepControlCenter_ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -559,6 +604,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatedsLicenseAction">
       <soap12:operation soapAction="http://tempuri.org/UpdatedsLicenseAction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Subscription_Package_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/Subscription_Package_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
