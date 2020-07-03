@@ -8521,6 +8521,12 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                             ObjChecklistConfigHead = (from p in DsDataSet.Tables[0].AsEnumerable()
                                                       select new ClChecklistConfigHead
                                                       {
+                                                          Chk_Response_ID = 0,
+                                                          Location_ID = 0,
+                                                          Department_ID = 0,
+                                                          Status = "",
+                                                          ActionStatus = "",
+
                                                           Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
                                                           Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
                                                           Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
@@ -8654,7 +8660,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                     foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
                     {
                         strXml.Append(@"<AnswerValue>");
-                       
+
                         strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
                         strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
 
@@ -8705,7 +8711,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         //CHECKLIST RESPONSE LIST
         [Route("api/UpKeep/Fetch_CheckList_Response")]
         [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Response(string EmpCd,int CompanyID) //int UserID,
+        public HttpResponseMessage Fetch_CheckList_Response(string EmpCd, int CompanyID) //int UserID,
         {
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
             ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
@@ -8764,8 +8770,150 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         }
 
-       
 
+        //CHECKLIST RESPONSE Details
+        [Route("api/UpKeep/Fetch_CheckList_Response_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Response_Details(string ResponseId) //int UserID,
+        {
+            ClChecklistConfig ObjChecklistConfig = new ClChecklistConfig();
+
+            List<ClChecklistConfigHead> ObjChecklistConfigHead = new List<ClChecklistConfigHead>();
+            List<ClChecklistConfigSection> ObjChecklistConfigSection = new List<ClChecklistConfigSection>();
+            List<ClChecklistConfigAnswerType> ObjChecklistConfigAnswerType = new List<ClChecklistConfigAnswerType>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@ResponseId", ResponseId);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_RESPONSE_DETAILS_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+
+                            ObjChecklistConfigHead = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                                      select new ClChecklistConfigHead
+                                                      {
+                                                          Chk_Response_ID = Convert.ToInt32(p.Field<decimal>("Chk_Response_ID")),
+                                                          Location_ID = Convert.ToInt32(p.Field<decimal>("Location_ID")),
+                                                          Department_ID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
+                                                          Status = Convert.ToString(p.Field<string>("Status")),
+                                                          ActionStatus = Convert.ToString(p.Field<string>("ActionStatus")),
+
+                                                          Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
+                                                          Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
+                                                          Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
+                                                          Is_Enable_Score = Convert.ToBoolean(p.Field<bool>("Is_Enable_Score")),
+                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore"))
+                                                      }).ToList();
+
+                            ObjChecklistConfigSection = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                                         select new ClChecklistConfigSection
+                                                         {
+                                                             // SrNo = Convert.ToInt32(p.Field<decimal>("SrNo")),
+                                                             Chk_Section_ID = Convert.ToInt32(p.Field<decimal>("Chk_Section_ID")),
+                                                             Chk_Config_ID = Convert.ToInt32(p.Field<decimal>("Chk_Config_ID")),
+                                                             Chk_Section_Desc = Convert.ToString(p.Field<string>("Chk_Section_Desc")),
+
+                                                             ObjClChecklistConfigQuestion = (from x in DsDataSet.Tables[2].AsEnumerable()
+                                                                                             where x.Field<decimal>("Chk_Section_ID") == p.Field<decimal>("Chk_Section_ID")
+                                                                                             select new ClChecklistConfigQuestion
+                                                                                             {
+
+                                                                                                 CHK_Question_ID = Convert.ToInt32(x.Field<decimal>("CHK_Question_ID")),
+                                                                                                 Chk_Section_ID = Convert.ToInt32(x.Field<decimal>("Chk_Section_ID")),
+                                                                                                 Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                                                                 Is_Attach_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Attach_Mandatory")),
+                                                                                                 Is_Qn_Mandatory = Convert.ToBoolean(x.Field<bool>("Is_Qn_Mandatory")),
+                                                                                                 Qn_Score = Convert.ToInt32(x.Field<decimal>("Qn_Score")),
+                                                                                                 Chk_Qn_Ref_Desc = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Desc")),
+                                                                                                 Chk_Qn_Ref_Photo = Convert.ToString(x.Field<string>("Chk_Qn_Ref_Photo")),
+                                                                                                 Chk_Ans_Type_ID = Convert.ToInt32(x.Field<decimal>("Chk_Ans_Type_ID")),
+                                                                                                 Is_Raise_Flag_Issue = Convert.ToBoolean(x.Field<bool>("Is_Raise_Flag_Issue")),
+
+                                                                                                 ObjClChecklistConfigAnswer = (from y in DsDataSet.Tables[3].AsEnumerable()
+                                                                                                                                   // where y.field<decimal>("chk_question_id ") == p.field<decimal>("chk_question_id ")
+                                                                                                                               where y.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
+                                                                                                                               select new ClChecklistConfigAnswer
+                                                                                                                               {
+                                                                                                                                   Chk_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_value_id")),
+                                                                                                                                   CHK_Question_ID = Convert.ToInt32(y.Field<decimal>("chk_question_id")),
+                                                                                                                                   Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                                                                   Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                                                                   Chk_Ans_Desc = Convert.ToString(y.Field<string>("chk_ans_desc")),
+                                                                                                                                   Chk_Ans_Type_ID = Convert.ToInt32(y.Field<decimal>("chk_ans_type_id"))
+                                                                                                                               }).ToList(),
+
+                                                                                                 ObjClChecklist_Response_Data_Values = (from Z in DsDataSet.Tables[5].AsEnumerable()
+                                                                                                                                        where Z.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
+                                                                                                                                        select new ClChecklist_Response_Data_Values
+                                                                                                                                        {
+                                                                                                                                            AnswerID = Convert.ToInt32(Z.Field<decimal>("Ans_Response_ID")),
+                                                                                                                                            value = Convert.ToString(Z.Field<string>("Chk_Ans_Value_Data"))
+                                                                                                                                        }).ToList()
+
+                                                                                             }).ToList()
+                                                         }).ToList();
+
+                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                                            select new ClChecklistConfigAnswerType
+                                                            {
+                                                                Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                                                                Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                                                                SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                                                                Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                                                            }).ToList();
+
+
+
+                            ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
+                            ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
+                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
+                            //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
         #endregion
 
 

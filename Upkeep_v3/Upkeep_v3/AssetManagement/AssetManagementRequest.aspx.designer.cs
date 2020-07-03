@@ -1129,15 +1129,6 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.TextBox txtModalVendor_Contact2;
         
         /// <summary>
-        /// RequiredFieldValidator29 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator29;
-        
-        /// <summary>
         /// txtModalVendor_Email control.
         /// </summary>
         /// <remarks>

@@ -318,10 +318,12 @@
 
             $("#Button1").on('click', function (e) {
                 e.preventDefault();
-
+                alert("A1");
                 var value = <%= Session["TransactionID"].ToString() %>;
 
                 if (value == 0) {
+                    
+                    alert("A2");
 
                     $('#txtHdn').val("");
 
@@ -381,7 +383,8 @@
 
                     }
                 }
-
+                
+                    alert("A3");
                 if ($('#hdnassetLocation').val() == '') {
                     alert("Please Select Proper Location!");
                     return;
@@ -1154,9 +1157,9 @@
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Contact 2 :</label>
                                             <div class="col-xl-8 col-lg-8">
                                                 <asp:TextBox ID="txtModalVendor_Contact2" runat="server" TextMode ="Number"  class="form-control" ClientIDMode="Static"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="txtModalVendor_Contact2" Visible="true"
+                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="txtModalVendor_Contact2" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
-                                                    ErrorMessage="Please enter Contact 1"></asp:RequiredFieldValidator>
+                                                    ErrorMessage="Please enter Contact 1"></asp:RequiredFieldValidator>--%>
                                             </div>
                                         </div>
                                     <br />
