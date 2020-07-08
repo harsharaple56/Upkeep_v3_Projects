@@ -8413,7 +8413,75 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/UpKeep/Validate_Company")]
+        [HttpGet]
+        public HttpResponseMessage Validate_Company(string CompanyCode)
+        {
+            List<ClsValidateCompany> ObjCompany = new List<ClsValidateCompany>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
 
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["eFacilitoCC_Con"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyCode", CompanyCode);
+
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_ValidateCompany", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjCompany = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                          select new ClsValidateCompany
+                                          {
+                                              Status = Convert.ToInt32(p.Field<string>("Status")),
+                                              CompanyID = Convert.ToInt32(p.Field<decimal>("Company_ID")),
+                                              Client_URL = Convert.ToString(p.Field<string>("ClientURL")),
+                                              Module_ID = Convert.ToString(p.Field<string>("Module_ID"))
+
+                                          }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjCompany);
+                        }
+
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                ObjCompany = null;
+            }
+
+        }
 
         #endregion
 
@@ -8654,7 +8722,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                     foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
                     {
                         strXml.Append(@"<AnswerValue>");
-                       
+
                         strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
                         strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
 
@@ -8705,7 +8773,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         //CHECKLIST RESPONSE LIST
         [Route("api/UpKeep/Fetch_CheckList_Response")]
         [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Response(string EmpCd,int CompanyID) //int UserID,
+        public HttpResponseMessage Fetch_CheckList_Response(string EmpCd, int CompanyID) //int UserID,
         {
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
             ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
@@ -8764,7 +8832,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         }
 
-       
+
 
         #endregion
 
