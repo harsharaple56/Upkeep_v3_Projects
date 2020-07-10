@@ -66,8 +66,14 @@ namespace Upkeep_v3_Control_Center.Masters
                 string CompanyLogoName = string.Empty;
                 string CompanyCode = string.Empty;
                 string ClientURL = string.Empty;
+                string CompanyEmailID = string.Empty;
+                string CompanyMobileNo = string.Empty;
+
                 CompanyCode = txtCompany_Code.Text.Trim();
                 ClientURL = txtClientURL.Text.Trim();
+
+                CompanyEmailID = txtCompanyEmailID.Text.Trim();
+                CompanyMobileNo = txtCompanyMobileNo.Text.Trim();
 
                 if (chk_IsDBatClient.Checked == true)
                 {
@@ -93,7 +99,7 @@ namespace Upkeep_v3_Control_Center.Masters
 
                 //ConString = "";
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, txtCompany_Code.Text.Trim(), txtCompDesc.Text.Trim(), GroupID, CompanyLogoName, ClientURL, Is_DBatClientServer, ConString, LoggedInUserID, Action);
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, txtCompany_Code.Text.Trim(), txtCompDesc.Text.Trim(), GroupID, CompanyLogoName, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action);
 
                 Session["CompanyID"] = "";
                 if (ds.Tables.Count > 0)
@@ -160,7 +166,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, "", "", 0, "","", 0, "", LoggedInUserID, "R");
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, "", "", 0, "","", 0, "","","", LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -241,7 +247,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID_Delete, "", "", 0, "","", 0, "", LoggedInUserID, "D");
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID_Delete, "", "", 0, "","", 0, "","","", LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

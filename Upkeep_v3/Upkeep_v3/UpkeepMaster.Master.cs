@@ -16,7 +16,8 @@ namespace Upkeep_v3
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         string SessionVisitor = string.Empty;
-
+        string ModuleIDs = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -29,8 +30,15 @@ namespace Upkeep_v3
             }
 
 
+            if (Convert.ToString(Session["CompanyID"]) != "")
+            {
+                CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            }
+
+            ModuleIDs = Convert.ToString(Session["ModuleID"]);
+
             DataTable dtMenuDetails = new DataTable();
-            dtMenuDetails = ObjUpkeep.FetchMenu(0, LoggedInUserID).Tables[0];
+            dtMenuDetails = ObjUpkeep.FetchMenu(0, LoggedInUserID, ModuleIDs, CompanyID).Tables[0];
 
             dtGlobal = dtMenuDetails.Copy();
 
@@ -54,7 +62,7 @@ namespace Upkeep_v3
             DataSet dtMenuDetails = new DataSet();
             try
             {
-                dtMenuDetails = ObjUpkeep.FetchMenu(parentMenuId, LoggedInUserID);
+                dtMenuDetails = ObjUpkeep.FetchMenu(parentMenuId, LoggedInUserID, ModuleIDs, CompanyID);
                 
             }
             catch (Exception ex)

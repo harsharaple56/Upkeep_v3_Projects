@@ -37,7 +37,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(0, "", "", 0, "","", 0, "", LoggedInUserID, "R");
+                ds = objUpkeepCC.CompanyMaster_CRUD(0, "", "", 0, "","", 0, "","","", LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -54,6 +54,9 @@ namespace Upkeep_v3_Control_Center.Masters
                             string Group_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Group_Desc"]);
                             string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
+                            string Company_EmailID = Convert.ToString(ds.Tables[0].Rows[i]["Company_EmailID"]);
+                            string Company_MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Company_MobileNo"]);
+
                             string Created_On = Created_Date.Substring(0, 10);
                             DateTime dt;
 
@@ -62,7 +65,7 @@ namespace Upkeep_v3_Control_Center.Masters
                                 Created_On = dt.ToString("dd/MMM/yyyy");
                             }
 
-                            data += "<tr><td>" + Company_Desc + "</td><td>" + Company_Code + "</td><td>" + Group_Desc + "</td><td>" + Created_On + "</td><td><a href='Add_Company.aspx?CompanyID=" + Company_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_Company.aspx?DelCompanyID=" + Company_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Company_Desc + "</td><td>" + Company_Code + "</td><td>" + Company_EmailID + "</td><td>" + Company_MobileNo + "</td><td>" + Group_Desc + "</td><td>" + Created_On + "</td><td><a href='Add_Company.aspx?CompanyID=" + Company_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_Company.aspx?DelCompanyID=" + Company_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else

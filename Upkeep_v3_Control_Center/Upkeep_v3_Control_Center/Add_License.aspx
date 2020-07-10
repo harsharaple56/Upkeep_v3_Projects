@@ -180,7 +180,7 @@
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:TextBox ID="txtClient_ID" runat="server" class="form-control m-input" placeholder="Enter Client ID"></asp:TextBox>
 
-                                                        <asp:Label ID="Label1" runat="server" ForeColor="Red" Visible="false" Font-Bold="true">Client ID Already Exists</asp:Label>
+                                                        <%--<asp:Label ID="Label1" runat="server" ForeColor="Red" Visible="false" Font-Bold="true">Client ID Already Exists</asp:Label>--%>
                                                     </div>
                                                 </div>
 

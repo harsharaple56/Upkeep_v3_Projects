@@ -220,14 +220,14 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet LoginUser(string UserId, string strPassword, string UserType)
+    public DataSet LoginUser(string UserId, string strPassword, string UserType, int CompanyID)
     {
         DataSet ds = new DataSet();
 
         try
         {
 
-            ds = ObjUpkeep.LoginUser(UserId, strPassword, UserType);
+            ds = ObjUpkeep.LoginUser(UserId, strPassword, UserType, CompanyID);
 
         }
         catch (Exception ex)
@@ -1028,12 +1028,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region Role Management
 
     [WebMethod]
-    public DataSet FetchMenu(int parentMenuId, string LoggedInUserID)
+    public DataSet FetchMenu(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID)
     {
         DataSet dtMenu = new DataSet();
         try
         {
-            dtMenu = ObjUpkeep.FetchMenu(parentMenuId, LoggedInUserID);
+            dtMenu = ObjUpkeep.FetchMenu(parentMenuId, LoggedInUserID, ModuleIDs, CompanyID);
         }
         catch (Exception ex)
         {

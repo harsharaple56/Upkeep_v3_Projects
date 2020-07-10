@@ -223,7 +223,7 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CompanyMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string CompanyEmailID, string CompanyMobileNo, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CompanyMaster_CRUD", new object[] {
                         CompanyID,
                         strCompanyCode,
@@ -233,18 +233,20 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         ClientURL,
                         Is_DBatClientServer,
                         ConString,
+                        CompanyEmailID,
+                        CompanyMobileNo,
                         LoggedInUserID,
                         Action});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void CompanyMaster_CRUDAsync(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string LoggedInUserID, string Action) {
-            this.CompanyMaster_CRUDAsync(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, LoggedInUserID, Action, null);
+        public void CompanyMaster_CRUDAsync(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string CompanyEmailID, string CompanyMobileNo, string LoggedInUserID, string Action) {
+            this.CompanyMaster_CRUDAsync(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CompanyMaster_CRUDAsync(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string LoggedInUserID, string Action, object userState) {
+        public void CompanyMaster_CRUDAsync(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string CompanyEmailID, string CompanyMobileNo, string LoggedInUserID, string Action, object userState) {
             if ((this.CompanyMaster_CRUDOperationCompleted == null)) {
                 this.CompanyMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCompanyMaster_CRUDOperationCompleted);
             }
@@ -257,6 +259,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         ClientURL,
                         Is_DBatClientServer,
                         ConString,
+                        CompanyEmailID,
+                        CompanyMobileNo,
                         LoggedInUserID,
                         Action}, this.CompanyMaster_CRUDOperationCompleted, userState);
         }

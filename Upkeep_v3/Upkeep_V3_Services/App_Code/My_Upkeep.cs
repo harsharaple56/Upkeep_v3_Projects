@@ -232,14 +232,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet LoginUser(string UserName, string strPassword, string UserType)
+    public DataSet LoginUser(string UserName, string strPassword, string UserType, int CompanyID)
     {
         try
         {
             StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
-            ds = ObjUpkeepCC_BL.LoginUser(UserName, strPassword, UserType, StrConn);
+            ds = ObjUpkeepCC_BL.LoginUser(UserName, strPassword, UserType, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -670,14 +670,14 @@ public class My_Upkeep
 
     #region Role Management
 
-    public DataSet FetchMenu(int parentMenuId, string LoggedInUserID)
+    public DataSet FetchMenu(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID)
     {
         DataSet dtMenu = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            dtMenu = ObjUpkeepCC_BL.FetchMenu(parentMenuId, LoggedInUserID, StrConn);
+            dtMenu = ObjUpkeepCC_BL.FetchMenu(parentMenuId, LoggedInUserID, ModuleIDs, CompanyID, StrConn);
             return dtMenu;
         }
         catch (Exception ex)

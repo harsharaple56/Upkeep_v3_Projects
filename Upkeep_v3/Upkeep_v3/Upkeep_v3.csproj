@@ -967,7 +967,6 @@
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
-    <Content Include="Login_old.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
@@ -4265,13 +4264,6 @@
     </Compile>
     <Compile Include="General_Masters\User_Type_Master.aspx.designer.cs">
       <DependentUpon>User_Type_Master.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login_old.aspx.cs">
-      <DependentUpon>Login_old.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login_old.aspx.designer.cs">
-      <DependentUpon>Login_old.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

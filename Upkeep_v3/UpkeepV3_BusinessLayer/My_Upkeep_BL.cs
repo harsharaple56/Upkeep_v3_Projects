@@ -370,7 +370,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet LoginUser(string UserName, string strPassword,string UserType, string strConn)
+        public DataSet LoginUser(string UserName, string strPassword,string UserType,int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -383,6 +383,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@UserName", UserName);
                 cmd.Parameters.AddWithValue("@Password", strPassword);
                 cmd.Parameters.AddWithValue("@UserType", UserType);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 con.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -949,7 +950,7 @@ namespace UpkeepV3_BusinessLayer
         #endregion
 
         #region Role Management
-        public DataSet FetchMenu(int parentMenuId, string LoggedInUserID, string StrConn)
+        public DataSet FetchMenu(int parentMenuId, string LoggedInUserID,string ModuleIDs,int CompanyID, string StrConn)
         {
             DataSet dtMenu = new DataSet();
             try
@@ -959,6 +960,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@parentMenuId", parentMenuId);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@ModuleIDs", ModuleIDs);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dtMenu);

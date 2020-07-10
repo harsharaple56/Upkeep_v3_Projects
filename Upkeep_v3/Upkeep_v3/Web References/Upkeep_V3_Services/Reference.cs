@@ -2483,28 +2483,30 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet LoginUser(string UserId, string strPassword, string UserType) {
+        public System.Data.DataSet LoginUser(string UserId, string strPassword, string UserType, int CompanyID) {
             object[] results = this.Invoke("LoginUser", new object[] {
                         UserId,
                         strPassword,
-                        UserType});
+                        UserType,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword, string UserType) {
-            this.LoginUserAsync(UserId, strPassword, UserType, null);
+        public void LoginUserAsync(string UserId, string strPassword, string UserType, int CompanyID) {
+            this.LoginUserAsync(UserId, strPassword, UserType, CompanyID, null);
         }
         
         /// <remarks/>
-        public void LoginUserAsync(string UserId, string strPassword, string UserType, object userState) {
+        public void LoginUserAsync(string UserId, string strPassword, string UserType, int CompanyID, object userState) {
             if ((this.LoginUserOperationCompleted == null)) {
                 this.LoginUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUserOperationCompleted);
             }
             this.InvokeAsync("LoginUser", new object[] {
                         UserId,
                         strPassword,
-                        UserType}, this.LoginUserOperationCompleted, userState);
+                        UserType,
+                        CompanyID}, this.LoginUserOperationCompleted, userState);
         }
         
         private void OnLoginUserOperationCompleted(object arg) {
@@ -4189,26 +4191,30 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchMenu", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FetchMenu(int parentMenuId, string LoggedInUserID) {
+        public System.Data.DataSet FetchMenu(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID) {
             object[] results = this.Invoke("FetchMenu", new object[] {
                         parentMenuId,
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        ModuleIDs,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void FetchMenuAsync(int parentMenuId, string LoggedInUserID) {
-            this.FetchMenuAsync(parentMenuId, LoggedInUserID, null);
+        public void FetchMenuAsync(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID) {
+            this.FetchMenuAsync(parentMenuId, LoggedInUserID, ModuleIDs, CompanyID, null);
         }
         
         /// <remarks/>
-        public void FetchMenuAsync(int parentMenuId, string LoggedInUserID, object userState) {
+        public void FetchMenuAsync(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID, object userState) {
             if ((this.FetchMenuOperationCompleted == null)) {
                 this.FetchMenuOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchMenuOperationCompleted);
             }
             this.InvokeAsync("FetchMenu", new object[] {
                         parentMenuId,
-                        LoggedInUserID}, this.FetchMenuOperationCompleted, userState);
+                        LoggedInUserID,
+                        ModuleIDs,
+                        CompanyID}, this.FetchMenuOperationCompleted, userState);
         }
         
         private void OnFetchMenuOperationCompleted(object arg) {

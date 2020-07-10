@@ -144,7 +144,14 @@ namespace Upkeep_v3
                     }
 
                     DataSet ds = new DataSet();
-                    ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType);
+                    int CompanyID = 0;
+
+                    if (Convert.ToString(Session["CompanyID"]) != "")
+                    {
+                        CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                    }
+
+                    ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType, CompanyID);
 
                     int AssignedRoleCount = 0;
 
