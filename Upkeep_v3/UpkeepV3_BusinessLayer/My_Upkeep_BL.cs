@@ -2263,6 +2263,30 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Error_Log(string Extype, string Page, string Errormsg, string StackTrace, string CompanyID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ERROR_LOG_MAIL", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ErrorMsg", Errormsg);
+                cmd.Parameters.AddWithValue("@PageName", Page);
+                cmd.Parameters.AddWithValue("@ExType", Extype);
+                cmd.Parameters.AddWithValue("@StackTrace", StackTrace);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Asset Management 

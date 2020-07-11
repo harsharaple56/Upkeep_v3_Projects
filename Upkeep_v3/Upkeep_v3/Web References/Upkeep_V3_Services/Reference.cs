@@ -86,6 +86,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_CompanyOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Error_LogOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Asset_DropDownOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Asset_Vendor_DropDownOperationCompleted;
@@ -399,6 +401,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_CompanyCompletedEventHandler Fetch_CompanyCompleted;
+        
+        /// <remarks/>
+        public event Error_LogCompletedEventHandler Error_LogCompleted;
         
         /// <remarks/>
         public event Fetch_Asset_DropDownCompletedEventHandler Fetch_Asset_DropDownCompleted;
@@ -1635,6 +1640,45 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_CompanyCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_CompanyCompleted(this, new Fetch_CompanyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Error_Log", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Error_Log(string Extype, string Page, string Errormsg, string StackTrace, string CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Error_Log", new object[] {
+                        Extype,
+                        Page,
+                        Errormsg,
+                        StackTrace,
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Error_LogAsync(string Extype, string Page, string Errormsg, string StackTrace, string CompanyID, string LoggedInUserID) {
+            this.Error_LogAsync(Extype, Page, Errormsg, StackTrace, CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Error_LogAsync(string Extype, string Page, string Errormsg, string StackTrace, string CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Error_LogOperationCompleted == null)) {
+                this.Error_LogOperationCompleted = new System.Threading.SendOrPostCallback(this.OnError_LogOperationCompleted);
+            }
+            this.InvokeAsync("Error_Log", new object[] {
+                        Extype,
+                        Page,
+                        Errormsg,
+                        StackTrace,
+                        CompanyID,
+                        LoggedInUserID}, this.Error_LogOperationCompleted, userState);
+        }
+        
+        private void OnError_LogOperationCompleted(object arg) {
+            if ((this.Error_LogCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Error_LogCompleted(this, new Error_LogCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5916,6 +5960,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_CompanyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Error_LogCompletedEventHandler(object sender, Error_LogCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Error_LogCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Error_LogCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

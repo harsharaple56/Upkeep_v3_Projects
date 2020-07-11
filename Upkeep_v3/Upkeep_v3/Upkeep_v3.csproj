@@ -959,6 +959,7 @@
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
     <Content Include="Login.aspx" />
@@ -3858,10 +3859,10 @@
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
-    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4258,6 +4259,9 @@
     </Compile>
     <Compile Include="General_Masters\User_Type_Master.aspx.designer.cs">
       <DependentUpon>User_Type_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
