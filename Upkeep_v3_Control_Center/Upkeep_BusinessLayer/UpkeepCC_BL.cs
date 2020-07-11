@@ -77,7 +77,7 @@ namespace Upkeep_BusinessLayer
             }
         }
 
-        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string LoggedInUserID, string Action, string strConn)
+        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -95,8 +95,9 @@ namespace Upkeep_BusinessLayer
                 cmd.Parameters.AddWithValue("@Company_Logo", CompanyLogo);
                 cmd.Parameters.AddWithValue("@Client_URL", ClientURL);
                 cmd.Parameters.AddWithValue("@Is_DBatClientServer", Is_DBatClientServer);
-                cmd.Parameters.AddWithValue("@Con_String", ConString);
-
+                cmd.Parameters.AddWithValue("@Con_String", ConString); 
+                cmd.Parameters.AddWithValue("@CompanyEmailID", CompanyEmailID);
+                cmd.Parameters.AddWithValue("@CompanyMobileNo", CompanyMobileNo);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
 
@@ -300,5 +301,31 @@ namespace Upkeep_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Subscription_Package_CRUD(int PackageID, string PackageName, int NoOfDays, int Price, string LoggedInUserID, string Action, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_Subscription_Package_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Subs_Pack_Id", PackageID);
+                cmd.Parameters.AddWithValue("@Subs_Pack_Desc", PackageName);
+                cmd.Parameters.AddWithValue("@No_of_Days", NoOfDays);
+                cmd.Parameters.AddWithValue("@Price", Price);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

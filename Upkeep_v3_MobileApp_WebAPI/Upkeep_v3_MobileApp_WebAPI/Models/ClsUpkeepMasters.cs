@@ -795,6 +795,12 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
     public class ClChecklistConfigHead
     {
         //XXX
+        public int Chk_Response_ID { get; set; }
+        public int Location_ID { get; set; }
+        public int Department_ID { get; set; }
+        public string Status { get; set; }
+        public string ActionStatus { get; set; } 
+
         public int Chk_Config_ID { get; set; }
         public string Chk_Title { get; set; }
         public string Chk_Desc { get; set; }
@@ -825,6 +831,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public int Chk_Ans_Type_ID { get; set; }
         public bool Is_Raise_Flag_Issue { get; set; }
         public List<ClChecklistConfigAnswer> ObjClChecklistConfigAnswer { get; set; }
+        public List<ClChecklist_Response_Data_Values> ObjClChecklist_Response_Data_Values { get; set; }
     }
     public class ClChecklistConfigAnswer
     {
@@ -845,6 +852,11 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public bool Is_MultiValue { get; set; }
     }
 
+    public class ClChecklist_Response_Data_Values
+    {
+        public int AnswerID { get; set; }
+        public string value { get; set; }
+    }
 
 
     public class ClsChecklist_Response
@@ -854,7 +866,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string User_Code { get; set; }
         public int CompanyID { get; set; }
         public int LocationID { get; set; }
-        public int DepartmentID { get; set; } 
+        public int DepartmentID { get; set; }
         public List<ClsChecklist_Response_Data> ObjChkResponseData { get; set; }
     }
 
@@ -868,16 +880,16 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
     }
     public class ClsChecklist_Response_Data_Values
     {
-        
+
         public int AnswerID { get; set; }
         public string value { get; set; }
     }
 
-        #endregion
+    #endregion
 
-        #region Ticketing
+    #region Ticketing
 
-        public class ClsMyActionableTicket
+    public class ClsMyActionableTicket
     {
         public string TicketID { get; set; }
         public string TicketCode { get; set; }
@@ -935,6 +947,14 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         public string User_Desc { get; set; }
         public string Group_Desc { get; set; }
         public string Escalate_Time { get; set; }
+    }
+
+    public class ClsValidateCompany
+    {
+        public int Status { get; set; }
+        public int CompanyID { get; set; }
+        public string Client_URL { get; set; }
+        public string Module_ID { get; set; }
     }
 
     #endregion

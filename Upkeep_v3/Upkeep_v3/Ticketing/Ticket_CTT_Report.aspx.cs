@@ -83,6 +83,9 @@ namespace Upkeep_v3.Ticketing
 
                 string TicketID = ((HiddenField)row.FindControl("hdnTicketID")).Value;
 
+                string Downtime = gvCTT_Report.Rows[rowIndex].Cells[7].Text;
+                Session["Downtime"] = Downtime;
+
                 Response.Redirect(Page.ResolveClientUrl("~/Ticketing/View_Ticket_Details.aspx?TicketID=" + TicketID), false);
             }
         }

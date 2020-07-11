@@ -53,8 +53,10 @@
 
                         <thead>
                             <tr>
-                                <th>Company Description</th>
+                                <th>Company Name</th>
                                 <th>Company Code</th>
+                                <th>Company EmailID</th>
+                                <th>Company MobileNo</th>
                                 <th>Group Description</th>
                                 <th>Created On</th>
                                 <th>Actions</th>

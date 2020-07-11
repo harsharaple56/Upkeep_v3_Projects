@@ -50,7 +50,6 @@
                             </div>
                             <div class="m-portlet__body">
 
-
                                 <!--begin: Form Body -->
                                 <div class="m-portlet__body">
                                     <div class="row">
@@ -62,19 +61,35 @@
                                                     <div class="col-xl-9 col-lg-9">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter first name" value="">--%>
                                                         <asp:TextBox ID="txtCompany_Code" runat="server" class="form-control m-input" placeholder="Enter Company Code"></asp:TextBox>
-                                                        <span id="error_Company_Code" class="text-danger small"></span>
-                                                        <asp:RequiredFieldValidator ID="rfvCompanyCode" runat="server" ControlToValidate="txtCompany_Code"
-                                                        ErrorMessage="Please select Group description" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        <asp:RequiredFieldValidator ID="rfvCompanyCode" runat="server" ControlToValidate="txtCompany_Code" Display="Dynamic"
+                                                        ErrorMessage="Please enter Company Code" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Company Description:</label>
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Company Name:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                        <asp:TextBox ID="txtCompDesc" runat="server" class="form-control m-input" placeholder="Enter Company Description"></asp:TextBox>
-                                                        <span id="error_txtCompDesc" class="text-danger small"></span>
-                                                        <asp:RequiredFieldValidator ID="rfvCompDesc" runat="server" ControlToValidate="txtCompDesc"
-                                                        ErrorMessage="Please select Group description" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        <asp:TextBox ID="txtCompDesc" runat="server" class="form-control m-input" placeholder="Enter Company Name"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvCompDesc" runat="server" ControlToValidate="txtCompDesc" Display="Dynamic"
+                                                        ErrorMessage="Please enter company name" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="form-group m-form__group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Company Email ID:</label>
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <asp:TextBox ID="txtCompanyEmailID" runat="server" TextMode="Email" class="form-control m-input" placeholder="Enter Company Email ID"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCompDesc" Display="Dynamic"
+                                                        ErrorMessage="Enter Company Email ID" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="form-group m-form__group row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Company Mobile No:</label>
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <asp:TextBox ID="txtCompanyMobileNo" runat="server" TextMode="Number" MaxLength="10" class="form-control m-input" placeholder="Enter Company Mobile No"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCompDesc" Display="Dynamic"
+                                                        ErrorMessage="Enter Company Mobile No" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
 
@@ -82,7 +97,7 @@
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Group Description:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                     <asp:DropDownList ID="ddlGroupDesc" class="form-control m_selectpicker" runat="server"></asp:DropDownList>    
-                                                    <asp:RequiredFieldValidator ID="rfvGroupDesc" runat="server" ControlToValidate="ddlGroupDesc" InitialValue="0"   
+                                                    <asp:RequiredFieldValidator ID="rfvGroupDesc" runat="server" ControlToValidate="ddlGroupDesc" InitialValue="0"  Display="Dynamic"  
                                                         ErrorMessage="Please select Group description" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>
@@ -98,7 +113,7 @@
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Client URL:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <asp:TextBox ID="txtClientURL" runat="server" class="form-control m-input" placeholder="Enter Client URL"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtClientURL"
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtClientURL" Display="Dynamic"
                                                         ErrorMessage="Please enter client URL" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </div>

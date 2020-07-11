@@ -49,16 +49,16 @@
 
                         <thead>
                             <tr>
-                                <th>Client ID</th>
+                                <%--<th>Client ID</th>--%>
                                 <th>Company</th>
                                 <th>Subscription</th>
-                                <th>Activation Date</th>
-                                <th>Expiry Date</th>
-                                <th>Due Date</th>
+                                <th>ActivationDate</th>
+                                <th>ExpiryDate</th>
+                                <th>DueDate</th>
                                 <th>Modules</th>
                                 <th>User Limit</th>
                                 <th>Status</th>
-                                <th>Created On</th>
+                                <th>CreatedOn</th>
                                 <th>Actions</th>
                             </tr>
 

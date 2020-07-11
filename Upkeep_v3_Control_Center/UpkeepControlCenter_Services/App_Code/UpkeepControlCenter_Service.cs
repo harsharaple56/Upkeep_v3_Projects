@@ -100,7 +100,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc,int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer,string ConString,string LoggedInUserID,string Action)
+    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc,int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer,string ConString,string CompanyEmailID,string CompanyMobileNo, string LoggedInUserID,string Action)
     {
         DataSet ds = new DataSet();
 
@@ -108,7 +108,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         {
             My_UpkeepCC obj = new My_UpkeepCC();
 
-            ds = obj.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, LoggedInUserID, Action);
+            ds = obj.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -266,6 +266,23 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         }
         return dsLogin;
     }
+
+    [WebMethod]
+    public DataSet Subscription_Package_CRUD(int PackageID, string PackageName, int NoOfDays, int Price, string LoggedInUserID, string Action)
+    {
+        DataSet dsLogin = new DataSet();
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+            dsLogin = obj.Subscription_Package_CRUD(PackageID, PackageName, NoOfDays, Price, LoggedInUserID, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsLogin;
+    }
+
 }
 
 public class AuthenticationHeader : SoapHeader
