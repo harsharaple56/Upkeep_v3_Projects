@@ -69,11 +69,21 @@ namespace Upkeep_v3_Control_Center.Masters
                 string CompanyEmailID = string.Empty;
                 string CompanyMobileNo = string.Empty;
 
+                string User_Name = string.Empty;
+                string User_Designation = string.Empty;
+                string User_EmailID = string.Empty;
+                string User_MobileNo = string.Empty;
+
                 CompanyCode = txtCompany_Code.Text.Trim();
                 ClientURL = txtClientURL.Text.Trim();
 
                 CompanyEmailID = txtCompanyEmailID.Text.Trim();
                 CompanyMobileNo = txtCompanyMobileNo.Text.Trim();
+
+                User_Name = txtAdminName.Text.Trim();
+                User_Designation = txtUserDesignation.Text.Trim();
+                User_EmailID = txtUserEmailID.Text.Trim();
+                User_MobileNo = txtUserMobileNo.Text.Trim();
 
                 if (chk_IsDBatClient.Checked == true)
                 {
@@ -99,7 +109,7 @@ namespace Upkeep_v3_Control_Center.Masters
 
                 //ConString = "";
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, txtCompany_Code.Text.Trim(), txtCompDesc.Text.Trim(), GroupID, CompanyLogoName, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action);
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, txtCompany_Code.Text.Trim(), txtCompDesc.Text.Trim(), GroupID, CompanyLogoName, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_Name, User_Designation, User_EmailID, User_MobileNo, LoggedInUserID, Action);
 
                 Session["CompanyID"] = "";
                 if (ds.Tables.Count > 0)
@@ -166,7 +176,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, "", "", 0, "","", 0, "","","", LoggedInUserID, "R");
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, "", "", 0, "","", 0, "","","","","","","", LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -176,7 +186,17 @@ namespace Upkeep_v3_Control_Center.Masters
                         txtCompDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Company_Desc"]);
                         ddlGroupDesc.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Group_ID"]);
 
+                        txtCompanyEmailID.Text = Convert.ToString(ds.Tables[0].Rows[0]["Company_EmailID"]);
+                        txtCompanyMobileNo.Text = Convert.ToString(ds.Tables[0].Rows[0]["Company_MobileNo"]);
+
+                        txtAdminName.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Name"]);
+                        txtUserDesignation.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Designation"]);
+                        txtUserEmailID.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_EmailID"]);
+                        txtUserMobileNo.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_MobileNo"]);
+
                         txtClientURL.Text= Convert.ToString(ds.Tables[0].Rows[0]["ClientURL"]);
+
+                        txtCompany_Code.ReadOnly = true;
 
                         int Is_DBatClientServer = Convert.ToInt32(ds.Tables[0].Rows[0]["Is_DBatClient"]);
                         if (Is_DBatClientServer == 1)
@@ -247,7 +267,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID_Delete, "", "", 0, "","", 0, "","","", LoggedInUserID, "D");
+                ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID_Delete, "", "", 0, "","", 0, "","","","","","","", LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

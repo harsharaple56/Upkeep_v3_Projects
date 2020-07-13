@@ -56,7 +56,7 @@ public class My_UpkeepCC
         }
     }
 
-    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo,string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo, string LoggedInUserID, string Action)
+    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo,string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo,string User_Name,string User_Designation,string User_EmailID,string User_MobileNo, string LoggedInUserID, string Action)
     {
         try
         {
@@ -64,7 +64,7 @@ public class My_UpkeepCC
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
-            ds = objUpkeepCC_BL.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action, strConn);
+            ds = objUpkeepCC_BL.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_Name, User_Designation, User_EmailID, User_MobileNo, LoggedInUserID, Action, strConn);
 
             return ds;
         }

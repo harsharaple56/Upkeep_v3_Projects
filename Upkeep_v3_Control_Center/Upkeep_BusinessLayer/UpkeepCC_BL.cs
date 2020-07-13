@@ -77,7 +77,7 @@ namespace Upkeep_BusinessLayer
             }
         }
 
-        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo, string LoggedInUserID, string Action, string strConn)
+        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo,string User_Name,string User_Designation,string User_EmailID,string User_MobileNo, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -98,6 +98,10 @@ namespace Upkeep_BusinessLayer
                 cmd.Parameters.AddWithValue("@Con_String", ConString); 
                 cmd.Parameters.AddWithValue("@CompanyEmailID", CompanyEmailID);
                 cmd.Parameters.AddWithValue("@CompanyMobileNo", CompanyMobileNo);
+                cmd.Parameters.AddWithValue("@User_Name", User_Name);
+                cmd.Parameters.AddWithValue("@User_Designation", User_Designation);
+                cmd.Parameters.AddWithValue("@User_EmailID", User_EmailID);
+                cmd.Parameters.AddWithValue("@User_MobileNo", User_MobileNo);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
 

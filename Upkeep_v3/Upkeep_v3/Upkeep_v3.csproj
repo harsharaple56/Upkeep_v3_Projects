@@ -442,6 +442,7 @@
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
+    <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\efacilito_350.png" />
     <Content Include="assets\app\media\img\logos\efacilito.png" />
     <Content Include="assets\app\media\img\logos\efacilito_no_bg.png" />

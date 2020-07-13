@@ -100,7 +100,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc,int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer,string ConString,string CompanyEmailID,string CompanyMobileNo, string LoggedInUserID,string Action)
+    public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc,int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer,string ConString,string CompanyEmailID,string CompanyMobileNo,string User_Name,string User_Designation,string User_EmailID,string User_MobileNo, string LoggedInUserID,string Action)
     {
         DataSet ds = new DataSet();
 
@@ -108,7 +108,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         {
             My_UpkeepCC obj = new My_UpkeepCC();
 
-            ds = obj.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, LoggedInUserID, Action);
+            ds = obj.CompanyMaster_CRUD(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_Name, User_Designation, User_EmailID, User_MobileNo, LoggedInUserID, Action);
 
         }
         catch (Exception ex)

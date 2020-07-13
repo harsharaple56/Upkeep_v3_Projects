@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-		<title>Login | UpKeep</title>
+		<title>Login | eFacilito</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -77,7 +77,7 @@
 					<div class="m-login__container">
 						<div class="m-login__logo">
 							<a href="#">
-								<img src="assets/app/media/img/logos/efacilito_250.png" class="img-fluid">
+								<img src="assets/app/media/img/logos/efacilito_250.png" class="img-fluid" />
 							</a>
 						</div>
 						<div class="m-login__signin">

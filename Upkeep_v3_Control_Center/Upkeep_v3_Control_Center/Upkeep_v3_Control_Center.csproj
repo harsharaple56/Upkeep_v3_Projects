@@ -449,6 +449,7 @@
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
+    <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
     <Content Include="assets\app\media\img\logos\logo-2.png" />
     <Content Include="assets\app\media\img\logos\logo-3.png" />
