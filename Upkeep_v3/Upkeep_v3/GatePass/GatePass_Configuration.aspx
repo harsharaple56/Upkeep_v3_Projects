@@ -557,7 +557,7 @@
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <asp:CheckBox ID="ChkNumeric" runat="server" ClientIDMode="Static" />
-                                                                    <label class="col-xl-6 col-lg-6 col-form-label">Numeric</label>
+                                                                    <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
 
                                                                 </div>
                                                             </div>

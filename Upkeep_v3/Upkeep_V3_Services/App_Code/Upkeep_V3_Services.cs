@@ -1936,7 +1936,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+    //Added by RC This function is used to Log error
 
+    [WebMethod]
+    public DataSet Error_Log(string Extype, string Page, string Errormsg,string StackTrace,string CompanyID,string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Error_Log(Extype, Page, Errormsg, StackTrace, CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
 

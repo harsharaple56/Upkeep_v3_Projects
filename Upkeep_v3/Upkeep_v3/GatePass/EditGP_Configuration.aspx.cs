@@ -119,6 +119,7 @@ namespace Upkeep_v3.GatePass
 
 
                         ddlUnit.DataBind();
+                        ddlUnit.Items.Insert(0, new ListItem("--Select--", "0"));
 
                         for (int i = 0; i < ddlUnit.Items.Count - 1; i++)
                             ddlUnit.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString(); //ddlAns.Items.Insert(0, new ListItem("--Select--", "0"));

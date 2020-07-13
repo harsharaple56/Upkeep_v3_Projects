@@ -166,6 +166,15 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
+        /// txtGatepassDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGatepassDescription;
+        
+        /// <summary>
         /// btnAddGPHeader control.
         /// </summary>
         /// <remarks>
@@ -299,15 +308,6 @@ namespace Upkeep_v3.GatePass {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeGatePassTerm;
-        
-        /// <summary>
-        /// txtGatepassDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGatepassDescription;
         
         /// <summary>
         /// lblErrorMsg control.

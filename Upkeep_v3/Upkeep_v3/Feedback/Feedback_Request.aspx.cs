@@ -34,8 +34,8 @@ namespace Upkeep_v3.Feedback
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
-                
-           
+
+
             if (!IsPostBack)
             {
                 if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
@@ -58,7 +58,7 @@ namespace Upkeep_v3.Feedback
                     }
                 }
 
-                else if(!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
                 {
 
                     divCustomer.Visible = false;
@@ -76,14 +76,14 @@ namespace Upkeep_v3.Feedback
 
         protected void ddlFeedbackTitle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
 
-               ViewState["EventID"] = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
+                ViewState["EventID"] = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
 
-               
+
 
                 BindEvent();
 
@@ -176,7 +176,7 @@ namespace Upkeep_v3.Feedback
                         divRadioButtonrdbYes.DataBind();
                     }
 
-                } 
+                }
 
             }
         }
@@ -200,7 +200,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.GetEventList(CompanyID,"R");
+                dsTitle = ObjUpkeep.GetEventList(CompanyID, "R");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -233,14 +233,14 @@ namespace Upkeep_v3.Feedback
                 string strLname = Lname.Text;
                 string strPhone = Phoneno.Text;
                 string strEmailID = EmailID.Text;
-                string strGender=string.Empty;
+                string strGender = string.Empty;
                 if (rdbMale.Checked == true)
                 { strGender = "Male"; }
                 if (rdbFemale.Checked == true)
                 { strGender = "Female"; }
                 if (rdbOther.Checked == true)
                 { strGender = "Other"; }
-                 
+
 
 
 
@@ -308,8 +308,8 @@ namespace Upkeep_v3.Feedback
 
                         //String YrStr = String.Join(";", chkStrList.ToArray());
                     }
-                     
-                    else if (AnswerType =="Star") //Star Rating 
+
+                    else if (AnswerType == "Star") //Star Rating 
                     {
 
                         HtmlGenericControl sample = itemQuestion.FindControl("divStar") as HtmlGenericControl;
@@ -332,7 +332,7 @@ namespace Upkeep_v3.Feedback
                         //}
 
                     }
-                    else if (AnswerType =="NPS") //NPS SCORING
+                    else if (AnswerType == "NPS") //NPS SCORING
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divNPS") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
@@ -354,7 +354,7 @@ namespace Upkeep_v3.Feedback
                         //}
 
                     }
-                    else if (AnswerType =="Emoji") //Emoji Rating
+                    else if (AnswerType == "Emoji") //Emoji Rating
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divEmoji") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
@@ -375,7 +375,7 @@ namespace Upkeep_v3.Feedback
                         //        lblQuestionErr.Text = "Please provide valid data.";
                         //    }
                         //}
-                    } 
+                    }
                     else  //Normal Text Field
                     {
                         HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
@@ -388,14 +388,14 @@ namespace Upkeep_v3.Feedback
                         dt.Rows.Add(dtRow);
 
 
-                    //    if (Is_Mandatory == "*")
-                    //    {
-                    //        if (isField == "False")
-                    //        {
-                    //            Is_Not_Valid = "True";
-                    //            lblQuestionErr.Text = "Please provide valid data.";
-                    //        }
-                    //    }
+                        //    if (Is_Mandatory == "*")
+                        //    {
+                        //        if (isField == "False")
+                        //        {
+                        //            Is_Not_Valid = "True";
+                        //            lblQuestionErr.Text = "Please provide valid data.";
+                        //        }
+                        //    }
                     }
                 }
 
@@ -425,11 +425,11 @@ namespace Upkeep_v3.Feedback
                 #region SaveDataToDB
                 DataSet dsFeedbackQuestionData = new DataSet();
 
-                if(!string.IsNullOrEmpty(SessionVisitor))
+                if (!string.IsNullOrEmpty(SessionVisitor))
                 {
 
                 }
-                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhone,strGender, strEmailID, strFeedbackData, LoggedInUserID);
+                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhone, strGender, strEmailID, strFeedbackData, LoggedInUserID);
 
                 if (dsFeedbackQuestionData.Tables.Count > 0)
                 {
@@ -438,14 +438,20 @@ namespace Upkeep_v3.Feedback
                         int status = Convert.ToInt32(dsFeedbackQuestionData.Tables[0].Rows[0]["Status"]);
                         if (status == 1)
                         {
-                            SetRepeater();
+                            //SetRepeater();
                             //divStatus.Visible = true;
                             //lblStatus.Text = "Save Successfully..!";
 
                             //divinsertbutton.visible = false;
                             //lblFeedbackRequestCode.Text = Convert.ToString(dsFeedbackQuestionData.Tables[0].Rows[0]["requestid"]);
-                            mpeFeedbackRequestSaveSuccess.Show();
-                            Response.Redirect("~/Dashboard.aspx");
+                            Response.Write(@"
+                                                 <script>
+                                                    alert('Thanks for your valuable time, Your feedback helps us to serve you better.');
+                                                    window.location = '" + Request.RawUrl + @"';
+                                                </script>
+                                            ");
+                            //mpeFeedbackRequestSaveSuccess.Show();
+                            //Response.Redirect("~/Dashboard.aspx");
                         }
                         else
                         {

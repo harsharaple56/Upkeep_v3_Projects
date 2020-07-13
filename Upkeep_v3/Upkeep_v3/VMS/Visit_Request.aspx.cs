@@ -33,7 +33,6 @@ namespace Upkeep_v3.VMS
             string strConfigID = string.Empty;
             string strRequestID = string.Empty;
 
-            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
 
@@ -55,8 +54,8 @@ namespace Upkeep_v3.VMS
                         {
                             ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
                         }
-
                         BindVMSConfig();
+                        
                     }
                 }
                 else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
@@ -76,6 +75,7 @@ namespace Upkeep_v3.VMS
 
                     }
 
+                    ViewState["CompanyID"] = Convert.ToInt32(Session["CompanyID"]);
                 }
 
                 //GenerateTableQuestion();
@@ -306,6 +306,10 @@ namespace Upkeep_v3.VMS
                 {
                     divDesc.Visible = true;
                     spnDesc.InnerText = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+                }
+                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Company_ID"].ToString()))
+                {
+                    ViewState["CompanyID"] = dsConfig.Tables[0].Rows[0]["Company_ID"];
                 }
 
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
@@ -568,16 +572,16 @@ namespace Upkeep_v3.VMS
 
 
                     }
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        
+
         private void SetRepeater()
         {
             foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
@@ -667,7 +671,8 @@ namespace Upkeep_v3.VMS
             try
             {
 
-                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList(CompanyID);
+
+                DataSet ds = ObjUpkeep.Fetch_User_UserGroupList(Convert.ToInt32(ViewState["CompanyID"]));
 
                 if (ds.Tables.Count > 0)
                 {
@@ -695,7 +700,7 @@ namespace Upkeep_v3.VMS
             DataSet dsDept = new DataSet();
             try
             {
-                dsDept = ObjUpkeep.Fetch_Department(CompanyID);
+                dsDept = ObjUpkeep.Fetch_Department(Convert.ToInt32(ViewState["CompanyID"]));
 
                 if (dsDept.Tables.Count > 0)
                 {
@@ -722,7 +727,7 @@ namespace Upkeep_v3.VMS
                 #region UserData
                 int RequestID = 0;
                 char Action = 'N';
-                if ( ViewState["Action"] != null)
+                if (ViewState["Action"] != null)
                 {
                     Action = Convert.ToChar(ViewState["Action"]);
                 }
@@ -736,7 +741,7 @@ namespace Upkeep_v3.VMS
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
                 DateTime temp;
-                string strVisitDate =(DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
+                string strVisitDate = (DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strMeetUsers = hdnSelectedUserID.Value;
                 string strCovidTestDate = (DateTime.TryParse(txtAsmmtDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strTemperature = txtTemperature.Text;
@@ -1044,21 +1049,21 @@ namespace Upkeep_v3.VMS
                 #region SaveDataToDB
                 Save:
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {
                     if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                     {
                         int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
-                        if (status == 1 && Action=='N')
+                        if (status == 1 && Action == 'N')
                         {
                             //SetRepeater();
                             //divinsertbutton.visible = false;
                             lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
                             mpeVMSRequestSaveSuccess.Show();
                         }
-                        else if(status == 1 && Action != 'N')
+                        else if (status == 1 && Action != 'N')
                         {
                             Response.Write("<script>alert('Status changed.');</script>");
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);

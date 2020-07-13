@@ -34,7 +34,15 @@ namespace Upkeep_v3.VMS
 
             if (!IsPostBack)
             {
+                ViewState["CompanyID"] = 0;
+                if (!System.String.IsNullOrWhiteSpace(Convert.ToString(Session["CompanyID"])))
+                {
+                    if (Convert.ToString(Session["CompanyID"]).All(char.IsDigit))
+                    {
 
+                        ViewState["CompanyID"] = Convert.ToInt32(Session["CompanyID"]);
+                    }
+                }
                 Fetch_Answer();
                 ViewState["ConfigID"] = 0;
                 BindFeedbackEventTitle();
@@ -166,7 +174,7 @@ namespace Upkeep_v3.VMS
                 int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string strConfigTitle = string.Empty;
                 string strConfigDesc = string.Empty;
-                int CompanyID = 0;
+                int CompanyID = Convert.ToInt32(ViewState["CompanyID"]);
                 string strInitiator = string.Empty;
                 bool blFeedbackCompulsary = false;
                 bool blEnableCovid = false;
@@ -268,7 +276,7 @@ namespace Upkeep_v3.VMS
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.GetEventList(CompanyID, "V");
+                dsTitle = ObjUpkeep.GetEventList(Convert.ToInt32(ViewState["CompanyID"]), "V");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
