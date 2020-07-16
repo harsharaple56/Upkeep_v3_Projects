@@ -104,6 +104,34 @@
                 },
             });
 
+            //Gate Pass Document Section Added By Suju 13-July-2020
+            
+            $('.GatepassDoc_repeater').repeater({
+                initEmpty: false,
+                show: function () {
+                    $(this).slideDown();
+                    var counter = $(this).parents('.GatepassDoc_repeater').find('.GatepassDoc_count');
+                    var question_count = counter.data('count');
+                    question_count++;
+                    counter.data('count', question_count).html(question_count + ' Document Header(s)');
+                    $('#error_GatepassDoc').html('');
+
+                    init_autosize();
+                    init_plugins();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                    var counter = $(this).parents('.GatepassDoc_repeater').find('.GatepassDoc_count');
+                    var question_count = counter.data('count');
+                    question_count--;
+                    counter.data('count', question_count).html(question_count + ' Document Header(s)');
+                    if (question_count == 0) {
+                        $('#error_GatepassDoc').html('Add at least one GatePass Document header.');
+                    }
+                },
+            });
+            //End Gate Pass Document Section
+
             $('.TermComdition_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -662,7 +690,72 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%-- Document section added by Suju 13-July-2020 --%>
+                                
+                                <br />
 
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Document</label>
+                                </div>
+                                <br />
+                                <div class="col-xl-12">
+                                    <div class="m-form__section">
+                                        <div class="GatepassDoc_repeater">
+                                            <div class="form-group  m-form__group row">
+
+                                                <div data-repeater-list="GatepassDoc" class="col-lg-12" runat="server" id="GatePassDoc">
+
+                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvGatePassDoc">
+                                                        <div class="col-md-6">
+                                                            <div class="m-form__group">
+                                                                <div class="m-form__control">
+                                                                    <asp:TextBox ID="txtGPDoc" runat="server" class="form-control m-input autosize_textarea GatepassDoc_textarea" placeholder="Enter Document Description" Rows="1"></asp:TextBox>
+                                                                    <span class="error_GatepassDoc text-danger medium"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-md-none m--margin-bottom-10"></div>
+                                                        </div>
+                                                         <div class="col-md-2">
+                                                            <div class="m-form__group">
+                                                                <div class="m-form__control">
+                                                                    <asp:CheckBox ID="chkDocMandatory" runat="server" ClientIDMode="Static" />
+                                                                    <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-md-none m--margin-bottom-10"></div>
+                                                        </div>
+
+                                                        <div class="col-md-1">
+                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+                                                                <i class="la la-trash"></i>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-form__group form-group row">
+                                                <div class="col-lg-4">
+                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                        <span>
+                                                            <i class="la la-plus"></i>
+                                                            <span>Add Document Header</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <label id="Label3" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold GatepassDoc_count" data-count="1">1 Document Header(s)</label>
+                                                </div>
+                                                <span id="error_GatepassDoc" class="text-danger medium"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <%-- End Document Section --%>
                                 <br />
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>

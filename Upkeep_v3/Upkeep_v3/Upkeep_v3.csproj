@@ -969,6 +969,7 @@
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
+    <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
@@ -4269,6 +4270,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Inventory_List.aspx.cs">
+      <DependentUpon>Inventory_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\Inventory_List.aspx.designer.cs">
+      <DependentUpon>Inventory_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

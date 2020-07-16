@@ -220,6 +220,15 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.Repeater rptTermsCondition;
         
         /// <summary>
+        /// rptDocuments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptDocuments;
+        
+        /// <summary>
         /// dvApprovalMatrix control.
         /// </summary>
         /// <remarks>

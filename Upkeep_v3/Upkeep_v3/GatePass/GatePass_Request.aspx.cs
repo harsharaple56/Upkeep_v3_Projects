@@ -465,9 +465,9 @@ namespace Upkeep_v3.GatePass
                             if (strUserType == "E")
                             {
                                 lblEmpName.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["Name"]);
-                                lblEmpCode.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["Code"]);
-                                lblMobileNo.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["Mobile"]);
-                                LblEmailID.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["Email"]);
+                                lblEmpCode.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["User_Code"]);
+                                lblMobileNo.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["User_Mobile"]);
+                                LblEmailID.Text = Convert.ToString(dsConfig.Tables[1].Rows[0]["User_Email"]);
                             }
                             else
                             {
@@ -527,6 +527,17 @@ namespace Upkeep_v3.GatePass
                         gvApprovalMatrix.DataBind();
                     }
                 }
+
+
+                if (dsConfig.Tables.Count > 6)
+                {
+                    if (dsConfig.Tables[7].Rows.Count > 0)
+                    {
+                        rptDocuments.DataSource = dsConfig.Tables[7];
+                        rptDocuments.DataBind();
+                    }
+                }
+
 
                 if (Convert.ToInt32(dsConfig.Tables[0].Rows[0]["ShowApprovalMatrix"]) == 0)
                 {
