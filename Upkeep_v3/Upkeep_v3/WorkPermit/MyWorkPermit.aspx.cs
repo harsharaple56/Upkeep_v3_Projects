@@ -80,7 +80,7 @@ namespace Upkeep_v3.WorkPermit
                             string TransactionID = Convert.ToString(ds.Tables[0].Rows[i]["WP_Trans_ID"]);
                             string TicketNo = Convert.ToString(ds.Tables[0].Rows[i]["TicketNo"]);
                             string WorkPermit_Title = Convert.ToString(ds.Tables[0].Rows[i]["WP_Title"]);
-                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["DepartmentName"]);
+                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
                             //string GP_Type = Convert.ToString(ds.Tables[0].Rows[i]["GP_Type_Desc"]);
                             string WorkPermitDate = Convert.ToString(ds.Tables[0].Rows[i]["WorkPermitDate"]);
                             string RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["RequestDate"]);

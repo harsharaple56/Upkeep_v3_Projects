@@ -117,70 +117,69 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> Raised By :</label>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblTicketRaisedBy" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> Location :</label>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Location :</label>
                                             <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
 
-                                       
+
                                         <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> Category :</label>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Category :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblCategory" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> Sub Category :</label>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Sub Category :</label>
                                             <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblSubCategory" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
                                         </div>
 
-                                      <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"> View Workflow :</label>
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
-                                                 <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
+                                                <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
                                                 <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                                 <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="imgbtnViewWorkflow"
                                                     CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
                                                 </cc1:ModalPopupExtender>
                                             </div>
 
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Uploaded Image Count :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
                                             <div class="col-xl-2 col-lg-2 col-form-label">
                                                 <asp:Label ID="lblRaisedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                           <div class="col-xl-1 col-lg-1">
-                                            <asp:Repeater ID="rptTicketImage" runat="server">
-                                                <ItemTemplate>
-                                                    <table>
-                                                        <tr>
-                                                            <td style="width: 5%">
-                                                                <button type='button' data-toggle='modal' id="btnShowImage" data-target="#exampleModal" data-images="<%#Eval("ImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Uploaded Image'>
-                                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                                </div>
+                                            <div class="col-xl-1 col-lg-1">
+                                                <asp:Repeater ID="rptTicketImage" runat="server">
+                                                    <ItemTemplate>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width: 5%">
+                                                                    <button type='button' data-toggle='modal' id="btnShowImage" data-target="#exampleModal" data-images="<%#Eval("ImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Uploaded Image'>
+                                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Ticket Description :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Ticket Description :</label>
                                             <div class="col-xl-8 col-lg-8 col-form-label" style="margin-left: -8%;">
                                                 <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
-                                          <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
-                                           
+                                            <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
                                         </div>
                                         <br />
 
@@ -188,8 +187,8 @@
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Assignment</label>
                                         </div>
 
-                                         <div class="row" style="padding-left: 2%;">
-                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Assigned To Department :</label>
+                                        <div class="row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Assigned To Department :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblAssignedDept" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
@@ -198,9 +197,9 @@
                                                 <asp:Label ID="lblCurrentLevel" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
-                                      
+
                                         <div class="row" style="padding-left: 2%;">
-                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Action Status :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Action Status :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblActionStatus" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
@@ -210,46 +209,61 @@
                                             </div>
                                         </div>
 
-                                         <div class=" row" style="padding-left: 2%;">
-                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Downtime :</label>
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Downtime :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblDowntime" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                           
-                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Uploaded Image Count :</label>
+
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
                                             <div class="col-xl-1 col-lg-1 col-form-label">
                                                 <asp:Label ID="lblClosedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                             <div class="col-xl-2 col-lg-2">
-                                            <asp:Repeater ID="rptTicketClosingImage" runat="server">
-                                                <ItemTemplate>
-                                                    <table>
-                                                        <tr>
-                                                            <td style="width: 5%">
-                                                                <button type='button' data-toggle='modal' id="btnShowImageClose" data-target="#exampleModal" data-images="<%#Eval("CloseImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Ticket Closing Image'>
-                                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                                </div>
+                                            <div class="col-xl-2 col-lg-2">
+                                                <asp:Repeater ID="rptTicketClosingImage" runat="server">
+                                                    <ItemTemplate>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width: 5%">
+                                                                    <button type='button' data-toggle='modal' id="btnShowImageClose" data-target="#exampleModal" data-images="<%#Eval("CloseImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Ticket Closing Image'>
+                                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
 
                                         </div>
                                         <br />
 
-                                         <div class="form-group row" style="background-color: #00c5dc;">
+                                        <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action History</label>
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 2%;">
-                                            <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                            <%--   <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
                                                 HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" HorizontalAlign="Center" AutoGenerateColumns="true">
 
+                                            </asp:GridView>--%>
+
+                                            <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                                HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+                                                AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:BoundField DataField="Level" HeaderText="Level" ItemStyle-Width="50" />
+                                                    <asp:BoundField DataField="User" HeaderText="User" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="300" />
+                                                    <asp:BoundField DataField="Action Date" HeaderText="Action Date" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Expected Time" HeaderText="Expected Time" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Ticket Status" HeaderText="Ticket Status" ItemStyle-Width="110" />
+                                                    <asp:BoundField DataField="Action Status" HeaderText="Action Status" ItemStyle-Width="110" />
+                                                </Columns>
+                                                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                                             </asp:GridView>
 
-                                            </div>
+                                        </div>
                                         <br />
 
 
