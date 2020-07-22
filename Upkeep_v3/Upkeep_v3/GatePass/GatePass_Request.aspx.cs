@@ -213,6 +213,7 @@ namespace Upkeep_v3.GatePass
             //DataTable dtHeader = new DataTable();
             //dtHeader = dsGatePassHeader.Tables[1];
 
+
             colsCount = Convert.ToInt32(dsGatePassHeader.Tables[1].Rows.Count);
             Session["colsCount"] = Convert.ToString(colsCount);
             // Now iterate through the table and add your controls 
@@ -333,6 +334,33 @@ namespace Upkeep_v3.GatePass
                 }
             }
 
+            string GPDoc = string.Empty;
+
+            foreach (RepeaterItem itemHeader in rptDocuments.Items)
+            {
+                FileUpload flDoc = (itemHeader.FindControl("flDoc") as FileUpload);
+                string Doc_ConfigID = Convert.ToString((itemHeader.FindControl("hdnDocID") as HiddenField).Value);
+                string filename = string.Empty;
+                if (flDoc.HasFile)
+                {
+                    string trailingPath = Path.GetFileName(flDoc.PostedFile.FileName);
+                    string extension = Path.GetExtension(flDoc.PostedFile.FileName).ToLower();
+
+                    if (extension==".jpg" || extension==".pdf")
+                    {
+                        filename = "GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmssfff") + extension;
+                        string fullPath = Path.Combine(Server.MapPath(" ") + "\\GPDocuments\\", filename);
+                        //Server.MapPath(" ") + "\\GPDocuments\\GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString();
+
+                        flDoc.PostedFile.SaveAs(fullPath);
+                        GPDoc = GPDoc + Doc_ConfigID + ":" + filename + ";";
+
+                    }
+                    //  Label1.Text = "File Uploaded: " + flDoc.FileName;
+                    //  Label1.Text = "File Uploaded: " + flDoc.FileName;
+                }
+            }
+
             string[] LocArray = strArrayGpHeader[1].Split('#');
 
             DataRow row = dtHeader.NewRow(); ///creating new row in your datatable
@@ -378,7 +406,7 @@ namespace Upkeep_v3.GatePass
 
 
             DataSet dsGpHeaderData = new DataSet();
-            dsGpHeaderData = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, TypeID, GpHeader, GpHeaderData, LoggedInUserID);
+            dsGpHeaderData = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, TypeID, GpHeader, GpHeaderData, GPDoc, LoggedInUserID);
 
             if (dsGpHeaderData.Tables.Count > 0)
             {
