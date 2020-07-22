@@ -433,7 +433,7 @@ namespace Upkeep_v3.WorkPermit
                 foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                 {
                    // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
-                    string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                    string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                     string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
                     string HeadMandatoryId = (itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value;
@@ -525,7 +525,7 @@ namespace Upkeep_v3.WorkPermit
                 dt.Columns.Add("HeaderID");
                 dt.Columns.Add("AnswerID");
                 dt.Columns.Add("Data");
-                // dtRow["SectionID"] = ""; dtRow["HeaderID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
+                // dtRow["SectionID"] = ""; dtRow["HeaderID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; hdnAnswerTypeSDesc
 
                 string Is_Not_Valid = "False";
 
@@ -537,8 +537,8 @@ namespace Upkeep_v3.WorkPermit
                     foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                     {
 
-                        //int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
-                        string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                        int IAnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                        string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                         string Is_Mandatory = Convert.ToString((itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value);
                         Label lblHeaderErr = (itemHeader.FindControl("lblHeaderErr") as Label);
                         string isField = "False";
@@ -707,7 +707,7 @@ namespace Upkeep_v3.WorkPermit
                             DataRow dtRow = dt.NewRow();
                             dtRow["SectionID"] = DivId;
                             dtRow["HeaderID"] = HeadId;
-                            dtRow["AnswerID"] = AnswerType;
+                            dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 

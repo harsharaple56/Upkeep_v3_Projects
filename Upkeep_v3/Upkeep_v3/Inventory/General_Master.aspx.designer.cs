@@ -7,190 +7,163 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.GatePass {
+namespace Upkeep_v3.Inventory {
     
     
-    public partial class GatePass_Request {
+    public partial class General_Master {
         
         /// <summary>
-        /// hdnGpHeaderData control.
+        /// FrmMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnGpHeaderData;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrmMain;
         
         /// <summary>
-        /// hdnGpHeader control.
+        /// hdnCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnGpHeader;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCategory;
         
         /// <summary>
-        /// lblErrorMsg control.
+        /// hdnLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        protected global::System.Web.UI.WebControls.HiddenField hdnLocation;
         
         /// <summary>
-        /// btnSave control.
+        /// hdnCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCategoryName;
         
         /// <summary>
-        /// btnTest control.
+        /// hdnTxtSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
+        protected global::System.Web.UI.WebControls.TextBox hdnTxtSubCategory;
         
         /// <summary>
-        /// mpeGpRequestSaveSuccess control.
+        /// hdnTxtCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeGpRequestSaveSuccess;
+        protected global::System.Web.UI.WebControls.TextBox hdnTxtCategory;
         
         /// <summary>
-        /// ddlGatePassTitle control.
+        /// btnAddCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGatePassTitle;
+        protected global::System.Web.UI.WebControls.Button btnAddCategory;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// mpeCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeCategory;
         
         /// <summary>
-        /// lblGatepassDescription control.
+        /// btnAddLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGatepassDescription;
+        protected global::System.Web.UI.WebControls.Button btnAddLocation;
         
         /// <summary>
-        /// dvEmployee control.
+        /// mpeSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvEmployee;
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeSubCategory;
         
         /// <summary>
-        /// lblEmpName control.
+        /// btnItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpName;
+        protected global::System.Web.UI.WebControls.Button btnItem;
         
         /// <summary>
-        /// lblEmpCode control.
+        /// mpeItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpCode;
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeItem;
         
         /// <summary>
-        /// dvRetailer control.
+        /// pnlAddCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvRetailer;
+        protected global::System.Web.UI.WebControls.Panel pnlAddCategory;
         
         /// <summary>
-        /// lblStoreName control.
+        /// updatepnl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStoreName;
+        protected global::System.Web.UI.UpdatePanel updatepnl;
         
         /// <summary>
-        /// lblRetailerName control.
+        /// txtCategoryCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRetailerName;
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryCode;
         
         /// <summary>
-        /// lblMobileNo control.
+        /// rfvCategoryCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMobileNo;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategoryCode;
         
         /// <summary>
-        /// LblEmailID control.
+        /// txtCategoryDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEmailID;
-        
-        /// <summary>
-        /// txtGatePassDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGatePassDate;
-        
-        /// <summary>
-        /// ddlDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
-        
-        /// <summary>
-        /// ddlGatePassType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGatePassType;
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryDesc;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -202,85 +175,121 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// tblGatePassHeader control.
+        /// lblCategoryErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblGatePassHeader;
+        protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
         
         /// <summary>
-        /// rptTermsCondition control.
+        /// btnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTermsCondition;
+        protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// rptDocuments control.
+        /// btnCategorySave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDocuments;
+        protected global::System.Web.UI.WebControls.Button btnCategorySave;
         
         /// <summary>
-        /// dvApprovalMatrix control.
+        /// pnlAddSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvApprovalMatrix;
+        protected global::System.Web.UI.WebControls.Panel pnlAddSubCategory;
         
         /// <summary>
-        /// gvApprovalMatrix control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApprovalMatrix;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// btnSubmit control.
+        /// txtSubCategoryCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.TextBox txtSubCategoryCode;
         
         /// <summary>
-        /// btnCancel control.
+        /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// lblErrorMsg1 control.
+        /// txtSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg1;
+        protected global::System.Web.UI.WebControls.TextBox txtSubCategory;
         
         /// <summary>
-        /// pnlGpReqestSuccess control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGpReqestSuccess;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// lblSubCategoryErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubCategoryErrorMsg;
+        
+        /// <summary>
+        /// btnCloseLoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCloseLoc;
+        
+        /// <summary>
+        /// btnSubCategorySave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubCategorySave;
+        
+        /// <summary>
+        /// pnlAddItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddItem;
         
         /// <summary>
         /// UpdatePanel2 control.
@@ -292,21 +301,84 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// lblGPRequestCode control.
+        /// lblCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGPRequestCode;
+        protected global::System.Web.UI.WebControls.Label lblCategoryName;
         
         /// <summary>
-        /// btnSuccessOk control.
+        /// lblSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSuccessOk;
+        protected global::System.Web.UI.WebControls.Label lblSubCategory;
+        
+        /// <summary>
+        /// txtItemCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtItemCode;
+        
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// txtItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtItem;
+        
+        /// <summary>
+        /// RequiredFieldValidator5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        
+        /// <summary>
+        /// lblItemErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItemErrorMsg;
+        
+        /// <summary>
+        /// btnCloseItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCloseItem;
+        
+        /// <summary>
+        /// btnItemSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnItemSave;
     }
 }

@@ -54,6 +54,8 @@ namespace Upkeep_v3.GatePass
 
                 string GatePassType = string.Empty;
                 string GatePassTermCondition = string.Empty;
+                string GatePassDoc = string.Empty;
+                string GPDocMandatory = string.Empty;
 
                 StringBuilder strXmlGatepass_Header = new StringBuilder();
                 strXmlGatepass_Header.Append(@"<?xml version=""1.0"" ?>");
@@ -67,6 +69,10 @@ namespace Upkeep_v3.GatePass
                 strXmlGatepass_TermCondition.Append(@"<?xml version=""1.0"" ?>");
                 strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_ROOT>");
 
+                StringBuilder strXmlGatepass_Doc = new StringBuilder();
+                strXmlGatepass_Doc.Append(@"<?xml version=""1.0"" ?>");
+                strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_ROOT>");
+
                 int ccc = Request.Form.Count;
                 for (int i = 0; i < ccc; i++)
                 {
@@ -74,6 +80,8 @@ namespace Upkeep_v3.GatePass
                     GPHeaderUnit = "";
                     GPHeaderNumeric = "0";
                     GatePassType = "";
+                    GatePassDoc = "";
+                    GPDocMandatory = "0";
                     GatePassTermCondition = "";
                     string[] GatePassHeaderArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassHeader]");
                     //string[] GatePassHeader_NumericArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkNumeric]");
@@ -107,6 +115,21 @@ namespace Upkeep_v3.GatePass
                         GatePassType = GatePassType_Array[0];
                     }
 
+                    string[] GatePassDoc_Array = Request.Form.GetValues("GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$txtGPDoc]");
+                    if (GatePassDoc_Array != null)
+                    {
+                        GatePassDoc = GatePassDoc_Array[0];
+                    }
+
+                    foreach (string key in Request.Form.AllKeys)
+                    {
+                        if (key == "GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$chkDocMandatory][]")
+                        {
+                            GPDocMandatory = "1";
+                        }
+                    }
+
+
                     string[] GatePassTermCondition_Array = Request.Form.GetValues("GatepassTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]");
                     if (GatePassTermCondition_Array != null)
                     {
@@ -129,6 +152,14 @@ namespace Upkeep_v3.GatePass
                         strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_DESC>");
                     }
 
+                    if (GatePassDoc_Array != null)
+                    {
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_DESC>");
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_HEADER>" + GatePassDoc + "</GATEPASS_DOC_HEADER>");
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_MANDATORY>" + GPDocMandatory + "</GATEPASS_DOC_MANDATORY>");
+                        strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_DESC>");
+                    }
+
                     if (GatePassTermCondition_Array != null)
                     {
                         strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_DESC>");
@@ -140,6 +171,7 @@ namespace Upkeep_v3.GatePass
 
                 strXmlGatepass_Header.Append(@"</GATEPASS_HEADER_ROOT>");
                 strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_ROOT>");
+                strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_ROOT>");
                 strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_ROOT>");
 
 
@@ -214,7 +246,8 @@ namespace Upkeep_v3.GatePass
                 GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
 
                 DataSet dsGatePassConfig = new DataSet();
-                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
+                //Gate Pass Document Section Added By Suju 13-July-2020
+                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
 
                 if (dsGatePassConfig.Tables.Count > 0)
                 {
