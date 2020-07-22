@@ -85,6 +85,11 @@ namespace Upkeep_v3.Ticketing
                             gvActionHistory.DataSource = dsTicket.Tables[1];
                             gvActionHistory.DataBind();
                         }
+                        else
+                        {
+                            gvActionHistory.DataSource = null;
+                            gvActionHistory.DataBind();
+                        }
                     }
                 }
 

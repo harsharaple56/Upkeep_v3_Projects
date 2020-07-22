@@ -99,6 +99,8 @@ namespace Upkeep_v3.Ticketing
 
                             //Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
 
+                            RequestStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_Status"]);
+
                             ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
                             if (ActionStatus == "Assigned")
                             {
@@ -108,6 +110,59 @@ namespace Upkeep_v3.Ticketing
                             else
                             {
                                 btnAccept.Attributes.Add("style", "display:none;");
+                            }
+
+
+                            if (RequestStatus == "Open")
+                            {
+                                lblRequestStatus.Text = "Open";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
+                            }
+                            else if (RequestStatus == "Expired")
+                            {
+                                lblRequestStatus.Text = "Expired";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
+                            }
+                            else if (RequestStatus == "Closed")
+                            {
+                                lblRequestStatus.Text = "Closed";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (RequestStatus == "Parked")
+                            {
+                                lblRequestStatus.Text = "Parked";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                            }
+
+                            if (ActionStatus == "Assigned")
+                            {
+                                lblActionStatus.Text = "Assigned";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--info m-badge--wide");
+                            }
+                            else if (ActionStatus == "Accepted")
+                            {
+                                lblActionStatus.Text = "Accepted";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (ActionStatus == "In Progress")
+                            {
+                                lblActionStatus.Text = "In Progress";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--accent m-badge--wide");
+                            }
+                            else if (ActionStatus == "Hold")
+                            {
+                                lblActionStatus.Text = "Hold";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                            }
+                            else if (ActionStatus == "Closed")
+                            {
+                                lblActionStatus.Text = "Closed";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (ActionStatus == "Expired")
+                            {
+                                lblActionStatus.Text = "Expired";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
                             }
 
                             //if (ActionStatus == "Accepted")
@@ -136,9 +191,19 @@ namespace Upkeep_v3.Ticketing
                     {
                         Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
                     }
-                    else
-                    {
 
+                    if (dsTicket.Tables.Count > 2)
+                    {
+                        if (dsTicket.Tables[2].Rows.Count > 0)
+                        {
+                            gvTicketActionHistory.DataSource = dsTicket.Tables[2];
+                            gvTicketActionHistory.DataBind();
+                        }
+                        else
+                        {
+                            gvTicketActionHistory.DataSource = null;
+                            gvTicketActionHistory.DataBind();
+                        }
                     }
                 }
                 else
@@ -195,6 +260,7 @@ namespace Upkeep_v3.Ticketing
                             rptTicketImage.DataBind();
 
                             //Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[i]["CurrentLevel"]);
+                            RequestStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_Status"]);
 
                             ActionStatus = Convert.ToString(dsTicket.Tables[0].Rows[i]["Tkt_ActionStatus"]);
                             if (ActionStatus == "Assigned")
@@ -207,6 +273,57 @@ namespace Upkeep_v3.Ticketing
                                 btnAccept.Attributes.Add("style", "display:none;");
                             }
 
+                            if (RequestStatus == "Open")
+                            {
+                                lblRequestStatus.Text = "Open";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
+                            }
+                            else if (RequestStatus == "Expired")
+                            {
+                                lblRequestStatus.Text = "Expired";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
+                            }
+                            else if (RequestStatus == "Closed")
+                            {
+                                lblRequestStatus.Text = "Closed";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (RequestStatus == "Parked")
+                            {
+                                lblRequestStatus.Text = "Parked";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                            }
+
+                            if (ActionStatus == "Assigned")
+                            {
+                                lblActionStatus.Text = "Assigned";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--info m-badge--wide");
+                            }
+                            else if (ActionStatus == "Accepted")
+                            {
+                                lblActionStatus.Text = "Accepted";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (ActionStatus == "In Progress")
+                            {
+                                lblActionStatus.Text = "In Progress";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--accent m-badge--wide");
+                            }
+                            else if (ActionStatus == "Hold")
+                            {
+                                lblActionStatus.Text = "Hold";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                            }
+                            else if (ActionStatus == "Closed")
+                            {
+                                lblActionStatus.Text = "Closed";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                            }
+                            else if (ActionStatus == "Expired")
+                            {
+                                lblActionStatus.Text = "Expired";
+                                lblActionStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
+                            }
 
                         }
                     }
@@ -215,9 +332,18 @@ namespace Upkeep_v3.Ticketing
                     {
                         Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
                     }
-                    else
+                    if (dsTicket.Tables.Count > 2)
                     {
-
+                        if (dsTicket.Tables[2].Rows.Count > 0)
+                        {
+                            gvTicketActionHistory.DataSource = dsTicket.Tables[2];
+                            gvTicketActionHistory.DataBind();
+                        }
+                        else
+                        {
+                            gvTicketActionHistory.DataSource = null;
+                            gvTicketActionHistory.DataBind();
+                        }
                     }
                 }
                 else
@@ -520,6 +646,16 @@ namespace Upkeep_v3.Ticketing
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        protected void gvTicketActionHistory_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
             }
         }
     }
