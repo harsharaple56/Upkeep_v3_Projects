@@ -2142,6 +2142,116 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #endregion
 
+
+    #region Inventory
+
+    [WebMethod]
+    public DataSet Fetch_Transaction_List(string LoggedInUserID, string CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Transaction_List(LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Delete_Inv_Transaction(int TransactionID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_Inv_Transaction(TransactionID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Stock_List(string LoggedInUserID, string CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Stock_List(LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Delete_Inv_Stock(int ItemId, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_Inv_Stock(ItemId, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet Delete_Inv_Item(int ItemId, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_Inv_Item(ItemId, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Stock_Detail(string LoggedInUserID, string CompanyID, int StockId)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Stock_Detail(LoggedInUserID, CompanyID, StockId);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Inv_Items_List(string LoggedInUserID, string CompanyID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Inv_Items_List(LoggedInUserID, CompanyID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    #endregion
+
+
 }
 
 public class AuthenticationHeader : SoapHeader
