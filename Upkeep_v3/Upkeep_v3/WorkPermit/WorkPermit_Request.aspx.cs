@@ -1010,7 +1010,7 @@ namespace Upkeep_v3.WorkPermit
                             foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                             {
                                 //int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
-                                string AnswerType = (FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                                string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                                 string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
                                 DataTable dta = new DataTable();
