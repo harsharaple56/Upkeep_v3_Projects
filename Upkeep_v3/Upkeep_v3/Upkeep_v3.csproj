@@ -969,6 +969,7 @@
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
+    <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Stock_Details.aspx" />
     <Content Include="Inventory\Inventory_Stock_List.aspx" />
@@ -4273,6 +4274,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\General_Master.aspx.cs">
+      <DependentUpon>General_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\General_Master.aspx.designer.cs">
+      <DependentUpon>General_Master.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\Inventory_List.aspx.cs">
       <DependentUpon>Inventory_List.aspx</DependentUpon>
