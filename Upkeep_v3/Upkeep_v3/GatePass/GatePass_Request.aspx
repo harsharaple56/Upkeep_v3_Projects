@@ -509,13 +509,14 @@
                                 <asp:Repeater ID="rptDocuments" runat="server" ClientIDMode="Static">
                                     <ItemTemplate>
 
-                                        
+
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <label class="col-xl-3 col-lg-2 form-control-label"><%# Convert.ToBoolean(Eval("Mandatory"))  ? "<span style='color: red;'>*</span>" : "&nbsp;" %> <%#Eval("Doc_Desc") %>:</label>
                                             <div class="col-xl-4 col-lg-4">
-                                                 <asp:Label ID="lblDocID" runat="server" Text='<%#Eval("Doc_Config_Id") %>' Style="display: none;"></asp:Label>
-                                               <asp:FileUpload ID="flDoc" runat="server" />
-                                                 </div>
+                                                <asp:HiddenField ID="hdnDocID" Value='<%#Eval("Doc_Config_Id") %>' runat="server" />
+                                                <%--<asp:Label ID="" runat="server" Text='<%#Eval("Doc_Config_Id") %>' Style="display: none;"></asp:Label>--%>
+                                                <asp:FileUpload AllowMultiple="false" ID="flDoc" runat="server" />
+                                            </div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>

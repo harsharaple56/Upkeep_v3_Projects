@@ -5051,7 +5051,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_GatePassRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID) {
+        public System.Data.DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_GatePassRequest", new object[] {
                         GP_ConfigID,
                         strGatePassDate,
@@ -5059,17 +5059,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         GPTypeID,
                         strGPHeader,
                         strGPHeaderData,
+                        strGPDoc,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID) {
-            this.Insert_GatePassRequestAsync(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData, LoggedInUserID, null);
+        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID) {
+            this.Insert_GatePassRequestAsync(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData, strGPDoc, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID, object userState) {
+        public void Insert_GatePassRequestAsync(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID, object userState) {
             if ((this.Insert_GatePassRequestOperationCompleted == null)) {
                 this.Insert_GatePassRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_GatePassRequestOperationCompleted);
             }
@@ -5080,6 +5081,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         GPTypeID,
                         strGPHeader,
                         strGPHeaderData,
+                        strGPDoc,
                         LoggedInUserID}, this.Insert_GatePassRequestOperationCompleted, userState);
         }
         

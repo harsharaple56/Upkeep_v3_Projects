@@ -2851,6 +2851,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="GPTypeID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="strGPHeader" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strGPHeaderData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPDoc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
