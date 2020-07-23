@@ -5412,6 +5412,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GatePass\GPDocuments\" />
+    <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
     <Folder Include="vendors\handlebars\node_modules\.bin\" />
