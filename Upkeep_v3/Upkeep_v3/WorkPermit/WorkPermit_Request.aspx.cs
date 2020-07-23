@@ -563,7 +563,7 @@ namespace Upkeep_v3.WorkPermit
                                     DataRow dtRow = dt.NewRow();
                                     dtRow["SectionID"] = DivId;
                                     dtRow["HeaderID"] = HeadId;
-                                    dtRow["AnswerID"] = AnswerType;
+                                    dtRow["AnswerID"] = IAnswerType;
                                     dtRow["Data"] = item.Value;
                                     dt.Rows.Add(dtRow);
                                 }
@@ -594,7 +594,7 @@ namespace Upkeep_v3.WorkPermit
                                     DataRow dtRow = dt.NewRow();
                                     dtRow["SectionID"] = DivId;
                                     dtRow["HeaderID"] = HeadId;
-                                    dtRow["AnswerID"] = AnswerType;
+                                    dtRow["AnswerID"] = IAnswerType;
                                     dtRow["Data"] = item.Value;
                                     dt.Rows.Add(dtRow);
                                 }
@@ -669,7 +669,7 @@ namespace Upkeep_v3.WorkPermit
                                                 DataRow dtRow = dt.NewRow();
                                                 dtRow["SectionID"] = DivId;
                                                 dtRow["HeaderID"] = HeadId;
-                                                dtRow["AnswerID"] = AnswerType;
+                                                dtRow["AnswerID"] = IAnswerType;
                                                 dtRow["Data"] = FileLocation;
                                                 dt.Rows.Add(dtRow);
                                             }
@@ -730,7 +730,7 @@ namespace Upkeep_v3.WorkPermit
                             DataRow dtRow = dt.NewRow();
                             dtRow["SectionID"] = DivId;
                             dtRow["HeaderID"] = HeadId;
-                            dtRow["AnswerID"] = AnswerType;
+                            dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
@@ -753,7 +753,7 @@ namespace Upkeep_v3.WorkPermit
                             DataRow dtRow = dt.NewRow();
                             dtRow["SectionID"] = DivId;
                             dtRow["HeaderID"] = HeadId;
-                            dtRow["AnswerID"] = AnswerType;
+                            dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
@@ -775,7 +775,7 @@ namespace Upkeep_v3.WorkPermit
                             DataRow dtRow = dt.NewRow();
                             dtRow["SectionID"] = DivId;
                             dtRow["HeaderID"] = HeadId;
-                            dtRow["AnswerID"] = AnswerType;
+                            dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 

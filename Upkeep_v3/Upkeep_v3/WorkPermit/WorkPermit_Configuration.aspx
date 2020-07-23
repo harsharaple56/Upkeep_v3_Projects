@@ -93,7 +93,7 @@
                         var section_count = counter.data('count');
                         section_count++;
                         alert(section_count);
-                        counter.data('count', section_count).html(section_count + ' Sectionnnn(s)');
+                        counter.data('count', section_count).html(section_count + ' Section(s)');
                         $('#error_section_repeater').html('');
 
                         init_autosize();
@@ -523,6 +523,15 @@
                     header.children().find(".hdnRepeaterAnswer").change();
                     if (arrHeaderData[4] == "1" || arrHeaderData[4] == "2") {
                         header.children().find(".lblAnswerCnt").show();
+                    }
+                    var isMulti = header.children().find("select option[value='"+arrHeaderData[4]+"']").attr("data-ismulti");
+                    if (isMulti === 'True') {
+
+                        //WorkPermitSection[1][WorkPermitHeader][2][ctl00$ContentPlaceHolder1$ddlAns]
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").show();
+                    }
+                    else {
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").hide();
                     }
                     //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").parents('.dvWorkPermitSection').attr("data-SectionID",arrIDSection[0]);
                     //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").val(arrIDSection[0]);
