@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace Upkeep_v3.Inventory
 {
-    public partial class Inventory_Stock_List : System.Web.UI.Page
+    public partial class Inventory_Purchase_List : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
@@ -45,7 +45,7 @@ namespace Upkeep_v3.Inventory
                     return "";
                 }
 
-                ds = ObjUpkeep.Fetch_Stock_List(LoggedInUserID, Session["CompanyID"].ToString());
+                ds = ObjUpkeep.Fetch_Inv_Item_Purchase_List(LoggedInUserID, Session["CompanyID"].ToString());
 
                 if (ds.Tables.Count > 0)
                 {
@@ -55,24 +55,20 @@ namespace Upkeep_v3.Inventory
 
                         for (int i = 0; i < count; i++)
                         {
-                            string Stock_ID = Convert.ToString(ds.Tables[0].Rows[i]["Stock_ID"]);
+                            string Purchase_ID = Convert.ToString(ds.Tables[0].Rows[i]["Purchase_ID"]);
                             string Item_ID = Convert.ToString(ds.Tables[0].Rows[i]["Item_ID"]);
                             string Items = Convert.ToString(ds.Tables[0].Rows[i]["Items"]);
-                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
-                            string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
-                            string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
-                            string Balance = Convert.ToString(ds.Tables[0].Rows[i]["Balance"]);
+                            string Count = Convert.ToString(ds.Tables[0].Rows[i]["Count"]);
+                            string Cost_rate = Convert.ToString(ds.Tables[0].Rows[i]["Cost_rate"]); 
 
 
                             data += "<tr>" +
                                 //"<td>" + "<input type='checkbox' id='" + Stock_ID + "' name='" + Stock_ID + "' value ='" + Stock_ID + "'>" + "</td>" +
                                 "<td>" + Items + "</td>" +
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Category + "</td>" +
-                                "<td>" + Sub_Category + "</td>" +
-                                "<td>" + Balance + "</td>" +
-                                "<td><a href='Inventory_Stock_Detail.aspx?Stock_ID=" + Stock_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
-                                "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Stock_ID + "'><i class='la la-trash'></i> </a> " +
+                                "<td>" + Count + "</td>" +
+                                "<td>" + Cost_rate + "</td>" +
+                                "<td><a href='Inventory_Purchase_Details.aspx?Purchase_ID=" + Purchase_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
+                                "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Purchase_ID + "'><i class='la la-trash'></i> </a> " +
                                 "</tr>";
                         }
                     }
@@ -97,7 +93,7 @@ namespace Upkeep_v3.Inventory
         {
             if (hdnDeleteID.Value != "")
             {
-                ObjUpkeep.Delete_Inv_Stock(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
+                ObjUpkeep.Delete_Inv_Purchase(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
             }
             hdnDeleteID.Value = "";
 
@@ -121,16 +117,5 @@ namespace Upkeep_v3.Inventory
         //    hdnPrntD.Value = "";
         //}
 
-
-        protected void btnPopup_Click(object sender, EventArgs e)
-        {
-        }
-        protected void btnModalsubmit_Click(object sender, EventArgs e)
-        {
-            if (txtHdn.Text != "")
-            {
-                txtHdn.Text = "";
-            }
-        }
     }
 }

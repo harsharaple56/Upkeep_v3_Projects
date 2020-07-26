@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Inventory_Stock_Details.aspx.cs" Inherits="Upkeep_v3.Inventory.Inventory_Stock_Details" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Inventory_Transaction_Details.aspx.cs" Inherits="Upkeep_v3.Inventory.Inventory_Transaction_Details" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -125,13 +125,13 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Stock Detail
+                            <h3 class="m-portlet__head-text">Transaction Detail
                             </h3>
                         </div>
                     </div>
 
                     <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Stock_List.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Transaction_List.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-backward"></i>
                                 <span>Back</span>
@@ -239,4 +239,3 @@
 
 
 </asp:Content>
-
