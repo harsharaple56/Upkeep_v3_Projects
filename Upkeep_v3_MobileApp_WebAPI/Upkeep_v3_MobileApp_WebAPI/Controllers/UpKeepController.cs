@@ -1762,7 +1762,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         /// <param name="StrPassword"></param>
         /// <returns></returns>
         [HttpGet]
-        public List<ClsUpkeepLogin> FunPubLogin(string StrUserName, string StrPassword)
+        public HttpResponseMessage FunPubLogin(string StrUserName, string StrPassword, string UserType, int CompanyID)
         {
             List<ClsUpkeepLogin> ObjLocLogin = new List<ClsUpkeepLogin>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -1778,9 +1778,11 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                 if (StrPassword == null)
                     StrPassword = "";
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
                 ObjLocSqlParameter[0] = new SqlParameter("@Username", StrUserName);
                 ObjLocSqlParameter[1] = new SqlParameter("@Password", StrPassword);
+                ObjLocSqlParameter[2] = new SqlParameter("@UserType", UserType);
+                ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", CompanyID);
 
                 DsLocDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Login", ObjLocSqlParameter);
 
@@ -1794,28 +1796,35 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                            select new ClsUpkeepLogin
                                            {
 
-                                               ProPubStrEmployeeID = Convert.ToString(p.Field<decimal>("EmployeeID")),
+                                               ProPubStrEmployeeID = Convert.ToString(p.Field<int>("User_ID")),
                                                ProPubStrUsername = p.Field<string>("Username"),
-                                               ProPubStrRights = p.Field<string>("Rights"),
+                                               //ProPubStrRights = p.Field<string>("Rights"),
                                                ProPubStrName = p.Field<string>("Name"),
                                                ProPubStrRollCd = p.Field<string>("rollcd"),
                                                ProPubStrEmpCd = p.Field<string>("empcd"),
-                                               ProPubStrPrtycd = p.Field<string>("Prtycd"),
-                                               ProPubStrGroupCompany = p.Field<string>("groupandcompany")
+                                               //ProPubStrPrtycd = p.Field<string>("Prtycd"),
+                                               //ProPubStrGroupCompany = p.Field<string>("groupandcompany")
 
 
                                            }).ToList();
-                            return ObjLocLogin;
+                            //return ObjLocLogin;
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjLocLogin);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
                         }
                     }
                     else
                     {
-                        return ObjLocLogin;
+                        //return ObjLocLogin;
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
                     }
                 }
                 else
                 {
-                    return ObjLocLogin;
+                    //return ObjLocLogin;
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
                 }
                 throw new Exception("Error while processing request.");
             }
@@ -8444,6 +8453,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                           {
                                               Status = Convert.ToInt32(p.Field<string>("Status")),
                                               CompanyID = Convert.ToInt32(p.Field<decimal>("Company_ID")),
+                                              CompanyName = Convert.ToString(p.Field<string>("Company_Name")),
                                               Client_URL = Convert.ToString(p.Field<string>("ClientURL")),
                                               Module_ID = Convert.ToString(p.Field<string>("Module_ID"))
 

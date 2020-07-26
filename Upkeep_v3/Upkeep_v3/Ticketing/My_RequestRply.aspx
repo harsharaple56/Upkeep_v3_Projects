@@ -120,13 +120,24 @@
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
                                             <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
-                                            <label class="col-xl-3 col-lg-3 form-control-label">TicketID :</label>
+                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Ticket No. :</label>
                                             <div class="col-xl-3 col-lg-3">
                                                 <asp:Label ID="lblTicketID" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <label class="col-xl-3 col-lg-3 form-control-label">Request Date :</label>
+                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Request Date :</label>
                                             <div class="col-xl-3 col-lg-3">
                                                 <asp:Label ID="lblRequestDate" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Ticket Status :</label>
+                                            <div class="col-xl-3 col-lg-3">
+                                                <asp:Label ID="lblRequestStatus" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Action Status :</label>
+                                            <div class="col-xl-3 col-lg-3">
+                                                <asp:Label ID="lblActionStatus" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
 
@@ -141,7 +152,7 @@
                                                     </div>
                                                 </div>--%>
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Location :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
@@ -166,7 +177,7 @@
                                         <%--</div>
                                     </div>--%>                                        <%--<asp:Panel ID="pnlTicketSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;" class="modal fade" role="dialog">--%>
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Category :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Category :</label>
                                             <div class="col-xl-5 col-lg-9">
 
                                                 <asp:Label ID="lblCategory" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -177,7 +188,7 @@
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub Category :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Sub Category :</label>
                                             <div class="col-xl-5 col-lg-9">
 
                                                 <asp:Label ID="lblSubCategory" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -222,11 +233,31 @@
                                     </div>--%>
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action History</label>
+                                        </div>
+
+                                        <asp:GridView ID="gvTicketActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                        OnRowDataBound="gvTicketActionHistory_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+                                        AutoGenerateColumns="false">
+                                        <Columns>                                          
+                                            <asp:BoundField DataField="Level" HeaderText="Level" ItemStyle-Width="50" />
+                                            <asp:BoundField DataField="User" HeaderText="User" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="300" />
+                                            <asp:BoundField DataField="Action Date" HeaderText="Action Date" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Expected Time" HeaderText="Expected Time" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Ticket Status" HeaderText="Ticket Status" ItemStyle-Width="110" />
+                                            <asp:BoundField DataField="Action Status" HeaderText="Action Status" ItemStyle-Width="110" />
+                                        </Columns>
+                                        <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
+                                    </asp:GridView>
+
+
+                                        <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Description</label>
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Ticket Description :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Ticket Description :</label>
                                             <div class="col-xl-9 col-lg-9">
 
                                                 <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -238,7 +269,7 @@
 
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Ticket Images :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Ticket Images :</label>
                                             <div class="col-xl-7 col-lg-9">
                                                 <%--<asp:Panel ID="pnlTicketSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;" class="modal fade" role="dialog">--%>
                                                 <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />

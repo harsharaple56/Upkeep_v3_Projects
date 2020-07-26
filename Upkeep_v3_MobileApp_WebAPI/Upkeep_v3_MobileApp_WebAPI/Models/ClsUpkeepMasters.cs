@@ -953,6 +953,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
     {
         public int Status { get; set; }
         public int CompanyID { get; set; }
+        public string CompanyName { get; set; }
         public string Client_URL { get; set; }
         public string Module_ID { get; set; }
     }

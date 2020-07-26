@@ -97,7 +97,7 @@ namespace Upkeep_v3.General_Masters
             User_MobileAlter = txtAlterMobile.Text.Trim();
             User_Landline = TxtLandline.Text.Trim();
             User_Designation = txtUserDesignation.Text.Trim();
-            User_Type_ID = Convert.ToInt32(ddlTypeUser.SelectedValue);
+            User_Type_ID = 0; //Convert.ToInt32(ddlTypeUser.SelectedValue);
             Login_Id = txtUserLogin.Text.Trim();
             password = txtPassword.Text.Trim();
             Zone = 0;           //Commented by sujata       Convert.ToInt32(ddlZone.SelectedValue);
@@ -130,7 +130,7 @@ namespace Upkeep_v3.General_Masters
             if (fileUpload_UserImage.HasFile)
             {
                 //CompanyLogoName = Path.GetFileName(fileUpload_CompanyLogo.PostedFile.FileName);
-                fileUpload_UserImage.PostedFile.SaveAs(Server.MapPath("~/Images/") + User_Code + ".PNG");
+                fileUpload_UserImage.PostedFile.SaveAs(Server.MapPath("~/UserImages/") + User_Code + ".PNG");
                 ProfilePhoto = User_Code + ".PNG";
             }
             else

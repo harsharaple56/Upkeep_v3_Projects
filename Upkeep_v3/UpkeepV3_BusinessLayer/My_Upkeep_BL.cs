@@ -1314,7 +1314,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string LoggedInUserID, string StrConn)
+        public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData,string strGPDoc, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1328,6 +1328,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@GPTypeID", GPTypeID);
                 cmd.Parameters.AddWithValue("@GPHeader", strGPHeader);
                 cmd.Parameters.AddWithValue("@GPHeaderData", strGPHeaderData);
+                cmd.Parameters.AddWithValue("@GPDoc", strGPDoc);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
