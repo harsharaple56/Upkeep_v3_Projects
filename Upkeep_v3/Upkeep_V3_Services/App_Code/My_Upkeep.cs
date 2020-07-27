@@ -216,7 +216,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID,int RoleID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
@@ -343,7 +343,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_User_UserGroupList(CompanyID,StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_User_UserGroupList(CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -454,7 +454,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -502,7 +502,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             //string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Bind_Ticket_Details(TicketID,CompanyID, StrConn);
+            ds = ObjUpkeepCC_BL.Bind_Ticket_Details(TicketID, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1469,7 +1469,7 @@ public class My_Upkeep
     #region VMS
 
     //Added by RC This function is used to save VMS Configuration 
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID,string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid,int EntryCount, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID)
     {
 
         DataSet ds = new DataSet();
@@ -1477,7 +1477,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID,strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid,EntryCount, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1556,14 +1556,14 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to save VMS request 
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID,string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID,Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1955,14 +1955,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Fetch_Stock_Detail(string LoggedInUserID, string CompanyID , int StockId)
+    public DataSet Fetch_Stock_Detail(string LoggedInUserID, string CompanyID, int StockId)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Stock_Detail(LoggedInUserID, CompanyID, StockId ,StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Stock_Detail(LoggedInUserID, CompanyID, StockId, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1986,6 +1986,85 @@ public class My_Upkeep
             throw ex;
         }
     }
+    public DataSet Fetch_Inv_Item_Stock_Ddl(string LoggedInUserID, string CompanyID, string StockID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Inv_Item_Stock_Ddl(LoggedInUserID, CompanyID, StockID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public DataSet Fetch_Inv_Crud_Item_Stock(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) 
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Inv_Crud_Item_Stock(LoggedInUserID, CompanyID, StockID, XmlItem ,StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_Inv_Item_Stock_Data(string LoggedInUserID, string CompanyID, string StockID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Inv_Item_Stock_Data(LoggedInUserID, CompanyID, StockID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_Inv_Item_Purchase_List(string LoggedInUserID, string CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Inv_Item_Purchase_List(LoggedInUserID, CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public DataSet Delete_Inv_Purchase(int ItemId, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Delete_Inv_Purchase(ItemId, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
     #endregion
 
 }

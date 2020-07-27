@@ -13,7 +13,7 @@ using System.Globalization;
 
 namespace Upkeep_v3.Inventory
 {
-    public partial class Inventory_Stock_Details : System.Web.UI.Page
+    public partial class Inventory_Transaction_Details : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
@@ -173,7 +173,7 @@ namespace Upkeep_v3.Inventory
                             string Consumed = Convert.ToString(ds.Tables[0].Rows[i]["Consumed"]);
                             string Balance = Convert.ToString(ds.Tables[0].Rows[i]["Balance"]);
 
-                            string OpName= "OP" + Item_ID;
+                            string OpName = "OP" + Item_ID;
                             string CoName = "CO" + Item_ID;
 
                             data += "<tr>" +
@@ -214,33 +214,33 @@ namespace Upkeep_v3.Inventory
             }
         }
 
-            //public string DeleteInvStockListing()
-            //{
-            //    if (hdnDeleteID.Value != "")
-            //    {
-            //        ObjUpkeep.Delete_Inv_Stock(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
-            //    }
-            //    hdnDeleteID.Value = "";
+        //public string DeleteInvStockListing()
+        //{
+        //    if (hdnDeleteID.Value != "")
+        //    {
+        //        ObjUpkeep.Delete_Inv_Stock(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
+        //    }
+        //    hdnDeleteID.Value = "";
 
-            //    return "";
-            //}
-            //protected void btnDelete_Click(object sender, EventArgs e)
-            //{
-            //    DeleteInvStockListing();
-            //}
+        //    return "";
+        //}
+        //protected void btnDelete_Click(object sender, EventArgs e)
+        //{
+        //    DeleteInvStockListing();
+        //}
 
-            //protected void btnPrintAll_Click(object sender, EventArgs e)
-            //{
-            //    if (hdnPrntD.Value != "")
-            //    {
-            //        string founderMinus1 = hdnPrntD.Value.TrimEnd(',');
-            //        Session["PrintIdList"] = "";
-            //        Session["PrintIdList"] = founderMinus1;
+        //protected void btnPrintAll_Click(object sender, EventArgs e)
+        //{
+        //    if (hdnPrntD.Value != "")
+        //    {
+        //        string founderMinus1 = hdnPrntD.Value.TrimEnd(',');
+        //        Session["PrintIdList"] = "";
+        //        Session["PrintIdList"] = founderMinus1;
 
-            //        Response.Redirect("ReportViewer.aspx");
-            //    }
-            //    hdnPrntD.Value = "";
-            //}
+        //        Response.Redirect("ReportViewer.aspx");
+        //    }
+        //    hdnPrntD.Value = "";
+        //}
 
-        }
+    }
 }

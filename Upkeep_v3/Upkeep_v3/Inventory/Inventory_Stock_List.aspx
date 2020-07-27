@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Inventory_Stock_List.aspx.cs" Inherits="Upkeep_v3.Inventory.Inventory_Stock_List" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
@@ -26,6 +27,40 @@
                 document.getElementById("btnDelete").click();
             });
 
+
+            $("#btnModalSave").on('click', function (e) {
+                e.preventDefault();
+                $('#txtHdn').val("");
+
+                //var RwsCnt = $("#m_table_2 tr").length;
+                ////alert(RwsCnt);
+                var cnt = 1;
+
+                //if (!CompareTargetVal()) {
+                //    return false;
+                //}
+
+
+                //var xml = "";
+                //xml += "<DocumentElement>";
+                //$('#m_table_2').children('tbody').children('tr').children('td:nth-child(3)').children('input[type="number"]').each(function () {
+                //    // alert($(this).attr('id')); 
+                //    //alert($(this).val()); 
+                //    xml += "<Items>";
+                //    xml += "<ItemId>" + $(this).attr('name') + "</ItemId>";
+                //    xml += "<ConsumedBalance>" + $(this).val() + "</ConsumedBalance>";
+                //    xml += "</Items>";
+                //    cnt = cnt + 1;
+                //});
+                //xml += "</DocumentElement>";
+                //$('#txtHdn').val(xml);
+                ////alert(xml);
+                ////alert($('#txtHdn').val());  
+
+                $("#btnModalsubmit").click();
+
+            });
+
         });
 
 
@@ -34,34 +69,26 @@
             var ConfigID = "";
             var ConntP = 0;
 
-            //var ChkAllID = "";
+            ////var ChkAllID = "";
 
-            $('#m_table_1').find('input[type="checkbox"]:checked').each(function () {
-                //alert($(this).val())
-                if ($(this).val() != "on") {
-                    ConfigID = ConfigID + $(this).val() + " ,";
-                } else {
-                    ChkAllID = "On";
-                }
-                ConntP = ConntP + 1;
-            });
+            //$('#m_table_1').find('input[type="checkbox"]:checked').each(function () {
+            //    //alert($(this).val())
+            //    if ($(this).val() != "on") {
+            //        ConfigID = ConfigID + $(this).val() + " ,";
+            //    } else {
+            //        ChkAllID = "On";
+            //    }
+            //    ConntP = ConntP + 1;
+            //}); 
 
-            //if (ChkAllID = "On") {
-            //    ConfigID = "";
-            //    $('#m_table_1').find('input[type="checkbox"]').each(function () {
-            //        //alert($(this).val())
-            //        if ($(this).val() != "on") {
-            //            ConfigID = ConfigID + $(this).val() + " ,";
-            //        }
-            //    });
-            //}
-
-            $("#hdnPrntD").val("");
-            $("#hdnPrntD").val(ConfigID);
-            alert($("#hdnPrntD").val());
-            alert(ConntP);
+            //$("#hdnPrntD").val("");
+            //$("#hdnPrntD").val(ConfigID);
+            //alert($("#hdnPrntD").val());
+            //alert(ConntP);
 
             // document.forms[0].target = "_blank";
+
+            document.getElementById("btnPopup").click();
         };
 
     </script>
@@ -80,21 +107,23 @@
                     </div>
 
                     <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                         <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Stock_Details.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                         
+                        <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onclick="SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>Add New</span>
+                                <span>Add New Item</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-                        <a href="<%= Page.ResolveClientUrl("#") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onclick="SetTarget();">
+                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Stock_Detail.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>Add Purchase</span>
+                                <span>Add New Stock</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        
                     </div>
 
                 </div>
@@ -111,7 +140,7 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-                                <th>Select</th>
+                                <%--<th>Select</th>--%>
                                 <th>Items</th>
                                 <th>Department</th>
                                 <th>Category</th>
@@ -134,7 +163,44 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
-
-
     <%--</form>--%>
+
+    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+    <asp:UpdatePanel runat="server" style="width: 100%;">
+      <%--<Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
+        </Triggers>--%>
+        <ContentTemplate>
+
+            <asp:Button ID="btnPopup" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                Style="display: none;" OnClick="btnPopup_Click" Text="Search" />
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                    <h4 class="modal-title">Add Items</h4>
+                </div>
+                <div class="modal-body">
+                      <h4>Selected Items</h4>
+                </div>
+                <div class="modal-footer">
+                    <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+
+                    <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static">Save</button>
+                    <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 </asp:Content>

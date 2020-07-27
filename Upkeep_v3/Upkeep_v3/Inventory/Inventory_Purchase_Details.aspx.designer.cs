@@ -10,7 +10,16 @@
 namespace Upkeep_v3.Inventory {
     
     
-    public partial class Inventory_Stock_List {
+    public partial class Inventory_Purchase_Details {
+        
+        /// <summary>
+        /// btnPopup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnPopup;
         
         /// <summary>
         /// hdnDeleteID control.
@@ -40,22 +49,13 @@ namespace Upkeep_v3.Inventory {
         protected global::System.Web.UI.WebControls.HiddenField hdnPrntD;
         
         /// <summary>
-        /// HiddenField1 control.
+        /// hdnIsSubmitted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
-        
-        /// <summary>
-        /// btnPopup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPopup;
+        protected global::System.Web.UI.WebControls.HiddenField hdnIsSubmitted;
         
         /// <summary>
         /// txtHdn control.
@@ -65,6 +65,15 @@ namespace Upkeep_v3.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHdn;
+        
+        /// <summary>
+        /// hdnTableBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdnTableBody;
         
         /// <summary>
         /// btnModalSave control.

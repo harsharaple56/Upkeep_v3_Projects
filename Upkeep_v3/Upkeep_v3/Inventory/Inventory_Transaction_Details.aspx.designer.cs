@@ -10,25 +10,7 @@
 namespace Upkeep_v3.Inventory {
     
     
-    public partial class Inventory_Stock_List {
-        
-        /// <summary>
-        /// hdnDeleteID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnDeleteID;
-        
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+    public partial class Inventory_Transaction_Details {
         
         /// <summary>
         /// hdnPrntD control.

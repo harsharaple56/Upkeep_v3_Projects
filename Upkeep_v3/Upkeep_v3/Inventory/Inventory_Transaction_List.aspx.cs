@@ -70,7 +70,7 @@ namespace Upkeep_v3.Inventory
                                 "<td>" + Category + "</td>" +
                                 "<td>" + Sub_Category + "</td>" +
                                 "<td>" + Department + "</td>" +
-                                "<td><a href='CheckList_Configuration.aspx?TransDtlID=" + Transac_Detail_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
+                                "<td><a href='Inventory_Transaction_Details.aspx?TransDtlID=" + Transac_Detail_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
                                 "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Transac_Detail_ID + "'><i class='la la-trash'></i> </a> " +
                                 "</tr>";
                         }

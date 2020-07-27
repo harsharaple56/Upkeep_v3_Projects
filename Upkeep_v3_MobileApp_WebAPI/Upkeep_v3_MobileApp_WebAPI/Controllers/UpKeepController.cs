@@ -7635,7 +7635,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
                                                 Username = Convert.ToString(p.Field<string>("Username")),
                                                 Store_Name = Convert.ToString(p.Field<string>("Store_Name")),
                                                 Name = Convert.ToString(p.Field<string>("Name")),
-                                                PhoneNo = Convert.ToString(p.Field<decimal>("PhoneNo")),
+                                                PhoneNo = Convert.ToString(p.Field<string>("PhoneNo")),
                                                 EmailID = Convert.ToString(p.Field<string>("EmailID")),
                                             }).ToList();
 
