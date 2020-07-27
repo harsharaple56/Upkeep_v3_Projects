@@ -1426,6 +1426,31 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID,string strAction, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_GP_Config_Document_CRUD", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@GP_ConfigID", GP_ConfigID);
+                cmd.Parameters.AddWithValue("@GPConfig_DocID", GatePassDocID);
+                cmd.Parameters.AddWithValue("@DocumentHeader", DocumentHeader);
+                cmd.Parameters.AddWithValue("@Mandatory", Mandatory);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", strAction);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         #endregion
 
         #region Work_Permit

@@ -1012,6 +1012,22 @@ public class My_Upkeep
         }
     }
 
+    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, DocumentHeader, Mandatory, LoggedInUserID, strAction, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     #endregion
 
     #region Work_Permit

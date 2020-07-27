@@ -1364,6 +1364,25 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, DocumentHeader, Mandatory, LoggedInUserID, strAction);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
     #endregion
 
     #region Work_Permit

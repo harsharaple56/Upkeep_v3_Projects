@@ -71,14 +71,14 @@ namespace Upkeep_v3.GatePass
 
                 if (ds.Tables.Count > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        ddlCompany.DataSource = ds.Tables[0];
-                        ddlCompany.DataTextField = "CompanyDesc";
-                        ddlCompany.DataValueField = "CompanyId";
-                        ddlCompany.DataBind();
-                        ddlCompany.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
+                    //if (ds.Tables[0].Rows.Count > 0)
+                    //{
+                    //    ddlCompany.DataSource = ds.Tables[0];
+                    //    ddlCompany.DataTextField = "CompanyDesc";
+                    //    ddlCompany.DataValueField = "CompanyId";
+                    //    ddlCompany.DataBind();
+                    //    ddlCompany.Items.Insert(0, new ListItem("--Select--", "0"));
+                    //}
                 }
                 if (ds.Tables.Count > 1)
                 {
@@ -187,7 +187,7 @@ namespace Upkeep_v3.GatePass
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         txtTitle.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Title"]);
-                        ddlCompany.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Company_ID"]);
+                        //ddlCompany.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Company_ID"]);
                         string Initiator = Convert.ToString(ds.Tables[0].Rows[0]["Initiator"]);
 
                         txtGatepassDescription.Text = Convert.ToString(ds.Tables[0].Rows[0]["Gatepass_Description"]);
@@ -329,6 +329,41 @@ namespace Upkeep_v3.GatePass
             return data;
         }
 
+        public string bindGP_Document()
+        {
+            string data = "";
+            DataSet ds_GP_Document = new DataSet();
+            try
+            {
+                ds_GP_Document = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID,0,"",0,"","R");
+
+                if (ds_GP_Document.Tables.Count > 0)
+                {
+                    if (ds_GP_Document.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds_GP_Document.Tables[0].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            string strSrNo = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["SrNo"]);
+                            int Doc_Config_ID = Convert.ToInt32(ds_GP_Document.Tables[0].Rows[i]["Doc_Config_ID"]);
+                            string Doc_Desc = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["Doc_Desc"]);
+                            string Mandatory = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["Mandatory"]);
+
+                            data += "<tr><td>" + strSrNo + "</td><td>" + Doc_Desc + "</td><td>" + Mandatory + "</td><td><a class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' onclick='BindGP_Doc(" + Doc_Config_ID + ")' style='color: white;' class='la la-edit'></i> </a>  <a class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'  title='Delete record'><i id='btnDeleteHeader' onclick='DeleteGP_Doc(" + Doc_Config_ID + ")' style='color: white;' class='la la-trash'></i> </a> </td></tr>";
+
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+        }
+
         public string bindGP_Terms()
         {
             string data = "";
@@ -397,7 +432,7 @@ namespace Upkeep_v3.GatePass
                 strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
 
                 string strConfigTitle = string.Empty;
-                int CompanyID = 0;
+                //int CompanyID = 0;
                 string strInitiator = string.Empty;
                 bool LinkDepartment = false;
                 string strTransactionPrefix = string.Empty;
@@ -405,7 +440,7 @@ namespace Upkeep_v3.GatePass
                 string strGPClosureBy = string.Empty;
 
                 strConfigTitle = txtTitle.Text.Trim();
-                CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                //CompanyID = Convert.ToInt32(Session["CompanyID"]);
                 LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
                 ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
                 if (rdbEmployee.Checked == true)
@@ -1289,6 +1324,144 @@ namespace Upkeep_v3.GatePass
             }
 
 
+        }
+
+        protected void btnGPDocSave_Click(object sender, EventArgs e)
+        {
+            DataSet dsGatePassDoc = new DataSet();
+            string strGPTDoc = string.Empty;
+            int GatePassDocID = 0;
+            int Mandatory = 0;
+            string strAction = string.Empty;
+            try
+            {
+                if (Convert.ToString(Session["GPDocID"]) != "")
+                {
+                    GatePassDocID = Convert.ToInt32(Session["GPDocID"]);
+                }
+                strGPTDoc = Convert.ToString(txtGatePassType.Text.Trim());
+
+                if (chkGPDocMandatory.Checked)
+                {
+                    Mandatory = 1;
+                }
+                else
+                {
+                    Mandatory = 0;
+                }
+
+                if (GatePassDocID > 0)
+                {
+                    strAction = "U";
+                }
+                else
+                {
+                    strAction = "C";
+                }
+
+                //dsGatePassDoc = ObjUpkeep.GatePassType_CRUD(GatePassTypeID, strGPType, GP_ConfigID, LoggedInUserID, strAction);
+                dsGatePassDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, strGPTDoc, Mandatory, LoggedInUserID, strAction);
+
+                if (dsGatePassDoc.Tables.Count > 0)
+                {
+                    if (dsGatePassDoc.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsGatePassDoc.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            Session["GPDocID"] = "";
+                            txtGatePassType.Text = "";
+                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
+                            btnAddGPHeader.Focus();
+                        }
+                        else if (Status == 3)
+                        {
+                            lblErrorGPDoc.Text = "Gate Pass Document already exists";
+                        }
+                        else if (Status == 2)
+                        {
+                            lblErrorGPDoc.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnGPDocCancel_Click(object sender, EventArgs e)
+        {
+            txtGP_Doc.Text = "";
+            mpeAddEditGPDoc.Hide();
+        }
+
+        protected void btnBindGPDoc_Click(object sender, EventArgs e)
+        {
+            Session["GPDocID"] = Convert.ToString(hdnGPDocID.Value);
+            int GatePassDocID = 0;
+            DataSet dsGatePassDoc = new DataSet();
+            DataSet dsDeleteGPDoc = new DataSet();
+            try
+            {
+                if (Convert.ToString(Session["GPDocID"]) != "")
+                {
+                    hdnGPTypeID.Value = "";
+                    GatePassDocID = Convert.ToInt32(Session["GPDocID"]);
+
+                    dsGatePassDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID,GatePassDocID, "", 0, LoggedInUserID, "R");
+
+                    if (dsGatePassDoc.Tables.Count > 0)
+                    {
+                        if (dsGatePassDoc.Tables[0].Rows.Count > 0)
+                        {
+                            txtGP_Doc.Text = Convert.ToString(dsGatePassDoc.Tables[0].Rows[0]["Doc_Desc"]);
+                            int Is_Mandatory = Convert.ToInt32(dsGatePassDoc.Tables[0].Rows[0]["Is_Mandatory"]);
+                            if (Is_Mandatory == 1)
+                            {
+                                chkGPDocMandatory.Checked = true;
+                            }
+                            else
+                            {
+                                chkGPDocMandatory.Checked = false;
+                            }
+                            mpeAddEditGPDoc.Show();
+                        }
+                    }
+                }
+
+                int DeleteGatePassDocID = 0;
+                Session["DeleteGPDocID"] = Convert.ToString(hdnDeleteGPDocID.Value);
+                if (Convert.ToString(Session["DeleteGPDocID"]) != "")
+                {
+                    DeleteGatePassDocID = Convert.ToInt32(Session["DeleteGPDocID"]);
+
+                    dsDeleteGPDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, DeleteGatePassDocID, "", 0, LoggedInUserID, "D");
+                    if (dsDeleteGPDoc.Tables.Count > 0)
+                    {
+                        if (dsDeleteGPDoc.Tables[0].Rows.Count > 0)
+                        {
+                            Session["DeleteGPDocID"] = "";
+                            Session["GPDocID"] = "";
+                            int Status = Convert.ToInt32(dsDeleteGPDoc.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
+                                btnAddGPHeader.Focus();
+                            }
+                        }
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

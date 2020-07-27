@@ -69,6 +69,21 @@
             }
         }
 
+        function BindGP_Doc(Doc_Config_ID) {
+            $("#hdnGPDocID").val(Doc_Config_ID)
+            document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
+        }
+
+        function DeleteGP_Doc(Doc_Config_ID) {
+            $("#hdnDeleteGPDocID").val(Doc_Config_ID)
+            if (confirm('Are you sure you want to delete this Gate Pass Type?')) {
+                document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
+            } else {
+                // Do nothing!
+            }
+        }
+
+
         function BindGP_Term(GP_TermID) {
             $("#hdnGPTermID").val(GP_TermID)
             document.getElementById('<%= btnBindGPTerms.ClientID %>').click();
@@ -277,6 +292,9 @@
                         <asp:HiddenField runat="server" ID="hdnGPTermID" ClientIDMode="Static" />
                         <asp:HiddenField runat="server" ID="hdnDeleteGPTermID" ClientIDMode="Static" />
 
+                         <asp:HiddenField runat="server" ID="hdnGPDocID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnDeleteGPDocID" ClientIDMode="Static" />
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -319,14 +337,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                <%--<div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-xl-3 col-lg-2 col-form-label"><span style="color: red;">*</span> Company :</label>
                                     <div class="col-xl-4 col-lg-4">
                                         <asp:DropDownList ID="ddlCompany" class="form-control m-input" runat="server"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Company"></asp:RequiredFieldValidator>
                                     </div>
-                                </div>
+                                </div>--%>
 
 
                                 <div class="m-form__group form-group row" style="padding-left: 1%;">
@@ -392,8 +410,8 @@
                                             <tr>
                                                 <th>Sr. No.</th>
                                                 <th>Header Description</th>
-                                                <th>Numeric</th>
-                                                <th>Unit</th>
+                                                <th>Mandatory</th>
+                                                <th>Answer Type</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -524,6 +542,47 @@
                                     </div>
 
                                 </div>
+
+
+                                <br />
+
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Document</label>
+                                </div>
+
+                                <div class="m-portlet__body">
+
+                                    <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Document">
+                                        <thead>
+
+                                            <tr>
+                                                <th>Sr. No.</th>
+                                                <th>Gate Pass Document</th>
+                                                <th>Mandatory</th>
+                                                <th>Action</th>
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+                                            <%=bindGP_Document()%>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="m-form__group form-group row">
+                                    <div class="col-lg-4">
+                                        <span>
+                                            <asp:Button ID="btnAddGatePassDocument" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Document" />
+                                            <cc1:ModalPopupExtender ID="mpeAddEditGPDoc" runat="server" PopupControlID="pnlAddEditGPDoc" TargetControlID="btnAddGatePassDocument"
+                                                CancelControlID="btnCloseHeaderDoc" BackgroundCssClass="modalBackground">
+                                            </cc1:ModalPopupExtender>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
 
                                 <%--<div class="col-xl-12">
                                         <div class="m-form__section">
@@ -871,7 +930,7 @@
                                                         <div class="m-form__group">
                                                             <div class="m-form__control">
                                                                 <asp:CheckBox ID="ChkNumeric" runat="server" ClientIDMode="Static" />
-                                                                <label class="col-xl-6 col-lg-6 col-form-label">Numeric</label>
+                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
 
                                                             </div>
                                                         </div>
@@ -1009,6 +1068,65 @@
                         </asp:Panel>
 
 
+                        <asp:Button ID="btnBindGPDoc" runat="server" OnClick="btnBindGPDoc_Click" Style="display: none" />
+
+                        <asp:Panel ID="pnlAddEditGPDoc" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
+                            <div class="" id="add_GPDoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 65%;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabelDoc">Add GatePass Document</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeaderDoc">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-9">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtGP_Doc" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Document" Rows="1"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtGP_Doc" Visible="true" Display="Dynamic"
+                                                                    ValidationGroup="validateGPDoc" ForeColor="Red" ErrorMessage="Please enter Gatepass Document"></asp:RequiredFieldValidator>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:CheckBox ID="chkGPDocMandatory" runat="server" ClientIDMode="Static" />
+                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                </div>
+                                                <asp:Label ID="lblErrorGPDoc" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+
+                                                <div class="modal-footer">
+                                                    <div class="col-md-9">
+                                                        <asp:Button ID="btnGPDocCancel" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnGPDocCancel_Click" />
+                                                        <asp:Button ID="btnGPDocSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPDoc" OnClick="btnGPDocSave_Click" Text="Save" />
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnGPTypeSave" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </asp:Panel>
 
                         <%--</form>--%>
                     </div>

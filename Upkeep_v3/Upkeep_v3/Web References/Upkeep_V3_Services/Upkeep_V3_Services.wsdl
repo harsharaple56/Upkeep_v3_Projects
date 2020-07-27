@@ -3,6 +3,29 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_WorkPermitRequestSavedData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Transaction_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermitRequestSavedDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitRequestSavedDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Update_WorkPermitRequest">
         <s:complexType>
           <s:sequence>
@@ -2986,6 +3009,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GatePassConfiguration_Document_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePassDocID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentHeader" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mandatory" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassConfiguration_Document_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassConfiguration_Document_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Insert_WorkPermitConfiguration">
         <s:complexType>
           <s:sequence>
@@ -3122,29 +3171,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_WorkPermitRequestSavedData">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Transaction_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_WorkPermitRequestSavedDataResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitRequestSavedDataResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -3152,6 +3178,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedData" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedDataResponse" />
+  </wsdl:message>
   <wsdl:message name="Update_WorkPermitRequestSoapIn">
     <wsdl:part name="parameters" element="tns:Update_WorkPermitRequest" />
   </wsdl:message>
@@ -3902,6 +3934,12 @@
   <wsdl:message name="Fetch_GatePass_MISSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_GatePass_MISResponse" />
   </wsdl:message>
+  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="Insert_WorkPermitConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfiguration" />
   </wsdl:message>
@@ -3938,13 +3976,11 @@
   <wsdl:message name="Insert_WorkPermitRequestSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_WorkPermitRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedData" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_WorkPermitRequestSavedDataSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestSavedDataResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <wsdl:input message="tns:Fetch_WorkPermitRequestSavedDataSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermitRequestSavedDataSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Update_WorkPermitRequest">
       <wsdl:input message="tns:Update_WorkPermitRequestSoapIn" />
       <wsdl:output message="tns:Update_WorkPermitRequestSoapOut" />
@@ -4446,6 +4482,10 @@
       <wsdl:input message="tns:Fetch_GatePass_MISSoapIn" />
       <wsdl:output message="tns:Fetch_GatePass_MISSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <wsdl:input message="tns:GatePassConfiguration_Document_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassConfiguration_Document_CRUDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitConfiguration">
       <wsdl:input message="tns:Insert_WorkPermitConfigurationSoapIn" />
       <wsdl:output message="tns:Insert_WorkPermitConfigurationSoapOut" />
@@ -4470,13 +4510,18 @@
       <wsdl:input message="tns:Insert_WorkPermitRequestSoapIn" />
       <wsdl:output message="tns:Insert_WorkPermitRequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
-      <wsdl:input message="tns:Fetch_WorkPermitRequestSavedDataSoapIn" />
-      <wsdl:output message="tns:Fetch_WorkPermitRequestSavedDataSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Update_WorkPermitRequest">
       <soap:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
       <wsdl:input>
@@ -5602,6 +5647,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitConfiguration">
       <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
@@ -5656,18 +5710,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
-      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Update_WorkPermitRequest">
       <soap12:operation soapAction="http://tempuri.org/Update_WorkPermitRequest" style="document" />
       <wsdl:input>
@@ -6793,6 +6847,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
@@ -6840,15 +6903,6 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitRequest">
       <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitRequestSavedData">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestSavedData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

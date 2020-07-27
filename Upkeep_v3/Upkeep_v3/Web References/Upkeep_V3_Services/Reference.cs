@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestSavedDataOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Update_WorkPermitRequestOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_MyRequestWorkPermitOperationCompleted;
@@ -280,6 +282,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_GatePass_MISOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GatePassConfiguration_Document_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Insert_WorkPermitConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_AnswerOperationCompleted;
@@ -291,8 +295,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Bind_WorkPermitRequestDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Insert_WorkPermitRequestOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestSavedDataOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -331,6 +333,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_WorkPermitRequestSavedDataCompletedEventHandler Fetch_WorkPermitRequestSavedDataCompleted;
         
         /// <remarks/>
         public event Update_WorkPermitRequestCompletedEventHandler Update_WorkPermitRequestCompleted;
@@ -708,6 +713,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_GatePass_MISCompletedEventHandler Fetch_GatePass_MISCompleted;
         
         /// <remarks/>
+        public event GatePassConfiguration_Document_CRUDCompletedEventHandler GatePassConfiguration_Document_CRUDCompleted;
+        
+        /// <remarks/>
         public event Insert_WorkPermitConfigurationCompletedEventHandler Insert_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
@@ -726,7 +734,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Insert_WorkPermitRequestCompletedEventHandler Insert_WorkPermitRequestCompleted;
         
         /// <remarks/>
-        public event Fetch_WorkPermitRequestSavedDataCompletedEventHandler Fetch_WorkPermitRequestSavedDataCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestSavedData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_WorkPermitRequestSavedData", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+            this.Fetch_WorkPermitRequestSavedDataAsync(WP_ConfigID, Transaction_ID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_WorkPermitRequestSavedDataOperationCompleted == null)) {
+                this.Fetch_WorkPermitRequestSavedDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitRequestSavedDataOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_WorkPermitRequestSavedData", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID}, this.Fetch_WorkPermitRequestSavedDataOperationCompleted, userState);
+        }
+        
+        private void OnFetch_WorkPermitRequestSavedDataOperationCompleted(object arg) {
+            if ((this.Fetch_WorkPermitRequestSavedDataCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_WorkPermitRequestSavedDataCompleted(this, new Fetch_WorkPermitRequestSavedDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -5260,6 +5298,45 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GatePassConfiguration_Document_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction) {
+            object[] results = this.Invoke("GatePassConfiguration_Document_CRUD", new object[] {
+                        GP_ConfigID,
+                        GatePassDocID,
+                        DocumentHeader,
+                        Mandatory,
+                        LoggedInUserID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GatePassConfiguration_Document_CRUDAsync(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction) {
+            this.GatePassConfiguration_Document_CRUDAsync(GP_ConfigID, GatePassDocID, DocumentHeader, Mandatory, LoggedInUserID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void GatePassConfiguration_Document_CRUDAsync(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction, object userState) {
+            if ((this.GatePassConfiguration_Document_CRUDOperationCompleted == null)) {
+                this.GatePassConfiguration_Document_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGatePassConfiguration_Document_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("GatePassConfiguration_Document_CRUD", new object[] {
+                        GP_ConfigID,
+                        GatePassDocID,
+                        DocumentHeader,
+                        Mandatory,
+                        LoggedInUserID,
+                        strAction}, this.GatePassConfiguration_Document_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnGatePassConfiguration_Document_CRUDOperationCompleted(object arg) {
+            if ((this.GatePassConfiguration_Document_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GatePassConfiguration_Document_CRUDCompleted(this, new GatePassConfiguration_Document_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_WorkPermitConfiguration", new object[] {
@@ -5460,39 +5537,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestSavedData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
-            object[] results = this.Invoke("Fetch_WorkPermitRequestSavedData", new object[] {
-                        WP_ConfigID,
-                        Transaction_ID,
-                        LoggedInUserID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
-            this.Fetch_WorkPermitRequestSavedDataAsync(WP_ConfigID, Transaction_ID, LoggedInUserID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID, object userState) {
-            if ((this.Fetch_WorkPermitRequestSavedDataOperationCompleted == null)) {
-                this.Fetch_WorkPermitRequestSavedDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitRequestSavedDataOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_WorkPermitRequestSavedData", new object[] {
-                        WP_ConfigID,
-                        Transaction_ID,
-                        LoggedInUserID}, this.Fetch_WorkPermitRequestSavedDataOperationCompleted, userState);
-        }
-        
-        private void OnFetch_WorkPermitRequestSavedDataOperationCompleted(object arg) {
-            if ((this.Fetch_WorkPermitRequestSavedDataCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_WorkPermitRequestSavedDataCompleted(this, new Fetch_WorkPermitRequestSavedDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -5508,6 +5552,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_WorkPermitRequestSavedDataCompletedEventHandler(object sender, Fetch_WorkPermitRequestSavedDataCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_WorkPermitRequestSavedDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_WorkPermitRequestSavedDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -8763,6 +8833,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void GatePassConfiguration_Document_CRUDCompletedEventHandler(object sender, GatePassConfiguration_Document_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GatePassConfiguration_Document_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GatePassConfiguration_Document_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     public delegate void Insert_WorkPermitConfigurationCompletedEventHandler(object sender, Insert_WorkPermitConfigurationCompletedEventArgs e);
     
     /// <remarks/>
@@ -8904,32 +9000,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    public delegate void Fetch_WorkPermitRequestSavedDataCompletedEventHandler(object sender, Fetch_WorkPermitRequestSavedDataCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_WorkPermitRequestSavedDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_WorkPermitRequestSavedDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

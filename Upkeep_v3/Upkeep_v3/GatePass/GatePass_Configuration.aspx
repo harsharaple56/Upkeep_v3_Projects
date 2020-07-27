@@ -501,14 +501,14 @@
 
                                 </div>
 
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                <%--<div class="form-group m-form__group row" style="padding-left: 1%; display:none;">
                                     <label class="col-xl-3 col-lg-2 col-form-label"><span style="color: red;">*</span> Company :</label>
                                     <div class="col-xl-4 col-lg-4">
                                         <asp:DropDownList ID="ddlCompany" class="form-control m-input" runat="server"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Company"></asp:RequiredFieldValidator>
                                     </div>
-                                </div>
+                                </div>--%>
 
 
                                 <div class="m-form__group form-group row" style="padding-left: 1%;">

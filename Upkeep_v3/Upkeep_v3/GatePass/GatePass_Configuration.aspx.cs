@@ -216,7 +216,7 @@ namespace Upkeep_v3.GatePass
                 strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
 
                 string strConfigTitle = string.Empty;
-                int CompanyID = 0;
+                //int CompanyID = 0;
                 string strInitiator = string.Empty;
                 bool LinkDepartment = false;
                 string strTransactionPrefix = string.Empty;
@@ -225,7 +225,7 @@ namespace Upkeep_v3.GatePass
                 bool ShowApprovalMatrix = false;
 
                 strConfigTitle = txtTitle.Text.Trim();
-                CompanyID = Convert.ToInt32(Convert.ToString(Session["LoggedInUserID"]));
+                //CompanyID = Convert.ToInt32(Convert.ToString(Session["LoggedInUserID"]));
                 LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
                 ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
 
@@ -672,14 +672,14 @@ namespace Upkeep_v3.GatePass
 
                 if (ds.Tables.Count > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        ddlCompany.DataSource = ds.Tables[0];
-                        ddlCompany.DataTextField = "CompanyDesc";
-                        ddlCompany.DataValueField = "CompanyId";
-                        ddlCompany.DataBind();
-                        ddlCompany.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
+                    //if (ds.Tables[0].Rows.Count > 0)
+                    //{
+                    //    ddlCompany.DataSource = ds.Tables[0];
+                    //    ddlCompany.DataTextField = "CompanyDesc";
+                    //    ddlCompany.DataValueField = "CompanyId";
+                    //    ddlCompany.DataBind();
+                    //    ddlCompany.Items.Insert(0, new ListItem("--Select--", "0"));
+                    //}
                 }
                 if (ds.Tables.Count > 1)
                 {
