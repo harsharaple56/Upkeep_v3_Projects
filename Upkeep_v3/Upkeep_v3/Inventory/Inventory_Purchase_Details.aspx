@@ -16,7 +16,7 @@
                     init_plugins();
                 }
             });
-            
+
             $('#m_table_2').DataTable({
                 responsive: true,
                 pagingType: 'full_numbers',
@@ -24,7 +24,12 @@
                     init_plugins();
                 }
             });
-             
+
+            $('#m_table_1 tr').click(function (event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                }
+            });
 
             $("#btnModalSave").on('click', function (e) {
                 e.preventDefault();
@@ -87,7 +92,7 @@
         function SetTarget() {
             var ConfigID = "";
             var ConntP = 0;
-            
+
             $("#hdnIsSubmitted").val("");
 
             $("#hdnPrntD").val("");
@@ -103,12 +108,22 @@
             $("#hdnPrntD").val("");
             $("#hdnPrntD").val(ConfigID);
             alert($("#hdnPrntD").val());
-           // alert(ConntP);
-            
+            // alert(ConntP);
+
             $("#hdnIsSubmitted").val("Yes");
-            document.getElementById("btnPopup").click();
+            return true;
+            //document.getElementById("btnPopup").click();
+
+
             // document.forms[0].target = "_blank";
         };
+
+        function BindTable() {
+            alert($("#hdnTableBody").val());
+            $('#hdnOpenModal').click();
+            $('#m_table_2 tbody').append($("#hdnTableBody").val());
+            //$('#myModal').dialog('open');
+        }
 
     </script>
 </asp:Content>
@@ -133,13 +148,13 @@
                             </span>
                         </a>--%>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
-
-                        <a href="#myModal"  data-toggle="modal"  style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onclick="SetTarget();">
+                        <a href="#" id="btnPopup" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onserverclick="btnPopup_Click" onclick="return SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Add Purchase</span>
                             </span>
-                        </a> 
+                        </a>
+                        <button type="button" id="hdnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">opem</button>
                         <%-- 
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                         --%>
@@ -168,12 +183,11 @@
                                 <th>Department</th>
                                 <th>Category</th>
                                 <th>Sub_Category</th>
-                                <asp:HiddenField ID="HiddenField1" runat="server" />
                                 <th>Balance</th>
                                 <%--<th>Action</th>--%>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="cursor: pointer;">
                             <%=fetchInvStockListing()%>
                         </tbody>
                     </table>
@@ -189,14 +203,10 @@
 
     <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <asp:UpdatePanel runat="server" style="width: 100%;">
-      <%--<Triggers>
+        <%--<Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
         </Triggers>--%>
         <ContentTemplate>
-
-            <asp:Button ID="btnPopup" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                Style="display: none;" OnClick="btnPopup_Click" Text="Search" />
-
         </ContentTemplate>
     </asp:UpdatePanel>
     <!-- Modal -->
@@ -220,12 +230,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%=fetchInvItemSelectedListing()%>
+                            <%-- <%=fetchInvItemSelectedListing()%>--%>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                    <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none">
+                    </asp:TextBox>
+                    <input id="hdnTableBody" runat="server" clientidmode="static" type="hidden" />
 
                     <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static">Save</button>
                     <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>

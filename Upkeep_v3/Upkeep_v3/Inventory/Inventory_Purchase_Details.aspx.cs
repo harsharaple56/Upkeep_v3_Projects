@@ -97,7 +97,7 @@ namespace Upkeep_v3.Inventory
             return data;
         }
 
-        public string fetchInvItemSelectedListing()
+        public void fetchInvItemSelectedListing()
         {
             string data = "";
 
@@ -108,18 +108,19 @@ namespace Upkeep_v3.Inventory
 
                 if (LoggedInUserID == "")
                 {
-                    return "";
+
+                    hdnTableBody.Value = "";
                 }
 
 
                 if (hdnIsSubmitted.Value == "")
                 {
-                    return "";
+                    hdnTableBody.Value = "";
                 }
 
                 if (hdnPrntD.Value == "")
                 {
-                    return "";
+                    hdnTableBody.Value = "";
                 }
 
                 string[] sply = hdnPrntD.Value.Split(',');
@@ -185,7 +186,9 @@ namespace Upkeep_v3.Inventory
             {
                 throw ex;
             }
-            return data;
+            hdnTableBody.Value = data;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallBindTable", "BindTable();", true);
+
         }
 
         protected void btnModalsubmit_Click(object sender, EventArgs e)
