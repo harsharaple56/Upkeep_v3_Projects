@@ -2064,6 +2064,21 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Crud_Inv_Purchase(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Crud_Inv_Purchase(LoggedInUserID, CompanyID, PurchaseID, XmlItem, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     #endregion
 

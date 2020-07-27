@@ -23,9 +23,7 @@ namespace Upkeep_v3
         protected void Page_Load(object sender, EventArgs e)
         {
             lblVersion.Text = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
-            
         }
-
 
         protected void txtCompanyCode_TextChanged(object sender, EventArgs e)
         {
@@ -65,7 +63,7 @@ namespace Upkeep_v3
             try
             {
                 string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
-              
+
                 string inputJson = (new JavaScriptSerializer()).Serialize(CompanyCode);
                 HttpClient client = new HttpClient();
                 HttpContent inputContent = new StringContent(inputJson, Encoding.UTF8, "application/json");
@@ -79,7 +77,7 @@ namespace Upkeep_v3
 
                     Session["Status"] = Convert.ToString(status);
                     if (status == 1)
-                    {                       
+                    {
                         Session["ModuleID"] = ModuleIDs;
                         Session["CompanyID"] = CompanyID;
                         //txtUsername.Attributes.Remove("readonly");
@@ -88,7 +86,7 @@ namespace Upkeep_v3
                     }
                     else if (status == 2)
                     {
-                        lblError.Text= "License Expired, Kindly contact eFacilito Support Team";
+                        lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
                         txtUsername.ReadOnly = true;
@@ -239,6 +237,6 @@ namespace Upkeep_v3
             }
         }
 
-       
+
     }
 }

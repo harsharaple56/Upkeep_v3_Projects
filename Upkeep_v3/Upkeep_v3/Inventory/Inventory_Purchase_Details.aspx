@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+    <%--<script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>--%>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -43,18 +43,31 @@
                     return false;
                 }
 
-
                 var xml = "";
                 xml += "<DocumentElement>";
-                $('#m_table_2').children('tbody').children('tr').children('td:nth-child(3)').children('input[type="number"]').each(function () {
+                //$('#m_table_2').children('tbody').children('tr').children('td:nth-child(3)').children('input[type="number"]').each(function () {
+                //    // alert($(this).attr('id')); 
+                //    //alert($(this).val()); 
+                //    xml += "<Items>";
+                //    xml += "<ItemId>" + $(this).attr('name') + "</ItemId>";
+                //    xml += "<ConsumedBalance>" + $(this).val() + "</ConsumedBalance>";
+                //    xml += "</Items>";
+                //    cnt = cnt + 1;
+                //});
+
+                $('#m_table_2').children('tbody').children('tr').each(function () {
                     // alert($(this).attr('id')); 
                     //alert($(this).val()); 
+                    var xx = $(this).children('td:nth-child(3)').children('input[type="number"]')
+                    var ZZ = $(this).children('td:nth-child(4)').children('input[type="number"]')
                     xml += "<Items>";
-                    xml += "<ItemId>" + $(this).attr('name') + "</ItemId>";
-                    xml += "<ConsumedBalance>" + $(this).val() + "</ConsumedBalance>";
+                    xml += "<ItemId>" + xx.attr('name') + "</ItemId>";
+                    xml += "<ConsumedBalance>" + xx.val() + "</ConsumedBalance>";
+                    xml += "<Cost_rate>" + ZZ.val() + "</Cost_rate>";
                     xml += "</Items>";
                     cnt = cnt + 1;
                 });
+
                 xml += "</DocumentElement>";
                 $('#txtHdn').val(xml);
                 //alert(xml);
@@ -63,6 +76,24 @@
                 $("#btnModalsubmit").click();
 
             });
+
+            $("#hdnOpenModal").click(function () {
+                alert("p");
+                $('#myModal').dialog('open');
+            });
+
+            //$(function () {
+            $("#btnShowPopup").click(function () {
+                alert("Apple");
+                $("#myModal").modal("show");
+
+                $("#hdnPrntD").val("");
+                $("#hdnIsSubmitted").val("");
+            });
+            //});
+            if ($("#hdnTableBody").val() != "") {
+                BindTable();
+            }
 
         });
 
@@ -114,16 +145,28 @@
             return true;
             //document.getElementById("btnPopup").click();
 
-
             // document.forms[0].target = "_blank";
         };
 
+        //$("#hdnOpenModal").click(function () {
+
+        //    $('#myModal').dialog('open');
+        //});
+
         function BindTable() {
-            alert($("#hdnTableBody").val());
-            $('#hdnOpenModal').click();
+            alert("fdfsadds")
+            //hdnOpenModal
+            $("#btnShowPopup").trigger("click");
+
+            //$('#hdnOpenModal').click(); 
+            $('#m_table_2 tbody').empty();
+
             $('#m_table_2 tbody').append($("#hdnTableBody").val());
-            //$('#myModal').dialog('open');
+            // alert($("#hdnTableBody").val());
+
+            // $('#myModal').dialog('open');  
         }
+
 
     </script>
 </asp:Content>
@@ -140,6 +183,8 @@
                         </div>
                     </div>
 
+                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+
                     <div class="col-xl-4 order-1 order-xl-2 m--align-right">
                         <%--<a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Stock_Detail.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
@@ -147,6 +192,12 @@
                                 <span>Add New</span>
                             </span>
                         </a>--%>
+                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Purchase_List.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                            <span>
+                                <i class="la la-arrow-left"></i>
+                                <span>Back</span>
+                            </span>
+                        </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                         <a href="#" id="btnPopup" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onserverclick="btnPopup_Click" onclick="return SetTarget();">
                             <span>
@@ -154,10 +205,11 @@
                                 <span>Add Purchase</span>
                             </span>
                         </a>
-                        <button type="button" id="hdnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">opem</button>
-                        <%-- 
+                        <button type="button" id="hdnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">opem</button>
+                        <%--  
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                         --%>
+                        <input type="button" id="btnShowPopup" value="Show Popup" class="btn btn-info btn-lg" style="display: none;" />
                     </div>
 
                 </div>
@@ -230,7 +282,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%-- <%=fetchInvItemSelectedListing()%>--%>
+                            <%--<%=fetchInvItemSelectedListing()%> --%>
                         </tbody>
                     </table>
                 </div>

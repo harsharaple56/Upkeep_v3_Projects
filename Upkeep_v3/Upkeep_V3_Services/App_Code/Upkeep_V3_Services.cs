@@ -2346,6 +2346,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+    [WebMethod]
+    public DataSet Crud_Inv_Purchase(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_Purchase(LoggedInUserID, CompanyID, PurchaseID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
     #endregion
