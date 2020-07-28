@@ -518,20 +518,20 @@
                     //alert(section.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
                     //alert(header.children().find("select").val());
                     header.children().find("select").val(arrHeaderData[4]);
-                    header.children().find("select").selectpicker('refresh');
+                    //header.children().find("select").selectpicker('refresh');
                     header.children().find(".hdnRepeaterAnswer").val(arrHeaderData[5]);
                     header.children().find(".hdnRepeaterAnswer").change();
                     if (arrHeaderData[4] == "1" || arrHeaderData[4] == "2") {
                         header.children().find(".lblAnswerCnt").show();
                     }
-                    var isMulti = header.children().find("select option[value='"+arrHeaderData[4]+"']").attr("data-ismulti");
+                    var isMulti = header.children().find("select").find('option:selected').attr("data-ismulti");
                     if (isMulti === 'True') {
 
                         //WorkPermitSection[1][WorkPermitHeader][2][ctl00$ContentPlaceHolder1$ddlAns]
-                        hdnAnswer.parent().parent().find(".lblAnswerCnt").show();
+                        header.children().find(".lblAnswerCnt").show();
                     }
                     else {
-                        hdnAnswer.parent().parent().find(".lblAnswerCnt").hide();
+                        header.children().find(".lblAnswerCnt").hide();
                     }
                     //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").parents('.dvWorkPermitSection').attr("data-SectionID",arrIDSection[0]);
                     //$("input[name~='WorkPermitSection[" + i + "][ctl00$ContentPlaceHolder1$hdnWPSectionID]']").val(arrIDSection[0]);
