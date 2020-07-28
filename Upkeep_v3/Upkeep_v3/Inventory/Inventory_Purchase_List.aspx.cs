@@ -60,6 +60,7 @@ namespace Upkeep_v3.Inventory
                             string Items = Convert.ToString(ds.Tables[0].Rows[i]["Items"]);
                             string Count = Convert.ToString(ds.Tables[0].Rows[i]["Count"]);
                             string Cost_rate = Convert.ToString(ds.Tables[0].Rows[i]["Cost_rate"]);
+                            string PurchaseDate = Convert.ToString(ds.Tables[0].Rows[i]["PurchaseDate"]);
 
 
                             data += "<tr>" +
@@ -67,6 +68,7 @@ namespace Upkeep_v3.Inventory
                                 "<td>" + Items + "</td>" +
                                 "<td>" + Count + "</td>" +
                                 "<td>" + Cost_rate + "</td>" +
+                                "<td>" + PurchaseDate + "</td>" +
                                 "<td><a href='#' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only editItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record' data-config-id='" + Purchase_ID + "' data-items-id='" + Item_ID + "'  data-itemname-id='" + Items + "'  data-count-id='" + Count + "'  data-crate-id='" + Cost_rate + "'> <i class='la la-edit'></i> </a>  " +
                                 "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Purchase_ID + "' ><i class='la la-trash'></i> </a> " +
                                 "</tr>";
@@ -163,8 +165,7 @@ namespace Upkeep_v3.Inventory
                 StringBuilder strXmlAt = new StringBuilder();
                 //strXmlAsset.Append(@"<?xml version=""1.0"" ?>");
                 strXmlAt.Append(@"<DocumentElement>");
-                strXmlAt.Append(@"<Items>");
-
+                strXmlAt.Append(@"<Items>"); 
                 //-------------------------------------------------------------------------------------------------------------------
                 strXmlAt.Append(@"<ItemId>" + lblItemId.Value.ToString() + "</ItemId>");
                 strXmlAt.Append(@"<ConsumedBalance>" + txtCount.Value.ToString() + "</ConsumedBalance>");

@@ -56,23 +56,40 @@ namespace Upkeep_v3.Inventory
                         for (int i = 0; i < count; i++)
                         {
 
-                            string Transac_Detail_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_Detail_ID"]);
+                            //string Transac_Detail_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_Detail_ID"]);
+                            //string Transac_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_ID"]);
+                            //string Items = Convert.ToString(ds.Tables[0].Rows[i]["Items"]);
+                            //string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
+                            //string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
+                            //string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
+
+
+                            //data += "<tr>" +
+                            //    "<td>" + Transac_ID + "</td>" +
+                            //    "<td>" + Items + "</td>" +
+                            //    "<td>" + Category + "</td>" +
+                            //    "<td>" + Sub_Category + "</td>" +
+                            //    "<td>" + Department + "</td>" +
+                            //    "<td><a href='Inventory_Transaction_Details.aspx?TransDtlID=" + Transac_Detail_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
+                            //    "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Transac_Detail_ID + "'><i class='la la-trash'></i> </a> " +
+                            //    "</tr>";
+
+
                             string Transac_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_ID"]);
-                            string Items = Convert.ToString(ds.Tables[0].Rows[i]["Items"]);
-                            string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
-                            string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
                             string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
+                            string Consumed = Convert.ToString(ds.Tables[0].Rows[i]["Consumed"]);
+                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]); 
 
 
                             data += "<tr>" +
-                                "<td>" + Transac_ID + "</td>" +
-                                "<td>" + Items + "</td>" +
-                                "<td>" + Category + "</td>" +
-                                "<td>" + Sub_Category + "</td>" +
+                                "<td>" + Transac_ID + "</td>" + 
                                 "<td>" + Department + "</td>" +
-                                "<td><a href='Inventory_Transaction_Details.aspx?TransDtlID=" + Transac_Detail_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
-                                "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Transac_Detail_ID + "'><i class='la la-trash'></i> </a> " +
+                                "<td>" + Consumed + "</td>" +
+                                "<td>" + Created_Date + "</td>" +
+                                "<td><a href='Inventory_Transaction_Details.aspx?TransID=" + Transac_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
+                                "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Transac_ID + "'><i class='la la-trash'></i> </a> " +
                                 "</tr>";
+
                         }
                     }
                     else

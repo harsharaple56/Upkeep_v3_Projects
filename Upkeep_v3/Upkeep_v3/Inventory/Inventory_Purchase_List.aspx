@@ -148,7 +148,7 @@
                     <asp:Button ID="btnDelete" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                         Style="display: none;" OnClick="btnDelete_Click" Text="Search" />
                     <asp:Button ID="btnEdit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                        Style="display: none;" OnClick="btnEdit_Click" Text="Search" />
+                         Style="display: none;"  OnClick="btnEdit_Click" Text="Search" />
 
                     <asp:HiddenField ID="hdnPrntD" runat="server" ClientIDMode="Static" />
                     <asp:HiddenField ID="hdneditD" runat="server" ClientIDMode="Static" />
@@ -162,6 +162,7 @@
                                 <th>Items</th>
                                 <th>Count</th>
                                 <th>Cost_rate</th>
+                                <th>Purchase Date</th>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                                 <th>Action</th>
                             </tr>
@@ -233,7 +234,7 @@
                     </asp:TextBox>
                     <input id="hdnTableBody" runat="server" clientidmode="static" type="hidden" />
 
-                    <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static" style="display: none" >Save</button>
+                    <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static"   >Save</button>
                     <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>

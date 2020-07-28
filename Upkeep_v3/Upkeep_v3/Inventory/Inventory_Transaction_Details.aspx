@@ -43,9 +43,11 @@
                     // alert($(this).attr('id')); 
                     //alert($(this).val()); 
                     xml += "<Items>";
-                    xml += "<ItemId>" + $(this).attr('name') + "</ItemId>";
 
+                    xml += "<ItemId>" + $(this).attr('name') + "</ItemId>";
                     xml += "<ConsumedBalance>" + $(this).val() + "</ConsumedBalance>";
+                    xml += "<TransDtl_ID>" + $(this).attr('data-isdata') + "</TransDtl_ID>";
+
                     xml += "</Items>";
                     cnt = cnt + 1;
                 });
@@ -57,7 +59,7 @@
                 $("#btnModalsubmit").click();
 
             });
-                                  
+
             $("#btnShowPopup").click(function () {
                 //alert("Apple");
                 $("#myModal").modal("show");
@@ -66,7 +68,7 @@
                 $("#hdnIsSubmitted").val("");
             });
             //alert('xxxx');
-            alert($("#hdnTableBody").val());
+            //alert($("#hdnTableBody").val());
             if ($("#hdnTableBody").val() != "") {
                 //alert("Banana");
                 BindTable();
@@ -78,14 +80,15 @@
             var resultx = 0;
             $('#m_table_2').children('tbody').children('tr').each(function () {
                 if ($(this).children('td:nth-child(5)').children('input[type="number"]').val() > 0) {
-                    if (($(this).children('td:nth-child(4)').children('input[type="number"]').val() > $(this).children('td:nth-child(5)').children('input[type="number"]').val())) {
+                    if ((parseInt($(this).children('td:nth-child(4)').children('input[type="number"]').val()) > parseInt($(this).children('td:nth-child(5)').children('input[type="number"]').val()))) {
+
                         alert("Consumption cannot be more then balance");
                         resultx = 1;
                     }
-                    if ($(this).children('td:nth-child(4)').children('input[type="number"]').val() == 0) {
-                        alert("Consumption cannot be 0");
-                        resultx = 1;
-                    }
+                    //if ($(this).children('td:nth-child(4)').children('input[type="number"]').val() == 0) {
+                    //    alert("Consumption cannot be 0");
+                    //    resultx = 1;
+                    //}
 
                     if (resultx == 1) {
                         return false;
@@ -93,7 +96,7 @@
                 }
                 // return resultx;
             });
-            alert(resultx);
+            //alert(resultx);
             return true;
         }
 
@@ -115,8 +118,8 @@
             //alert($("#hdnPrntD").val());
             //alert(ConntP);
             return true;
-           // document.getElementById("btnPopup").click();
-         
+            // document.getElementById("btnPopup").click();
+
         };
 
         function BindTable() {
@@ -147,6 +150,7 @@
                             </h3>
                         </div>
                     </div>
+                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
                     <div class="col-xl-4 order-1 order-xl-2 m--align-right">
                         <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Transaction_List.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
@@ -166,7 +170,7 @@
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-                                               <%--  
+                        <%--  
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                         --%>
                         <input type="button" id="btnShowPopup" value="Show Popup" class="btn btn-info btn-lg" style="display: none;" />
@@ -179,6 +183,9 @@
                     <%--  <asp:HiddenField ID="hdnDeleteID" runat="server" ClientIDMode="Static" />
                     <asp:Button ID="btnDelete" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                         Style="display: none;" OnClick="btnDelete_Click" Text="Search" />--%>
+
+
+
 
                     <asp:HiddenField ID="hdnPrntD" runat="server" ClientIDMode="Static" />
                     <!--end: Search Form -->
@@ -211,7 +218,7 @@
     </div>
 
 
-<%--    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+    <%--    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <asp:UpdatePanel runat="server" style="width: 100%;">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
@@ -234,6 +241,20 @@
                     <h4 class="modal-title">Selected Items</h4>
                 </div>
                 <div class="modal-body">
+
+                    <br />
+                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                        <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Department :</label>
+                        <div class="col-xl-8 col-lg-8">
+                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" runat="server">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlDepartment" Visible="true"
+                                Display="Dynamic" ValidationGroup="validateStock" ForeColor="Red" InitialValue="0"
+                                ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <br />
+
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_2">
                         <thead>
                             <tr>
@@ -255,7 +276,9 @@
                     <input id="hdnTableBody" runat="server" clientidmode="static" type="hidden" />
 
                     <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static">Save</button>
-                    <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>
+                    <button type="button" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static"
+                        validationgroup="validateStock" causesvalidation="true">
+                        Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
