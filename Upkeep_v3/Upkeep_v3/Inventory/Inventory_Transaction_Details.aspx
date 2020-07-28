@@ -7,6 +7,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             $('#m_table_1').DataTable({
                 responsive: true,
                 pagingType: 'full_numbers',
@@ -56,23 +57,18 @@
                 $("#btnModalsubmit").click();
 
             });
-
-            $("#hdnOpenModal").click(function () {
-                alert("p");
-                $('#myModal').dialog('open');
-            });
-
-           
+                                  
             $("#btnShowPopup").click(function () {
-                alert("Apple");
+                //alert("Apple");
                 $("#myModal").modal("show");
 
                 $("#hdnPrntD").val("");
                 $("#hdnIsSubmitted").val("");
             });
-           
+            //alert('xxxx');
+            alert($("#hdnTableBody").val());
             if ($("#hdnTableBody").val() != "") {
-                alert("Banana");
+                //alert("Banana");
                 BindTable();
             }
         });
@@ -116,15 +112,15 @@
             });
             $("#hdnPrntD").val("");
             $("#hdnPrntD").val(ConfigID);
-            alert($("#hdnPrntD").val());
-            alert(ConntP);
+            //alert($("#hdnPrntD").val());
+            //alert(ConntP);
             return true;
            // document.getElementById("btnPopup").click();
          
         };
 
         function BindTable() {
-            alert("fdfsadds")
+            //alert("fdfsadds")
 
             $("#btnShowPopup").trigger("click");
 
@@ -162,7 +158,7 @@
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
                         <a href="#" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
-                            onserverclick="btnPopup_Click" onclick="return SetTarget();">
+                            onserverclick="btnPopup_Click" runat="server" onclick="return SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Submit</span>
@@ -170,9 +166,7 @@
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-
-                        <button type="button" id="hdnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">opem</button>
-                        <%--  
+                                               <%--  
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                         --%>
                         <input type="button" id="btnShowPopup" value="Show Popup" class="btn btn-info btn-lg" style="display: none;" />
@@ -194,7 +188,7 @@
                         <thead>
                             <tr>
                                 <th>Select</th>
-                                <th style="display: none">ItemsID</th>
+                                <%--<th style="display: none">ItemsID</th>--%>
                                 <th>Items</th>
                                 <th>Department</th>
                                 <th>Category</th>
