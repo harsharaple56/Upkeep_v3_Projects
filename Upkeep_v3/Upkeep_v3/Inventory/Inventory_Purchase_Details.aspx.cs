@@ -100,6 +100,7 @@ namespace Upkeep_v3.Inventory
         public void fetchInvItemSelectedListing()
         {
             string data = "";
+            hdnTableBody.Value = "";
 
             try
             {

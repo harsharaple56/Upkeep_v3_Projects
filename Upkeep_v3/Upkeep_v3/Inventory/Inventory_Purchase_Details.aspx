@@ -92,6 +92,7 @@
             });
             //});
             if ($("#hdnTableBody").val() != "") {
+                alert("Banana");
                 BindTable();
             }
 
@@ -155,7 +156,7 @@
 
         function BindTable() {
             alert("fdfsadds")
-            //hdnOpenModal
+          
             $("#btnShowPopup").trigger("click");
 
             //$('#hdnOpenModal').click(); 

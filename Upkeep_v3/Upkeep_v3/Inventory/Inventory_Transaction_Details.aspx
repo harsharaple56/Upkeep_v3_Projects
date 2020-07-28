@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+    <%--<script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>--%>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -22,17 +22,6 @@
                     init_plugins();
                 }
             });
-            //$(".removeItem").click(function (event) {
-            //    //var row_index = $(this).parent().parent().index();
-            //    //alert(row_index);
-            //    var ConfigID = $(this).attr("data-config-id");
-            //    //alert(ConfigID);
-            //    $("#hdnDeleteID").val("");
-            //    //alert($("#hdnDeleteID").val());
-            //    $("#hdnDeleteID").val(ConfigID);
-            //    // alert($("#hdnDeleteID").val());
-            //    document.getElementById("btnDelete").click();
-            //});
 
 
             $("#btnModalSave").on('click', function (e) {
@@ -46,7 +35,6 @@
                 if (!CompareTargetVal()) {
                     return false;
                 }
-
 
                 var xml = "";
                 xml += "<DocumentElement>";
@@ -68,6 +56,25 @@
                 $("#btnModalsubmit").click();
 
             });
+
+            $("#hdnOpenModal").click(function () {
+                alert("p");
+                $('#myModal').dialog('open');
+            });
+
+           
+            $("#btnShowPopup").click(function () {
+                alert("Apple");
+                $("#myModal").modal("show");
+
+                $("#hdnPrntD").val("");
+                $("#hdnIsSubmitted").val("");
+            });
+           
+            if ($("#hdnTableBody").val() != "") {
+                alert("Banana");
+                BindTable();
+            }
         });
 
 
@@ -111,9 +118,24 @@
             $("#hdnPrntD").val(ConfigID);
             alert($("#hdnPrntD").val());
             alert(ConntP);
-            document.getElementById("btnPopup").click();
-            // document.forms[0].target = "_blank";
+            return true;
+           // document.getElementById("btnPopup").click();
+         
         };
+
+        function BindTable() {
+            alert("fdfsadds")
+
+            $("#btnShowPopup").trigger("click");
+
+            //$('#hdnOpenModal').click(); 
+            $('#m_table_2 tbody').empty();
+
+            $('#m_table_2 tbody').append($("#hdnTableBody").val());
+            // alert($("#hdnTableBody").val());
+
+            // $('#myModal').dialog('open');  
+        }
 
     </script>
 </asp:Content>
@@ -139,14 +161,22 @@
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-                        <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
-                            onclick="SetTarget();">
+                        <a href="#" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
+                            onserverclick="btnPopup_Click" onclick="return SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Submit</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
+
+
+                        <button type="button" id="hdnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">opem</button>
+                        <%--  
+                        <div class="m-separator m-separator--dashed d-xl-none"></div>
+                        --%>
+                        <input type="button" id="btnShowPopup" value="Show Popup" class="btn btn-info btn-lg" style="display: none;" />
+
                     </div>
 
                 </div>
@@ -187,18 +217,18 @@
     </div>
 
 
-    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+<%--    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <asp:UpdatePanel runat="server" style="width: 100%;">
-        <%--<Triggers>
+        <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
-        </Triggers>--%>
+        </Triggers> 
         <ContentTemplate>
 
             <asp:Button ID="btnPopup" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                 Style="display: none;" OnClick="btnPopup_Click" Text="Search" />
 
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>--%>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -221,12 +251,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%=fetchInvItemSelectedListing()%>
+                            <%--<%=fetchInvItemSelectedListing()%>--%>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+
+                    <input id="hdnTableBody" runat="server" clientidmode="static" type="hidden" />
 
                     <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static">Save</button>
                     <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>

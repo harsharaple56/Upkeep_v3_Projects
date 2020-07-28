@@ -71,8 +71,8 @@ namespace Upkeep_v3.Inventory
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
                             string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
 
-                            if ((int)ViewState["Stock_ID"] != 0)
-                            {
+                            //if ((int)ViewState["Stock_ID"] != 0)
+                            //{
                                 data += "<tr>" +
                                 "<td>" + "<input type='checkbox' id='" + Stock_ID + "' name='" + Stock_ID + "' value ='" + Stock_ID + "'>" + "</td>" +
                                 "<td>" + Items + "</td>" +
@@ -80,18 +80,18 @@ namespace Upkeep_v3.Inventory
                                 "<td>" + Category + "</td>" +
                                 "<td>" + Sub_Category + "</td>" +
                                 "</tr>";
-                            }
-                            else
-                            {
-                                data += "<tr>" +
-                                "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "'>" + "</td>" +
-                                "<td>" + Items + "</td>" +
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Category + "</td>" +
-                                "<td>" + Sub_Category + "</td>" +
-                                "</tr>";
+                            //}
+                            //else
+                            //{
+                            //    data += "<tr>" +
+                            //    "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "'>" + "</td>" +
+                            //    "<td>" + Items + "</td>" +
+                            //    "<td>" + Department + "</td>" +
+                            //    "<td>" + Category + "</td>" +
+                            //    "<td>" + Sub_Category + "</td>" +
+                            //    "</tr>";
 
-                            }
+                            //}
                         }
                     }
                     else
@@ -117,10 +117,10 @@ namespace Upkeep_v3.Inventory
         {
             fetchInvItemSelectedListing();
         }
-        public string fetchInvItemSelectedListing()
+        public void fetchInvItemSelectedListing()
         {
             string data = "";
-
+            hdnTableBody.Value = "";
             try
             {
 
@@ -128,7 +128,8 @@ namespace Upkeep_v3.Inventory
 
                 if (LoggedInUserID == "")
                 {
-                    return "";
+
+                    hdnTableBody.Value = "";
                 }
 
                 //if (hdnPrntD.Value == "")
@@ -202,7 +203,8 @@ namespace Upkeep_v3.Inventory
             {
                 throw ex;
             }
-            return data;
+
+            hdnTableBody.Value = data;
         }
 
 
