@@ -23,12 +23,62 @@ namespace Upkeep_v3.Inventory
             {
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+
             }
             if (!IsPostBack)
             {
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                BindDropDown();
             }
 
+        }
+        public void BindDropDown()
+        {
+            try
+            {
+                DataSet dsTitle = new DataSet();
+
+                dsTitle = ObjUpkeep.Fetch_Inv_Item_Stock_Ddl(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(Session["Stock_ID"]));
+
+                if (dsTitle.Tables.Count > 0)
+                {
+                    if (dsTitle.Tables[1].Rows.Count > 0)
+                    {
+                        ddlDepartment.DataSource = dsTitle.Tables[1];
+                        ddlDepartment.DataTextField = "Dept_Desc";
+                        ddlDepartment.DataValueField = "Department_ID";
+                        ddlDepartment.DataBind();
+                        ddlDepartment.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                    if (dsTitle.Tables[2].Rows.Count > 0)
+                    {
+                        ddlCategory.DataSource = dsTitle.Tables[2];
+                        ddlCategory.DataTextField = "Category_Desc";
+                        ddlCategory.DataValueField = "Category_ID";
+                        ddlCategory.DataBind();
+                        ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+
+                    if (dsTitle.Tables[3].Rows.Count > 0)
+                    {
+                        ddlSubCategory.DataSource = dsTitle.Tables[3];
+                        ddlSubCategory.DataTextField = "SubCategory_Desc";
+                        ddlSubCategory.DataValueField = "SubCategory_ID";
+                        ddlSubCategory.DataBind();
+
+                        for (int i = 0; i < ddlSubCategory.Items.Count; i++)
+                            ddlSubCategory.Items[i].Attributes["data-isMulti"] = dsTitle.Tables[3].Rows[i]["Category_ID"].ToString();
+
+                        ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public string fetchInvStockListing()
@@ -122,14 +172,66 @@ namespace Upkeep_v3.Inventory
         //}
 
 
-        protected void btnPopup_Click(object sender, EventArgs e)
-        {
-        }
+        //protected void btnPopup_Click(object sender, EventArgs e)
+        //{
+        //}
         protected void btnModalsubmit_Click(object sender, EventArgs e)
         {
-            if (txtHdn.Text != "")
+
+            int Status = 0;
+            DataSet ds = new DataSet();
+
+            int StckId = 0;
+
+            //PROCESS DATA 
+            StringBuilder strXmls = new StringBuilder();
+            strXmls.Append(@"<DocumentElement>");
+            strXmls.Append(@"<Items>");
+
+            //-------------------------------------------------------------------------------------------------------------------
+            strXmls.Append(@"<Category>" + ddlCategory.SelectedValue.ToString() + "</Category>");
+            strXmls.Append(@"<SubCategory>" + ddlSubCategory.SelectedValue.ToString() + "</SubCategory>");
+            strXmls.Append(@"<Item>" + txtItem.Text.ToString() + "</Item>");
+            strXmls.Append(@"<Opening_Stock>" + txtOpening.Value.ToString() + "</Opening_Stock>");
+            strXmls.Append(@"<Optimum_Value>" + txtOptinum.Value.ToString() + "</Optimum_Value>");
+            strXmls.Append(@"<Reorder_Value>" + txtReOrder.Value.ToString() + "</Reorder_Value>");
+            strXmls.Append(@"<Base_Value>" + txtBase.Value.ToString() + "</Base_Value>");
+            strXmls.Append(@"<Cost_Rate>" + txtCost_rate.Value.ToString() + "</Cost_Rate>");
+            strXmls.Append(@"<Department_ID>" + ddlDepartment.SelectedValue.ToString() + "</Department_ID>");
+            //-------------------------------------------------------------------------------------------------------------------
+            strXmls.Append(@"</Items>");
+            strXmls.Append(@"</DocumentElement>");
+
+            ds = ObjUpkeep.Fetch_Inv_Crud_Item(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(StckId), strXmls.ToString());
+            if (ds.Tables.Count > 0)
             {
-                txtHdn.Text = "";
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]); 
+                }
+            }
+
+            //DISPLAY RESPONSE
+            if (Status == 1)
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('Item already Exists, please check.')</script>");
+                return;
+            }
+            else if (Status == 2)
+            {
+                fetchInvStockListing();
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('Data saved successfully')</script>");
+                return;
+            }
+            else if (Status == 3)
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('Due to some technical issue your request can not be process. Kindly try after some time')</script>");
+                return;
+             }
+            else
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('Error Occured !!!')</script>");
+                return; 
             }
         }
     }

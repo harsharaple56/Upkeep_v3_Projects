@@ -137,7 +137,9 @@ namespace Upkeep_v3.Inventory
                     {
                         if (sply[d].ToString() != "")
                         {
+                            strXmlItem.Append(@"<ItemXVal>");
                             strXmlItem.Append(@"<ItemID>" + sply[d].ToString() + "</ItemID>");
+                            strXmlItem.Append(@"</ItemXVal>");
                         }
                     }
                 }

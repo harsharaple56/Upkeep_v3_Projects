@@ -65,13 +65,22 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
+                                <%--
                                 <th>Transac_ID</th>
                                 <th>Items</th>
                                 <th>Category</th>
                                 <th>Sub_Category</th>
-                                <asp:HiddenField ID="HiddenField1" runat="server" />
-                                <th>Department</th>
+                                 <th>Department</th>
                                 <th>Action</th>
+                                --%>
+
+
+                                <th>Transac_ID</th>
+                                <th>Department</th>
+                                <th>Consumed</th> 
+                                <th>Created_Date</th>
+                                <th>Action</th>
+                                 
                             </tr>
                         </thead>
                         <tbody>

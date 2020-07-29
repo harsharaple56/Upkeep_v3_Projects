@@ -219,6 +219,15 @@ namespace Upkeep_v3.GatePass
                     }
                 }
 
+                if (dsApproval.Tables.Count > 7)
+                {
+                    if (dsApproval.Tables[8].Rows.Count > 0)
+                    {
+                        rptGP_Doc_Upload.DataSource = dsApproval.Tables[8];
+                        rptGP_Doc_Upload.DataBind();
+                    }
+                }
+
                 if (MyActionFlag=="1")
                 {
 
