@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true"  Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_v3.GatePass.GatePass_Approval" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_v3.GatePass.GatePass_Approval" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -168,10 +168,56 @@
 
                                     <%--<table class="table table-striped- table-bordered table-hover table-checkable" style="width: 100%" border="1" runat="server" id="tblGatePassHeader">
                                         </table>--%>
-                                    <asp:GridView ID="gvGPHeader" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                    <asp:GridView ID="gvGPHeader" runat="server" CssClass="table table-hover table-striped table-bordered table-hover table-checkable" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
 
 
                                 </div>
+
+                                <br />
+
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Documents</label>
+                                </div>
+
+                                <asp:Repeater ID="rptGP_Doc_Upload" runat="server">
+                                    <ItemTemplate>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 5%"></td>
+                                                <td style="width: 30%">
+                                                    <asp:Label ID="lblGP_Doc_Desc" runat="server" Text='<%#Eval("Doc_Desc") %>' ClientIDMode="Static" CssClass="form-control-label col-form-label font-weight-bold"></asp:Label>
+                                                </td>
+
+                                                <td style="width: 65%">
+                                                    <%--<button type='button' data-toggle='modal' data-target="#exampleModal" data-images="<%#Eval("Doc_Path") %>"  class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Uploaded Documents'>
+                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                    </button>--%>
+                                                    <asp:LinkButton ID="lnk" runat="server" href='<%# DataBinder.Eval(Container.DataItem, "Doc_Path") %>' Text="Click Here" ToolTip="Click here to view Uploaded documents"
+                                                   class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" target="_blank"></asp:LinkButton>
+                                                </td>
+
+                                                
+
+                                            </tr>
+                                            <br />
+                                            <%--<tr>
+                                                <td style="width: 5%"></td>
+
+                                                <td style="width: 76%" id="tdRemarks" runat="server">
+                                                    <div class="form-group row">
+                                                    </div>
+                                                </td>
+
+                                            </tr>--%>
+
+
+
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+
+
 
                                 <br />
                                 <br />
@@ -273,7 +319,37 @@
                         </div>
 
 
+                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Uploaded Documents
+                                        </h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                            <span aria-hidden="true">×
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="carousel slide" data-ride="carousel" id="carouselExampleControls">
+                                            <div class="carousel-inner">
+                                            </div>
+                                            <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleControls" role="button">
+                                                <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                                                <span class="sr-only">Previous
+                                                </span>
+                                            </a>
+                                            <a class="carousel-control-next" data-slide="next" href="#carouselExampleControls" role="button">
+                                                <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                                                <span class="sr-only">Next
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
 
 
                         <%--</form>--%>

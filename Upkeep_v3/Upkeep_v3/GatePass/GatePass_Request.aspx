@@ -301,7 +301,7 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <%--<asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
                                     <a href="<%= Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -423,6 +423,8 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassDate" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass Date"></asp:RequiredFieldValidator>
                                         </div>
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
@@ -543,6 +545,10 @@
 
                                 </div>
                                 <br />
+
+                                <div class="col-lg-9 ml-lg-auto">
+                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    </div>
                                 <br />
                             </div>
                         </div>

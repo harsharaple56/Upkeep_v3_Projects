@@ -423,6 +423,8 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassDate" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass Date"></asp:RequiredFieldValidator>
                                         </div>
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
