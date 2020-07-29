@@ -204,7 +204,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Categorys
+                                        <h3 class="m-portlet__head-text">Category
                                         </h3>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Locations
+                                        <h3 class="m-portlet__head-text">Sub Category
                                         </h3>
                                     </div>
                                 </div>
@@ -348,7 +348,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Sub-locations
+                                        <h3 class="m-portlet__head-text">Item
                                         </h3>
                                     </div>
                                 </div>

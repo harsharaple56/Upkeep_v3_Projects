@@ -118,7 +118,8 @@ namespace Upkeep_v3.Inventory
                     Action = "C";
                 }
 
-                ds = ObjUpkeep.SubLocationMaster_CRUD(ItemID, SubCategory, CategoryName, txtItemCode.Text.Trim(), txtItem.Text.Trim(), Convert.ToString(Session["LoggedInUserID"]), Action);
+                ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(ItemID), SubCategory, CategoryName, txtItemCode.Text.Trim(), 
+                    txtItem.Text.Trim(), Convert.ToString(Session["LoggedInUserID"]), Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -188,7 +189,7 @@ namespace Upkeep_v3.Inventory
                     Action = "C";
                 }
 
-                ds = ObjUpkeep.ZoneMaster_CRUD(CategoryID, Convert.ToInt32(Session["CompanyID"]), txtCategoryCode.Text.Trim(), txtCategoryDesc.Text.Trim(), Convert.ToString(Session["LoggedInUserID"]), Action);
+                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]),Convert.ToString(CategoryID), txtCategoryDesc.Text.Trim(), Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -266,7 +267,7 @@ namespace Upkeep_v3.Inventory
                     Action = "C";
                 }
 
-                ds = ObjUpkeep.LocationMaster_CRUD(SubCategoryID, Category, txtSubCategoryCode.Text.Trim(), txtSubCategory.Text.Trim(), Convert.ToString(Session["LoggedInUserID"]), Action);
+                ds = ObjUpkeep.Crud_Inv_SubCategory_Mst( Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Category,Convert.ToString(SubCategoryID), txtSubCategory.Text.Trim(), Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -324,7 +325,7 @@ namespace Upkeep_v3.Inventory
         {
             try
             {
-                ds = ObjUpkeep.ZoneMaster_CRUD(CategoryID, 0, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(CategoryID), "",  "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -332,7 +333,7 @@ namespace Upkeep_v3.Inventory
                     {
 
                         Session["CategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]);
-                        txtCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Code"]);
+                        //txtCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Code"]);
                         txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
 
                         mpeCategory.Show();
@@ -358,14 +359,15 @@ namespace Upkeep_v3.Inventory
             try
             {
                 //ds = ObjUpkeep.CategoryMaster_CRUD(CategoryID, 0, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
-                ds = ObjUpkeep.LocationMaster_CRUD(SubCategoryID, "", "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "", 
+                    Convert.ToString(SubCategoryID), "", "R");
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         Session["SubCategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
-                        txtSubCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Code"]);
+                        //txtSubCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Code"]);
                         txtSubCategory.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
 
                         mpeSubCategory.Show();
@@ -391,14 +393,14 @@ namespace Upkeep_v3.Inventory
             try
             {
                 //ds = ObjUpkeep.LocationMaster_CRUD(LocID, "", "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
-                ds = ObjUpkeep.SubLocationMaster_CRUD(ItemID, "", "", "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "", "", Convert.ToString(ItemID), "", "R");
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         Session["SubCategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
-                        txtItemCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Code"]);
+                        //txtItemCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Code"]);
                         txtItem.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Desc"]);
 
                         mpeItem.Show();
@@ -426,7 +428,7 @@ namespace Upkeep_v3.Inventory
             URL = Page.ResolveClientUrl("~/Inventory/General_Master.aspx");
             try
             {
-                ds = ObjUpkeep.ZoneMaster_CRUD(0, 0, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                ds = ObjUpkeep.Crud_Inv_Category_Mst( Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]) , "", "", "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -482,7 +484,10 @@ namespace Upkeep_v3.Inventory
             {
                 if (Category != "")
                 {
-                    ds = ObjUpkeep.LocationMaster_CRUD(0, Category, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                   // ds = ObjUpkeep.LocationMaster_CRUD(0, Category, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+
+                    ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]),
+                         Category, "", "", "R");
 
                     if (ds.Tables.Count > 0)
                     {
@@ -562,8 +567,10 @@ namespace Upkeep_v3.Inventory
             {
                 if (Category != "")
                 {
-                    ds = ObjUpkeep.SubLocationMaster_CRUD(0, SubCategory, Category, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
+                    //ds = ObjUpkeep.SubLocationMaster_CRUD(0, SubCategory, Category, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
 
+                    ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]),
+                        Category, SubCategory, "", "", "R");
 
                     if (ds.Tables.Count > 1)
                     {
