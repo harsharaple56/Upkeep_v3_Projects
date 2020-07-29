@@ -299,7 +299,7 @@ namespace Upkeep_v3.WorkPermit
                 dt.DefaultView.RowFilter = "WP_Header_ID = " + Convert.ToString(HeadId) + "";
                 dt = dt.DefaultView.ToTable();
 
-                if (AnswerType == "MSLCT")
+                if (AnswerType == "SSLCT")
                 {
                     RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
 

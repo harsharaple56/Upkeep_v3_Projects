@@ -100,6 +100,7 @@ namespace Upkeep_v3.Inventory
         public void fetchInvItemSelectedListing()
         {
             string data = "";
+            hdnTableBody.Value = "";
 
             try
             {
@@ -136,7 +137,9 @@ namespace Upkeep_v3.Inventory
                     {
                         if (sply[d].ToString() != "")
                         {
+                            strXmlItem.Append(@"<ItemXVal>");
                             strXmlItem.Append(@"<ItemID>" + sply[d].ToString() + "</ItemID>");
+                            strXmlItem.Append(@"</ItemXVal>");
                         }
                     }
                 }
@@ -167,8 +170,8 @@ namespace Upkeep_v3.Inventory
                             "<td>" + Convert.ToInt32(i) + 1 + "</td>" +
                             //"<td style ='display:none'>" + Item_ID + "</td>" +
                             "<td>" + Items + "</td>" +
-                            "<td>" + "<input type='number' id='" + OpName + "' name='" + Item_ID + "' value ='1' min='1' readonly>" + "</td>" +
-                            "<td>" + "<input type='number' id='" + CoName + "' name='" + Item_ID + "' value ='1' min='1'  >" + "</td>" +
+                            "<td>" + "<input type='number' id='" + OpName + "' name='" + Item_ID + "' value ='1' min='1'>" + "</td>" +
+                            "<td>" + "<input type='number' id='" + CoName + "' name='" + Item_ID + "' value ='0' min='0'>" + "</td>" +
                             "</tr>";
                         }
                     }
@@ -187,7 +190,7 @@ namespace Upkeep_v3.Inventory
                 throw ex;
             }
             hdnTableBody.Value = data;
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallBindTable", "BindTable();", true);
+           // Page.ClientScript.RegisterStartupScript(this.GetType(), "CallBindTable", "BindTable();", true);
 
         }
 
@@ -195,9 +198,51 @@ namespace Upkeep_v3.Inventory
         {
             if (txtHdn.Text != "")
             {
+
+                int Status = 0;
+                DataSet ds = new DataSet();
+  
+                //PROCESS DATA 
+                ds = ObjUpkeep.Crud_Inv_Purchase(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(0), txtHdn.Text);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        //ViewState["Stock_ID"] = Convert.ToString(ds.Tables[0].Rows[0]["StockID"]);
+                        //Session["Stock_ID"] = Convert.ToString(ds.Tables[0].Rows[0]["StockID"]);
+                    }
+                }
+
                 txtHdn.Text = "";
+
+                //DISPLAY RESPONSE
+                if (Status == 1)
+                {
+                    lblErrorMsg.Text = "Due to some technical issue, Request Cannot be Processed. Kindly try after some time";
+                }
+                else if (Status == 2)
+                {
+                    //lblErrorMsg.Text = "OKAY";
+                    //lblWpRequestCode.Text = Convert.ToString(ViewState["RequestAssetID"]).ToString();
+                    //mpeWpRequestSaveSuccess.Show();
+                    ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script language='javascript'>alert('Data saved successfully')</script>");
+
+                    Response.Redirect(Page.ResolveClientUrl("~/Inventory/Inventory_Purchase_List.aspx"), false);
+                    //return;
+                }
+                else if (Status == 3)
+                {
+                    lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                }
+                else
+                {
+                    lblErrorMsg.Text = "Error Occured !!!";
+                }
             }
         }
+
+         
 
         public string DeleteInvStockListing()
         {

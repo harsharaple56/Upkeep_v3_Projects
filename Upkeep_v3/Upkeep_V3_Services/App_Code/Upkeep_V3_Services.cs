@@ -2346,6 +2346,79 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+    [WebMethod]
+    public DataSet Crud_Inv_Purchase(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_Purchase(LoggedInUserID, CompanyID, PurchaseID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Inv_Crud_Item(string LoggedInUserID, string CompanyID, string StockID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Inv_Crud_Item(LoggedInUserID, CompanyID, StockID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Tran_Detail(string LoggedInUserID, string CompanyID, int TransID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Tran_Detail(LoggedInUserID, CompanyID, TransID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Tran_Item_Detail(string LoggedInUserID, string CompanyID, int TransID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Tran_Item_Detail(LoggedInUserID, CompanyID, TransID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Crud_Inv_Transaction(string LoggedInUserID, string CompanyID, string DeptID, string TranID, string XmlItem)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_Transaction(LoggedInUserID, CompanyID, DeptID,  TranID, XmlItem);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
     #endregion

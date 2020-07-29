@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
+                                <div class="m-portlet__head-tools col-xl-4 order-1 order-xl-2 m--align-right" style="width: 28%;">
                                     <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Stock_List.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
