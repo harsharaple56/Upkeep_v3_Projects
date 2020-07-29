@@ -310,7 +310,12 @@ namespace Upkeep_v3.Inventory
             txtSubCategoryCode.Text = "";
             mpeSubCategory.Hide();
         }
-
+        
+        protected void btnAddLocation_Click(object sender, EventArgs e)
+        {
+            txtSubCategory.Text = "";
+            
+        }
         #endregion
 
         #region Functions

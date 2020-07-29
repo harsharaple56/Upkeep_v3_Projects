@@ -984,6 +984,8 @@ namespace Upkeep_v3.WorkPermit
                         txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
                         txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
 
+                        lblTicketNo.Visible = true;
+                        lblTicket.Visible = true;
                         lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
 
                         switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
@@ -1103,6 +1105,7 @@ namespace Upkeep_v3.WorkPermit
 
                                         HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
                                     else if (AnswerType == "STEXT") //Normal Text Field
@@ -1113,6 +1116,7 @@ namespace Upkeep_v3.WorkPermit
 
                                         HtmlInputText tb = FindControl(txtNum) as HtmlInputText;
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
                                     else if (AnswerType == "LTEXT") // Textarea Field
@@ -1123,6 +1127,7 @@ namespace Upkeep_v3.WorkPermit
 
                                         HtmlTextArea tb = FindControl(txtNum) as HtmlTextArea;
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
                                     else  //Normal Text Field
@@ -1133,6 +1138,7 @@ namespace Upkeep_v3.WorkPermit
 
                                         HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
                                         tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
                                 }
@@ -1179,6 +1185,12 @@ namespace Upkeep_v3.WorkPermit
                     //dvSubmitSection.Attributes.Add("Style", "display:block;");
 
                     if (MyActionCompeletd != "")
+                    {
+                        dvApprovalDetails.Attributes.Add("style", "display:none;");
+                        dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
+                        divUpdateButton.Attributes.Add("style", "display:none;");
+                    }
+                    else if (dsData.Tables[3].Rows.Count == 0)
                     {
                         dvApprovalDetails.Attributes.Add("style", "display:none;");
                         dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
