@@ -2420,6 +2420,48 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string CategoryDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_Category_Mst(LoggedInUserID, CompanyID, CategoryID, CategoryDesc, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string SubCategoryDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, SubCategoryDesc, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string ItemID, string ItemDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     #endregion
 

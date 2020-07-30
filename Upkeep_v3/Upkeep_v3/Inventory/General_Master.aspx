@@ -204,7 +204,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Categorys
+                                        <h3 class="m-portlet__head-text">Category
                                         </h3>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Locations
+                                        <h3 class="m-portlet__head-text">Sub Category
                                         </h3>
                                     </div>
                                 </div>
@@ -348,7 +348,7 @@
                                         <span class="m-portlet__head-icon">
                                             <i class="flaticon-placeholder-2"></i>
                                         </span>
-                                        <h3 class="m-portlet__head-text">Sub-locations
+                                        <h3 class="m-portlet__head-text">Item
                                         </h3>
                                     </div>
                                 </div>
@@ -481,7 +481,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:Button ID="btnCloseLoc" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseLoc_Click" />
+                                    <asp:Button ID="btnCloseLoc" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"  />
                                     <asp:Button ID="btnSubCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationSubCategory" OnClick="btnSubCategorySave_Click" Text="Save" />
 
                                 </div>

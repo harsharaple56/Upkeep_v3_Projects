@@ -2139,6 +2139,51 @@ public class My_Upkeep
             throw ex;
         }
     }
+    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string CategoryDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Crud_Inv_Category_Mst(LoggedInUserID, CompanyID, CategoryID, CategoryDesc, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string SubCategoryDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Crud_Inv_SubCategory_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, SubCategoryDesc, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string ItemID, string ItemDesc, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     #endregion
 
