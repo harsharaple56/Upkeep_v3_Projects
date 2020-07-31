@@ -32,12 +32,17 @@
                 var table = document.getElementById("tblCategory");
                 var rowID = $("#tblCategory tr").index(this);
 
+
                 var row = table.rows[rowID];
-                var CategoryID;
+                var CategoryID,CategoryName;
+
+               // alert($(this).attr('id'));
+
+               // CategoryID = $(this).attr('id');
 
                 CategoryID = row.cells[0].innerHTML;
-                CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
-
+                //CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
+                 
                 $("#hdnCategory").val(CategoryID);
                 $("#hdnCategoryName").val(CategoryID);
 
@@ -49,7 +54,9 @@
                 $("#tblCategory tr").removeClass("highlight");
                 if (!selected)
                     $(this).addClass("highlight");
-
+                
+                //$("#tblLItems tbody tr").remove(); 
+                //$("#tblLocation tbody tr").remove(); 
 
                 //alert('asdasdas');
 
@@ -57,6 +64,8 @@
 
                 var dataString = { 'Category': CategoryID };
                 var param = JSON.stringify(dataString);
+
+
 
                 //debugger;
                 $.ajax({
@@ -90,10 +99,14 @@
                 var rowID = $("#tblLocation tr").index(this);
 
                 var row = table.rows[rowID];
-                var Location;
+                var Location,SubCategoryID,SubCategoryName;
 
+                //alert($(this).attr('id'));
+                //SubCategoryID = $(this).attr('id');
                 Location = row.cells[0].innerHTML;
-                Location = Location.substring(0, Location.indexOf(' -'));
+                //Location = Location.substring(0, Location.indexOf(' -'));
+
+
 
                 $("#hdnLocation").val(Location);
 
@@ -113,7 +126,7 @@
 
                 var obj = {};
 
-                var dataString = { 'Location': Location };
+                var dataString = { 'SubCategory': Location };
                 var param = JSON.stringify(dataString);
 
                 //debugger;
@@ -154,10 +167,13 @@
                 var rowID = $("#tblCategory tr").index(this);
 
                 var row = table.rows[rowID];
-                var CategoryID;
+                var CategoryID,CategoryName;
+
+                //alert($(this).attr('id'));
+                //CategoryID = $(this).attr('id');
 
                 CategoryID = row.cells[0].innerHTML;
-                CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
+                //CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
 
 
 
@@ -282,7 +298,7 @@
                                         <li class="m-portlet__nav-item">
                                             <%--<a href="#add_location" class="m-portlet__nav-link m-portlet__nav-link--icon" data-toggle="modal"><i class="la la-plus"></i></a>--%>
                                             <asp:Button ID="btnAddLocation" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="+" OnClick="btnAddLocation_Click" />
-                                            <cc1:modalpopupextender id="mpeSubCategory" runat="server" popupcontrolid="pnlAddLocation" targetcontrolid="btnAddLocation"
+                                            <cc1:modalpopupextender id="mpeSubCategory" runat="server" popupcontrolid="pnlAddSubCategory" targetcontrolid="btnAddLocation"
                                                 cancelcontrolid="btnCloseLoc" backgroundcssclass="modalBackground">
                                                 </cc1:modalpopupextender>
 
@@ -367,7 +383,7 @@
                                 </div>
                             </div>
                             <div class="m-portlet__body py-1 px-2">
-                                <table class="table m-table table-sm">
+                                <table id="tblLItems" class="table m-table table-sm">
                                     <tbody>
 
                                         <%=Item_bindgrid()%>
@@ -504,7 +520,7 @@
                             <ContentTemplate>
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add new sub-SubCategory</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Item</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <%--<span aria-hidden="true">&times;</span>--%>
                                     </button>
@@ -520,7 +536,7 @@
                                     </div>
 
                                     <div class="form-group m-form__group row">
-                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-location code:</label>
+                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Item code:</label>
                                         <asp:TextBox ID="txtItemCode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtItemCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red" ErrorMessage="Please enter Sub Location code"></asp:RequiredFieldValidator>
                                     </div>

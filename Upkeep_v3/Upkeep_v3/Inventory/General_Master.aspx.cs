@@ -441,7 +441,7 @@ namespace Upkeep_v3.Inventory
                             int CategoryID = Convert.ToInt32(ds.Tables[0].Rows[i]["Category_ID"]);
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
                            
-                            data += "<tr><td>" + Category + "</td><td style='float: right;'><a href='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                            data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
                             
                         }
                     }
@@ -507,7 +507,7 @@ namespace Upkeep_v3.Inventory
 
                                 //data += "<tr><td>" + Category + "</td><td style='float: right;'><a href='Inventory/General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
                                 //data += "<tr><td runat='server' id='myTable' onclick='javascript: __doPostBack(); '>" + Category + " <span style='float: right;'><a href='Inventory/General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
-                                data += "<tr><td runat='server' id='mySubCategoryTable'>" + SubCategory + " <span style='float: right;'><a href='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                                data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " <span style='float: right;'><a href='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
                             }
                         }
@@ -581,7 +581,7 @@ namespace Upkeep_v3.Inventory
                             for (int i = 0; i < count; i++)
                             {
                                 int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Item_ID"]);
-                                string Item = Convert.ToString(ds.Tables[0].Rows[i]["Item"]);
+                                string Item = Convert.ToString(ds.Tables[0].Rows[i]["Item_Desc"]);
 
                                 data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
