@@ -66,12 +66,11 @@ namespace Upkeep_v3.Inventory
                     FetchItem(ItemID);
                 }
 
-                BindDropDown();
-
                 //if (Del_Frequency_ID > 0)
                 //{
                 //    DeleteFrequency(Del_Frequency_ID);
                 //}
+                BindDropDown();
             }
         }
 
@@ -610,6 +609,7 @@ namespace Upkeep_v3.Inventory
             }
             return data;
         }
+
 
         public void BindDropDown()
         {
