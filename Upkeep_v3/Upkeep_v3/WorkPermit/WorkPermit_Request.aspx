@@ -245,10 +245,10 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlWorkPermitTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Work Permit Title"></asp:RequiredFieldValidator>
                                     </div>
-                                    <label class="col-xl-2 col-form-label font-weight-bold">Ticket No. :</label>
+                                    <label class="col-xl-2 col-form-label font-weight-bold" runat="server" Visible="false" id="lblTicketNo">Ticket No. :</label>
                                     <div class="col-xl-3">
                                         <div class="col-form-label">
-                                            <asp:Label ID="lblTicket" runat="server" Text="" CssClass="form-control-label">#12345</asp:Label>
+                                            <asp:Label ID="lblTicket" runat="server" Text="" CssClass="form-control-label" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +421,7 @@
                                                             </div>
                                                         </div>
                                                         <div id="divCheckBox" style="display: none" runat="server">
-                                                            <asp:CheckBoxList class="CheckBoxList11" ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                                                            <asp:CheckBoxList class="CheckBoxList11" ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellPadding="5" CellSpacing="5" ClientIDMode="Static"></asp:CheckBoxList>
                                                         </div>
                                                     </div>
                                                 </div>

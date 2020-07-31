@@ -1374,6 +1374,90 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Crud_Inv_Category_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_Category_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_Category_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_SubCategory_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubCategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_SubCategory_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_SubCategory_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_Item_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ItemID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Opening" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Optimum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Reorder" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Base" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CostRate" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_Item_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_Item_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3766,6 +3850,24 @@
   <wsdl:message name="Crud_Inv_TransactionSoapOut">
     <wsdl:part name="parameters" element="tns:Crud_Inv_TransactionResponse" />
   </wsdl:message>
+  <wsdl:message name="Crud_Inv_Category_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Category_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_Category_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Category_MstResponse" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_SubCategory_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_SubCategory_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_MstResponse" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_Item_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_Item_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_MstResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4506,6 +4608,18 @@
     <wsdl:operation name="Crud_Inv_Transaction">
       <wsdl:input message="tns:Crud_Inv_TransactionSoapIn" />
       <wsdl:output message="tns:Crud_Inv_TransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Category_Mst">
+      <wsdl:input message="tns:Crud_Inv_Category_MstSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_Category_MstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <wsdl:input message="tns:Crud_Inv_SubCategory_MstSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_SubCategory_MstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <wsdl:input message="tns:Crud_Inv_Item_MstSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_Item_MstSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5371,6 +5485,33 @@
     </wsdl:operation>
     <wsdl:operation name="Crud_Inv_Transaction">
       <soap:operation soapAction="http://tempuri.org/Crud_Inv_Transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Category_Mst">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Category_Mst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6661,6 +6802,33 @@
     </wsdl:operation>
     <wsdl:operation name="Crud_Inv_Transaction">
       <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Category_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Category_Mst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

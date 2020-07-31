@@ -28,9 +28,9 @@
     <script>
 
         $(document).ready(function () {
-           $("#Button1").on('click', function (e) {
+            $("#Button1").on('click', function (e) {
                 e.preventDefault();
-                 
+
                 $("#btnSave").click();
 
             });
@@ -79,7 +79,7 @@
                                             ClientIDMode="Static" />
 
                                         <asp:Button ID="btnSave" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                                            CausesValidation="true" ValidationGroup="validateStock" Text="Save" OnClick="btnSave_Click" Style="display: none"/>
+                                            CausesValidation="true" ValidationGroup="validateStock" Text="Save" OnClick="btnSave_Click" Style="display: none" />
                                         <%--
                                             
                                             <asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
@@ -113,11 +113,15 @@
                                             <div class="col-xl-8 col-lg-8">
                                                 <asp:DropDownList ID="ddlItems" class="form-control m-input" runat="server">
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlItems" Visible="true"
+                                                <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlItems" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateStock" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please select Items"></asp:RequiredFieldValidator>
-                                            </div>
+                                                    ErrorMessage="Please select Items"></asp:RequiredFieldValidator>--%>
 
+                                                <asp:TextBox ID="txtItems" runat="server" class="form-control"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtItems" Visible="true"
+                                                    Display="Dynamic" ValidationGroup="" ForeColor="Red" InitialValue=""
+                                                    ErrorMessage="Please Enter Items"></asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -202,13 +206,13 @@
                                     <br />
                                     <div id="Div5" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 form-control-label"> Current Stock :</label>
+                                            <label class="col-xl-2 col-lg-2 form-control-label">Current Stock :</label>
                                             <div class="col-xl-3 col-lg-3">
 
-                                                <input type="number" min="0" id="txtCurrentStock" class="form-control" runat="server"  clientidmode="Static" readonly />
-                                                 
+                                                <input type="number" min="0" id="txtCurrentStock" class="form-control" runat="server" clientidmode="Static" readonly />
+
                                             </div>
-                                             
+
 
                                         </div>
                                     </div>

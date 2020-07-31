@@ -351,7 +351,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Password", Password);
                 cmd.Parameters.AddWithValue("@Is_Approver", Is_Approver);
                 cmd.Parameters.AddWithValue("@Is_GlobalApprover", Is_GobalApprover);
-                cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID); 
+                cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID);
                 cmd.Parameters.AddWithValue("@RoleID", RoleID);
                 cmd.Parameters.AddWithValue("@Profile_photo", Profilephoto);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
@@ -370,7 +370,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet LoginUser(string UserName, string strPassword,string UserType,int CompanyID, string strConn)
+        public DataSet LoginUser(string UserName, string strPassword, string UserType, int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -494,7 +494,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_User_UserGroupList(int CompanyID,string StrConn)
+        public DataSet Fetch_User_UserGroupList(int CompanyID, string StrConn)
         {
             try
             {
@@ -651,7 +651,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int TicketID,int CompanyID, string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string StrConn)
         {
             try
             {
@@ -700,7 +700,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_Ticket_CTT_Report", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
-                
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -711,7 +711,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Bind_Ticket_Details(int TicketID,int CompanyID, string StrConn)
+        public DataSet Bind_Ticket_Details(int TicketID, int CompanyID, string StrConn)
         {
             try
             {
@@ -950,7 +950,7 @@ namespace UpkeepV3_BusinessLayer
         #endregion
 
         #region Role Management
-        public DataSet FetchMenu(int parentMenuId, string LoggedInUserID,string ModuleIDs,int CompanyID, string StrConn)
+        public DataSet FetchMenu(int parentMenuId, string LoggedInUserID, string ModuleIDs, int CompanyID, string StrConn)
         {
             DataSet dtMenu = new DataSet();
             try
@@ -1314,7 +1314,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData,string strGPDoc, string LoggedInUserID, string StrConn)
+        public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1426,7 +1426,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID,string strAction, string StrConn)
+        public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2027,7 +2027,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_CHK_REPORT", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Chk_Response_ID", Response_ID);
-                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID); 
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2044,7 +2044,7 @@ namespace UpkeepV3_BusinessLayer
         #region VMS
 
         //Added by RC This function is used to save VMS Configuration
-        public DataSet Insert_Update_VMSConfiguration(int ConfigID,string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount,string LoggedInUserID, string StrConn)
+        public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2595,7 +2595,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_INV_TRANSACTION", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@CompanyID", CompanyID); 
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2626,7 +2626,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Stock_List(string LoggedInUserID, string CompanyID,string StrConn)
+        public DataSet Fetch_Stock_List(string LoggedInUserID, string CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2635,7 +2635,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_INV_STOCK", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@CompanyID", CompanyID); 
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2686,7 +2686,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Stock_Detail(string LoggedInUserID, string CompanyID,int StockId, string StrConn)
+        public DataSet Fetch_Stock_Detail(string LoggedInUserID, string CompanyID, int StockId, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2767,7 +2767,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Inv_Item_Stock_Data(string LoggedInUserID, string CompanyID, string StockID,  string StrConn)
+        public DataSet Fetch_Inv_Item_Stock_Data(string LoggedInUserID, string CompanyID, string StockID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2777,7 +2777,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
-                cmd.Parameters.AddWithValue("@StockID", StockID); 
+                cmd.Parameters.AddWithValue("@StockID", StockID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2797,7 +2797,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_INV_PURCHASE_LIST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@CompanyID", CompanyID); 
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2917,7 +2917,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Crud_Inv_Transaction(string LoggedInUserID, string CompanyID, string DeptID, string TranID,  string XmlItem, string StrConn)
+        public DataSet Crud_Inv_Transaction(string LoggedInUserID, string CompanyID, string DeptID, string TranID, string XmlItem, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2939,6 +2939,86 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, int CategoryID, string CategoryDesc, string Action, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_Inv_Category_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Category_ID", CategoryID);
+                cmd.Parameters.AddWithValue("@Category_Desc", CategoryDesc);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, int SubCategoryID, string SubCategoryDesc, string Action, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_Inv_SubCategory_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Category", CategoryID);
+                cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategoryID);
+                cmd.Parameters.AddWithValue("@SubCategory_Desc", SubCategoryDesc);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, int ItemID, string ItemDesc, int DeptID, 
+            int Opening, int Optimum, int Reorder, int Base, int CostRate, string Action, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_Inv_Item_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Category", CategoryID);
+                cmd.Parameters.AddWithValue("@SubCategory", SubCategoryID);
+                cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                cmd.Parameters.AddWithValue("@ItemDesc", ItemDesc);
+                cmd.Parameters.AddWithValue("@DeptID", DeptID);
+                cmd.Parameters.AddWithValue("@Opening", Opening);
+                cmd.Parameters.AddWithValue("@Optimum", Optimum);
+                cmd.Parameters.AddWithValue("@Reorder", Reorder);
+                cmd.Parameters.AddWithValue("@Base", Base);
+                cmd.Parameters.AddWithValue("@CostRate", CostRate);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         #endregion
 

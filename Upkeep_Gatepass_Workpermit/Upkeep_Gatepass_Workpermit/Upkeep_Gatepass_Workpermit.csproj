@@ -759,6 +759,7 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\roslyn\csc.exe" />

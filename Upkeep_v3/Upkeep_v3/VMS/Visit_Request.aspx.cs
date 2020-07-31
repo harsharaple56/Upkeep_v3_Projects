@@ -363,7 +363,7 @@ namespace Upkeep_v3.VMS
                         txtPhone.ReadOnly = true;
 
                         txtVMSDate.Text = dsData.Tables[1].Rows[0]["Meeting_Time"].ToString();
-                        txtName.Text = dsData.Tables[1].Rows[0]["VName"].ToString();
+                        txtName.Text = dsData.Tables[1].Rows[0]["Name"].ToString();
                         txtEmail.Text = dsData.Tables[1].Rows[0]["Email"].ToString();
                         txtPhone.Text = dsData.Tables[1].Rows[0]["Phone"].ToString();
 
