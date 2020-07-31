@@ -27,7 +27,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     //#region Properties
-     
+
 
     //public string Fname
     //{
@@ -478,11 +478,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Ticket_MyActionable(int TicketID,int CompanyID, string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID,CompanyID, LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -606,7 +606,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID,string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
     {
         DataSet ds = new DataSet();
 
@@ -1275,12 +1275,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData,string strGPDoc, string LoggedInUserID)
+    public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData,strGPDoc, LoggedInUserID);
+            ds = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData, strGPDoc, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1366,7 +1366,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
+    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
     {
         DataSet ds = new DataSet();
         try
@@ -1620,7 +1620,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
-         
+
     [WebMethod]
     public DataSet Fetch_WorkPermit_MIS(string LoggedInUserID, string From_Date, string To_Date)
     {
@@ -1766,7 +1766,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Checklist_Report(Response_ID, LoggedInUserID );
+            ds = ObjUpkeep.Fetch_Checklist_Report(Response_ID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1782,12 +1782,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID,string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid,int EntryCount, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID,strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid,EntryCount, LoggedInUserID);
+            ds = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1862,12 +1862,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name,string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID,Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1959,7 +1959,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //Added by RC This function is used to Log error
 
     [WebMethod]
-    public DataSet Error_Log(string Extype, string Page, string Errormsg,string StackTrace,string CompanyID,string LoggedInUserID)
+    public DataSet Error_Log(string Extype, string Page, string Errormsg, string StackTrace, string CompanyID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2291,7 +2291,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Inv_Crud_Item_Stock(LoggedInUserID, CompanyID,StockID,XmlItem);
+            ds = ObjUpkeep.Fetch_Inv_Crud_Item_Stock(LoggedInUserID, CompanyID, StockID, XmlItem);
         }
         catch (Exception ex)
         {
@@ -2411,7 +2411,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Crud_Inv_Transaction(LoggedInUserID, CompanyID, DeptID,  TranID, XmlItem);
+            ds = ObjUpkeep.Crud_Inv_Transaction(LoggedInUserID, CompanyID, DeptID, TranID, XmlItem);
         }
         catch (Exception ex)
         {
@@ -2421,7 +2421,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string CategoryDesc, string Action)
+    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, int CategoryID, string CategoryDesc, string Action)
     {
         DataSet ds = new DataSet();
         try
@@ -2435,7 +2435,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string SubCategoryDesc, string Action)
+    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, int SubCategoryID, string SubCategoryDesc, string Action)
     {
         DataSet ds = new DataSet();
         try
@@ -2449,12 +2449,14 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string ItemID, string ItemDesc, string Action)
+    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, int ItemID, string ItemDesc, int DeptID,
+            int Opening, int Optimum, int Reorder, int Base, int CostRate, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, Action);
+            ds = ObjUpkeep.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, DeptID,
+             Opening, Optimum, Reorder, Base, CostRate, Action);
         }
         catch (Exception ex)
         {

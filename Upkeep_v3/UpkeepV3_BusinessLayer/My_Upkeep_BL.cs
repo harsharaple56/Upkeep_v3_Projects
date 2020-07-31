@@ -2940,7 +2940,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string CategoryDesc, string Action, string StrConn)
+        public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, int CategoryID, string CategoryDesc, string Action, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2962,7 +2962,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string SubCategoryDesc, string Action, string StrConn)
+        public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, int SubCategoryID, string SubCategoryDesc, string Action, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2986,11 +2986,13 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string ItemID, string ItemDesc, string Action, string StrConn)
+        public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, int ItemID, string ItemDesc, int DeptID, 
+            int Opening, int Optimum, int Reorder, int Base, int CostRate, string Action, string StrConn)
         {
             DataSet ds = new DataSet();
             try
             {
+
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_Inv_Item_Mst", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -3000,6 +3002,12 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@SubCategory", SubCategoryID);
                 cmd.Parameters.AddWithValue("@ItemID", ItemID);
                 cmd.Parameters.AddWithValue("@ItemDesc", ItemDesc);
+                cmd.Parameters.AddWithValue("@DeptID", DeptID);
+                cmd.Parameters.AddWithValue("@Opening", Opening);
+                cmd.Parameters.AddWithValue("@Optimum", Optimum);
+                cmd.Parameters.AddWithValue("@Reorder", Reorder);
+                cmd.Parameters.AddWithValue("@Base", Base);
+                cmd.Parameters.AddWithValue("@CostRate", CostRate);
                 cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

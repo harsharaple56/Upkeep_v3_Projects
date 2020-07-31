@@ -932,14 +932,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData,string strGPDoc, string LoggedInUserID)
+    public DataSet Insert_GatePassRequest(int GP_ConfigID, string strGatePassDate, int DeptID, int GPTypeID, string strGPHeader, string strGPHeaderData, string strGPDoc, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData,strGPDoc, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, GPTypeID, strGPHeader, strGPHeaderData, strGPDoc, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1012,7 +1012,7 @@ public class My_Upkeep
         }
     }
 
-    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID,int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
+    public DataSet GatePassConfiguration_Document_CRUD(int GP_ConfigID, int GatePassDocID, string DocumentHeader, int Mandatory, string LoggedInUserID, string strAction)
     {
         DataSet ds = new DataSet();
         try
@@ -2001,14 +2001,14 @@ public class My_Upkeep
             throw ex;
         }
     }
-    public DataSet Fetch_Inv_Crud_Item_Stock(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) 
+    public DataSet Fetch_Inv_Crud_Item_Stock(string LoggedInUserID, string CompanyID, string StockID, string XmlItem)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Inv_Crud_Item_Stock(LoggedInUserID, CompanyID, StockID, XmlItem ,StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Inv_Crud_Item_Stock(LoggedInUserID, CompanyID, StockID, XmlItem, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -2101,7 +2101,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Tran_Detail(LoggedInUserID, CompanyID, TransID,  StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Tran_Detail(LoggedInUserID, CompanyID, TransID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -2139,7 +2139,7 @@ public class My_Upkeep
             throw ex;
         }
     }
-    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string CategoryDesc, string Action)
+    public DataSet Crud_Inv_Category_Mst(string LoggedInUserID, string CompanyID, int CategoryID, string CategoryDesc, string Action)
     {
         DataSet ds = new DataSet();
         try
@@ -2154,7 +2154,7 @@ public class My_Upkeep
             throw ex;
         }
     }
-    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string SubCategoryDesc, string Action)
+    public DataSet Crud_Inv_SubCategory_Mst(string LoggedInUserID, string CompanyID, string CategoryID, int SubCategoryID, string SubCategoryDesc, string Action)
     {
         DataSet ds = new DataSet();
         try
@@ -2169,14 +2169,16 @@ public class My_Upkeep
             throw ex;
         }
     }
-    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, string ItemID, string ItemDesc, string Action)
+    public DataSet Crud_Inv_Item_Mst(string LoggedInUserID, string CompanyID, string CategoryID, string SubCategoryID, int ItemID, string ItemDesc, int DeptID,
+            int Opening, int Optimum, int Reorder, int Base, int CostRate, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, Action, StrConn);
+            ds = ObjUpkeepCC_BL.Crud_Inv_Item_Mst(LoggedInUserID, CompanyID, CategoryID, SubCategoryID, ItemID, ItemDesc, DeptID,
+             Opening, Optimum, Reorder, Base, CostRate, Action, StrConn);
             return ds;
         }
         catch (Exception ex)

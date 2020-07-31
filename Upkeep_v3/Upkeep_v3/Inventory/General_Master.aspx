@@ -420,12 +420,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <%-- <form>--%>
-                                    <div class="form-group"  visible="false">
+                                   <%-- <div class="form-group" visible="false">
                                         <label for="recipient-name" class="form-control-label">Category code:</label>
 
                                         <asp:TextBox ID="txtCategoryCode" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvCategoryCode" runat="server" ControlToValidate="txtCategoryCode" Visible="true" ValidationGroup="validationCategory" ForeColor="Red" ErrorMessage="Please enter Category code"></asp:RequiredFieldValidator>
-                                    </div>
+                                    </div>--%>
                                     <div class="form-group">
                                         <label for="message-text" class="form-control-label">Category Description:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
@@ -478,12 +478,12 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="form-group"  visible="false">
+                                   <%-- <div class="form-group" visible="false">
                                         <label for="recipient-name" class="form-control-label">SubCategory code:</label>
                                         <asp:TextBox ID="txtSubCategoryCode" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSubCategoryCode" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory code"></asp:RequiredFieldValidator>
 
-                                    </div>
+                                    </div>--%>
                                     <div class="form-group">
                                         <label for="message-text" class="form-control-label">Description:</label>
                                         <asp:TextBox ID="txtSubCategory" runat="server" class="form-control"></asp:TextBox>
@@ -537,11 +537,11 @@
                                         <asp:Label ID="lblSubCategory" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
                                     </div>
 
-                                    <div class="form-group m-form__group row" visible="false">
+                                  <%--  <div class="form-group m-form__group row" visible="false">
                                         <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-location code:</label>
                                         <asp:TextBox ID="txtItemCode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtItemCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red" ErrorMessage="Please enter Sub Location code"></asp:RequiredFieldValidator>
-                                    </div>
+                                    </div>--%>
 
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Description:</label>
@@ -553,7 +553,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Department:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:DropDownList ID="ddlDepartment" class="form-control m-input" runat="server">
+                                        <asp:DropDownList ID="ddlDepartment" class="form-control" Style="width: 60%;" runat="server">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlDepartment" Visible="true"
                                             Display="Dynamic" ValidationGroup="validateStock" ForeColor="Red" InitialValue="0"
@@ -562,7 +562,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Opening:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtOpening" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox ID="txtOpening" value="0" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtOpening"
                                             Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
                                             ErrorMessage="Please enter Opening stock"></asp:RequiredFieldValidator>
@@ -570,7 +570,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Optimun:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtOptimun" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox ID="txtOptimun" value="0" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtOptimun"
                                             Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
                                             ErrorMessage="Please enter Optimun stock"></asp:RequiredFieldValidator>
@@ -578,7 +578,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Re Order:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtReOrder" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox ID="txtReOrder" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtReOrder"
                                             Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
                                             ErrorMessage="Please enter Re Order"></asp:RequiredFieldValidator>
@@ -586,7 +586,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Base:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtBase" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox ID="txtBase" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtBase"
                                             Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
                                             ErrorMessage="Please enter Base"></asp:RequiredFieldValidator>
@@ -594,14 +594,11 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Cost Rate:</label>
                                         <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtCostRate" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox ID="txtCostRate" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtCostRate"
                                             Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
                                             ErrorMessage="Please enter Cost Rate"></asp:RequiredFieldValidator>
                                     </div>
-
-
-
 
                                     <asp:Label ID="lblItemErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                 </div>
