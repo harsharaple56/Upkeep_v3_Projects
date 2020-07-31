@@ -426,7 +426,7 @@
                                             <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" style="max-height: 400px; overflow: scroll;">
                                             <div class="box">
                                                 <div class="nav-tabs-custom">
                                                     <ul class="nav nav-tabs nav-fill" role="tablist">
