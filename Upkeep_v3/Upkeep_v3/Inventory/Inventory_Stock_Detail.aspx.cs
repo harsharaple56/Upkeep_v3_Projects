@@ -114,6 +114,8 @@ namespace Upkeep_v3.Inventory
                          */
 
                         ddlItems.SelectedValue = dsData.Tables[0].Rows[0]["Item_ID"].ToString();
+                        txtItems.Text = dsData.Tables[0].Rows[0]["Items"].ToString();
+
                         txtOpeningStockValue.Value = dsData.Tables[0].Rows[0]["Opening_Stock"].ToString();
                         txtOptimumValue.Value = dsData.Tables[0].Rows[0]["Optimum_Value"].ToString();
                         txtReorderValue.Value = dsData.Tables[0].Rows[0]["Reorder_Value"].ToString();
@@ -121,6 +123,11 @@ namespace Upkeep_v3.Inventory
                         txtCostRate.Value = dsData.Tables[0].Rows[0]["Cost_Rate"].ToString();
                         ddlDepartment.SelectedValue = dsData.Tables[0].Rows[0]["Department_ID"].ToString();
                         txtCurrentStock.Value = dsData.Tables[0].Rows[0]["Current_Stock"].ToString();
+
+                        ddlItems.Visible = false;
+
+                        txtOpeningStockValue.Attributes.Add("Readonly", "Readonly");
+                        txtCostRate.Attributes.Add("Readonly", "Readonly"); 
 
 
                     }
@@ -210,6 +217,7 @@ namespace Upkeep_v3.Inventory
             //-------------------------------------------------------------------------------------------------------------------
            // strXmlAsset.Append(@"<Stock_ID>" + StckId + "</Stock_ID>");
             strXmlAsset.Append(@"<Item_ID>" + ddlItems.SelectedValue.ToString() + "</Item_ID>");
+            strXmlAsset.Append(@"<Item_Name>" + txtItems.Text + "</Item_Name>");
             strXmlAsset.Append(@"<Opening_Stock>" + txtOpeningStockValue.Value.ToString() + "</Opening_Stock>");
             strXmlAsset.Append(@"<Optimum_Value>" + txtOptimumValue.Value.ToString() + "</Optimum_Value>");
             strXmlAsset.Append(@"<Reorder_Value>" + txtReorderValue.Value.ToString() + "</Reorder_Value>");
