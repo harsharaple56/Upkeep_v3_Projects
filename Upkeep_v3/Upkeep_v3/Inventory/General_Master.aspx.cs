@@ -66,6 +66,8 @@ namespace Upkeep_v3.Inventory
                     FetchItem(ItemID);
                 }
 
+                BindDropDown();
+
                 //if (Del_Frequency_ID > 0)
                 //{
                 //    DeleteFrequency(Del_Frequency_ID);
@@ -603,6 +605,32 @@ namespace Upkeep_v3.Inventory
                 throw ex;
             }
             return data;
+        }
+
+        public void BindDropDown()
+        {
+            try
+            {
+                DataSet dsTitle = new DataSet();
+
+                dsTitle = ObjUpkeep.Fetch_Inv_Item_Stock_Ddl(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(0));
+
+                if (dsTitle.Tables.Count > 0)
+                {
+                    if (dsTitle.Tables[1].Rows.Count > 0)
+                    {
+                        ddlDepartment.DataSource = dsTitle.Tables[1];
+                        ddlDepartment.DataTextField = "Dept_Desc";
+                        ddlDepartment.DataValueField = "Department_ID";
+                        ddlDepartment.DataBind();
+                        ddlDepartment.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion
