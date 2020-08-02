@@ -76,7 +76,7 @@
 
         function DeleteGP_Doc(Doc_Config_ID) {
             $("#hdnDeleteGPDocID").val(Doc_Config_ID)
-            if (confirm('Are you sure you want to delete this Gate Pass Type?')) {
+            if (confirm('Are you sure you want to delete this Gate Pass Document?')) {
                 document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
             } else {
                 // Do nothing!
@@ -809,7 +809,7 @@
                                             <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                                         </div>
-                                        <div class="modal-body" style="max-height: 300px; overflow: scroll;">
+                                        <div class="modal-body" style="max-height: 400px; overflow: scroll;">
                                             <div class="box">
                                                 <div class="nav-tabs-custom">
                                                     <ul class="nav nav-tabs nav-fill" role="tablist">
@@ -867,7 +867,7 @@
                                                                             </a>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField DataField="GroupName" SortExpression="GroupName" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                    <asp:BoundField DataField="GroupUsers" SortExpression="GroupUsers" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
 
                                                                 </Columns>
 

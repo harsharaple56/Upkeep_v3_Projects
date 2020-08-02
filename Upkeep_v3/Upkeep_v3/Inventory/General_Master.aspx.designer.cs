@@ -22,6 +22,33 @@ namespace Upkeep_v3.Inventory {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrmMain;
         
         /// <summary>
+        /// hdnEditTableClicked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEditTableClicked;
+        
+        /// <summary>
+        /// hdnEditClickedID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEditClickedID;
+        
+        /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        
+        /// <summary>
         /// hdnCategory control.
         /// </summary>
         /// <remarks>
