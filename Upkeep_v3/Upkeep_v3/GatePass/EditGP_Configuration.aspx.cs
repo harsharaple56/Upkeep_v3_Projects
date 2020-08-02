@@ -30,6 +30,7 @@ namespace Upkeep_v3.GatePass
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
+            Bind_GatePassConfiguration(GP_ConfigID);
             if (!IsPostBack)
             {
                 if (Del_GPConfigID > 0)
@@ -56,7 +57,7 @@ namespace Upkeep_v3.GatePass
                     }
 
                     //Fetch_User_UserGroupList(Initiator);
-                    Bind_GatePassConfiguration(GP_ConfigID);
+                    //Bind_GatePassConfiguration(GP_ConfigID);
                 }
             }
         }
@@ -1339,7 +1340,7 @@ namespace Upkeep_v3.GatePass
                 {
                     GatePassDocID = Convert.ToInt32(Session["GPDocID"]);
                 }
-                strGPTDoc = Convert.ToString(txtGatePassType.Text.Trim());
+                strGPTDoc = Convert.ToString(txtGP_Doc.Text.Trim());
 
                 if (chkGPDocMandatory.Checked)
                 {
