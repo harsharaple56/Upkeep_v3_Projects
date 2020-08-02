@@ -47,29 +47,62 @@ namespace Upkeep_v3.Inventory
             //SubCategory_bindgrid();
             if (!IsPostBack)
             {
-                int CategoryID = Convert.ToInt32(Request.QueryString["CategoryID"]);
+                if (Session["hdnEditTableClicked"] != null)
+                { hdnEditTableClicked.Value = Session["hdnEditTableClicked"].ToString(); }
+                if (Session["hdnEditClickedID"] != null)
+                { hdnEditClickedID.Value = Session["hdnEditClickedID"].ToString(); }
 
-                int SubCategoryID = Convert.ToInt32(Request.QueryString["SubCategoryID"]);
-                int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
-                //int Del_Frequency_ID = Convert.ToInt32(Request.QueryString["DelFreq_ID"]);
+                if (hdnEditClickedID.Value != "")
+                {
 
-                if (CategoryID > 0)
-                {
-                    FetchCategory(CategoryID);
-                }
-                else if (SubCategoryID > 0)
-                {
-                    FetchSubCategory(SubCategoryID);
-                }
-                else if (ItemID > 0)
-                {
-                    FetchItem(ItemID);
+                    int IDx = Convert.ToInt32(hdnEditClickedID.Value);
+                    if (hdnEditTableClicked.Value == "tblCategory")
+                    {
+                        FetchCategory(IDx);
+                    }
+                    else if (hdnEditTableClicked.Value == "tblLocation")
+                    {
+                        FetchSubCategory(IDx);
+                    }
+                    else if (hdnEditTableClicked.Value == "tblLItems")
+                    {
+                        FetchItem(IDx);
+                    }
+
+                    if (Session["hdnEditTableClicked"] != null)
+                    { Session["hdnEditTableClicked"] = ""; }
+                    if (Session["hdnEditClickedID"] != null)
+                    { Session["hdnEditClickedID"] = ""; }
                 }
 
-                //if (Del_Frequency_ID > 0)
+                hdnEditTableClicked.Value = "";
+                hdnEditClickedID.Value = "";
+
+                //int CategoryID = Convert.ToInt32(Request.QueryString["CategoryID"]);
+                //int SubCategoryID = Convert.ToInt32(Request.QueryString["SubCategoryID"]);
+                //int ItemID = Convert.ToInt32(Request.QueryString["ItemID"]);
+
+
+                ////int Del_Frequency_ID = Convert.ToInt32(Request.QueryString["DelFreq_ID"]);
+
+                //if (CategoryID > 0)
                 //{
-                //    DeleteFrequency(Del_Frequency_ID);
+                //    FetchCategory(CategoryID);
                 //}
+                //else if (SubCategoryID > 0)
+                //{
+                //    FetchSubCategory(SubCategoryID);
+                //}
+                //else if (ItemID > 0)
+                //{
+                //    FetchItem(ItemID);
+                //}
+
+
+                ////if (Del_Frequency_ID > 0)
+                ////{
+                ////    DeleteFrequency(Del_Frequency_ID);
+                ////}
                 BindDropDown();
             }
         }
@@ -133,7 +166,7 @@ namespace Upkeep_v3.Inventory
                 }
 
                 ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]),
-                    Convert.ToString(Session["CompanyID"]),  CategoryName, SubCategory, ItemID,
+                    Convert.ToString(Session["CompanyID"]), CategoryName, SubCategory, ItemID,
                     txtItem.Text.Trim(), DeptID, Opening, Optimum, Reorder, Base, CostRate, Action);
 
                 if (ds.Tables.Count > 0)
@@ -149,6 +182,9 @@ namespace Upkeep_v3.Inventory
                         {
                             //Session["SubCategoryID"] = "";
                             //txtItemCode.Text = "";
+
+                            //CategoryName = lblCategoryName.Text;
+                            //SubCatName = lblSubCategory.Text;
                             txtItem.Text = "";
                             mpeItem.Hide();
                             //Category_bindgrid();
@@ -219,6 +255,7 @@ namespace Upkeep_v3.Inventory
                         {
                             Session["CategoryID"] = "";
                             //txtCategoryCode.Text = "";
+                            CategoryName = txtCategoryDesc.Text;
                             txtCategoryDesc.Text = "";
                             mpeCategory.Hide();
                             //Category_bindgrid();
@@ -332,6 +369,29 @@ namespace Upkeep_v3.Inventory
             txtSubCategory.Text = "";
 
         }
+
+        //protected void btnoo_Click(object sender, EventArgs e)
+        //{
+        //    if (hdnEditClickedID.Value != "")
+        //    {
+        //        int IDx = Convert.ToInt32(hdnEditClickedID.Value);
+        //        if (hdnEditTableClicked.Value == "tblLocation")
+        //        {
+        //            FetchCategory(IDx);
+        //        }
+        //        else if (hdnEditTableClicked.Value == "tblCategory")
+        //        {
+        //            FetchSubCategory(IDx);
+        //        }
+        //        else if (hdnEditTableClicked.Value == "tblLItems")
+        //        {
+        //            FetchItem(IDx);
+        //        }
+        //    }
+        //    hdnEditTableClicked.Value = "";
+        //    hdnEditClickedID.Value = "";
+        //}
+
         #endregion
 
         #region Functions
@@ -349,7 +409,7 @@ namespace Upkeep_v3.Inventory
 
                         Session["CategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]);
                         //txtCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Code"]);
-                        txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
+                        txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"].ToString());
 
                         mpeCategory.Show();
                     }
@@ -457,7 +517,8 @@ namespace Upkeep_v3.Inventory
                             int CategoryID = Convert.ToInt32(ds.Tables[0].Rows[i]["Category_ID"]);
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
 
-                            data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                            //data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                            data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='#' data-val='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
                         }
                     }
@@ -523,12 +584,18 @@ namespace Upkeep_v3.Inventory
 
                                 //data += "<tr><td>" + Category + "</td><td style='float: right;'><a href='Inventory/General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
                                 //data += "<tr><td runat='server' id='myTable' onclick='javascript: __doPostBack(); '>" + Category + " <span style='float: right;'><a href='Inventory/General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
-                                data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
-                                    "<span style='float: right;'><a href='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
-                                    "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
-                                    "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	" +
-                                    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
+                                //data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
+                                //    "<span style='float: right;'><a href='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                                //    "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                                //    "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	" +
+                                //    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+
+                                data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
+                               "<span style='float: right;'><a href='#' data-val='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                               "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	" +
+                               "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
                             }
                         }
                         else
@@ -563,7 +630,7 @@ namespace Upkeep_v3.Inventory
             {
                 Session["CategoryName"] = CategoryName;
                 //hdnCategoryName.Value = Convert.ToString(Session["Category"]);
-                Category = CategoryName;
+                Category = CategoryName; 
                 //CategoryName = "";
             }
 
@@ -603,7 +670,9 @@ namespace Upkeep_v3.Inventory
                                 int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Item_ID"]);
                                 string Item = Convert.ToString(ds.Tables[0].Rows[i]["Item_Desc"]);
 
-                                data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                                // data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+
+                                data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='#' data-val='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
                             }
                         }
@@ -675,6 +744,41 @@ namespace Upkeep_v3.Inventory
 
         }
 
+        [System.Web.Services.WebMethod]
+        public static void SetSeesions(string hdnEditTableClicked, string hdnEditClickedID)
+        {
+            General_Master obj = new General_Master();
+            obj.SetSeesion(hdnEditTableClicked, hdnEditClickedID);
+        }
+
+        public void SetSeesion(string hdnEditTableClicked, string hdnEditClickedID)
+        {
+            Session["hdnEditTableClicked"] = hdnEditTableClicked;
+            Session["hdnEditClickedID"] = hdnEditClickedID;
+
+            //if (hdnEditClickedID != "")
+            //{
+
+            //    int IDx = Convert.ToInt32(hdnEditClickedID);
+            //    if (hdnEditTableClicked == "tblCategory")
+            //    {
+            //        FetchCategory(IDx);
+            //    }
+            //    else if (hdnEditTableClicked == "tblLocation")
+            //    {
+            //        FetchSubCategory(IDx);
+            //    }
+            //    else if (hdnEditTableClicked == "tblLItems")
+            //    {
+            //        FetchItem(IDx);
+            //    }
+            //}
+
+            //hdnEditTableClicked = "";
+            //hdnEditClickedID = "";
+            //Session["hdnEditClickedID"] = "";
+            //Session["hdnEditClickedID"] = "";
+        }
         #endregion
     }
 }

@@ -66,7 +66,6 @@
                 var param = JSON.stringify(dataString);
 
 
-
                 //debugger;
                 $.ajax({
                     type: 'POST',
@@ -157,6 +156,58 @@
 
             });
 
+
+            $('.text-success').click(function () {
+                //event.preventDefault();
+
+                //$("#hdnEditTableClicked").val('');
+                //$("#hdnEditClickedID").val('');
+
+                var tbl = $(this).closest('table').attr('id');;
+                var strs = $(this).attr('data-val');
+                var n = strs.includes("=");
+
+                if (n == true) {
+                    var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('=')); 
+
+                    alert(tbl);
+                    alert(IDa);
+
+                    //$("#hdnEditTableClicked").val('');
+                    $("#hdnEditTableClicked").val(tbl);
+
+                    //$("#hdnEditClickedID").val('');
+                    $("#hdnEditClickedID").val(IDa);
+
+
+                    var obj = {}; 
+                    var dataString = { 'hdnEditTableClicked': tbl, 'hdnEditClickedID': IDa };
+                    var param = JSON.stringify(dataString);
+
+                    //debugger;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master.aspx/SetSeesions',
+                        data: param,
+                        //data: '',
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+
+                        },
+                        error: function (xhr, status, error) {
+
+                        }
+                    });
+
+
+                    // alert(IDa);
+                    // $("#btnOO").click();
+                }
+
+                //return false;
+            });
+
         });
 
         function HighlightCategoryTable() {
@@ -198,6 +249,14 @@
         <cc1:ToolkitScriptManager runat="server">
         </cc1:ToolkitScriptManager>
 
+        <%--<button type="button" runat="server" id="btnoo" onserverclick="btnoo_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>--%>
+
+
+        <asp:HiddenField ID="hdnEditTableClicked" runat="server" ClientIDMode="Static" />
+        <asp:HiddenField ID="hdnEditClickedID" runat="server" ClientIDMode="Static" />
+
+        <asp:HiddenField ID="HiddenField1" runat="server" ClientIDMode="Static" />
+
         <asp:HiddenField ID="hdnCategory" runat="server" ClientIDMode="Static" />
         <asp:HiddenField ID="hdnLocation" runat="server" ClientIDMode="Static" />
         <asp:HiddenField ID="hdnCategoryName" runat="server" ClientIDMode="Static" />
@@ -212,6 +271,8 @@
 
             <div class="">
                 <div class="row">
+
+
                     <div class="col-md-4">
                         <div class="m-portlet">
                             <div class="m-portlet__head p-3">
@@ -420,7 +481,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <%-- <form>--%>
-                                   <%-- <div class="form-group" visible="false">
+                                    <%-- <div class="form-group" visible="false">
                                         <label for="recipient-name" class="form-control-label">Category code:</label>
 
                                         <asp:TextBox ID="txtCategoryCode" runat="server" class="form-control"></asp:TextBox>
@@ -478,7 +539,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                   <%-- <div class="form-group" visible="false">
+                                    <%-- <div class="form-group" visible="false">
                                         <label for="recipient-name" class="form-control-label">SubCategory code:</label>
                                         <asp:TextBox ID="txtSubCategoryCode" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSubCategoryCode" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory code"></asp:RequiredFieldValidator>
@@ -537,7 +598,7 @@
                                         <asp:Label ID="lblSubCategory" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
                                     </div>
 
-                                  <%--  <div class="form-group m-form__group row" visible="false">
+                                    <%--  <div class="form-group m-form__group row" visible="false">
                                         <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-location code:</label>
                                         <asp:TextBox ID="txtItemCode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtItemCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red" ErrorMessage="Please enter Sub Location code"></asp:RequiredFieldValidator>
