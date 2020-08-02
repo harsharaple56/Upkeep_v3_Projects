@@ -54,7 +54,6 @@ namespace Upkeep_v3.Inventory
 
                 if (hdnEditClickedID.Value != "")
                 {
-
                     int IDx = Convert.ToInt32(hdnEditClickedID.Value);
                     if (hdnEditTableClicked.Value == "tblCategory")
                     {
@@ -74,9 +73,59 @@ namespace Upkeep_v3.Inventory
                     if (Session["hdnEditClickedID"] != null)
                     { Session["hdnEditClickedID"] = ""; }
                 }
-
                 hdnEditTableClicked.Value = "";
                 hdnEditClickedID.Value = "";
+
+                string DeleteTable = "";
+                int DeleteID = 0;
+
+                //if (Session["DeleteTable"] != null)
+                //{ DeleteTable = Session["DeleteTable"].ToString(); }
+                //if (Session["DeleteID"] != null)
+                //{ DeleteID = Session["DeleteID"].ToString(); }
+
+                int CategoryID = Convert.ToInt32(Request.QueryString["delcategory_id"]);
+                int SubCategoryID = Convert.ToInt32(Request.QueryString["delsubcategory_id"]);
+                int ItemID = Convert.ToInt32(Request.QueryString["delitem_id"]);
+
+                if (CategoryID > 0)
+                {
+                    DeleteID = CategoryID;
+                }
+                else if (SubCategoryID > 0)
+                {
+                    DeleteID = SubCategoryID;
+                }
+                else if (ItemID > 0)
+                {
+                    DeleteID = ItemID;
+                }
+
+
+                if (DeleteID > 0)
+                {
+                    int IDx = Convert.ToInt32(DeleteID);
+                    if (CategoryID > 0)
+                    {
+                        DeleteTable = "tblCategory";
+                    }
+                    else if ( SubCategoryID > 0)
+                    {
+                        DeleteTable = "tblLocation";
+                    }
+                    else if (ItemID > 0)
+                    {
+                        DeleteTable = "tblLItems";
+                    }
+
+                    DeleteData(DeleteTable, IDx);
+
+                    //if (Session["DeleteTable"] != null)
+                    //{ Session["DeleteTable"] = ""; }
+                    //if (Session["DeleteID"] != null)
+                    //{ Session["DeleteID"] = ""; }
+                }
+
 
                 //int CategoryID = Convert.ToInt32(Request.QueryString["CategoryID"]);
                 //int SubCategoryID = Convert.ToInt32(Request.QueryString["SubCategoryID"]);
@@ -395,6 +444,55 @@ namespace Upkeep_v3.Inventory
         #endregion
 
         #region Functions
+        public void DeleteData(string Table, int ID)
+        {
+            try
+            {
+                DataSet dst = new DataSet();
+                string Action = "D";
+                if (Table == "tblCategory")
+                {
+                    dst = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), ID, "", Action);
+                }
+                else if (Table == "tblLocation")
+                {
+                    dst = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "", ID, "", Action);
+                }
+                else if (Table == "tblLItems")
+                {
+                    dst = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "", "", ID,
+                   "", 0, 0, 0, 0, 0, 0, Action);
+                }
+                if (dst.Tables.Count > 0)
+                {
+                    if (dst.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dst.Tables[0].Rows[0]["Status"]);
+                        if (Status == 0)
+                        {
+
+                        }
+                        else if (Status == 1)
+                        {
+                            Response.Redirect("~/Inventory/General_Master.aspx", false);
+                        }
+                        else if (Status == 2)
+                        {
+                            lblItemErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
+                        else if (Status == 3)
+                        {
+                            lblItemErrorMsg.Text = "Sub Location already exists";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         public void FetchCategory(int CategoryID)
         {
@@ -518,8 +616,20 @@ namespace Upkeep_v3.Inventory
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
 
                             //data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
-                            data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'><a href='#' data-val='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
+                            //data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'>" +
+                            //    "<a href='#' data-val='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' " +
+                            //    "runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                            //    "<a href='#' onclick='functionDelete(this);' data-val='Inventory/General_Master.aspx?DelCategory_ID=" + CategoryID + "' " +
+                            //    "class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                            //    "	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+
+                            data += "<tr id ='" + CategoryID + "'><td>" + Category + "</td><td style='float: right;'>" +
+                               "<a href='#' data-val='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' " +
+                               "runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='General_Master.aspx?DelCategory_ID=" + CategoryID + "' " +
+                               "class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                               "	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </span> </td></tr>";
                         }
                     }
                     else
@@ -591,11 +701,19 @@ namespace Upkeep_v3.Inventory
                                 //    "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	" +
                                 //    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
+                                // data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
+                                //"<span style='float: right;'><a href='#' data-val='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                                //"<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                                //"<a href='#'  onclick='functionDelete(this);' data-val ='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger has-confirmation' " +
+                                //"data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	" +
+                                //"<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+
                                 data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
-                               "<span style='float: right;'><a href='#' data-val='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
-                               "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
-                               "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	" +
-                               "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                              "<span style='float: right;'><a href='#' data-val='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                              "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
+                              "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger has-confirmation' " +
+                              "data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	" +
+                              "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i></span> </td></tr>";
                             }
                         }
                         else
@@ -630,7 +748,7 @@ namespace Upkeep_v3.Inventory
             {
                 Session["CategoryName"] = CategoryName;
                 //hdnCategoryName.Value = Convert.ToString(Session["Category"]);
-                Category = CategoryName; 
+                Category = CategoryName;
                 //CategoryName = "";
             }
 
@@ -669,11 +787,36 @@ namespace Upkeep_v3.Inventory
                             {
                                 int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Item_ID"]);
                                 string Item = Convert.ToString(ds.Tables[0].Rows[i]["Item_Desc"]);
+                                string Current_Stock = Convert.ToString(ds.Tables[0].Rows[i]["Current_Stock"]);
 
                                 // data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
 
-                                data += "<tr><td runat='server' id='myTable'>" + Item + " <span style='float: right;'><a href='#' data-val='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "' class='text-danger' data-container='body' data-toggle='confirmation' data-placement='top' title='Delete record'> 	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </td></tr>";
+                                //data += "<tr><td runat='server' id='myTable'> " + Item + "" +
+                                //    " <span style='color: red;'> [" + Current_Stock + "]</span> " +
+                                //    "<span style='float: right;'><a href='#' data-val='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                                //    "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a> " +
+                                //    " <a href='#' onclick='functionDelete(this);' class='text-danger has-confirmation' data-container='body' data-val='General_Master.aspx?DelItem_ID=" + Item_ID + "' " +
+                                //    "data-toggle='m-tooltip' data-placement='top' " +
+                                //    "title='Delete record'> 	" +
+                                //    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> " +
+                                //    "</td></tr>";
 
+                                //data += "<tr><td runat='server' id='myTable'> " + Item + "" +
+                                //    " <span style='color: red;'> [" + Current_Stock + "]</span> " +
+                                //    "<span style='float: right;'><a href='#' data-val='General_Master.aspx?ItemID=" + Item_ID + "' class='text-success' data-placement='top' title='Edit record'> " +
+                                //    "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a> " +
+                                //    " <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "'  class='text-danger has-confirmation' data-container='body'  " +
+                                //    "data-toggle='m-tooltip' data-placement='top' " +
+                                //    "title='Delete record'> 	" +
+                                //    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </span></td></tr>";
+
+                                data += "<tr><td runat='server' id='myTable'> " + Item + "" +
+                                    " <span style='float: center; color: red; font-weight:bold;'> [ " + Current_Stock + " ] </span> " +
+                                    "<span style='float: right;'> "+
+                                    " <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "'  class='text-danger has-confirmation' data-container='body'  " +
+                                    "data-toggle='m-tooltip' data-placement='top' " +
+                                    "title='Delete record'> 	" +
+                                    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </span></td></tr>";
                             }
                         }
                         else
@@ -779,6 +922,20 @@ namespace Upkeep_v3.Inventory
             //Session["hdnEditClickedID"] = "";
             //Session["hdnEditClickedID"] = "";
         }
+
+        //[System.Web.Services.WebMethod]
+        //public static void DeleteRecord(string Table, string ColID)
+        //{
+        //    General_Master obj = new General_Master();
+        //    obj.DeleteRecordDD(Table, ColID);
+        //}
+        //public void DeleteRecordDD(string Table, string ColID)
+        //{
+        //    Session["DeleteTable"] = Table;
+        //    Session["DeleteID"] = ColID;
+        //}
+
+
         #endregion
     }
 }

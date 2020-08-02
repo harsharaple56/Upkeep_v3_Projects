@@ -32,12 +32,10 @@
                 var table = document.getElementById("tblCategory");
                 var rowID = $("#tblCategory tr").index(this);
 
-
                 var row = table.rows[rowID];
                 var CategoryID, CategoryName;
 
                 // alert($(this).attr('id'));
-
                 // CategoryID = $(this).attr('id');
 
                 CategoryID = row.cells[0].innerHTML;
@@ -150,12 +148,7 @@
                         //alert(xhr.responseText);  // to see the error message
                     }
                 });
-
-
-
-
             });
-
 
             $('.text-success').click(function () {
                 //event.preventDefault();
@@ -170,17 +163,17 @@
                 if (n == true) {
                     var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('=')); 
 
-                    alert(tbl);
-                    alert(IDa);
+                    //alert(tbl);
+                    //alert(IDa);
 
                     //$("#hdnEditTableClicked").val('');
-                    $("#hdnEditTableClicked").val(tbl);
-
                     //$("#hdnEditClickedID").val('');
+
+                    $("#hdnEditTableClicked").val(tbl);
                     $("#hdnEditClickedID").val(IDa);
 
 
-                    var obj = {}; 
+                    var obj = {};
                     var dataString = { 'hdnEditTableClicked': tbl, 'hdnEditClickedID': IDa };
                     var param = JSON.stringify(dataString);
 
@@ -199,16 +192,75 @@
 
                         }
                     });
-
-
-                    // alert(IDa);
-                    // $("#btnOO").click();
                 }
 
                 //return false;
             });
 
+
+
+            //$('.text-danger').click(function (event) {
+
+            //    var tbl = $(this).closest('table').attr('id');;
+            //    var strs = $(this).attr('data-val');
+            //    var n = strs.includes("=");
+            //    alert(strs);
+            //    if (n == true) {
+            //        var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('='));  
+            //        var obj = {};
+            //        var dataString = {'Table': tbl, 'ColID': IDa };
+            //        var param = JSON.stringify(dataString);
+
+            //        //debugger;
+            //        $.ajax({
+            //            type: 'POST',
+            //            url: 'General_Master.aspx/DeleteRecord',
+            //            data: param,
+            //            //data: '',
+            //            contentType: 'application/json; charset=utf-8',
+            //            datatype: 'json',
+            //            success: function (response) {
+
+            //            },
+            //            error: function (xhr, status, error) {
+
+            //            }
+            //        });
+            //    }
+            //});
+
         });
+
+
+
+        //function functionDelete(x) {
+        //    var tbl = $(x).closest('table').attr('id');;
+        //    var strs = $(x).attr('data-val');
+        //    var n = strs.includes("=");
+
+        //    if (n == true) {
+        //        var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('='));  
+        //        var obj = {};
+        //        var dataString = { 'Table': tbl, 'ColID': IDa };
+        //        var param = JSON.stringify(dataString);
+
+        //        //debugger;
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: 'General_Master.aspx/DeleteRecord',
+        //            data: param,
+        //            //data: '',
+        //            contentType: 'application/json; charset=utf-8',
+        //            datatype: 'json',
+        //            success: function (response) {
+
+        //            },
+        //            error: function (xhr, status, error) {
+
+        //            }
+        //        });
+        //    }
+        //}
 
         function HighlightCategoryTable() {
             $("#tblCategory tr").click(function () {
@@ -446,7 +498,6 @@
                             <div class="m-portlet__body py-1 px-2">
                                 <table id="tblLItems" class="table m-table table-sm">
                                     <tbody>
-
                                         <%=Item_bindgrid()%>
                                     </tbody>
                                 </table>
