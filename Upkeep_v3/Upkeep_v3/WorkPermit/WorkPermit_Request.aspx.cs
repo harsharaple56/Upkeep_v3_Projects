@@ -987,20 +987,29 @@ namespace Upkeep_v3.WorkPermit
                         lblTicketNo.Visible = true;
                         lblTicket.Visible = true;
                         lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+                        divStatus.Visible = true;
 
                         switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
                         {
                             case "Close":
-                                divAlertClosed.Visible = true;
+                                lblRequestStatus.Text = "Closed";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
                                 break;
                             case "Expired":
-                                divAlertExpired.Visible = true;
+                                lblRequestStatus.Text = "Open";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--metal m-badge--wide");
                                 break;
                             case "Open":
-                                divAlertOpen.Visible = true;
+                                lblRequestStatus.Text = "Open";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
                                 break;
                             case "Reject":
-                                divAlertRejected.Visible = true;
+                                lblRequestStatus.Text = "Rejected";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                                break;
+                            case "Approve":
+                                lblRequestStatus.Text = "Approved";
+                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--info m-badge--wide");
                                 break;
                         }
 
