@@ -6910,7 +6910,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         //[+]Gate Pass API by Ajay 7th March 2020
         [Route("api/UpKeep/Fetch_MyRequest_GatePass")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyRequest_GatePass(string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyRequest_GatePass(string EmpCD, string RollCD, string Date)
         {
             List<ClsGatePassRequestDetails> ObjGatePass = new List<ClsGatePassRequestDetails>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -6923,9 +6923,10 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@Date", Date);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_MYREQUEST_GP_API", ObjLocSqlParameter);
 
@@ -6986,7 +6987,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         [Route("api/UpKeep/Fetch_MyActionable_GatePass")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyActionable_GatePass(string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyActionable_GatePass(string EmpCD, string RollCD, string Date)
         {
             List<ClsGatePassRequestDetails> ObjGatePass = new List<ClsGatePassRequestDetails>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -6999,9 +7000,10 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@Date", Date);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_MyActionable_GP_API", ObjLocSqlParameter);
 
@@ -7373,7 +7375,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
         #region Work permit
         [Route("api/UpKeep/Fetch_MyRequest_WorkPermit")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyRequest_WorkPermit(string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyRequest_WorkPermit(string EmpCD, string RollCD, string Date)
         {
             List<ClsWorkPermitRequestDetails> ObjWorkPermit = new List<ClsWorkPermitRequestDetails>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -7386,9 +7388,10 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@Date", Date);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_MYREQUEST_WP_API", ObjLocSqlParameter);
 
@@ -7449,7 +7452,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
         [Route("api/UpKeep/Fetch_MyActionable_WorkPermit")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyActionable_WorkPermit(string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyActionable_WorkPermit(string EmpCD, string RollCD, string Date)
         {
             List<ClsWorkPermitRequestDetails> ObjWorkPermit = new List<ClsWorkPermitRequestDetails>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -7462,9 +7465,10 @@ namespace Upkeep_v3_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@Date", Date);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_MyActionable_WP_API ", ObjLocSqlParameter);
 
