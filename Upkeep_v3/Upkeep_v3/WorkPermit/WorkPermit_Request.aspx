@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true"  Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs" Inherits="Upkeep_v3.WorkPermit.WorkPermit_Request" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="WorkPermit_Request.aspx.cs" Inherits="Upkeep_v3.WorkPermit.WorkPermit_Request" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -239,20 +239,26 @@
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-xl-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Work Permit Title :</label>
+                                    <label class="col-xl-3 col-form-label font-weight-bold"><span style="color: red;" class="col-x-1">*</span>Work Permit Title :</label>
+                                    
                                     <div class="col-xl-4">
                                         <asp:DropDownList ID="ddlWorkPermitTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlWorkPermitTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlWorkPermitTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Work Permit Title"></asp:RequiredFieldValidator>
                                     </div>
-                                    <label class="col-xl-2 col-form-label font-weight-bold" runat="server" Visible="false" id="lblTicketNo">Ticket No. :</label>
-                                    <div class="col-xl-3">
+                                    <label class="col-xl-2 col-form-label font-weight-bold" runat="server" visible="false" id="lblTicketNo">Ticket No. :</label>
+                                    <div class="col-xl-2">
                                         <div class="col-form-label">
                                             <asp:Label ID="lblTicket" runat="server" Text="" CssClass="form-control-label" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group m-form__group row" id="divStatus" runat="server" visible="false" style="padding-left: 1%;">
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Request Status :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:Label ID="lblRequestStatus" runat="server"></asp:Label>
+                                    </div>
+                                </div>
                                 <br />
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
@@ -281,7 +287,7 @@
                                             <asp:Label ID="lblStoreName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
 
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Manager Name :</label>
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Manager Name :</label>
                                         <div class="col-xl-3 col-lg-3 col-form-label">
                                             <asp:Label ID="lblRetailerName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
@@ -295,7 +301,7 @@
                                         <asp:Label ID="lblMobileNo" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Email ID :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Email ID :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <asp:Label ID="LblEmailID" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                     </div>
@@ -303,7 +309,7 @@
                                 </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Work Permit From Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">From Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
@@ -317,7 +323,7 @@
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Work Permit To Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">To Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
@@ -369,7 +375,7 @@
                                         <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
                                             <ItemTemplate>
 
-                                                 <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                                <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
                                                 <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
                                                 <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
@@ -489,7 +495,7 @@
                                                 <asp:TemplateField HeaderText="Signature" HeaderStyle-Width="200px">
                                                     <ItemTemplate>
                                                         <asp:Image ID="imgSignature" Height="100" Width="100" runat="server" AlternateText="Signature Missing.."
-                                                            ImageUrl='<%# ResolveUrl("../assets/app/media/img/signature/"+Eval("Emp_Sign").ToString()) %>' />
+                                                            ImageUrl='<%# ResolveUrl(Eval("Emp_Sign").ToString()) %>' />
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
