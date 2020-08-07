@@ -5,7 +5,7 @@ using System.Web;
 using System.Runtime.Serialization;
 using System.Xml;
 
-namespace Upkeep_v3_MobileApp_WebAPI.Models
+namespace eFacilito_MobileApp_WebAPI.Models
 {
     public class ClsUpkeepLogin
     {
@@ -917,7 +917,7 @@ namespace Upkeep_v3_MobileApp_WebAPI.Models
         //public string Ticket_ImagePath { get; set; }
         public string EmpCD { get; set; }
         public string RollCD { get; set; }
-
+       
     }
 
     public class ClsTicketUpdateAction

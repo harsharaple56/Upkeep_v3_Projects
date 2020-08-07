@@ -8,7 +8,7 @@ using System.Configuration;
 using System.Net.Mail;
 using System.Net;
 
-namespace Upkeep_v3_MobileApp_WebAPI.Models
+namespace eFacilito_MobileApp_WebAPI.Models
 {
     public class GatePassMail
     {

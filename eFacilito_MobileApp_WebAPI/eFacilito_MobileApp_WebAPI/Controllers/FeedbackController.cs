@@ -6,7 +6,7 @@ using System.Web.Http;
 //using System.Web.Mvc;
 using System.Net;
 using System.Net.Http;
-using Upkeep_v3_MobileApp_WebAPI.Models;
+using eFacilito_MobileApp_WebAPI.Models;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,7 +14,7 @@ using System.Web.Configuration;
 using System.Text;
 using System.IO;
 
-namespace Upkeep_v3_MobileApp_WebAPI.Controllers
+namespace eFacilito_MobileApp_WebAPI.Controllers
 {
     public class FeedbackController : ApiController
     {

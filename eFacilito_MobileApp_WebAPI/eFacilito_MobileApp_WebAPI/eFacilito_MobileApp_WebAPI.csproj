@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Upkeep_v3_MobileApp_WebAPI</RootNamespace>
-    <AssemblyName>Upkeep_v3_MobileApp_WebAPI</AssemblyName>
+    <RootNamespace>eFacilito_MobileApp_WebAPI</RootNamespace>
+    <AssemblyName>eFacilito_MobileApp_WebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -160,6 +160,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TicketingController.cs" />
     <Compile Include="Controllers\UpKeepController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,7 @@
     <Compile Include="Models\ClsAsyncTasks.cs" />
     <Compile Include="Models\ClsCommunication.cs" />
     <Compile Include="Models\ClsFeedback.cs" />
+    <Compile Include="Models\ClsTicketing.cs" />
     <Compile Include="Models\ClsUpkeepMasters.cs" />
     <Compile Include="Models\GatePassMail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +234,7 @@
     <Folder Include="FeedbackImages\" />
     <Folder Include="Views\ClsUpkeepMasters\" />
     <Folder Include="Views\Feedback\" />
+    <Folder Include="Views\Ticketing\" />
     <Folder Include="Views\UpKeep\" />
   </ItemGroup>
   <ItemGroup>

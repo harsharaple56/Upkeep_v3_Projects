@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Upkeep_v3_MobileApp_WebAPI
+namespace eFacilito_MobileApp_WebAPI
 {
     public class BundleConfig
     {

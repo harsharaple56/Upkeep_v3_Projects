@@ -12,7 +12,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 
-namespace Upkeep_v3_MobileApp_WebAPI.Models
+namespace eFacilito_MobileApp_WebAPI.Models
 {
     public class ClsCommunication
     {
