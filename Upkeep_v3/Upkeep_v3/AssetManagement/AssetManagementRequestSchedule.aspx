@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementRequestSchedule.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequestSchedule" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementRequestSchedule.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequestSchedule" EnableEventValidation = "false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
