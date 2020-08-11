@@ -49,6 +49,15 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
+        /// btnRenewAMC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRenewAMC;
+        
+        /// <summary>
         /// btnTest control.
         /// </summary>
         /// <remarks>
@@ -526,15 +535,6 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox customCheck;
         
         /// <summary>
-        /// btnRenewAMC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRenewAMC;
-        
-        /// <summary>
         /// DivIsNewAmc control.
         /// </summary>
         /// <remarks>
@@ -587,6 +587,15 @@ namespace Upkeep_v3.AssetManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator13;
+        
+        /// <summary>
+        /// lblAmcStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAmcStatus;
         
         /// <summary>
         /// txtAmcStatus control.
