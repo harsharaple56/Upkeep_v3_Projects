@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequest" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequest" EnableEventValidation = "false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -66,7 +66,7 @@
 
             $("#txtassetLocation").on('input', function () {
                 var val = this.value;
-               
+
                 $('#hdnassetLocation').val("");
                 if ($('#dlassetLocation option').filter(function () {
                     if (this.value.toUpperCase() === val.toUpperCase()) {
@@ -134,6 +134,7 @@
 
 
             function DivShowHide() {
+
                 if ($("#customCheck").prop("checked") == false) {
                     //alert('FF1');
                     $("div#DivIsAssetCoveredInAmc").hide("slow");
@@ -155,8 +156,9 @@
             //$("div#DivIsAssetCoveredInAmc").hide("slow");
 
             DivShowHide();
-            
+
             $("#btnAddAssetType").click(function () {
+
                 $("div#divModalAssetType").show();
                 $("div#divModalAssetCategory").hide();
                 $("div#divModalAssetTypeSave").show();
@@ -168,6 +170,7 @@
                 //   return false;
             });
             $("#btnAddAssetCategory").click(function () {
+
                 $("div#divModalAssetType").hide();
                 $("div#divModalAssetCategory").show();
                 $("div#divModalAssetTypeSave").hide();
@@ -179,6 +182,7 @@
                 // return false;
             });
             $("#btnAddAssetVendor").click(function () {
+
                 $("div#divModalAssetType").hide();
                 $("div#divModalAssetCategory").hide();
                 $("div#divModalAssetTypeSave").hide();
@@ -190,6 +194,7 @@
                 // return false;
             });
             $("#btnAddDepartment").click(function () {
+
                 $("div#divModalAssetType").hide();
                 $("div#divModalAssetCategory").hide();
                 $("div#divModalAssetTypeSave").hide();
@@ -201,6 +206,7 @@
                 // return false;
             });
             $("#btnAddLocation").click(function () {
+
                 $("div#divModalAssetType").hide();
                 $("div#divModalAssetCategory").hide();
                 $("div#divModalAssetTypeSave").hide();
@@ -227,21 +233,68 @@
                 var title = button.data('title');
                 modal.find('.modal-title').text(title)
 
+
+
                 //alert(button.attr('id'));
                 if (button.attr('id') == "btnAddAssetType") {
                     $('#hdAddAsset').val("1");
+
+                    $("div#divModalAssetType").show();
+                    $("div#divModalAssetCategory").hide();
+                    $("div#divModalAssetTypeSave").show();
+                    $("div#divModalAssetCategorySave").hide();
+                    $("div#divModalDepartmentSave").hide();
+                    $("div#divModalAssetDepartment").hide();
+                    $("div#divModalVendorSave").hide();
+                    $("div#divModalAssetVendor").hide();
                 }
                 else if (button.attr('id') == "btnAddAssetCategory") {
                     $('#hdAddAsset').val("2");
+
+                    $("div#divModalAssetType").hide();
+                    $("div#divModalAssetCategory").show();
+                    $("div#divModalAssetTypeSave").hide();
+                    $("div#divModalAssetCategorySave").show();
+                    $("div#divModalDepartmentSave").hide();
+                    $("div#divModalAssetDepartment").hide();
+                    $("div#divModalVendorSave").hide();
+                    $("div#divModalAssetVendor").hide();
                 }
                 else if (button.attr('id') == "btnAddAssetVendor") {
                     $('#hdAddAsset').val("3");
+
+                    $("div#divModalAssetType").hide();
+                    $("div#divModalAssetCategory").hide();
+                    $("div#divModalAssetTypeSave").hide();
+                    $("div#divModalAssetCategorySave").hide();
+                    $("div#divModalDepartmentSave").hide();
+                    $("div#divModalAssetDepartment").hide();
+                    $("div#divModalVendorSave").show();
+                    $("div#divModalAssetVendor").show();
                 }
                 else if (button.attr('id') == "btnAddDepartment") {
                     $('#hdAddAsset').val("4");
+
+                    $("div#divModalAssetType").hide();
+                    $("div#divModalAssetCategory").hide();
+                    $("div#divModalAssetTypeSave").hide();
+                    $("div#divModalAssetCategorySave").hide();
+                    $("div#divModalDepartmentSave").show();
+                    $("div#divModalAssetDepartment").show();
+                    $("div#divModalVendorSave").hide();
+                    $("div#divModalAssetVendor").hide();
                 }
                 else if (button.attr('id') == "btnAddLocation") {
                     $('#hdAddAsset').val("5");
+
+                    $("div#divModalAssetType").hide();
+                    $("div#divModalAssetCategory").hide();
+                    $("div#divModalAssetTypeSave").hide();
+                    $("div#divModalAssetCategorySave").hide();
+                    $("div#divModalDepartmentSave").hide();
+                    $("div#divModalAssetDepartment").hide();
+                    $("div#divModalVendorSave").hide();
+                    $("div#divModalAssetVendor").hide();
                 }
                 //alert($('#hdAddAsset').attr('value')); 
             });
@@ -265,7 +318,7 @@
 
                     alert(image);
                     if (title.includes("Image")) {
-                       // alert("Image");
+                        // alert("Image");
 
                         if (index == 0)
                             var item = '<div class="carousel-item active">';
@@ -283,8 +336,8 @@
                         else
                             var item = '<div class="carousel-item">';
 
-                        item += '<video width="320" height="240" controls><source src="' + image + '" type="video/mp4"></video>';  
-                        
+                        item += '<video width="320" height="240" controls><source src="' + image + '" type="video/mp4"></video>';
+
                         modal.find('.modal-body .carousel-inner').append(item);
                     }
                     if (title.includes("Document")) {
@@ -298,14 +351,14 @@
 
                         ////$("#pdfdiv_content").append($obj);
                         //modal.find('.modal-body .carousel-inner').append($obj);
-                        
+
                         if (index == 0)
                             var item = '<div class="carousel-item active">';
                         else
                             var item = '<div class="carousel-item">';
 
-                        item += '<p><iframe src="'+image+'" frameborder="0" height="400" width="95%"></iframe></p></div>'; 
-                        
+                        item += '<p><iframe src="' + image + '" frameborder="0" height="400" width="95%"></iframe></p></div>';
+
                         modal.find('.modal-body .carousel-inner').append(item);
                     }
 
@@ -322,7 +375,7 @@
                 var value = <%= Session["TransactionID"].ToString() %>;
 
                 if (value == 0) {
-                    
+
                     alert("A2");
 
                     $('#txtHdn').val("");
@@ -383,8 +436,8 @@
 
                     }
                 }
-                
-                    alert("A3");
+
+                alert("A3");
                 if ($('#hdnassetLocation').val() == '') {
                     alert("Please Select Proper Location!");
                     return;
@@ -588,7 +641,7 @@
                                             </div>
 
                                             <%--<label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;"></span></label>--%>
-                                            <div class="col-xl-3 col-lg-3" >
+                                            <div class="col-xl-3 col-lg-3">
                                                 <asp:Button ID="btnAddAssetVendor" type="Button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
                                                     Text="+" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
                                                     data-title="Add Asset Vendor" data-backdrop="static" data-keyboard="false" />
@@ -983,8 +1036,8 @@
                                                                         <th>Schedule Date</th>
                                                                         <th>Assigned To</th>
                                                                         <th>Alert Before(Days)</th>
-                                                                        <th style="display:none;" >Remarks</th>
-                                                                        <th style="display:none;" >Status</th>
+                                                                        <th style="display: none;">Remarks</th>
+                                                                        <th style="display: none;">Status</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -1097,7 +1150,7 @@
                                         </div>
                                     </div>
 
-                                    
+
                                     <br />
                                     <div id="divModalAssetDepartment" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
@@ -1110,7 +1163,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <br />
                                     <div id="divModalAssetVendor" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
@@ -1122,51 +1175,51 @@
                                                     ErrorMessage="Please enter Vendor Name"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                    <br />
+                                        <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Description :</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                <asp:TextBox ID="txtModalVendor_Desc" TextMode ="MultiLine"  runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:TextBox ID="txtModalVendor_Desc" TextMode="MultiLine" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator26" runat="server" ControlToValidate="txtModalVendor_Desc" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
                                                     ErrorMessage="Please enter Vendor Description"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                    <br />
+                                        <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Address :</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                <asp:TextBox ID="txtModalVendor_Address" runat="server" TextMode ="MultiLine"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:TextBox ID="txtModalVendor_Address" runat="server" TextMode="MultiLine" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ControlToValidate="txtModalVendor_Address" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
                                                     ErrorMessage="Please enter Vendor Name"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                    <br />
+                                        <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Contact 1 :</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                <asp:TextBox ID="txtModalVendor_Contact1" runat="server" TextMode ="Number"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:TextBox ID="txtModalVendor_Contact1" runat="server" TextMode="Number" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ControlToValidate="txtModalVendor_Contact1" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
                                                     ErrorMessage="Please enter Contact 2"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-                                    <br />
+                                        <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Contact 2 :</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                <asp:TextBox ID="txtModalVendor_Contact2" runat="server" TextMode ="Number"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:TextBox ID="txtModalVendor_Contact2" runat="server" TextMode="Number" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="txtModalVendor_Contact2" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
                                                     ErrorMessage="Please enter Contact 1"></asp:RequiredFieldValidator>--%>
                                             </div>
                                         </div>
-                                    <br />
+                                        <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Vendor Email :</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                <asp:TextBox ID="txtModalVendor_Email" runat="server" TextMode ="Email"  class="form-control" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:TextBox ID="txtModalVendor_Email" runat="server" TextMode="Email" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="txtModalVendor_Email" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateModalVendor" ForeColor="Red" InitialValue=""
                                                     ErrorMessage="Please enter Email ID"></asp:RequiredFieldValidator>

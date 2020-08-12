@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementAmcRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementAmcRequest" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementAmcRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementAmcRequest" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -311,7 +311,7 @@
             });
 
 
-                 $('#exampleModal').on('show.bs.modal', function (event) {
+            $('#exampleModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var title = button.data('title');// button.data('Ffl'); // Extract info from data-* attributes
                 //  var images_list = button.data('images'); // Extract info from data-* attributes
@@ -329,7 +329,7 @@
 
                     //alert(image);
                     if (title.includes("Image")) {
-                       // alert("Image");
+                        // alert("Image");
 
                         if (index == 0)
                             var item = '<div class="carousel-item active">';
@@ -341,18 +341,18 @@
                         modal.find('.modal-body .carousel-inner').append(item);
                     }
                     if (title.includes("Video")) {
-                      // alert("Video");
+                        // alert("Video");
                     }
                     if (title.includes("Document")) {
-                      // alert("Document"); 
-                        
+                        // alert("Document"); 
+
                         if (index == 0)
                             var item = '<div class="carousel-item active">';
                         else
                             var item = '<div class="carousel-item">';
 
-                        item += '<p><iframe src="'+image+'" frameborder="0" height="400" width="95%"></iframe></p></div>'; 
-                        
+                        item += '<p><iframe src="' + image + '" frameborder="0" height="400" width="95%"></iframe></p></div>';
+
                         modal.find('.modal-body .carousel-inner').append(item);
                     }
 
@@ -381,10 +381,10 @@
                             return;
                         }
                     }
-                } else{
+                } else {
                     if ($("#ddlAssetName").val() === "") {
-                            alert("Please Select Asset!");
-                            return;
+                        alert("Please Select Asset!");
+                        return;
                     }
                 }
 
@@ -441,6 +441,10 @@
                                             CausesValidation="true" ValidationGroup="validateAssetAMC" Text="Save" OnClick="btnSave_Click" Style="display: none" />
                                         <%--<asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                                             CausesValidation="true" ValidationGroup="validateAssetAMC" Text="SaveAMC" Style="display: none" />--%>
+
+                                        <asp:Button type="Button" ID="btnRenewAMC" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md"
+                                            Text="RENEW" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
+                                            data-title="Add AMC" data-backdrop="static" data-keyboard="false" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
@@ -749,7 +753,7 @@
                                     </div>
 
                                 </div>
-                               
+
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                     <br />
                                     <div id="DivIsUpdateAMC" runat="server" style="display: block;">
@@ -760,9 +764,6 @@
 
                                             </div>
                                             <div class="col-xl-2 col-lg-2">
-                                                <asp:Button type="Button" ID="btnRenewAMC" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md"
-                                                    Text="RENEW" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
-                                                    data-title="Add AMC" data-backdrop="static" data-keyboard="false" />
                                             </div>
                                         </div>
                                     </div>
@@ -770,16 +771,16 @@
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name:</label>
                                             <div class="col-xl-8 col-lg-8">
-                                                  <asp:DropDownList ID="ddlAssetName" class="form-control m-input" runat="server" ClientIDMode="Static"
-                                                       OnSelectedIndexChanged="ddlAssetName_SelectedIndexChanged"   AutoPostBack="true" >
-                                                    </asp:DropDownList>
-                                                  <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="ddlAssetName" Visible="true"
+                                                <asp:DropDownList ID="ddlAssetName" class="form-control m-input" runat="server" ClientIDMode="Static"
+                                                    OnSelectedIndexChanged="ddlAssetName_SelectedIndexChanged" AutoPostBack="true">
+                                                </asp:DropDownList>
+                                                <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="ddlAssetName" Visible="true"
                                                         Display="Dynamic" ValidationGroup="validateAssetAddService" ForeColor="Red" InitialValue=""
                                                         ErrorMessage="Please select Asset Type"></asp:RequiredFieldValidator>--%>
-                                                
-                                                    <asp:HiddenField ID="txtIsNewAmc" runat="server" ClientIDMode="Static" /> 
-                                                
-                                            </div> 
+
+                                                <asp:HiddenField ID="txtIsNewAmc" runat="server" ClientIDMode="Static" />
+
+                                            </div>
                                         </div>
                                     </div>
 
@@ -797,7 +798,7 @@
                                                         Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
                                                         ErrorMessage="Please select AMC Type"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
+                                                <label id="lblAmcStatus"  runat="server" class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
                                                 <div class="col-xl-3 col-lg-3">
                                                     <asp:TextBox ID="txtAmcStatus" ReadOnly="true" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
@@ -924,12 +925,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <br />
                                         <div id="Div32" runat="server" style="display: block;">
                                             <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                                 <div class="col-xl-6 col-lg-6">
-                                                    <h5><label class="col-xl-6 col-lg-6 form-control-label"> AMC History :</label></h5>
+                                                    <h5>
+                                                        <label class="col-xl-6 col-lg-6 form-control-label">AMC History :</label></h5>
                                                 </div>
                                             </div>
                                         </div>
