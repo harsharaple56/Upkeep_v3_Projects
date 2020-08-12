@@ -320,7 +320,7 @@
                                             <div class="row" style="margin-bottom: 0;">
                                                 <div class="col-xs-8 col-lg-6 form-inline">
                                                     <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Workflow Description :</label>
-                                                    <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server" ></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkflowDesc" Visible="true"
                                                         Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
                                                 </div>

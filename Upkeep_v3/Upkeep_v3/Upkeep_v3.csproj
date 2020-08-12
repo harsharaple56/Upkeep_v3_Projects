@@ -436,9 +436,15 @@
     <Content Include="assets\app\media\img\flags\019-france.svg" />
     <Content Include="assets\app\media\img\flags\020-flag.svg" />
     <Content Include="assets\app\media\img\icons\AddUser.png" />
+    <Content Include="assets\app\media\img\icons\approved-64.png" />
+    <Content Include="assets\app\media\img\icons\approved-96.png" />
+    <Content Include="assets\app\media\img\icons\closed-96.png" />
     <Content Include="assets\app\media\img\icons\exchange.svg" />
+    <Content Include="assets\app\media\img\icons\hold-90.png" />
     <Content Include="assets\app\media\img\icons\logout.svg" />
     <Content Include="assets\app\media\img\icons\question.svg" />
+    <Content Include="assets\app\media\img\icons\rejcted-144.png" />
+    <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
