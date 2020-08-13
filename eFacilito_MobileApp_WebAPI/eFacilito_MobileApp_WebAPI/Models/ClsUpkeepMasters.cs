@@ -799,7 +799,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int Location_ID { get; set; }
         public int Department_ID { get; set; }
         public string Status { get; set; }
-        public string ActionStatus { get; set; } 
+        public string ActionStatus { get; set; }
 
         public int Chk_Config_ID { get; set; }
         public string Chk_Title { get; set; }
@@ -918,7 +918,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         //public string Ticket_ImagePath { get; set; }
         public string EmpCD { get; set; }
         public string RollCD { get; set; }
-       
+
     }
 
     public class ClsTicketUpdateAction
@@ -961,4 +961,164 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     #endregion
 
+
+    #region "ASSET"
+
+    #region "ASSET MASTER DATA"
+    public class clsMasterAsset {
+
+        public List<clsMasterAssestType> objAssetType = new List<clsMasterAssestType>();
+        public List<clsMasterAssestCategory> objAssetCategory = new List<clsMasterAssestCategory>();
+        public List<clsMasterAssestVendor> objAssetVendor = new List<clsMasterAssestVendor>();
+        public List<clsMasterAssestDepartement> objAssetDepartment = new List<clsMasterAssestDepartement>();
+        public List<clsMasterAssestLocation> objAssetLocation = new List<clsMasterAssestLocation>();
+        public List<clsMasterAssestAmcType> objAssetAMCType = new List<clsMasterAssestAmcType>();
+        public List<clsMasterAssestCurrency> objAssetCurrency = new List<clsMasterAssestCurrency>();
+        public List<clsMasterAssestUsers> objAssetUser = new List<clsMasterAssestUsers>(); 
+    }
+    public class clsMasterAssestType
+    {
+        public int Asset_Type_ID { get; set; }
+        public string Asset_Type_Desc { get; set; }
+    }
+    public class clsMasterAssestCategory
+    {
+        public int Asset_Category_ID { get; set; }
+        public int Asset_Type_ID { get; set; }
+        public string Category_Desc { get; set; }
+    }
+    public class clsMasterAssestVendor
+    {
+        public int Vendor_ID { get; set; } 
+        public string Vendor_Name { get; set; }
+    }
+
+    public class clsMasterAssestDepartement
+    {
+        public int Department_ID { get; set; }
+        public string Dept_Desc { get; set; }
+    }
+    public class clsMasterAssestLocation
+    {
+        public int Loc_id { get; set; }
+        public string Loc_Desc { get; set; } 
+    }
+    public class clsMasterAssestAmcType
+    {
+        public int Asset_AMC_Type_ID { get; set; }
+        public string Asset_AMC_Type_Desc { get; set; } 
+    }
+
+    public class clsMasterAssestCurrency
+    {
+        public int Currency_ID { get; set; }
+        public string Currency_Code { get; set; }
+    }
+    public class clsMasterAssestUsers
+    {
+        public int User_ID { get; set; }
+        public string User_Code { get; set; }
+        public string Name { get; set; }
+    }
+    
+
+    #endregion
+
+    #region "ASSET Request"
+    public class ClsAssetRequest
+    {
+        public List<ClsAssetRequestDetail> objAssetDetail = new List<ClsAssetRequestDetail>();
+        public ClsAssetAMCRequest objAssetAmcDetail = new ClsAssetAMCRequest();
+        public List<ClsAssetServiceDetail> objAssetServiceDetailc = new List<ClsAssetServiceDetail>();
+    }
+    public class ClsAssetRequestDetail
+    {
+        public int Asset_ID { get; set; }
+        public int Asset_Type_ID { get; set; }
+        public int Asset_Category_ID { get; set; }
+        public string Asset_Name { get; set; }
+        public string Asset_Desc { get; set; }
+        public string Asset_Make { get; set; }
+        public string Asset_Serial_No { get; set; }
+        public int Vendor_ID { get; set; }
+        public int Department_ID { get; set; }
+        public int Loc_id { get; set; }
+        public decimal Asset_Cost { get; set; }
+        public string Currency_Type { get; set; }
+        public string Asset_Purchase_Date { get; set; }
+        public bool Asset_Is_AMC_Active { get; set; }
+        public int Company_ID { get; set; }
+        public string Loc_Desc { get; set; }
+
+        public List<ClsAssetRequestDoc> objAssetDoc = new List<ClsAssetRequestDoc>();
+    }
+    public class ClsAssetRequestDoc
+    {
+        public string Asset_Doc_Type { get; set; }
+        public string ImagePath { get; set; }
+    }
+    public class ClsAssetAMCRequest
+    {
+        public List<ClsAssetAMCDetail> objAssetAmc = new List<ClsAssetAMCDetail>();
+        public List<ClsAssetAMCHistoryDetail> objAssetAmcHistory = new List<ClsAssetAMCHistoryDetail>();
+    }
+    public class ClsAssetAMCDetail
+    {
+        public int Asset_AMC_ID { get; set; }
+        public int Asset_AMC_Type_ID { get; set; }
+        public int Asset_ID { get; set; }
+        public string AMC_Desc { get; set; }
+        public string AMC_Start_Date { get; set; }
+        public string AMC_End_Date { get; set; }
+        public int Assigned_Vendor { get; set; }
+        public string AMC_Inclusions { get; set; }
+        public string AMC_Exclusions { get; set; }
+        public string AdditionalRemarks { get; set; }
+        public string AMC_Status { get; set; }
+        public string Vendor_Name { get; set; }
+
+        public List<ClsAssetAMCDoc> objAssetAmcDoc = new List<ClsAssetAMCDoc>();
+    }
+    public class ClsAssetAMCDoc
+    {
+        public string Asset_AMC_Doc_Type { get; set; }
+        public string ImagePath { get; set; }
+    }
+    public class ClsAssetAMCHistoryDetail
+    {
+        public int Asset_AMC_ID { get; set; }
+        public int Asset_AMC_Type_ID { get; set; }
+        public int Asset_ID { get; set; }
+        public string AMC_Desc { get; set; }
+        public string AMC_Start_Date { get; set; }
+        public string AMC_End_Date { get; set; }
+        public int Assigned_Vendor { get; set; }
+        public string AMC_Inclusions { get; set; }
+        public string AMC_Exclusions { get; set; }
+        public string AdditionalRemarks { get; set; }
+        public string AMC_Status { get; set; }
+        public string Vendor_Name { get; set; }
+        public string Asset_AMC_Type_Desc { get; set; }
+
+        public List<ClsAssetAMCHistoryDoc> objAssetAmcHistoryDoc = new List<ClsAssetAMCHistoryDoc>();
+    }
+    public class ClsAssetAMCHistoryDoc
+    {
+        public string Asset_AMC_Doc_Type { get; set; }
+        public string ImagePath { get; set; }
+    }
+    public class ClsAssetServiceDetail
+    {
+        public int Schedule_ID { get; set; }
+        public int Asset_ID { get; set; }
+        public string Service_Date { get; set; }
+        public string Alert_Date { get; set; }
+        public int Assigned_To { get; set; }
+        public string Service_Status { get; set; }
+        public string Remarks { get; set; }
+        public int Alert_Day { get; set; }
+    }
+    #endregion
+
+    #endregion
 }
