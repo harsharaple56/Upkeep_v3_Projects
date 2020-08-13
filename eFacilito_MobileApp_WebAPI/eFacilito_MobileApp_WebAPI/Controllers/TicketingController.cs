@@ -123,6 +123,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
                                              Ticket_Date = p.Field<string>("Ticket_Date"),
                                              Ticket_Status = p.Field<string>("Tkt_Status"),
+                                             //Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
                                              Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                              Ticket_Message = p.Field<string>("Tkt_Message"),
                                              Ticket_ImagePath = p.Field<string>("ImagePath")
@@ -405,7 +406,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              Ticket_Status = p.Field<string>("Tkt_Status"),
                                              Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                              Ticket_Message = p.Field<string>("Tkt_Message"),
-                                             Ticket_ImagePath = p.Field<string>("ImagePath")
+                                             Ticket_ImagePath = p.Field<string>("ImagePath"),
+                                             Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
                                          }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Objticket);

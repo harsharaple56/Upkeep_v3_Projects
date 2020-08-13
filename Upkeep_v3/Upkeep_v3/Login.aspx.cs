@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using Sharpbrake.Client;
 
 namespace Upkeep_v3
 {
@@ -23,6 +24,33 @@ namespace Upkeep_v3
         protected void Page_Load(object sender, EventArgs e)
         {
             lblVersion.Text = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
+
+            //var airbrake = new AirbrakeNotifier(new AirbrakeConfig
+            //{
+            //    ProjectId = "288283",
+            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
+            //});
+
+            //var config = new AirbrakeConfig
+            //{
+            //    ProjectId = "288283",
+            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
+            //};
+
+            try
+            {
+
+                var settings = ConfigurationManager.AppSettings.AllKeys
+        .Where(key => key.StartsWith("Airbrake", StringComparison.OrdinalIgnoreCase))
+        .ToDictionary(key => key, key => ConfigurationManager.AppSettings[key]);
+
+                var airbrakeConfiguration = AirbrakeConfig.Load(settings);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         protected void txtCompanyCode_TextChanged(object sender, EventArgs e)
