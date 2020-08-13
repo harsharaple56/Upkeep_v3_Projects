@@ -8999,6 +8999,333 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         #endregion
 
 
+        #region "ASSET"
+
+        [Route("api/UpKeep/Fetch_Asset_master")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Asset_master(int UserID) //, int CompanyID
+        {
+
+            clsMasterAsset ObjAssetMst = new clsMasterAsset();
+
+            List<clsMasterAssestType> objAssetType = new List<clsMasterAssestType>();
+            List<clsMasterAssestCategory> objAssetCategory = new List<clsMasterAssestCategory>();
+            List<clsMasterAssestVendor> objAssetVendor = new List<clsMasterAssestVendor>();
+            List<clsMasterAssestDepartement> objAssetDepartment = new List<clsMasterAssestDepartement>();
+            List<clsMasterAssestLocation> objAssetLocation = new List<clsMasterAssestLocation>();
+            List<clsMasterAssestAmcType> objAssetAMCType = new List<clsMasterAssestAmcType>();
+            List<clsMasterAssestCurrency> objAssetCurrency = new List<clsMasterAssestCurrency>();
+            List<clsMasterAssestUsers> objAssetUser = new List<clsMasterAssestUsers>();
+
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@UserID", UserID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_ASSET_FETCH_DROPDOWN_LIST", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            objAssetType = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                            select new clsMasterAssestType
+                                            {
+                                                Asset_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_Type_ID")),
+                                                Asset_Type_Desc = Convert.ToString(p.Field<string>("Asset_Type_Desc"))
+
+                                            }).ToList();
+                        }
+                        if (DsDataSet.Tables[1].Rows.Count > 0)
+                        {
+                            objAssetCategory = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                                select new clsMasterAssestCategory
+                                                {
+                                                    Asset_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_Type_ID")),
+                                                    Asset_Category_ID = Convert.ToInt32(p.Field<decimal>("Asset_Category_ID")),
+                                                    Category_Desc = Convert.ToString(p.Field<string>("Category_Desc"))
+
+                                                }).ToList();
+                        }
+                        if (DsDataSet.Tables[2].Rows.Count > 0)
+                        {
+                            objAssetVendor = (from p in DsDataSet.Tables[2].AsEnumerable()
+                                              select new clsMasterAssestVendor
+                                              {
+                                                  Vendor_ID = Convert.ToInt32(p.Field<decimal>("Vendor_ID")),
+                                                  Vendor_Name = Convert.ToString(p.Field<string>("Vendor_Name"))
+
+                                              }).ToList();
+                        }
+                        if (DsDataSet.Tables[3].Rows.Count > 0)
+                        {
+                            objAssetDepartment = (from p in DsDataSet.Tables[3].AsEnumerable()
+                                                  select new clsMasterAssestDepartement
+                                                  {
+                                                      Department_ID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
+                                                      Dept_Desc = Convert.ToString(p.Field<string>("Dept_Desc"))
+
+                                                  }).ToList();
+                        }
+                        if (DsDataSet.Tables[4].Rows.Count > 0)
+                        {
+                            objAssetLocation = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                                select new clsMasterAssestLocation
+                                                {
+                                                    Loc_id = Convert.ToInt32(p.Field<decimal>("Loc_id")),
+                                                    Loc_Desc = Convert.ToString(p.Field<string>("Loc_Desc"))
+                                                }).ToList();
+                        }
+                        if (DsDataSet.Tables[5].Rows.Count > 0)
+                        {
+                            objAssetAMCType = (from p in DsDataSet.Tables[5].AsEnumerable()
+                                               select new clsMasterAssestAmcType
+                                               {
+                                                   Asset_AMC_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_AMC_Type_ID")),
+                                                   Asset_AMC_Type_Desc = Convert.ToString(p.Field<string>("Asset_AMC_Type_Desc"))
+                                               }).ToList();
+                        }
+                        if (DsDataSet.Tables[6].Rows.Count > 0)
+                        {
+                            objAssetCurrency = (from p in DsDataSet.Tables[6].AsEnumerable()
+                                                select new clsMasterAssestCurrency
+                                                {
+                                                    Currency_ID = Convert.ToInt32(p.Field<int>("Currency_ID")),
+                                                    Currency_Code = Convert.ToString(p.Field<string>("Currency_Code"))
+                                                }).ToList();
+                        }
+                        if (DsDataSet.Tables[7].Rows.Count > 0)
+                        {
+                            objAssetUser = (from p in DsDataSet.Tables[7].AsEnumerable()
+                                            select new clsMasterAssestUsers
+                                            {
+                                                User_ID = Convert.ToInt32(p.Field<int>("User_ID")),
+                                                User_Code = Convert.ToString(p.Field<string>("User_Code")),
+                                                Name = Convert.ToString(p.Field<string>("Name"))
+                                            }).ToList();
+                        }
+
+
+                        ObjAssetMst.objAssetType = objAssetType;
+                        ObjAssetMst.objAssetCategory = objAssetCategory;
+                        ObjAssetMst.objAssetVendor = objAssetVendor;
+                        ObjAssetMst.objAssetDepartment = objAssetDepartment;
+                        ObjAssetMst.objAssetLocation = objAssetLocation;
+                        ObjAssetMst.objAssetAMCType = objAssetAMCType;
+                        ObjAssetMst.objAssetCurrency = objAssetCurrency;
+                        ObjAssetMst.objAssetUser = objAssetUser;
+                        return Request.CreateResponse(HttpStatusCode.OK, ObjAssetMst);
+                        //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Fetch_Asset_Request_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Asset_Request_Details(int AssetId) //, int CompanyID
+        {
+
+            ClsAssetRequest ObjAssetRequest = new ClsAssetRequest();
+            //ClsAssetRequestDetail ObjAssetRequestDetail = new ClsAssetRequestDetail();
+            ClsAssetAMCRequest ObjAssetRequestAmcDetail = new ClsAssetAMCRequest();
+            //ClsAssetAMCHistoryDetail ObjAssetRequestAmcHistoryDetail = new ClsAssetAMCHistoryDetail();
+            //ClsAssetServiceDetail ObjAssetRequestServiceDetail = new ClsAssetServiceDetail();
+
+            List<ClsAssetServiceDetail> ObjAssetService = new List<ClsAssetServiceDetail>();
+            //List<ClsAssetAMCHistoryDoc> ObjAssetAmcHistoryDoc = new List<ClsAssetAMCHistoryDoc>();
+            List<ClsAssetAMCHistoryDetail> ObjAssetAmcHistory = new List<ClsAssetAMCHistoryDetail>();
+            List<ClsAssetAMCDetail> ObjAssetAmc = new List<ClsAssetAMCDetail>();
+            //List<ClsAssetAMCDoc> ObjAssetAmcDoc = new List<ClsAssetAMCDoc>();
+            //List<ClsAssetRequestDoc> ObjAssetDoc = new List<ClsAssetRequestDoc>();
+            List<ClsAssetRequestDetail> ObjAssetDetail = new List<ClsAssetRequestDetail>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@AssetID", AssetId);
+                //ObjLocSqlParameter[1] = new SqlParameter("@LoggedInUserID", LoggedInUserID);
+                //ObjLocSqlParameter[2] = new SqlParameter("@CompanyID", CompanyID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_ASSET_FETCH_ASSET_REQUEST", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjAssetDetail = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                              select new ClsAssetRequestDetail
+                                              {
+                                                  Asset_ID = Convert.ToInt32(p.Field<decimal>("Asset_ID")),
+                                                  Asset_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_Type_ID")),
+                                                  Asset_Category_ID = Convert.ToInt32(p.Field<decimal>("Asset_Category_ID")),
+                                                  Asset_Name = Convert.ToString(p.Field<string>("Asset_Name")),
+                                                  Asset_Desc = Convert.ToString(p.Field<string>("Asset_Desc")),
+                                                  Asset_Make = Convert.ToString(p.Field<string>("Asset_Make")),
+                                                  Asset_Serial_No = Convert.ToString(p.Field<string>("Asset_Serial_No")),
+                                                  Vendor_ID = Convert.ToInt32(p.Field<decimal>("Vendor_ID")),
+                                                  Department_ID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
+                                                  Loc_id = Convert.ToInt32(p.Field<decimal>("Loc_id")),
+                                                  Asset_Cost = Convert.ToInt32(p.Field<decimal>("Asset_Cost")),
+                                                  Currency_Type = Convert.ToString(p.Field<string>("Currency_Type")),
+                                                  Asset_Purchase_Date = Convert.ToString(p.Field<string>("Asset_Purchase_Date")),
+                                                  Asset_Is_AMC_Active = Convert.ToBoolean(p.Field<bool>("Asset_Is_AMC_Active")),
+                                                  Company_ID = Convert.ToInt32(p.Field<decimal>("Company_ID")),
+                                                  Loc_Desc = Convert.ToString(p.Field<string>("Loc_Desc")),
+
+                                                  objAssetDoc = (from x in DsDataSet.Tables[1].AsEnumerable()
+                                                                 select new ClsAssetRequestDoc
+                                                                 {
+                                                                     Asset_Doc_Type = Convert.ToString(x.Field<string>("Asset_Doc_Type")),
+                                                                     ImagePath = Convert.ToString(x.Field<string>("ImagePath")),
+                                                                 }).ToList()
+                                              }).ToList();
+                        }
+                        if (DsDataSet.Tables[2].Rows.Count > 0)
+                        {
+                            ObjAssetAmc = (from p in DsDataSet.Tables[2].AsEnumerable()
+                                           select new ClsAssetAMCDetail
+                                           {
+                                               Asset_AMC_ID = Convert.ToInt32(p.Field<decimal>("Asset_AMC_ID")),
+                                               Asset_AMC_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_AMC_Type_ID")),
+                                               Asset_ID = Convert.ToInt32(p.Field<decimal>("Asset_ID")),
+                                               AMC_Desc = Convert.ToString(p.Field<string>("AMC_Desc")),
+                                               AMC_Start_Date = Convert.ToString(p.Field<string>("AMC_Start_Date")),
+                                               AMC_End_Date = Convert.ToString(p.Field<string>("AMC_End_Date")),
+                                               Assigned_Vendor = Convert.ToInt32(p.Field<decimal>("Assigned_Vendor")),
+                                               AMC_Inclusions = Convert.ToString(p.Field<string>("AMC_Inclusions")),
+                                               AMC_Exclusions = Convert.ToString(p.Field<string>("AMC_Exclusions")),
+                                               AdditionalRemarks = Convert.ToString(p.Field<string>("Additional Remarks")),
+                                               AMC_Status = Convert.ToString(p.Field<string>("AMC_Status")),
+                                               Vendor_Name = Convert.ToString(p.Field<string>("Vendor_Name")),
+
+                                               objAssetAmcDoc = (from x in DsDataSet.Tables[3].AsEnumerable()
+                                                                 select new ClsAssetAMCDoc
+                                                                 {
+                                                                     Asset_AMC_Doc_Type = Convert.ToString(x.Field<string>("Asset_AMC_Doc_Type")),
+                                                                     ImagePath = Convert.ToString(x.Field<string>("ImagePath")),
+                                                                 }).ToList()
+                                           }).ToList();
+                        }
+                        if (DsDataSet.Tables[4].Rows.Count > 0)
+                        {
+                            ObjAssetService = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                               select new ClsAssetServiceDetail
+                                               {
+                                                   Schedule_ID = Convert.ToInt32(p.Field<decimal>("Schedule_ID")),
+                                                   Asset_ID = Convert.ToInt32(p.Field<decimal>("Asset_ID")),
+                                                   Service_Date = Convert.ToString(p.Field<string>("Service_Date")),
+                                                   Alert_Date = Convert.ToString(p.Field<string>("Alert_Date")),
+                                                   Assigned_To = Convert.ToInt32(p.Field<decimal>("Assigned_To")),
+                                                   Service_Status = Convert.ToString(p.Field<string>("Service_Status")),
+                                                   Remarks = Convert.ToString(p.Field<string>("Remarks")),
+                                                   Alert_Day = Convert.ToInt32(p.Field<int>("Alert_Day"))
+                                               }).ToList();
+                        }
+                        if (DsDataSet.Tables[5].Rows.Count > 0)
+                        {
+                            ObjAssetAmcHistory = (from p in DsDataSet.Tables[5].AsEnumerable()
+                                                  select new ClsAssetAMCHistoryDetail
+                                                  {
+                                                      Asset_AMC_ID = Convert.ToInt32(p.Field<decimal>("Asset_AMC_ID")),
+                                                      Asset_AMC_Type_ID = Convert.ToInt32(p.Field<decimal>("Asset_AMC_Type_ID")),
+                                                      Asset_ID = Convert.ToInt32(p.Field<decimal>("Asset_ID")),
+                                                      AMC_Desc = Convert.ToString(p.Field<string>("AMC_Desc")),
+                                                      AMC_Start_Date = Convert.ToString(p.Field<string>("AMC_Start_Date")),
+                                                      AMC_End_Date = Convert.ToString(p.Field<string>("AMC_End_Date")),
+                                                      Assigned_Vendor = Convert.ToInt32(p.Field<decimal>("Assigned_Vendor")),
+                                                      AMC_Inclusions = Convert.ToString(p.Field<string>("AMC_Inclusions")),
+                                                      AMC_Exclusions = Convert.ToString(p.Field<string>("AMC_Exclusions")),
+                                                      AdditionalRemarks = Convert.ToString(p.Field<string>("Additional Remarks")),
+                                                      AMC_Status = Convert.ToString(p.Field<string>("AMC_Status")),
+                                                      Vendor_Name = Convert.ToString(p.Field<string>("Vendor_Name")),
+                                                      Asset_AMC_Type_Desc = Convert.ToString(p.Field<string>("Asset_AMC_Type_Desc")),
+                                                      objAssetAmcHistoryDoc = (from x in DsDataSet.Tables[6].AsEnumerable()
+                                                                               select new ClsAssetAMCHistoryDoc
+                                                                               {
+                                                                                   Asset_AMC_Doc_Type = Convert.ToString(x.Field<string>("Asset_AMC_Doc_Type")),
+                                                                                   ImagePath = Convert.ToString(x.Field<string>("ImagePath")),
+                                                                               }).ToList()
+                                                  }).ToList();
+                        }
+
+                        ObjAssetRequestAmcDetail.objAssetAmc = ObjAssetAmc;
+                        ObjAssetRequestAmcDetail.objAssetAmcHistory = ObjAssetAmcHistory;
+
+
+                        ObjAssetRequest.objAssetDetail = ObjAssetDetail;
+                        ObjAssetRequest.objAssetAmcDetail = ObjAssetRequestAmcDetail;
+                        ObjAssetRequest.objAssetServiceDetailc = ObjAssetService;
+
+                        return Request.CreateResponse(HttpStatusCode.OK, ObjAssetRequest);
+                        //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+        #endregion
 
     }
 }
