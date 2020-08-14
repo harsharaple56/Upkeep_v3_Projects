@@ -123,7 +123,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
                                              Ticket_Date = p.Field<string>("Ticket_Date"),
                                              Ticket_Status = p.Field<string>("Tkt_Status"),
-                                             //Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
+                                             Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
                                              Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                              Ticket_Message = p.Field<string>("Tkt_Message"),
                                              Ticket_ImagePath = p.Field<string>("ImagePath")
@@ -202,6 +202,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
                                              Ticket_Date = p.Field<string>("Ticket_Date"),
                                              Ticket_Status = p.Field<string>("Tkt_Status"),
+                                             Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
                                              Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                              Ticket_Message = p.Field<string>("Tkt_Message"),
                                              Ticket_ImagePath = p.Field<string>("ImagePath")
@@ -367,7 +368,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage Fetch_Ticket_Details(int TicketID, int CompanyID, string EmpCD, string RollCD)
         {
-            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            clsMasterTicketDetails ObjTicketDetailsMst = new clsMasterTicketDetails();
+
+            List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
+            List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
+
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
@@ -391,7 +396,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            Objticket = (from p in DsDataSet.Tables[0].AsEnumerable()
+                            objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
                                          select new ClsMyActionableTicket
                                          {
                                              TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
@@ -410,13 +415,29 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
                                          }).ToList();
 
-                            return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                            //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
                         }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
 
+                        if (DsDataSet.Tables[1].Rows.Count > 0)
+                        {
+                            objTicketAction = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                                select new ClsTicketActionHistory
+                                                {
+                                                    Level = Convert.ToInt32(p.Field<decimal>("Level")),
+                                                    User = Convert.ToString(p.Field<string>("User")),
+                                                    Remarks = Convert.ToString(p.Field<string>("Remarks")),
+                                                    ActionDateTime = Convert.ToString(p.Field<string>("ActionDate")),
+                                                    ExpectedDateTime = Convert.ToString(p.Field<string>("ExpectedTime")),
+                                                    Ticket_Status = Convert.ToString(p.Field<string>("TicketStatus")),
+                                                    Ticket_ActionStatus = Convert.ToString(p.Field<string>("ActionStatus"))
+
+                                                }).ToList();
                         }
+
+
+                        ObjTicketDetailsMst.objTickets = objTickets;
+                        ObjTicketDetailsMst.objTicketAction = objTicketAction;
+                        return Request.CreateResponse(HttpStatusCode.OK, ObjTicketDetailsMst);
                     }
                     else
                     {
@@ -438,7 +459,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             finally
             {
                 DsDataSet = null;
-                Objticket = null;
+                objTickets = null;
+                objTicketAction = null;
             }
 
         }
@@ -481,7 +503,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 //    }
                 //}
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
             }
             catch (Exception ex)
             {
@@ -793,6 +815,91 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage, click_action);
             return response;
         }
+
+        [Route("api/Ticketing/Fetch_Ticket_SubCategory_Department")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Ticket_SubCategory_Department(int CategoryID)
+        {
+            clsSubCate_DeptMst ObjSubCate_DeptMst = new clsSubCate_DeptMst();
+
+            List<ClsSubCategory> objSubCategory = new List<ClsSubCategory>();
+            List<ClsDepartmentName> objDepartment = new List<ClsDepartmentName>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@CategoryID", CategoryID);
+              
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Ticket_SubCategory_Department_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            objSubCategory = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                          select new ClsSubCategory
+                                          {
+                                              SubCategoryID = Convert.ToInt32(p.Field<decimal>("SubCategory_ID")),
+                                              CategoryName = Convert.ToString(p.Field<string>("SubCategory_Desc"))
+                                             
+                                          }).ToList();
+
+                            //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
+                        }
+
+                        if (DsDataSet.Tables[1].Rows.Count > 0)
+                        {
+                            objDepartment = (from p in DsDataSet.Tables[1].AsEnumerable()
+                                               select new ClsDepartmentName
+                                               {
+                                                   DepartmentID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
+                                                   DepartmentName = Convert.ToString(p.Field<string>("Dept_Desc"))
+
+                                               }).ToList();
+                        }
+
+
+                        ObjSubCate_DeptMst.objSubCategory = objSubCategory;
+                        ObjSubCate_DeptMst.objDepartmentName = objDepartment;
+                        return Request.CreateResponse(HttpStatusCode.OK, ObjSubCate_DeptMst);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                objSubCategory = null;
+                objDepartment = null;
+            }
+
+        }
+
+
 
         #endregion
 
