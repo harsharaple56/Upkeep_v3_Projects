@@ -104,7 +104,7 @@
                         var counter = $(this).parent().find('.Group_count');
                         var Group_count = counter.data('count');
                         Group_count++;
-                        alert(Group_count);
+                      //  alert(Group_count);
                         counter.data('count', Group_count).html(Group_count + ' Groupnnn(s)');
                         $('#error_Group_repeater').html('');
 
@@ -248,7 +248,7 @@
                         $(this).parent().find('.error_question').html('Enter Question.').parents('.form-group').addClass('has-error');
                     }
                 });
-                 
+
                 $('.CheckListType_repeater .CheckListType_textarea').each(function (index, element) {
                     if ($(this).val().trim() == '') {
                         is_valid = false;
@@ -312,8 +312,8 @@
                     //name = $(this).siblings('.hdnRepeaterAnswer').attr("name");
                     $('#btnModal').click();
                 }
-                else { 
-                    $(this).parent().parent().find(".hdnRepeaterAnswer").val(""); 
+                else {
+                    $(this).parent().parent().find(".hdnRepeaterAnswer").val("");
                     $(this).parent().parent().find(".lblAnswerCnt").hide();
                 }
 
@@ -373,7 +373,7 @@
                 for (var i = 0; i < arrAns.length; i++) {
                     //if (arrAns[i] != "ii:||") {
                     $("#divAnswerAdd").click();
-                   alert(arrAns[i]);
+                    //alert(arrAns[i]);
                     //alert(arrAns[i]); AnswerType[0][ctl00$ContentPlaceHolder1$hdnAnswerDataID]
                     var arrIDAns = arrAns[i].split(":");
 
@@ -381,26 +381,31 @@
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
 
 
-                     
+
 
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").val(arrIDAns[3]);
- 
-                     
-                    var isMand = arrIDAns[2].toLowerCase();
-                    var isAttc = arrIDAns[3].toLowerCase();
+
+                    var isMand = arrIDAns[2];
+                    if (arrIDAns[2] != null) {
+                        isMand = arrIDAns[2].toLowerCase();
+                    }
+                    var isAttc = arrIDAns[3];
+                    if (arrIDAns[3] != null) {
+                        isAttc = arrIDAns[3].toLowerCase();
+                    }
                     //alert(isMand);
-                   // alert(isAttc);
-                    if (isMand == "1" || isMand == "true") { 
+                    // alert(isAttc);
+                    if (isMand == "1" || isMand == "true") {
                         //alert(":f:");
-                       $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true);
-                       $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass('active');
-                    } 
-                    if (isAttc == "1" || isAttc == "true") { 
-                       // alert(":oof:");
-                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").prop( "checked", true );
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true);
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass('active');
+                    }
+                    if (isAttc == "1" || isAttc == "true") {
+                        // alert(":oof:");
+                        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").prop("checked", true);
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").parent().parent().addClass('active');
-                    } 
+                    }
 
                     //alert(arrIDAns[1]);AnswerType[0][ctl00$ContentPlaceHolder1$ChkAnsDef][]
                     //alert("input[name~='AnswerType[" + i + "][txtAnswer]']");
@@ -421,7 +426,7 @@
                 //    }
                 //});
 
-                  $('.divTxtAnswer input[type="text"]').each(function () {
+                $('.divTxtAnswer input[type="text"]').each(function () {
                     // Do your magic here 
                     //alert($(this).val());
                     if ($(this).val() === "||" || $(this).val() === "") {//RC 19 May
@@ -478,7 +483,7 @@
                 $("input[name~='" + name + "']").change();
                 //$(".divTxtAnswer").html(ModalHTML);
                 $('.dltrptanswer').click();
-                alert(answers);
+               // alert(answers);
             });
 
             if ($('#hdnCLConfigID').val() != "0") {
@@ -577,13 +582,18 @@
                         //alert(":f:");
                         Question.children().find('.ChkMandatory').children().prop("checked", true);
                         Question.children().find('.ChkMandatory').parent().addClass('active');
-                    } 
+                    }
                     if (isAttc == "True") {
                         //do something
                         //alert(":oof:");
-                        Question.children().find('.ChkAttach').children().prop( "checked", true );
+                        Question.children().find('.ChkAttach').children().prop("checked", true);
                         Question.children().find('.ChkAttach').parent().addClass('active');
-                    } 
+                    }
+
+                    if (arrQuestionData[7] != "") {
+                        Question.children().find('#btnAddRef').addClass('active');
+                    }
+
 
                     Question.children().find("select").val(arrQuestionData[9]);
                     Question.children().find("select").selectpicker('refresh');
@@ -593,8 +603,7 @@
                     //Option for multi  
                     //alert();
                     var isMulti = Question.children().find("select").find('option:selected').attr("data-ismulti").toLowerCase();
-                    if (isMulti == "1" || isMulti == "true")
-                    {
+                    if (isMulti == "1" || isMulti == "true") {
                         Question.children().find(".lblAnswerCnt").show();
                     }
                     //$("input[name~='CheckListGroup[" + i + "][ctl00$ContentPlaceHolder1$hdnCLGroupID]']").parents('.dvCheckListGroup').attr("data-GroupID",arrIDGroup[0]);
@@ -637,7 +646,7 @@
                     $("#RefModal textarea").val($("input[name~='" + DescName + "']").val());
                     $("#RefModal img").attr('src', $("input[name~='" + flName + "']").val())
                         .width('400px')
-                        .height('250px');; 
+                        .height('250px');;
 
                 }
             });
@@ -831,7 +840,7 @@
                                                                                     <%--<div class="d-md-none m--margin-bottom-10"></div>--%>
                                                                                 </div>
                                                                                 <div class="col-md-2">
-                                                                                    <input type="hidden" name="hdnRefDesc" id="hdnRefDesc" class="hdnRefDesc"/>
+                                                                                    <input type="hidden" name="hdnRefDesc" id="hdnRefDesc" class="hdnRefDesc" />
                                                                                     <input type="hidden" name="hdnRefPathUploaded" id="hdnRefPathUploaded" class="hdnRefPathUploaded" />
                                                                                     <input type="hidden" name="hdnRefDescUpload" id="hdnRefDescUpload" class="hdnRefDescUpload" />
                                                                                     <button type="button" class="btn btn-light" name="btnAddRef" id="btnAddRef" data-toggle="modal" data-target="#RefModal"><i class="fa fa-image"></i>Reference</button>
