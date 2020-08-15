@@ -22,6 +22,21 @@
         });
     </script>
 
+    <script type="text/javascript">
+
+        var path = "airbrake.json";
+        var configurationBuilder = new ConfigurationBuilder()
+            .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+            .AddJsonFile(path)
+            .Build();
+
+        var settings = configurationBuilder.AsEnumerable()
+            .Where(setting => setting.Key.StartsWith("Airbrake"))
+            .ToDictionary(setting => setting.Key, setting => setting.Value);
+
+        var airbrakeConfiguration = AirbrakeConfig.Load(settings);
+    </script>
+
     <!--end::Web font -->
 
     <!--begin::Global Theme Styles -->

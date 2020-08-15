@@ -889,6 +889,14 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     #region Ticketing
 
+    public class clsMasterTicketDetails
+    {
+
+        public List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
+        public List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
+      
+    }
+
     public class ClsMyActionableTicket
     {
         public string TicketID { get; set; }
@@ -904,7 +912,19 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_ActionStatus { get; set; }
         public string Ticket_Message { get; set; }
         public string Ticket_ImagePath { get; set; }
+        public string Level { get; set; }
 
+    }
+
+    public class ClsTicketActionHistory
+    {
+        public int Level { get; set; }
+        public string User { get; set; }
+        public string Remarks { get; set; }
+        public string ActionDateTime { get; set; }
+        public string ExpectedDateTime { get; set; }
+        public string Ticket_Status { get; set; }
+        public string Ticket_ActionStatus { get; set; }      
     }
 
     public class ClsTicketRaise
@@ -956,6 +976,25 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string CompanyName { get; set; }
         public string Client_URL { get; set; }
         public string Module_ID { get; set; }
+    }
+
+
+    public class clsSubCate_DeptMst
+    {
+        public List<ClsSubCategory> objSubCategory = new List<ClsSubCategory>();
+        public List<ClsDepartmentName> objDepartmentName = new List<ClsDepartmentName>();
+    }
+
+    public class ClsSubCategory
+    {
+        public int SubCategoryID { get; set; }
+        public string CategoryName { get; set; }
+    }
+
+    public class ClsDepartmentName
+    {
+        public int DepartmentID { get; set; }
+        public string DepartmentName { get; set; }
     }
 
     #endregion
