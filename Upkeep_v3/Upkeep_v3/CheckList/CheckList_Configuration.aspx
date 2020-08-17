@@ -82,6 +82,8 @@
 
             $('[data-toggle="tooltip"]').tooltip();
             $('.lblAnswerCnt').hide();
+            $('.ansnumber').hide();
+
             $('.qscore').hide();
 
             init_autosize();
@@ -104,7 +106,7 @@
                         var counter = $(this).parent().find('.Group_count');
                         var Group_count = counter.data('count');
                         Group_count++;
-                      //  alert(Group_count);
+                        //  alert(Group_count);
                         counter.data('count', Group_count).html(Group_count + ' Groupnnn(s)');
                         $('#error_Group_repeater').html('');
 
@@ -301,6 +303,14 @@
                 //}
 
                 var isMulti = $(this).find(':selected').attr("data-ismulti");
+                $(this).parent().parent().find(".ansnumber").val("");
+                $(this).parent().parent().find(".ansnumber").hide();
+                if (isMulti === "") {
+                    $(this).parent().parent().find(".hdnRepeaterAnswer").val("");
+                    $(this).parent().parent().find(".lblAnswerCnt").hide();
+                    $(this).parent().parent().find(".ansnumber").show();
+                }
+
                 if (isMulti === "")
                     return
 
@@ -318,6 +328,12 @@
                 }
 
             });
+
+            $(document).on('change', '.ansnumber', function () {
+                $(this).parent().find(".hdnRepeaterAnswer").val("");
+                $(this).parent().find(".hdnRepeaterAnswer").val($(this).val());
+            });
+
 
 
             $(document).on('change', '.hdnRepeaterAnswer', function () {
@@ -365,6 +381,7 @@
 
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
+                //alert(answers);
                 if ($('#hdnCLConfigID').val() != "0") {
                     answers = "ii:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
@@ -379,9 +396,6 @@
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
-
-
-
 
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").val(arrIDAns[2]);
                     //$("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").val(arrIDAns[3]);
@@ -483,7 +497,7 @@
                 $("input[name~='" + name + "']").change();
                 //$(".divTxtAnswer").html(ModalHTML);
                 $('.dltrptanswer').click();
-               // alert(answers);
+                // alert(answers);
             });
 
             if ($('#hdnCLConfigID').val() != "0") {
@@ -531,7 +545,7 @@
                 //alert(Questions);
                 for (var i = 0; i < arrQuestions.length; i++) {
                     //$("#divGroupAdd").click();
-                    //alert(arrTerms[i]);   
+                    // alert(arrQuestions[i]);
                     var arrQuestionData = arrQuestions[i].split("||");
                     var Group = $("div[data-GroupID~='" + arrQuestionData[0] + "']");
 
@@ -573,6 +587,13 @@
                     Question.children().find(".hdnRefDesc").val(arrQuestionData[6]);
                     Question.children().find(".hdnRefPathUploaded").val(arrQuestionData[7]);
 
+                    if ($('#ContentPlaceHolder1_txtTotScore').text() != "" && $('#ContentPlaceHolder1_txtTotScore').text() != "0") {
+                        Question.children().find("#ContentPlaceHolder1_txtScore").val(arrQuestionData[5]);
+                        Question.children().find("#ContentPlaceHolder1_txtScore").show();
+                        $('.qscore').show();
+
+                        $('.lbltotlScoring').addClass('active');
+                    }
                     //Question.children().find(".hdnflRefImage").val(arrQuestionData[7]);
                     //Question.children().find(".hdnRefPath").val(arrQuestionData[7]);
 
@@ -602,9 +623,17 @@
                     // if (arrQuestionData[9] == "1" || arrQuestionData[9] == "2")
                     //Option for multi  
                     //alert();
-                    var isMulti = Question.children().find("select").find('option:selected').attr("data-ismulti").toLowerCase();
-                    if (isMulti == "1" || isMulti == "true") {
-                        Question.children().find(".lblAnswerCnt").show();
+
+
+                    if (Question.children().find("select").find('option:selected').attr("data-ismulti") === "") {
+                        Question.children().find(".ansnumber").show();
+                        var uplodCountval = arrQuestionData[10].split(':');
+                        Question.children().find(".ansnumber").val(uplodCountval[1]);
+                    } else {
+                        var isMulti = Question.children().find("select").find('option:selected').attr("data-ismulti").toLowerCase();
+                        if (isMulti == "1" || isMulti == "true") {
+                            Question.children().find(".lblAnswerCnt").show();
+                        }
                     }
                     //$("input[name~='CheckListGroup[" + i + "][ctl00$ContentPlaceHolder1$hdnCLGroupID]']").parents('.dvCheckListGroup').attr("data-GroupID",arrIDGroup[0]);
                     //$("input[name~='CheckListGroup[" + i + "][ctl00$ContentPlaceHolder1$hdnCLGroupID]']").val(arrIDGroup[0]);
@@ -625,6 +654,9 @@
                 });
 
                 $('#ContentPlaceHolder1_txtTotScore').text(sum);
+
+                $('#hdnTotScore').val(sum);
+
             });
 
             $(document).on('change', '#ChkScoring', function () {
@@ -632,6 +664,10 @@
                     $('.qscore').show();
                 } else {
                     $('.qscore').hide();
+                    $('.qscore').each(function () {
+                        $('#ContentPlaceHolder1_txtTotScore').text(0);
+                        $('.qscore').val("");
+                    });
                 }
             });
 
@@ -734,7 +770,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-light">
+                                            <label class="btn btn-light lbltotlScoring">
                                                 <asp:CheckBox ID="ChkScoring" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Scoring</label>
                                         </div>
                                     </div>
@@ -749,8 +785,8 @@
                                     <div class="col-md-3">
                                         <label class="form-control-label text-center qscore">
                                             Total Score:<br />
-                                            <span class="text-center text-dark" runat="server" id="txtTotScore">0
-                                            </span>
+                                            <span class="text-center text-dark" runat="server" id="txtTotScore">0</span>
+                                            <asp:HiddenField ID="hdnTotScore" Value="0" ClientIDMode="Static" runat="server" />
                                         </label>
 
                                     </div>
@@ -834,6 +870,7 @@
                                                                                             <i class="fa fa-edit lblAnswerCnt"></i>
                                                                                             <label id="lblAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
 
+                                                                                            <input type="number" id="ansnumber" class="form-control m-input ansnumber" min="0" placeholder="Enter No. of Upload" />
                                                                                             <span class="error_type text-danger medium"></span>
                                                                                         </div>
                                                                                     </div>
