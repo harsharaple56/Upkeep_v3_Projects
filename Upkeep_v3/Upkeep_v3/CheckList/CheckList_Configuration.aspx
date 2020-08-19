@@ -240,6 +240,20 @@
             //    }
             //});
 
+            //$('.lblAnsDef').click(function (e) {
+            //    alert('oooX');
+            //    //$('.ChkAnsDef').each(function (index) {
+
+            //    //    alert('off');
+            //    //    $(this).prop("checked", false);
+            //    //    $(this).parent().parent().removeClass('active');
+            //    //});
+
+            //    //$(this).prop("checked", true);
+            //    //$(this).parent().parent().addClass('active');
+
+            //});
+
             $('#frmCheckList').submit(function (event) {
                 //alert('hiiiii');
                 var is_valid = true;
@@ -989,7 +1003,7 @@
                                                             <asp:CheckBox ID="ChkAnsFlag" class="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
                                                     </div>
                                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-light">
+                                                        <label class="btn btn-light lblAnsDef">
                                                             <asp:CheckBox ID="ChkAnsDef" class="ChkAnsDef" autocomplete="off" runat="server" ClientIDMode="Static" />Default</label>
                                                     </div>
                                                     <div data-repeater-delete="" class="dltrptanswer answer btn">
