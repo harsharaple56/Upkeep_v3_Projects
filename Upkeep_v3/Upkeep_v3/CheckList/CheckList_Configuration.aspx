@@ -254,6 +254,27 @@
 
             //});
 
+            $(document).on("click", ".btnAnsDef", function () {
+                var thisElement = $(this).find("input[name*='ChkAnsDef']").attr('name');
+                    //alert(thisElement.attr('name'))
+                $(this).parent().parent().find("input[name*='ChkAnsDef']").each(function () {
+                    //alert($(this).html());
+                    //alert($(this).attr('name'))
+                    if ($(this).attr('name') != thisElement) {
+                        //alert('if');
+                        $(this).prop("checked", false);
+                        $(this).parent().parent().removeClass('active');
+                    }
+                    else {
+                        //alert('else');
+                         $(this).prop("checked", true);
+                        $(this).parent().parent().addClass('active');
+                    }
+                });
+            });
+
+
+
             $('#frmCheckList').submit(function (event) {
                 //alert('hiiiii');
                 var is_valid = true;
@@ -1002,7 +1023,7 @@
                                                             <%--<input id="ChkAnsFlag" type="checkbox" />--%>
                                                             <asp:CheckBox ID="ChkAnsFlag" class="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
                                                     </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                    <div class="btn-group btn-group-toggle btnAnsDef" data-toggle="buttons">
                                                         <label class="btn btn-light lblAnsDef">
                                                             <asp:CheckBox ID="ChkAnsDef" class="ChkAnsDef" autocomplete="off" runat="server" ClientIDMode="Static" />Default</label>
                                                     </div>
