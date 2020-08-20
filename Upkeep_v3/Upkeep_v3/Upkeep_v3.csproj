@@ -930,6 +930,7 @@
     <Content Include="CheckList\ChkConfig_Listing.aspx" />
     <Content Include="CheckList\Edit_Checklist.aspx" />
     <Content Include="CheckList\MyChecklist.aspx" />
+    <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -4030,6 +4031,13 @@
     </Compile>
     <Compile Include="CheckList\MyChecklist.aspx.designer.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\CSM_Configuration.aspx.cs">
+      <DependentUpon>CSM_Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\CSM_Configuration.aspx.designer.cs">
+      <DependentUpon>CSM_Configuration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
