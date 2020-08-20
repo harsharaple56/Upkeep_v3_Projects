@@ -50,6 +50,8 @@ namespace Upkeep_v3.AssetManagement
                 //        Session["PreviousURL"] = "~/WorkPermit/MyWorkPermit.aspx";
                 //    }
 
+                btnRenewAMC.Attributes.Add("style", "display:none");
+
                 Fetch_Bind_DropDown();
 
                 Session["TransactionID"] = 0;
@@ -62,7 +64,7 @@ namespace Upkeep_v3.AssetManagement
                 else
                 {
                     customCheck.Checked = true;
-                    DivIsUpdateAMC.Attributes.Add("style", "display:none"); 
+                    DivIsUpdateAMC.Attributes.Add("style", "display:none");
                 }
 
             }
@@ -259,7 +261,7 @@ namespace Upkeep_v3.AssetManagement
                     }
 
                     if (dsAssestData.Tables[2].Rows.Count > 0)
-                    { 
+                    {
                         //Asset_AMC_ID Asset_AMC_Type_ID   Company_ID Asset_ID    AMC_Desc AMC_Start_Date  
                         //AMC_End_Date Assigned_Vendor AMC_Inclusions AMC_Exclusions  Additional Remarks  AMC_Docs AMC_Status
 
@@ -294,6 +296,8 @@ namespace Upkeep_v3.AssetManagement
                             txtAmcStatus.Attributes.Add("disabled", "true");
                             flAmcDoc.Attributes.Add("disabled", "true");
 
+                            txtAmcStatus.Attributes.Remove("style");
+                            lblAmcStatus.Attributes.Remove("style");
 
                             btnRenewAMC.Attributes.Remove("style");
                             Button1.Attributes.Add("style", "display:none");
@@ -317,6 +321,38 @@ namespace Upkeep_v3.AssetManagement
                             HdnAmcDoc.Value = dsAssestData.Tables[3].Rows[0]["ImagePath"].ToString();
                         }
 
+                    }
+                    else
+                    {
+                        customCheck.Checked = true;
+                        ddlAmcType.SelectedIndex = 0;
+                        txtAmcDescription.Text = "";
+                        txtAmcStartDate.Text = "";
+                        txtAmcEndDate.Text = "";
+                        txtamcassigVendor.Value = "";
+                        hfAmcAssignedVendor.Value = "";
+                        txtAmcInclusion.Text = "";
+                        txtAmcExclusion.Text = "";
+                        txtAmcRemarks.Text = "";
+                        txtAmcStatus.Text = "";
+
+                        txtAmcStatus.Attributes.Add("style", "display:none");
+                        lblAmcStatus.Attributes.Add("style", "display:none");
+
+                        customCheck.Attributes.Remove("disabled");
+                        ddlAmcType.Attributes.Remove("disabled");
+                        txtAmcDescription.Attributes.Remove("disabled");
+                        txtAmcStartDate.Attributes.Remove("disabled");
+                        txtAmcEndDate.Attributes.Remove("disabled");
+                        txtamcassigVendor.Attributes.Remove("disabled");
+                        txtAmcInclusion.Attributes.Remove("disabled");
+                        txtAmcExclusion.Attributes.Remove("disabled");
+                        txtAmcRemarks.Attributes.Remove("disabled");
+                        txtAmcStatus.Attributes.Remove("disabled");
+                        flAmcDoc.Attributes.Remove("disabled");
+
+                        //btnRenewAMC.Attributes.Remove("style");
+                        Button1.Attributes.Remove("style");
                     }
 
                     if (dsAssestData.Tables[5].Rows.Count > 0)
@@ -478,8 +514,8 @@ namespace Upkeep_v3.AssetManagement
 
 
             ////PROCESS DATA 
-            int OutputStatus = 0; 
-            OutputStatus = UpdateData(); 
+            int OutputStatus = 0;
+            OutputStatus = UpdateData();
 
             //DISPLAY RESPONSE
             int Status = Convert.ToInt32(OutputStatus);
@@ -510,9 +546,9 @@ namespace Upkeep_v3.AssetManagement
             //dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(LoggedInUserID);
 
 
-            string strAssetAMCData = ""; 
+            string strAssetAMCData = "";
             strAssetAMCData = AssetRenewAMCData(0);
-    
+
 
             ds = ObjUpkeep.INSERT_UPDATE_ASSET_AMC_REQUEST_Details(LoggedInUserID, ViewState["TransactionID"].ToString(), strAssetAMCData, "INSERT");
             if (ds.Tables.Count > 0)

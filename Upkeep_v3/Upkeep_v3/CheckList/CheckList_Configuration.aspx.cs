@@ -71,7 +71,7 @@ namespace Upkeep_v3.CheckList
                         //    //ddlAns.Items[i].Attributes["data-content"] = "<i class='fa fa-" + ds.Tables[0].Rows[i]["Icon"] + "'  > " + ds.Tables[0].Rows[i]["Chk_Ans_Type_Desc"] + "</i>";
                         //}
 
-                        for (int i = 0; i < ddlAns.Items.Count - 1; i++)
+                        for (int i = 0; i <= ddlAns.Items.Count - 1; i++)
                             ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
 
                         // ddlAns.Items.Insert(0, new ListItem("select", ""));
@@ -98,6 +98,7 @@ namespace Upkeep_v3.CheckList
                     txtTitle.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Title"]); ;
                     txtCLDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Desc"]); ;
                     txtTotScore.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Total Score"]);
+                    hdnTotScore.Value = Convert.ToString(ds.Tables[0].Rows[0]["Total Score"]);
 
                     if (ds.Tables[0].Rows[0]["Is_Enable_Score"].ToString() == "1")
                         ChkScoring.Checked = true;
@@ -179,7 +180,8 @@ namespace Upkeep_v3.CheckList
                             string[] ChecklistQuestion_MandatoryArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$ChkMandatory][]");
                             string[] ChecklistQuestion_AttachmentArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$ChkAttach][]");
                             string[] ChecklistQuestion_RaisedFlagArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$chkRaisedFlag][]");
-                            string[] ChecklistQuestion_ScoreArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$ChktxtScore]");
+                            string[] ChecklistQuestion_ScoreArray = Request.Form.GetValues("CheckListGroup[" + i + "][CheckListQuestion][" + h + "][ctl00$ContentPlaceHolder1$txtScore]");
+                             
 
                             // string[] ChecklistQuestion_Ref_ID_Array = Request.Form.GetValues("ChecklistGroup[" + i + "][ChecklistQuestion][" + h + "][hdnRefID]");
                             ChkQuestionUploadImgID = "CheckListGroup[" + i + "][CheckListQuestion][" + h + "][hdnflRefImage]";
@@ -379,15 +381,14 @@ namespace Upkeep_v3.CheckList
                 int TotalScore = 0;
                 strConfigTitle = txtTitle.Text.Trim();
                 strConfigDesc = txtCLDesc.Text.Trim();
+                 
 
-
-                if (txtTotScore.InnerText != "")
+                if (hdnTotScore.Value != "")
                 {
-
-                    if (Convert.ToInt32(txtTotScore.InnerText) > 0)
+                    if (Convert.ToInt32(hdnTotScore.Value) > 0)
                     {
                         IsEnableScoring = true;
-                        TotalScore = Convert.ToInt32(txtTotScore.InnerText);
+                        TotalScore = Convert.ToInt32(hdnTotScore.Value);
                     }
                 }
 
