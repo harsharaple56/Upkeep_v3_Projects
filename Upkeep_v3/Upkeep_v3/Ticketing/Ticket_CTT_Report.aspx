@@ -7,14 +7,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
-    <%--<script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>--%>
+    <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>
    
     <script type="text/javascript">
         $(document).ready(function () {
-            DatatableHtmlTableDemo.init();
+            //DatatableHtmlTableDemo.init();
         });
 
-        var DatatableHtmlTableDemo = {
+        /*var DatatableHtmlTableDemo = {
             init: function () {
                 var e; e = $(".m-datatable").mDatatable({
                     data: { saveState: { cookie: !1 } },
@@ -28,7 +28,7 @@
                     //}
                 })               
             }
-        };
+        };*/
     </script>
 
     <style type="text/css">

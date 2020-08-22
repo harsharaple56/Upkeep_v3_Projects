@@ -74,7 +74,7 @@ namespace Upkeep_v3.General_Masters
                                 Created_On = dt.ToString("dd/MMM/yyyy");
                             }
 
-                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Is_Approver + "</td><td>" + Is_GlobalApprover + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Is_Approver + "</td><td>" + Is_GlobalApprover + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else

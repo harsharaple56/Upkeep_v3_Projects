@@ -64,6 +64,58 @@ namespace Upkeep_v3.Ticketing
                 //add the thead and tbody section programatically
                 e.Row.TableSection = TableRowSection.TableHeader;
             }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //Get the cell content
+                //Change the cell index as per your gridview
+                string ReqStatus = e.Row.Cells[5].Text;
+                string ActionStatus = e.Row.Cells[6].Text;
+                string ReqStatusClass = string.Empty;
+                string ActionStatusClass = string.Empty;
+
+                switch (ReqStatus)
+                {
+                    case "Open":
+                        ReqStatusClass = "danger";
+                        break;
+                    case "Closed":
+                        ReqStatusClass = "success";
+                        break;
+                    case "Expired":
+                        ReqStatusClass = "secondary";
+                        break;
+                    default:
+                        ReqStatusClass = "secondary";
+                        break;
+                }
+
+                switch (ActionStatus)
+                {
+                    case "Assigned":
+                        ActionStatusClass = "info";
+                        break;
+                    case "Accepted":
+                        ActionStatusClass = "success";
+                        break;
+                    case "Expired":
+                        ActionStatusClass = "secondary";
+                        break;
+                    case "In Progress":
+                        ActionStatusClass = "accent";
+                        break;
+                    case "Closed":
+                        ActionStatusClass = "success";
+                        break;
+                    default:
+                        ReqStatusClass = "secondary";
+                        break;
+                }
+
+                e.Row.Cells[5].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ReqStatusClass + " m-badge--wide'>" + ReqStatus + "</span></span>";
+                e.Row.Cells[6].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ActionStatusClass + " m-badge--dot'></span>&nbsp;" +
+                    "<span class='m--font-bold m--font-" + ActionStatusClass + "'>"+ActionStatus+"</span></span>";
+
+            }
         }
 
         protected void btnExport_Click(object sender, EventArgs e)
