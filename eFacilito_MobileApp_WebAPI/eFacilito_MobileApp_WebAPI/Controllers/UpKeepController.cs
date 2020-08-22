@@ -8520,7 +8520,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
-                ObjLocSqlParameter[1] = new SqlParameter("@CompanyCode", CompanyCode);
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyCode", CompanyCode);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
 
@@ -8719,10 +8719,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
                 ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
-                ObjLocSqlParameter[2] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
-                ObjLocSqlParameter[3] = new SqlParameter("@User_Code", objInsert.User_Code);
-                ObjLocSqlParameter[4] = new SqlParameter("@CompanyID", objInsert.CompanyID);
-                ObjLocSqlParameter[5] = new SqlParameter("@LocationID", objInsert.LocationID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
+                ObjLocSqlParameter[2] = new SqlParameter("@User_Code", objInsert.User_Code);
+                ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", objInsert.CompanyID);
+                ObjLocSqlParameter[4] = new SqlParameter("@LocationID", objInsert.LocationID);
                 ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
 
                 //NEED TO CONVERT DATA TO XML AND PASSED IN SP 
@@ -8754,7 +8754,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 strXml.Append(@"</DocumentElement>");
 
-                ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", strXml.ToString());
+                ObjLocSqlParameter[6] = new SqlParameter("@ChkResponseData", strXml.ToString());
 
                 // ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", objInsert.ChkResponseData);
 
@@ -8809,7 +8809,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
-                ObjLocSqlParameter[1] = new SqlParameter("@EmpCd", EmpCd);
+                ObjLocSqlParameter[0] = new SqlParameter("@EmpCd", EmpCd);
                 ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_MY_RESPONSE_LIST", ObjLocSqlParameter);

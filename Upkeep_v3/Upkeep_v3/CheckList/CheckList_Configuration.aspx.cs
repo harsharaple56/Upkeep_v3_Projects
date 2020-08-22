@@ -240,17 +240,29 @@ namespace Upkeep_v3.CheckList
                                 {
                                     ChkQuestionMandatory = "1";
                                 }
+                                else
+                                {
+                                    ChkQuestionMandatory = "0";
+                                }
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_MANDATORY>" + ChkQuestionMandatory.ToString() + "</CHECKLIST_MANDATORY>");
 
                                 if (ChkQuestionAttachment.ToString() == "on")
                                 {
                                     ChkQuestionAttachment = "1";
                                 }
+                                else
+                                {
+                                    ChkQuestionAttachment = "0";
+                                }
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ATTACHMENT>" + ChkQuestionAttachment.ToString() + "</CHECKLIST_ATTACHMENT>");
 
                                 if (ChkQuestionRaisedFlag.ToString() == "on")
                                 {
                                     ChkQuestionRaisedFlag = "1";
+                                }
+                                else
+                                {
+                                    ChkQuestionRaisedFlag = "0";
                                 }
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_RAISEDFLAG>" + ChkQuestionRaisedFlag.ToString() + "</CHECKLIST_RAISEDFLAG>");
                                 strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_SCORE>" + ChkQuestionScore + "</CHECKLIST_SCORE>");
