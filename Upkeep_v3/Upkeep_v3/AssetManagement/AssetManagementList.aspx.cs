@@ -47,28 +47,28 @@ namespace Upkeep_v3.AssetManagement
 
             try
             {
-                if (start_date.Value != "")
-                {
-                    From_Date = Convert.ToString(start_date.Value);
-                }
-                else
-                {
-                    From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                //if (start_date.Value != "")
+                //{
+                //    From_Date = Convert.ToString(start_date.Value);
+                //}
+                //else
+                //{
+                //    From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
 
-                }
+                //}
 
-                if (end_date.Value != "")
-                {
-                    To_Date = Convert.ToString(end_date.Value);
-                }
-                else
-                {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-                }
+                //if (end_date.Value != "")
+                //{
+                //    To_Date = Convert.ToString(end_date.Value);
+                //}
+                //else
+                //{
+                //    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                //    To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                //}
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_MyAsset(LoggedInUserID, From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyAsset(LoggedInUserID, "", "");
 
                 if (ds.Tables.Count > 0)
                 {

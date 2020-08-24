@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.CheckList {
+namespace Upkeep_v3.CSM {
     
     
-    public partial class CheckList_Configuration {
+    public partial class CSM_Configuration {
+        
+        /// <summary>
+        /// divError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divError;
         
         /// <summary>
         /// lblErrorMsg control.
@@ -31,13 +40,13 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// hdnCLConfigID control.
+        /// hdnCSMConfigID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCLConfigID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCSMConfigID;
         
         /// <summary>
         /// txtTitle control.
@@ -49,220 +58,247 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// ChkFreeService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::System.Web.UI.WebControls.CheckBox ChkFreeService;
         
         /// <summary>
-        /// ChkScoring control.
+        /// txtUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkScoring;
+        protected global::System.Web.UI.WebControls.TextBox txtUsers;
         
         /// <summary>
-        /// txtCLDesc control.
+        /// txtCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCLDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtCost;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// txtTotScore control.
+        /// TextBox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtTotScore;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
         
         /// <summary>
-        /// hdnTotScore control.
+        /// InQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnTotScore;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InQuestion;
         
         /// <summary>
-        /// CheckListGroup control.
+        /// dvInQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckListGroup;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvInQuestion;
         
         /// <summary>
-        /// dvCheckListGroup control.
+        /// hdnInQnID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCheckListGroup;
+        protected global::System.Web.UI.WebControls.HiddenField hdnInQnID;
         
         /// <summary>
-        /// lblCheckListGroup control.
+        /// txtInQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCheckListGroup;
+        protected global::System.Web.UI.WebControls.TextBox txtInQuestion;
         
         /// <summary>
-        /// txtCheckListGroup control.
+        /// ddlInAns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCheckListGroup;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInAns;
         
         /// <summary>
-        /// hdnCLGroupID control.
+        /// lblInAnswerCnt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCLGroupID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblInAnswerCnt;
         
         /// <summary>
-        /// txtCount control.
+        /// txtInQuestionCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtCount;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtInQuestionCount;
         
         /// <summary>
-        /// lblQuestionCount control.
+        /// lblInQuestionCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblQuestionCount;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblInQuestionCount;
         
         /// <summary>
-        /// CheckListQuestion control.
+        /// OutQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckListQuestion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OutQuestion;
         
         /// <summary>
-        /// dvCheckListQuestion control.
+        /// dvOutQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCheckListQuestion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvOutQuestion;
         
         /// <summary>
-        /// hdnCheckListQuestion control.
+        /// hdnOutQnID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCheckListQuestion;
+        protected global::System.Web.UI.WebControls.HiddenField hdnOutQnID;
         
         /// <summary>
-        /// txtCheckListQuestion control.
+        /// txtOutQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCheckListQuestion;
+        protected global::System.Web.UI.WebControls.TextBox txtOutQuestion;
         
         /// <summary>
-        /// ChkMandatory control.
+        /// ddlOutAns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkMandatory;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOutAns;
         
         /// <summary>
-        /// ChkAttach control.
+        /// lblOutAnswerCnt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkAttach;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblOutAnswerCnt;
         
         /// <summary>
-        /// ddlAns control.
+        /// txtOutQuestionCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAns;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtOutQuestionCount;
         
         /// <summary>
-        /// lblAnswerCnt control.
+        /// lblOutQuestionCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAnswerCnt;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblOutQuestionCount;
         
         /// <summary>
-        /// txtScore control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtScore;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// lblGroupCount control.
+        /// Div2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblGroupCount;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
         
         /// <summary>
-        /// flRefImage control.
+        /// HiddenField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile flRefImage;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        
+        /// <summary>
+        /// txtImageHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtImageHeader;
+        
+        /// <summary>
+        /// Hidden1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden Hidden1;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label2;
         
         /// <summary>
         /// hdnAnswerDataID control.
@@ -283,13 +319,76 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.CheckBox ChkAnsFlag;
         
         /// <summary>
-        /// ChkAnsDef control.
+        /// pnlMeetingUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkAnsDef;
+        protected global::System.Web.UI.WebControls.Panel pnlMeetingUsers;
+        
+        /// <summary>
+        /// ddlDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+        
+        /// <summary>
+        /// btnSelectUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSelectUser;
+        
+        /// <summary>
+        /// hdnSelectedUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSelectedUserID;
+        
+        /// <summary>
+        /// hdnSelectedUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSelectedUserName;
+        
+        /// <summary>
+        /// grdInfodetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdInfodetails;
+        
+        /// <summary>
+        /// grdGroupDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdGroupDesc;
+        
+        /// <summary>
+        /// mpeMeetingUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeMeetingUsers;
         
         /// <summary>
         /// pop2 control.
@@ -310,33 +409,6 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden HdnID;
         
         /// <summary>
-        /// hdnCLTerms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCLTerms;
-        
-        /// <summary>
-        /// hdnCLGroups control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCLGroups;
-        
-        /// <summary>
-        /// hdnCLQuestions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCLQuestions;
-        
-        /// <summary>
         /// txtHdn control.
         /// </summary>
         /// <remarks>
@@ -344,5 +416,14 @@ namespace Upkeep_v3.CheckList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHdn;
+        
+        /// <summary>
+        /// hdnCSMQns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCSMQns;
     }
 }
