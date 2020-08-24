@@ -622,6 +622,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 var httpRequest = HttpContext.Current.Request;
                 string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
                 string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                string ImagePhysicalPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
                 int ticketImgCount = 0;
                 foreach (string file in httpRequest.Files)
                 {
@@ -654,7 +655,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                         else
                         {
-                            string fileUploadPath = imgPath + CurrentDate;
+                            string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                            
                             if (!Directory.Exists(fileUploadPath))
                             {
                                 Directory.CreateDirectory(fileUploadPath);
@@ -667,13 +669,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                             ticketImgCount = ticketImgCount + 1;
 
+                            string ImageURL= imgPath + "/" + ImageName + extension;
+
                             StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
                             SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
                             ObjLocSqlParameter[0] = new SqlParameter("@TicketNo", TicketCode);
                             ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                             ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
-                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", filePath);
+                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", ImageURL);
                             ObjLocSqlParameter[4] = new SqlParameter("@TicketFlag", TicketFlag);
 
                             DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
