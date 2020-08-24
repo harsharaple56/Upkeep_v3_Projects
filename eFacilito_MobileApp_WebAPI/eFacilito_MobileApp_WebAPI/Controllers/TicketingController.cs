@@ -559,9 +559,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                         else
                         {
-                            var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            //postedFile.SaveAs(filePath);
+
+                            string fileUploadPath = imgPath + CurrentDate;
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+                            var ImageName = objInsert.TicketID;
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            var filePath = fileUploadPath + "/" + ImageName + extension;
 
                             postedFile.SaveAs(filePath);
+
                         }
                     }
 
@@ -599,16 +610,19 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [Route("api/Ticketing/PostTicketImage")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode)
+        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode, string EmpCD, string RollCD, int TicketFlag)
         {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
             Dictionary<string, object> dict = new Dictionary<string, object>();
             try
             {
 
                 var httpRequest = HttpContext.Current.Request;
                 string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
-                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImageUploadURL"]);
-
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                int ticketImgCount = 0;
                 foreach (string file in httpRequest.Files)
                 {
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
@@ -645,11 +659,27 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 Directory.CreateDirectory(fileUploadPath);
                             }
-                            var ImageName = TicketCode;
+                            var ImageName = TicketCode+"_"+ ticketImgCount;
                             //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
                             var filePath = fileUploadPath + "/" + ImageName + extension;
 
                             postedFile.SaveAs(filePath);
+
+                            ticketImgCount = ticketImgCount + 1;
+
+                            StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                            SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                            ObjLocSqlParameter[0] = new SqlParameter("@TicketNo", TicketCode);
+                            ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                            ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", filePath);
+                            ObjLocSqlParameter[4] = new SqlParameter("@TicketFlag", TicketFlag);
+
+                            DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
+
+                            return Request.CreateResponse(HttpStatusCode.OK);
+
                         }
                     }
 
