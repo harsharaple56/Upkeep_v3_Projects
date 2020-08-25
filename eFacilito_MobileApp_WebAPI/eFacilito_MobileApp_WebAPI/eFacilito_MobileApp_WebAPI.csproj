@@ -232,6 +232,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="FeedbackImages\" />
+    <Folder Include="TicketImages\" />
     <Folder Include="Views\ClsUpkeepMasters\" />
     <Folder Include="Views\Feedback\" />
     <Folder Include="Views\Ticketing\" />

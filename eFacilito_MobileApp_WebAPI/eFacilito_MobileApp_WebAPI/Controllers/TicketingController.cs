@@ -622,7 +622,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 var httpRequest = HttpContext.Current.Request;
                 string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
                 string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                string ImagePhysicalPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
+                //string ImagePhysicalPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
                 int ticketImgCount = 0;
                 foreach (string file in httpRequest.Files)
                 {
@@ -655,21 +655,28 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                         else
                         {
-                            string fileUploadPath = ImagePhysicalPath + CurrentDate;
-                            
+                            //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
+
                             if (!Directory.Exists(fileUploadPath))
                             {
                                 Directory.CreateDirectory(fileUploadPath);
                             }
                             var ImageName = TicketCode+"_"+ ticketImgCount;
-                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
-                            var filePath = fileUploadPath + "/" + ImageName + extension;
 
-                            postedFile.SaveAs(filePath);
+                            var fileName = ImageName + extension;
+
+                            string SaveLocation = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate) + "/" + fileName;
+                            string FileLocation = imgPath + "TicketImages/" + CurrentDate + "/" + fileName;
+
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            
+
+                            postedFile.SaveAs(SaveLocation);
 
                             ticketImgCount = ticketImgCount + 1;
 
-                            string ImageURL= imgPath + "/" + ImageName + extension;
+                            //string ImageURL= imgPath + "/" + ImageName + extension;
 
                             StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
@@ -677,7 +684,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             ObjLocSqlParameter[0] = new SqlParameter("@TicketNo", TicketCode);
                             ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                             ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
-                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", ImageURL);
+                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", FileLocation);
                             ObjLocSqlParameter[4] = new SqlParameter("@TicketFlag", TicketFlag);
 
                             DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
