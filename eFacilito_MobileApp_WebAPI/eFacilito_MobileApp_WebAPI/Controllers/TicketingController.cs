@@ -662,7 +662,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 Directory.CreateDirectory(fileUploadPath);
                             }
-                            var ImageName = TicketCode+"_"+ ticketImgCount;
+
+                            var ImageName = TicketCode+"_"+ TicketFlag + "_"+ ticketImgCount;
 
                             var fileName = ImageName + extension;
 
