@@ -1671,7 +1671,8 @@
             <s:element minOccurs="1" maxOccurs="1" name="Is_GobalApprover" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Approver_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Profilephoto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfilePhoto_FilePath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sign_FilePath" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />

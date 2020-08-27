@@ -6,7 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Sql;
 using System.Data;
-
+using System.IO;
+using System.Configuration;
 
 namespace Upkeep_v3.General_Masters
 {
@@ -42,6 +43,7 @@ namespace Upkeep_v3.General_Masters
                 if (User_ID > 0)
                 {
                     Session["User_ID"] = Convert.ToString(User_ID);
+
                     bindUser_Master(User_ID);
                 }
                 if (User_ID_Delete > 0)
@@ -127,22 +129,58 @@ namespace Upkeep_v3.General_Masters
 
             }
 
+            //[+][Ajay Prajapati][27/Aug/2020][User profile pic and sign upload]
+
+            
+            string ProfilePhoto_FilePath = string.Empty;
+            string Sign_FilePath = string.Empty;
+            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
             if (fileUpload_UserImage.HasFile)
             {
                 //CompanyLogoName = Path.GetFileName(fileUpload_CompanyLogo.PostedFile.FileName);
-                fileUpload_UserImage.PostedFile.SaveAs(Server.MapPath("~/UserImages/") + User_Code + ".PNG");
-                ProfilePhoto = User_Code + ".PNG";
-            }
-            else
-            {
-                //User_Code = "";
-            }
+                //fileUpload_UserImage.PostedFile.SaveAs(Server.MapPath("~/UserImages/") + User_Code + ".PNG");                
+                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/UserImages/");
 
+                if (!Directory.Exists(fileUploadPath_Profile))
+                {
+                    Directory.CreateDirectory(fileUploadPath_Profile);
+                }
+
+                string fileExtension = Path.GetExtension(fileUpload_UserImage.FileName);
+                ProfilePhoto = User_Code + fileExtension;
+
+                string Profile_SaveLocation = Server.MapPath("~/UserImages/") + "/" + ProfilePhoto;
+                ProfilePhoto_FilePath = imgPath + "/UserImages/" + ProfilePhoto;
+
+                fileUpload_UserImage.PostedFile.SaveAs(Profile_SaveLocation);
+
+            }
+            if(fileUpload_UserSignature.HasFile)
+            {
+                string Sign_Pic = string.Empty;
+
+                string fileUploadPath_Sign = HttpContext.Current.Server.MapPath("~/UserSignature/");
+
+                if (!Directory.Exists(fileUploadPath_Sign))
+                {
+                    Directory.CreateDirectory(fileUploadPath_Sign);
+                }
+
+                string fileExtension_Sign = Path.GetExtension(fileUpload_UserSignature.FileName);
+                Sign_Pic = User_Code + fileExtension_Sign;
+
+                string Sign_SaveLocation = Server.MapPath("~/UserSignature/") + "/" + Sign_Pic;
+                Sign_FilePath = imgPath + "/UserSignature/" + Sign_Pic;
+
+                fileUpload_UserSignature.PostedFile.SaveAs(Sign_SaveLocation);
+            }
+            //[-][Ajay Prajapati][27/Aug/2020][User profile pic and sign upload]
 
             Approver_ID = Convert.ToInt32(ddlApprover.SelectedValue);
             RoleID = Convert.ToInt32(ddlRole.SelectedValue);
 
-            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto, CompanyID, LoggedInUserID, Action);
+            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, LoggedInUserID, Action);
 
             if (ds.Tables.Count > 0)
             {
@@ -390,7 +428,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -442,6 +480,16 @@ namespace Upkeep_v3.General_Masters
 
                         ddlApprover.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Approver_ID"]);
                         ddlRole.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Role_ID"]);
+
+                        dvProfilePic.Attributes.Add("style", "display:block");
+                        dvSignature.Attributes.Add("style", "display:block");
+
+                        rptProfilePic.DataSource = ds.Tables[0];
+                        rptProfilePic.DataBind();
+
+                        rptSignature.DataSource = ds.Tables[0];
+                        rptSignature.DataBind();
+
                     }
                 }
 
@@ -463,7 +511,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "", CompanyID, LoggedInUserID, "D");
+                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

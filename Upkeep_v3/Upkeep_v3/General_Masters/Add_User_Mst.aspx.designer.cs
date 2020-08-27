@@ -211,6 +211,51 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.FileUpload fileUpload_UserImage;
         
         /// <summary>
+        /// dvProfilePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvProfilePic;
+        
+        /// <summary>
+        /// rptProfilePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptProfilePic;
+        
+        /// <summary>
+        /// fileUpload_UserSignature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload_UserSignature;
+        
+        /// <summary>
+        /// dvSignature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSignature;
+        
+        /// <summary>
+        /// rptSignature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptSignature;
+        
+        /// <summary>
         /// chk_IsApproval control.
         /// </summary>
         /// <remarks>
