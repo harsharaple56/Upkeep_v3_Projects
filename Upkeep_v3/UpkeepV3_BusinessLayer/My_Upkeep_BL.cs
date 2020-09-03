@@ -2233,6 +2233,38 @@ namespace UpkeepV3_BusinessLayer
         }
         #endregion
 
+        #region CSM
+        //Added by RC This function is used to save CSM Configuration
+        public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_UPDATE_CSM_CONFIG", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
+                cmd.Parameters.AddWithValue("@ConfigDesc", strConfigTitle);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@XmlIn_Question", strXmlIn_Question);
+                cmd.Parameters.AddWithValue("@XmlOut_Question", strXmlOut_Question);
+                cmd.Parameters.AddWithValue("@XmlImage_Header", strXmlImg_Header);
+                cmd.Parameters.AddWithValue("@isFreeService", blFreeService);
+                cmd.Parameters.AddWithValue("@EnableImage", blEnableImageUpload);
+                cmd.Parameters.AddWithValue("@Cost", intCost);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
         #region General Functions
 
         //Added by RC This function is used to Fetch Answer type master
