@@ -1458,6 +1458,81 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_My_Profile_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_My_Profile_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_My_Profile_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_My_Profile_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PhoneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AltPhoneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Postcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_My_Profile_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_My_Profile_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_Change_Password">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_Change_PasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_Change_PasswordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -1898,6 +1973,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -3869,6 +3945,24 @@
   <wsdl:message name="Crud_Inv_Item_MstSoapOut">
     <wsdl:part name="parameters" element="tns:Crud_Inv_Item_MstResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_My_Profile_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_My_Profile_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_My_Profile_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_My_Profile_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_My_Profile_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_My_Profile_Details" />
+  </wsdl:message>
+  <wsdl:message name="Update_My_Profile_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_My_Profile_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_Change_PasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_Change_Password" />
+  </wsdl:message>
+  <wsdl:message name="Update_Change_PasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_Change_PasswordResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4621,6 +4715,18 @@
     <wsdl:operation name="Crud_Inv_Item_Mst">
       <wsdl:input message="tns:Crud_Inv_Item_MstSoapIn" />
       <wsdl:output message="tns:Crud_Inv_Item_MstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Profile_Details">
+      <wsdl:input message="tns:Fetch_My_Profile_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_My_Profile_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_My_Profile_Details">
+      <wsdl:input message="tns:Update_My_Profile_DetailsSoapIn" />
+      <wsdl:output message="tns:Update_My_Profile_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_Change_Password">
+      <wsdl:input message="tns:Update_Change_PasswordSoapIn" />
+      <wsdl:output message="tns:Update_Change_PasswordSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5513,6 +5619,33 @@
     </wsdl:operation>
     <wsdl:operation name="Crud_Inv_Item_Mst">
       <soap:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Profile_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_My_Profile_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_My_Profile_Details">
+      <soap:operation soapAction="http://tempuri.org/Update_My_Profile_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_Change_Password">
+      <soap:operation soapAction="http://tempuri.org/Update_Change_Password" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6830,6 +6963,33 @@
     </wsdl:operation>
     <wsdl:operation name="Crud_Inv_Item_Mst">
       <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Profile_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_My_Profile_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_My_Profile_Details">
+      <soap12:operation soapAction="http://tempuri.org/Update_My_Profile_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_Change_Password">
+      <soap12:operation soapAction="http://tempuri.org/Update_Change_Password" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

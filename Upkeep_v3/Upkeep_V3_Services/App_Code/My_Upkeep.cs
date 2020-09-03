@@ -307,13 +307,13 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Fetch_CategorySubCategory(int CategoryID)
+    public DataSet Fetch_CategorySubCategory(int CategoryID, int CompanyID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_CategorySubCategory(CategoryID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_CategorySubCategory(CategoryID, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -2188,5 +2188,58 @@ public class My_Upkeep
     }
 
     #endregion
+
+    #region My Profile
+
+    public DataSet Fetch_My_Profile_Details(int LoggedInUserID, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsProfile = ObjUpkeepCC_BL.Fetch_My_Profile_Details(LoggedInUserID, CompanyID, StrConn);
+            return dsProfile;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsProfile = ObjUpkeepCC_BL.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, CompanyID, StrConn);
+            return dsProfile;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID)
+    {
+        DataSet dsChangePassword = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsChangePassword = ObjUpkeepCC_BL.Update_Change_Password(Username, CurrentPassword, NewPassword, CompanyID, StrConn);
+            return dsChangePassword;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+
+    #endregion
+
+
 
 }

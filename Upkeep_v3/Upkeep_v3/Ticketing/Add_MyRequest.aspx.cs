@@ -127,7 +127,7 @@ namespace Upkeep_v3.Ticketing
             try
             {
 
-                dsCategory = ObjUpkeep.Fetch_CategorySubCategory(CategoryID);
+                dsCategory = ObjUpkeep.Fetch_CategorySubCategory(CategoryID, CompanyID);
 
                 if (CategoryID == 0)
                 {

@@ -404,6 +404,10 @@ namespace Upkeep_v3.General_Masters
                         ddlApprover.DataBind();
                         ddlApprover.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
+                    else
+                    {
+                        ddlApprover.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
                     if (ds.Tables[2].Rows.Count > 0)
                     {
                         ddlRole.DataSource = ds.Tables[2];

@@ -345,11 +345,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_CategorySubCategory(int CategoryID)
+    public DataSet Fetch_CategorySubCategory(int CategoryID, int CompanyID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_CategorySubCategory(CategoryID);
+            ds = ObjUpkeep.Fetch_CategorySubCategory(CategoryID, CompanyID);
         }
         catch (Exception ex)
         {
@@ -2466,6 +2466,60 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     #endregion
+
+    #region My Profile
+
+    [WebMethod]
+    public DataSet Fetch_My_Profile_Details(int LoggedInUserID, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            dsProfile = ObjUpkeep.Fetch_My_Profile_Details(LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsProfile;
+    }
+
+    [WebMethod]
+    public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            dsProfile = ObjUpkeep.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsProfile;
+    }
+
+    [WebMethod]
+    public DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID)
+    {
+        DataSet dsChangePassword = new DataSet();
+        try
+        {
+            dsChangePassword = ObjUpkeep.Update_Change_Password(Username, CurrentPassword, NewPassword, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsChangePassword;
+    }
+
+
+
+
+
+    #endregion
+
 
 
 }

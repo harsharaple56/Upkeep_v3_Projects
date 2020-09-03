@@ -195,6 +195,8 @@ namespace Upkeep_v3
                                     Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
                                     Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
                                     Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
+                                    Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
+
                                 }
                                 else
                                 {
