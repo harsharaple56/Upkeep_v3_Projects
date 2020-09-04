@@ -99,6 +99,8 @@ namespace Upkeep_v3.Ticketing
                     {
                         string[] LocArr = strArrayWorkflow[intLocRowCtr].Split('#');
 
+                        //Validation here
+
                         strXmlOutput.Append(@"<WORKFLOW_DETAILS>");
 
                         strXmlOutput.Append(@"<level>" + LocArr[0] + "</level>");
