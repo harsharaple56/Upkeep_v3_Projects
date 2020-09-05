@@ -994,6 +994,7 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
+    <Content Include="Retailer_Profile.aspx" />
     <Content Include="Security\Assign_RoleList.aspx" />
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
@@ -4389,6 +4390,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Retailer_Profile.aspx.cs">
+      <DependentUpon>Retailer_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Retailer_Profile.aspx.designer.cs">
+      <DependentUpon>Retailer_Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\Assign_RoleList.aspx.cs">
       <DependentUpon>Assign_RoleList.aspx</DependentUpon>
