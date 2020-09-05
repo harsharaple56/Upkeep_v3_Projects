@@ -345,10 +345,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
                             }
                         }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
-                        }
+                        //else
+                        //{
+                        //    return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
+                        //}
                     }
                 }
 
