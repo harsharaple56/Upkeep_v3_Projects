@@ -1606,6 +1606,76 @@ public class My_Upkeep
     }
     #endregion
 
+    #region CSM
+    //Added by RC This function is used to save VMS Configuration 
+    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlImg_Header, blFreeService, blEnableImageUpload, intCost, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to Fetch CSM Configuration 
+    public DataSet Fetch_CSMConfiguration(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_CSMConfiguration(CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to bind CSM Configuration 
+    public DataSet Bind_CSMConfiguration(int ConfigID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Bind_CSMConfiguration(ConfigID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    //Added by RC delete CSM config
+    public DataSet Delete_CSMConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Delete_CSMConfiguration(ConfigID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    #endregion
+
     #region General Functions
 
     //Added by RC This function is used to Fetch Answer type master

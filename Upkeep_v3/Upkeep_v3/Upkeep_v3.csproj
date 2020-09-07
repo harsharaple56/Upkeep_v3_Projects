@@ -939,6 +939,7 @@
     <Content Include="CheckList\ChkConfig_Listing.aspx" />
     <Content Include="CheckList\Edit_Checklist.aspx" />
     <Content Include="CheckList\MyChecklist.aspx" />
+    <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
@@ -4042,6 +4043,13 @@
     </Compile>
     <Compile Include="CheckList\MyChecklist.aspx.designer.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
+      <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\CSMConfig_Listing.aspx.designer.cs">
+      <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSM\CSM_Configuration.aspx.cs">
       <DependentUpon>CSM_Configuration.aspx</DependentUpon>

@@ -81,6 +81,16 @@
                 }
             });
 
+            $("#divimgRptr").hide();
+            $("#divChkImageEnable").click(function () {
+                //alert("hii");
+                if ($("#ChkImageEnable").is(":checked")) {
+                    $("#divimgRptr").hide(300);
+                } else {
+                    $("#divimgRptr").show(200);
+                }
+            });
+
             $('.InQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -107,7 +117,7 @@
                     }
                 },
             });
-
+            
             $('.OutQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -131,6 +141,32 @@
                     counter.data('count', question_count).html(question_count + ' Question(s)');
                     if (question_count == 0) {
                         $('#error_inquestion_repeater').html('Add at least one Question.');
+                    }
+                },
+            });
+            $('.ImageHeader_repeater').repeater({
+                initEmpty: false,
+                show: function () {
+                    $(this).slideDown();
+                    var counter = $(this).parents('.ImageHeader_repeater').find('.question_count');
+                    var question_count = counter.data('count');
+                    question_count++;
+                    $('#txtImageHeaderCount').val(question_count);
+                    counter.data('count', question_count).html(question_count + ' Image Header(s)');
+                    $('#error_imageheader_repeater').html('');
+
+                    init_autosize();
+                    init_plugins();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                    var counter = $(this).parents('.ImageHeader_repeater').find('.question_count');
+                    var question_count = counter.data('count');
+                    question_count--;
+                    $('#txtImageHeaderCount').val(question_count);
+                    counter.data('count', question_count).html(question_count + ' Image Header(s)');
+                    if (question_count == 0) {
+                        $('#error_imageheader_repeater').html('Add at least one Question.');
                     }
                 },
             });
@@ -471,7 +507,7 @@
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3  col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
                                     <div class="col-xl-4 col-lg-4">
                                         <asp:HiddenField ID="hdnCSMConfigID" ClientIDMode="Static" Value="0" runat="server" />
                                         <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
@@ -479,29 +515,35 @@
                                                 ValidationGroup="validateCSM" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>--%>
                                         <span class="error_title text-danger medium"></span>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-2">
                                         <div class="btn-group btn-group-toggle" id="divChkFreeService" data-toggle="buttons">
                                             <label class="btn btn-light" id="lblFreeService">
                                                 <asp:CheckBox ID="ChkFreeService" autocomplete="off" runat="server" ClientIDMode="Static" />
                                                 <i class="fa fa-check" aria-hidden="true"></i>Free Service</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-4" id="divFreeService">
+                                        <label class="col-form-label font-weight-bold">Cost of Service:</label>
+                                        <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
+                                        <asp:TextBox ID="TextBox2" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
+                                    </div>
 
                                 </div>
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Request Flow:</label>
-                                    <div class="col-3">
+                                    <label class="col-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Request Flow:</label>
+                                    <div class="col-7">
                                         <asp:TextBox ID="txtUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75">
                                         </asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnUsersID" id="hdnUsersID" tabindex="0" value="" />
                                         <span id="error_question_for" class="text-danger small"></span>
                                     </div>
-                                    <div class="col-md-6" id="divFreeService">
-
-                                        <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>Cost of Service 
-                                        <asp:TextBox ID="TextBox1" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
-                                        <asp:TextBox ID="TextBox2" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
+                                    <div class="col-md-3">
+                                        <div class="btn-group btn-group-toggle" id="divChkImageEnable" data-toggle="buttons">
+                                            <label class="btn btn-light" id="lblImageEnable">
+                                                <asp:CheckBox ID="ChkImageEnable" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                                <i class="fa fa-check" aria-hidden="true"></i>Enable Image Upload</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <br />
@@ -643,10 +685,10 @@
                                 </div>
                                 <br />
 
-                                <div id="imgRptr">
+                                <div id="divimgRptr">
                                     <div class="form-group row" style="background-color: #00c5dc;">
                                         <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Images to be Uplaoded</label>
-                                       
+
                                         <div class="col-xl-3 offset-6 pr-0 pl-lg-5 btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-outline-secondary active">
                                                 <input type="radio" name="options" id="option1" autocomplete="off" checked>
@@ -661,50 +703,46 @@
                                     <br />
                                     <div class="col-xl-12">
                                         <div class="m-form__section">
-                                            <div class="OutQuestion_repeater">
+                                            <div class="ImageHeader_repeater">
                                                 <div class="form-group  m-form__group row">
 
-                                                    <div data-repeater-list="OutQuestion" class="col-lg-12" runat="server" id="Div1">
+                                                    <div data-repeater-list="ImageHeader" class="col-lg-12" runat="server" id="ImageHeader">
 
-                                                        <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="Div2">
+                                                        <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvImageHeader">
                                                             <div class="col-md-9">
                                                                 <div class="m-form__group">
                                                                     <div class="m-form__control">
-                                                                        <asp:HiddenField ID="HiddenField1" ClientIDMode="Static" Value="0" runat="server" />
+                                                                        <asp:HiddenField ID="hdnImgHeaderID" ClientIDMode="Static" Value="0" runat="server" />
                                                                         <asp:TextBox ID="txtImageHeader" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Image Header" Rows="1"></asp:TextBox>
                                                                         <span class="error_question text-danger medium"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-md-none m--margin-bottom-10"></div>
                                                             </div>
-
-                                                            
                                                             <div class="col-md-3">
-                                                                <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divOutQnDel">
+                                                                <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divImgHeaderDel">
                                                                     <i class="la la-trash"></i>
                                                                 </div>
                                                             </div>
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="m-form__group form-group row">
                                                     <div class="col-lg-4">
-                                                        <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divOutQnAdd">
+                                                        <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divImageHeaderAdd">
                                                             <span>
                                                                 <i class="la la-plus"></i>
-                                                                <span>Add Question</span>
+                                                                <span>Add
+                                                                </span>
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-8">
 
-                                                        <input type="hidden" id="Hidden1" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
-                                                        <label id="Label2" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
+                                                        <input type="hidden" id="txtImgHeaderCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
+                                                        <label id="lblImgHeaderCount" runat="server" class="col-form-label font-weight-bold question_count" data-count="1">1 Image Header(s)</label>
                                                     </div>
-                                                    <span id="error_outquestion_repeater" class="text-danger medium"></span>
+                                                    <span id="error_imgheader_repeater" class="text-danger medium"></span>
                                                 </div>
 
                                             </div>
@@ -926,7 +964,8 @@
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
-                        <asp:HiddenField ID="hdnCSMQns" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="hdnInQns" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="hdnOutQns" ClientIDMode="Static" runat="server" />
 
                         <%--</form>--%>
                     </div>

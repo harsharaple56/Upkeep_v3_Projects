@@ -75,76 +75,71 @@ namespace Upkeep_v3.CSM
         {
             try
             {
-                string CSMQuestionID = string.Empty;
-                string CSMQuestion = string.Empty;
-                string CSMQuestionMandatory = string.Empty;
-                string CSMQuestionVisible = string.Empty;
-                string CSMQuestionAns = string.Empty;
-                string CSMQuestionAnsData = string.Empty;
+                string CSMInQuestionID = string.Empty;
+                string CSMInQuestion = string.Empty;
+                string CSMInQuestionAns = string.Empty;
+                string CSMInQuestionAnsData = string.Empty;
 
-                //string CSMFeedback = string.Empty;
-                //string CSMFeedbackMandatory = string.Empty;
-                //string CSMFeedbackVisible = string.Empty;
-                //string CSMFeedbackAns = string.Empty;
-                //string CSMFeedbackAnsData = string.Empty;
+                string CSMOutQuestionID = string.Empty;
+                string CSMOutQuestion = string.Empty;
+                string CSMOutQuestionAns = string.Empty;
+                string CSMOutQuestionAnsData = string.Empty;
 
-                StringBuilder strXmlCSM_Question = new StringBuilder();
-                strXmlCSM_Question.Append(@"<?xml version=""1.0"" ?>");
-                strXmlCSM_Question.Append(@"<CSM_HEADER_ROOT>");
+                string CSMImageHeaderID = string.Empty;
+                string CSMImageHeader = string.Empty;
 
-                StringBuilder strXmlCSM_Feedback = new StringBuilder();
-                strXmlCSM_Feedback.Append(@"<?xml version=""1.0"" ?>");
-                //strXmlCSM_Feedback.Append(@"<CSM_FEEDBACK_ROOT>");
+                StringBuilder strXmlCSM_InQuestion = new StringBuilder();
+                StringBuilder strXmlCSM_OutQuestion = new StringBuilder();
+                StringBuilder strXmlCSM_ImageHeader = new StringBuilder();
+                //strXmlCSM_InQuestion.Append(@"<?xml version=""1.0"" ?>");
+                strXmlCSM_InQuestion.Append(@"<CSM_IN_HEADER_ROOT>");
+                strXmlCSM_OutQuestion.Append(@"<CSM_OUT_HEADER_ROOT>");
+                strXmlCSM_ImageHeader.Append(@"<CSM_IMAGE_HEADER_ROOT>");
 
-                int Qln = 0;
-                if (String.IsNullOrEmpty(txtInQuestion.Text)) { Qln = 0; }
-                else { Qln = Convert.ToInt32(txtInQuestion.Text); }
+                int InQln = 0;
+                if (String.IsNullOrEmpty(txtInQuestionCount.Value)) { InQln = 0; }
+                else { InQln = Convert.ToInt32(txtInQuestionCount.Value); }
 
-                //int Fln = 0;
-                //if (String.IsNullOrEmpty(txtFeedbackCount.Value)) { Fln = 0; }
-                //else { Fln = Convert.ToInt32(txtFeedbackCount.Value); }
+                int OutQln = 0;
+                if (String.IsNullOrEmpty(txtOutQuestionCount.Value)) { OutQln = 0; }
+                else { OutQln = Convert.ToInt32(txtOutQuestionCount.Value); }
 
-                for (int i = 0; i < Qln; i++)
+                int Imgln = 0;
+                if (String.IsNullOrEmpty(txtImgHeaderCount.Value)) { Imgln = 0; }
+                else { Imgln = Convert.ToInt32(txtImgHeaderCount.Value); }
+
+                //loop for In question
+                for (int i = 0; i < InQln; i++)
                 {
-                    CSMQuestionID = "0";
-                    CSMQuestion = "";
-                    CSMQuestionVisible = "0";
-                    CSMQuestionMandatory = "0";
-                    CSMQuestionAns = "";
-                    CSMQuestionAnsData = "";
+                    CSMInQuestionID = "0";
+                    CSMInQuestion = "";
+                    CSMInQuestionAns = "";
+                    CSMInQuestionAnsData = "";
 
-                    CSMQuestionID = Request.Form.GetValues("CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
-                    CSMQuestion = Request.Form.GetValues("CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtCSMQuestion]")[0];
-                    CSMQuestionAns = Request.Form.GetValues("CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]")[0];
-                    CSMQuestionAnsData = Request.Form.GetValues("CSMQuestion[" + i + "][hdnRepeaterAnswer]")[0];
+                    CSMInQuestionID = Request.Form.GetValues("InQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnInQnID]")[0];
+                    CSMInQuestion = Request.Form.GetValues("InQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtInQuestion]")[0];
+                    CSMInQuestionAns = Request.Form.GetValues("InQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlInAns]")[0];
+                    CSMInQuestionAnsData = Request.Form.GetValues("InQuestion[" + i + "][hdnInRepeaterAnswer]")[0];
 
-                    if (Request.Form.AllKeys.Contains("CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]"))
-                        CSMQuestionVisible = "1";
-                    if (Request.Form.AllKeys.Contains("CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]"))
-                        CSMQuestionMandatory = "1";
+                    strXmlCSM_InQuestion.Append(@"<Question_Desc>");
+                    strXmlCSM_InQuestion.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
+                    strXmlCSM_InQuestion.Append(@"<Question_Id>" + CSMInQuestionID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
+                    strXmlCSM_InQuestion.Append(@"<Question_Header>" + CSMInQuestion.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
+                    strXmlCSM_InQuestion.Append(@"<Question_Ans>" + CSMInQuestionAns.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans>");
 
-
-                    strXmlCSM_Question.Append(@"<Question_Desc>");
-                    strXmlCSM_Question.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
-                    strXmlCSM_Question.Append(@"<Question_Id>" + CSMQuestionID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
-                    strXmlCSM_Question.Append(@"<Question_Header>" + CSMQuestion.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
-                    strXmlCSM_Question.Append(@"<Question_Visible>" + CSMQuestionVisible.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Visible>");
-                    strXmlCSM_Question.Append(@"<Question_Mandatory>" + CSMQuestionMandatory.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Mandatory>");
-                    strXmlCSM_Question.Append(@"<Question_Ans>" + CSMQuestionAns.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans>");
-
-                    strXmlCSM_Question.Append(@"<Question_Ans_Data_Root>");
-                    string[] strValueData = CSMQuestionAnsData.Split(';');
+                    strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_Root>");
+                    string[] strValueData = CSMInQuestionAnsData.Split(';');
 
                     if (strValueData.Length == 1)
                     {
-                        strXmlCSM_Question.Append(@"<Question_Ans_Data>");
+                        strXmlCSM_InQuestion.Append(@"<Question_Ans_Data>");
 
-                        strXmlCSM_Question.Append(@"<Question_Ans_Sequence>0</Question_Ans_Sequence>");
-                        strXmlCSM_Question.Append(@"<Question_Ans_Data_ID></Question_Ans_Data_ID>");
-                        strXmlCSM_Question.Append(@"<Question_Ans_Data_Text></Question_Ans_Data_Text>");
-                        strXmlCSM_Question.Append(@"<Question_Ans_Data_IsFlag></Question_Ans_Data_IsFlag>");
+                        strXmlCSM_InQuestion.Append(@"<Question_Ans_Sequence>0</Question_Ans_Sequence>");
+                        strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_ID></Question_Ans_Data_ID>");
+                        strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_Text></Question_Ans_Data_Text>");
+                        strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_IsFlag></Question_Ans_Data_IsFlag>");
 
-                        strXmlCSM_Question.Append(@"</Question_Ans_Data>");
+                        strXmlCSM_InQuestion.Append(@"</Question_Ans_Data>");
                     }
                     else
                     {
@@ -156,42 +151,125 @@ namespace Upkeep_v3.CSM
                             //string isFlag = "0";
                             //if (strValue[2].ToString() == "on") { isFlag = "1"; }
 
-                            strXmlCSM_Question.Append(@"<Question_Ans_Data>");
-                            strXmlCSM_Question.Append(@"<Question_Ans_Sequence>" + f + "</Question_Ans_Sequence>");
+                            strXmlCSM_InQuestion.Append(@"<Question_Ans_Data>");
+                            strXmlCSM_InQuestion.Append(@"<Question_Ans_Sequence>" + f + "</Question_Ans_Sequence>");
 
-                            strXmlCSM_Question.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_ID>");
-                            strXmlCSM_Question.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_Text>");
-                            strXmlCSM_Question.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_IsFlag>");
+                            strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_ID>");
+                            strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_Text>");
+                            strXmlCSM_InQuestion.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_IsFlag>");
 
-                            strXmlCSM_Question.Append(@"</Question_Ans_Data>");
+                            strXmlCSM_InQuestion.Append(@"</Question_Ans_Data>");
                         }
                     }
 
-                    strXmlCSM_Question.Append(@"</Question_Ans_Data_Root>");
-                    strXmlCSM_Question.Append(@"</Question_Desc>");
+                    strXmlCSM_InQuestion.Append(@"</Question_Ans_Data_Root>");
+                    strXmlCSM_InQuestion.Append(@"</Question_Desc>");
 
 
                 }
 
-                strXmlCSM_Question.Append(@"</CSM_HEADER_ROOT>");
+                //loop for Out question
+                for (int i = 0; i < OutQln; i++)
+                {
+                    CSMOutQuestionID = "0";
+                    CSMOutQuestion = "";
+                    CSMOutQuestionAns = "";
+                    CSMOutQuestionAnsData = "";
+
+                    CSMOutQuestionID = Request.Form.GetValues("OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnOutQnID]")[0];
+                    CSMOutQuestion = Request.Form.GetValues("OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtOutQuestion]")[0];
+                    CSMOutQuestionAns = Request.Form.GetValues("OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlOutAns]")[0];
+                    CSMOutQuestionAnsData = Request.Form.GetValues("OutQuestion[" + i + "][hdnOutRepeaterAnswer]")[0];
+
+                    strXmlCSM_OutQuestion.Append(@"<Question_Desc>");
+                    strXmlCSM_OutQuestion.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
+                    strXmlCSM_OutQuestion.Append(@"<Question_Id>" + CSMOutQuestionID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
+                    strXmlCSM_OutQuestion.Append(@"<Question_Header>" + CSMOutQuestion.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
+                    strXmlCSM_OutQuestion.Append(@"<Question_Ans>" + CSMOutQuestionAns.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans>");
+
+                    strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_Root>");
+                    string[] strValueData = CSMOutQuestionAnsData.Split(';');
+
+                    if (strValueData.Length == 1)
+                    {
+                        strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data>");
+
+                        strXmlCSM_OutQuestion.Append(@"<Question_Ans_Sequence>0</Question_Ans_Sequence>");
+                        strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_ID></Question_Ans_Data_ID>");
+                        strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_Text></Question_Ans_Data_Text>");
+                        strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_IsFlag></Question_Ans_Data_IsFlag>");
+
+                        strXmlCSM_OutQuestion.Append(@"</Question_Ans_Data>");
+                    }
+                    else
+                    {
+                        for (int f = 0; f <= strValueData.Length - 1; f++)
+                        {
+                            //string[] strValue = strValueData[f].Split(new[] { "::" }, StringSplitOptions.None);
+                            string[] strValue = strValueData[f].Split(':');
+
+                            //string isFlag = "0";
+                            //if (strValue[2].ToString() == "on") { isFlag = "1"; }
+
+                            strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data>");
+                            strXmlCSM_OutQuestion.Append(@"<Question_Ans_Sequence>" + f + "</Question_Ans_Sequence>");
+
+                            strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_ID>" + strValue[0].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_ID>");
+                            strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_Text>" + strValue[1].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_Text>");
+                            strXmlCSM_OutQuestion.Append(@"<Question_Ans_Data_IsFlag>" + strValue[2].ToString().Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Ans_Data_IsFlag>");
+
+                            strXmlCSM_OutQuestion.Append(@"</Question_Ans_Data>");
+                        }
+                    }
+
+                    strXmlCSM_OutQuestion.Append(@"</Question_Ans_Data_Root>");
+                    strXmlCSM_OutQuestion.Append(@"</Question_Desc>");
+
+
+                }
+
+                //loop for Image Header
+                for (int i = 0; i < Imgln; i++)
+                {
+                    CSMImageHeaderID = "0";
+                    CSMImageHeader = "";
+
+                    CSMImageHeaderID = Request.Form.GetValues("ImageHeader[" + i + "][ctl00$ContentPlaceHolder1$hdnImgHeaderID]")[0];
+                    CSMImageHeader = Request.Form.GetValues("ImageHeader[" + i + "][ctl00$ContentPlaceHolder1$txtImageHeader]")[0];
+
+                    strXmlCSM_ImageHeader.Append(@"<Question_Desc>");
+                    strXmlCSM_ImageHeader.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
+                    strXmlCSM_ImageHeader.Append(@"<Question_Id>" + CSMImageHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
+                    strXmlCSM_ImageHeader.Append(@"<Question_Header>" + CSMImageHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
+                    strXmlCSM_ImageHeader.Append(@"</Question_Desc>");
+
+                }
+
+                strXmlCSM_InQuestion.Append(@"</CSM_IN_HEADER_ROOT>");
+                strXmlCSM_OutQuestion.Append(@"</CSM_OUT_HEADER_ROOT>");
+                strXmlCSM_ImageHeader.Append(@"</CSM_IMAGE_HEADER_ROOT>");
                 //strXmlCSM_Feedback.Append(@"</CSM_FEEDBACK_ROOT>");
 
                 int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string strConfigTitle = string.Empty;
-                string strConfigDesc = string.Empty;
                 int CompanyID = Convert.ToInt32(ViewState["CompanyID"]);
                 string strInitiator = string.Empty;
-                bool blFeedbackCompulsary = false;
-                bool blEnableCovid = false;
-                int FeedbackTitle = 0;
-                int EntryCount = 0;
+                bool blFreeService = false;
+                bool blEnableImageUpload = false;
+                int intCost = 0;
+                string strFlowUsers = string.Empty;
 
+                strFlowUsers = hdnSelectedUserID.Value;
                 strConfigTitle = txtTitle.Text.Trim();
-                
-                blFeedbackCompulsary = Convert.ToBoolean(ChkFreeService.Checked);
+
+                if (txtCost.Text.All(char.IsDigit))
+                    intCost = Convert.ToInt32(txtCost.Text);
+
+                blFreeService = Convert.ToBoolean(ChkFreeService.Checked);
+                blEnableImageUpload = Convert.ToBoolean(ChkImageEnable.Checked);
 
                 DataSet dsCSMConfig = new DataSet();
-                dsCSMConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlCSM_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID);
+                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_ImageHeader.ToString(), blFreeService,  blEnableImageUpload, intCost, LoggedInUserID);
 
                 if (dsCSMConfig.Tables.Count > 0)
                 {
@@ -359,13 +437,14 @@ namespace Upkeep_v3.CSM
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
                 int ConfigTitleID = Convert.ToInt32(ViewState["ConfigID"]);
-                dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigTitleID);
+                dsConfig = ObjUpkeep.Bind_CSMConfiguration(ConfigTitleID);
 
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Title"].ToString()))
                 {
                     //divDesc.Visible = true;
                     hdnCSMConfigID.Value = ConfigTitleID.ToString();
-                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Title"].ToString();
+                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+
 
                     //txtCSMDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     //txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
@@ -377,19 +456,24 @@ namespace Upkeep_v3.CSM
                     //ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
                     //ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();
 
-                    var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
-                       s.Field<decimal>("CSM_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
-                       + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
+                    var InQnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
+                       s.Field<decimal>("Open_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
                        + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
-                       ans.Field<decimal>("CSM_Qn_Id").ToString() == s.Field<decimal>("CSM_Qn_Id").ToString()).Select(ans =>
+                       ans.Field<decimal>("Open_Qn_ID").ToString() == s.Field<decimal>("Open_Qn_ID").ToString()).Select(ans =>
                        ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
                        ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
-                    hdnCSMQns.Value = string.Join("~", QnValues);
+                    hdnInQns.Value = string.Join("~", InQnValues);
+
+                    var OutQnValues = dsConfig.Tables[3].AsEnumerable().Select(s =>
+                       s.Field<decimal>("Close_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
+                       + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[4].AsEnumerable().Where(ans =>
+                       ans.Field<decimal>("Close_Qn_ID").ToString() == s.Field<decimal>("Close_Qn_ID").ToString()).Select(ans =>
+                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
+                       ans.Field<bool>("Is_Flag").ToString()))).ToArray();
+
+                    hdnOutQns.Value = string.Join("~", OutQnValues);
                 }
-
-
-
 
             }
             catch (Exception ex)
