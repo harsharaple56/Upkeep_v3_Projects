@@ -178,7 +178,7 @@
                 var VarLocRowObj = VarLocTab.rows[i].id;
                 var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
                 if ((window.document.getElementById(VarLocRowObj).children[1].children[2].value) == "") {
-                    ShowNotification("Warning !", "Action Details Should not be blank");
+                    //ShowNotification("Warning !", "Action Details Should not be blank");
                     alert('Action Details Should not be blank');
                     return false;
                 }
@@ -213,8 +213,8 @@
 
 
                 if (window.document.getElementById(VarLocRowObj).children[5].children[0].value == "") {
-                    ShowNotification("Warning !", "Time Should not be blank");
-                    //alert('Time Should not be blank');
+                    //ShowNotification("Warning !", "Time Should not be blank");
+                    alert('Time Should not be blank');
                     return false;
                 }
                 else {

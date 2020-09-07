@@ -990,10 +990,12 @@
     <Content Include="Inventory\Inventory_Transaction_Details.aspx" />
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="My_Profile.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
+    <Content Include="Retailer_Profile.aspx" />
     <Content Include="Security\Assign_RoleList.aspx" />
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
@@ -4381,6 +4383,13 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="My_Profile.aspx.cs">
+      <DependentUpon>My_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My_Profile.aspx.designer.cs">
+      <DependentUpon>My_Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -4389,6 +4398,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Retailer_Profile.aspx.cs">
+      <DependentUpon>Retailer_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Retailer_Profile.aspx.designer.cs">
+      <DependentUpon>Retailer_Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\Assign_RoleList.aspx.cs">
       <DependentUpon>Assign_RoleList.aspx</DependentUpon>

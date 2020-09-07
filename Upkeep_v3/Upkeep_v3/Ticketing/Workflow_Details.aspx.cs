@@ -99,6 +99,8 @@ namespace Upkeep_v3.Ticketing
                     {
                         string[] LocArr = strArrayWorkflow[intLocRowCtr].Split('#');
 
+                        //Validation here
+
                         strXmlOutput.Append(@"<WORKFLOW_DETAILS>");
 
                         strXmlOutput.Append(@"<level>" + LocArr[0] + "</level>");
@@ -157,7 +159,7 @@ namespace Upkeep_v3.Ticketing
             try
             {
 
-                ds = ObjUpkeep.Fetch_CategorySubCategory(CategoryID);
+                ds = ObjUpkeep.Fetch_CategorySubCategory(CategoryID, CompanyID);
 
                 if (CategoryID == 0)
                 {

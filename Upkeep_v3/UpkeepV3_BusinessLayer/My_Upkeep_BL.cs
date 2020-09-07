@@ -325,7 +325,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string Profilephoto, int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath,string Sign_FilePath, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -353,7 +353,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Is_GlobalApprover", Is_GobalApprover);
                 cmd.Parameters.AddWithValue("@Approver_ID", Approver_ID);
                 cmd.Parameters.AddWithValue("@RoleID", RoleID);
-                cmd.Parameters.AddWithValue("@Profile_photo", Profilephoto);
+                cmd.Parameters.AddWithValue("@Profile_photo", ProfilePhoto_FilePath);
+                cmd.Parameters.AddWithValue("@Sign_photo", Sign_FilePath);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 //cmd.Parameters.AddWithValue("Is_Deleted", Is_Deleted);
@@ -446,7 +447,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_CategorySubCategory(int CategoryID, string StrConn)
+        public DataSet Fetch_CategorySubCategory(int CategoryID, int CompanyID, string StrConn)
         {
             try
             {
@@ -454,6 +455,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_CategorySubCategory_List", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -3115,6 +3117,84 @@ namespace UpkeepV3_BusinessLayer
 
 
         #endregion
+
+        #region My Profile
+
+        public DataSet Fetch_My_Profile_Details(int LoggedInUserID, int CompanyID, string StrConn)
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_User_Profile_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsProfile);
+                return dsProfile;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, int CompanyID, string StrConn)
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Update_User_Profile_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@PhoneNo", PhoneNo);
+                cmd.Parameters.AddWithValue("@AltPhoneNo", AltPhoneNo);
+                cmd.Parameters.AddWithValue("@EmailID", EmailID);
+                cmd.Parameters.AddWithValue("@Address", Address);
+                cmd.Parameters.AddWithValue("@City", City);
+                cmd.Parameters.AddWithValue("@State", State);
+                cmd.Parameters.AddWithValue("@Postcode", Postcode);
+                cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsProfile);
+                return dsProfile;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID, string StrConn)
+        {
+            DataSet dsChangePassword = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Update_Change_Password", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserName", Username);
+                cmd.Parameters.AddWithValue("@CurrentPassword", CurrentPassword);
+                cmd.Parameters.AddWithValue("@NewPassword", NewPassword);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsChangePassword);
+                return dsChangePassword;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        #endregion
+
+
+
 
 
     }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
+using System.Configuration;
 
 namespace Upkeep_v3
 {
@@ -49,11 +50,30 @@ namespace Upkeep_v3
 
             rptVerMenu.DataSource = dtx;
             rptVerMenu.DataBind();
-            
+
             if (!IsPostBack)
             {
                 lblUsername.Text = Convert.ToString(Session["UserName"]);
                 lblProfileName.Text = Convert.ToString(Session["LoggedInProfileName"]);
+
+                string VD_Path = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
+                imgeFacilito_Logo.ImageUrl = VD_Path + "/assets/demo/media/img/logo/efacilito_White.png";
+
+                if (Convert.ToString(Session["Profile_Photo"]) != "")
+                {
+                    imgProfilePic.ImageUrl = Convert.ToString(Session["Profile_Photo"]);
+                    imgProfilePic1.ImageUrl = Convert.ToString(Session["Profile_Photo"]);
+                }
+                else
+                {
+                    //imgProfilePic.ImageUrl = Page.ResolveClientUrl("~/assets/app/media/img/users/user4.png");
+                    //imgProfilePic1.ImageUrl = Page.ResolveClientUrl("~/assets/app/media/img/users/user4.png");
+                    imgProfilePic.ImageUrl = VD_Path + "/assets/app/media/img/users/user4.png";
+                    imgProfilePic1.ImageUrl = VD_Path + "/assets/app/media/img/users/user4.png";
+                }
+
+
             }
         }
 
@@ -63,14 +83,14 @@ namespace Upkeep_v3
             try
             {
                 dtMenuDetails = ObjUpkeep.FetchMenu(parentMenuId, LoggedInUserID, ModuleIDs, CompanyID);
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return dtMenuDetails.Tables[0];           
-        }       
+            return dtMenuDetails.Tables[0];
+        }
 
         protected void rptVerMenu_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {

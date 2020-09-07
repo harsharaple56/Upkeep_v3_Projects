@@ -179,15 +179,14 @@ namespace Upkeep_v3.Ticketing
 
         public void Fetch_CategorySubCategory(int CategoryID)
         {
-            //int CategoryID = 0;
+            DataSet dsCat = new DataSet();
             try
             {
-
-                ds = ObjUpkeep.Fetch_CategorySubCategory(CategoryID);
+                dsCat = ObjUpkeep.Fetch_CategorySubCategory(CategoryID, CompanyID);
 
                 if (CategoryID == 0)
                 {
-                    ddlCategory.DataSource = ds.Tables[0];
+                    ddlCategory.DataSource = dsCat.Tables[0];
                     ddlCategory.DataTextField = "Category_Desc";
                     ddlCategory.DataValueField = "Category_ID";
                     ddlCategory.DataBind();

@@ -336,7 +336,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                            //TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
@@ -345,10 +345,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
                             }
                         }
-                        else
+                        if (DsDataSet.Tables[1].Rows.Count > 0)
                         {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
+                            TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["TicketNo"]);                           
                         }
+                        //else
+                        //{
+                        //    return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
+                        //}
                     }
                 }
 
@@ -559,9 +563,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                         else
                         {
-                            var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            //postedFile.SaveAs(filePath);
+
+                            string fileUploadPath = imgPath + CurrentDate;
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+                            var ImageName = objInsert.TicketID;
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            var filePath = fileUploadPath + "/" + ImageName + extension;
 
                             postedFile.SaveAs(filePath);
+
                         }
                     }
 
@@ -599,16 +614,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [Route("api/Ticketing/PostTicketImage")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode)
+        public async Task<HttpResponseMessage> PostTicketImage(string TicketCode, string EmpCD, string RollCD, int TicketFlag)
         {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
             Dictionary<string, object> dict = new Dictionary<string, object>();
             try
             {
 
                 var httpRequest = HttpContext.Current.Request;
                 string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
-                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["TicketImageUploadURL"]);
-
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                //string ImagePhysicalPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
+                int ticketImgCount = 0;
                 foreach (string file in httpRequest.Files)
                 {
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
@@ -640,16 +659,43 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                         else
                         {
-                            string fileUploadPath = imgPath + CurrentDate;
+                            //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
+
                             if (!Directory.Exists(fileUploadPath))
                             {
                                 Directory.CreateDirectory(fileUploadPath);
                             }
-                            var ImageName = TicketCode;
-                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
-                            var filePath = fileUploadPath + "/" + ImageName + extension;
 
-                            postedFile.SaveAs(filePath);
+                            var ImageName = TicketCode+"_"+ TicketFlag + "_"+ ticketImgCount;
+
+                            var fileName = ImageName + extension;
+
+                            string SaveLocation = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate) + "/" + fileName;
+                            string FileLocation = imgPath + "TicketImages/" + CurrentDate + "/" + fileName;
+
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                            
+
+                            postedFile.SaveAs(SaveLocation);
+
+                            ticketImgCount = ticketImgCount + 1;
+
+                            //string ImageURL= imgPath + "/" + ImageName + extension;
+
+                            StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                            SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                            ObjLocSqlParameter[0] = new SqlParameter("@TicketNo", TicketCode);
+                            ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                            ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", FileLocation);
+                            ObjLocSqlParameter[4] = new SqlParameter("@TicketFlag", TicketFlag);
+
+                            DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
+
+                            return Request.CreateResponse(HttpStatusCode.OK);
+
                         }
                     }
 
