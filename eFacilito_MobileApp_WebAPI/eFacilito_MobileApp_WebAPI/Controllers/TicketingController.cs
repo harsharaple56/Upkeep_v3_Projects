@@ -336,7 +336,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                            //TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
@@ -344,6 +344,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                                 FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
                             }
+                        }
+                        if (DsDataSet.Tables[1].Rows.Count > 0)
+                        {
+                            TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["TicketNo"]);                           
                         }
                         //else
                         //{
