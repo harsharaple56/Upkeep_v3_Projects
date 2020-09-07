@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequest" EnableEventValidation = "false" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="AssetManagementRequest.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementRequest" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -371,17 +371,27 @@
 
             $("#Button1").on('click', function (e) {
                 e.preventDefault();
-                alert("A1");
+                //alert("A1");
                 var value = <%= Session["TransactionID"].ToString() %>;
-
+                /*
+                                alert($("#HdflAssetImg").val());
+                                alert($("#HdflAssetVideo").val());
+                                alert($("#HdflAssetDoc").val());
+                                alert($("#HdflAmcDoc").val());
+                */
                 if (value == 0) {
 
-                    alert("A2");
+                    //  alert("A2");
 
                     $('#txtHdn').val("");
 
                     if ($("#customCheck").is(':checked')) {
                         $("#btnSaveAmc").click();
+
+                        if ($("#HdflAmcDoc").val() = "1") {
+                            alert('3 Mb Documents Size Limit, Please Correct');
+                            return;
+                        }
 
                         if ($('#hfAmcAssignedVendor').val() == '') {
                             alert("Please Select Proper AMC Vendor!");
@@ -437,14 +447,89 @@
                     }
                 }
 
-                alert("A3");
+                // alert("A3");
                 if ($('#hdnassetLocation').val() == '') {
                     alert("Please Select Proper Location!");
                     return;
                 }
+                if ($("#HdflAssetImg").val() == "1") {
+                    alert('3 Mb Image Size Limit, Please Correct');
+                    return;
+                }
+                else if ($("#HdflAssetVideo").val() == "1") {
+                    alert('4 Mb Video Size Limit, Please Correct');
+                    return;
+                }
+                else if ($("#HdflAssetDoc").val() == "1") {
+                    alert('3 Mb Documents Size Limit, Please Correct');
+                    return;
+                }
+
                 $("#btnSave").click();
 
             });
+
+            //Check file Upload Size.
+
+            /*
+                flAssetImg
+                flAssetVideo
+                flAssetDoc
+                flAmcDoc
+             */
+
+            $("#flAssetImg").on('change', function (e) {
+                $("#HdflAssetImg").val("0");
+                bytesToSize(this.files[0].size, 'flAssetImg');
+            });
+            $("#flAssetVideo").on('change', function (e) {
+                $("#HdflAssetVideo").val("0");
+                bytesToSize(this.files[0].size, 'flAssetVideo');
+            });
+            $("#flAssetDoc").on('change', function (e) {
+                $("#HdflAssetDoc").val("0");
+                bytesToSize(this.files[0].size, 'flAssetDoc');
+            });
+            $("#flAmcDoc").on('change', function (e) {
+                $("#HdflAmcDoc").val("0");
+                bytesToSize(this.files[0].size, 'flAmcDoc');
+            });
+
+            function bytesToSize(bytes, types) {
+
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                if (bytes == 0) return '0 Byte';
+                var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                var sSize = 0;
+                sSize = Math.round(bytes / Math.pow(1024, i), 2);
+                //Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
+                //if (sizes[i] == 'Bytes' || sizes[i] == 'KB') {
+                //    // return 0;
+                //}
+                //else 
+                if (sizes[i] == 'MB') {
+                    if (sSize > 4 && types == 'flAssetVideo') {
+                        $("#HdflAssetVideo").val("1");
+                        alert('4 Mb Video Size Limit');
+                    }
+                    else if (sSize > 3) {
+
+                        if (types == 'flAssetImg') {
+                            $("#HdflAssetImg").val("1");
+                            alert('3 Mb Image Size Limit');
+                        }
+                        else if (types == 'flAssetDoc') {
+                            $("#HdflAssetDoc").val("1");
+                            alert('3 Mb Documents Size Limit');
+                        }
+                        else if (types == 'flAmcDoc') {
+                            $("#HdflAmcDoc").val("1");
+                            alert('3 Mb Documents Size Limit');
+                        }
+                    }
+                }
+            }
+
 
         });
 
@@ -465,6 +550,12 @@
 
                         <asp:HiddenField ID="hdnWpHeaderData" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnWpHeader" runat="server" ClientIDMode="Static" />
+
+                        <asp:HiddenField ID="HdflAssetImg" runat="server" ClientIDMode="Static" Value="0" />
+                        <asp:HiddenField ID="HdflAssetVideo" runat="server" ClientIDMode="Static" Value="0" />
+                        <asp:HiddenField ID="HdflAssetDoc" runat="server" ClientIDMode="Static" Value="0" />
+                        <asp:HiddenField ID="HdflAmcDoc" runat="server" ClientIDMode="Static" Value="0" />
+
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
 
@@ -479,7 +570,6 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementList.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <%--<%= Page.ResolveClientUrl( Session["PreviousURL"].ToString()) %>--%>
                                         <span>
@@ -514,6 +604,15 @@
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
+
+
+                                    <div id="Div27" runat="server" style="display: block;">
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <div class="col-xl-12 col-lg-12">
+                                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <Triggers>

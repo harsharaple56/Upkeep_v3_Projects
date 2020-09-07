@@ -31,13 +31,40 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.HiddenField hdnWpHeader;
         
         /// <summary>
-        /// lblErrorMsg control.
+        /// HdflAssetImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        protected global::System.Web.UI.WebControls.HiddenField HdflAssetImg;
+        
+        /// <summary>
+        /// HdflAssetVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdflAssetVideo;
+        
+        /// <summary>
+        /// HdflAssetDoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdflAssetDoc;
+        
+        /// <summary>
+        /// HdflAmcDoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HdflAmcDoc;
         
         /// <summary>
         /// Button1 control.
@@ -83,6 +110,24 @@ namespace Upkeep_v3.AssetManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeWpRequestSaveSuccess;
+        
+        /// <summary>
+        /// Div27 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div27;
+        
+        /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
         /// UpdatePanel3 control.
