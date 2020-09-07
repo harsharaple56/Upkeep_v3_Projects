@@ -618,6 +618,100 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Insert_Update_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlIn_Question" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlOut_Question" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlImg_Header" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="blFreeService" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="blEnableImageUpload" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="intCost" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Update_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_Update_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_AnswerForAll">
         <s:complexType>
           <s:sequence>
@@ -3729,6 +3823,30 @@
   <wsdl:message name="Delete_VMSConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Delete_VMSConfigurationResponse" />
   </wsdl:message>
+  <wsdl:message name="Insert_Update_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Update_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Update_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Update_CSMConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CSMConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_CSMConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_CSMConfigurationResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_AnswerForAllSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
   </wsdl:message>
@@ -4572,6 +4690,22 @@
       <wsdl:input message="tns:Delete_VMSConfigurationSoapIn" />
       <wsdl:output message="tns:Delete_VMSConfigurationSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Insert_Update_CSMConfiguration">
+      <wsdl:input message="tns:Insert_Update_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_Update_CSMConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMConfiguration">
+      <wsdl:input message="tns:Fetch_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_CSMConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <wsdl:input message="tns:Bind_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_CSMConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <wsdl:input message="tns:Delete_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_CSMConfigurationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
@@ -5295,6 +5429,42 @@
     </wsdl:operation>
     <wsdl:operation name="Delete_VMSConfiguration">
       <soap:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Update_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_Update_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6639,6 +6809,42 @@
     </wsdl:operation>
     <wsdl:operation name="Delete_VMSConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Delete_VMSConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Update_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Update_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
