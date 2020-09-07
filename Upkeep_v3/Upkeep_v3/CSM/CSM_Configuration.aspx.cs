@@ -437,13 +437,14 @@ namespace Upkeep_v3.CSM
             {
                 //lblRequestDate.Text = DateTime.Now.ToString("dd/MMM/yyyy hh:mm tt");
                 int ConfigTitleID = Convert.ToInt32(ViewState["ConfigID"]);
-                dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigTitleID);
+                dsConfig = ObjUpkeep.Bind_CSMConfiguration(ConfigTitleID);
 
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Title"].ToString()))
                 {
                     //divDesc.Visible = true;
                     hdnCSMConfigID.Value = ConfigTitleID.ToString();
-                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Title"].ToString();
+                    txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
+
 
                     //txtCSMDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     //txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
@@ -455,19 +456,24 @@ namespace Upkeep_v3.CSM
                     //ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
                     //ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();
 
-                    var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
-                       s.Field<decimal>("CSM_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
-                       + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"
+                    var InQnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
+                       s.Field<decimal>("Open_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
                        + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
-                       ans.Field<decimal>("CSM_Qn_Id").ToString() == s.Field<decimal>("CSM_Qn_Id").ToString()).Select(ans =>
+                       ans.Field<decimal>("Open_Qn_ID").ToString() == s.Field<decimal>("Open_Qn_ID").ToString()).Select(ans =>
                        ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
                        ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
-                    hdnCSMQns.Value = string.Join("~", QnValues);
+                    hdnInQns.Value = string.Join("~", InQnValues);
+
+                    var OutQnValues = dsConfig.Tables[3].AsEnumerable().Select(s =>
+                       s.Field<decimal>("Close_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
+                       + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[4].AsEnumerable().Where(ans =>
+                       ans.Field<decimal>("Close_Qn_ID").ToString() == s.Field<decimal>("Close_Qn_ID").ToString()).Select(ans =>
+                       ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
+                       ans.Field<bool>("Is_Flag").ToString()))).ToArray();
+
+                    hdnOutQns.Value = string.Join("~", OutQnValues);
                 }
-
-
-
 
             }
             catch (Exception ex)

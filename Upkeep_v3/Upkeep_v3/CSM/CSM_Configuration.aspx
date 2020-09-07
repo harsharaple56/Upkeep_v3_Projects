@@ -964,7 +964,8 @@
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
-                        <asp:HiddenField ID="hdnCSMQns" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="hdnInQns" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="hdnOutQns" ClientIDMode="Static" runat="server" />
 
                         <%--</form>--%>
                     </div>

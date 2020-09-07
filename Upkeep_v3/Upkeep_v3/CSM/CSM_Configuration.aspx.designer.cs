@@ -418,12 +418,21 @@ namespace Upkeep_v3.CSM {
         protected global::System.Web.UI.WebControls.TextBox txtHdn;
         
         /// <summary>
-        /// hdnCSMQns control.
+        /// hdnInQns control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCSMQns;
+        protected global::System.Web.UI.WebControls.HiddenField hdnInQns;
+        
+        /// <summary>
+        /// hdnOutQns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnOutQns;
     }
 }

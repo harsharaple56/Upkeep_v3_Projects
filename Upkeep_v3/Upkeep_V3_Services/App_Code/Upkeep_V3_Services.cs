@@ -1925,6 +1925,53 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    //Added by RC This function is used to Fetch CSM Config
+    [WebMethod]
+    public DataSet Fetch_CSMConfiguration(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_CSMConfiguration(CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to bind CSM Config
+    [WebMethod]
+    public DataSet Bind_CSMConfiguration(int ConfigID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Bind_CSMConfiguration(ConfigID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC this function is used to delete CSM config 
+    [WebMethod]
+    public DataSet Delete_CSMConfiguration(int ConfigID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Delete_CSMConfiguration(ConfigID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     #region General Functions

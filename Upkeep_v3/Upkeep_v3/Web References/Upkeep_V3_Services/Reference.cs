@@ -84,6 +84,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Insert_Update_CSMConfigurationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_CSMConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_CSMConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_CSMConfigurationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
@@ -442,6 +448,15 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Insert_Update_CSMConfigurationCompletedEventHandler Insert_Update_CSMConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Fetch_CSMConfigurationCompletedEventHandler Fetch_CSMConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Bind_CSMConfigurationCompletedEventHandler Bind_CSMConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Delete_CSMConfigurationCompletedEventHandler Delete_CSMConfigurationCompleted;
         
         /// <remarks/>
         public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
@@ -1745,6 +1760,95 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Insert_Update_CSMConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Insert_Update_CSMConfigurationCompleted(this, new Insert_Update_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CSMConfiguration(int CompanyID) {
+            object[] results = this.Invoke("Fetch_CSMConfiguration", new object[] {
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CSMConfigurationAsync(int CompanyID) {
+            this.Fetch_CSMConfigurationAsync(CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CSMConfigurationAsync(int CompanyID, object userState) {
+            if ((this.Fetch_CSMConfigurationOperationCompleted == null)) {
+                this.Fetch_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CSMConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_CSMConfiguration", new object[] {
+                        CompanyID}, this.Fetch_CSMConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CSMConfigurationOperationCompleted(object arg) {
+            if ((this.Fetch_CSMConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CSMConfigurationCompleted(this, new Fetch_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_CSMConfiguration(int ConfigID) {
+            object[] results = this.Invoke("Bind_CSMConfiguration", new object[] {
+                        ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMConfigurationAsync(int ConfigID) {
+            this.Bind_CSMConfigurationAsync(ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMConfigurationAsync(int ConfigID, object userState) {
+            if ((this.Bind_CSMConfigurationOperationCompleted == null)) {
+                this.Bind_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_CSMConfiguration", new object[] {
+                        ConfigID}, this.Bind_CSMConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_CSMConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_CSMConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_CSMConfigurationCompleted(this, new Bind_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_CSMConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_CSMConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_CSMConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_CSMConfigurationOperationCompleted == null)) {
+                this.Delete_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_CSMConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_CSMConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_CSMConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_CSMConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_CSMConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_CSMConfigurationCompleted(this, new Delete_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6828,6 +6932,84 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_Update_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_CSMConfigurationCompletedEventHandler(object sender, Fetch_CSMConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Bind_CSMConfigurationCompletedEventHandler(object sender, Bind_CSMConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Delete_CSMConfigurationCompletedEventHandler(object sender, Delete_CSMConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Delete_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Delete_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
