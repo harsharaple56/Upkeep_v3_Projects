@@ -271,7 +271,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             iStatus = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
                             if (iStatus == 1)
                             {
-                                return Request.CreateResponse(HttpStatusCode.OK);
+                                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
                             }
                             else
                             {
