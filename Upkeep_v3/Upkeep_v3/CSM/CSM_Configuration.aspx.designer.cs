@@ -67,6 +67,15 @@ namespace Upkeep_v3.CSM {
         protected global::System.Web.UI.WebControls.CheckBox ChkFreeService;
         
         /// <summary>
+        /// txtUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsers;
+        
+        /// <summary>
         /// txtCost control.
         /// </summary>
         /// <remarks>
@@ -83,24 +92,6 @@ namespace Upkeep_v3.CSM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
-        
-        /// <summary>
-        /// txtUsers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsers;
-        
-        /// <summary>
-        /// ChkImageEnable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkImageEnable;
         
         /// <summary>
         /// InQuestion control.
@@ -247,58 +238,49 @@ namespace Upkeep_v3.CSM {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblOutQuestionCount;
         
         /// <summary>
-        /// ImageHeader control.
+        /// TermCondition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ImageHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TermCondition;
         
         /// <summary>
-        /// dvImageHeader control.
+        /// Div2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvImageHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
         
         /// <summary>
-        /// hdnImgHeaderID control.
+        /// txtTermComdition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnImgHeaderID;
+        protected global::System.Web.UI.WebControls.TextBox txtTermComdition;
         
         /// <summary>
-        /// txtImageHeader control.
+        /// txtTermCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImageHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtTermCount;
         
         /// <summary>
-        /// txtImgHeaderCount control.
+        /// lblTermCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtImgHeaderCount;
-        
-        /// <summary>
-        /// lblImgHeaderCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblImgHeaderCount;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTermCount;
         
         /// <summary>
         /// hdnAnswerDataID control.
@@ -434,5 +416,14 @@ namespace Upkeep_v3.CSM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnOutQns;
+        
+        /// <summary>
+        /// hdnTerms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTerms;
     }
 }

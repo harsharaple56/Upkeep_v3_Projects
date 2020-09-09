@@ -90,11 +90,11 @@ namespace Upkeep_v3.CSM
 
                 StringBuilder strXmlCSM_InQuestion = new StringBuilder();
                 StringBuilder strXmlCSM_OutQuestion = new StringBuilder();
-                StringBuilder strXmlCSM_ImageHeader = new StringBuilder();
+                StringBuilder strXmlCSM_Terms = new StringBuilder();
                 //strXmlCSM_InQuestion.Append(@"<?xml version=""1.0"" ?>");
                 strXmlCSM_InQuestion.Append(@"<CSM_IN_HEADER_ROOT>");
                 strXmlCSM_OutQuestion.Append(@"<CSM_OUT_HEADER_ROOT>");
-                strXmlCSM_ImageHeader.Append(@"<CSM_IMAGE_HEADER_ROOT>");
+                strXmlCSM_Terms.Append(@"<CSM_TERMS_ROOT>");
 
                 int InQln = 0;
                 if (String.IsNullOrEmpty(txtInQuestionCount.Value)) { InQln = 0; }
@@ -104,9 +104,9 @@ namespace Upkeep_v3.CSM
                 if (String.IsNullOrEmpty(txtOutQuestionCount.Value)) { OutQln = 0; }
                 else { OutQln = Convert.ToInt32(txtOutQuestionCount.Value); }
 
-                int Imgln = 0;
-                if (String.IsNullOrEmpty(txtImgHeaderCount.Value)) { Imgln = 0; }
-                else { Imgln = Convert.ToInt32(txtImgHeaderCount.Value); }
+                int Termln = 0;
+                if (String.IsNullOrEmpty(txtTermCount.Value)) { Termln = 0; }
+                else { Termln = Convert.ToInt32(txtTermCount.Value); }
 
                 //loop for In question
                 for (int i = 0; i < InQln; i++)
@@ -229,25 +229,25 @@ namespace Upkeep_v3.CSM
                 }
 
                 //loop for Image Header
-                for (int i = 0; i < Imgln; i++)
+                for (int i = 0; i < Termln; i++)
                 {
                     CSMImageHeaderID = "0";
                     CSMImageHeader = "";
 
-                    CSMImageHeaderID = Request.Form.GetValues("ImageHeader[" + i + "][ctl00$ContentPlaceHolder1$hdnImgHeaderID]")[0];
-                    CSMImageHeader = Request.Form.GetValues("ImageHeader[" + i + "][ctl00$ContentPlaceHolder1$txtImageHeader]")[0];
+                    CSMImageHeaderID = Request.Form.GetValues("TermCondition[" + i + "][hdnRepeaterTermID]")[0];
+                    CSMImageHeader = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]")[0];
 
-                    strXmlCSM_ImageHeader.Append(@"<Question_Desc>");
-                    strXmlCSM_ImageHeader.Append(@"<Question_Sequence>" + i + "</Question_Sequence>");
-                    strXmlCSM_ImageHeader.Append(@"<Question_Id>" + CSMImageHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Id>");
-                    strXmlCSM_ImageHeader.Append(@"<Question_Header>" + CSMImageHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</Question_Header>");
-                    strXmlCSM_ImageHeader.Append(@"</Question_Desc>");
+                    strXmlCSM_Terms.Append(@"<TERM_DETAIL>");
+                    strXmlCSM_Terms.Append(@"<TERM_Sequence>" + i + "</TERM_Sequence>");
+                    strXmlCSM_Terms.Append(@"<TERM_Id>" + CSMImageHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_Id>");
+                    strXmlCSM_Terms.Append(@"<TERM_DESC>" + CSMImageHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_DESC>");
+                    strXmlCSM_Terms.Append(@"</TERM_DETAIL>");
 
                 }
 
                 strXmlCSM_InQuestion.Append(@"</CSM_IN_HEADER_ROOT>");
                 strXmlCSM_OutQuestion.Append(@"</CSM_OUT_HEADER_ROOT>");
-                strXmlCSM_ImageHeader.Append(@"</CSM_IMAGE_HEADER_ROOT>");
+                strXmlCSM_Terms.Append(@"</CSM_TERMS_ROOT>");
                 //strXmlCSM_Feedback.Append(@"</CSM_FEEDBACK_ROOT>");
 
                 int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
@@ -255,7 +255,6 @@ namespace Upkeep_v3.CSM
                 int CompanyID = Convert.ToInt32(ViewState["CompanyID"]);
                 string strInitiator = string.Empty;
                 bool blFreeService = false;
-                bool blEnableImageUpload = false;
                 int intCost = 0;
                 string strFlowUsers = string.Empty;
 
@@ -266,10 +265,9 @@ namespace Upkeep_v3.CSM
                     intCost = Convert.ToInt32(txtCost.Text);
 
                 blFreeService = Convert.ToBoolean(ChkFreeService.Checked);
-                blEnableImageUpload = Convert.ToBoolean(ChkImageEnable.Checked);
 
                 DataSet dsCSMConfig = new DataSet();
-                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_ImageHeader.ToString(), blFreeService,  blEnableImageUpload, intCost, LoggedInUserID);
+                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_Terms.ToString(), blFreeService, intCost, LoggedInUserID);
 
                 if (dsCSMConfig.Tables.Count > 0)
                 {
@@ -439,40 +437,35 @@ namespace Upkeep_v3.CSM
                 int ConfigTitleID = Convert.ToInt32(ViewState["ConfigID"]);
                 dsConfig = ObjUpkeep.Bind_CSMConfiguration(ConfigTitleID);
 
-                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Title"].ToString()))
+                if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString()))
                 {
                     //divDesc.Visible = true;
                     hdnCSMConfigID.Value = ConfigTitleID.ToString();
                     txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
-
-
-                    //txtCSMDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
-                    //txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
-                    //if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
-                    //{ rdbCustomer.Checked = true; }
-                    //else if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
-                    //{ rdbVisitor.Checked = true; }
-                    //ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
-                    //ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
-                    //ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();
+                    ChkFreeService.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Cost_Enable"]);
+                    txtCost.Text = dsConfig.Tables[0].Rows[0]["Cost"].ToString();
 
                     var InQnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
-                       s.Field<decimal>("Open_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
-                       + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
-                       ans.Field<decimal>("Open_Qn_ID").ToString() == s.Field<decimal>("Open_Qn_ID").ToString()).Select(ans =>
+                       s.Field<int>("Open_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
+                       + s.Field<int>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[2].AsEnumerable().Where(ans =>
+                       ans.Field<int>("Open_Qn_ID").ToString() == s.Field<int>("Open_Qn_ID").ToString()).Select(ans =>
                        ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
                        ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
                     hdnInQns.Value = string.Join("~", InQnValues);
 
                     var OutQnValues = dsConfig.Tables[3].AsEnumerable().Select(s =>
-                       s.Field<decimal>("Close_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
-                       + s.Field<decimal>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[4].AsEnumerable().Where(ans =>
-                       ans.Field<decimal>("Close_Qn_ID").ToString() == s.Field<decimal>("Close_Qn_ID").ToString()).Select(ans =>
+                       s.Field<int>("Close_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"
+                       + s.Field<int>("Ans_Type_ID") + "||" + string.Join(";", dsConfig.Tables[4].AsEnumerable().Where(ans =>
+                       ans.Field<int>("Close_Qn_ID").ToString() == s.Field<int>("Close_Qn_ID").ToString()).Select(ans =>
                        ans.Field<decimal>("Ans_Type_Data_ID").ToString() + ":" + ans.Field<string>("Ans_Type_Data").ToString() + ":" +
                        ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
                     hdnOutQns.Value = string.Join("~", OutQnValues);
+
+                    var TermsValues = dsConfig.Tables[5].AsEnumerable().Select(s => s.Field<int>("Terms_ID").ToString() + "||" + s.Field<string>("Term_Desc").Replace("<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
+
+                    hdnTerms.Value = string.Join("~", TermsValues);
                 }
 
             }
