@@ -364,7 +364,7 @@
             $("#Button1").on('click', function (e) {
                 e.preventDefault();
 
-                alert("ff");
+             //   alert("ff");
 
 
 
@@ -386,6 +386,13 @@
                         alert("Please Select Asset!");
                         return;
                     }
+                }
+
+               // alert($('#ddlAmcType').val());
+
+                if ($('#ddlAmcType').val() == "" || $('#ddlAmcType').val()  == null) {
+                    alert("Please Select Asset AMC Type!");
+                    return;
                 }
 
                 $("#btnSave").click();
@@ -455,7 +462,7 @@
 
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -467,7 +474,13 @@
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem; display: none;">
-
+                                    <div id="Div3" runat="server" style="display: block;">
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <div class="col-xl-12 col-lg-12">
+                                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlAssetType" EventName="SelectedIndexChanged" />
@@ -766,6 +779,16 @@
                                             <div class="col-xl-2 col-lg-2">
                                             </div>
                                         </div>
+                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                            <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name:</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txttAmcName" runat="server" class="form-control"></asp:TextBox>
+
+
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div id="DivIsNewAmc" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
@@ -792,13 +815,13 @@
                                                 <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Type :</label>
                                                 <div class="col-xl-3 col-lg-3">
                                                     <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
-                                                    <asp:DropDownList ID="ddlAmcType" class="form-control m-input" runat="server">
+                                                    <asp:DropDownList ID="ddlAmcType" class="form-control m-input" runat="server" ClientIDMode="Static">
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAmcType" Visible="true"
                                                         Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
                                                         ErrorMessage="Please select AMC Type"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <label id="lblAmcStatus"  runat="server" class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
+                                                <label id="lblAmcStatus" runat="server" class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
                                                 <div class="col-xl-3 col-lg-3">
                                                     <asp:TextBox ID="txtAmcStatus" ReadOnly="true" runat="server" class="form-control"></asp:TextBox>
                                                 </div>

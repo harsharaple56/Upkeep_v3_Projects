@@ -76,6 +76,15 @@ namespace Upkeep_v3.AssetManagement {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeWpRequestSaveSuccess;
         
         /// <summary>
+        /// Div3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
+        
+        /// <summary>
         /// lblErrorMsg control.
         /// </summary>
         /// <remarks>
@@ -533,6 +542,15 @@ namespace Upkeep_v3.AssetManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox customCheck;
+        
+        /// <summary>
+        /// txttAmcName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttAmcName;
         
         /// <summary>
         /// DivIsNewAmc control.
