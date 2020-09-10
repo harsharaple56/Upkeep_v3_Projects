@@ -1608,14 +1608,14 @@ public class My_Upkeep
 
     #region CSM
     //Added by RC This function is used to save VMS Configuration 
-    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID)
+    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlImg_Header, blFreeService, blEnableImageUpload, intCost, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, intCost, LoggedInUserID, StrConn);
             return ds;
         }
         catch (Exception ex)
