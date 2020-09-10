@@ -8640,6 +8640,16 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                                  Chk_Ans_Type_ID = Convert.ToInt32(x.Field<decimal>("Chk_Ans_Type_ID")),
                                                                                                  Is_Raise_Flag_Issue = Convert.ToBoolean(x.Field<bool>("Is_Raise_Flag_Issue")),
 
+                                                                                                 ObjClChecklistConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
+                                                                                                                                   where x.Field<decimal>("Chk_Ans_Type_ID") == z.Field<decimal>("Ans_Type_ID")
+                                                                                                                                   select new ClChecklistConfigAnswerType
+                                                                                                                                   {
+                                                                                                                                       Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
+                                                                                                                                       Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
+                                                                                                                                       SDesc = Convert.ToString(z.Field<string>("SDesc")),
+                                                                                                                                       Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
+                                                                                                                                   }).ToList(),
+
                                                                                                  ObjClChecklistConfigAnswer = (from y in DsDataSet.Tables[3].AsEnumerable()
                                                                                                                                    // where y.field<decimal>("chk_question_id ") == p.field<decimal>("chk_question_id ")
                                                                                                                                where y.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
@@ -8655,20 +8665,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                              }).ToList()
                                                          }).ToList();
 
-                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
-                                                            select new ClChecklistConfigAnswerType
-                                                            {
-                                                                Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
-                                                                Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
-                                                                SDesc = Convert.ToString(p.Field<string>("SDesc")),
-                                                                Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
-                                                            }).ToList();
+                                         //ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                         //                   select new ClChecklistConfigAnswerType
+                                         //                   {
+                                         //                       Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                                         //                       Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                                         //                       SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                                         //                       Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                                         //                   }).ToList();
 
 
 
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
-                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+                          //  ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
@@ -8923,6 +8933,16 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                                  Chk_Ans_Type_ID = Convert.ToInt32(x.Field<decimal>("Chk_Ans_Type_ID")),
                                                                                                  Is_Raise_Flag_Issue = Convert.ToBoolean(x.Field<bool>("Is_Raise_Flag_Issue")),
 
+                                                                                                 ObjClChecklistConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
+                                                                                                                                   where x.Field<decimal>("Chk_Ans_Type_ID") == z.Field<decimal>("Ans_Type_ID")
+                                                                                                                                   select new ClChecklistConfigAnswerType
+                                                                                                                                   {
+                                                                                                                                       Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
+                                                                                                                                       Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
+                                                                                                                                       SDesc = Convert.ToString(z.Field<string>("SDesc")),
+                                                                                                                                       Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
+                                                                                                                                   }).ToList(),
+
                                                                                                  ObjClChecklistConfigAnswer = (from y in DsDataSet.Tables[3].AsEnumerable()
                                                                                                                                    // where y.field<decimal>("chk_question_id ") == p.field<decimal>("chk_question_id ")
                                                                                                                                where y.Field<decimal>("chk_question_id") == x.Field<decimal>("chk_question_id")
@@ -8947,20 +8967,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                              }).ToList()
                                                          }).ToList();
 
-                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
-                                                            select new ClChecklistConfigAnswerType
-                                                            {
-                                                                Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
-                                                                Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
-                                                                SDesc = Convert.ToString(p.Field<string>("SDesc")),
-                                                                Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
-                                                            }).ToList();
+                            //ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                            //                                select new ClChecklistConfigAnswerType
+                            //                                {
+                            //                                    Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                            //                                    Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                            //                                    SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                            //                                    Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                            //                                }).ToList();
 
 
 
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
-                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+                           // ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
