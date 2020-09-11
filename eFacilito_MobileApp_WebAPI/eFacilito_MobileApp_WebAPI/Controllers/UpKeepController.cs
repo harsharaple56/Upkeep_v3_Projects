@@ -8665,20 +8665,21 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                              }).ToList()
                                                          }).ToList();
 
-                                         //ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
-                                         //                   select new ClChecklistConfigAnswerType
-                                         //                   {
-                                         //                       Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
-                                         //                       Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
-                                         //                       SDesc = Convert.ToString(p.Field<string>("SDesc")),
-                                         //                       Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
-                                         //                   }).ToList();
+
+                            ObjChecklistConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
+                                                              select new ClChecklistConfigAnswerType
+                                                              {
+                                                                  Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
+                                                                  Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
+                                                                  SDesc = Convert.ToString(z.Field<string>("SDesc")),
+                                                                  Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
+                                                              }).ToList();
 
 
 
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
-                          //  ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+                           ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
@@ -8738,7 +8739,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 //NEED TO CONVERT DATA TO XML AND PASSED IN SP 
                 StringBuilder strXml = new StringBuilder();
                 strXml.Append(@"<DocumentElement>");
-
                 foreach (ClsChecklist_Response_Data objs in objInsert.ObjChkResponseData)
                 {
                     strXml.Append(@"<Section>");
@@ -8748,20 +8748,16 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     strXml.Append(@"<AnswerTypeID>" + objs.AnswerTypeID.ToString() + "</AnswerTypeID>");
 
                     strXml.Append(@"<AnswerData>");
-
                     foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
                     {
                         strXml.Append(@"<AnswerValue>");
-
                         strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
                         strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
-
                         strXml.Append(@"</AnswerValue>");
                     }
                     strXml.Append(@"</AnswerData>");
                     strXml.Append(@"</Section>");
                 }
-
                 strXml.Append(@"</DocumentElement>");
 
                 ObjLocSqlParameter[6] = new SqlParameter("@ChkResponseData", strXml.ToString());
@@ -8861,7 +8857,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
-
 
         //CHECKLIST RESPONSE Details
         [Route("api/UpKeep/Fetch_CheckList_Response_Details")]
@@ -8967,20 +8962,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                              }).ToList()
                                                          }).ToList();
 
-                            //ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
-                            //                                select new ClChecklistConfigAnswerType
-                            //                                {
-                            //                                    Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
-                            //                                    Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
-                            //                                    SDesc = Convert.ToString(p.Field<string>("SDesc")),
-                            //                                    Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
-                            //                                }).ToList();
+                            ObjChecklistConfigAnswerType = (from p in DsDataSet.Tables[4].AsEnumerable()
+                                                            select new ClChecklistConfigAnswerType
+                                                            {
+                                                                Ans_Type_ID = Convert.ToInt32(p.Field<decimal>("Ans_Type_ID")),
+                                                                Ans_Type_Desc = Convert.ToString(p.Field<string>("Ans_Type_Desc")),
+                                                                SDesc = Convert.ToString(p.Field<string>("SDesc")),
+                                                                Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
+                                                            }).ToList();
 
 
 
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
-                           // ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
