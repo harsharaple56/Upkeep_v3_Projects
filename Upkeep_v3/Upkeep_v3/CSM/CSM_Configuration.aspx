@@ -37,8 +37,8 @@
         function PopUpGrid() {
             //debugger;
             $find('<%= mpeMeetingUsers.ClientID %>').show();
-            txtHdn = hdnMeetUsersID.toString();
-            txtControl = txtMeetUsers;
+            txtHdn = hdnUsersID.toString();
+            txtControl = txtUsers;
         }
 
         function FunEditClick(ID, Desc) {
@@ -78,16 +78,6 @@
                     $("#divFreeService").show(300);
                 } else {
                     $("#divFreeService").hide(200);
-                }
-            });
-
-            $("#divimgRptr").hide();
-            $("#divChkImageEnable").click(function () {
-                //alert("hii");
-                if ($("#ChkImageEnable").is(":checked")) {
-                    $("#divimgRptr").hide(300);
-                } else {
-                    $("#divimgRptr").show(200);
                 }
             });
 
@@ -144,29 +134,28 @@
                     }
                 },
             });
-            $('.ImageHeader_repeater').repeater({
-                initEmpty: false,
+           
+            $('.TermComdition_repeater').repeater({
+                initEmpty: true,
                 show: function () {
                     $(this).slideDown();
-                    var counter = $(this).parents('.ImageHeader_repeater').find('.question_count');
+                    var counter = $(this).parents('.TermComdition_repeater').find('.TermCondition_count');
                     var question_count = counter.data('count');
                     question_count++;
-                    $('#txtImageHeaderCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' Image Header(s)');
-                    $('#error_imageheader_repeater').html('');
+                    counter.data('count', question_count).html(question_count + ' Term & Condition(s)');
+                    $('#error_TermCondition').html('');
 
                     init_autosize();
                     init_plugins();
                 },
                 hide: function (deleteElement) {
                     $(this).slideUp(deleteElement);
-                    var counter = $(this).parents('.ImageHeader_repeater').find('.question_count');
+                    var counter = $(this).parents('.TermComdition_repeater').find('.TermCondition_count');
                     var question_count = counter.data('count');
                     question_count--;
-                    $('#txtImageHeaderCount').val(question_count);
-                    counter.data('count', question_count).html(question_count + ' Image Header(s)');
+                    counter.data('count', question_count).html(question_count + ' Term & Condition(s)');
                     if (question_count == 0) {
-                        $('#error_imageheader_repeater').html('Add at least one Question.');
+                        $('#error_TermCondition').html('Add at least one Term & Condition.');
                     }
                 },
             });
@@ -408,12 +397,14 @@
                     $("#divFreeService").show(300);
                     $("#ChkFreeService").parent().parent().addClass("active");
                 }
-                var qns = $('#hdnCSMQns').val();
-                var arrQns = qns.split("~");
+
+                //In questions
+                var inqns = $('#hdnInQns').val();
+                var arrInQns = inqns.split("~");
                 //alert(qns);
-                for (var i = 0; i < arrQns.length; i++) {
+                for (var i = 0; i < arrInQns.length; i++) {
                     if (i !== 0)
-                        $("#divQnAdd").click();
+                        $("#divInQnAdd").click();
                     //alert(arrTerms[i]);CSMQuestion[0][hdnRepeaterAnswer]
 
                     var QuestionID = $("input[name~='InQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnInQnID]']");
@@ -421,22 +412,14 @@
                     var Answer = $("select[name~='InQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlInAns]']");
                     var hdnAnswer = $("input[name~='InQuestion[" + i + "][hdnInRepeaterAnswer]']");
 
-                    var arrQnData = arrQns[i].split("||");
+                    var arrQnData = arrInQns[i].split("||");
                     QuestionID.val(arrQnData[0]);
                     Question.val(arrQnData[1]);
-                    if (arrQnData[2] == "True") {
-                        isMandatory.prop("checked", true)
-                        isMandatory.parent().parent().addClass("active");
-                    }
-                    if (arrQnData[3] == "True") {
-                        isVisible.prop("checked", true)
-                        isVisible.parent().parent().addClass("active");
-                    }
-                    Answer.val(arrQnData[4]);
-                    hdnAnswer.val(arrQnData[5]);
+                    Answer.val(arrQnData[2]);
+                    hdnAnswer.val(arrQnData[3]);
                     hdnAnswer.change();
                     //alert($("select[name~='CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected'));
-                    var isMulti = $("select[name~='InQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]'] option[value='" + arrQnData[4] + "']").attr("data-ismulti");
+                    var isMulti = $("select[name~='InQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlInAns]'] option[value='" + arrQnData[2] + "']").attr("data-ismulti");
                     if (isMulti === 'True') {
 
                         //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
@@ -447,9 +430,56 @@
                     }
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
+
+                //Out questions
+                var Outqns = $('#hdnOutQns').val();
+                var arrOutQns = Outqns.split("~");
+                //alert(qns);
+                for (var i = 0; i < arrOutQns.length; i++) {
+                    if (i !== 0)
+                        $("#divOutQnAdd").click();
+                    //alert(arrTerms[i]);CSMQuestion[0][hdnRepeaterAnswer]
+
+                    var QuestionID = $("input[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnOutQnID]']");
+                    var Question = $("input[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtOutQuestion]']");
+                    var Answer = $("select[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlOutAns]']");
+                    var hdnAnswer = $("Output[name~='OutQuestion[" + i + "][hdnOutRepeaterAnswer]']");
+
+                    var arrQnData = arrOutQns[i].split("||");
+                    QuestionID.val(arrQnData[0]);
+                    Question.val(arrQnData[1]);
+                    Answer.val(arrQnData[2]);
+                    hdnAnswer.val(arrQnData[3]);
+                    hdnAnswer.change();
+                    //alert($("select[name~='CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected'));
+                    var isMulti = $("select[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlOutAns]'] option[value='" + arrQnData[2] + "']").attr("data-ismulti");
+                    if (isMulti === 'True') {
+
+                        //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").show();
+                    }
+                    else {
+                        hdnAnswer.parent().parent().find(".lblAnswerCnt").hide();
+                    }
+                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
+                }
+
+                //Terms
+                var terms = $('#hdnTerms').val();
+                var arrTerms = terms.split("~");
+                //alert(qns);
+                for (var i = 0; i < arrTerms.length; i++) {
+                    if (i !== 0)
+                        $("#divTermAdd").click();
+                    var QuestionID = $("input[name~='TermCondition[" + i + "][hdnRepeaterTermID]']");
+                    var Question = $("input[name~='TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]']");
+
+                    var arrQnData = arrTerms[i].split("||");
+                    QuestionID.val(arrQnData[0]);
+                    Question.val(arrQnData[1]);
+                    
+                }
                 return;
-
-
             }
         });
     </script>
@@ -508,42 +538,35 @@
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-md-2 col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
-                                    <div class="col-xl-4 col-lg-4">
+                                    <div class="col-xl-6 col-lg-6">
                                         <asp:HiddenField ID="hdnCSMConfigID" ClientIDMode="Static" Value="0" runat="server" />
                                         <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
                                                 ValidationGroup="validateCSM" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>--%>
                                         <span class="error_title text-danger medium"></span>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         <div class="btn-group btn-group-toggle" id="divChkFreeService" data-toggle="buttons">
                                             <label class="btn btn-light" id="lblFreeService">
                                                 <asp:CheckBox ID="ChkFreeService" autocomplete="off" runat="server" ClientIDMode="Static" />
                                                 <i class="fa fa-check" aria-hidden="true"></i>Free Service</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-4" id="divFreeService">
-                                        <label class="col-form-label font-weight-bold">Cost of Service:</label>
-                                        <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
-                                        <asp:TextBox ID="TextBox2" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
-                                    </div>
-
+                                    
                                 </div>
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Request Flow:</label>
-                                    <div class="col-7">
+                                    <div class="col-6">
                                         <asp:TextBox ID="txtUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75">
                                         </asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnUsersID" id="hdnUsersID" tabindex="0" value="" />
                                         <span id="error_question_for" class="text-danger small"></span>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group btn-group-toggle" id="divChkImageEnable" data-toggle="buttons">
-                                            <label class="btn btn-light" id="lblImageEnable">
-                                                <asp:CheckBox ID="ChkImageEnable" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                                <i class="fa fa-check" aria-hidden="true"></i>Enable Image Upload</label>
-                                        </div>
+                                    <div class="col-md-4" id="divFreeService">
+                                        <label class="col-form-label font-weight-bold">Cost of Service:</label>
+                                        <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
+                                        <asp:TextBox ID="TextBox2" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <br />
@@ -685,71 +708,57 @@
                                 </div>
                                 <br />
 
-                                <div id="divimgRptr">
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Images to be Uplaoded</label>
+                               
+                                <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Terms & Condition</label>
+                                </div>
+                                <br />
+                                <div class="col-xl-12">
+                                    <div class="m-form__section">
+                                        <div class="TermComdition_repeater">
+                                            <div class="form-group  m-form__group row">
 
-                                        <div class="col-xl-3 offset-6 pr-0 pl-lg-5 btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-outline-secondary active">
-                                                <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                                                On Open
-                                            </label>
-                                            <label class="btn btn-outline-secondary">
-                                                <input type="radio" name="options" id="option3" autocomplete="off">
-                                                On Closure
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="col-xl-12">
-                                        <div class="m-form__section">
-                                            <div class="ImageHeader_repeater">
-                                                <div class="form-group  m-form__group row">
+                                                <div data-repeater-list="TermCondition" class="col-lg-12" runat="server" id="TermCondition">
 
-                                                    <div data-repeater-list="ImageHeader" class="col-lg-12" runat="server" id="ImageHeader">
-
-                                                        <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvImageHeader">
-                                                            <div class="col-md-9">
-                                                                <div class="m-form__group">
-                                                                    <div class="m-form__control">
-                                                                        <asp:HiddenField ID="hdnImgHeaderID" ClientIDMode="Static" Value="0" runat="server" />
-                                                                        <asp:TextBox ID="txtImageHeader" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Image Header" Rows="1"></asp:TextBox>
-                                                                        <span class="error_question text-danger medium"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-md-none m--margin-bottom-10"></div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divImgHeaderDel">
-                                                                    <i class="la la-trash"></i>
+                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="Div2">
+                                                        <div class="col-md-9">
+                                                            <div class="m-form__group">
+                                                                <div class="m-form__control">
+                                                                    <asp:TextBox ID="txtTermComdition" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea txtvalidate" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
+                                                                    <input type="hidden" name="hdnRepeaterTermID" id="hdnRepeaterTermID" />
+                                                                    <span class="error_TermCondition text-danger medium"></span>
                                                                 </div>
                                                             </div>
+                                                            <div class="d-md-none m--margin-bottom-10"></div>
                                                         </div>
+
+                                                        <div class="col-md-1">
+                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+                                                                <i class="la la-trash"></i>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                <div class="m-form__group form-group row">
-                                                    <div class="col-lg-4">
-                                                        <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divImageHeaderAdd">
-                                                            <span>
-                                                                <i class="la la-plus"></i>
-                                                                <span>Add
-                                                                </span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-8">
-
-                                                        <input type="hidden" id="txtImgHeaderCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
-                                                        <label id="lblImgHeaderCount" runat="server" class="col-form-label font-weight-bold question_count" data-count="1">1 Image Header(s)</label>
-                                                    </div>
-                                                    <span id="error_imgheader_repeater" class="text-danger medium"></span>
-                                                </div>
-
                                             </div>
+                                            <div class="m-form__group form-group row">
+                                                <div class="col-lg-4">
+                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divTermAdd">
+                                                        <span>
+                                                            <i class="la la-plus"></i>
+                                                            <span>Add Term & Condition</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <input type="hidden" id="txtTermCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
+                                                    <label id="lblTermCount" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold TermCondition_count" data-count="0">0 Term & Condition(s)</label>
+                                                </div>
+                                                <span id="error_TermCondition" class="text-danger medium"></span>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <br />
-
                                 </div>
                             </div>
                         </div>
@@ -808,7 +817,7 @@
 
                         <%--Panel for user selection--%>
 
-                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%;">
+                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" style="display: none; width: 100%;top:0;">
                             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document" style="max-width: 60%;">
                                     <div class="modal-content">
@@ -840,7 +849,7 @@
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active" id="t1">
+                                                        <div class="tab-pane active" id="t1" style="max-height:500px;overflow:scroll;">
 
                                                             <br />
 
@@ -966,6 +975,7 @@
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
                         <asp:HiddenField ID="hdnInQns" ClientIDMode="Static" runat="server" />
                         <asp:HiddenField ID="hdnOutQns" ClientIDMode="Static" runat="server" />
+                        <asp:HiddenField ID="hdnTerms" ClientIDMode="Static" runat="server" />
 
                         <%--</form>--%>
                     </div>

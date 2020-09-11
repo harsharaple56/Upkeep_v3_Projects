@@ -789,7 +789,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     {
         public List<ClChecklistConfigHead> ObjClChecklistConfigHead { get; set; }
         public List<ClChecklistConfigSection> ObjClChecklistConfigSection { get; set; }
-        public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
+       // public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
 
     }
     public class ClChecklistConfigHead
@@ -830,9 +830,13 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Chk_Qn_Ref_Photo { get; set; }
         public int Chk_Ans_Type_ID { get; set; }
         public bool Is_Raise_Flag_Issue { get; set; }
+
+        public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
+
         public List<ClChecklistConfigAnswer> ObjClChecklistConfigAnswer { get; set; }
         public List<ClChecklist_Response_Data_Values> ObjClChecklist_Response_Data_Values { get; set; }
     }
+
     public class ClChecklistConfigAnswer
     {
         //XXX

@@ -1911,12 +1911,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region CSM
     //Added by RC This function is used to save CSM Configuration 
     [WebMethod]
-    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID)
+    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlImg_Header, blFreeService, blEnableImageUpload, intCost, LoggedInUserID);
+            ds = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, intCost, LoggedInUserID);
         }
         catch (Exception ex)
         {

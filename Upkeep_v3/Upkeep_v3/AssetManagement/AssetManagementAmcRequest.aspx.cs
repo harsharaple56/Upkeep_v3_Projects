@@ -52,17 +52,17 @@ namespace Upkeep_v3.AssetManagement
 
                 btnRenewAMC.Attributes.Add("style", "display:none");
 
-                Fetch_Bind_DropDown();
-
-                Session["TransactionID"] = 0;
+                Session["TransactionID"] = 0; 
                 if (TransactionID > 0)
                 {
+                    Fetch_Bind_DropDown();
                     DivIsNewAmc.Attributes.Add("style", "display:none");
                     Session["TransactionID"] = Convert.ToString(TransactionID);
                     DisplayData(TransactionID);
                 }
                 else
                 {
+                    Fetch_Bind_DropDown();
                     customCheck.Checked = true;
                     DivIsUpdateAMC.Attributes.Add("style", "display:none");
                 }
@@ -82,7 +82,7 @@ namespace Upkeep_v3.AssetManagement
             {
                 dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID));
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
-
+                //SPR_ASSET_FETCH_DROPDOWN_LIST
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -171,9 +171,16 @@ namespace Upkeep_v3.AssetManagement
                         ddlCurrencyType.DataBind();
                         ddlCurrencyType.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
-                    if (dsTitle.Tables[8].Rows.Count > 0)
+                    if (dsTitle.Tables[9].Rows.Count > 0) //dsTitle.Tables[8].Rows.Count 
                     {
-                        ddlAssetName.DataSource = dsTitle.Tables[8];
+                        if ((int)Session["TransactionID"] > 0)
+                        {
+                            ddlAssetName.DataSource = dsTitle.Tables[8];
+                        }
+                        else
+                        {
+                            ddlAssetName.DataSource = dsTitle.Tables[9];
+                        }
                         ddlAssetName.DataTextField = "Asset_Name";
                         ddlAssetName.DataValueField = "Asset_ID";
                         ddlAssetName.DataBind();
@@ -210,6 +217,9 @@ namespace Upkeep_v3.AssetManagement
                         ddlAssetType.SelectedValue = dsAssestData.Tables[0].Rows[0]["Asset_Type_ID"].ToString();
                         ddlAssetCategory.SelectedValue = dsAssestData.Tables[0].Rows[0]["Asset_Category_ID"].ToString();
                         txtAssetName.Text = dsAssestData.Tables[0].Rows[0]["Asset_Name"].ToString();
+
+                        txttAmcName.Text = dsAssestData.Tables[0].Rows[0]["Asset_Name"].ToString();
+
                         txtAssetDescription.Text = dsAssestData.Tables[0].Rows[0]["Asset_Desc"].ToString();
                         txtAssetMaker.Text = dsAssestData.Tables[0].Rows[0]["Asset_Make"].ToString();
                         txtAssetSerialNo.Text = dsAssestData.Tables[0].Rows[0]["Asset_Serial_No"].ToString();
@@ -220,7 +230,6 @@ namespace Upkeep_v3.AssetManagement
                         txtAssetCost.Value = dsAssestData.Tables[0].Rows[0]["Asset_Cost"].ToString();
                         ddlCurrencyType.SelectedValue = dsAssestData.Tables[0].Rows[0]["Currency_Type"].ToString();
                         txtAssetPurchaseDate.Text = dsAssestData.Tables[0].Rows[0]["Asset_Purchase_Date"].ToString();
-
 
                         if (dsAssestData.Tables[1].Rows.Count > 0)
                         {
