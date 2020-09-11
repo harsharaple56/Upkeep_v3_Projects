@@ -789,7 +789,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     {
         public List<ClChecklistConfigHead> ObjClChecklistConfigHead { get; set; }
         public List<ClChecklistConfigSection> ObjClChecklistConfigSection { get; set; }
-       // public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
+        public List<ClChecklistConfigAnswerType> ObjClChecklistConfigAnswerType { get; set; }
 
     }
     public class ClChecklistConfigHead
