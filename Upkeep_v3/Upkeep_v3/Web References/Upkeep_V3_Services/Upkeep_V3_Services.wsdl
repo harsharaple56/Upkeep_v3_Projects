@@ -1555,7 +1555,8 @@
       <s:element name="Fetch_My_Profile_Details">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -1585,6 +1586,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Postcode" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -1610,6 +1612,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="CurrentPassword" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1617,6 +1620,35 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Update_Change_PasswordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Retailer_Escalation_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EscalationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContactNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Retailer_Escalation_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Retailer_Escalation_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4081,6 +4113,12 @@
   <wsdl:message name="Update_Change_PasswordSoapOut">
     <wsdl:part name="parameters" element="tns:Update_Change_PasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="Retailer_Escalation_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:Retailer_Escalation_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="Retailer_Escalation_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:Retailer_Escalation_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4861,6 +4899,10 @@
     <wsdl:operation name="Update_Change_Password">
       <wsdl:input message="tns:Update_Change_PasswordSoapIn" />
       <wsdl:output message="tns:Update_Change_PasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Retailer_Escalation_CRUD">
+      <wsdl:input message="tns:Retailer_Escalation_CRUDSoapIn" />
+      <wsdl:output message="tns:Retailer_Escalation_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5816,6 +5858,15 @@
     </wsdl:operation>
     <wsdl:operation name="Update_Change_Password">
       <soap:operation soapAction="http://tempuri.org/Update_Change_Password" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retailer_Escalation_CRUD">
+      <soap:operation soapAction="http://tempuri.org/Retailer_Escalation_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7196,6 +7247,15 @@
     </wsdl:operation>
     <wsdl:operation name="Update_Change_Password">
       <soap12:operation soapAction="http://tempuri.org/Update_Change_Password" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retailer_Escalation_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/Retailer_Escalation_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -162,6 +162,14 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Crud_Inv_Item_MstOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_My_Profile_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Update_My_Profile_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Update_Change_PasswordOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Retailer_Escalation_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
@@ -565,6 +573,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Crud_Inv_Item_MstCompletedEventHandler Crud_Inv_Item_MstCompleted;
+        
+        /// <remarks/>
+        public event Fetch_My_Profile_DetailsCompletedEventHandler Fetch_My_Profile_DetailsCompleted;
+        
+        /// <remarks/>
+        public event Update_My_Profile_DetailsCompletedEventHandler Update_My_Profile_DetailsCompleted;
+        
+        /// <remarks/>
+        public event Update_Change_PasswordCompletedEventHandler Update_Change_PasswordCompleted;
+        
+        /// <remarks/>
+        public event Retailer_Escalation_CRUDCompletedEventHandler Retailer_Escalation_CRUDCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -3071,6 +3091,168 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_My_Profile_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_My_Profile_Details(string LoggedInUserID, string UserType, int CompanyID) {
+            object[] results = this.Invoke("Fetch_My_Profile_Details", new object[] {
+                        LoggedInUserID,
+                        UserType,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_My_Profile_DetailsAsync(string LoggedInUserID, string UserType, int CompanyID) {
+            this.Fetch_My_Profile_DetailsAsync(LoggedInUserID, UserType, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_My_Profile_DetailsAsync(string LoggedInUserID, string UserType, int CompanyID, object userState) {
+            if ((this.Fetch_My_Profile_DetailsOperationCompleted == null)) {
+                this.Fetch_My_Profile_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_My_Profile_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_My_Profile_Details", new object[] {
+                        LoggedInUserID,
+                        UserType,
+                        CompanyID}, this.Fetch_My_Profile_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_My_Profile_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_My_Profile_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_My_Profile_DetailsCompleted(this, new Fetch_My_Profile_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_My_Profile_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
+            object[] results = this.Invoke("Update_My_Profile_Details", new object[] {
+                        PhoneNo,
+                        AltPhoneNo,
+                        EmailID,
+                        Address,
+                        City,
+                        State,
+                        Postcode,
+                        LoggedInUserID,
+                        UserType,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_My_Profile_DetailsAsync(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
+            this.Update_My_Profile_DetailsAsync(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Update_My_Profile_DetailsAsync(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID, object userState) {
+            if ((this.Update_My_Profile_DetailsOperationCompleted == null)) {
+                this.Update_My_Profile_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_My_Profile_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Update_My_Profile_Details", new object[] {
+                        PhoneNo,
+                        AltPhoneNo,
+                        EmailID,
+                        Address,
+                        City,
+                        State,
+                        Postcode,
+                        LoggedInUserID,
+                        UserType,
+                        CompanyID}, this.Update_My_Profile_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_My_Profile_DetailsOperationCompleted(object arg) {
+            if ((this.Update_My_Profile_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_My_Profile_DetailsCompleted(this, new Update_My_Profile_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_Change_Password", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID, string UserType) {
+            object[] results = this.Invoke("Update_Change_Password", new object[] {
+                        Username,
+                        CurrentPassword,
+                        NewPassword,
+                        CompanyID,
+                        UserType});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_Change_PasswordAsync(string Username, string CurrentPassword, string NewPassword, int CompanyID, string UserType) {
+            this.Update_Change_PasswordAsync(Username, CurrentPassword, NewPassword, CompanyID, UserType, null);
+        }
+        
+        /// <remarks/>
+        public void Update_Change_PasswordAsync(string Username, string CurrentPassword, string NewPassword, int CompanyID, string UserType, object userState) {
+            if ((this.Update_Change_PasswordOperationCompleted == null)) {
+                this.Update_Change_PasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_Change_PasswordOperationCompleted);
+            }
+            this.InvokeAsync("Update_Change_Password", new object[] {
+                        Username,
+                        CurrentPassword,
+                        NewPassword,
+                        CompanyID,
+                        UserType}, this.Update_Change_PasswordOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_Change_PasswordOperationCompleted(object arg) {
+            if ((this.Update_Change_PasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_Change_PasswordCompleted(this, new Update_Change_PasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Retailer_Escalation_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Retailer_Escalation_CRUD(int EscalationID, string Name, string Designation, string Department, string ContactNo, string EmailID, string LoggedInUserID, int CompanyID, string strAction) {
+            object[] results = this.Invoke("Retailer_Escalation_CRUD", new object[] {
+                        EscalationID,
+                        Name,
+                        Designation,
+                        Department,
+                        ContactNo,
+                        EmailID,
+                        LoggedInUserID,
+                        CompanyID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Retailer_Escalation_CRUDAsync(int EscalationID, string Name, string Designation, string Department, string ContactNo, string EmailID, string LoggedInUserID, int CompanyID, string strAction) {
+            this.Retailer_Escalation_CRUDAsync(EscalationID, Name, Designation, Department, ContactNo, EmailID, LoggedInUserID, CompanyID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void Retailer_Escalation_CRUDAsync(int EscalationID, string Name, string Designation, string Department, string ContactNo, string EmailID, string LoggedInUserID, int CompanyID, string strAction, object userState) {
+            if ((this.Retailer_Escalation_CRUDOperationCompleted == null)) {
+                this.Retailer_Escalation_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetailer_Escalation_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("Retailer_Escalation_CRUD", new object[] {
+                        EscalationID,
+                        Name,
+                        Designation,
+                        Department,
+                        ContactNo,
+                        EmailID,
+                        LoggedInUserID,
+                        CompanyID,
+                        strAction}, this.Retailer_Escalation_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnRetailer_Escalation_CRUDOperationCompleted(object arg) {
+            if ((this.Retailer_Escalation_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Retailer_Escalation_CRUDCompleted(this, new Retailer_Escalation_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -3382,7 +3564,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     int Is_GobalApprover, 
                     int Approver_ID, 
                     int RoleID, 
-                    string Profilephoto, 
+                    string ProfilePhoto_FilePath, 
+                    string Sign_FilePath, 
                     int CompanyID, 
                     string LoggedInUserID, 
                     string Action) {
@@ -3407,7 +3590,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_GobalApprover,
                         Approver_ID,
                         RoleID,
-                        Profilephoto,
+                        ProfilePhoto_FilePath,
+                        Sign_FilePath,
                         CompanyID,
                         LoggedInUserID,
                         Action});
@@ -3436,11 +3620,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     int Is_GobalApprover, 
                     int Approver_ID, 
                     int RoleID, 
-                    string Profilephoto, 
+                    string ProfilePhoto_FilePath, 
+                    string Sign_FilePath, 
                     int CompanyID, 
                     string LoggedInUserID, 
                     string Action) {
-            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, Profilephoto, CompanyID, LoggedInUserID, Action, null);
+            this.UserMaster_CRUDAsync(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -3465,7 +3650,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     int Is_GobalApprover, 
                     int Approver_ID, 
                     int RoleID, 
-                    string Profilephoto, 
+                    string ProfilePhoto_FilePath, 
+                    string Sign_FilePath, 
                     int CompanyID, 
                     string LoggedInUserID, 
                     string Action, 
@@ -3494,7 +3680,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_GobalApprover,
                         Approver_ID,
                         RoleID,
-                        Profilephoto,
+                        ProfilePhoto_FilePath,
+                        Sign_FilePath,
                         CompanyID,
                         LoggedInUserID,
                         Action}, this.UserMaster_CRUDOperationCompleted, userState);
@@ -3807,24 +3994,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CategorySubCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CategorySubCategory(int CategoryID) {
+        public System.Data.DataSet Fetch_CategorySubCategory(int CategoryID, int CompanyID) {
             object[] results = this.Invoke("Fetch_CategorySubCategory", new object[] {
-                        CategoryID});
+                        CategoryID,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_CategorySubCategoryAsync(int CategoryID) {
-            this.Fetch_CategorySubCategoryAsync(CategoryID, null);
+        public void Fetch_CategorySubCategoryAsync(int CategoryID, int CompanyID) {
+            this.Fetch_CategorySubCategoryAsync(CategoryID, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_CategorySubCategoryAsync(int CategoryID, object userState) {
+        public void Fetch_CategorySubCategoryAsync(int CategoryID, int CompanyID, object userState) {
             if ((this.Fetch_CategorySubCategoryOperationCompleted == null)) {
                 this.Fetch_CategorySubCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CategorySubCategoryOperationCompleted);
             }
             this.InvokeAsync("Fetch_CategorySubCategory", new object[] {
-                        CategoryID}, this.Fetch_CategorySubCategoryOperationCompleted, userState);
+                        CategoryID,
+                        CompanyID}, this.Fetch_CategorySubCategoryOperationCompleted, userState);
         }
         
         private void OnFetch_CategorySubCategoryOperationCompleted(object arg) {
@@ -7946,6 +8135,110 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Crud_Inv_Item_MstCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_My_Profile_DetailsCompletedEventHandler(object sender, Fetch_My_Profile_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_My_Profile_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_My_Profile_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_My_Profile_DetailsCompletedEventHandler(object sender, Update_My_Profile_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_My_Profile_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_My_Profile_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Update_Change_PasswordCompletedEventHandler(object sender, Update_Change_PasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_Change_PasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_Change_PasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Retailer_Escalation_CRUDCompletedEventHandler(object sender, Retailer_Escalation_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Retailer_Escalation_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Retailer_Escalation_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

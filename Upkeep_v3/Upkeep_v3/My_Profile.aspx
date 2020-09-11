@@ -199,12 +199,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="m-form__group row" style="padding-top: 0px !important;">
+                                        <%--<div class="m-form__group row" style="padding-top: 0px !important;">
                                             <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Company Name</label>
                                             <div class="col-7 col-form-label">
                                                 <asp:Label ID="lblCompanyName" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <div class="form-group m-form__group row" style="padding-top: 0px !important;">
                                             <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Phone No.</label>
                                             <div class="col-7">
@@ -294,7 +294,7 @@
                                         <div class="form-group m-form__group row" style="padding-top: 0px !important;">
                                             <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Company Name :</label>
                                             <div class="col-7 col-form-label">
-                                                <asp:Label ID="lblCompanyName1" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                <asp:Label ID="lblCompanyName" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row" style="padding-top: 0px !important;">

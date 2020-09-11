@@ -76,15 +76,6 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lblLastName;
         
         /// <summary>
-        /// lblCompanyName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCompanyName;
-        
-        /// <summary>
         /// txtPhoneNo control.
         /// </summary>
         /// <remarks>
@@ -184,13 +175,13 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lblUserCode;
         
         /// <summary>
-        /// lblCompanyName1 control.
+        /// lblCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCompanyName1;
+        protected global::System.Web.UI.WebControls.Label lblCompanyName;
         
         /// <summary>
         /// lblCompanyCode control.
