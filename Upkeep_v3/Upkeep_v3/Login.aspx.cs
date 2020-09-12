@@ -102,12 +102,16 @@ namespace Upkeep_v3
                     int status = Convert.ToInt32(company[0].Status);
                     string CompanyID = Convert.ToString(company[0].CompanyID);
                     string ModuleIDs = Convert.ToString(company[0].Module_ID);
+                    string CompanyName = Convert.ToString(company[0].CompanyName);
 
                     Session["Status"] = Convert.ToString(status);
                     if (status == 1)
                     {
                         Session["ModuleID"] = ModuleIDs;
                         Session["CompanyID"] = CompanyID;
+                        Session["CompanyName"] = CompanyName;
+                        Session["CompanyCode"] = Convert.ToString(txtCompanyCode.Text.Trim());
+
                         //txtUsername.Attributes.Remove("readonly");
                         txtUsername.ReadOnly = false;
                         txtPassword.ReadOnly = false;
@@ -142,6 +146,7 @@ namespace Upkeep_v3
         {
             public int Status { get; set; }
             public int CompanyID { get; set; }
+            public string CompanyName { get; set; }
             public string Module_ID { get; set; }
         }
 

@@ -128,5 +128,17 @@ namespace Upkeep_v3
             Session.RemoveAll();
             Response.Redirect("~/Login.aspx");
         }
+
+        protected void lnkProfile_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToString(Session["UserType"]) == "E")
+            {
+                Response.Redirect("~/My_Profile.aspx");
+            }
+            else if (Convert.ToString(Session["UserType"]) == "R")
+            {
+                Response.Redirect("~/Retailer_Profile.aspx");
+            }
+        }
     }
 }

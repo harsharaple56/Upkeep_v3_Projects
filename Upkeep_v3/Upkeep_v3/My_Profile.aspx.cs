@@ -16,10 +16,12 @@ namespace Upkeep_v3
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        string UserType = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            UserType = Convert.ToString(Session["UserType"]);
 
             lblChangePasswordSuccess.Text = "";
             lblChangePasswordError.Text = "";
@@ -32,16 +34,16 @@ namespace Upkeep_v3
 
             if (!IsPostBack)
             {
-                Fetch_My_Profile_Details(Convert.ToInt32(LoggedInUserID), CompanyID);
+                Fetch_My_Profile_Details(LoggedInUserID, UserType, CompanyID);
             }
         }
 
-        public void Fetch_My_Profile_Details(int LoggedInUserID, int CompanyID)
+        public void Fetch_My_Profile_Details(string LoggedInUserID,string UserType, int CompanyID)
         {
             DataSet dsProfile = new DataSet();
             try
             {
-                dsProfile = ObjUpkeep.Fetch_My_Profile_Details(LoggedInUserID, CompanyID);
+                dsProfile = ObjUpkeep.Fetch_My_Profile_Details(LoggedInUserID, UserType, CompanyID);
 
                 if (dsProfile.Tables.Count > 0)
                 {
@@ -60,8 +62,8 @@ namespace Upkeep_v3
                         txtPostCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Postcode"]);
 
                         lblUserCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
-                        //lblCompanyName1.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Login_ID"]);
-                        lblCompanyCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Company_Code"]);
+                        lblCompanyName.Text = Convert.ToString(Session["CompanyName"]);
+                        lblCompanyCode.Text = Convert.ToString(Session["CompanyCode"]);
                         lblDesignation.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Designation"]);
                         lblReportingManager.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["ReportingManager"]);
                         lblAssignedRole.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Role_Name"]);
@@ -114,7 +116,7 @@ namespace Upkeep_v3
                 State = Convert.ToString(txtState.Text.Trim());
                 Postcode = Convert.ToString(txtPostCode.Text.Trim());
 
-                dsProfile = ObjUpkeep.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, CompanyID);
+                dsProfile = ObjUpkeep.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
                 if (dsProfile.Tables.Count > 0)
                 {
                     if (dsProfile.Tables[0].Rows.Count > 0)
@@ -154,7 +156,7 @@ namespace Upkeep_v3
                 CurrentPassword = Convert.ToString(txtCurrentPassword.Text.Trim());
                 NewPassword = Convert.ToString(txtNewPassword.Text.Trim());
 
-                dsChangePassword = ObjUpkeep.Update_Change_Password(Username, CurrentPassword, NewPassword, CompanyID);
+                dsChangePassword = ObjUpkeep.Update_Change_Password(Username, CurrentPassword, NewPassword, CompanyID, UserType);
                 if (dsChangePassword.Tables.Count > 0)
                 {
                     if (dsChangePassword.Tables[0].Rows.Count > 0)

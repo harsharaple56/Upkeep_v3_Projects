@@ -3119,7 +3119,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region My Profile
 
-        public DataSet Fetch_My_Profile_Details(int LoggedInUserID, int CompanyID, string StrConn)
+        public DataSet Fetch_My_Profile_Details(string LoggedInUserID,string UserType, int CompanyID, string StrConn)
         {
             DataSet dsProfile = new DataSet();
             try
@@ -3128,6 +3128,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_User_Profile_Details", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@UserType", UserType);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);                
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dsProfile);
@@ -3139,7 +3140,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, int CompanyID, string StrConn)
+        public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID,string UserType, int CompanyID, string StrConn)
         {
             DataSet dsProfile = new DataSet();
             try
@@ -3155,6 +3156,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@State", State);
                 cmd.Parameters.AddWithValue("@Postcode", Postcode);
                 cmd.Parameters.AddWithValue("@UserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@UserType", UserType);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dsProfile);
@@ -3166,7 +3168,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID, string StrConn)
+        public DataSet Update_Change_Password(string Username, string CurrentPassword, string NewPassword, int CompanyID,string UserType, string StrConn)
         {
             DataSet dsChangePassword = new DataSet();
             try
@@ -3178,6 +3180,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CurrentPassword", CurrentPassword);
                 cmd.Parameters.AddWithValue("@NewPassword", NewPassword);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@UserType", UserType);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dsChangePassword);
                 return dsChangePassword;
@@ -3187,6 +3190,34 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Retailer_Escalation_CRUD(int EscalationID, string Name, string Designation, string Department, string ContactNo, string EmailID, string LoggedInUserID, int CompanyID,string strAction, string StrConn)
+        {
+            DataSet dsEscalation = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Retailer_Escalation_CRUD", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EscalationID", EscalationID);
+                cmd.Parameters.AddWithValue("@Name", Name);
+                cmd.Parameters.AddWithValue("@Designation", Designation);
+                cmd.Parameters.AddWithValue("@Department", Department);
+                cmd.Parameters.AddWithValue("@ContactNo", ContactNo);
+                cmd.Parameters.AddWithValue("@EmailID", EmailID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID); 
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@strAction", strAction);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsEscalation);
+                return dsEscalation;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
 

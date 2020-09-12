@@ -437,13 +437,25 @@
                                                             <li class="m-nav__section m--hide">
                                                                 <span class="m-nav__section-text">Section</span>
                                                             </li>
-                                                            <li class="m-nav__item">
+                                                            <%--<li class="m-nav__item">
                                                                 <a href="<%= Page.ResolveClientUrl("~/My_Profile.aspx") %>" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                     <span class="m-nav__link-title">
                                                                         <span class="m-nav__link-wrap">
                                                                             <span class="m-nav__link-text">My Profile settings</span>
                                                                             <span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <li class="m-nav__item">
+                                                                <a onserverclick="lnkProfile_Click" runat="server" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                                                    <span class="m-nav__link-title">
+                                                                        <span class="m-nav__link-wrap">
+                                                                            <span class="m-nav__link-text" >My Profile settings</span>
+                                                                            <%--<input type="button" id="btnsubmit" runat="server" class="m-nav__link-text" onserverclick="lnkProfile_Click" value="My Profile settings Ajay" />--%>
+                                                                            <span class="m-nav__link-badge"></span>
                                                                         </span>
                                                                     </span>
                                                                 </a>
