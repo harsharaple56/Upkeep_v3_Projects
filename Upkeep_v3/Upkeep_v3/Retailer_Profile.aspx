@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+ <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript" ></script>
     <style type="text/css">
         .modalBackground {
             background-color: grey;
@@ -282,14 +282,14 @@
 
                                                     <%--Editable grid start--%>
 
-                                                    <div id="dvGrid" style="padding: 10px; width: 750px">
+                                                    <div id="m_table_1" style="padding: 10px; width: 750px;overflow-x:auto;">
                                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                             <ContentTemplate>
                                                                 <asp:GridView ID="gvEscalation" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvEscalation_RowDataBound"
                                                                     DataKeyNames="Escalation_ID" OnRowEditing="gvEscalation_RowEditing" OnRowCancelingEdit="gvEscalation_RowCancelingEdit"
                                                                     PageSize="3" AllowPaging="true" OnPageIndexChanging="gvEscalation_PageIndexChanging"
                                                                     OnRowUpdating="gvEscalation_RowUpdating" OnRowDeleting="gvEscalation_RowDeleting" EmptyDataText="No records has been added."
-                                                                   HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" >
+                                                                   HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black" CssClass="" >
                                                                     <Columns>
                                                                         <asp:TemplateField HeaderText="Level" ItemStyle-Width="150">
                                                                             <ItemTemplate>
@@ -340,27 +340,37 @@
                                                                                 <asp:TextBox ID="txtEmailID_Esc" runat="server" Text='<%# Eval("Email") %>' Width="120"></asp:TextBox>
                                                                             </EditItemTemplate>
                                                                         </asp:TemplateField>
-                                                                        <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true"
+                                                                        <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" HeaderText="Action"
                                                                             ItemStyle-Width="150" />
                                                                     </Columns>
                                                                 </asp:GridView><br /><br />
 
                                                                 <div id="dvGrid1" style="width: 750px">
-                                                                <table border="1" cellpadding="1" cellspacing="1" style="border-collapse: collapse;">
+                                                                <table border="1" cellpadding="1" cellspacing="1" style="border-collapse: collapse;" >
+                                                                    <thead>
+                                                                        <tr style="color:Black;background-color:#F4F3F8;">
+                                                                            <th>Name</th>
+                                                                            <th>Designation</th>
+                                                                            <th>Department</th>
+                                                                            <th>ContactNo</th>
+                                                                            <th>EmailID</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
                                                                     <tr>
-                                                                        <td style="width: 140px">Name<br />
+                                                                        <td style="width: 140px">
                                                                             <asp:TextBox ID="txtAddName" runat="server" Width="140" />
                                                                         </td>
-                                                                        <td style="width: 100px">Designation<br />
+                                                                        <td style="width: 100px">
                                                                             <asp:TextBox ID="txtAddDesignation" runat="server" Width="120" />
                                                                         </td>
-                                                                        <td style="width: 100px">Department<br />
+                                                                        <td style="width: 100px">
                                                                             <asp:TextBox ID="txtAddDepartment" runat="server" Width="120" />
                                                                         </td>
-                                                                        <td style="width: 100px">ContactNo<br />
+                                                                        <td style="width: 100px">
                                                                             <asp:TextBox ID="txtAddContactNo" runat="server" Width="120" />
                                                                         </td>
-                                                                        <td style="width: 100px">EmailID<br />
+                                                                        <td style="width: 100px">
                                                                             <asp:TextBox ID="txtAddEmailID" runat="server" Width="120" />
                                                                         </td>
                                                                         <td style="width: 90px;text-align: center;">

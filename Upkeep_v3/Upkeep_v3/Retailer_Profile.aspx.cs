@@ -219,6 +219,13 @@ namespace Upkeep_v3
 
         protected void gvEscalation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != gvEscalation.EditIndex)
             {
                 (e.Row.Cells[6].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";

@@ -1738,28 +1738,27 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID) {
+        public System.Data.DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_CSMConfiguration", new object[] {
                         ConfigID,
                         strConfigTitle,
                         CompanyID,
                         strXmlIn_Question,
                         strXmlOut_Question,
-                        strXmlImg_Header,
+                        strXmlCSM_Terms,
                         blFreeService,
-                        blEnableImageUpload,
                         intCost,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID) {
-            this.Insert_Update_CSMConfigurationAsync(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlImg_Header, blFreeService, blEnableImageUpload, intCost, LoggedInUserID, null);
+        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID) {
+            this.Insert_Update_CSMConfigurationAsync(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, intCost, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlImg_Header, bool blFreeService, bool blEnableImageUpload, int intCost, string LoggedInUserID, object userState) {
+        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID, object userState) {
             if ((this.Insert_Update_CSMConfigurationOperationCompleted == null)) {
                 this.Insert_Update_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Update_CSMConfigurationOperationCompleted);
             }
@@ -1769,9 +1768,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         CompanyID,
                         strXmlIn_Question,
                         strXmlOut_Question,
-                        strXmlImg_Header,
+                        strXmlCSM_Terms,
                         blFreeService,
-                        blEnableImageUpload,
                         intCost,
                         LoggedInUserID}, this.Insert_Update_CSMConfigurationOperationCompleted, userState);
         }
