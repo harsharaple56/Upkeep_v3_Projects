@@ -898,7 +898,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
         public List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
         public List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
-      
+
     }
 
     public class ClsMyActionableTicket
@@ -928,7 +928,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string ActionDateTime { get; set; }
         public string ExpectedDateTime { get; set; }
         public string Ticket_Status { get; set; }
-        public string Ticket_ActionStatus { get; set; }      
+        public string Ticket_ActionStatus { get; set; }
     }
 
     public class ClsTicketRaise
@@ -1007,7 +1007,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
     #region "ASSET"
 
     #region "ASSET MASTER DATA"
-    public class clsMasterAsset {
+    public class clsMasterAsset
+    {
 
         public List<clsMasterAssestType> objAssetType = new List<clsMasterAssestType>();
         public List<clsMasterAssestCategory> objAssetCategory = new List<clsMasterAssestCategory>();
@@ -1016,7 +1017,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public List<clsMasterAssestLocation> objAssetLocation = new List<clsMasterAssestLocation>();
         public List<clsMasterAssestAmcType> objAssetAMCType = new List<clsMasterAssestAmcType>();
         public List<clsMasterAssestCurrency> objAssetCurrency = new List<clsMasterAssestCurrency>();
-        public List<clsMasterAssestUsers> objAssetUser = new List<clsMasterAssestUsers>(); 
+        public List<clsMasterAssestUsers> objAssetUser = new List<clsMasterAssestUsers>();
     }
     public class clsMasterAssestType
     {
@@ -1031,7 +1032,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     public class clsMasterAssestVendor
     {
-        public int Vendor_ID { get; set; } 
+        public int Vendor_ID { get; set; }
         public string Vendor_Name { get; set; }
     }
 
@@ -1043,12 +1044,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
     public class clsMasterAssestLocation
     {
         public int Loc_id { get; set; }
-        public string Loc_Desc { get; set; } 
+        public string Loc_Desc { get; set; }
     }
     public class clsMasterAssestAmcType
     {
         public int Asset_AMC_Type_ID { get; set; }
-        public string Asset_AMC_Type_Desc { get; set; } 
+        public string Asset_AMC_Type_Desc { get; set; }
     }
 
     public class clsMasterAssestCurrency
@@ -1062,7 +1063,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string User_Code { get; set; }
         public string Name { get; set; }
     }
-    
+
 
     #endregion
 
@@ -1161,6 +1162,24 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int Alert_Day { get; set; }
     }
     #endregion
+
+
+    public class ClsAssetService_Response
+    {
+        public string LoggedInUserID { get; set; }
+        public string AssetID { get; set; }
+        public string AssetScheduleID { get; set; }
+        public string Flag { get; set; }
+        public List<ClsAssetService_Response_Data> ObjAssetServResponseData { get; set; }
+    }
+    public class ClsAssetService_Response_Data
+    {
+       // public int Asset_Service_ID { get; set; } 
+        public string Asset_Service_Date { get; set; }
+        public string Asset_Service_AssignTo { get; set; }
+        public string AlertBeforeDays { get; set; }
+        public string Asset_Service_Remarks { get; set; }
+    }
 
     #endregion
 }

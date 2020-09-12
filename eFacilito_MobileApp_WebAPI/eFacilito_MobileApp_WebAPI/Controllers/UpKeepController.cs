@@ -8667,19 +8667,19 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
 
                             ObjChecklistConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
-                                                              select new ClChecklistConfigAnswerType
-                                                              {
-                                                                  Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
-                                                                  Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
-                                                                  SDesc = Convert.ToString(z.Field<string>("SDesc")),
-                                                                  Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
-                                                              }).ToList();
+                                                            select new ClChecklistConfigAnswerType
+                                                            {
+                                                                Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
+                                                                Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
+                                                                SDesc = Convert.ToString(z.Field<string>("SDesc")),
+                                                                Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
+                                                            }).ToList();
 
 
 
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
-                           ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
+                            ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjChecklistConfig);
@@ -9339,6 +9339,103 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Flag Conditions :
+        ///     1. CLOSE : Dont pass Asset Service Data object.
+        ///     2. INSERT : Pass Asset Service Data object, Pass AssetScheduleID has blank [''].
+        ///     3. UPDATE : Everything is Required. 
+        /// </summary>
+        /// <param name="objInsert"></param>
+        /// <returns>
+        ///  Status : [ 1 || 2 || 3]
+        ///         1 : Failed
+        ///         2 : Success
+        ///         3 : Error
+        /// </returns>
+        [Route("api/UpKeep/Insert_Checklist_Response")]
+        [HttpPost]
+        public HttpResponseMessage Update_Asset_Service_Response([FromBody] ClsAssetService_Response objInsert)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                ObjLocSqlParameter[0] = new SqlParameter("@LoggedInUserID", objInsert.LoggedInUserID);
+                ObjLocSqlParameter[1] = new SqlParameter("@AssetID", objInsert.AssetID);
+                ObjLocSqlParameter[2] = new SqlParameter("@AssetScheduleID", objInsert.AssetScheduleID);
+                ObjLocSqlParameter[3] = new SqlParameter("@Flag", objInsert.Flag);  //CLOSE || INSERT || UPDATE
+
+                //NEED TO CONVERT DATA TO XML AND PASSED IN SP 
+                StringBuilder strXml = new StringBuilder();
+                strXml.Append(@"<Asset_Service_ROOT>");
+                foreach (ClsAssetService_Response_Data objs in objInsert.ObjAssetServResponseData)
+                {
+                    strXml.Append(@"<Asset_Service>");
+
+                    strXml.Append(@"<Asset_Service_ID>" + objInsert.AssetScheduleID.ToString() + "</Asset_Service_ID>");
+                    // strXml.Append(@"<Asset_Service_ID>" + objs.Asset_Service_ID.ToString() + "</Asset_Service_ID>");
+
+                    strXml.Append(@"<Asset_Service_Date>" + objs.Asset_Service_Date.ToString() + "</Asset_Service_Date>");
+                    strXml.Append(@"<Asset_Service_AssignTo>" + objs.Asset_Service_AssignTo.ToString() + "</Asset_Service_AssignTo>");
+                    strXml.Append(@"<Asset_Service_AlertBeforeDays>" + objs.AlertBeforeDays.ToString() + "</Asset_Service_AlertBeforeDays>");
+                    strXml.Append(@"<Asset_Service_Remarks>" + objs.Asset_Service_Remarks.ToString() + "</Asset_Service_Remarks>");
+
+                    strXml.Append(@"</Asset_Service>");
+                }
+                strXml.Append(@"</Asset_Service_ROOT>");
+
+                ObjLocSqlParameter[4] = new SqlParameter("@AssetServiceXml", strXml.ToString());
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_ASSET_CRUD_SERVICE_REQUEST_DATA", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            if (Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]) == 1)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.Forbidden, DsDataSet);
+                            }
+                            else if (Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]) == 2)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                            }
+                            else if (Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]) == 3)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.Forbidden, DsDataSet);
+                            }
+                             
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+                            //    FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                            //}
+
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
 
         #endregion
 
