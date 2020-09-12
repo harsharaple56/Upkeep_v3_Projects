@@ -86,6 +86,8 @@
 
             $('.qscore').hide();
 
+            var Alpha = "";
+
             init_autosize();
             init_plugins();
 
@@ -256,7 +258,7 @@
 
             $(document).on("click", ".btnAnsDef", function () {
                 var thisElement = $(this).find("input[name*='ChkAnsDef']").attr('name');
-                    //alert(thisElement.attr('name'))
+                //alert(thisElement.attr('name'))
                 $(this).parent().parent().find("input[name*='ChkAnsDef']").each(function () {
                     //alert($(this).html());
                     //alert($(this).attr('name'))
@@ -267,7 +269,7 @@
                     }
                     else {
                         //alert('else');
-                         $(this).prop("checked", true);
+                        $(this).prop("checked", true);
                         $(this).parent().parent().addClass('active');
                     }
                 });
@@ -319,7 +321,16 @@
 
             //var ModalHTML = "";
             var name = "";
+            $(".ddlAns").unbind();
+            //select
+            //change
             $(document).on('change', '.ddlAns', function () {
+                //alert("1");
+
+                if ($(this).val().length === 0) {
+                    return;
+                }
+
                 //var ddlansval = $('option:selected', this).attr("data-multi"); 
                 //if (ddlansval === "")
                 //    return
@@ -338,6 +349,9 @@
                 //}
 
                 var isMulti = $(this).find(':selected').attr("data-ismulti");
+
+                var isType = $(this).find(':selected').attr("data-istype");
+
                 $(this).parent().parent().find(".ansnumber").val("");
                 $(this).parent().parent().find(".ansnumber").hide();
                 if (isMulti === "") {
@@ -346,6 +360,8 @@
                     $(this).parent().parent().find(".ansnumber").show();
                 }
 
+                //alert($(this).html());
+
                 if (isMulti === "")
                     return
 
@@ -353,7 +369,44 @@
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
                     $('.dltrptanswer').click();
+
+                    if (isType === 'YesNo') {
+                        $("#divAnswerAdd").click();
+                        $("#divAnswerAdd").click();
+                        $("#divAnswerAdd").click();
+
+                        //alert($('#hdnCLConfigID').val());
+                        //if ($('#hdnCLConfigID').val() == "0") {
+                        if (Alpha == "") {
+                            Alpha = "NoAlpha";
+                           // alert("1");
+                            $("input[name~='AnswerType[1][txtAnswer]']").val("Yes");
+                            $("input[name~='AnswerType[2][txtAnswer]']").val("No");
+                            $("input[name~='AnswerType[3][txtAnswer]']").val("NA");
+                        }
+                        else {
+                            // alert("2");
+                            $("input[name~='AnswerType[0][txtAnswer]']").val("Yes");
+                            $("input[name~='AnswerType[1][txtAnswer]']").val("No");
+                            $("input[name~='AnswerType[2][txtAnswer]']").val("NA");
+                        }
+                        //}
+                    }
+
+                    //var ansdwers = ":Yes:0:0;:No:0:0;:NA:0:0"
+                    //var arrAnds = ansdwers.split(";");
+                    //if (isType === 'YesNo') {
+                    //    for (var i = 0; i < 3; i++) {
+                    //        $("#divAnswerAdd").click();
+                    //        var arrIDAnds = arrAnds[i].split(":");
+                    //        $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAnds[0]);
+                    //        $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAnds[1]);
+                    //    }
+                    //}
+
                     name = $(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer");
+
+
                     //name = $(this).siblings('.hdnRepeaterAnswer').attr("name");
                     $('#btnModal').click();
                 }
@@ -416,7 +469,7 @@
 
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
-                //alert(answers);
+                alert(answers);
                 if ($('#hdnCLConfigID').val() != "0") {
                     answers = "ii:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
@@ -538,6 +591,8 @@
             if ($('#hdnCLConfigID').val() != "0") {
                 //$('#AnsModal').modal('show');
                 //$('#AnsModal').modal('toggle');
+
+                //Alpha = "NoAlpha";
                 Bind_CheckListConfiguration($('#hdnCLConfigID').val());
             }
 

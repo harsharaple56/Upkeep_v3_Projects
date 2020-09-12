@@ -72,8 +72,10 @@ namespace Upkeep_v3.CheckList
                         //}
 
                         for (int i = 0; i <= ddlAns.Items.Count - 1; i++)
+                        {
                             ddlAns.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
-
+                            ddlAns.Items[i].Attributes["data-isType"] = ds.Tables[0].Rows[i]["SDesc"].ToString();
+                        }
                         // ddlAns.Items.Insert(0, new ListItem("select", ""));
                     }
                 }
