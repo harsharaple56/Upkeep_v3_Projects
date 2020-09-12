@@ -1174,7 +1174,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     public class ClsAssetService_Response_Data
     {
-       // public int Asset_Service_ID { get; set; }
+       // public int Asset_Service_ID { get; set; } 
         public string Asset_Service_Date { get; set; }
         public string Asset_Service_AssignTo { get; set; }
         public string AlertBeforeDays { get; set; }
