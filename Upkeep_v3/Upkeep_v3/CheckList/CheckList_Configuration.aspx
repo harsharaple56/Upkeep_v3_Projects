@@ -379,7 +379,7 @@
                         //if ($('#hdnCLConfigID').val() == "0") {
                         if (Alpha == "") {
                             Alpha = "NoAlpha";
-                           // alert("1");
+                            // alert("1");
                             $("input[name~='AnswerType[1][txtAnswer]']").val("Yes");
                             $("input[name~='AnswerType[2][txtAnswer]']").val("No");
                             $("input[name~='AnswerType[3][txtAnswer]']").val("NA");
@@ -418,8 +418,27 @@
             });
 
             $(document).on('change', '.ansnumber', function () {
+                var stringAnsVal = $(this).parent().find(".hdnRepeaterAnswer").val();
+                var arrayAns = stringAnsVal.split(":");
+                var ansVl = "";
+                for (i = 0; i < arrayAns.length; ++i) {
+                    // do something with `arrayAns[i]`
+                    if (i == arrayAns.length - 1) {
+                        ansVl = ansVl + arrayAns[i]
+                    }
+                    else {
+                        if (i == 1) {
+                            ansVl = ansVl + $(this).val() + ':'
+
+                        } else {
+                            ansVl = ansVl + arrayAns[i] + ':'
+                        }
+                    }
+                }
+                 
                 $(this).parent().find(".hdnRepeaterAnswer").val("");
-                $(this).parent().find(".hdnRepeaterAnswer").val($(this).val());
+                $(this).parent().find(".hdnRepeaterAnswer").val(ansVl);
+
             });
 
 

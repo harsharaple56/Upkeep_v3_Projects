@@ -302,11 +302,23 @@ namespace Upkeep_v3.CheckList
                                     if (Chk_ConfigID != 0)
                                     {
                                         string[] strValue = ChkAnsData.Split(':');
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>1</CHECKLIST_ANSWER_DATA_SEQ>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID>" + strValue[0].ToString() + "</CHECKLIST_ANSWER_DATA_ID>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + strValue[1].ToString() + "</CHECKLIST_ANSWER_DATA>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
-                                        strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+
+                                        if (strValue.Length > 1)
+                                        {
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>1</CHECKLIST_ANSWER_DATA_SEQ>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID>" + strValue[0].ToString() + "</CHECKLIST_ANSWER_DATA_ID>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + strValue[1].ToString() + "</CHECKLIST_ANSWER_DATA>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+                                        }
+                                        else
+                                        {
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_SEQ>1</CHECKLIST_ANSWER_DATA_SEQ>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA_ID></CHECKLIST_ANSWER_DATA_ID>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_ANSWER_DATA>" + strValue[0].ToString() + "</CHECKLIST_ANSWER_DATA>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_DEFAULT></CHECKLIST_IS_DEFAULT>");
+                                            strXmlCHECKLIST_QUESTION.Append(@"<CHECKLIST_IS_FLAG></CHECKLIST_IS_FLAG>");
+                                        }
                                     }
                                     else
                                     {
