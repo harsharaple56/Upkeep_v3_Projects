@@ -53,6 +53,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -444,9 +448,17 @@
     <Content Include="assets\app\media\img\icons\approved-64.png" />
     <Content Include="assets\app\media\img\icons\approved-96.png" />
     <Content Include="assets\app\media\img\icons\closed-96.png" />
+    <Content Include="assets\app\media\img\icons\database_export.png" />
+    <Content Include="assets\app\media\img\icons\database_import.png" />
+    <Content Include="assets\app\media\img\icons\download_sample_22.png" />
+    <Content Include="assets\app\media\img\icons\download_sample_26.png" />
+    <Content Include="assets\app\media\img\icons\excel_32.png" />
+    <Content Include="assets\app\media\img\icons\excel_48.png" />
     <Content Include="assets\app\media\img\icons\exchange.svg" />
     <Content Include="assets\app\media\img\icons\hold-90.png" />
     <Content Include="assets\app\media\img\icons\logout.svg" />
+    <Content Include="assets\app\media\img\icons\pdf_32.png" />
+    <Content Include="assets\app\media\img\icons\pdf_48.png" />
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\rejcted-144.png" />
     <Content Include="assets\app\media\img\icons\total.png" />
@@ -891,6 +903,7 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\roslyn\csc.exe" />
     <Content Include="bin\roslyn\csi.exe" />
