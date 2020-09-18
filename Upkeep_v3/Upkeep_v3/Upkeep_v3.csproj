@@ -1033,9 +1033,11 @@
     <Content Include="TicketImages\22-01-2020\CKT10_9_0.jpg" />
     <Content Include="TicketImages\26-12-2019\TKT30_0.jpg" />
     <Content Include="Ticketing\Add_MyRequest.aspx" />
+    <Content Include="Ticketing\Add_MyRequest_Retailer.aspx" />
     <Content Include="Ticketing\Frm_Category.aspx" />
     <Content Include="Ticketing\MyActionable.aspx" />
     <Content Include="Ticketing\MyRequest.aspx" />
+    <Content Include="Ticketing\MyRequest_Retailer.aspx" />
     <Content Include="Ticketing\My_RequestRply.aspx" />
     <Content Include="Ticketing\Pending_Approvals.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
@@ -4538,6 +4540,13 @@
     <Compile Include="Ticketing\Add_MyRequest.aspx.designer.cs">
       <DependentUpon>Add_MyRequest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ticketing\Add_MyRequest_Retailer.aspx.cs">
+      <DependentUpon>Add_MyRequest_Retailer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Add_MyRequest_Retailer.aspx.designer.cs">
+      <DependentUpon>Add_MyRequest_Retailer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ticketing\Frm_Category.aspx.cs">
       <DependentUpon>Frm_Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4558,6 +4567,13 @@
     </Compile>
     <Compile Include="Ticketing\MyRequest.aspx.designer.cs">
       <DependentUpon>MyRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\MyRequest_Retailer.aspx.cs">
+      <DependentUpon>MyRequest_Retailer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\MyRequest_Retailer.aspx.designer.cs">
+      <DependentUpon>MyRequest_Retailer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\My_RequestRply.aspx.cs">
       <DependentUpon>My_RequestRply.aspx</DependentUpon>
