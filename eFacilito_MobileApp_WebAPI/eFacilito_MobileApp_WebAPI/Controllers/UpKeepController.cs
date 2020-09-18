@@ -14,6 +14,7 @@ using System.Web.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace eFacilito_MobileApp_WebAPI.Controllers
 {
@@ -8728,7 +8729,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
                 ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
                 ObjLocSqlParameter[1] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
                 ObjLocSqlParameter[2] = new SqlParameter("@User_Code", objInsert.User_Code);
@@ -8971,8 +8972,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                 Is_MultiValue = Convert.ToBoolean(p.Field<bool>("Is_MultiValue"))
                                                             }).ToList();
 
-
-
                             ObjChecklistConfig.ObjClChecklistConfigHead = ObjChecklistConfigHead;
                             ObjChecklistConfig.ObjClChecklistConfigSection = ObjChecklistConfigSection;
                             ObjChecklistConfig.ObjClChecklistConfigAnswerType = ObjChecklistConfigAnswerType;
@@ -9011,6 +9010,264 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
+
+
+        [Route("api/UpKeep/Save_Checklist_Response")]
+        [HttpPost]
+        public HttpResponseMessage Save_Checklist_Response(string ClsChecklist_Response) //[FromBody] ClsChecklist_Response objInsert
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string ResponseData = ClsChecklist_Response.Replace("\"", "'");
+
+            ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>(ResponseData);
+
+            string StrLocConnection = null;
+            try
+            {
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
+                ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
+                ObjLocSqlParameter[2] = new SqlParameter("@User_Code", objInsert.User_Code);
+                ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", objInsert.CompanyID);
+                ObjLocSqlParameter[4] = new SqlParameter("@LocationID", objInsert.LocationID);
+                ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
+
+                //NEED TO CONVERT DATA TO XML AND PASSED IN SP 
+                StringBuilder strXml = new StringBuilder();
+                strXml.Append(@"<DocumentElement>");
+                foreach (ClsChecklist_Response_Data objs in objInsert.ObjChkResponseData)
+                {
+                    strXml.Append(@"<Section>");
+
+                    
+                    //strXml.Append(@"<AnsResponseID>" + objs.AnsResponseID.ToString() + "</AnsResponseID>");
+
+                    strXml.Append(@"<SectionID>" + objs.SectionID.ToString() + "</SectionID>");
+                    strXml.Append(@"<QuestionID>" + objs.QuestionID.ToString() + "</QuestionID>");
+                    //strXml.Append(@"<AnswerID>" + objs.AnswerID.ToString() + "</AnswerID>");
+                    strXml.Append(@"<AnswerTypeID>" + objs.AnswerTypeID.ToString() + "</AnswerTypeID>");
+
+                    strXml.Append(@"<AnswerData>");
+
+                    var httpRequest = HttpContext.Current.Request;
+                    if (httpRequest.Files.Count > 0)
+                    {
+                        int ChecklistImgCount = 0;
+
+                        int iAnsCnt = 0;// objs.ObjChkResponseDataValue.Count;
+                        int iDocCnt = 0;// httpRequest.Files.Count;
+
+                        foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
+                        {
+                            foreach (string file in httpRequest.Files)
+                            {
+                                if (iAnsCnt == iDocCnt)
+                                {
+                                    string path = "";
+                                    try
+                                    {
+                                        string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                                        string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                        var postedFile = httpRequest.Files[file];
+                                        if (postedFile != null && postedFile.ContentLength > 0)
+                                        {
+                                            int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+                                            IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                                            var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                                            var extension = ext.ToLower();
+                                            if (!AllowedFileExtensions.Contains(extension))
+                                            {
+                                                var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                                                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, message); ;
+                                            }
+                                            else if (postedFile.ContentLength > MaxContentLength)
+                                            {
+                                                var message = string.Format("Please Upload a file upto 1 mb.");
+                                                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, message); ;
+                                            }
+                                            else
+                                            {
+                                                //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                                                string fileUploadPath = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate);
+                                                if (!Directory.Exists(fileUploadPath))
+                                                {
+                                                    Directory.CreateDirectory(fileUploadPath);
+                                                }
+                                                var ImageName = objs.QuestionID.ToString() + "_" + objsValue.AnswerID.ToString() + "_" + ChecklistImgCount;
+                                                var fileName = ImageName + extension;
+                                                string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate) + "/" + fileName;
+                                                string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + fileName;
+                                                //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                                                postedFile.SaveAs(SaveLocation);
+                                                path = FileLocation;
+                                                ChecklistImgCount = ChecklistImgCount + 1;
+                                            }
+                                        }
+                                        //} 
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        var res = string.Format("Error Occured");
+                                        return Request.CreateResponse(HttpStatusCode.ExpectationFailed, res); ;
+                                    }
+
+                                    strXml.Append(@"<AnswerValue>");
+                                    strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
+                                    strXml.Append(@"<value>" + path.ToString() + "</value>");
+                                    strXml.Append(@"</AnswerValue>");
+
+                                    iDocCnt = iDocCnt + 1;
+                                }
+                            }
+                            iAnsCnt = iAnsCnt + 1;
+                        }
+                    }
+                    else
+                    {
+                        foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
+                        {
+                            strXml.Append(@"<AnswerValue>");
+                            strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
+                            strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
+                            strXml.Append(@"</AnswerValue>");
+                        }
+                    }
+
+                    strXml.Append(@"</AnswerData>");
+                    strXml.Append(@"</Section>");
+                }
+                strXml.Append(@"</DocumentElement>");
+
+                ObjLocSqlParameter[6] = new SqlParameter("@ChkResponseData", strXml.ToString());
+
+                // ObjLocSqlParameter[5] = new SqlParameter("@ChkResponseData", objInsert.ChkResponseData);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                            //    FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                            //}
+
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+        /*
+        [Route("api/UpKeep/PostChecklistImage")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<HttpResponseMessage> PostChecklistImage(int ResponseID, int SectionID, int QuestionID)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                //string ImagePhysicalPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadPath"]);
+                int ChecklistImgCount = 0;
+                foreach (string file in httpRequest.Files)
+                {
+                    string AnswerID = file;
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate);
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+                            var ImageName = Convert.ToString(SectionID) + "_" + Convert.ToString(QuestionID) + "_" + Convert.ToString(AnswerID) + "_" + ChecklistImgCount;
+                            var fileName = ImageName + extension;
+                            string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate) + "/" + fileName;
+                            string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + fileName;
+                            postedFile.SaveAs(SaveLocation);
+
+                            ChecklistImgCount = ChecklistImgCount + 1;
+
+                            //string ImageURL= imgPath + "/" + ImageName + extension;
+
+                            StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+                            SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                            ObjLocSqlParameter[0] = new SqlParameter("@ChecklistNo", ChecklistCode);
+                            ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                            ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                            ObjLocSqlParameter[3] = new SqlParameter("@ImagePath", FileLocation);
+
+                            //DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
+                            DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Save_Checklist_ImagePath_API", ObjLocSqlParameter);
+
+                            return Request.CreateResponse(HttpStatusCode.OK);
+
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+        */
+
         #endregion
 
 
@@ -9353,7 +9610,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         ///         2 : Success
         ///         3 : Error
         /// </returns>
-        [Route("api/UpKeep/Insert_Checklist_Response")]
+        [Route("api/UpKeep/Update_Asset_Service_Response")]
         [HttpPost]
         public HttpResponseMessage Update_Asset_Service_Response([FromBody] ClsAssetService_Response objInsert)
         {
@@ -9412,7 +9669,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 return Request.CreateResponse(HttpStatusCode.Forbidden, DsDataSet);
                             }
-                             
+
                             //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             //{
                             //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
