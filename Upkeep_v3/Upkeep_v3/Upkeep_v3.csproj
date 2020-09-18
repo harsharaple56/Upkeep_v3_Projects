@@ -112,6 +112,7 @@
     <Content Include="AssetManagement\AssetManagementServiceCloseList.aspx" />
     <Content Include="AssetManagement\AssetManagementServiceList.aspx" />
     <Content Include="AssetManagement\AssetManagementServiceRequest.aspx" />
+    <Content Include="AssetManagement\Asset_Report.aspx" />
     <Content Include="assets1\app\js\dashboard.js" />
     <Content Include="assets1\app\js\layout-builder.js" />
     <Content Include="assets1\app\js\my-script.js" />
@@ -949,15 +950,20 @@
     <Content Include="CheckList\Checklist.aspx" />
     <Content Include="CheckList\Checklist_Action.aspx" />
     <Content Include="CheckList\CheckList_Configuration.aspx" />
+    <Content Include="CheckList\Checklist_Report.aspx" />
     <Content Include="CheckList\CheckList_Report_Details.aspx" />
     <Content Include="CheckList\CheckList_Report_Listing.aspx" />
     <Content Include="CheckList\Checklist_Request.aspx" />
     <Content Include="CheckList\ChkConfig_Listing.aspx" />
+    <Content Include="CheckList\Department_Checklists.aspx" />
     <Content Include="CheckList\Edit_Checklist.aspx" />
     <Content Include="CheckList\MyChecklist.aspx" />
+    <Content Include="CheckList\My_Checklists.aspx" />
+    <Content Include="CheckList\Schedule_Checklist.aspx" />
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
+    <Content Include="CSM\Service_Reports.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -974,6 +980,7 @@
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
     <Content Include="GatePass\GatePass_Configuration.aspx" />
+    <Content Include="GatePass\GatePass_Report.aspx" />
     <Content Include="GatePass\GatePass_Request.aspx" />
     <Content Include="GatePass\MyActionable_GatePass.aspx" />
     <Content Include="GatePass\MyGatePass.aspx" />
@@ -1030,6 +1037,7 @@
     <Content Include="Ticketing\MyActionable.aspx" />
     <Content Include="Ticketing\MyRequest.aspx" />
     <Content Include="Ticketing\My_RequestRply.aspx" />
+    <Content Include="Ticketing\Pending_Approvals.aspx" />
     <Content Include="Ticketing\Sub_Category.aspx" />
     <Content Include="Ticketing\Ticket.aspx" />
     <Content Include="Ticketing\Ticket_CTT_Report.aspx" />
@@ -3910,10 +3918,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
     <Content Include="WorkPermit\WorkPermit_Request.aspx" />
+    <Content Include="WorkPermit\Work_Permit_Report.aspx" />
     <Content Include="WorkPermit\WPConfig_Listing.aspx" />
     <None Include="Properties\PublishProfiles\App_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
@@ -3991,6 +4001,13 @@
     <Compile Include="AssetManagement\AssetManagementServiceRequest.aspx.designer.cs">
       <DependentUpon>AssetManagementServiceRequest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AssetManagement\Asset_Report.aspx.cs">
+      <DependentUpon>Asset_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagement\Asset_Report.aspx.designer.cs">
+      <DependentUpon>Asset_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CheckList\Add_Checklist.aspx.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4018,6 +4035,13 @@
     </Compile>
     <Compile Include="CheckList\CheckList_Configuration.aspx.designer.cs">
       <DependentUpon>CheckList_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Report.aspx.cs">
+      <DependentUpon>Checklist_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Report.aspx.designer.cs">
+      <DependentUpon>Checklist_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="CheckList\CheckList_Report_Details.aspx.cs">
       <DependentUpon>CheckList_Report_Details.aspx</DependentUpon>
@@ -4047,6 +4071,13 @@
     <Compile Include="CheckList\ChkConfig_Listing.aspx.designer.cs">
       <DependentUpon>ChkConfig_Listing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CheckList\Department_Checklists.aspx.cs">
+      <DependentUpon>Department_Checklists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Department_Checklists.aspx.designer.cs">
+      <DependentUpon>Department_Checklists.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CheckList\Edit_Checklist.aspx.cs">
       <DependentUpon>Edit_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4060,6 +4091,20 @@
     </Compile>
     <Compile Include="CheckList\MyChecklist.aspx.designer.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\My_Checklists.aspx.cs">
+      <DependentUpon>My_Checklists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\My_Checklists.aspx.designer.cs">
+      <DependentUpon>My_Checklists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Schedule_Checklist.aspx.cs">
+      <DependentUpon>Schedule_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Schedule_Checklist.aspx.designer.cs">
+      <DependentUpon>Schedule_Checklist.aspx</DependentUpon>
     </Compile>
     <Compile Include="Coming_Soon.aspx.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
@@ -4081,6 +4126,13 @@
     </Compile>
     <Compile Include="CSM\CSM_Configuration.aspx.designer.cs">
       <DependentUpon>CSM_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\Service_Reports.aspx.cs">
+      <DependentUpon>Service_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\Service_Reports.aspx.designer.cs">
+      <DependentUpon>Service_Reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -4186,6 +4238,13 @@
     </Compile>
     <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Report.aspx.cs">
+      <DependentUpon>GatePass_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\GatePass_Report.aspx.designer.cs">
+      <DependentUpon>GatePass_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="GatePass\GatePass_Request.aspx.cs">
       <DependentUpon>GatePass_Request.aspx</DependentUpon>
@@ -4507,6 +4566,13 @@
     <Compile Include="Ticketing\My_RequestRply.aspx.designer.cs">
       <DependentUpon>My_RequestRply.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ticketing\Pending_Approvals.aspx.cs">
+      <DependentUpon>Pending_Approvals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Pending_Approvals.aspx.designer.cs">
+      <DependentUpon>Pending_Approvals.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ticketing\Sub_Category.aspx.cs">
       <DependentUpon>Sub_Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4555,6 +4621,13 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visits_Report.aspx.cs">
+      <DependentUpon>Visits_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visits_Report.aspx.designer.cs">
+      <DependentUpon>Visits_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visit_Configuration.aspx.cs">
       <DependentUpon>Visit_Configuration.aspx</DependentUpon>
@@ -4616,6 +4689,13 @@
     </Compile>
     <Compile Include="WorkPermit\WorkPermit_Request.aspx.designer.cs">
       <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPermit\Work_Permit_Report.aspx.cs">
+      <DependentUpon>Work_Permit_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkPermit\Work_Permit_Report.aspx.designer.cs">
+      <DependentUpon>Work_Permit_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkPermit\WPConfig_Listing.aspx.cs">
       <DependentUpon>WPConfig_Listing.aspx</DependentUpon>
