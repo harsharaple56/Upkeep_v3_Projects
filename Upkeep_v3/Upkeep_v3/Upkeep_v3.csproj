@@ -392,6 +392,7 @@
     <Content Include="assets\app\media\img\bg\bg-6.jpg" />
     <Content Include="assets\app\media\img\bg\bg-6.png" />
     <Content Include="assets\app\media\img\bg\bg-7.jpg" />
+    <Content Include="assets\app\media\img\bg\coming-soon-9.gif" />
     <Content Include="assets\app\media\img\blog\blog1.jpg" />
     <Content Include="assets\app\media\img\blog\blog2.jpg" />
     <Content Include="assets\app\media\img\blog\blog3.jpg" />
@@ -941,6 +942,7 @@
     <Content Include="CheckList\ChkConfig_Listing.aspx" />
     <Content Include="CheckList\Edit_Checklist.aspx" />
     <Content Include="CheckList\MyChecklist.aspx" />
+    <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -4045,6 +4047,13 @@
     </Compile>
     <Compile Include="CheckList\MyChecklist.aspx.designer.cs">
       <DependentUpon>MyChecklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Coming_Soon.aspx.cs">
+      <DependentUpon>Coming_Soon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Coming_Soon.aspx.designer.cs">
+      <DependentUpon>Coming_Soon.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
       <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
