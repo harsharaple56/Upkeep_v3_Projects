@@ -876,6 +876,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     public class ClsChecklist_Response_Data
     {
+        //public int AnsResponseID { get; set; }
         public int SectionID { get; set; }
         public int QuestionID { get; set; }
         //public string AnswerID { get; set; }
