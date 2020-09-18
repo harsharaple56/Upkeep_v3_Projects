@@ -88,7 +88,8 @@
                                 <li class="m-portlet__nav-item">
                                     <a href="<%= Page.ResolveClientUrl("Add_Retailer.aspx") %>" class="btn btn-accent  m-btn m-btn--icon">
                                         <span>
-                                            <i class="la la-plus"></i>
+                                            
+                                            <img src="../assets/app/media/img/icons/Add_Retailer.png" />
                                             <span>New Retailer</span>
                                         </span>
                                     </a>
@@ -111,13 +112,13 @@
                                                 <ul class="m-nav">
                                                     <li class="m-nav__item">
                                                         <a class="m-nav__link" onserverclick="btnExport_Click" runat="server">
-                                                            <i class="m-nav__link-icon flaticon-edit-1"></i>
+                                                            <i class="m-nav__link-icon fa fa-file-excel "></i>
                                                             <span class="m-nav__link-text">Excel</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
                                                         <a class="m-nav__link" onserverclick="btnExportPDF_Click" runat="server">
-                                                            <i class="m-nav__link-icon flaticon-doc"></i>
+                                                            <i class="m-nav__link-icon fa fa-file-pdf"></i>
                                                             <span class="m-nav__link-text">PDF</span>
                                                         </a>
                                                     </li>
