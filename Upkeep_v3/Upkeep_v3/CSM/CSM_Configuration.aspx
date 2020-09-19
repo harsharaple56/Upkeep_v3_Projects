@@ -38,7 +38,7 @@
             //debugger;
             $find('<%= mpeMeetingUsers.ClientID %>').show();
             txtHdn = hdnUsersID.toString();
-            txtControl = txtUsers;
+            txtControl = hdnUsersID;
         }
 
         function FunEditClick(ID, Desc) {
@@ -107,7 +107,7 @@
                     }
                 },
             });
-            
+
             $('.OutQuestion_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -134,7 +134,7 @@
                     }
                 },
             });
-           
+
             $('.TermComdition_repeater').repeater({
                 initEmpty: true,
                 show: function () {
@@ -394,7 +394,7 @@
                 //alert(WPConfigID);
                 //Bind CSM Questions
                 if ($("#ChkFreeService").is(":checked")) {
-                    $("#divFreeService").show(300);
+                    $("#divFreeService").hide(300);
                     $("#ChkFreeService").parent().parent().addClass("active");
                 }
 
@@ -467,17 +467,22 @@
                 //Terms
                 var terms = $('#hdnTerms').val();
                 var arrTerms = terms.split("~");
-                //alert(qns);
                 for (var i = 0; i < arrTerms.length; i++) {
-                    if (i !== 0)
-                        $("#divTermAdd").click();
-                    var QuestionID = $("input[name~='TermCondition[" + i + "][hdnRepeaterTermID]']");
-                    var Question = $("input[name~='TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]']");
-
+                    if (i !== 0) {
+                        $("#divTermAdd").click();//TermCondition[0][hdnRepeaterTermID]
+                    }
+                }
+                for (var i = 0; i < arrTerms.length; i++) {
+                    var QuestionID = $("input[name='TermCondition[" + i + "][hdnRepeaterTermID]']");
+                    var Question = $("input[name='TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]']");
+                    //alert(Question.val());
+                    //alert(terms);
                     var arrQnData = arrTerms[i].split("||");
                     QuestionID.val(arrQnData[0]);
                     Question.val(arrQnData[1]);
-                    
+                    //alert("input[name~='TermCondition[" + i + "][hdnRepeaterTermID]']");
+
+
                 }
                 return;
             }
@@ -552,7 +557,7 @@
                                                 <i class="fa fa-check" aria-hidden="true"></i>Free Service</label>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Request Flow:</label>
@@ -566,7 +571,7 @@
                                     <div class="col-md-4" id="divFreeService">
                                         <label class="col-form-label font-weight-bold">Cost of Service:</label>
                                         <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
-                                        <asp:TextBox ID="TextBox2" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtUnit" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <br />
@@ -708,7 +713,7 @@
                                 </div>
                                 <br />
 
-                               
+
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Terms & Condition</label>
                                 </div>
@@ -724,7 +729,7 @@
                                                         <div class="col-md-9">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <asp:TextBox ID="txtTermComdition" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea txtvalidate" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtTermCondition" runat="server" class="form-control m-input autosize_textarea TermCondition_textarea txtvalidate" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
                                                                     <input type="hidden" name="hdnRepeaterTermID" id="hdnRepeaterTermID" />
                                                                     <span class="error_TermCondition text-danger medium"></span>
                                                                 </div>
@@ -817,7 +822,7 @@
 
                         <%--Panel for user selection--%>
 
-                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" style="display: none; width: 100%;top:0;">
+                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%; top: 0;">
                             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document" style="max-width: 60%;">
                                     <div class="modal-content">
@@ -849,7 +854,7 @@
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active" id="t1" style="max-height:500px;overflow:scroll;">
+                                                        <div class="tab-pane active" id="t1" style="max-height: 500px; overflow: scroll;">
 
                                                             <br />
 

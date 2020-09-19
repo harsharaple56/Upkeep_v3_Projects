@@ -85,13 +85,13 @@ namespace Upkeep_v3.CSM {
         protected global::System.Web.UI.WebControls.TextBox txtCost;
         
         /// <summary>
-        /// TextBox2 control.
+        /// txtUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtUnit;
         
         /// <summary>
         /// InQuestion control.
@@ -256,13 +256,13 @@ namespace Upkeep_v3.CSM {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
         
         /// <summary>
-        /// txtTermComdition control.
+        /// txtTermCondition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTermComdition;
+        protected global::System.Web.UI.WebControls.TextBox txtTermCondition;
         
         /// <summary>
         /// txtTermCount control.
