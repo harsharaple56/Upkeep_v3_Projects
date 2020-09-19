@@ -45,8 +45,9 @@
             //debugger;
             //alert(ID);
             //alert(Desc);
-            txtControl.value = Desc.replace("$", ",");
-            document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+            $("#txtUsers").val(Desc.replace("$", ","));
+
+             $("#hdnUsersID").val(ID);
 //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeMeetingUsers.ClientID %>').hide();
             //window.close();
