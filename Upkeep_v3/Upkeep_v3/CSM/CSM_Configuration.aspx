@@ -250,6 +250,7 @@
                 if (isMulti === 'True') {
                     $(this).parent().parent().find(".lblAnswerCnt").show();
 
+
                     $('.dltrptanswer').click();
                     name = $(this).siblings('.hdnRepeaterAnswer').attr("name");
                     $('#btnModal').click();
@@ -444,7 +445,7 @@
                     var QuestionID = $("input[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnOutQnID]']");
                     var Question = $("input[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtOutQuestion]']");
                     var Answer = $("select[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlOutAns]']");
-                    var hdnAnswer = $("Output[name~='OutQuestion[" + i + "][hdnOutRepeaterAnswer]']");
+                    var hdnAnswer = $("input[name~='OutQuestion[" + i + "][hdnOutRepeaterAnswer]']");
 
                     var arrQnData = arrOutQns[i].split("||");
                     QuestionID.val(arrQnData[0]);
@@ -454,12 +455,14 @@
                     hdnAnswer.change();
                     //alert($("select[name~='CSMQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected'));
                     var isMulti = $("select[name~='OutQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlOutAns]'] option[value='" + arrQnData[2] + "']").attr("data-ismulti");
+                    //alert(isMulti);
                     if (isMulti === 'True') {
-
+                        //alert('if');
                         //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
                         hdnAnswer.parent().parent().find(".lblAnswerCnt").show();
                     }
                     else {
+                        //alert(hdnAnswer.parent().parent().find(".lblAnswerCnt").val());
                         hdnAnswer.parent().parent().find(".lblAnswerCnt").hide();
                     }
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
@@ -482,7 +485,6 @@
                     QuestionID.val(arrQnData[0]);
                     Question.val(arrQnData[1]);
                     //alert("input[name~='TermCondition[" + i + "][hdnRepeaterTermID]']");
-
 
                 }
                 return;
@@ -605,8 +607,8 @@
                                                                 <div class="m-form__control">
                                                                     <asp:DropDownList ID="ddlInAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
                                                                     <input type="hidden" name="hdnInRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnInRepeaterAnswer" />
-                                                                    <i class="fa fa-edit lblAnswerCnt"></i>
-                                                                    <label id="lblInAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
+                                                                    <i class="fa fa-edit lblAnswerCnt" style="display:none;"></i>
+                                                                    <label id="lblInAnswerCnt" runat="server" style="display:none;" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
 
                                                                     <span class="error_type text-danger medium"></span>
                                                                 </div>
@@ -673,8 +675,8 @@
                                                                 <div class="m-form__control">
                                                                     <asp:DropDownList ID="ddlOutAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
                                                                     <input type="hidden" name="hdnOutRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnOutRepeaterAnswer" />
-                                                                    <i class="fa fa-edit lblAnswerCnt"></i>
-                                                                    <label id="lblOutAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
+                                                                    <i class="fa fa-edit lblAnswerCnt" style="display:none;"></i>
+                                                                    <label id="lblOutAnswerCnt" runat="server" style="display:none;" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
 
                                                                     <span class="error_type text-danger medium"></span>
                                                                 </div>
