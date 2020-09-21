@@ -6287,24 +6287,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_WorkPermitConfiguration(string Initiator) {
+        public System.Data.DataSet Fetch_WorkPermitConfiguration(string Initiator, string CompanyID) {
             object[] results = this.Invoke("Fetch_WorkPermitConfiguration", new object[] {
-                        Initiator});
+                        Initiator,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_WorkPermitConfigurationAsync(string Initiator) {
-            this.Fetch_WorkPermitConfigurationAsync(Initiator, null);
+        public void Fetch_WorkPermitConfigurationAsync(string Initiator, string CompanyID) {
+            this.Fetch_WorkPermitConfigurationAsync(Initiator, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_WorkPermitConfigurationAsync(string Initiator, object userState) {
+        public void Fetch_WorkPermitConfigurationAsync(string Initiator, string CompanyID, object userState) {
             if ((this.Fetch_WorkPermitConfigurationOperationCompleted == null)) {
                 this.Fetch_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitConfigurationOperationCompleted);
             }
             this.InvokeAsync("Fetch_WorkPermitConfiguration", new object[] {
-                        Initiator}, this.Fetch_WorkPermitConfigurationOperationCompleted, userState);
+                        Initiator,
+                        CompanyID}, this.Fetch_WorkPermitConfigurationOperationCompleted, userState);
         }
         
         private void OnFetch_WorkPermitConfigurationOperationCompleted(object arg) {

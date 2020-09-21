@@ -102,7 +102,7 @@ namespace Upkeep_v3.WorkPermit
                     Initiator = Convert.ToString(Session["UserType"]);
                 }
 
-                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator);
+                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)

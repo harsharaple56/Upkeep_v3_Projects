@@ -1067,14 +1067,14 @@ public class My_Upkeep
     }
 
 
-    public DataSet Fetch_WorkPermitConfiguration(string Initiator)
+    public DataSet Fetch_WorkPermitConfiguration(string Initiator, string CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_WorkPermitConfiguration(Initiator, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_WorkPermitConfiguration(Initiator, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
