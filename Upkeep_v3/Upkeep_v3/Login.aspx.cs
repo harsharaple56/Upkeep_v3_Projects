@@ -15,6 +15,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Sharpbrake.Client;
+//using System.Net.WebClient;
 
 namespace Upkeep_v3
 {
@@ -25,24 +26,17 @@ namespace Upkeep_v3
         {
             lblVersion.Text = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
 
-            //var airbrake = new AirbrakeNotifier(new AirbrakeConfig
-            //{
-            //    ProjectId = "288283",
-            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
-            //});
-
-            //var config = new AirbrakeConfig
-            //{
-            //    ProjectId = "288283",
-            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
-            //};
+            bool isInternet = CheckForInternetConnection();
+            if (isInternet==false)
+            {
+                lblError.Text = "Unable to connect to Server. Please try again later.";
+                return;
+            }
 
             try
             {
 
-                var settings = ConfigurationManager.AppSettings.AllKeys
-        .Where(key => key.StartsWith("Airbrake", StringComparison.OrdinalIgnoreCase))
-        .ToDictionary(key => key, key => ConfigurationManager.AppSettings[key]);
+                var settings = ConfigurationManager.AppSettings.AllKeys.Where(key => key.StartsWith("Airbrake", StringComparison.OrdinalIgnoreCase)).ToDictionary(key => key, key => ConfigurationManager.AppSettings[key]);
 
                 var airbrakeConfiguration = AirbrakeConfig.Load(settings);
             }
@@ -55,10 +49,20 @@ namespace Upkeep_v3
 
         protected void txtCompanyCode_TextChanged(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            Validate_Company(txtCompanyCode.Text.Trim());
-            //Session["ModuleID"] = "";
-            //Session["CompanyID"] = "";
+
+            bool isInternet = CheckForInternetConnection();
+            if (isInternet)
+            {
+                lblError.Text = "";
+                Validate_Company(txtCompanyCode.Text.Trim());
+                //Session["ModuleID"] = "";
+                //Session["CompanyID"] = "";
+            }
+            else
+            {
+                lblError.Text = "Unable to connect to Server. Please try again later.";
+            }
+
         }
 
         //public static async Task Validate_Company(string CompanyCode)
@@ -269,6 +273,22 @@ namespace Upkeep_v3
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
