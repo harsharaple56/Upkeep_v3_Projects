@@ -235,7 +235,7 @@ namespace Upkeep_v3.CSM
                     CSMImageHeader = "";
 
                     CSMImageHeaderID = Request.Form.GetValues("TermCondition[" + i + "][hdnRepeaterTermID]")[0];
-                    CSMImageHeader = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]")[0];
+                    CSMImageHeader = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]")[0];
 
                     strXmlCSM_Terms.Append(@"<TERM_DETAIL>");
                     strXmlCSM_Terms.Append(@"<TERM_Sequence>" + i + "</TERM_Sequence>");
@@ -256,6 +256,7 @@ namespace Upkeep_v3.CSM
                 string strInitiator = string.Empty;
                 bool blFreeService = false;
                 int intCost = 0;
+                string CostUnit = string.Empty;
                 string strFlowUsers = string.Empty;
 
                 strFlowUsers = hdnSelectedUserID.Value;
@@ -264,10 +265,12 @@ namespace Upkeep_v3.CSM
                 if (txtCost.Text.All(char.IsDigit))
                     intCost = Convert.ToInt32(txtCost.Text);
 
+                CostUnit = intCost.ToString() + "/" + txtUnit.Text;
+
                 blFreeService = Convert.ToBoolean(ChkFreeService.Checked);
 
                 DataSet dsCSMConfig = new DataSet();
-                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_Terms.ToString(), blFreeService, intCost, LoggedInUserID);
+                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_Terms.ToString(), blFreeService, CostUnit, LoggedInUserID);
 
                 if (dsCSMConfig.Tables.Count > 0)
                 {
@@ -443,7 +446,12 @@ namespace Upkeep_v3.CSM
                     hdnCSMConfigID.Value = ConfigTitleID.ToString();
                     txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     ChkFreeService.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Cost_Enable"]);
-                    txtCost.Text = dsConfig.Tables[0].Rows[0]["Cost"].ToString();
+                    string UnitCost = dsConfig.Tables[0].Rows[0]["Cost"].ToString();
+                    if(UnitCost.Contains("/"))
+                    {
+                        txtCost.Text = UnitCost.Split('/')[0] == null ? "0" : UnitCost.Split('/')[0];
+                        txtUnit.Text = UnitCost.Split('/')[1] == null ? "" : UnitCost.Split('/')[1];
+                    }
 
                     var InQnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<int>("Open_Qn_ID").ToString() + "||" + s.Field<string>("Desc").ToString() + "||"

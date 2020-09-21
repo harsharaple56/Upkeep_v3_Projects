@@ -15,6 +15,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Sharpbrake.Client;
+//using System.Net.WebClient;
 
 namespace Upkeep_v3
 {
@@ -25,24 +26,10 @@ namespace Upkeep_v3
         {
             lblVersion.Text = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
 
-            //var airbrake = new AirbrakeNotifier(new AirbrakeConfig
-            //{
-            //    ProjectId = "288283",
-            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
-            //});
-
-            //var config = new AirbrakeConfig
-            //{
-            //    ProjectId = "288283",
-            //    ProjectKey = "fad0b951ec8a55ba95ad603362d2704f"
-            //};
-
             try
             {
 
-                var settings = ConfigurationManager.AppSettings.AllKeys
-        .Where(key => key.StartsWith("Airbrake", StringComparison.OrdinalIgnoreCase))
-        .ToDictionary(key => key, key => ConfigurationManager.AppSettings[key]);
+                var settings = ConfigurationManager.AppSettings.AllKeys.Where(key => key.StartsWith("Airbrake", StringComparison.OrdinalIgnoreCase)).ToDictionary(key => key, key => ConfigurationManager.AppSettings[key]);
 
                 var airbrakeConfiguration = AirbrakeConfig.Load(settings);
             }
@@ -55,10 +42,20 @@ namespace Upkeep_v3
 
         protected void txtCompanyCode_TextChanged(object sender, EventArgs e)
         {
-            lblError.Text = "";
-            Validate_Company(txtCompanyCode.Text.Trim());
-            //Session["ModuleID"] = "";
-            //Session["CompanyID"] = "";
+
+            bool isInternet = CheckForInternetConnection();
+            if (isInternet)
+            {
+                lblError.Text = "";
+                Validate_Company(txtCompanyCode.Text.Trim());
+                //Session["ModuleID"] = "";
+                //Session["CompanyID"] = "";
+            }
+            else
+            {
+                lblError.Text = "Unable to connect to Server. Please try again later.";
+            }
+
         }
 
         //public static async Task Validate_Company(string CompanyCode)
@@ -156,119 +153,143 @@ namespace Upkeep_v3
             int status = 0;
             try
             {
-                string strStatus = Convert.ToString(Session["Status"]);
-
-                if (!string.IsNullOrEmpty(strStatus))
+                bool isInternet = CheckForInternetConnection();
+                if (isInternet)
                 {
-                    status = Convert.ToInt32(strStatus);
-                }
+                    string strStatus = Convert.ToString(Session["Status"]);
 
-                if (status == 1)
-                {
-                    if (rdbEmployee.Checked)
+                    if (!string.IsNullOrEmpty(strStatus))
                     {
-                        UserType = "E";
-                    }
-                    else
-                    {
-                        UserType = "R";
+                        status = Convert.ToInt32(strStatus);
                     }
 
-                    DataSet ds = new DataSet();
-                    int CompanyID = 0;
-
-                    if (Convert.ToString(Session["CompanyID"]) != "")
+                    if (status == 1)
                     {
-                        CompanyID = Convert.ToInt32(Session["CompanyID"]);
-                    }
-
-                    ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType, CompanyID);
-
-                    int AssignedRoleCount = 0;
-
-                    if (ds.Tables.Count > 0)
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
+                        if (rdbEmployee.Checked)
                         {
-                            AssignedRoleCount = Convert.ToInt32(ds.Tables[0].Rows[0]["RoleMenuCount"]);
-
-                            if (AssignedRoleCount > 0)
-                            {
-                                Session["UserType"] = Convert.ToString(UserType);
-                                if (UserType == "E")
-                                {
-                                    Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
-                                    Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
-                                    Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
-                                    Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
-
-                                }
-                                else
-                                {
-                                    Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
-                                }
-
-                                Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
-                                Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
-
-                                if (ds.Tables[0].Rows.Count > 0)
-                                {
-                                    Response.Redirect("~/Dashboard.aspx", false);
-                                }
-                                else
-                                {
-                                    //invalid login
-                                    lblError.Text = "Invalid credential";
-                                }
-                            }
-                            else
-                            {
-                                lblError.Text = "Dear " + txtUsername.Text.Trim() + " , no role has been assigned to you. Hence you cannot login. Please contact your Property Administrator for further assistance."; //No role assigned
-                            }
-
+                            UserType = "E";
                         }
                         else
                         {
-                            //invalid login
-                            lblError.Text = "Invalid credential";
+                            UserType = "R";
                         }
+
+                        DataSet ds = new DataSet();
+                        int CompanyID = 0;
+
+                        if (Convert.ToString(Session["CompanyID"]) != "")
+                        {
+                            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                        }
+
+                        ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType, CompanyID);
+
+                        int AssignedRoleCount = 0;
+
+                        if (ds.Tables.Count > 0)
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                AssignedRoleCount = Convert.ToInt32(ds.Tables[0].Rows[0]["RoleMenuCount"]);
+
+                                if (AssignedRoleCount > 0)
+                                {
+                                    Session["UserType"] = Convert.ToString(UserType);
+                                    if (UserType == "E")
+                                    {
+                                        Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
+                                        Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
+                                        Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
+                                        Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
+
+                                    }
+                                    else
+                                    {
+                                        Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
+                                    }
+
+                                    Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
+                                    Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
+
+                                    if (ds.Tables[0].Rows.Count > 0)
+                                    {
+                                        Response.Redirect("~/Dashboard.aspx", false);
+                                    }
+                                    else
+                                    {
+                                        //invalid login
+                                        lblError.Text = "Invalid credential";
+                                    }
+                                }
+                                else
+                                {
+                                    lblError.Text = "Dear " + txtUsername.Text.Trim() + " , no role has been assigned to you. Hence you cannot login. Please contact your Property Administrator for further assistance."; //No role assigned
+                                }
+
+                            }
+                            else
+                            {
+                                //invalid login
+                                lblError.Text = "Invalid credential";
+                            }
+                        }
+                        else
+                        {
+                            lblError.Text = "Invalid credential";
+                            //invalid login
+                        }
+
+                    }
+                    else if (status == 2)
+                    {
+                        lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
+                    }
+                    else if (status == 3)
+                    {
+                        lblError.Text = "Invalid Company Code";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
                     }
                     else
                     {
-                        lblError.Text = "Invalid credential";
-                        //invalid login
+                        lblError.Text = "Please try again later";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
                     }
-
-                }
-                else if (status == 2)
-                {
-                    lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
-                }
-                else if (status == 3)
-                {
-                    lblError.Text = "Invalid Company Code";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
                 }
                 else
                 {
-                    lblError.Text = "Please try again later";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
+                    lblError.Text = "Unable to connect to Server. Please try again later.";
                 }
 
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 

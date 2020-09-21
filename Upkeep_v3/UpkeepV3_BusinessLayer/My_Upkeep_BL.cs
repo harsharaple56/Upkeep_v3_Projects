@@ -2239,7 +2239,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region CSM
         //Added by RC This function is used to save CSM Configuration
-        public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, int intCost, string LoggedInUserID, string StrConn)
+        public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2254,7 +2254,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@XmlOut_Question", strXmlOut_Question);
                 cmd.Parameters.AddWithValue("@XmlCSM_TermCondition", strXmlCSM_Terms);
                 cmd.Parameters.AddWithValue("@isFreeService", blFreeService);
-                cmd.Parameters.AddWithValue("@Cost", intCost);
+                cmd.Parameters.AddWithValue("@UnitCost", CostUnit);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
