@@ -26,13 +26,6 @@ namespace Upkeep_v3
         {
             lblVersion.Text = Convert.ToString(ConfigurationManager.AppSettings["VersionNo"]);
 
-            bool isInternet = CheckForInternetConnection();
-            if (isInternet==false)
-            {
-                lblError.Text = "Unable to connect to Server. Please try again later.";
-                return;
-            }
-
             try
             {
 
@@ -160,113 +153,121 @@ namespace Upkeep_v3
             int status = 0;
             try
             {
-                string strStatus = Convert.ToString(Session["Status"]);
-
-                if (!string.IsNullOrEmpty(strStatus))
+                bool isInternet = CheckForInternetConnection();
+                if (isInternet)
                 {
-                    status = Convert.ToInt32(strStatus);
-                }
+                    string strStatus = Convert.ToString(Session["Status"]);
 
-                if (status == 1)
-                {
-                    if (rdbEmployee.Checked)
+                    if (!string.IsNullOrEmpty(strStatus))
                     {
-                        UserType = "E";
-                    }
-                    else
-                    {
-                        UserType = "R";
+                        status = Convert.ToInt32(strStatus);
                     }
 
-                    DataSet ds = new DataSet();
-                    int CompanyID = 0;
-
-                    if (Convert.ToString(Session["CompanyID"]) != "")
+                    if (status == 1)
                     {
-                        CompanyID = Convert.ToInt32(Session["CompanyID"]);
-                    }
-
-                    ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType, CompanyID);
-
-                    int AssignedRoleCount = 0;
-
-                    if (ds.Tables.Count > 0)
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
+                        if (rdbEmployee.Checked)
                         {
-                            AssignedRoleCount = Convert.ToInt32(ds.Tables[0].Rows[0]["RoleMenuCount"]);
-
-                            if (AssignedRoleCount > 0)
-                            {
-                                Session["UserType"] = Convert.ToString(UserType);
-                                if (UserType == "E")
-                                {
-                                    Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
-                                    Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
-                                    Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
-                                    Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
-
-                                }
-                                else
-                                {
-                                    Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
-                                }
-
-                                Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
-                                Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
-
-                                if (ds.Tables[0].Rows.Count > 0)
-                                {
-                                    Response.Redirect("~/Dashboard.aspx", false);
-                                }
-                                else
-                                {
-                                    //invalid login
-                                    lblError.Text = "Invalid credential";
-                                }
-                            }
-                            else
-                            {
-                                lblError.Text = "Dear " + txtUsername.Text.Trim() + " , no role has been assigned to you. Hence you cannot login. Please contact your Property Administrator for further assistance."; //No role assigned
-                            }
-
+                            UserType = "E";
                         }
                         else
                         {
-                            //invalid login
-                            lblError.Text = "Invalid credential";
+                            UserType = "R";
                         }
+
+                        DataSet ds = new DataSet();
+                        int CompanyID = 0;
+
+                        if (Convert.ToString(Session["CompanyID"]) != "")
+                        {
+                            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                        }
+
+                        ds = ObjUpkeepCC.LoginUser(txtUsername.Text.Trim(), txtPassword.Text, UserType, CompanyID);
+
+                        int AssignedRoleCount = 0;
+
+                        if (ds.Tables.Count > 0)
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                AssignedRoleCount = Convert.ToInt32(ds.Tables[0].Rows[0]["RoleMenuCount"]);
+
+                                if (AssignedRoleCount > 0)
+                                {
+                                    Session["UserType"] = Convert.ToString(UserType);
+                                    if (UserType == "E")
+                                    {
+                                        Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
+                                        Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
+                                        Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
+                                        Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
+
+                                    }
+                                    else
+                                    {
+                                        Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
+                                    }
+
+                                    Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
+                                    Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
+
+                                    if (ds.Tables[0].Rows.Count > 0)
+                                    {
+                                        Response.Redirect("~/Dashboard.aspx", false);
+                                    }
+                                    else
+                                    {
+                                        //invalid login
+                                        lblError.Text = "Invalid credential";
+                                    }
+                                }
+                                else
+                                {
+                                    lblError.Text = "Dear " + txtUsername.Text.Trim() + " , no role has been assigned to you. Hence you cannot login. Please contact your Property Administrator for further assistance."; //No role assigned
+                                }
+
+                            }
+                            else
+                            {
+                                //invalid login
+                                lblError.Text = "Invalid credential";
+                            }
+                        }
+                        else
+                        {
+                            lblError.Text = "Invalid credential";
+                            //invalid login
+                        }
+
+                    }
+                    else if (status == 2)
+                    {
+                        lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
+                    }
+                    else if (status == 3)
+                    {
+                        lblError.Text = "Invalid Company Code";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
                     }
                     else
                     {
-                        lblError.Text = "Invalid credential";
-                        //invalid login
+                        lblError.Text = "Please try again later";
+                        txtUsername.Text = "";
+                        txtPassword.Text = "";
+                        txtUsername.ReadOnly = true;
+                        txtPassword.ReadOnly = true;
                     }
-
-                }
-                else if (status == 2)
-                {
-                    lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
-                }
-                else if (status == 3)
-                {
-                    lblError.Text = "Invalid Company Code";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
                 }
                 else
                 {
-                    lblError.Text = "Please try again later";
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-                    txtUsername.ReadOnly = true;
-                    txtPassword.ReadOnly = true;
+                    lblError.Text = "Unable to connect to Server. Please try again later.";
                 }
 
             }
