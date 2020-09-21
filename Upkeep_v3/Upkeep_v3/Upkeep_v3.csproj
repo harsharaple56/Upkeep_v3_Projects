@@ -447,11 +447,14 @@
     <Content Include="assets\app\media\img\flags\019-france.svg" />
     <Content Include="assets\app\media\img\flags\020-flag.svg" />
     <Content Include="assets\app\media\img\icons\AddUser.png" />
+    <Content Include="assets\app\media\img\icons\Add_Retailer_35.png" />
     <Content Include="assets\app\media\img\icons\approved-64.png" />
     <Content Include="assets\app\media\img\icons\approved-96.png" />
     <Content Include="assets\app\media\img\icons\closed-96.png" />
     <Content Include="assets\app\media\img\icons\database_export.png" />
+    <Content Include="assets\app\media\img\icons\database_export_35.png" />
     <Content Include="assets\app\media\img\icons\database_import.png" />
+    <Content Include="assets\app\media\img\icons\database_import_1.png" />
     <Content Include="assets\app\media\img\icons\download_sample_22.png" />
     <Content Include="assets\app\media\img\icons\download_sample_26.png" />
     <Content Include="assets\app\media\img\icons\excel_32.png" />

@@ -84,12 +84,12 @@
                             </div>
                         </div>
                         <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
+                            <ul class="m-portlet__nav" style="margin-right: 2%;">
                                 <li class="m-portlet__nav-item">
-                                    <a href="<%= Page.ResolveClientUrl("Add_Retailer.aspx") %>" class="btn btn-accent  m-btn m-btn--icon">
+                                    <a href="<%= Page.ResolveClientUrl("Add_Retailer.aspx") %>" class="btn btn-accent  m-btn m-btn--icon" style="padding: 5%;">
                                         <span>
                                             
-                                            <img src="../assets/app/media/img/icons/Add_Retailer.png" />
+                                            <img src="../assets/app/media/img/icons/Add_Retailer_35.png" />
                                             <span>New Retailer</span>
                                         </span>
                                     </a>
@@ -98,10 +98,10 @@
                             </ul>
 
 
-                            <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover">
+                            <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
 
-                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle">
-                                    <img src="../assets/app/media/img/icons/database_export.png" />
+                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%;margin-left: 7%;">
+                                    <img src="../assets/app/media/img/icons/database_export_35.png" />
                                     Export
                                 </a>
                                 <div class="m-dropdown__wrapper">
@@ -138,7 +138,7 @@
                             <div>
                                 <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item">
-                                        <a class="btn btn-accent  m-btn m-btn--icon" runat="server" id="btnImportExcelPopup" onserverclick="btnImportExcel_Click">
+                                        <a class="btn btn-accent  m-btn m-btn--icon" runat="server" id="btnImportExcelPopup" onserverclick="btnImportExcel_Click" style="padding: 5%;">
                                             <span>
                                                 <img src="../assets/app/media/img/icons/database_import.png" />
                                                 <span>Import</span>
