@@ -33,7 +33,7 @@ namespace Upkeep_v3.WorkPermit
             {
                 strInitiator = Convert.ToString(Session["UserType"]);
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_WorkPermitConfiguration("");
+                ds = ObjUpkeep.Fetch_WorkPermitConfiguration("", Session["CompanyID"].ToString());
 
                 if (ds.Tables.Count > 0)
                 {
