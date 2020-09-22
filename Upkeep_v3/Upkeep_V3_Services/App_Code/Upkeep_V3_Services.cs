@@ -1420,12 +1420,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_WorkPermitConfiguration(string Initiator)
+    public DataSet Fetch_WorkPermitConfiguration(string Initiator, string CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator);
+            ds = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, CompanyID);
         }
         catch (Exception ex)
         {

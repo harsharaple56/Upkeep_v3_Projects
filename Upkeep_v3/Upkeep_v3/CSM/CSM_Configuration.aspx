@@ -320,9 +320,9 @@
 
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
-                if ($('#hdnCSMConfigID').val() != "0") {
-                    answers = "ii:||:on;" + $(this).parent().find('.hdnRepeaterAnswer').val();
-                }
+                //if ($('#hdnCSMConfigID').val() != "0") {
+                    answers = "ii:||:false;" + $(this).parent().find('.hdnRepeaterAnswer').val();
+                //}
                 //alert(answers);
                 var arrAns = answers.split(";");
 
@@ -332,10 +332,11 @@
                     //alert(arrAns[i]);
                     //alert(arrAns[i]); AnswerType[0][ctl00$ContentPlaceHolder1$hdnAnswerDataID]
                     var arrIDAns = arrAns[i].split(":");
+                    //alert(arrIDAns[2]);
 
                     $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$hdnAnswerDataID]']").val(arrIDAns[0]);
                     $("input[name~='AnswerType[" + i + "][txtAnswer]']").val(arrIDAns[1]);
-                    if (arrIDAns[2].toLowerCase() == "true") {
+                    if (arrIDAns[2] == "true") {
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true)
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass("active");
                     }
@@ -478,7 +479,7 @@
                 }
                 for (var i = 0; i < arrTerms.length; i++) {
                     var QuestionID = $("input[name='TermCondition[" + i + "][hdnRepeaterTermID]']");
-                    var Question = $("input[name='TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]']");
+                    var Question = $("textarea[name='TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]']");
                     //alert(Question.val());
                     //alert(terms);
                     var arrQnData = arrTerms[i].split("||");
@@ -732,7 +733,7 @@
                                                         <div class="col-md-9">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <asp:TextBox ID="txtTermCondition" runat="server" class="form-control m-input autosize_textarea TermCondition_textarea txtvalidate" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtTermCondition" TextMode="MultiLine" runat="server" class="form-control m-input autosize_textarea TermCondition_textarea txtvalidate" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
                                                                     <input type="hidden" name="hdnRepeaterTermID" id="hdnRepeaterTermID" />
                                                                     <span class="error_TermCondition text-danger medium"></span>
                                                                 </div>

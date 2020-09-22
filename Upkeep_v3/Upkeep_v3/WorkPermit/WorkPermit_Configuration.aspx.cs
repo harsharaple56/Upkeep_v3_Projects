@@ -338,7 +338,8 @@ namespace Upkeep_v3.WorkPermit
                 //strXmlApprovalMatrix.Replace("\"", "&quot;");
                 //strXmlApprovalMatrix.Replace("'", "&apos;");
 
-                
+
+                CompanyID = Convert.ToInt32(Session["CompanyID"].ToString());
 
                 if (ViewState["ConfigID"].ToString() != "0")
                     dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, LoggedInUserID);
