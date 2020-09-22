@@ -254,7 +254,7 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
                                     <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_RetailerMst" ErrorMessage="Please upload a file" ForeColor="Red" 
-                                        ValidationGroup="ValidationImport" ></asp:RequiredFieldValidator>
+                                        Display="Dynamic" ValidationGroup="ValidationImport" ></asp:RequiredFieldValidator>
                                     <span id="ImportError_Msg" style="color: red;"></span>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Modal -->
+                </div>
         </asp:Panel>
 
 

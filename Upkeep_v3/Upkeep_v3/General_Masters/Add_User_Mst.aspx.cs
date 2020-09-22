@@ -56,7 +56,12 @@ namespace Upkeep_v3.General_Masters
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int User_ID = Convert.ToInt32(Session["User_ID"]);
+            int User_ID = 0;
+            if (Convert.ToString(Session["User_ID"]) != "")
+            {
+                User_ID = Convert.ToInt32(Session["User_ID"]);
+            }
+
             string Action = "";
             DataSet ds = new DataSet();
 

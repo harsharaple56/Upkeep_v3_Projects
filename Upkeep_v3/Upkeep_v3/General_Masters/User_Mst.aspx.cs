@@ -6,17 +6,25 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Sql;
+using System.Configuration;
+using System.Data.SqlClient;
+//using Microsoft.Office.Interop.Excel;
+using System.Data.OleDb;
+using System.Data.Common;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace Upkeep_v3.General_Masters
 {
     public partial class User_Mst : System.Web.UI.Page
     {
-        Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepCC = new Upkeep_V3_Services.Upkeep_V3_Services();
+        Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-
+        GridView dgGrid = new GridView();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -43,7 +51,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeepCC.UserMaster_CRUD(0, "", "", "","", "", "", "", "",0,0,0,0,0,"","",0,0,0,0,"","", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeep.UserMaster_CRUD(0, "", "", "","", "", "", "", "",0,0,0,0,0,"","",0,0,0,0,"","", CompanyID, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -93,6 +101,138 @@ namespace Upkeep_v3.General_Masters
             }
             return data;
         }
+
+        protected void lnkSampleFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = "~/General_Masters/Template/UserMst.xlsx";
+
+                //string filePath = "~/Feedback/Template/RetailerData.xls";
+                //string filePath = Page.ResolveClientUrl("~/Feedback/Template/RetailerData.xls");
+
+                Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
+                Response.TransmitFile(Server.MapPath(filePath));
+
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnCloseImportPopUp_Click(object sender, EventArgs e)
+        {
+            lblImportErrorMsg.Text = "";
+            gvImportError.DataSource = null;
+            gvImportError.DataBind();
+            mpeUserMst.Hide();
+        }
+
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            //ExportToExcel();
+        }
+
+        protected void btnExportPDF_Click(object sender, EventArgs e)
+        {
+
+            DataSet dsRetailer = new DataSet();
+
+            // Specify the content type.
+            Response.ContentType = "application/pdf";
+
+            // Add a Content-Disposition header.
+            Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.pdf", "RETAILERS MASTER AS ON " + DateTime.Now));
+
+            // Create a Document object
+            Document doc = new Document();
+            System.Data.DataTable dtRetailerMaster = new System.Data.DataTable();
+            try
+            {
+                dsRetailer = ObjUpkeep.Retailer_CRUD("", "", "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "R");
+                if (dsRetailer != null)
+                {
+                    if (dsRetailer.Tables.Count > 0)
+                    {
+                        if (dsRetailer.Tables[0].Rows.Count > 0)
+                        {
+                            dtRetailerMaster = dsRetailer.Tables[0];
+                            dgGrid.DataSource = dtRetailerMaster;
+                            dgGrid.DataBind();
+                        }
+                    }
+                }
+
+                dtRetailerMaster.Columns.Remove("Retailer_ID");
+                dtRetailerMaster.Columns["Store_Name"].ColumnName = "Store Name";
+                dtRetailerMaster.Columns["Name"].ColumnName = "Manager Name";
+                dtRetailerMaster.Columns.Remove("Password");
+                ////dtCustomer.Columns.Remove("User_ID");
+                dtRetailerMaster.AcceptChanges();
+
+
+                iTextSharp.text.pdf.PdfPTable grd;
+
+                PdfWriter writer = PdfWriter.GetInstance(doc, Response.OutputStream);
+                doc.Open();
+
+                grd = new PdfPTable(dtRetailerMaster.Columns.Count);
+                grd.WidthPercentage = 100.0F;
+
+                PdfPCell cellRptNm = new PdfPCell(new Phrase("RETAILERS MASTER AS ON " + DateTime.Now));
+                cellRptNm.HorizontalAlignment = 1;
+                cellRptNm.Colspan = dtRetailerMaster.Columns.Count;
+                cellRptNm.Border = 0;
+                cellRptNm.PaddingBottom = 20.0F;
+                grd.AddCell(cellRptNm);
+
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
+                iTextSharp.text.Font fnt = new iTextSharp.text.Font(bfTimes, 7);
+
+                for (var IntLocColCnt = 0; IntLocColCnt <= dtRetailerMaster.Columns.Count - 1; IntLocColCnt++)
+                {
+                    PdfPCell cellHD1 = new PdfPCell(new Phrase(dtRetailerMaster.Columns[IntLocColCnt].ColumnName, fnt));
+                    cellHD1.PaddingBottom = 10.0F;
+                    cellHD1.BackgroundColor = iTextSharp.text.Color.LIGHT_GRAY;
+                    cellHD1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                    cellHD1.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                    grd.AddCell(cellHD1);
+                }
+
+                for (var IntLocRowCnt = 0; IntLocRowCnt <= dtRetailerMaster.Rows.Count - 1; IntLocRowCnt++)
+                {
+                    for (var IntLocColCnt = 0; IntLocColCnt <= dtRetailerMaster.Columns.Count - 1; IntLocColCnt++)
+                    {
+                        //string str = IIf(IsDBNull(dtBaggageReport.Rows[IntLocRowCnt][IntLocColCnt]), "", dtBaggageReport.Rows[IntLocRowCnt][IntLocColCnt]);
+                        string str = Convert.ToString(dtRetailerMaster.Rows[IntLocRowCnt][IntLocColCnt]);
+                        PdfPCell cell = new PdfPCell(new Phrase(str, fnt));
+                        cell.PaddingBottom = 10.0F;
+                        grd.AddCell(cell);
+                    }
+                }
+                doc.Add(grd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                doc.Close();
+            }
+            // Indicate that the data to send to the client has ended
+            Response.End();
+
+        }
+
+        protected void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            //ImportFromExcel();
+            //UploadRetailer();
+        }
+
     }
 
 
