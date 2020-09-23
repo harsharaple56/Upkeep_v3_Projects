@@ -118,6 +118,7 @@ namespace Upkeep_v3.General_Masters
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            lblSuccessMsg.Text = "";
             lblErrorMsg.Text = "";
             DataSet dsParent = new DataSet();
             int ParentID = 0;
@@ -144,6 +145,7 @@ namespace Upkeep_v3.General_Masters
                             txtNewNode.Text = "";
 
                             lblErrorMsg.Text = "";
+                            lblSuccessMsg.Text = "Location updated successfully.";
                         }
                         else if (Status == 2)
                         {
@@ -161,6 +163,7 @@ namespace Upkeep_v3.General_Masters
 
         protected void btnAddChild_Click(object sender, EventArgs e)
         {
+            lblSuccessMsg.Text = "";
             lblErrorMsg.Text = "";
             DataSet dsParent = new DataSet();
             int ParentID = 0;
@@ -183,12 +186,14 @@ namespace Upkeep_v3.General_Masters
                         int Status = Convert.ToInt32(dsParent.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
-                            TreeNode node = new TreeNode(txtNewNode.Text.Trim());
-
-                            TreeView1.SelectedNode.ChildNodes.Add(node);
+                            TreeView1.Nodes.Clear();
+                            PopulateRootLevel();
+                            //TreeNode node = new TreeNode(txtNewNode.Text.Trim());
+                            //TreeView1.SelectedNode.ChildNodes.Add(node);
                             txtNewNode.Text = "";
 
                             lblErrorMsg.Text = "";
+                            lblSuccessMsg.Text = "Location added successfully.";
                         }
                         else if (Status == 2)
                         {
@@ -206,6 +211,7 @@ namespace Upkeep_v3.General_Masters
 
         protected void btnAddParent_Click(object sender, EventArgs e)
         {
+            lblSuccessMsg.Text = "";
             lblErrorMsg.Text = "";
             DataSet dsParent = new DataSet();
             int ParentID = 0;
@@ -233,6 +239,7 @@ namespace Upkeep_v3.General_Masters
                             txtNewNode.Text = "";
 
                             lblErrorMsg.Text = "";
+                            lblSuccessMsg.Text = "Location added successfully.";
                         }
                         else if (Status == 2)
                         {
@@ -248,6 +255,49 @@ namespace Upkeep_v3.General_Masters
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            lblSuccessMsg.Text = "";
+            lblErrorMsg.Text = "";
+            DataSet dsParent = new DataSet();
+            int ParentID = 0;
+            string Location_Node = string.Empty;
+            string strAction = string.Empty;
+            try
+            {
+                if (Convert.ToString(hdnNode.Value) != "")
+                {
+                    ParentID = Convert.ToInt32(hdnNode.Value);
+                }
+                Location_Node = txtNewNode.Text.Trim();
+                strAction = "Delete";
+                dsParent = ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
+
+                if (dsParent.Tables.Count > 0)
+                {
+                    if (dsParent.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsParent.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            //TreeView1.SelectedNode.Text = txtNewNode.Text.Trim();
+                            txtNewNode.Text = "";
+
+                            lblErrorMsg.Text = "";
+                            lblSuccessMsg.Text = "Location Deleted successfully.";
+                            TreeView1.Nodes.Clear();
+                            
+                            PopulateRootLevel();
+                        }
+                        //else if (Status == 2)
+                        //{
+                        //    lblErrorMsg.Text = "Location already exists. Please enter a different name";
+                        //}
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             //TreeView tv1 = new TreeView();
             //TreeNode tn = new TreeNode();
@@ -271,30 +321,7 @@ namespace Upkeep_v3.General_Masters
 
         }
 
-        //public DataSet Add_Update_Location_Node(int ParentID, string Location_Node, string LoggedInUserID, string strAction)
-        //{
-        //    DataSet ds = new DataSet();
-        //    try
-        //    {
-        //        StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
-
-        //        SqlConnection con = new SqlConnection(StrConn);
-        //        SqlCommand cmd = new SqlCommand("Spr_Location_AddUpdateNode", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@ParentID", ParentID);
-        //        cmd.Parameters.AddWithValue("@Node", Location_Node);
-        //        cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-        //        cmd.Parameters.AddWithValue("@Action", strAction);
-        //        SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //        da.Fill(ds);
-        //        return ds;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
+      
 
 
 
