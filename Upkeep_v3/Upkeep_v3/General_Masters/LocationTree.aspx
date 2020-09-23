@@ -193,6 +193,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-weight: bold;"></asp:Label>
+                                                    <asp:Label ID="lblSuccessMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Green" Style="font-weight: bold;"></asp:Label>
 
                                                 </div>
                                             </div>
