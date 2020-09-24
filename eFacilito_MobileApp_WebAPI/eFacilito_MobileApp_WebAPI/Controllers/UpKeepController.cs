@@ -9044,7 +9044,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 {
                     strXml.Append(@"<Section>");
 
-                    
+
                     //strXml.Append(@"<AnsResponseID>" + objs.AnsResponseID.ToString() + "</AnsResponseID>");
 
                     strXml.Append(@"<SectionID>" + objs.SectionID.ToString() + "</SectionID>");
@@ -9694,6 +9694,213 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
+        #endregion
+
+        #region CSM
+
+        [Route("api/UpKeep/Fetch_CSM_Config_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CSM_Config_List(int CompanyCode) //int UserID,
+        {
+            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyCode", CompanyCode);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CSM_CONFIG", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+        [Route("api/UpKeep/Fetch_CSM_Config_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CSM_Config_Details(int ConfigID) //, string EmpCD, string RollCD
+        {
+            ClCSMConfig ObjCSMConfig = new ClCSMConfig();
+
+            List<ClCSMConfigHead> ObjCSMConfigHead = new List<ClCSMConfigHead>();
+
+            List<ClCSMConfigAnswerType> ObjCSMConfigAnswerType = new List<ClCSMConfigAnswerType>();
+
+            List<ClCSMConfigQuestion> ObjClCSMConfigInQuestion = new List<ClCSMConfigQuestion>();
+
+            List<ClCSMConfigQuestion> ObjClCSMConfigOutQuestion = new List<ClCSMConfigQuestion>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@ConfigID", ConfigID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CSM_CONFIG_DETAILS", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+
+                            ObjCSMConfigHead = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                                select new ClCSMConfigHead
+                                                {
+                                                    CSM_Response_ID = 0,
+                                                    Location_ID = 0,
+                                                    Department_ID = 0,
+                                                    Status = "",
+                                                    ActionStatus = "",
+
+                                                    CSM_Config_ID = Convert.ToInt32(p.Field<int>("Config_Id")),
+                                                    CSM_Desc = Convert.ToString(p.Field<string>("Config_Desc")),
+                                                    Is_Cost_Enable = Convert.ToBoolean(p.Field<bool>("Is_Cost_Enable")),
+                                                    Cost = p.Field<string>("string")
+                                                }).ToList();
+
+                            ObjClCSMConfigInQuestion = (from x in DsDataSet.Tables[1].AsEnumerable()
+                                                      select new ClCSMConfigQuestion
+                                                      {
+                                                          CSM_Question_ID = Convert.ToInt32(x.Field<int>("Open_Qn_ID")),
+                                                          Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                          CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
+
+                                                          ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[2].AsEnumerable()
+                                                                                      // where y.field<decimal>("CSM_question_id ") == p.field<decimal>("CSM_question_id ")
+                                                                                  where y.Field<int>("Open_Qn_ID") == x.Field<int>("Open_Qn_ID")
+                                                                                  select new ClCSMConfigAnswer
+                                                                                  {
+                                                                                     // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
+                                                                                      CSM_Question_ID = Convert.ToInt32(y.Field<int>("Open_Qn_ID")),
+                                                                                      Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                      //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                      CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
+                                                                                      CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
+                                                                                  }).ToList()
+                                                      }).ToList();
+
+                            ObjClCSMConfigOutQuestion = (from x in DsDataSet.Tables[3].AsEnumerable()
+                                                        select new ClCSMConfigQuestion
+                                                        {
+                                                            CSM_Question_ID = Convert.ToInt32(x.Field<int>("Close_Qn_ID")),
+                                                            Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                            CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
+
+                                                            ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[4].AsEnumerable()
+                                                                                        // where y.field<decimal>("CSM_question_id ") == p.field<decimal>("CSM_question_id ")
+                                                                                    where y.Field<int>("Close_Qn_ID") == x.Field<int>("Close_Qn_ID")
+                                                                                    select new ClCSMConfigAnswer
+                                                                                    {
+                                                                                        // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
+                                                                                        CSM_Question_ID = Convert.ToInt32(y.Field<int>("Close_Qn_ID")),
+                                                                                        Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                        //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                        CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
+                                                                                        CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
+                                                                                    }).ToList()
+                                                        }).ToList();
+
+                            ObjCSMConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
+                                                      select new ClCSMConfigAnswerType
+                                                      {
+                                                          Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
+                                                          Ans_Type_Desc = Convert.ToString(z.Field<string>("Ans_Type_Desc")),
+                                                          SDesc = Convert.ToString(z.Field<string>("SDesc")),
+                                                          Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
+                                                      }).ToList();
+
+
+
+                            ObjCSMConfig.ObjClCSMConfigHead = ObjCSMConfigHead;
+                            ObjCSMConfig.ObjClCSMConfigInQuestion = ObjClCSMConfigInQuestion;
+                            ObjCSMConfig.ObjClCSMConfigOutQuestion = ObjClCSMConfigOutQuestion;
+                            ObjCSMConfig.ObjClCSMConfigAnswerType = ObjCSMConfigAnswerType;
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjCSMConfig);
+                            //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
         #endregion
 
     }
