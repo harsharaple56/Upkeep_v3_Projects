@@ -9716,7 +9716,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
-                ObjLocSqlParameter[0] = new SqlParameter("@CompanyCode", CompanyCode);
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyCode);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CSM_CONFIG", ObjLocSqlParameter);
 
@@ -9772,6 +9772,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
             List<ClCSMConfigQuestion> ObjClCSMConfigOutQuestion = new List<ClCSMConfigQuestion>();
 
+            List<ClCSMConfigTerms> ObjClCSMConfigTerms = new List<ClCSMConfigTerms>();
+
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
             DataTable dt = new DataTable();
@@ -9806,14 +9808,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                     CSM_Config_ID = Convert.ToInt32(p.Field<int>("Config_Id")),
                                                     CSM_Desc = Convert.ToString(p.Field<string>("Config_Desc")),
                                                     Is_Cost_Enable = Convert.ToBoolean(p.Field<bool>("Is_Cost_Enable")),
-                                                    Cost = p.Field<string>("string")
+                                                    Cost = p.Field<string>("Cost")
                                                 }).ToList();
 
                             ObjClCSMConfigInQuestion = (from x in DsDataSet.Tables[1].AsEnumerable()
                                                       select new ClCSMConfigQuestion
                                                       {
                                                           CSM_Question_ID = Convert.ToInt32(x.Field<int>("Open_Qn_ID")),
-                                                          Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                          Qn_Desc = Convert.ToString(x.Field<string>("Desc")),
                                                           CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
 
                                                           ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[2].AsEnumerable()
@@ -9823,7 +9825,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                   {
                                                                                      // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
                                                                                       CSM_Question_ID = Convert.ToInt32(y.Field<int>("Open_Qn_ID")),
-                                                                                      Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                      Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("is_flag")),
                                                                                       //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
                                                                                       CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
                                                                                       CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
@@ -9834,7 +9836,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                         select new ClCSMConfigQuestion
                                                         {
                                                             CSM_Question_ID = Convert.ToInt32(x.Field<int>("Close_Qn_ID")),
-                                                            Qn_Desc = Convert.ToString(x.Field<string>("Qn_Desc")),
+                                                            Qn_Desc = Convert.ToString(x.Field<string>("Desc")),
                                                             CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
 
                                                             ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[4].AsEnumerable()
@@ -9844,14 +9846,22 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                                                     {
                                                                                         // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
                                                                                         CSM_Question_ID = Convert.ToInt32(y.Field<int>("Close_Qn_ID")),
-                                                                                        Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("ans_is_flag")),
+                                                                                        Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("is_flag")),
                                                                                         //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
                                                                                         CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
                                                                                         CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
                                                                                     }).ToList()
                                                         }).ToList();
 
-                            ObjCSMConfigAnswerType = (from z in DsDataSet.Tables[4].AsEnumerable()
+                            ObjClCSMConfigTerms = (from z in DsDataSet.Tables[5].AsEnumerable()
+                                                   select new ClCSMConfigTerms
+                                                   {
+                                                       Terms_ID = Convert.ToInt32(z.Field<int>("Terms_ID")),
+                                                       Config_Id = Convert.ToInt32(z.Field<int>("Config_Id")),
+                                                       Term_Desc = Convert.ToString(z.Field<string>("Term_Desc"))
+                                                   }).ToList();
+
+                            ObjCSMConfigAnswerType = (from z in DsDataSet.Tables[6].AsEnumerable()
                                                       select new ClCSMConfigAnswerType
                                                       {
                                                           Ans_Type_ID = Convert.ToInt32(z.Field<decimal>("Ans_Type_ID")),
@@ -9860,12 +9870,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                           Is_MultiValue = Convert.ToBoolean(z.Field<bool>("Is_MultiValue"))
                                                       }).ToList();
 
-
-
-                            ObjCSMConfig.ObjClCSMConfigHead = ObjCSMConfigHead;
-                            ObjCSMConfig.ObjClCSMConfigInQuestion = ObjClCSMConfigInQuestion;
-                            ObjCSMConfig.ObjClCSMConfigOutQuestion = ObjClCSMConfigOutQuestion;
-                            ObjCSMConfig.ObjClCSMConfigAnswerType = ObjCSMConfigAnswerType;
+                            ObjCSMConfig.CSMConfigData = ObjCSMConfigHead;
+                            ObjCSMConfig.CSMConfigInQuestion = ObjClCSMConfigInQuestion;
+                            ObjCSMConfig.CSMConfigOutQuestion = ObjClCSMConfigOutQuestion;
+                            ObjCSMConfig.CSMConfigAnswerType = ObjCSMConfigAnswerType;
+                            ObjCSMConfig.CSMConfigTerms = ObjClCSMConfigTerms;
 
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjCSMConfig);

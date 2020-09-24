@@ -1199,10 +1199,11 @@ namespace eFacilito_MobileApp_WebAPI.Models
     #region CSM
     public class ClCSMConfig
     {
-        public List<ClCSMConfigHead> ObjClCSMConfigHead { get; set; }
-        public List<ClCSMConfigQuestion> ObjClCSMConfigInQuestion { get; set; }
-        public List<ClCSMConfigQuestion> ObjClCSMConfigOutQuestion { get; set; }
-        public List<ClCSMConfigAnswerType> ObjClCSMConfigAnswerType { get; set; }
+        public List<ClCSMConfigHead> CSMConfigData { get; set; }
+        public List<ClCSMConfigQuestion> CSMConfigInQuestion { get; set; }
+        public List<ClCSMConfigQuestion> CSMConfigOutQuestion { get; set; }
+        public List<ClCSMConfigAnswerType> CSMConfigAnswerType { get; set; }
+        public List<ClCSMConfigTerms> CSMConfigTerms { get; set; }
 
     }
     public class ClCSMConfigHead
@@ -1250,6 +1251,13 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ans_Type_Desc { get; set; }
         public string SDesc { get; set; }
         public bool Is_MultiValue { get; set; }
+    }
+    public class ClCSMConfigTerms
+    {
+        //XXX 
+        public int Terms_ID { get; set; }
+        public int Config_Id { get; set; }
+        public string Term_Desc { get; set; }
     }
 
     #endregion
