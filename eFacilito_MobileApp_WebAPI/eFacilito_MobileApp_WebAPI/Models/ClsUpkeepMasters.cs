@@ -1002,6 +1002,18 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string DepartmentName { get; set; }
     }
 
+    public class ClsTicketDashboard
+    {
+        public int OpenTicket { get; set; }
+        public int AssignedTicket { get; set; }
+        public int AcceptedTicket { get; set; }
+        public int InProgressTicket { get; set; }
+        public int HoldTicket { get; set; }
+        public int ClosedTicket { get; set; }
+        public int TotalTicket { get; set; }
+        public decimal ClosedTicketPercentage { get; set; }
+
+    }
     #endregion
 
 
