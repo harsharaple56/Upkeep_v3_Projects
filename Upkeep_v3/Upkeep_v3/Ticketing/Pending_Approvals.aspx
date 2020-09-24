@@ -6,7 +6,7 @@
 			<div class="m-grid__item m-grid__item--fluid m-grid  m-error-6" >
 				<div class="m-error_container">
 					<div >
-						<img src="/assets/app/media/img/bg/coming-soon-9.gif">
+						<img src="<%= Page.ResolveClientUrl("~/assets/app/media/img/bg/coming-soon-9.gif") %>" />
 
                         <h1>Coming Soon...</h1>
        
