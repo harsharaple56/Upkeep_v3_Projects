@@ -1006,6 +1006,18 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string DepartmentName { get; set; }
     }
 
+    public class ClsTicketDashboard
+    {
+        public int OpenTicket { get; set; }
+        public int AssignedTicket { get; set; }
+        public int AcceptedTicket { get; set; }
+        public int InProgressTicket { get; set; }
+        public int HoldTicket { get; set; }
+        public int ClosedTicket { get; set; }
+        public int TotalTicket { get; set; }
+        public decimal ClosedTicketPercentage { get; set; }
+
+    }
     #endregion
 
 
@@ -1179,11 +1191,77 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     public class ClsAssetService_Response_Data
     {
-       // public int Asset_Service_ID { get; set; } 
+        // public int Asset_Service_ID { get; set; } 
         public string Asset_Service_Date { get; set; }
         public string Asset_Service_AssignTo { get; set; }
         public string AlertBeforeDays { get; set; }
         public string Asset_Service_Remarks { get; set; }
+    }
+
+    #endregion
+
+    #region CSM
+    public class ClCSMConfig
+    {
+        public List<ClCSMConfigHead> CSMConfigData { get; set; }
+        public List<ClCSMConfigQuestion> CSMConfigInQuestion { get; set; }
+        public List<ClCSMConfigQuestion> CSMConfigOutQuestion { get; set; }
+        public List<ClCSMConfigAnswerType> CSMConfigAnswerType { get; set; }
+        public List<ClCSMConfigTerms> CSMConfigTerms { get; set; }
+
+    }
+    public class ClCSMConfigHead
+    {
+        //XXX
+        public int CSM_Response_ID { get; set; }
+        public int Location_ID { get; set; }
+        public int Department_ID { get; set; }
+        public string Status { get; set; }
+        public string ActionStatus { get; set; }
+
+        public int CSM_Config_ID { get; set; }
+        //public string CSM_Title { get; set; }
+        public string CSM_Desc { get; set; }
+        public bool Is_Cost_Enable { get; set; }
+        public string Cost { get; set; }
+    }
+    public class ClCSMConfigQuestion
+    {
+        //XXX
+        public int CSM_Question_ID { get; set; }
+        public string Qn_Desc { get; set; }
+        public int CSM_Ans_Type_ID { get; set; }
+
+        //public List<ClCSMConfigAnswerType> ObjClCSMConfigAnswerType { get; set; }
+
+        public List<ClCSMConfigAnswer> ObjClCSMConfigAnswer { get; set; }
+        //public List<ClCSM_Response_Data_Values> ObjClCSM_Response_Data_Values { get; set; }
+    }
+    
+    public class ClCSMConfigAnswer
+    {
+        //XXX
+        //public int CSM_Ans_Value_ID { get; set; }
+        public int CSM_Question_ID { get; set; }
+        public bool Ans_Is_Flag { get; set; }
+       // public bool Is_Default { get; set; }
+        public string CSM_Ans_Desc { get; set; }
+        public int CSM_Ans_Type_ID { get; set; }
+    }
+    public class ClCSMConfigAnswerType
+    {
+        //XXX 
+        public int Ans_Type_ID { get; set; }
+        public string Ans_Type_Desc { get; set; }
+        public string SDesc { get; set; }
+        public bool Is_MultiValue { get; set; }
+    }
+    public class ClCSMConfigTerms
+    {
+        //XXX 
+        public int Terms_ID { get; set; }
+        public int Config_Id { get; set; }
+        public string Term_Desc { get; set; }
     }
 
     #endregion

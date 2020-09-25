@@ -945,7 +945,81 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/Ticketing/Fetch_Ticket_Dashboard_Count")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Ticket_Dashboard_Count(int CompanyID, string EmpCD, string RollCD, string FromDate, string ToDate)
+        {            
+            List<ClsTicketDashboard> objTickets = new List<ClsTicketDashboard>();
+            
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
 
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@FromDate", FromDate);
+                ObjLocSqlParameter[4] = new SqlParameter("@ToDate", ToDate);
+
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Dashboard_Count_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                          select new ClsTicketDashboard
+                                          {
+                                              OpenTicket = Convert.ToInt32(p.Field<int>("OpenTicketCount")),
+                                              AssignedTicket = Convert.ToInt32(p.Field<int>("AssignedTicketCount")),
+                                              AcceptedTicket = Convert.ToInt32(p.Field<int>("AcceptedTicketCount")),
+                                              InProgressTicket = Convert.ToInt32(p.Field<int>("InProgressTicketCount")),
+                                              HoldTicket = Convert.ToInt32(p.Field<int>("HoldTicketCount")),
+                                              ClosedTicket = Convert.ToInt32(p.Field<int>("TicketClosedCount")),
+                                              TotalTicket = Convert.ToInt32(p.Field<int>("TotalTicketCount")),
+                                              ClosedTicketPercentage = Convert.ToDecimal(p.Field<decimal>("ClosedTicketPercentage"))
+
+                                          }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, objTickets);
+                        }                        
+
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                objTickets = null;
+                //objTicketAction = null;
+            }
+
+        }
 
         #endregion
 
