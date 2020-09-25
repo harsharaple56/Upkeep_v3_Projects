@@ -888,6 +888,10 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
         public int AnswerID { get; set; }
         public string value { get; set; }
+       // public Guid RefID { get; set; }
+        public int RefID { get; set; }
+
+
     }
 
     #endregion
