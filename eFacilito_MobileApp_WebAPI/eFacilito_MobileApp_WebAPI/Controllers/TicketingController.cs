@@ -979,13 +979,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         {
                             objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
                                           select new ClsTicketDashboard
-                                          {
-                                              OpenTicket = Convert.ToInt32(p.Field<int>("OpenTicketCount")),
+                                          {                                             
                                               AssignedTicket = Convert.ToInt32(p.Field<int>("AssignedTicketCount")),
                                               AcceptedTicket = Convert.ToInt32(p.Field<int>("AcceptedTicketCount")),
                                               InProgressTicket = Convert.ToInt32(p.Field<int>("InProgressTicketCount")),
                                               HoldTicket = Convert.ToInt32(p.Field<int>("HoldTicketCount")),
+                                              OpenTicket = Convert.ToInt32(p.Field<int>("OpenTicketCount")),
                                               ClosedTicket = Convert.ToInt32(p.Field<int>("TicketClosedCount")),
+                                              ExpiredTicket = Convert.ToInt32(p.Field<int>("ExpiredTicketCount")),
                                               TotalTicket = Convert.ToInt32(p.Field<int>("TotalTicketCount")),
                                               ClosedTicketPercentage = Convert.ToDecimal(p.Field<decimal>("ClosedTicketPercentage"))
 

@@ -1010,6 +1010,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int InProgressTicket { get; set; }
         public int HoldTicket { get; set; }
         public int ClosedTicket { get; set; }
+        public int ExpiredTicket { get; set; }
         public int TotalTicket { get; set; }
         public decimal ClosedTicketPercentage { get; set; }
 
