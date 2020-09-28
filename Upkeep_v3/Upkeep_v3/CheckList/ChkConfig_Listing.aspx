@@ -77,9 +77,9 @@
                             <tr>
                                 <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
                                 <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
-                                <th>Configuration Title</th>
-                                <th>Configuration Desc</th>
-                                <th>Is Enable Score</th>
+                                <th>Checklist Title</th>
+                                <th>Checklist Desc</th>
+                                <%--<th>Is Enable Score</th>--%>
                                 <th>Total Score</th>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                                 <th>Created By</th>
