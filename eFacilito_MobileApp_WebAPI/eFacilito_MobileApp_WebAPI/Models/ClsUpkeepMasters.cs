@@ -1019,6 +1019,11 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public decimal ClosedTicketPercentage { get; set; }
 
     }
+
+    public class ClsEmployeeToken
+    {
+        public string TokenNumber { get; set; }
+    }
     #endregion
 
 

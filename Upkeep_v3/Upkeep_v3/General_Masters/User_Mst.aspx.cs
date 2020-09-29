@@ -106,7 +106,7 @@ namespace Upkeep_v3.General_Masters
         {
             try
             {
-                string filePath = "~/General_Masters/Template/UserMst.xlsx";
+                string filePath = "~/General_Masters/Template/eFacilito_User_Data_Import.xlsx";
 
                 //string filePath = "~/Feedback/Template/RetailerData.xls";
                 //string filePath = Page.ResolveClientUrl("~/Feedback/Template/RetailerData.xls");
@@ -229,8 +229,76 @@ namespace Upkeep_v3.General_Masters
 
         protected void btnImportExcel_Click(object sender, EventArgs e)
         {
-            //ImportFromExcel();
-            //UploadRetailer();
+            DataSet dsResult = new DataSet();
+
+            if (FU_UserMst.PostedFile != null)
+            {
+                try
+                {
+                    string path = string.Concat(Server.MapPath("~/RetailerUploadFile/" + FU_UserMst.FileName));
+                    FU_UserMst.SaveAs(path);
+                    // Connection String to Excel Workbook  
+                    string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("select * from [Sheet1$]", con);
+                        con.Open();
+                        // Create DbDataReader to Data Worksheet  
+                        DbDataReader dr = cmd.ExecuteReader();
+                        // SQL Server Connection String  
+                        string CS = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString;
+                        // Bulk Copy to SQL Server   
+                        SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
+                        bulkInsert.DestinationTableName = "Tbl_UserMst_Import";
+                        bulkInsert.ColumnMappings.Add("User_Code", "UserCode");
+                        bulkInsert.ColumnMappings.Add("First_Name", "FirstName");
+                        bulkInsert.ColumnMappings.Add("Last_Name", "LastName");
+                        bulkInsert.ColumnMappings.Add("Department", "Department");
+                        bulkInsert.ColumnMappings.Add("Designation", "Designation");
+                        bulkInsert.ColumnMappings.Add("Role", "Role");
+                        bulkInsert.ColumnMappings.Add("Email", "EmailID");
+                        bulkInsert.ColumnMappings.Add("Mobile_No", "MobileNo");
+                        bulkInsert.ColumnMappings.Add("Username", "Username");
+                        
+                        bulkInsert.WriteToServer(dr);
+
+
+                        //dsResult = ObjUpkeep.ImportRetailer(CompanyID);
+
+                        if (dsResult.Tables.Count > 0)
+                        {
+                            if (dsResult.Tables[0].Rows.Count > 0)
+                            {
+                               
+                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:280px;");
+
+                                mpeUserMst.Show();
+                                lblImportErrorMsg.Text = "Below mentioned users can not be created, kindly check error message.";
+                                gvImportError.DataSource = dsResult;
+                                gvImportError.DataBind();
+                            }
+                            else
+                            {
+                                bindGrid();
+                            }
+                        }
+                        else
+                        {
+                            bindGrid();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+
+                }
+            }
+            else
+            {
+                //lbl
+            }
         }
 
     }
