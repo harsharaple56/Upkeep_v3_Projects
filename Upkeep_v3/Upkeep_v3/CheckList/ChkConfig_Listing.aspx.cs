@@ -79,7 +79,7 @@ namespace Upkeep_v3.CheckList
                             data += "<tr>" +
                                 "<td>" + Chk_Title + "</td>" +
                                 "<td>" + Chk_Desc + "</td>" +
-                                "<td>" + Is_Enable_Score + "</td>" +
+                               // "<td>" + Is_Enable_Score + "</td>" +
                                 "<td>" + Total_Score + "</td>" +
                                 "<td>" + Created_By + "</td>" +
                                 "<td>" + Created_Date + "</td>" +
