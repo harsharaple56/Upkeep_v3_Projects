@@ -1101,7 +1101,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
-                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", EmployeeID);
+                ObjLocSqlParameter[0] = new SqlParameter("@EmployeeID", EmployeeID);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Update_Employee_Token", ObjLocSqlParameter);
 
