@@ -262,15 +262,15 @@ namespace Upkeep_v3.General_Masters
                         
                         bulkInsert.WriteToServer(dr);
 
-
-                        //dsResult = ObjUpkeep.ImportRetailer(CompanyID);
+                        dsResult = ObjUpkeep.Import_User_Master(CompanyID, LoggedInUserID);
 
                         if (dsResult.Tables.Count > 0)
                         {
                             if (dsResult.Tables[0].Rows.Count > 0)
                             {
                                
-                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:280px;");
+                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
+                                pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
 
                                 mpeUserMst.Show();
                                 lblImportErrorMsg.Text = "Below mentioned users can not be created, kindly check error message.";

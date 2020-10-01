@@ -78,14 +78,14 @@
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                    <div class="m-portlet__head">
+                    <%--<div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">Location Master		
                                 </h3>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
 
                     <div class="m-grid__item m-grid__item--fluid m-wrapper">
 

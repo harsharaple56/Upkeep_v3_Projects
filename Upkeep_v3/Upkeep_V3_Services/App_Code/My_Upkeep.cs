@@ -2325,6 +2325,19 @@ public class My_Upkeep
 
     #endregion
 
-
+    public DataSet Import_User_Master(int CompanyID,string LoggedInUserID)
+    {
+        DataSet dsUsers = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsUsers = ObjUpkeepCC_BL.Import_User_Master(CompanyID, LoggedInUserID, StrConn);
+            return dsUsers;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 }
