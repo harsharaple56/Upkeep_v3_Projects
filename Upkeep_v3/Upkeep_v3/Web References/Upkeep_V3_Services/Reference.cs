@@ -170,6 +170,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Retailer_Escalation_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Import_User_MasterOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
@@ -585,6 +587,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Retailer_Escalation_CRUDCompletedEventHandler Retailer_Escalation_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Import_User_MasterCompletedEventHandler Import_User_MasterCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -3247,6 +3252,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Retailer_Escalation_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Retailer_Escalation_CRUDCompleted(this, new Retailer_Escalation_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_User_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_User_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_User_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_User_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_User_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_User_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_User_MasterOperationCompleted == null)) {
+                this.Import_User_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_User_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_User_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_User_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_User_MasterOperationCompleted(object arg) {
+            if ((this.Import_User_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_User_MasterCompleted(this, new Import_User_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8239,6 +8275,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Retailer_Escalation_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Import_User_MasterCompletedEventHandler(object sender, Import_User_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_User_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_User_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -219,10 +219,10 @@ namespace Upkeep_v3.General_Masters
             string strAction = string.Empty;
             try
             {
-                if (Convert.ToString(hdnNode.Value) != "")
-                {
-                    ParentID = Convert.ToInt32(hdnNode.Value);
-                }
+                //if (Convert.ToString(hdnNode.Value) != "")
+                //{
+                //    ParentID = Convert.ToInt32(hdnNode.Value);
+                //}
                 Location_Node = txtNewNode.Text.Trim();
                 strAction = "Add";
                 dsParent = ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);

@@ -2599,7 +2599,26 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #endregion
 
+    [WebMethod]
+    public DataSet Import_User_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
 
+        try
+        {
+            My_Upkeep obj = new My_Upkeep();
+
+            ds = obj.Import_User_Master(CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
 
 }
 
