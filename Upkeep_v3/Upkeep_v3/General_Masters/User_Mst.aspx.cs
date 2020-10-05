@@ -64,7 +64,7 @@ namespace Upkeep_v3.General_Masters
                             int User_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["User_ID"]);
                             string UserCode = Convert.ToString(ds.Tables[0].Rows[i]["User_Code"]);
                             string Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
-                            //string f_name = Convert.ToString(ds.Tables[0].Rows[i]["F_Name"]);
+                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Desc"]);
                             //string LastName = Convert.ToString(ds.Tables[0].Rows[i]["L_Name"]);
                             string UserDesignation = Convert.ToString(ds.Tables[0].Rows[i]["User_Designation"]);
                             string User_Email = Convert.ToString(ds.Tables[0].Rows[i]["User_Email"]);
@@ -82,7 +82,7 @@ namespace Upkeep_v3.General_Masters
                                 Created_On = dt.ToString("dd/MMM/yyyy");
                             }
 
-                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Is_Approver + "</td><td>" + Is_GlobalApprover + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + Department + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else

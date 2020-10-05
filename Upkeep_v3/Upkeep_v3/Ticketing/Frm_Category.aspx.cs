@@ -51,7 +51,7 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-                 ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID,0, "",0, LoggedInUserID, "R"); 
+                 ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, "",0, LoggedInUserID, "R"); 
 
                 if (ds.Tables.Count > 0)
                 {
@@ -168,8 +168,9 @@ namespace Upkeep_v3.Ticketing
                         {
                             int Category_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Category_ID"]);
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
+                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Desc"]);
 
-                            data += "<tr><td>" + Category_ID + "</td><td>" + Category_Desc + "</td><td><a href='Frm_Category.aspx?Category_ID=" + Category_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Frm_Category.aspx.aspx?DelCategory_ID=" + Category_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Category_Desc + "</td><td>" + Department + "</td><td><a href='Frm_Category.aspx?Category_ID=" + Category_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Frm_Category.aspx.aspx?DelCategory_ID=" + Category_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }

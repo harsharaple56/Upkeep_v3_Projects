@@ -159,11 +159,12 @@
                             <tr>
                                 <th>User Code</th>
                                 <th>Name</th>
+                                <th>Department</th>
                                 <th>Designation</th>
                                 <th>Email ID</th>
                                 <th>Mobile No</th>
-                                <th>Approver</th>
-                                <th>Global Approver</th>
+                                <%--<th>Approver</th>
+                                <th>Global Approver</th>--%>
                                 <th>Created On</th>
                                 <th>Actions</th>
                             </tr>
