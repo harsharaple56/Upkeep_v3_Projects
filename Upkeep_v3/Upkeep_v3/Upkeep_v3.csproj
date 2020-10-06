@@ -469,12 +469,14 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\efacilito_350.png" />
     <Content Include="assets\app\media\img\logos\efacilito.png" />
     <Content Include="assets\app\media\img\logos\efacilito_no_bg.png" />
     <Content Include="assets\app\media\img\logos\efacilito_s.png" />
+    <Content Include="assets\app\media\img\logos\Forum_Logo.jpg" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
     <Content Include="assets\app\media\img\logos\logo-2.png" />
     <Content Include="assets\app\media\img\logos\logo-3.png" />

@@ -985,6 +985,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string CompanyName { get; set; }
         public string Client_URL { get; set; }
         public string Module_ID { get; set; }
+        public string Company_Logo { get; set; }
     }
 
 

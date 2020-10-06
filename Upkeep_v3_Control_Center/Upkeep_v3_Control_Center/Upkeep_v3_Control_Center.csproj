@@ -4879,6 +4879,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CompanyLogo\" />
     <Folder Include="vendors\dropzone\.idea\" />
     <Folder Include="vendors\handlebars\.idea\copyright\" />
     <Folder Include="vendors\handlebars\bin\" />

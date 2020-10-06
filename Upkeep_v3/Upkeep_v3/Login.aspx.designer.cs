@@ -13,6 +13,24 @@ namespace Upkeep_v3 {
     public partial class Login {
         
         /// <summary>
+        /// dvCompanyLogo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCompanyLogo;
+        
+        /// <summary>
+        /// imgCompany_Logo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgCompany_Logo;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -22,22 +40,13 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// rdbEmployee control.
+        /// dvCompanyCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEmployee;
-        
-        /// <summary>
-        /// rdbRetailer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbRetailer;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCompanyCode;
         
         /// <summary>
         /// txtCompanyCode control.
@@ -56,6 +65,42 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCompany;
+        
+        /// <summary>
+        /// btnNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNext;
+        
+        /// <summary>
+        /// dvLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvLogin;
+        
+        /// <summary>
+        /// rdbEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEmployee;
+        
+        /// <summary>
+        /// rdbRetailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbRetailer;
         
         /// <summary>
         /// txtUsername control.

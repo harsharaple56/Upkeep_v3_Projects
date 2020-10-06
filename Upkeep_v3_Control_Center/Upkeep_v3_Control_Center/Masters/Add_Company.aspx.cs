@@ -96,11 +96,31 @@ namespace Upkeep_v3_Control_Center.Masters
                     Is_DBatClientServer = 0;
                 }
 
+               
+                
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
                 if (fileUpload_CompanyLogo.HasFile)
                 {
-                    //CompanyLogoName = Path.GetFileName(fileUpload_CompanyLogo.PostedFile.FileName);
-                    fileUpload_CompanyLogo.PostedFile.SaveAs(Server.MapPath("~/Images/") + CompanyCode + ".PNG");
-                    CompanyLogoName = CompanyCode + ".PNG";
+                    string CompanyLogo_Pic = string.Empty;
+
+                    string fileUploadPath_Sign = HttpContext.Current.Server.MapPath("~/CompanyLogo/");
+
+                    if (!Directory.Exists(fileUploadPath_Sign))
+                    {
+                        Directory.CreateDirectory(fileUploadPath_Sign);
+                    }
+
+                    string fileExtension_Sign = Path.GetExtension(fileUpload_CompanyLogo.FileName);
+                    CompanyLogo_Pic = CompanyCode + fileExtension_Sign;
+
+                    string Sign_SaveLocation = Server.MapPath("~/CompanyLogo/") + "/" + CompanyLogo_Pic;
+                    CompanyLogoName = imgPath + "/CompanyLogo/" + CompanyLogo_Pic;
+
+                    fileUpload_CompanyLogo.PostedFile.SaveAs(Sign_SaveLocation);
+
+                    //fileUpload_CompanyLogo.PostedFile.SaveAs(Server.MapPath("~/Images/") + CompanyCode + ".PNG");
+                    //CompanyLogoName = CompanyCode + ".PNG";
                 }
                 else
                 {

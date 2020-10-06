@@ -817,7 +817,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               CompanyID = Convert.ToInt32(p.Field<decimal>("Company_ID")),
                                               CompanyName = Convert.ToString(p.Field<string>("Company_Name")),
                                               Client_URL = Convert.ToString(p.Field<string>("ClientURL")),
-                                              Module_ID = Convert.ToString(p.Field<string>("Module_ID"))
+                                              Module_ID = Convert.ToString(p.Field<string>("Module_ID")),
+                                              Company_Logo = Convert.ToString(p.Field<string>("Company_Logo"))
 
                                           }).ToList();
 
