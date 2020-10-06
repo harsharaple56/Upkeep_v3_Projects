@@ -1018,6 +1018,7 @@
     <Content Include="Inventory\Inventory_Stock_List.aspx" />
     <Content Include="Inventory\Inventory_Transaction_Details.aspx" />
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
+    <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
@@ -4459,6 +4460,13 @@
     </Compile>
     <Compile Include="Inventory\Inventory_Transaction_List.aspx.designer.cs">
       <DependentUpon>Inventory_Transaction_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Knowledge_Base\User_Manual.aspx.cs">
+      <DependentUpon>User_Manual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Knowledge_Base\User_Manual.aspx.designer.cs">
+      <DependentUpon>User_Manual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
