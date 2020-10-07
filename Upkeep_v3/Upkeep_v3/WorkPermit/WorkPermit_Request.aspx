@@ -401,7 +401,7 @@
                                                         </div>
 
                                                         <div id="divRadioButton" style="display: none" runat="server">
-                                                            <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
+                                                            <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatColumns="5" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
                                                         </div>
 
                                                         <div id="divImage" style="display: none" runat="server">
@@ -427,7 +427,7 @@
                                                             </div>
                                                         </div>
                                                         <div id="divCheckBox" style="display: none" runat="server">
-                                                            <asp:CheckBoxList class="CheckBoxList11" ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellPadding="5" CellSpacing="5" ClientIDMode="Static"></asp:CheckBoxList>
+                                                            <asp:CheckBoxList class="CheckBoxList11" ID="divCheckBoxIDI" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" CellPadding="5" CellSpacing="5" ClientIDMode="Static"></asp:CheckBoxList>
                                                         </div>
                                                     </div>
                                                 </div>
