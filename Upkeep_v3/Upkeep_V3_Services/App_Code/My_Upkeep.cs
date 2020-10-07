@@ -820,14 +820,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Fetch_GatePassConfiguration(string Initiator)
+    public DataSet Fetch_GatePassConfiguration(string Initiator, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_GatePassConfiguration(Initiator, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_GatePassConfiguration(Initiator, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)

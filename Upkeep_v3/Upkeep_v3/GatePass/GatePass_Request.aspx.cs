@@ -23,11 +23,13 @@ namespace Upkeep_v3.GatePass
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
             //LoggedInUserID = "121";
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -48,7 +50,7 @@ namespace Upkeep_v3.GatePass
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.Fetch_GatePassConfiguration(Initiator);
+                dsTitle = ObjUpkeep.Fetch_GatePassConfiguration(Initiator, CompanyID);
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
