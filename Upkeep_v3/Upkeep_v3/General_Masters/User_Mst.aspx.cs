@@ -64,7 +64,7 @@ namespace Upkeep_v3.General_Masters
                             int User_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["User_ID"]);
                             string UserCode = Convert.ToString(ds.Tables[0].Rows[i]["User_Code"]);
                             string Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
-                            //string f_name = Convert.ToString(ds.Tables[0].Rows[i]["F_Name"]);
+                            string Department = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Desc"]);
                             //string LastName = Convert.ToString(ds.Tables[0].Rows[i]["L_Name"]);
                             string UserDesignation = Convert.ToString(ds.Tables[0].Rows[i]["User_Designation"]);
                             string User_Email = Convert.ToString(ds.Tables[0].Rows[i]["User_Email"]);
@@ -82,7 +82,7 @@ namespace Upkeep_v3.General_Masters
                                 Created_On = dt.ToString("dd/MMM/yyyy");
                             }
 
-                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Is_Approver + "</td><td>" + Is_GlobalApprover + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + UserCode + "</td><td>" + Name + "</td><td>" + Department + "</td><td>" + UserDesignation + "</td><td>" + User_Email + "</td><td>" + Usermobile + "</td><td>" + Created_On + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + User_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + User_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else
@@ -106,7 +106,7 @@ namespace Upkeep_v3.General_Masters
         {
             try
             {
-                string filePath = "~/General_Masters/Template/UserMst.xlsx";
+                string filePath = "~/General_Masters/Template/eFacilito_User_Data_Import.xlsx";
 
                 //string filePath = "~/Feedback/Template/RetailerData.xls";
                 //string filePath = Page.ResolveClientUrl("~/Feedback/Template/RetailerData.xls");
@@ -229,8 +229,76 @@ namespace Upkeep_v3.General_Masters
 
         protected void btnImportExcel_Click(object sender, EventArgs e)
         {
-            //ImportFromExcel();
-            //UploadRetailer();
+            DataSet dsResult = new DataSet();
+
+            if (FU_UserMst.PostedFile != null)
+            {
+                try
+                {
+                    string path = string.Concat(Server.MapPath("~/RetailerUploadFile/" + FU_UserMst.FileName));
+                    FU_UserMst.SaveAs(path);
+                    // Connection String to Excel Workbook  
+                    string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("select * from [Sheet1$]", con);
+                        con.Open();
+                        // Create DbDataReader to Data Worksheet  
+                        DbDataReader dr = cmd.ExecuteReader();
+                        // SQL Server Connection String  
+                        string CS = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString;
+                        // Bulk Copy to SQL Server   
+                        SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
+                        bulkInsert.DestinationTableName = "Tbl_UserMst_Import";
+                        bulkInsert.ColumnMappings.Add("User_Code", "UserCode");
+                        bulkInsert.ColumnMappings.Add("First_Name", "FirstName");
+                        bulkInsert.ColumnMappings.Add("Last_Name", "LastName");
+                        bulkInsert.ColumnMappings.Add("Department", "Department");
+                        bulkInsert.ColumnMappings.Add("Designation", "Designation");
+                        bulkInsert.ColumnMappings.Add("Role", "Role");
+                        bulkInsert.ColumnMappings.Add("Email", "EmailID");
+                        bulkInsert.ColumnMappings.Add("Mobile_No", "MobileNo");
+                        bulkInsert.ColumnMappings.Add("Username", "Username");
+                        
+                        bulkInsert.WriteToServer(dr);
+
+                        dsResult = ObjUpkeep.Import_User_Master(CompanyID, LoggedInUserID);
+
+                        if (dsResult.Tables.Count > 0)
+                        {
+                            if (dsResult.Tables[0].Rows.Count > 0)
+                            {
+                               
+                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
+                                pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
+
+                                mpeUserMst.Show();
+                                lblImportErrorMsg.Text = "Below mentioned users can not be created, kindly check error message.";
+                                gvImportError.DataSource = dsResult;
+                                gvImportError.DataBind();
+                            }
+                            else
+                            {
+                                bindGrid();
+                            }
+                        }
+                        else
+                        {
+                            bindGrid();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+
+                }
+            }
+            else
+            {
+                //lbl
+            }
         }
 
     }

@@ -888,6 +888,10 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
         public int AnswerID { get; set; }
         public string value { get; set; }
+       // public Guid RefID { get; set; }
+        public int RefID { get; set; }
+
+
     }
 
     #endregion
@@ -981,6 +985,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string CompanyName { get; set; }
         public string Client_URL { get; set; }
         public string Module_ID { get; set; }
+        public string Company_Logo { get; set; }
     }
 
 
@@ -1010,9 +1015,15 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int InProgressTicket { get; set; }
         public int HoldTicket { get; set; }
         public int ClosedTicket { get; set; }
+        public int ExpiredTicket { get; set; }
         public int TotalTicket { get; set; }
         public decimal ClosedTicketPercentage { get; set; }
 
+    }
+
+    public class ClsEmployeeToken
+    {
+        public string TokenNumber { get; set; }
     }
     #endregion
 

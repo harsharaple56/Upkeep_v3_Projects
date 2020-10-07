@@ -419,23 +419,31 @@
 
             $(document).on('change', '.ansnumber', function () {
                 var stringAnsVal = $(this).parent().find(".hdnRepeaterAnswer").val();
-                var arrayAns = stringAnsVal.split(":");
-                var ansVl = "";
-                for (i = 0; i < arrayAns.length; ++i) {
-                    // do something with `arrayAns[i]`
-                    if (i == arrayAns.length - 1) {
-                        ansVl = ansVl + arrayAns[i]
-                    }
-                    else {
-                        if (i == 1) {
-                            ansVl = ansVl + $(this).val() + ':'
 
-                        } else {
-                            ansVl = ansVl + arrayAns[i] + ':'
+                //alert(stringAnsVal);
+                var ansVl = "";
+                if (stringAnsVal != "") {
+                    var arrayAns = stringAnsVal.split(":");
+                    for (i = 0; i < arrayAns.length; ++i) {
+                        // do something with `arrayAns[i]`
+                        if (i == arrayAns.length - 1) {
+                            ansVl = ansVl + arrayAns[i]
+                        }
+                        else {
+                            if (i == 1) {
+                                ansVl = ansVl + $(this).val() + ':'
+
+                            } else {
+                                ansVl = ansVl + arrayAns[i] + ':'
+                            }
                         }
                     }
                 }
-                 
+                else {
+                    ansVl = $(this).val();
+                }
+
+                //alert(ansVl);
                 $(this).parent().find(".hdnRepeaterAnswer").val("");
                 $(this).parent().find(".hdnRepeaterAnswer").val(ansVl);
 

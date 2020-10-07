@@ -1660,6 +1660,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Import_User_Master">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_User_MasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_User_MasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -4121,6 +4143,12 @@
   <wsdl:message name="Retailer_Escalation_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:Retailer_Escalation_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Import_User_MasterSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_User_Master" />
+  </wsdl:message>
+  <wsdl:message name="Import_User_MasterSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_User_MasterResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4905,6 +4933,10 @@
     <wsdl:operation name="Retailer_Escalation_CRUD">
       <wsdl:input message="tns:Retailer_Escalation_CRUDSoapIn" />
       <wsdl:output message="tns:Retailer_Escalation_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_User_Master">
+      <wsdl:input message="tns:Import_User_MasterSoapIn" />
+      <wsdl:output message="tns:Import_User_MasterSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5869,6 +5901,15 @@
     </wsdl:operation>
     <wsdl:operation name="Retailer_Escalation_CRUD">
       <soap:operation soapAction="http://tempuri.org/Retailer_Escalation_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_User_Master">
+      <soap:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7258,6 +7299,15 @@
     </wsdl:operation>
     <wsdl:operation name="Retailer_Escalation_CRUD">
       <soap12:operation soapAction="http://tempuri.org/Retailer_Escalation_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_User_Master">
+      <soap12:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

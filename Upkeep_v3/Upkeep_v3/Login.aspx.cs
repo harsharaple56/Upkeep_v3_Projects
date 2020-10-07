@@ -100,6 +100,7 @@ namespace Upkeep_v3
                     string CompanyID = Convert.ToString(company[0].CompanyID);
                     string ModuleIDs = Convert.ToString(company[0].Module_ID);
                     string CompanyName = Convert.ToString(company[0].CompanyName);
+                    string Company_Logo = Convert.ToString(company[0].Company_Logo);
 
                     Session["Status"] = Convert.ToString(status);
                     if (status == 1)
@@ -109,25 +110,30 @@ namespace Upkeep_v3
                         Session["CompanyName"] = CompanyName;
                         Session["CompanyCode"] = Convert.ToString(txtCompanyCode.Text.Trim());
 
+                        dvCompanyCode.Attributes.Add("style","display:none;");
+                        dvLogin.Attributes.Add("style", "display:block;");
+                        dvCompanyLogo.Attributes.Add("style", "display:block; text-align: center;");
+                        imgCompany_Logo.ImageUrl = Company_Logo;
+
                         //txtUsername.Attributes.Remove("readonly");
-                        txtUsername.ReadOnly = false;
-                        txtPassword.ReadOnly = false;
+                        //txtUsername.ReadOnly = false;
+                        //txtPassword.ReadOnly = false;
                     }
                     else if (status == 2)
                     {
                         lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
-                        txtUsername.ReadOnly = true;
-                        txtPassword.ReadOnly = true;
+                        //txtUsername.ReadOnly = true;
+                        //txtPassword.ReadOnly = true;
                     }
                     else if (status == 3)
                     {
                         lblError.Text = "Invalid Company Code";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
-                        txtUsername.ReadOnly = true;
-                        txtPassword.ReadOnly = true;
+                        //txtUsername.ReadOnly = true;
+                        //txtPassword.ReadOnly = true;
                     }
 
 
@@ -145,6 +151,7 @@ namespace Upkeep_v3
             public int CompanyID { get; set; }
             public string CompanyName { get; set; }
             public string Module_ID { get; set; }
+            public string Company_Logo { get; set; }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -245,24 +252,24 @@ namespace Upkeep_v3
                         lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
-                        txtUsername.ReadOnly = true;
-                        txtPassword.ReadOnly = true;
+                        //txtUsername.ReadOnly = true;
+                        //txtPassword.ReadOnly = true;
                     }
                     else if (status == 3)
                     {
                         lblError.Text = "Invalid Company Code";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
-                        txtUsername.ReadOnly = true;
-                        txtPassword.ReadOnly = true;
+                        //txtUsername.ReadOnly = true;
+                        //txtPassword.ReadOnly = true;
                     }
                     else
                     {
                         lblError.Text = "Please try again later";
                         txtUsername.Text = "";
                         txtPassword.Text = "";
-                        txtUsername.ReadOnly = true;
-                        txtPassword.ReadOnly = true;
+                        //txtUsername.ReadOnly = true;
+                        //txtPassword.ReadOnly = true;
                     }
                 }
                 else

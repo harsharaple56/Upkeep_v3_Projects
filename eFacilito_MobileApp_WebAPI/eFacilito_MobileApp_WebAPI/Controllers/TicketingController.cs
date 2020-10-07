@@ -817,7 +817,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               CompanyID = Convert.ToInt32(p.Field<decimal>("Company_ID")),
                                               CompanyName = Convert.ToString(p.Field<string>("Company_Name")),
                                               Client_URL = Convert.ToString(p.Field<string>("ClientURL")),
-                                              Module_ID = Convert.ToString(p.Field<string>("Module_ID"))
+                                              Module_ID = Convert.ToString(p.Field<string>("Module_ID")),
+                                              Company_Logo = Convert.ToString(p.Field<string>("Company_Logo"))
 
                                           }).ToList();
 
@@ -979,13 +980,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         {
                             objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
                                           select new ClsTicketDashboard
-                                          {
-                                              OpenTicket = Convert.ToInt32(p.Field<int>("OpenTicketCount")),
+                                          {                                             
                                               AssignedTicket = Convert.ToInt32(p.Field<int>("AssignedTicketCount")),
                                               AcceptedTicket = Convert.ToInt32(p.Field<int>("AcceptedTicketCount")),
                                               InProgressTicket = Convert.ToInt32(p.Field<int>("InProgressTicketCount")),
                                               HoldTicket = Convert.ToInt32(p.Field<int>("HoldTicketCount")),
+                                              OpenTicket = Convert.ToInt32(p.Field<int>("OpenTicketCount")),
                                               ClosedTicket = Convert.ToInt32(p.Field<int>("TicketClosedCount")),
+                                              ExpiredTicket = Convert.ToInt32(p.Field<int>("ExpiredTicketCount")),
                                               TotalTicket = Convert.ToInt32(p.Field<int>("TotalTicketCount")),
                                               ClosedTicketPercentage = Convert.ToDecimal(p.Field<decimal>("ClosedTicketPercentage"))
 
@@ -1023,6 +1025,123 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         #endregion
 
+        [Route("api/Ticketing/Fetch_Employee_Token")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Employee_Token(int CompanyID, string Username)
+        {
+            List<ClsEmployeeToken> objTokenNumber = new List<ClsEmployeeToken>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Username", Username);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Employee_Token", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            objTokenNumber = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                          select new ClsEmployeeToken
+                                          {
+                                              TokenNumber = Convert.ToString(p.Field<string>("TokenNumber")),
+                                          }).ToList();
+                            return Request.CreateResponse(HttpStatusCode.OK, objTokenNumber);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                
+            }
+
+        }
+
+
+        [Route("api/Ticketing/Update_Employee_Token")]
+        [HttpGet]
+        public HttpResponseMessage Update_Employee_Token(int EmployeeID)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@EmployeeID", EmployeeID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Update_Employee_Token", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+
+            }
+
+        }
 
 
 

@@ -50,7 +50,7 @@
         $(document).ready(function () {
             //$('#btnedit').click(function () {
             $("#btnedit").click(function(){
-                alert('edit');
+                //alert('edit');
                 $('#Add_Category').modal('show');
                 
             });
@@ -78,9 +78,6 @@
 
     <div runat="server">
          <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
-
-
-
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
@@ -125,8 +122,8 @@
                             <thead>
 
                                 <tr>
-                                    <th>Category ID</th>
                                     <th>Category Desc</th>
+                                    <th>Assigned Department</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -197,7 +194,7 @@
 
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Category Master</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader" runat="server" onserverclick="btnCloseCategory_Click"  >
                                             <span aria-hidden="true">&times;</span>
                                        <%-- <asp:Button ID="btnCloseHeader" runat="server" class="Close"/>--%>
 

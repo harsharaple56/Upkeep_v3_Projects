@@ -7,19 +7,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
-     <style type="text/css">
+    <style type="text/css">
         .modalBackground {
             background-color: grey;
             filter: alpha(opacity=90);
             opacity: 0.8;
         }
 
-        .modalPopup {
-            /*background-color: #fff;
-            border: 3px solid #ccc;*/
+        /*.modalPopup {
+          
             padding: 10px;
             width: 300px;
-        }
+        }*/
 
         /*.highlight {
             background-color: blanchedalmond;
@@ -49,7 +48,7 @@
                     $('#ImportError_Msg').text("Failed!! Please upload Excel file only.").show();
                     $(this).replaceWith($(this).val('').clone(true));
                 }
-               
+
             })
 
 
@@ -88,7 +87,7 @@
                                 <li class="m-portlet__nav-item">
                                     <a href="<%= Page.ResolveClientUrl("Add_User_Mst.aspx") %>" class="btn btn-accent  m-btn m-btn--icon" style="padding: 5%;">
                                         <span>
-                                            
+
                                             <img src="../assets/app/media/img/icons/Add_Retailer_35.png" />
                                             <span>New User</span>
                                         </span>
@@ -99,7 +98,7 @@
 
                             <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
 
-                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%;margin-left: 7%;">
+                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%; margin-left: 7%;">
                                     <img src="../assets/app/media/img/icons/database_export_35.png" />
                                     Export
                                 </a>
@@ -121,7 +120,7 @@
                                                             <span class="m-nav__link-text">PDF</span>
                                                         </a>
                                                     </li>
-                                                   
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -155,22 +154,23 @@
                     <!--begin: Datatable -->
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
 
-                       
+
                         <thead>
                             <tr>
                                 <th>User Code</th>
                                 <th>Name</th>
+                                <th>Department</th>
                                 <th>Designation</th>
                                 <th>Email ID</th>
                                 <th>Mobile No</th>
-                                <th>Approver</th>
-                                <th>Global Approver</th>
+                                <%--<th>Approver</th>
+                                <th>Global Approver</th>--%>
                                 <th>Created On</th>
                                 <th>Actions</th>
                             </tr>
 
                         </thead>
-                        
+
                         <tbody>
                             <%=bindGrid()%>
                         </tbody>
@@ -182,11 +182,11 @@
         </div>
 
 
-         <asp:Panel ID="pnlImportExport" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+        <asp:Panel ID="pnlImportExport" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                <div class="modal-dialog" role="document" style="max-width: 700px;">
                     <div class="modal-content">
-                      
+
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
@@ -195,22 +195,21 @@
                         </div>
                         <div class="modal-body">
 
-
                             <div class="form-group m-form__group row">
                                 <label for="message-text" class="col-xl-2 col-lg-2 form-control-label">Import :</label>
                                 <div class="col-xl-4 col-lg-4">
                                     <asp:FileUpload ID="FU_UserMst" runat="server" />
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
-                                    <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_UserMst" ErrorMessage="Please upload a file" ForeColor="Red" 
-                                      Display="Dynamic"  ValidationGroup="ValidationImport" ></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_UserMst" ErrorMessage="Please upload a file" ForeColor="Red"
+                                        Display="Dynamic" ValidationGroup="ValidationImport"></asp:RequiredFieldValidator>
                                     <span id="ImportError_Msg" style="color: red;"></span>
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
                                 <div class="col-xl-2 col-lg-2 col-form-label"></div>
                                 <img src="../assets/app/media/img/icons/download_sample_26.png" />
-                               
+
                                 <asp:LinkButton ID="btnDownloadSampleFile" runat="server" OnClick="lnkSampleFile_Click" Text="Download Sample Import File" ClientIDMode="Static"></asp:LinkButton>
 
                             </div>
@@ -219,35 +218,38 @@
                                 <div class="col-xl-2 col-lg-2">
                                     <asp:Button ID="btnImportExcel" Text="Import" runat="server" OnClick="btnImportExcel_Click" ValidationGroup="ValidationImport" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
                                 </div>
-                                <asp:Label ID="lblImportErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-8 col-form-label" ForeColor="Red"></asp:Label>
+
                             </div>
 
                             <div class="form-group m-form__group row">
                                 <div class="col-xl-2 col-lg-2"></div>
                                 <div class="col-xl-9 col-lg-9">
-                                    <span><b>NOTE</b> - Username will be same as * <b>Email</b> & Password will be set to <b>123456</b> for all Retailers being Imported.</span>
+                                    <span><b>NOTE</b> - 1. Data must be unique for the columns marked in <span style="color: red;"><b>RED</b></span>.</span><br />
+                                    <span>2. Password will be set to <b>123456</b> for all Users being Imported.</span>
                                 </div>
                             </div>
-                            <br />
-                            <div class="form-group m-form__group row"  >
-                                <div class="col-xl-1 col-lg-1"></div>
-                                <div class="col-xl-10 col-lg-10" style="overflow-y:auto; height:280px; display:none;" id="dvErrorGrid" runat="server">
+                            
+                            <div class="form-group m-form__group row">
+                                <asp:Label ID="lblImportErrorMsg" Text="" runat="server" CssClass="col-xl-10 col-lg-10 col-form-label" ForeColor="Red"></asp:Label>
+                            </div>
+                            
+                            <div class="form-group m-form__group row">
+                                <%--<div class="col-xl-1 col-lg-1"></div>--%>
+                                <div class="col-xl-11 col-lg-11" style="overflow-y: auto; height: 210px; display: none;" id="dvErrorGrid" runat="server">
                                     <asp:GridView ID="gvImportError" runat="server" AutoGenerateColumns="true" HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black"
                                         CssClass="table table-striped- table-bordered table-hover table-checkable">
                                     </asp:GridView>
                                 </div>
                             </div>
 
-
-
-                            <div class="modal-footer">
+                            <div class="modal-footer" >
                                 <asp:Button ID="btnCloseImportPopUp" Text="Close" OnClick="btnCloseImportPopUp_Click" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </asp:Panel>
 
 

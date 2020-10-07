@@ -469,12 +469,14 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\efacilito_350.png" />
     <Content Include="assets\app\media\img\logos\efacilito.png" />
     <Content Include="assets\app\media\img\logos\efacilito_no_bg.png" />
     <Content Include="assets\app\media\img\logos\efacilito_s.png" />
+    <Content Include="assets\app\media\img\logos\Forum_Logo.jpg" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
     <Content Include="assets\app\media\img\logos\logo-2.png" />
     <Content Include="assets\app\media\img\logos\logo-3.png" />
@@ -1016,6 +1018,7 @@
     <Content Include="Inventory\Inventory_Stock_List.aspx" />
     <Content Include="Inventory\Inventory_Transaction_Details.aspx" />
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
+    <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
@@ -3918,6 +3921,7 @@
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
+    <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -4456,6 +4460,13 @@
     </Compile>
     <Compile Include="Inventory\Inventory_Transaction_List.aspx.designer.cs">
       <DependentUpon>Inventory_Transaction_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Knowledge_Base\User_Manual.aspx.cs">
+      <DependentUpon>User_Manual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Knowledge_Base\User_Manual.aspx.designer.cs">
+      <DependentUpon>User_Manual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
