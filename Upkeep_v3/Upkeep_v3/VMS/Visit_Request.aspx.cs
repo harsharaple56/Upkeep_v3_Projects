@@ -644,7 +644,7 @@ namespace Upkeep_v3.VMS
             try
             {
                 Initiator = Convert.ToString(Session["UserType"]);
-                dsTitle = ObjUpkeep.Fetch_VMSConfiguration(Initiator);
+                dsTitle = ObjUpkeep.Fetch_VMSConfiguration(Convert.ToInt32(Session["CompanyID"]), Initiator);
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)

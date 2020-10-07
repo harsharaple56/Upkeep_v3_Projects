@@ -33,7 +33,7 @@ namespace Upkeep_v3.VMS
             {
                 strInitiator = Convert.ToString(Session["UserType"]);
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_VMSConfiguration("");
+                ds = ObjUpkeep.Fetch_VMSConfiguration(Convert.ToInt32(Session["CompanyID"]),"");
 
 
                 string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";

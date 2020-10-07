@@ -1501,23 +1501,25 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_VMSConfiguration(string Initiator) {
+        public System.Data.DataSet Fetch_VMSConfiguration(int CompanyID, string Initiator) {
             object[] results = this.Invoke("Fetch_VMSConfiguration", new object[] {
+                        CompanyID,
                         Initiator});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_VMSConfigurationAsync(string Initiator) {
-            this.Fetch_VMSConfigurationAsync(Initiator, null);
+        public void Fetch_VMSConfigurationAsync(int CompanyID, string Initiator) {
+            this.Fetch_VMSConfigurationAsync(CompanyID, Initiator, null);
         }
         
         /// <remarks/>
-        public void Fetch_VMSConfigurationAsync(string Initiator, object userState) {
+        public void Fetch_VMSConfigurationAsync(int CompanyID, string Initiator, object userState) {
             if ((this.Fetch_VMSConfigurationOperationCompleted == null)) {
                 this.Fetch_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSConfigurationOperationCompleted);
             }
             this.InvokeAsync("Fetch_VMSConfiguration", new object[] {
+                        CompanyID,
                         Initiator}, this.Fetch_VMSConfigurationOperationCompleted, userState);
         }
         
@@ -1559,8 +1561,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSRequestList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_VMSRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_VMSRequestList", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -1568,16 +1571,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_VMSRequestListAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_VMSRequestListAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_VMSRequestListAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_VMSRequestListAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_VMSRequestListAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_VMSRequestListOperationCompleted == null)) {
                 this.Fetch_VMSRequestListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSRequestListOperationCompleted);
             }
             this.InvokeAsync("Fetch_VMSRequestList", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date}, this.Fetch_VMSRequestListOperationCompleted, userState);

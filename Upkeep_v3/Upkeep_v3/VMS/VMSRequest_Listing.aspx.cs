@@ -63,7 +63,7 @@ namespace Upkeep_v3.VMS
                 }
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_VMSRequestList(LoggedInUserID, From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_VMSRequestList(Convert.ToInt32(Session["CompanyID"]), LoggedInUserID, From_Date, To_Date);
 
                 if (ds.Tables.Count > 0)
                 {

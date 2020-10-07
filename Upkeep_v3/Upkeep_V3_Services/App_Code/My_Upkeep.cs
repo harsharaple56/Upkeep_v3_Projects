@@ -216,7 +216,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath,string Sign_FilePath, int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath, string Sign_FilePath, int CompanyID, string LoggedInUserID, string Action)
     {
         try
         {
@@ -1487,14 +1487,14 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to Fetch VMS Configuration 
-    public DataSet Fetch_VMSConfiguration(string Initiator)
+    public DataSet Fetch_VMSConfiguration(int CompanyID, string Initiator)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_VMSConfiguration(Initiator, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_VMSConfiguration(CompanyID, Initiator, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1521,7 +1521,7 @@ public class My_Upkeep
     }
 
     //Added by RC This function is used to fetch VMS requests 
-    public DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_VMSRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
@@ -1529,7 +1529,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_VMSRequestList(LoggedInUserID, From_Date, To_Date, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_VMSRequestList(CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -2261,7 +2261,7 @@ public class My_Upkeep
 
     #region My Profile
 
-    public DataSet Fetch_My_Profile_Details(string LoggedInUserID,string UserType, int CompanyID)
+    public DataSet Fetch_My_Profile_Details(string LoggedInUserID, string UserType, int CompanyID)
     {
         DataSet dsProfile = new DataSet();
         try
@@ -2276,7 +2276,7 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID,string UserType, int CompanyID)
+    public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID)
     {
         DataSet dsProfile = new DataSet();
         try
