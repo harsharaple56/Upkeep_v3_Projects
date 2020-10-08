@@ -462,7 +462,7 @@ namespace Upkeep_v3.General_Masters
                         //ddlSublocation.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubLoc_Id"]);
                         //end Commented by sujata
                         ddlDepartment.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Department_Id"]);
-                        ddlTypeUser.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["User_Type_ID"]);
+                        //ddlTypeUser.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["User_Type_ID"]);
 
                         int Is_Approver = Convert.ToInt32(ds.Tables[0].Rows[0]["Is_Approver"]);
                         int Is_GlobalApprover = Convert.ToInt32(ds.Tables[0].Rows[0]["Is_GlobalApprover"]);
