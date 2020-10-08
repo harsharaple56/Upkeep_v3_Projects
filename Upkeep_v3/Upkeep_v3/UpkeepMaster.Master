@@ -201,9 +201,11 @@
                                 <ul class="m-topbar__nav m-nav m-nav--inline">
                                     <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light" m-dropdown-toggle="click" id="m_quicksearch"
                                         m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
+
                                         <a href="#" class="m-nav__link m-dropdown__toggle">
                                             <span class="m-nav__link-icon"><i class="flaticon-search-1"></i></span>
                                         </a>
+                                        
                                         <div class="m-dropdown__wrapper">
                                             <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                             <div class="m-dropdown__inner ">
@@ -468,7 +470,12 @@
                                                                     <span class="m-nav__link-text">Activity</span>
                                                                 </a>
                                                             </li>
-
+                                                            <li class="m-nav__item">
+                                                                <a href="/Knowledge_Base/User_Manual.aspx" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
+                                                                    <span class="m-nav__link-text">Help</span>
+                                                                </a>
+                                                            </li>
                                                             <li class="m-nav__separator m-nav__separator--fit"></li>
                                                             <li class="m-nav__item">
                                                                 <button id="btnLogout" runat="server" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onserverclick="btnLogout_Click" >Logout</button>
