@@ -143,14 +143,14 @@
                                                                     <span class="m-nav__section-text">Useful Links</span>
                                                                 </li>
                                                                 <li class="m-nav__item">
-                                                                    <a href="https://efacilito.com/efacilito-knowledge-base/" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                                                        <span class="m-nav__link-text">FAQ</span>
+                                                                    <a href="/Knowledge_Base/Retailer_Manual.aspx" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <span class="m-nav__link-text">Retailer Manual</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="m-nav__item">
                                                                     <a href="https://efacilito.com/support-page/" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
                                                                         <span class="m-nav__link-text">Support</span>
                                                                     </a>
                                                                 </li>
