@@ -112,7 +112,7 @@ namespace Upkeep_v3
 
                         dvCompanyCode.Attributes.Add("style","display:none;");
                         dvLogin.Attributes.Add("style", "display:block;");
-                        dvCompanyLogo.Attributes.Add("style", "display:block;");
+                        dvCompanyLogo.Attributes.Add("style", "display:block; text-align: center;");
                         imgCompany_Logo.ImageUrl = Company_Logo;
 
                         //txtUsername.Attributes.Remove("readonly");

@@ -1158,7 +1158,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_GatePassConfiguration(string Initiator, string StrConn)
+        public DataSet Fetch_GatePassConfiguration(string Initiator,int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1167,6 +1167,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_GP_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Initiator", Initiator);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2078,7 +2079,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to Fetch VMS Configuration
-        public DataSet Fetch_VMSConfiguration(string Initiator, string StrConn)
+        public DataSet Fetch_VMSConfiguration(int CompanyID, string Initiator, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2086,6 +2087,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@Initiator", Initiator);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -2118,7 +2120,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to Fetch VMS Request list
-        public DataSet Fetch_VMSRequestList(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        public DataSet Fetch_VMSRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2126,6 +2128,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_REQUEST_LIST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);

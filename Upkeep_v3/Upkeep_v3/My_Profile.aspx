@@ -144,10 +144,10 @@
                                                                 <li class="m-nav__section">
                                                                     <span class="m-nav__section-text">Useful Links</span>
                                                                 </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="https://efacilito.com/efacilito-knowledge-base/" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                                                        <span class="m-nav__link-text">FAQ</span>
+                                                               <li class="m-nav__item">
+                                                                    <a href="/Knowledge_Base/User_Manual.aspx" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
+                                                                        <span class="m-nav__link-text">User Manual</span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="m-nav__item">
@@ -156,6 +156,7 @@
                                                                         <span class="m-nav__link-text">Support</span>
                                                                     </a>
                                                                 </li>
+                                                                
                                                                 <li class="m-nav__separator m-nav__separator--fit m--hide"></li>
                                                                 <li class="m-nav__item m--hide">
                                                                     <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
