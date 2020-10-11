@@ -6,10 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-
-
-
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
             <div class="row">
