@@ -997,6 +997,7 @@
     <Content Include="General_Masters\Add_UserGrp_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Type_Master.aspx" />
+    <Content Include="General_Masters\Add_Vendor.aspx" />
     <Content Include="General_Masters\Department_Master.aspx" />
     <Content Include="General_Masters\Frequency_Master.aspx" />
     <Content Include="General_Masters\Locations_Mst.aspx" />
@@ -4332,6 +4333,13 @@
     </Compile>
     <Compile Include="General_Masters\Add_User_Type_Master.aspx.designer.cs">
       <DependentUpon>Add_User_Type_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.designer.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Department_Master.aspx.cs">
       <DependentUpon>Department_Master.aspx</DependentUpon>

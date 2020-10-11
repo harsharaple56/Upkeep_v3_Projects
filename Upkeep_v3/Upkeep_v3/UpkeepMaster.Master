@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
     <meta name="author" content="" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    <title>eFacilito</title>
+    
 
     <base href="" />
 
@@ -123,6 +123,7 @@
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
+
     </asp:ContentPlaceHolder>
 
 </head>
