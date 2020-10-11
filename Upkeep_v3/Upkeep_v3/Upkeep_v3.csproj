@@ -3925,6 +3925,7 @@
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
+    <Content Include="vendors\dropzone\dist\dropzone.js.map" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

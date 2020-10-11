@@ -123,7 +123,17 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="form-group row">
+												<label class="col-form-label col-lg-3 col-sm-12 text-lg-right">File Type Validation</label>
+												<div class="col-lg-4 col-md-9 col-sm-12">
+													<div class="dropzone dropzone-default dropzone-success" id="kt_dropzone_3">
+														<div class="dropzone-msg dz-message needsclick">
+															<h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
+															<span class="dropzone-msg-desc">Only image, pdf and psd files are allowed for upload</span>
+														</div>
+													</div>
+												</div>
+											</div>
                                         
                                         <div class="form-group m-form__group row">
                                             <div class="col-xl-9 col-lg-9">

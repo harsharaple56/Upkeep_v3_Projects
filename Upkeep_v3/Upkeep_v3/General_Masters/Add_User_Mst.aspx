@@ -315,16 +315,19 @@
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-9">
                                                 <asp:CheckBox ID="chk_IsApproval" OnCheckedChanged="chk_IsApproval_CheckedChanged" runat="server" Style="margin-left: 3px;" />
-                                                <label class="col-form-label">Check the Box if User is Approval.</label>
+                                                <label class="col-form-label">Check the Box if User is an Approver.</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-9">
                                                 <asp:CheckBox ID="chk_IsGobalApproval" OnCheckedChanged="chk_IsGobalApproval_CheckedChanged" runat="server" Style="margin-left: 3px;" />
-                                                <label class="col-form-label">Check the box if User is Gobal Approval.</label>
+                                                <label class="col-form-label">Check the box if User is Global Approver.</label>
                                             </div>
                                         </div>
+
+
+
 
                                         <div id="dvApprovalID" runat="server" visible="True">
                                             <div class="form-group m-form__group row">
