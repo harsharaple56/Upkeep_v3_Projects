@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
     <meta name="author" content="" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    <title>eFacilito</title>
+    
 
     <base href="" />
 
@@ -123,6 +123,7 @@
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
+
     </asp:ContentPlaceHolder>
 
 </head>
@@ -470,12 +471,7 @@
                                                                     <span class="m-nav__link-text">Activity</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="/Knowledge_Base/User_Manual.aspx" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
-                                                                    <span class="m-nav__link-text">Help</span>
-                                                                </a>
-                                                            </li>
+                                                         
                                                             <li class="m-nav__separator m-nav__separator--fit"></li>
                                                             <li class="m-nav__item">
                                                                 <button id="btnLogout" runat="server" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onserverclick="btnLogout_Click" >Logout</button>

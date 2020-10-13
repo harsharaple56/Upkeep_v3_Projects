@@ -999,6 +999,7 @@
     <Content Include="General_Masters\Add_UserGrp_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Type_Master.aspx" />
+    <Content Include="General_Masters\Add_Vendor.aspx" />
     <Content Include="General_Masters\Department_Master.aspx" />
     <Content Include="General_Masters\Frequency_Master.aspx" />
     <Content Include="General_Masters\Locations_Mst.aspx" />
@@ -1010,6 +1011,7 @@
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
+    <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
@@ -1022,6 +1024,7 @@
     <Content Include="Inventory\Inventory_Stock_List.aspx" />
     <Content Include="Inventory\Inventory_Transaction_Details.aspx" />
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
+    <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
@@ -3926,6 +3929,7 @@
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
+    <Content Include="vendors\dropzone\dist\dropzone.js.map" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -4336,6 +4340,13 @@
     <Compile Include="General_Masters\Add_User_Type_Master.aspx.designer.cs">
       <DependentUpon>Add_User_Type_Master.aspx</DependentUpon>
     </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.designer.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="General_Masters\Department_Master.aspx.cs">
       <DependentUpon>Department_Master.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4413,6 +4424,13 @@
     <Compile Include="General_Masters\User_Type_Master.aspx.designer.cs">
       <DependentUpon>User_Type_Master.aspx</DependentUpon>
     </Compile>
+    <Compile Include="General_Masters\Vendor_Mst.aspx.cs">
+      <DependentUpon>Vendor_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Vendor_Mst.aspx.designer.cs">
+      <DependentUpon>Vendor_Mst.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4478,6 +4496,13 @@
     </Compile>
     <Compile Include="Inventory\Inventory_Transaction_List.aspx.designer.cs">
       <DependentUpon>Inventory_Transaction_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Knowledge_Base\Retailer_Manual.aspx.cs">
+      <DependentUpon>Retailer_Manual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Knowledge_Base\Retailer_Manual.aspx.designer.cs">
+      <DependentUpon>Retailer_Manual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Knowledge_Base\User_Manual.aspx.cs">
       <DependentUpon>User_Manual.aspx</DependentUpon>
