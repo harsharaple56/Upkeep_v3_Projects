@@ -105,6 +105,12 @@
                                                     </h3>
                                                 </div>
                                             </div>
+                                            <a href="<%= Page.ResolveClientUrl("Location_QRCode.aspx") %>" class="btn btn-primary btn-success">
+                                                <span>
+                                                    <span>Generate QR Code</span>
+                                                </span>
+                                            </a>
+
                                             <%--<div class="m-portlet__head-tools">
                                         <ul class="m-portlet__nav">
                                             <li class="m-portlet__nav-item">
@@ -170,10 +176,11 @@
                                             <br />
                                             <div class="row">
 
-                                             <%--   <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Action :</label>--%>
-                                                <div class="col-lg-2" style="margin-left:30px;">
+                                                <%--   <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Action :</label>--%>
+                                                <div class="col-lg-2" style="margin-left: 30px;">
                                                     <asp:Button ID="btnAddParent" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Parent Node" OnClick="btnAddParent_Click" />
-                                                </div> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                                </div>
+                                                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                 <div class="col-lg-2">
                                                     <asp:Button ID="btnAddChild" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Child Node" OnClick="btnAddChild_Click" />
                                                 </div>
@@ -183,7 +190,8 @@
                                                 <div class="col-lg-1"></div>
                                                 <div class="col-lg-2">
                                                     <asp:Button ID="btnUpdate" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="padding: 1rem 1rem !important;" Text="Update Node" OnClick="btnUpdate_Click" />
-                                                </div> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                                </div>
+                                                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                 <div class="col-lg-2">
                                                     <asp:Button ID="btnDelete" runat="server" class="btn btn-danger  m-btn m-btn--icon m-btn--wide m-btn--md" Style="padding: 1rem 1rem !important;" Text="Delete Node" OnClick="btnDelete_Click" />
                                                 </div>
