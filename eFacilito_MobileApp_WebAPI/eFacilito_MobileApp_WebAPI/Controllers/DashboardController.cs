@@ -18,6 +18,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 {
     public class DashboardController : ApiController
     {
+
         // GET: Dashboard Data for Ticketing
 
         [Route("api/Ticketing/Fetch_Ticket_Dashboard_Count")]
@@ -96,8 +97,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
-
-
 
 
         // GET: Dashboard Data for Gatepass
@@ -181,8 +180,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
-
-
         // GET: Dashboard Data for Gatepass
 
         [Route("api/Ticketing/Fetch_Gatepass_Dashboard_Count")]
@@ -262,7 +259,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
-
         // GET: Dashboard Data for Checklist
 
         [Route("api/Ticketing/Fetch_Checklist_Dashboard_Count")]
@@ -340,7 +336,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
-
 
     }
 }

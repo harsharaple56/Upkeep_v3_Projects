@@ -58,7 +58,7 @@ namespace Upkeep_v3.CheckList
                             string SrNO = Convert.ToString(ds.Tables[0].Rows[i]["SrNo"]);
                             string Chk_Config_ID = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Config_ID"]);
                             string Chk_Title = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Title"]);
-                            string Chk_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Desc"]);
+                            //string Chk_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Desc"]);
                             string Is_Enable_Score = Convert.ToString(ds.Tables[0].Rows[i]["Is_Enable_Score"]);
                             string Total_Score = Convert.ToString(ds.Tables[0].Rows[i]["Total_Score"]);
                             string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
@@ -78,7 +78,7 @@ namespace Upkeep_v3.CheckList
 
                             data += "<tr>" +
                                 "<td>" + Chk_Title + "</td>" +
-                                "<td>" + Chk_Desc + "</td>" +
+                                //"<td>" + Chk_Desc + "</td>" +
                                // "<td>" + Is_Enable_Score + "</td>" +
                                 "<td>" + Total_Score + "</td>" +
                                 "<td>" + Created_By + "</td>" +
