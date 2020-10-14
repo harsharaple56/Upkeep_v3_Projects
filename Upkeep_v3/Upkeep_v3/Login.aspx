@@ -62,9 +62,11 @@
                 <div class="m-login__wrapper-1-1">
                     <div class="m-login__contanier">
                         <div class="m-login__content">
+                            
                             <div class="m-login__logo">
-                                <img style="width: 300px; height: 300px;" src="assets/app/media/img/logos/efacilito_250.png" />
+                                <img style="width: 265px; height: 265px;" src="assets/app/media/img/logos/efacilito_250.png" />
                             </div>
+                            
                             <div class="m-login__title">
                                 <h4>Manage all your Facilty Operations at a single instance. <b>Simple , Easy , Convenient </b></h4>
                             </div>
@@ -72,6 +74,14 @@
                             <div class="m-login__form-action">
                                 <a href="https://efacilito.com/contact/" class="btn btn-outline-focus m-btn--pill" target="_blank">Get An Account </a>
                                 <%--<button type="button" id="m_login_signup" class="btn btn-outline-focus m-btn--pill">Get An Account</button>--%>
+                            </div>
+                            <div class="m-login__logo">
+                                <a href="https://play.google.com/store/apps/details?id=com.compelconsultancy.efacilito" target="_blank">
+                                    <img style="width: 200px; height: 60px;" src="assets/app/media/img/logos/PlayStore_download.png" />
+                                </a>
+                                <a href="#">
+                                    <img style="width: 200px; height: 60px;" src="assets/app/media/img/logos/AppleStore_download.png" />
+                                </a>
                             </div>
                         </div>
                     </div>
