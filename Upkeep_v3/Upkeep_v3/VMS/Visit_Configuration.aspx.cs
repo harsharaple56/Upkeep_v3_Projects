@@ -61,7 +61,27 @@ namespace Upkeep_v3.VMS
                     if (strConfigID.All(char.IsDigit))
                         ConfigID = Convert.ToInt32(strConfigID);
 
-                    ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
+                    ViewState["ConfigID"] = ConfigID;
+                    DataSet dsVMSConfig = new DataSet();
+                    dsVMSConfig=ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
+                    if (dsVMSConfig.Tables.Count > 0)
+                    {
+                        if (dsVMSConfig.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(dsVMSConfig.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSConfig_Listing.aspx"), false);
+                            }
+                            else if (Status == 2)
+                            {
+                                divError.Visible = true;
+                                lblErrorMsg.Text = "Requests found can't delete you can edit.";
+                                btnSave.Text = "Update";
+                                BindVMSConfig();
+                            }
+                        }
+                    }
                 }
             }
         }
