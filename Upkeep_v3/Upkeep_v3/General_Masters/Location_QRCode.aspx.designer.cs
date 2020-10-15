@@ -29,5 +29,14 @@ namespace Upkeep_v3.General_Masters {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLocation_QRCode;
+        
+        /// <summary>
+        /// imgQR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgQR;
     }
 }

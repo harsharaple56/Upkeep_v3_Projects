@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9" style="text-align: right;">
-                                    <asp:Button ID="btnGenerateQRCode" runat="server" OnClick="btnGenerateQRCode_Click" Text="Generate QR Code" class="btn btn-primary btn-success" />
+                                    <asp:Button ID="btnGenerateQRCode" runat="server" OnClick="btnGenerateQRCode_Click" OnClientClick="target ='_blank';" Text="Generate QR Code" class="btn btn-primary btn-success" />
                                 </div>
                             </div>
                             <br />
@@ -191,7 +191,8 @@
 
                                 </div>
 
-
+                                <asp:Image ID="imgQR" runat="server" Visible="false" />
+                             
 
                             </div>
                         </div>

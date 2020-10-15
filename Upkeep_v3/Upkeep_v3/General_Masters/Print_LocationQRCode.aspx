@@ -76,74 +76,120 @@
     <!--end::Page Vendors Styles -->
     <link rel="shortcut icon" href="<%= Page.ResolveClientUrl("~/assets1/demo/default/media/img/logo/favicon.ico") %>" />
 
+
+    <script type = "text/javascript">
+        function PrintPanel() {
+            var panel = document.getElementById("<%=pnlContents.ClientID %>");
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(panel.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(function () {
+                printWindow.print();
+            }, 500);
+            return false;
+        }
+    </script>
+
+
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="m-content">
             <div class="m-grid__item m-grid__item--fluid  m-grid__item--order-tablet-and-mobile-1  m-login__wrapper">
                 <!--begin::Body-->
+                 <%--<asp:Button ID="btnPrint" runat="server" Text="Print" OnClientClick = "return PrintPanel();" />--%>
                 <div class="m-portlet__body">
                     <br />
-                    <table cellspacing="0" rules="all" border="5" style="width:35%; margin-left: 440px;">
+                    <%--<table cellspacing="0" rules="all" border="5" style="width:35%; margin-left: 440px;">
                         <tr>
                             <td>
                                 <div class="row" >
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                     <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
                                         <asp:Label ID="lblTicketNo" runat="server" Text="Compel Consultancy" class="form-control-label font-weight-bold" style="font-size: x-large;"></asp:Label>
                                     </div>
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                 </div>
-
                                 <div class="row" >
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                     <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
                                         <img src="../assets/demo/media/img/misc/DemoQR.png" style="width: 370px; height: 350px;" />
                                     </div>
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                 </div>
-
                                 <div class="row" >
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                     <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
                                         <asp:Label ID="Label1" runat="server" Text="Zone > Location > Sub Location > Cat" class="form-control-label font-weight-bold" style="font-size: x-large;"></asp:Label>
                                     </div>
-                                    <%--<div class="col-xl-3 col-lg-3"></div>--%>
                                 </div>
                                 <br />
                                 <div class="row " >
                                     <div class="col-xl-6 col-lg-6" style="text-align: left;">
                                         <img src="https://compelapps.in/efacilito_UAT_Control_Center//CompanyLogo/phxkurla.jpg" style="width: 100px; height: 50px;" />
                                     </div>
-                                    <%--<div class="col-xl-6 col-lg-6 col-form-label" style="text-align: center;">
-                                    </div>--%>
                                     <div class="col-xl-6 col-lg-6" style="text-align: right; width: 100px; height: 65px; overflow: hidden;">
                                         <img src="../assets/demo/media/img/misc/efacilito_QR_Logo.png" style="height: 60px; " />
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
-                    </table>
+                    </table>--%>
 
-
-
+                   
+                    <asp:Panel id="pnlContents" runat = "server">
 
                     <asp:Repeater ID="rptQRCodes" runat="server">
 
                         <ItemTemplate>
-                            <div>
-                                <asp:Label ID="lblCompanyName" runat="server" Text="Compel Consultancy"></asp:Label>
-                            </div>
-                            <div>
-                                <img src="../assets/demo/media/img/misc/DemoQR.png" />
-                            </div>
-
-                            <%--<asp:Image ImageUrl='<%# Eval("Value") %>' runat="server" />--%>
+                            <br />
+                            <br /> <br /><br /><br /> <br /><br />
+                            <table cellspacing="0" rules="all" border="5" style="width: 55%; margin-left: 210px;">
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <%--<div class="col-xl-3 col-lg-3" style="text-align: left;">
+                                            <img src="<%# Eval("CompanyLogo") %>" style="width: 100px; height: 50px;margin-left: 2%;" />
+                                                </div>--%>
+                                            <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
+                                                <asp:Label ID="lblTicketNo" runat="server" Text='<%# Eval("CompanyName") %>' class="form-control-label font-weight-bold" Style="font-size: x-large;"></asp:Label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
+                                                <img src="<%# Eval("LocationQR") %>" style="width: 500px; height: 500px;" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-form-label" style="text-align: center;">
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("LocName") %>' class="form-control-label font-weight-bold" Style="font-size: x-large;"></asp:Label>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row ">
+                                            <div class="col-xl-12 col-lg-12" style="text-align: left; overflow: hidden;">
+                                                <img src="<%# Eval("CompanyLogo") %>" style="width: 200px; height: 100px;margin-left: 2%;" />
+                                                <img src="../assets/demo/media/img/misc/efacilito_QR_Logo.png" style="height: 100px;" />
+                                            </div>
+                                           <%-- <div class="col-xl-6 col-lg-6" style="text-align: right; width: 100px; height: 65px; overflow: hidden;">
+                                                <img src="../assets/demo/media/img/misc/efacilito_QR_Logo.png" style="height: 60px;" />
+                                            </div>--%>
+                                        </div>
+                                        <br /><br />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <br /><br />
+                            <br /><br />
+                            <br /><br />
+                            <br /><br />
+                            <br /><br />
+                            <br /><br />
+                            <br /> <br /><br /><br /> <br /><br /><br /> <br /><br /><br /> <br /><br />
                         </ItemTemplate>
 
                     </asp:Repeater>
 
+                        </asp:Panel>
                 </div>
             </div>
         </div>
