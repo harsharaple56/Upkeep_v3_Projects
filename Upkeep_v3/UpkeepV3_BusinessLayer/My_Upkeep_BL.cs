@@ -1158,7 +1158,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_GatePassConfiguration(string Initiator, string StrConn)
+        public DataSet Fetch_GatePassConfiguration(string Initiator,int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1167,6 +1167,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_GP_CONFIG", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Initiator", Initiator);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

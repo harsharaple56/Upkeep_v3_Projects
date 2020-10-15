@@ -1170,12 +1170,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_GatePassConfiguration(string Initiator)
+    public DataSet Fetch_GatePassConfiguration(string Initiator, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_GatePassConfiguration(Initiator);
+            ds = ObjUpkeep.Fetch_GatePassConfiguration(Initiator, CompanyID);
         }
         catch (Exception ex)
         {

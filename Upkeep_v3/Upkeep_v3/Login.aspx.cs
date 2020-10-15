@@ -109,6 +109,7 @@ namespace Upkeep_v3
                         Session["CompanyID"] = CompanyID;
                         Session["CompanyName"] = CompanyName;
                         Session["CompanyCode"] = Convert.ToString(txtCompanyCode.Text.Trim());
+                        Session["CompanyLogo"] = Company_Logo;
 
                         dvCompanyCode.Attributes.Add("style","display:none;");
                         dvLogin.Attributes.Add("style", "display:block;");

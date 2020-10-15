@@ -57,6 +57,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -469,6 +473,8 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
+    <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
@@ -863,6 +869,8 @@
     <Content Include="assets\demo\media\img\logo\logo_default_light.png" />
     <Content Include="assets\demo\media\img\logo\logo_large.png" />
     <Content Include="assets\demo\media\img\logo\logo_login%282%29.png" />
+    <Content Include="assets\demo\media\img\misc\DemoQR.png" />
+    <Content Include="assets\demo\media\img\misc\efacilito_QR_Logo.png" />
     <Content Include="assets\demo\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\user_profile_bg.jpg" />
@@ -911,6 +919,7 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
+    <Content Include="bin\MessagingToolkit.QRCode.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\roslyn\csc.exe" />
     <Content Include="bin\roslyn\csi.exe" />
@@ -951,6 +960,7 @@
     <Content Include="bin\Upkeep_v3.dll" />
     <Content Include="bin\Upkeep_v3.pdb" />
     <Content Include="bin\Upkeep_v3.XmlSerializers.dll" />
+    <Content Include="bin\Zen.Barcode.Core.dll" />
     <Content Include="CheckList\Add_Checklist.aspx" />
     <Content Include="CheckList\Checklist.aspx" />
     <Content Include="CheckList\Checklist_Action.aspx" />
@@ -981,6 +991,7 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
@@ -997,15 +1008,19 @@
     <Content Include="General_Masters\Add_UserGrp_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Mst.aspx" />
     <Content Include="General_Masters\Add_User_Type_Master.aspx" />
+    <Content Include="General_Masters\Add_Vendor.aspx" />
     <Content Include="General_Masters\Department_Master.aspx" />
     <Content Include="General_Masters\Frequency_Master.aspx" />
     <Content Include="General_Masters\Locations_Mst.aspx" />
     <Content Include="General_Masters\LocationTree.aspx" />
+    <Content Include="General_Masters\Location_QRCode.aspx" />
+    <Content Include="General_Masters\Print_LocationQRCode.aspx" />
     <Content Include="General_Masters\Priority_Master.aspx" />
     <Content Include="General_Masters\Retailer_Master.aspx" />
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
+    <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
@@ -1018,6 +1033,7 @@
     <Content Include="Inventory\Inventory_Stock_List.aspx" />
     <Content Include="Inventory\Inventory_Transaction_Details.aspx" />
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
+    <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="My_Profile.aspx" />
@@ -3922,6 +3938,7 @@
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
+    <Content Include="vendors\dropzone\dist\dropzone.js.map" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -4220,6 +4237,13 @@
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forgot_Password.aspx.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forgot_Password.aspx.designer.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GatePass\EditGP_Configuration.aspx.cs">
       <DependentUpon>EditGP_Configuration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4332,6 +4356,13 @@
     <Compile Include="General_Masters\Add_User_Type_Master.aspx.designer.cs">
       <DependentUpon>Add_User_Type_Master.aspx</DependentUpon>
     </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Add_Vendor.aspx.designer.cs">
+      <DependentUpon>Add_Vendor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="General_Masters\Department_Master.aspx.cs">
       <DependentUpon>Department_Master.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4359,6 +4390,20 @@
     </Compile>
     <Compile Include="General_Masters\LocationTree.aspx.designer.cs">
       <DependentUpon>LocationTree.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Location_QRCode.aspx.cs">
+      <DependentUpon>Location_QRCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Location_QRCode.aspx.designer.cs">
+      <DependentUpon>Location_QRCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Print_LocationQRCode.aspx.cs">
+      <DependentUpon>Print_LocationQRCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Print_LocationQRCode.aspx.designer.cs">
+      <DependentUpon>Print_LocationQRCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Priority_Master.aspx.cs">
       <DependentUpon>Priority_Master.aspx</DependentUpon>
@@ -4394,6 +4439,13 @@
     </Compile>
     <Compile Include="General_Masters\User_Type_Master.aspx.designer.cs">
       <DependentUpon>User_Type_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Vendor_Mst.aspx.cs">
+      <DependentUpon>Vendor_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Vendor_Mst.aspx.designer.cs">
+      <DependentUpon>Vendor_Mst.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4460,6 +4512,13 @@
     </Compile>
     <Compile Include="Inventory\Inventory_Transaction_List.aspx.designer.cs">
       <DependentUpon>Inventory_Transaction_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Knowledge_Base\Retailer_Manual.aspx.cs">
+      <DependentUpon>Retailer_Manual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Knowledge_Base\Retailer_Manual.aspx.designer.cs">
+      <DependentUpon>Retailer_Manual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Knowledge_Base\User_Manual.aspx.cs">
       <DependentUpon>User_Manual.aspx</DependentUpon>
@@ -5621,6 +5680,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GatePass\GPDocuments\" />
+    <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />

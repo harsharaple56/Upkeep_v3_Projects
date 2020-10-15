@@ -5751,24 +5751,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_GatePassConfiguration(string Initiator) {
+        public System.Data.DataSet Fetch_GatePassConfiguration(string Initiator, int CompanyID) {
             object[] results = this.Invoke("Fetch_GatePassConfiguration", new object[] {
-                        Initiator});
+                        Initiator,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_GatePassConfigurationAsync(string Initiator) {
-            this.Fetch_GatePassConfigurationAsync(Initiator, null);
+        public void Fetch_GatePassConfigurationAsync(string Initiator, int CompanyID) {
+            this.Fetch_GatePassConfigurationAsync(Initiator, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_GatePassConfigurationAsync(string Initiator, object userState) {
+        public void Fetch_GatePassConfigurationAsync(string Initiator, int CompanyID, object userState) {
             if ((this.Fetch_GatePassConfigurationOperationCompleted == null)) {
                 this.Fetch_GatePassConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_GatePassConfigurationOperationCompleted);
             }
             this.InvokeAsync("Fetch_GatePassConfiguration", new object[] {
-                        Initiator}, this.Fetch_GatePassConfigurationOperationCompleted, userState);
+                        Initiator,
+                        CompanyID}, this.Fetch_GatePassConfigurationOperationCompleted, userState);
         }
         
         private void OnFetch_GatePassConfigurationOperationCompleted(object arg) {

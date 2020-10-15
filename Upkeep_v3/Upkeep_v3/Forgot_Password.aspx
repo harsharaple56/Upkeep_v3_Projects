@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Upkeep_v3.Login" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Forgot_Password.aspx.cs" Inherits="Upkeep_v3.Forgot_Password" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +6,7 @@
 <head runat="server">
     <%--  --%>
     <meta charset="utf-8" />
-    <title>eFacilito | Login Page</title>
+    <title>eFacilito | Forgot Password</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -50,8 +49,6 @@
     <!--end::Global Theme Styles -->
     <link rel="shortcut icon" href="assets1/demo/default/media/img/logo/favicon.ico" />
 </head>
-
-<!-- begin::Body -->
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
     <!-- begin:: Page -->
@@ -105,10 +102,7 @@
                             <asp:Image ID="imgCompany_Logo" runat="server" Style="width: 200px; height: 200px;" />
                         </div>
                         <br />
-                        <div class="m-login__title" style="margin-bottom: 0rem !important;">
-                            <h3>Sign In To Your Account</h3>
-                        </div>
-
+                        
                         <!--begin::Form-->
                         <form class="m-login__form m-form" runat="server" style="margin: 0rem auto !important;">
 
@@ -118,65 +112,19 @@
                             <br />
 
                             <div class="form-group m-form__group" id="dvCompanyCode" runat="server">
-                                <asp:TextBox ID="txtCompanyCode" class="form-control m-input" AutoComplete="off" placeholder="Company Code" name="company" runat="server" Style="height: 50px;"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvCompany" runat="server" ControlToValidate="txtCompanyCode" Display="Dynamic" ForeColor="Red" ErrorMessage="Please enter your company code"
-                                    ValidationGroup="CompanyCode"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtEmail" class="form-control m-input" AutoComplete="off" placeholder="Enter Your Email" name="email" runat="server" Style="height: 50px;"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfemail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ForeColor="Red" ErrorMessage="Please enter your email to Recieve Password"
+                                    ValidationGroup="ForgotPassword"></asp:RequiredFieldValidator>
 
                                 <div class="m-login__action" style="margin-left: 32%;" >
                                     <a>
-                                        <asp:Button ID="btnNext" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" ValidationGroup="CompanyCode"
-                                            OnClick="txtCompanyCode_TextChanged" Text="Next"></asp:Button>
+                                        <asp:Button ID="btnSubmit" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" ValidationGroup="ForgotPassword"
+                                            OnClick="ForgotPassword" Text="Submit"></asp:Button>
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="form-group m-form__group" style="display: none;" id="dvLogin" runat="server">
-
-                                <div class="m-radio-inline" style="text-align: center;">
-                                    <label class="m-radio font-weight-bold">
-                                        <asp:RadioButton ID="rdbEmployee" runat="server" GroupName="LoggingAs" Checked="true" />
-                                        Employee<span></span>
-                                    </label>
-                                    <label class="m-radio font-weight-bold">
-                                        <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="LoggingAs" />
-                                        Retailers<span></span>
-                                    </label>
-                                </div>
-
-
-
-                                <%--<div class="form-group m-form__group">
-                                <asp:TextBox ID="txtCompanyCode" class="form-control m-input" AutoPostBack="true" AutoComplete="off" placeholder="Company Code" name="company" OnTextChanged="txtCompanyCode_TextChanged" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvCompany" runat="server" ControlToValidate="txtCompanyCode" Display="Dynamic" ForeColor="Red" ErrorMessage="Please enter your company code"
-                                    ValidationGroup="login"></asp:RequiredFieldValidator>
-                            </div>--%>
-                                <div class="form-group m-form__group">
-                                    <asp:TextBox ID="txtUsername" class="form-control m-input" AutoComplete="off" placeholder="Username" name="email" runat="server" Style="height: 50px;"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsername" Display="Dynamic" ForeColor="Red"
-                                        ErrorMessage="Please enter username" ValidationGroup="login"></asp:RequiredFieldValidator>
-                                </div>
-                                <div class="form-group m-form__group">
-                                    <asp:TextBox ID="txtPassword" class="form-control m-input m-login__form-input--last" AutoComplete="off" type="password" placeholder="Password" name="password" runat="server" Style="height: 50px;"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" Display="Dynamic" ForeColor="Red"
-                                        ErrorMessage="Please enter password" ValidationGroup="login"></asp:RequiredFieldValidator>
-                                </div>
-
-
-                                <!--end::Form-->
-
-                                <!--begin::Action-->
-                                <div class="m-login__action">
-                                    <a href="<%= Page.ResolveClientUrl("~/Forgot_Password.aspx") %>" class="m-link">
-                                        <span>Forgot Password ?</span>
-                                    </a>
-                                    <a href="#">
-                                        <asp:Button ID="btnLogin" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" ValidationGroup="login"
-                                            OnClick="btnLogin_Click" Text=" Sign In"></asp:Button>
-                                    </a>
-                                </div>
-
-                            </div>
-
+                            
                             <div class="col m--align-right">
                                 Version No:
                                 <asp:Label ID="lblVersion" Text="1.0" runat="server"></asp:Label>
@@ -216,6 +164,4 @@
 
     <!--end::Page Scripts -->
 </body>
-
-<!-- end::Body -->
 </html>

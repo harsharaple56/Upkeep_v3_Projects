@@ -9196,9 +9196,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
 
                 var httpRequestMain = HttpContext.Current.Request;
+
                 foreach (string fileX in httpRequestMain.Files)
                 {
-                    if (Convert.ToInt32(fileX) == 0)
+                    if (Convert.ToInt32(fileX) != 0)
                     {
                         var postedFilex = httpRequestMain.Files[fileX];
                         string ResponseData = "";
@@ -9289,7 +9290,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                         if (postedFile.ContentLength > MaxContentLength)
                                                         {
                                                             message = string.Format("Please Upload a file upto 1 mb.");
-                                                        } 
+                                                        }
                                                         else if (postedFile.ContentLength > MaxContentLengthVideo)
                                                         {
                                                             message = string.Format("Please Upload a file upto 3 mb.");
@@ -9344,7 +9345,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     }
                 }
 
-                //DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
 
                 if (DsDataSet != null)
                 {
@@ -9363,6 +9364,229 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+        // Create Cheklist API to save data , Section Wise.
+        [Route("api/UpKeep/Save_Checklist_Response_InSection")]
+        [HttpPost]
+        public HttpResponseMessage Save_Checklist_Response_InSection() //[FromBody] ClsChecklist_Response objInsert
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            try
+            {
+                StringBuilder strXml = new StringBuilder();
+
+                string StrLocConnection = null;
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
+
+                int isJsonPassed = 0;
+                ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>(""); 
+                var httpRequestMain = HttpContext.Current.Request;
+                foreach (string fileJson in httpRequestMain.Form)
+                {
+                    if (fileJson == "0")
+                    {
+                        var jsonString = httpRequestMain.Form[fileJson];
+                        objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>(jsonString.Replace("\"", "'"));
+
+                        ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
+                        ObjLocSqlParameter[1] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
+                        ObjLocSqlParameter[2] = new SqlParameter("@User_Code", objInsert.User_Code);
+                        ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", objInsert.CompanyID);
+                        ObjLocSqlParameter[4] = new SqlParameter("@LocationID", objInsert.LocationID);
+                        ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
+
+                        isJsonPassed = 1;
+                    }
+                }
+
+                if (isJsonPassed == 1)
+                {
+                     
+
+                    // foreach (string fileX in httpRequestMain.Files)
+                    // {
+                    //   if (Convert.ToInt32(fileX) != 0)
+                    //{
+                    //  var postedFilex = httpRequestMain.Files[fileX];
+                    //string ResponseData = "";
+                    //using (var reader = new StreamReader(postedFilex.InputStream))
+                    //{
+                    //    reader.BaseStream.Seek(0, SeekOrigin.Begin);
+                    //    while (!reader.EndOfStream)
+                    //    {
+                    //        ResponseData += reader.ReadLine();
+                    //    }
+                    //}
+
+                    //ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>(ResponseData.Replace("\"", "'"));
+
+                    //ObjLocSqlParameter[0] = new SqlParameter("@Chk_Response_ID", objInsert.Chk_Response_ID);
+                    //ObjLocSqlParameter[1] = new SqlParameter("@Chk_Config_ID", objInsert.Chk_Config_ID);
+                    //ObjLocSqlParameter[2] = new SqlParameter("@User_Code", objInsert.User_Code);
+                    //ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", objInsert.CompanyID);
+                    //ObjLocSqlParameter[4] = new SqlParameter("@LocationID", objInsert.LocationID);
+                    //ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
+
+
+                    strXml.Append(@"<DocumentElement>");
+                    foreach (ClsChecklist_Response_Data objs in objInsert.ObjChkResponseData)
+                    {
+                        strXml.Append(@"<Section>");
+                        strXml.Append(@"<SectionID>" + objs.SectionID.ToString() + "</SectionID>");
+                        strXml.Append(@"<QuestionID>" + objs.QuestionID.ToString() + "</QuestionID>");
+                        strXml.Append(@"<AnswerTypeID>" + objs.AnswerTypeID.ToString() + "</AnswerTypeID>");
+
+                        strXml.Append(@"<AnswerData>");
+
+                        foreach (ClsChecklist_Response_Data_Values objsValue in objs.ObjChkResponseDataValue)
+                        {
+                            bool isFile = false;
+                            var httpRequest = HttpContext.Current.Request;
+                            if (httpRequest.Files.Count > 0)
+                            {
+                                foreach (string file in httpRequest.Files)
+                                {
+                                    if (Convert.ToInt32(file) == objsValue.RefID && objsValue.RefID > 0)
+                                    {
+                                        isFile = true;
+                                    }
+                                }
+                            }
+
+                            if (isFile == true)
+                            {
+                                foreach (string file in httpRequest.Files)
+                                {
+                                    if (Convert.ToInt32(file) == objsValue.RefID && objsValue.RefID > 0)
+                                    {
+                                        string path = "";
+                                        try
+                                        {
+                                            string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                                            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                            var postedFile = httpRequest.Files[file];
+
+                                            if (postedFile != null && postedFile.ContentLength > 0)
+                                            {
+                                                int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB
+
+                                                int MaxContentLengthVideo = 3;
+
+                                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                                                IList<string> AllowedFileExtensionsVideo = new List<string> { ".3gp", ".mp4", ".MPEG-4", ".MKV" };
+
+                                                var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                                                var extension = ext.ToLower();
+                                                if (!AllowedFileExtensions.Contains(extension) && !AllowedFileExtensionsVideo.Contains(extension))
+                                                {
+                                                    var message = "";
+                                                    if (!AllowedFileExtensions.Contains(extension))
+                                                    {
+                                                        message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                                                    }
+                                                    else if (!AllowedFileExtensionsVideo.Contains(extension))
+                                                    {
+                                                        message = string.Format("Please Upload video of type .3gp,.mp4,.MPEG-4.");
+                                                    }
+                                                    return Request.CreateResponse(HttpStatusCode.ExpectationFailed, message); ;
+                                                }
+                                                else if (postedFile.ContentLength > MaxContentLength && postedFile.ContentLength > MaxContentLengthVideo)
+                                                {
+                                                    var message = "";
+                                                    if (postedFile.ContentLength > MaxContentLength)
+                                                    {
+                                                        message = string.Format("Please Upload a file upto 1 mb.");
+                                                    }
+                                                    else if (postedFile.ContentLength > MaxContentLengthVideo)
+                                                    {
+                                                        message = string.Format("Please Upload a file upto 3 mb.");
+                                                    }
+                                                    return Request.CreateResponse(HttpStatusCode.ExpectationFailed, message); ;
+                                                }
+                                                else
+                                                {
+                                                    //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                                                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate);
+                                                    if (!Directory.Exists(fileUploadPath))
+                                                    {
+                                                        Directory.CreateDirectory(fileUploadPath);
+                                                    }
+                                                    var ImageName = objs.QuestionID.ToString() + "_" + objsValue.AnswerID.ToString() + "_" + file;
+                                                    var fileName = ImageName + extension;
+                                                    string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate) + "/" + fileName;
+                                                    string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + fileName;
+                                                    //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+                                                    postedFile.SaveAs(SaveLocation);
+                                                    path = FileLocation;
+                                                }
+                                            }
+                                            //} 
+                                        }
+                                        catch (Exception ex1)
+                                        {
+                                            var res = string.Format("Error Occured : ") + ex1.Message;
+                                            return Request.CreateResponse(HttpStatusCode.ExpectationFailed, res); ;
+                                        }
+                                        strXml.Append(@"<AnswerValue>");
+                                        strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
+                                        strXml.Append(@"<value>" + path.ToString() + "</value>");
+                                        strXml.Append(@"</AnswerValue>");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                strXml.Append(@"<AnswerValue>");
+                                strXml.Append(@"<AnswerID>" + objsValue.AnswerID.ToString() + "</AnswerID>");
+                                strXml.Append(@"<value>" + objsValue.value.ToString() + "</value>");
+                                strXml.Append(@"</AnswerValue>");
+                            }
+                        }
+                        strXml.Append(@"</AnswerData>");
+                        strXml.Append(@"</Section>");
+                    }
+                    strXml.Append(@"</DocumentElement>");
+
+                    ObjLocSqlParameter[6] = new SqlParameter("@ChkResponseData", strXml.ToString());
+                    //   }
+                    // }
+
+                    DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_INSERT_CHK_RESPONSE", ObjLocSqlParameter);
+
+                    if (DsDataSet != null)
+                    {
+                        if (DsDataSet.Tables.Count > 0)
+                        {
+                            if (DsDataSet.Tables[0].Rows.Count > 0)
+                            {
+                                //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                                //{
+                                //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+                                //    FunSendAppNotification(TokenNO, TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                                //}
+                            }
+                        }
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Record Found");
+                }
             }
             catch (Exception ex)
             {
@@ -10425,46 +10649,46 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                 }).ToList();
 
                             ObjClCSMConfigInQuestion = (from x in DsDataSet.Tables[1].AsEnumerable()
-                                                      select new ClCSMConfigQuestion
-                                                      {
-                                                          CSM_Question_ID = Convert.ToInt32(x.Field<int>("Open_Qn_ID")),
-                                                          Qn_Desc = Convert.ToString(x.Field<string>("Desc")),
-                                                          CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
-
-                                                          ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[2].AsEnumerable()
-                                                                                      // where y.field<decimal>("CSM_question_id ") == p.field<decimal>("CSM_question_id ")
-                                                                                  where y.Field<int>("Open_Qn_ID") == x.Field<int>("Open_Qn_ID")
-                                                                                  select new ClCSMConfigAnswer
-                                                                                  {
-                                                                                     // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
-                                                                                      CSM_Question_ID = Convert.ToInt32(y.Field<int>("Open_Qn_ID")),
-                                                                                      Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("is_flag")),
-                                                                                      //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
-                                                                                      CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
-                                                                                      CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
-                                                                                  }).ToList()
-                                                      }).ToList();
-
-                            ObjClCSMConfigOutQuestion = (from x in DsDataSet.Tables[3].AsEnumerable()
                                                         select new ClCSMConfigQuestion
                                                         {
-                                                            CSM_Question_ID = Convert.ToInt32(x.Field<int>("Close_Qn_ID")),
+                                                            CSM_Question_ID = Convert.ToInt32(x.Field<int>("Open_Qn_ID")),
                                                             Qn_Desc = Convert.ToString(x.Field<string>("Desc")),
                                                             CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
 
-                                                            ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[4].AsEnumerable()
+                                                            ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[2].AsEnumerable()
                                                                                         // where y.field<decimal>("CSM_question_id ") == p.field<decimal>("CSM_question_id ")
-                                                                                    where y.Field<int>("Close_Qn_ID") == x.Field<int>("Close_Qn_ID")
+                                                                                    where y.Field<int>("Open_Qn_ID") == x.Field<int>("Open_Qn_ID")
                                                                                     select new ClCSMConfigAnswer
                                                                                     {
                                                                                         // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
-                                                                                        CSM_Question_ID = Convert.ToInt32(y.Field<int>("Close_Qn_ID")),
+                                                                                        CSM_Question_ID = Convert.ToInt32(y.Field<int>("Open_Qn_ID")),
                                                                                         Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("is_flag")),
                                                                                         //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
                                                                                         CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
                                                                                         CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
                                                                                     }).ToList()
                                                         }).ToList();
+
+                            ObjClCSMConfigOutQuestion = (from x in DsDataSet.Tables[3].AsEnumerable()
+                                                         select new ClCSMConfigQuestion
+                                                         {
+                                                             CSM_Question_ID = Convert.ToInt32(x.Field<int>("Close_Qn_ID")),
+                                                             Qn_Desc = Convert.ToString(x.Field<string>("Desc")),
+                                                             CSM_Ans_Type_ID = Convert.ToInt32(x.Field<int>("Ans_Type_ID")),
+
+                                                             ObjClCSMConfigAnswer = (from y in DsDataSet.Tables[4].AsEnumerable()
+                                                                                         // where y.field<decimal>("CSM_question_id ") == p.field<decimal>("CSM_question_id ")
+                                                                                     where y.Field<int>("Close_Qn_ID") == x.Field<int>("Close_Qn_ID")
+                                                                                     select new ClCSMConfigAnswer
+                                                                                     {
+                                                                                         // CSM_Ans_Value_ID = Convert.ToInt32(y.Field<decimal>("CSM_ans_value_id")),
+                                                                                         CSM_Question_ID = Convert.ToInt32(y.Field<int>("Close_Qn_ID")),
+                                                                                         Ans_Is_Flag = Convert.ToBoolean(y.Field<bool>("is_flag")),
+                                                                                         //Is_Default = Convert.ToBoolean(y.Field<bool>("is_default")),
+                                                                                         CSM_Ans_Desc = Convert.ToString(y.Field<string>("desc")),
+                                                                                         CSM_Ans_Type_ID = Convert.ToInt32(y.Field<int>("ans_type_id"))
+                                                                                     }).ToList()
+                                                         }).ToList();
 
                             ObjClCSMConfigTerms = (from z in DsDataSet.Tables[5].AsEnumerable()
                                                    select new ClCSMConfigTerms
