@@ -223,8 +223,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                Approved = Convert.ToInt32(p.Field<int>("ApprovedCount")),
                                                Rejected = Convert.ToInt32(p.Field<int>("RejectedCount")),
                                                Expired = Convert.ToInt32(p.Field<int>("ExpiredCount")),
+                                               PendingPercentage = Convert.ToDecimal(p.Field<decimal>("PendingPercentage")),
+                                               Total = Convert.ToInt32(p.Field<int>("TotalCount")),
                                                Closed = Convert.ToInt32(p.Field<int>("ClosedCount")),
-                                               PendingPercentage = Convert.ToDecimal(p.Field<decimal>("PendingPercentage"))
+                                               PendingApprovals = Convert.ToInt32(p.Field<int>("PendingApprovalsCount"))
+
 
                                            }).ToList();
 
@@ -300,10 +303,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                              select new ClsChecklistsDashboard
                                              {
                                                  AvailableDeptChk = Convert.ToInt32(p.Field<int>("AvailableDeptChkCount")),
-                                                 Pending = Convert.ToInt32(p.Field<int>("OnHoldCount")),
-                                                 Closed = Convert.ToInt32(p.Field<int>("ApprovedCount")),
-                                                 Total = Convert.ToInt32(p.Field<int>("RejectedCount")),
-                                                 PendingChkPercentage = Convert.ToDecimal(p.Field<decimal>("PendingPercentage"))
+                                                 Pending = Convert.ToInt32(p.Field<int>("PendingCount")),
+                                                 Closed = Convert.ToInt32(p.Field<int>("ClosedCount")),
+                                                 Total = Convert.ToInt32(p.Field<int>("TotalCount")),
+                                                 PendingChkPercentage = Convert.ToDecimal(p.Field<decimal>("PendingChkPercentage"))
 
                                              }).ToList();
 
