@@ -21,7 +21,7 @@
             }
         });
     </script>
-
+   
     <script type="text/javascript">
 
         var path = "airbrake.json";
@@ -67,7 +67,7 @@
                                 <img style="width: 265px; height: 265px;" src="assets/app/media/img/logos/efacilito_250.png" />
                             </div>
                             
-                            <div class="m-login__title">
+                            <div class="m-login__title" style="padding-top: 2rem !important;">
                                 <h4>Manage all your Facilty Operations at a single instance. <b>Simple , Easy , Convenient </b></h4>
                             </div>
 

@@ -172,6 +172,7 @@
     <Compile Include="Models\ClsFeedback.cs" />
     <Compile Include="Models\ClsTicketing.cs" />
     <Compile Include="Models\ClsUpkeepMasters.cs" />
+    <Compile Include="Models\ClsDashboard.cs" />
     <Compile Include="Models\GatePassMail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestsharpAPI.cs" />
