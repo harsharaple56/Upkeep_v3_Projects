@@ -473,6 +473,8 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
+    <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
@@ -989,6 +991,7 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
@@ -4233,6 +4236,13 @@
     </Compile>
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forgot_Password.aspx.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forgot_Password.aspx.designer.cs">
+      <DependentUpon>Forgot_Password.aspx</DependentUpon>
     </Compile>
     <Compile Include="GatePass\EditGP_Configuration.aspx.cs">
       <DependentUpon>EditGP_Configuration.aspx</DependentUpon>

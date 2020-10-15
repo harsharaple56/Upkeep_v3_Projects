@@ -145,7 +145,9 @@
                                                                     <span class="m-nav__section-text">Useful Links</span>
                                                                 </li>
                                                                <li class="m-nav__item">
-                                                                    <a href="/Knowledge_Base/User_Manual.aspx" class="m-nav__link">
+
+                                                                   
+                                                                    <a href="<%= Page.ResolveClientUrl("~/Knowledge_Base/User_Manual.aspx") %>" class="m-nav__link">
                                                                         <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
                                                                         <span class="m-nav__link-text">User Manual</span>
                                                                     </a>
