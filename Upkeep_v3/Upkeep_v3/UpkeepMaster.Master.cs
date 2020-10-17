@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
 using System.Configuration;
+using System.Web.Configuration;
 
 namespace Upkeep_v3
 {
@@ -51,8 +52,21 @@ namespace Upkeep_v3
             rptVerMenu.DataSource = dtx;
             rptVerMenu.DataBind();
 
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+           
             if (!IsPostBack)
             {
+                //Session Timeout
+                Session["Reset"] = true;
+                Configuration config = WebConfigurationManager.OpenWebConfiguration("~/Web.Config");
+                SessionStateSection section = (SessionStateSection)config.GetSection("system.web/sessionState");
+                int timeout = (int)section.Timeout.TotalMinutes * 1000 * 60;
+                //int timeout = (int)section.Timeout.TotalMinutes * 60;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
+
+                //Session Timeout
+
                 lblUsername.Text = Convert.ToString(Session["UserName"]);
                 lblProfileName.Text = Convert.ToString(Session["LoggedInProfileName"]);
 
