@@ -78,7 +78,7 @@ namespace Upkeep_v3.CheckList
 
                         for (int i = 0; i < count; i++)
                         {
-                            string Ans_Response_ID = Convert.ToString(ds.Tables[0].Rows[i]["Ans_Response_ID"]);
+                            string Ans_Response_ID = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Response_ID"]);
                             string Chk_Config_ID = Convert.ToString(ds.Tables[0].Rows[i]["Chk_Config_ID"]);
                             string ChecklistName = Convert.ToString(ds.Tables[0].Rows[i]["Checklist Name"]);
                             string StartTime = Convert.ToString(ds.Tables[0].Rows[i]["Start Time"]);
