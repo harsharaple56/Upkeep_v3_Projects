@@ -49,6 +49,15 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.TextBox txtNewNode;
         
         /// <summary>
+        /// rfvLoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLoc;
+        
+        /// <summary>
         /// btnAddParent control.
         /// </summary>
         /// <remarks>

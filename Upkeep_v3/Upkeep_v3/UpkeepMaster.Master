@@ -732,6 +732,8 @@
                                 <%--&nbsp;<b><span id="minutes"></span>:<span id="seconds"></span></b><br />--%>
                                 <br />
                                 To continue your session, select <b>Stay Signed In</b>.
+                                <br />
+                                If clicked on <b>Close</b>, Please save any Data on the form to avoid data loss on page refresh.
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md" onclick="ResetSession()" data-dismiss="modal">Stay Signed In</button>
