@@ -118,6 +118,7 @@
         }
 
         function FunEditClick(ID, Desc) {
+            //alert('fdf');
             //debugger;
             txtControl.value = Desc;
             //document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
