@@ -1011,6 +1011,7 @@
     <Content Include="General_Masters\Print_LocationQRCode.aspx" />
     <Content Include="General_Masters\Priority_Master.aspx" />
     <Content Include="General_Masters\Retailer_Master.aspx" />
+    <Content Include="General_Masters\System_Settings.aspx" />
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
@@ -4412,6 +4413,13 @@
     </Compile>
     <Compile Include="General_Masters\Retailer_Master.aspx.designer.cs">
       <DependentUpon>Retailer_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\System_Settings.aspx.cs">
+      <DependentUpon>System_Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\System_Settings.aspx.designer.cs">
+      <DependentUpon>System_Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\UserGrp_Mst.aspx.cs">
       <DependentUpon>UserGrp_Mst.aspx</DependentUpon>

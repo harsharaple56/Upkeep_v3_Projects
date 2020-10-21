@@ -315,5 +315,16 @@ namespace Upkeep_v3_Control_Center.Masters
             }
         }
 
+        protected void chk_Is_SMS_Enable_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chk_Is_SMS_Enable.Checked)
+            {
+                SMS_Config_Details.Visible = true;
+            }
+            else
+            {
+                SMS_Config_Details.Visible = false;
+            }
+        }
     }
 }
