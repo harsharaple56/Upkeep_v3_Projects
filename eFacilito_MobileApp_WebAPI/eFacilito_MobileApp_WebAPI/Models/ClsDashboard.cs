@@ -66,7 +66,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public string Postcode { get; set; }
+        public int Postcode { get; set; }
         public string Company_Code { get; set; }
         public string Role_Name { get; set; }
         public string Reporting_Manager { get; set; }
