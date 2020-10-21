@@ -171,6 +171,8 @@
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <asp:TextBox ID="txtNewNode" runat="server" autocomplete="off" class="form-control m-input"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rfvLoc" runat="server" ControlToValidate="txtNewNode" Display="Dynamic"
+                                                        ForeColor="Red" ErrorMessage="Please enter Location" ValidationGroup="ValidateLocation"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                             <br />
@@ -178,18 +180,18 @@
 
                                                 <%--   <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Action :</label>--%>
                                                 <div class="col-lg-2" style="margin-left: 30px;">
-                                                    <asp:Button ID="btnAddParent" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Parent Node" OnClick="btnAddParent_Click" />
+                                                    <asp:Button ID="btnAddParent" runat="server" ValidationGroup="ValidateLocation" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Parent Node" OnClick="btnAddParent_Click" />
                                                 </div>
                                                 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                 <div class="col-lg-2">
-                                                    <asp:Button ID="btnAddChild" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Child Node" OnClick="btnAddChild_Click" />
+                                                    <asp:Button ID="btnAddChild" runat="server" ValidationGroup="ValidateLocation" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Add Child Node" OnClick="btnAddChild_Click" />
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
                                                 <div class="col-lg-2">
-                                                    <asp:Button ID="btnUpdate" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="padding: 1rem 1rem !important;" Text="Update Node" OnClick="btnUpdate_Click" />
+                                                    <asp:Button ID="btnUpdate" runat="server" ValidationGroup="ValidateLocation" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="padding: 1rem 1rem !important;" Text="Update Node" OnClick="btnUpdate_Click" />
                                                 </div>
                                                 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                                                 <div class="col-lg-2">

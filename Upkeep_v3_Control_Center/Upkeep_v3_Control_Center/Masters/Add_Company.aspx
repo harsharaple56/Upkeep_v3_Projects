@@ -161,7 +161,6 @@
                                                         <span style="color: red;">*</span><asp:CheckBox ID="chk_IsDBatClient" OnCheckedChanged="chk_IsDBatClient_CheckedChanged" AutoPostBack="true" runat="server" Style="margin-left: 3px;" />
                                                     </div>
                                                     <label class="col-xl-8 col-lg-3 col-form-label">Check the Box if Database is on Client Server.</label>
-
                                                 </div>
 
                                                 <div id="dvServerDetails" runat="server" visible="false">
@@ -208,6 +207,47 @@
 
                                             </div>
 
+                                            <div class="form-group row" style="background-color: #00c5dc;">
+                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">SMS Configurataion</label>
+                                            </div>
+
+                                                <div class="form-group m-form__group row">
+                                                    <div class="col-xl-1 col-lg-3 col-form-label">
+                                                        <span style="color: red;">*</span><asp:CheckBox ID="chk_Is_SMS_Enable" OnCheckedChanged="chk_Is_SMS_Enable_CheckedChanged" AutoPostBack="true" runat="server" Style="margin-left: 3px;" />
+                                                    </div>
+                                                    <label class="col-xl-8 col-lg-3 col-form-label">Enable SMS</label>
+                                                </div>
+                                                
+                                                <div id="SMS_Config_Details" runat="server" visible="false">
+                                                    <div class="form-group m-form__group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Select SMS Configuration:</label>
+                                                        <div class="col-xl-9 col-lg-9">
+                                                            <asp:DropDownList ID="SMS_Config_ID" class="form-control m-input" runat="server"></asp:DropDownList>
+                                                            <span id="error_SMS_Config" class="text-danger small"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group m-form__group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Available Allot SMS Balance:</label>
+                                                        <div class="col-xl-9 col-lg-9">
+                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
+                                                            <asp:Label ID="Available_Allot_SMS_Bal" runat="server" class="form-control m-input" ></asp:Label>
+                                                            <span id="error_Available_Allot_SMS_Bal" class="text-danger small"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group m-form__group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Alloted SMS Balance:</label>
+                                                        <div class="col-xl-9 col-lg-9">
+                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
+                                                            <asp:TextBox ID="txt_Alloted_SMS" runat="server" class="form-control m-input" placeholder="Enter No. of SMS to be alloted to be Company"></asp:TextBox>
+                                                            <span id="error_txt_Alloted_SMS" class="text-danger small"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <asp:Label ID="Label1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+                                                    </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

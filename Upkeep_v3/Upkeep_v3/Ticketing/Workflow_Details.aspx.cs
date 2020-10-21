@@ -74,7 +74,7 @@ namespace Upkeep_v3.Ticketing
                     Action = "C";
                 }
 
-                ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
+                //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
                 CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
 
@@ -548,11 +548,11 @@ namespace Upkeep_v3.Ticketing
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        ddlZone.DataSource = ds.Tables[0];
-                        ddlZone.DataTextField = "Zone";
-                        ddlZone.DataValueField = "Zone_ID";
-                        ddlZone.DataBind();
-                        ddlZone.Items.Insert(0, new ListItem("--Select--", "0"));
+                        //ddlZone.DataSource = ds.Tables[0];
+                        //ddlZone.DataTextField = "Zone";
+                        //ddlZone.DataValueField = "Zone_ID";
+                        //ddlZone.DataBind();
+                        //ddlZone.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
                 }
             }
@@ -577,7 +577,7 @@ namespace Upkeep_v3.Ticketing
                         Session["WorkflowID"] = Convert.ToInt32(dsWorkflowDetail.Tables[0].Rows[0]["Workflow_Id"]);
                         txtWorkflowDesc.Text = Convert.ToString(dsWorkflowDetail.Tables[0].Rows[0]["Workflow_Desc"]);
                         //Fetch_Zone();
-                        ddlZone.SelectedValue = Convert.ToString(dsWorkflowDetail.Tables[0].Rows[0]["ZoneID"]);
+                        //ddlZone.SelectedValue = Convert.ToString(dsWorkflowDetail.Tables[0].Rows[0]["ZoneID"]);
 
                         ddlCategory.SelectedValue = Convert.ToString(dsWorkflowDetail.Tables[0].Rows[0]["Category_ID"]);
 

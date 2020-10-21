@@ -30,9 +30,10 @@ namespace Upkeep_v3.GatePass
                 // redirect to custom error page -- session timeout
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
-            Bind_GatePassConfiguration(GP_ConfigID);
+            //Bind_GatePassConfiguration(GP_ConfigID);
             if (!IsPostBack)
             {
+                Bind_GatePassConfiguration(GP_ConfigID);
                 if (Del_GPConfigID > 0)
                 {
                     Delete_GatePassConfiguration(Del_GPConfigID);

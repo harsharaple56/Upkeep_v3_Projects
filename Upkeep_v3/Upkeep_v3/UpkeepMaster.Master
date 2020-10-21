@@ -1,17 +1,20 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UpkeepMaster.master.cs" Inherits="Upkeep_v3.UpkeepMaster" %>
 
+<%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>--%>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
     <meta charset="utf-8" />
+    <title>eFacilito</title>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="description" content="Latest updates and statistic charts" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
     <meta name="author" content="" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    
+
 
     <base href="" />
 
@@ -122,14 +125,108 @@
         }
     </script>
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <%--<style type="text/css">
+       
+        .modalBackground
+        {
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+        }
+        .modalPopup
+        {
+            background-color: #FFFFFF;
+            width: 500px;
+            border: 3px solid #0DA9D0;
+            border-radius: 12px;
+            padding: 0;
+        }
+        .modalPopup .header
+        {
+            background-color: #2FBDF1;
+            height: 30px;
+            color: White;
+            line-height: 30px;
+            text-align: center;
+            font-weight: bold;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        .modalPopup .body
+        {
+            padding: 10px;
+            min-height: 50px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .modalPopup .footer
+        {
+            padding: 6px;
+        }
+        .modalPopup .yes, .modalPopup .no
+        {
+            height: 23px;
+            color: White;
+            line-height: 23px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .modalPopup .yes
+        {
+            background-color: #2FBDF1;
+            border: 1px solid #0DA9D0;
+        }
+        .modalPopup .no
+        {
+            background-color: #9F9F9F;
+            border: 1px solid #5C5C5C;
+        }
+    </style>--%>
 
+    <script type="text/javascript">
+        function SessionExpireAlert(timeout) {
+            var seconds = timeout / 1000;
+
+            //document.getElementsByName("secondsIdle").innerHTML = seconds;
+            document.getElementsByName("seconds").innerHTML = seconds;
+           
+            setInterval(function () {
+                seconds--;
+                document.getElementById("seconds").innerHTML = seconds;
+                //document.getElementById("secondsIdle").innerHTML = seconds;
+              
+            }, 1000);
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                //$find("mpeTimeout").show();
+                
+                $("#MyPopup").modal({
+            backdrop: 'static',
+            keyboard: false
+                });
+                $("#MyPopup").modal("show");
+
+            }, timeout - 120 * 1000);
+            setTimeout(function () {
+                window.location = "<%= Page.ResolveClientUrl("~/Login.aspx") %>";
+            }, timeout);
+        };
+        function ResetSession() {
+            //Redirect to refresh Session.
+            window.location = window.location.href;
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>
 
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
 
     <%--  <form id="form1" runat="server">--%>
 
@@ -206,7 +303,7 @@
                                         <a href="#" class="m-nav__link m-dropdown__toggle">
                                             <span class="m-nav__link-icon"><i class="flaticon-search-1"></i></span>
                                         </a>
-                                        
+
                                         <div class="m-dropdown__wrapper">
                                             <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                             <div class="m-dropdown__inner ">
@@ -410,8 +507,8 @@
                                         <a href="#" class="m-nav__link m-dropdown__toggle">
                                             <span class="m-topbar__userpic">
                                                 <%--<img src="<%= Page.ResolveClientUrl("~/assets/app/media/img/users/user4.png") %>" class="m--img-rounded m--marginless" alt="" />--%>
-                                                            <asp:Image ID="imgProfilePic" runat="server" class="m--img-rounded m--marginless" />
-                                        
+                                                <asp:Image ID="imgProfilePic" runat="server" class="m--img-rounded m--marginless" />
+
                                             </span>
                                             <span class="m-topbar__username m--hide">Nick</span>
                                         </a>
@@ -458,7 +555,7 @@
                                                                     <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                     <span class="m-nav__link-title">
                                                                         <span class="m-nav__link-wrap">
-                                                                            <span class="m-nav__link-text" >My Profile settings</span>
+                                                                            <span class="m-nav__link-text">My Profile settings</span>
                                                                             <%--<input type="button" id="btnsubmit" runat="server" class="m-nav__link-text" onserverclick="lnkProfile_Click" value="My Profile settings Ajay" />--%>
                                                                             <span class="m-nav__link-badge"></span>
                                                                         </span>
@@ -471,10 +568,10 @@
                                                                     <span class="m-nav__link-text">Activity</span>
                                                                 </a>
                                                             </li>
-                                                         
+
                                                             <li class="m-nav__separator m-nav__separator--fit"></li>
                                                             <li class="m-nav__item">
-                                                                <button id="btnLogout" runat="server" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onserverclick="btnLogout_Click" >Logout</button>
+                                                                <button id="btnLogout" runat="server" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onserverclick="btnLogout_Click">Logout</button>
                                                                 <%--<asp:Button ID="" runat="server" OnClick="" Text="Logout" CssClass="" />--%>
                                                                 <%-- <a href="<%= Page.ResolveClientUrl("~/Login.aspx") %>" ></a>--%>
                                                             </li>
@@ -504,7 +601,7 @@
         <form runat="server">
             <!-- begin::Body -->
             <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-
+                <%--<cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></cc1:ToolkitScriptManager>--%>
                 <!-- BEGIN: Left Aside -->
                 <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn"><i class="la la-close"></i></button>
                 <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
@@ -558,7 +655,7 @@
                 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
                     <!-- BEGIN: Subheader -->
-                   <%-- <div class="m-subheader ">
+                    <%-- <div class="m-subheader ">
                         <div class="d-flex align-items-center">
                             <div class="mr-auto">
                                 <h3 class="m-subheader__title m-subheader__title--separator">Page Title</h3>
@@ -595,6 +692,61 @@
 
                     </div>
                 </div>
+
+                <%--<asp:LinkButton ID="lnkFake" runat="server" />
+                <cc1:ModalPopupExtender ID="mpeTimeout" BehaviorID="mpeTimeout" runat="server" PopupControlID="pnlPopup"
+                    TargetControlID="lnkFake" OkControlID="btnYes" CancelControlID="btnNo" BackgroundCssClass="modalBackground"
+                    OnOkScript="ResetSession()">
+                </cc1:ModalPopupExtender>
+                <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none">
+                    <div class="header">
+                        Session Expiring!
+                    </div>
+                    <div class="body">
+                        Your Session is about to expire. You will be automatically signed out in
+                        <br />
+                        &nbsp;<span id="seconds2"></span>&nbsp;seconds.<br />
+                        <br />
+                        To continue your session, select Stay Signed In.
+                    </div>
+                    <div class="footer" align="right">
+                        <asp:Button ID="btnYes" runat="server" Text="Stay Signed In" CssClass="yes" />
+                        <asp:Button ID="btnNo" runat="server" Text="Sign Out" CssClass="no" />
+                    </div>
+                </asp:Panel>--%>
+
+                <!-- Modal Popup -->
+                <div id="MyPopup" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header btn-danger" style="padding: 15px !important;">
+                                <h3 class="modal-title" style="color: white;">Session Expiring </h3>
+                                <button type="button" class="close" data-dismiss="modal" style="color: white; margin-top: -6px;"> &times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                Your Session is about to expire. You will be automatically signed out in
+                        <br />
+                                &nbsp;<b><span id="seconds"></span></b>&nbsp;seconds.<br />
+                                <%--&nbsp;<b><span id="minutes"></span>:<span id="seconds"></span></b><br />--%>
+                                <br />
+                                To continue your session, select <b>Stay Signed In</b>.
+                                <br />
+                                If clicked on <b>Close</b>, Please save any Data on the form to avoid data loss on page refresh.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md" onclick="ResetSession()" data-dismiss="modal">Stay Signed In</button>
+
+                                <button type="button" class="btn btn-danger m-btn m-btn--icon m-btn--wide m-btn--md" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Popup -->
+
+
             </div>
 
         </form>

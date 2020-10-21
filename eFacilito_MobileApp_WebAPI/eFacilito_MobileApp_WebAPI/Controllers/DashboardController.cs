@@ -384,7 +384,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Address = Convert.ToString(p.Field<string>("Address")),
                                               City = Convert.ToString(p.Field<string>("City")),
                                               State = Convert.ToString(p.Field<string>("State")),
-                                              Postcode = Convert.ToString(p.Field<string>("Postcode")),
+                                              Postcode = Convert.ToInt32(p.Field<int>("Postcode")),
                                               Company_Code = Convert.ToString(p.Field<string>("Company_Code")),
                                               Role_Name = Convert.ToString(p.Field<string>("Role_Name")),
                                               Reporting_Manager = Convert.ToString(p.Field<string>("ReportingManager")),

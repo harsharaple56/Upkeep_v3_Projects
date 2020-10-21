@@ -175,6 +175,11 @@ namespace Upkeep_v3.General_Masters
                 {
                     ParentID = Convert.ToInt32(hdnNode.Value);
                 }
+                else
+                {
+                    lblErrorMsg.Text = "Please select a location first";
+                    return;
+                }
                 Location_Node = txtNewNode.Text.Trim();
                 strAction = "Add";
                 dsParent = ObjUpkeep.Add_Update_Location_Node(ParentID, Location_Node, CompanyID, LoggedInUserID, strAction);
@@ -236,9 +241,14 @@ namespace Upkeep_v3.General_Masters
                         {
                             TreeNode node = new TreeNode(txtNewNode.Text.Trim());
                             TreeView1.Nodes.Add(node);
-                            txtNewNode.Text = "";
 
+                            TreeView1.Nodes.Clear();
+                            PopulateRootLevel();
+
+                            txtNewNode.Text = "";
+                            lblSelectedLocation.Text = "";
                             lblErrorMsg.Text = "";
+                            hdnNode.Value = "";
                             lblSuccessMsg.Text = "Location added successfully.";
                         }
                         else if (Status == 2)

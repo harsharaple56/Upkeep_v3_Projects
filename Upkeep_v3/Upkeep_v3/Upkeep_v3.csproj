@@ -57,10 +57,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\MessagingToolkit.QRCode.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -920,7 +916,6 @@
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
-    <Content Include="bin\MessagingToolkit.QRCode.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\QRCoder.dll" />
@@ -964,7 +959,6 @@
     <Content Include="bin\Upkeep_v3.dll" />
     <Content Include="bin\Upkeep_v3.pdb" />
     <Content Include="bin\Upkeep_v3.XmlSerializers.dll" />
-    <Content Include="bin\Zen.Barcode.Core.dll" />
     <Content Include="CheckList\Add_Checklist.aspx" />
     <Content Include="CheckList\Checklist.aspx" />
     <Content Include="CheckList\Checklist_Action.aspx" />
@@ -1021,6 +1015,7 @@
     <Content Include="General_Masters\Print_LocationQRCode.aspx" />
     <Content Include="General_Masters\Priority_Master.aspx" />
     <Content Include="General_Masters\Retailer_Master.aspx" />
+    <Content Include="General_Masters\System_Settings.aspx" />
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
     <Content Include="General_Masters\User_Type_Master.aspx" />
@@ -4422,6 +4417,13 @@
     </Compile>
     <Compile Include="General_Masters\Retailer_Master.aspx.designer.cs">
       <DependentUpon>Retailer_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\System_Settings.aspx.cs">
+      <DependentUpon>System_Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\System_Settings.aspx.designer.cs">
+      <DependentUpon>System_Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\UserGrp_Mst.aspx.cs">
       <DependentUpon>UserGrp_Mst.aspx</DependentUpon>

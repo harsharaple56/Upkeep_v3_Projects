@@ -35,6 +35,10 @@ namespace Upkeep_v3_Control_Center.Masters
                     Session["CompanyID"] = Convert.ToString(CompanyID);
                     bindCompany_Master(CompanyID);
                 }
+                else
+                {
+                    Session["CompanyID"] = "";
+                }
                 if (CompanyID_Delete > 0)
                 {
                     DeleteCompany_Master(CompanyID_Delete);
@@ -46,7 +50,11 @@ namespace Upkeep_v3_Control_Center.Masters
         {
             try
             {
-                int CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                int CompanyID = 0;
+                if (Convert.ToString(Session["CompanyID"]) != "")
+                {
+                   CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                }
                 string Action = "";
                 DataSet ds = new DataSet();
 
@@ -307,5 +315,16 @@ namespace Upkeep_v3_Control_Center.Masters
             }
         }
 
+        protected void chk_Is_SMS_Enable_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chk_Is_SMS_Enable.Checked)
+            {
+                SMS_Config_Details.Visible = true;
+            }
+            else
+            {
+                SMS_Config_Details.Visible = false;
+            }
+        }
     }
 }
