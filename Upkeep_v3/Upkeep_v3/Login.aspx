@@ -102,7 +102,7 @@
                         <div style="text-align: center; display:none;" id="dvCompanyLogo" runat="server">
                             <%--<img src="assets/app/media/img/logos/AlembicCity.png" style="width: 300px; height: 300px;" />--%>
                             <%--<img src="assets/app/media/img/logos/Forum_Logo.jpg" style="width: 200px; height: 200px;" />--%>
-                            <asp:Image ID="imgCompany_Logo" runat="server" Style="width: 100%; height: auto;" />
+                            <asp:Image ID="imgCompany_Logo" runat="server" Style="width: auto; max-height: 160px; max-width: 100%;" />
                         </div>
                         <br />
                         <div class="m-login__title" style="margin-bottom: 0rem !important;">
