@@ -171,9 +171,39 @@
         }
 
         function FunSetXML() {
-            //debugger;
+            debugger;
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
+            document.getElementById("<%=lblWorkflowDescError.ClientID%>").innerHTML = "";
+            document.getElementById("<%=lblNoOfLevelError.ClientID%>").innerHTML = "";
+            document.getElementById("<%=lblCategoryError.ClientID%>").innerHTML = "";
+            document.getElementById("<%=lblMakeCombination.ClientID%>").innerHTML = "";
+            var WorkflowDesc = window.document.getElementById("<%=txtWorkflowDesc.ClientID%>").value;
+            if (WorkflowDesc == '') {
+                //alert('Workflow description Should not be blank');
+                document.getElementById("<%=lblWorkflowDescError.ClientID%>").innerHTML = 'Workflow description Should not be blank';
+                return false;
+            }
+
+            var NoOfLevel = window.document.getElementById("<%=txtNoOfLevel.ClientID%>").value;
+            if (NoOfLevel == '') {
+                document.getElementById("<%=lblNoOfLevelError.ClientID%>").innerHTML = 'Number Of Level field Should not be blank';
+                return false;
+            }
+
+            var Category = document.getElementById("<%=ddlCategory.ClientID%>").value;
+            if (Category == 0) {
+                document.getElementById("<%=lblCategoryError.ClientID%>").innerHTML = 'Please select Category';
+                return false;
+            }
+           
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
+            if (VarLocTab.rows.length == 1) {
+                document.getElementById("<%=lblMakeCombination.ClientID%>").innerHTML = 'Escalations can not blank';
+                return false;
+            }
+
+             //return false;
+           
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
                 var VarLocRowObj = VarLocTab.rows[i].id;
                 var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
@@ -304,7 +334,7 @@
                                                 <div class="btn-group">
 
                                                     <asp:Button ID="btnSaveWorkflowDetail" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSaveWorkflowDetail_Click"
-                                                        Text="Save" OnClientClick="return FunSetXML();" ValidationGroup="validationWorkflow" />
+                                                        Text="Save" OnClientClick="return FunSetXML();" ValidationGroup="validationWorkflow"  />
 
                                                 </div>
                                             </ContentTemplate>
@@ -318,15 +348,16 @@
                                     <div class="row">
                                         <div class="modal-body">
                                             <div class="row" style="margin-bottom: 0;">
-                                                <div class="col-xs-8 col-lg-6 form-inline">
+                                                <div class="col-xs-6 col-lg-6 form-inline">
                                                     <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Workflow Description :</label>
                                                     <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server" ></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkflowDesc" Visible="true"
                                                         Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <div class="col-xs-8 col-lg-6 form-inline" style="display: none;">
-                                                    <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
-                                                    <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>
+                                                <div class="col-xs-6 col-lg-6 form-inline" >
+                                                    <asp:Label ID="lblWorkflowDescError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red"></asp:Label>
+                                                    <%--<label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
+                                                    <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>--%>
                                                     <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlZone" Visible="true" Style="margin-left: 34%;"
                                                             ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Zone"></asp:RequiredFieldValidator>--%>
                                                 </div>
@@ -337,14 +368,15 @@
                                                 <asp:UpdatePanel runat="server" style="width: 100%;">
                                                     <ContentTemplate>
                                                         <div class="form-group row" style="margin-bottom: 0;">
-                                                        <div class="col-xs-8 col-lg-6 form-inline">
+                                                        <div class="col-xs-6 col-lg-6 form-inline">
                                                             <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Category :</label>
-                                                            <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList>
                                                             <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;"
                                                                 ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
+                                                    <asp:Label ID="lblCategoryError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: -148px;"></asp:Label>
 
                                                         </div>
-                                                        <div class="col-xs-8 col-lg-6 form-inline" style="margin-bottom: 0;">
+                                                        <div class="col-xs-6 col-lg-6 form-inline" style="margin-bottom: 0;">
                                                             <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-Category :</label>
                                                             <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>
                                                             <%--<asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
@@ -361,13 +393,15 @@
                                                         ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Zone"></asp:RequiredFieldValidator>
                                                 </div>--%>
                                             <div class="form-group row" style="margin-bottom: 0;">
-                                                <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
+                                                <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: right;">No Of Levels :</label>
                                                 <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%; margin-left: 4%;"></asp:TextBox>
 
                                                 <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationWorkflow" />
+                                                <asp:Label ID="lblMakeCombination" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: 5%;" ></asp:Label>
 
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
                                                     Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
+                                               <asp:Label ID="lblNoOfLevelError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: 21%;" ></asp:Label>
 
 
                                             </div>
