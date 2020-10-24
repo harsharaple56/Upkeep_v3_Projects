@@ -185,10 +185,7 @@ namespace Upkeep_v3.CheckList
 
                     SelectedLocationID = ((HiddenField)rows[i].FindControl("hdnLocationID")).Value;
 
-
                     dtSelectedLocation.Rows.Add(SelectedLocationID, SelectedLocationName);
-
-
                 }
             }
             mpeAddLocation.Hide();
@@ -212,8 +209,6 @@ namespace Upkeep_v3.CheckList
 
             gvSelectedLocation.DataSource = dtLocation;
             gvSelectedLocation.DataBind();
-
-            //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", $"SelectUser();", true);
 
             Fetch_Location();
         }
