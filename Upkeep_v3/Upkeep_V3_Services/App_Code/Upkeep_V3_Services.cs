@@ -1775,6 +1775,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Save_Checklist_Schedule(int Checklist_ConfigID,int DepartmentID,string SelectedLocationID,string LoggedInUserID,int CompanyID)
+    {
+        DataSet dsChecklist = new DataSet();
+        try
+        {
+            dsChecklist = ObjUpkeep.Save_Checklist_Schedule(Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsChecklist;
+    }
+
 
     #endregion
 

@@ -66,6 +66,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Checklist_ReportOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Save_Checklist_ScheduleOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Insert_Update_VMSConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSConfigurationOperationCompleted;
@@ -431,6 +433,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Checklist_ReportCompletedEventHandler Fetch_Checklist_ReportCompleted;
+        
+        /// <remarks/>
+        public event Save_Checklist_ScheduleCompletedEventHandler Save_Checklist_ScheduleCompleted;
         
         /// <remarks/>
         public event Insert_Update_VMSConfigurationCompletedEventHandler Insert_Update_VMSConfigurationCompleted;
@@ -1452,6 +1457,43 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Checklist_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Checklist_ReportCompleted(this, new Fetch_Checklist_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_Checklist_Schedule", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_Checklist_Schedule(int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID) {
+            object[] results = this.Invoke("Save_Checklist_Schedule", new object[] {
+                        Checklist_ConfigID,
+                        DepartmentID,
+                        SelectedLocationID,
+                        LoggedInUserID,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_Checklist_ScheduleAsync(int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID) {
+            this.Save_Checklist_ScheduleAsync(Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Save_Checklist_ScheduleAsync(int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID, object userState) {
+            if ((this.Save_Checklist_ScheduleOperationCompleted == null)) {
+                this.Save_Checklist_ScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_Checklist_ScheduleOperationCompleted);
+            }
+            this.InvokeAsync("Save_Checklist_Schedule", new object[] {
+                        Checklist_ConfigID,
+                        DepartmentID,
+                        SelectedLocationID,
+                        LoggedInUserID,
+                        CompanyID}, this.Save_Checklist_ScheduleOperationCompleted, userState);
+        }
+        
+        private void OnSave_Checklist_ScheduleOperationCompleted(object arg) {
+            if ((this.Save_Checklist_ScheduleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_Checklist_ScheduleCompleted(this, new Save_Checklist_ScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6929,6 +6971,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Checklist_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Save_Checklist_ScheduleCompletedEventHandler(object sender, Save_Checklist_ScheduleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_Checklist_ScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_Checklist_ScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -423,6 +423,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Save_Checklist_Schedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Checklist_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SelectedLocationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_Checklist_ScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_Checklist_ScheduleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Insert_Update_VMSConfiguration">
         <s:complexType>
           <s:sequence>
@@ -3832,6 +3857,12 @@
   <wsdl:message name="Fetch_Checklist_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Checklist_ReportResponse" />
   </wsdl:message>
+  <wsdl:message name="Save_Checklist_ScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:Save_Checklist_Schedule" />
+  </wsdl:message>
+  <wsdl:message name="Save_Checklist_ScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:Save_Checklist_ScheduleResponse" />
+  </wsdl:message>
   <wsdl:message name="Insert_Update_VMSConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_Update_VMSConfiguration" />
   </wsdl:message>
@@ -4727,6 +4758,10 @@
       <wsdl:input message="tns:Fetch_Checklist_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_Checklist_ReportSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Save_Checklist_Schedule">
+      <wsdl:input message="tns:Save_Checklist_ScheduleSoapIn" />
+      <wsdl:output message="tns:Save_Checklist_ScheduleSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Insert_Update_VMSConfiguration">
       <wsdl:input message="tns:Insert_Update_VMSConfigurationSoapIn" />
       <wsdl:output message="tns:Insert_Update_VMSConfigurationSoapOut" />
@@ -5434,6 +5469,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_Checklist_Schedule">
+      <soap:operation soapAction="http://tempuri.org/Save_Checklist_Schedule" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6832,6 +6876,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_Checklist_Schedule">
+      <soap12:operation soapAction="http://tempuri.org/Save_Checklist_Schedule" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

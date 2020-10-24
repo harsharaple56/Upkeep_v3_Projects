@@ -455,8 +455,6 @@ namespace Upkeep_v3.Ticketing
                         //this.TblLevels.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         //this.TblLevels.Rows[IntPriCounter + 1].Cells[8].Attributes.Add("class", "GridItem");
                         //System.Web.UI.WebControls.CheckBox LocChkBoxInfTxt = new System.Web.UI.WebControls.CheckBox();
-                       
-
 
                         //if (ObjDt.Rows(IntPriCounter).Item("EmailforInformation") == true)
                         //    LocChkBoxInfEmail.Checked = true;
@@ -541,7 +539,6 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-
                 ds = ObjUpkeep.Fetch_Zone();
 
                 if (ds.Tables.Count > 0)
