@@ -1046,6 +1046,7 @@
     <Content Include="Security\Role_Listing.aspx" />
     <Content Include="Security\Role_Menu_Rights.aspx" />
     <Content Include="TestPage.aspx" />
+    <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_1.png" />
     <Content Include="TicketImages\22-01-2020\CKT10_6_0.png" />
@@ -4611,6 +4612,13 @@
     </Compile>
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_SMS.aspx.cs">
+      <DependentUpon>Test_SMS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test_SMS.aspx.designer.cs">
+      <DependentUpon>Test_SMS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\Add_MyRequest.aspx.cs">
       <DependentUpon>Add_MyRequest.aspx</DependentUpon>
