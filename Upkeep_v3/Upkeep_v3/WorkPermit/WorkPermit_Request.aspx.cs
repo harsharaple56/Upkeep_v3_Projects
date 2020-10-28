@@ -831,8 +831,9 @@ namespace Upkeep_v3.WorkPermit
                                 foreach (DataRow dr in dsWPHeaderData.Tables[1].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                    //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
 
-                                    await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
+                                    await SendNotification(TokenNO, Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
                                 }
                             }
                             //[-][Ajay Prajapati]
@@ -1255,8 +1256,9 @@ namespace Upkeep_v3.WorkPermit
                                 foreach (DataRow dr in dsWPAction.Tables[1].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                    //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicket.Text), "New WorkPermit Request");
 
-                                    await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                    await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
                                 }
                             }
                         }
@@ -1473,7 +1475,7 @@ namespace Upkeep_v3.WorkPermit
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Workpermit");
 
                 if (response.IsSuccessStatusCode)
                 {
