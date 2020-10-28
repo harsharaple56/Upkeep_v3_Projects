@@ -22,6 +22,15 @@ namespace Upkeep_v3_Control_Center.Masters {
         protected global::System.Web.UI.HtmlControls.HtmlForm frmCompany;
         
         /// <summary>
+        /// scrptmgnr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scrptmgnr;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -292,13 +301,22 @@ namespace Upkeep_v3_Control_Center.Masters {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SMS_Config_Details;
         
         /// <summary>
-        /// SMS_Config_ID control.
+        /// updSMS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SMS_Config_ID;
+        protected global::System.Web.UI.UpdatePanel updSMS;
+        
+        /// <summary>
+        /// ddlSMS_Config control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSMS_Config;
         
         /// <summary>
         /// Available_Allot_SMS_Bal control.
@@ -317,6 +335,60 @@ namespace Upkeep_v3_Control_Center.Masters {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Alloted_SMS;
+        
+        /// <summary>
+        /// txt_SMS_Balance_Alert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_SMS_Balance_Alert;
+        
+        /// <summary>
+        /// txtSendTestSMSMobileNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSendTestSMSMobileNo;
+        
+        /// <summary>
+        /// txtSendTestSMSText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSendTestSMSText;
+        
+        /// <summary>
+        /// btnSendTestSMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSendTestSMS;
+        
+        /// <summary>
+        /// lblTestSMSSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTestSMSSuccess;
+        
+        /// <summary>
+        /// lblTestSMSError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTestSMSError;
         
         /// <summary>
         /// Label1 control.

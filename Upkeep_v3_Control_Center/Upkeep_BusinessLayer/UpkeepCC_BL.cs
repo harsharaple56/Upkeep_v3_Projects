@@ -77,7 +77,7 @@ namespace Upkeep_BusinessLayer
             }
         }
 
-        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo,string User_Name,string User_Designation,string User_EmailID,string User_MobileNo, string LoggedInUserID, string Action, string strConn)
+        public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo,string User_Name,string User_Designation,string User_EmailID,string User_MobileNo,int SMS_ConfigID,int SMS_Alloted,int SMS_Min_Bal_Alert,int SMS_Available_Balance, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -102,9 +102,15 @@ namespace Upkeep_BusinessLayer
                 cmd.Parameters.AddWithValue("@User_Designation", User_Designation);
                 cmd.Parameters.AddWithValue("@User_EmailID", User_EmailID);
                 cmd.Parameters.AddWithValue("@User_MobileNo", User_MobileNo);
+
+                cmd.Parameters.AddWithValue("@SMS_ConfigID", SMS_ConfigID);
+                cmd.Parameters.AddWithValue("@SMS_Alloted", SMS_Alloted);
+                cmd.Parameters.AddWithValue("@SMS_Min_Bal_Alert", SMS_Min_Bal_Alert);
+                cmd.Parameters.AddWithValue("@SMS_Available_Balance", SMS_Available_Balance);
+
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
-
+                
                 con.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -330,6 +336,27 @@ namespace Upkeep_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_SMS_Config_Details(int ConfigID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_SMS_Config_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SMSConfigID", ConfigID);
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

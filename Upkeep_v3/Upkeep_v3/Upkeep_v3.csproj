@@ -973,6 +973,7 @@
     <Content Include="CheckList\MyChecklist.aspx" />
     <Content Include="CheckList\My_Checklists.aspx" />
     <Content Include="CheckList\Schedule_Checklist.aspx" />
+    <Content Include="CheckList\Schedule_Checklist_Listing.aspx" />
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
@@ -4130,6 +4131,13 @@
     </Compile>
     <Compile Include="CheckList\Schedule_Checklist.aspx.designer.cs">
       <DependentUpon>Schedule_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.cs">
+      <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.designer.cs">
+      <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Coming_Soon.aspx.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>

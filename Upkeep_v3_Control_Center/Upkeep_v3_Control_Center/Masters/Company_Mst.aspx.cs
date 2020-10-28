@@ -37,7 +37,7 @@ namespace Upkeep_v3_Control_Center.Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = objUpkeepCC.CompanyMaster_CRUD(0, "", "", 0, "","", 0, "","","", "", "", "", "", LoggedInUserID, "R");
+                ds = objUpkeepCC.CompanyMaster_CRUD(0, "", "", 0, "","", 0, "","","", "", "", "", "", 0, 0, 0, 0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {

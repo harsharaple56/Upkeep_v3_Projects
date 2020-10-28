@@ -72,6 +72,10 @@
             <s:element minOccurs="0" maxOccurs="1" name="User_Designation" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_EmailID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_MobileNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SMS_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SMS_Alloted" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SMS_Min_Bal_Alert" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SMS_Available_Balance" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
@@ -281,6 +285,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_SMS_Config_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_SMS_Config_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_SMS_Config_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -355,6 +380,12 @@
   <wsdl:message name="Subscription_Package_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:Subscription_Package_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_SMS_Config_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_SMS_Config_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_SMS_Config_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_SMS_Config_DetailsResponse" />
+  </wsdl:message>
   <wsdl:portType name="UpkeepControlCenter_ServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -403,6 +434,10 @@
     <wsdl:operation name="Subscription_Package_CRUD">
       <wsdl:input message="tns:Subscription_Package_CRUDSoapIn" />
       <wsdl:output message="tns:Subscription_Package_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_SMS_Config_Details">
+      <wsdl:input message="tns:Fetch_SMS_Config_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_SMS_Config_DetailsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UpkeepControlCenter_ServiceSoap" type="tns:UpkeepControlCenter_ServiceSoap">
@@ -515,6 +550,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_SMS_Config_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_SMS_Config_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="UpkeepControlCenter_ServiceSoap12" type="tns:UpkeepControlCenter_ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -619,6 +663,15 @@
     </wsdl:operation>
     <wsdl:operation name="Subscription_Package_CRUD">
       <soap12:operation soapAction="http://tempuri.org/Subscription_Package_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_SMS_Config_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_SMS_Config_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

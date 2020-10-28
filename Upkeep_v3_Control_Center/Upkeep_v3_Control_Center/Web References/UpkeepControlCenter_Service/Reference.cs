@@ -54,6 +54,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback Subscription_Package_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_SMS_Config_DetailsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -127,6 +129,9 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         /// <remarks/>
         public event Subscription_Package_CRUDCompletedEventHandler Subscription_Package_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Fetch_SMS_Config_DetailsCompletedEventHandler Fetch_SMS_Config_DetailsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -238,6 +243,10 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string User_Designation, 
                     string User_EmailID, 
                     string User_MobileNo, 
+                    int SMS_ConfigID, 
+                    int SMS_Alloted, 
+                    int SMS_Min_Bal_Alert, 
+                    int SMS_Available_Balance, 
                     string LoggedInUserID, 
                     string Action) {
             object[] results = this.Invoke("CompanyMaster_CRUD", new object[] {
@@ -255,6 +264,10 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         User_Designation,
                         User_EmailID,
                         User_MobileNo,
+                        SMS_ConfigID,
+                        SMS_Alloted,
+                        SMS_Min_Bal_Alert,
+                        SMS_Available_Balance,
                         LoggedInUserID,
                         Action});
             return ((System.Data.DataSet)(results[0]));
@@ -276,9 +289,13 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string User_Designation, 
                     string User_EmailID, 
                     string User_MobileNo, 
+                    int SMS_ConfigID, 
+                    int SMS_Alloted, 
+                    int SMS_Min_Bal_Alert, 
+                    int SMS_Available_Balance, 
                     string LoggedInUserID, 
                     string Action) {
-            this.CompanyMaster_CRUDAsync(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_Name, User_Designation, User_EmailID, User_MobileNo, LoggedInUserID, Action, null);
+            this.CompanyMaster_CRUDAsync(CompanyID, strCompanyCode, strCompanyDesc, GroupID, CompanyLogo, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_Name, User_Designation, User_EmailID, User_MobileNo, SMS_ConfigID, SMS_Alloted, SMS_Min_Bal_Alert, SMS_Available_Balance, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -297,6 +314,10 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string User_Designation, 
                     string User_EmailID, 
                     string User_MobileNo, 
+                    int SMS_ConfigID, 
+                    int SMS_Alloted, 
+                    int SMS_Min_Bal_Alert, 
+                    int SMS_Available_Balance, 
                     string LoggedInUserID, 
                     string Action, 
                     object userState) {
@@ -318,6 +339,10 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         User_Designation,
                         User_EmailID,
                         User_MobileNo,
+                        SMS_ConfigID,
+                        SMS_Alloted,
+                        SMS_Min_Bal_Alert,
+                        SMS_Available_Balance,
                         LoggedInUserID,
                         Action}, this.CompanyMaster_CRUDOperationCompleted, userState);
         }
@@ -608,6 +633,35 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.Subscription_Package_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Subscription_Package_CRUDCompleted(this, new Subscription_Package_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_SMS_Config_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_SMS_Config_Details(int ConfigID) {
+            object[] results = this.Invoke("Fetch_SMS_Config_Details", new object[] {
+                        ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_SMS_Config_DetailsAsync(int ConfigID) {
+            this.Fetch_SMS_Config_DetailsAsync(ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_SMS_Config_DetailsAsync(int ConfigID, object userState) {
+            if ((this.Fetch_SMS_Config_DetailsOperationCompleted == null)) {
+                this.Fetch_SMS_Config_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_SMS_Config_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_SMS_Config_Details", new object[] {
+                        ConfigID}, this.Fetch_SMS_Config_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_SMS_Config_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_SMS_Config_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_SMS_Config_DetailsCompleted(this, new Fetch_SMS_Config_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -929,6 +983,32 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         private object[] results;
         
         internal Subscription_Package_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void Fetch_SMS_Config_DetailsCompletedEventHandler(object sender, Fetch_SMS_Config_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_SMS_Config_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_SMS_Config_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
