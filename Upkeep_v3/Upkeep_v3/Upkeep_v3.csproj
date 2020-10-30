@@ -4607,6 +4607,7 @@
     <Compile Include="Security\Role_Menu_Rights.aspx.designer.cs">
       <DependentUpon>Role_Menu_Rights.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SendSMS.cs" />
     <Compile Include="TestMaster.Master.cs">
       <DependentUpon>TestMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
