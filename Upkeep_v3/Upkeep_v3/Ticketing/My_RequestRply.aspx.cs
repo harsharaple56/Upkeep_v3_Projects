@@ -551,6 +551,58 @@ namespace Upkeep_v3.Ticketing
                                     int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
                                     if (Status == 1)
                                     {
+                                        //Send SMS
+                                        string APIKey = string.Empty;
+                                        string SenderID = string.Empty;
+                                        string Send_SMS_URL = string.Empty;
+
+                                        string TicketNo = string.Empty;
+                                        string TextMessage = string.Empty;
+                                        string TicketRaisedBy_Name = string.Empty;
+                                        string TicketRaisedBy_MobileNo = string.Empty;
+                                        string TicketAction = string.Empty;
+
+                                        if (dsCloseTicket.Tables.Count > 1)
+                                        {
+                                            if (dsCloseTicket.Tables[1].Rows.Count > 0)
+                                            {
+                                                APIKey = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Api_Key"]);
+                                                SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
+                                                Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                                SendSMS sms = new SendSMS();
+                                                if (dsCloseTicket.Tables.Count > 2)
+                                                {
+                                                    if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                                    {
+                                                        TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                        TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                                        TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                                        if (strTicketAction == "In Progress")
+                                                        {
+                                                            TicketAction = "OPEN (In Progress)";
+                                                        }
+                                                        else if (strTicketAction == "Hold")
+                                                        {
+                                                            TicketAction = "PARKED (Hold)";
+                                                        }
+                                                        else if (strTicketAction == "Closed")
+                                                        {
+                                                            TicketAction = "CLOSED (Done)";
+                                                        }
+
+                                                        TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                        TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                                        TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
+                                                        string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        //Send SMS
+
                                         Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
                                     }
                                     else
@@ -599,6 +651,58 @@ namespace Upkeep_v3.Ticketing
                             int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
                             if (Status == 1)
                             {
+                                //Send SMS
+                                string APIKey = string.Empty;
+                                string SenderID = string.Empty;
+                                string Send_SMS_URL = string.Empty;
+
+                                string TicketNo = string.Empty;
+                                string TextMessage = string.Empty;
+                                string TicketRaisedBy_Name = string.Empty;
+                                string TicketRaisedBy_MobileNo = string.Empty;
+                                string TicketAction = string.Empty;
+
+                                if (dsCloseTicket.Tables.Count > 1)
+                                {
+                                    if (dsCloseTicket.Tables[1].Rows.Count > 0)
+                                    {
+                                        APIKey = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Api_Key"]);
+                                        SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
+                                        Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                        SendSMS sms = new SendSMS();
+                                        if (dsCloseTicket.Tables.Count > 2)
+                                        {
+                                            if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                            {
+                                                TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                                TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                                if (strTicketAction == "In Progress")
+                                                {
+                                                    TicketAction = "OPEN (In Progress)";
+                                                }
+                                                else if (strTicketAction == "Hold")
+                                                {
+                                                    TicketAction = "PARKED (Hold)";
+                                                }
+                                                else if (strTicketAction == "Closed")
+                                                {
+                                                    TicketAction = "CLOSED (Done)";
+                                                }
+
+                                                TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                                TextMessage += "%0aTicket status has been changed to "+ TicketAction + "";
+                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Send SMS
+
                                 Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
                             }
                             else
@@ -634,6 +738,47 @@ namespace Upkeep_v3.Ticketing
                         int Status = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
+                            //Send SMS
+                            string APIKey = string.Empty;
+                            string SenderID = string.Empty;
+                            string Send_SMS_URL = string.Empty;
+
+                            string TicketNo = string.Empty;
+                            string TextMessage = string.Empty;
+                            string TicketAcceptedBy_Name = string.Empty;
+                            string TicketAcceptedBy_Department = string.Empty;
+                            string TicketRaisedBy_Name = string.Empty;
+                            string TicketRaisedBy_MobileNo = string.Empty;
+
+                            if (dsTicket.Tables.Count > 1)
+                            {
+                                if (dsTicket.Tables[1].Rows.Count > 0)
+                                {
+                                    APIKey = Convert.ToString(dsTicket.Tables[1].Rows[0]["Api_Key"]);
+                                    SenderID = Convert.ToString(dsTicket.Tables[1].Rows[0]["Sender_ID"]);
+                                    Send_SMS_URL = Convert.ToString(dsTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                    SendSMS sms = new SendSMS();
+                                    if (dsTicket.Tables.Count > 2)
+                                    {
+                                        if (dsTicket.Tables[2].Rows.Count > 0)
+                                        {
+                                            TicketNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketNo"]);
+                                            TicketAcceptedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy"]);
+                                            TicketAcceptedBy_Department = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy_Dept"]);
+                                            TicketRaisedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy"]);
+                                            TicketRaisedBy_MobileNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                            TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                            TextMessage += "%0a%0aYour ticket "+ TicketNo + " has been accepted by "+ TicketAcceptedBy_Name + " from "+ TicketAcceptedBy_Department+ "";
+                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                        }
+                                    }
+                                }
+                            }
+
+                            //Send SMS
+
                             Response.Redirect("~/Ticketing/MyActionable.aspx", false);
                         }
                         else if (Status == 2)

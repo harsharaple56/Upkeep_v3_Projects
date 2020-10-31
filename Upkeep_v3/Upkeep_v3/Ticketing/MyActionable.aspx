@@ -124,7 +124,7 @@
 											<th title="Category" data-field="Cat">Category</th>
 											<th title="Sub Category" data-field="SubCat">Sub Category</th>
 											<th title="Request Date" data-field="RequestDate">Request Date</th>
-                                            <th title="Raised By" data-field="RequestDate">RaisedBy</th>
+                                            <th title="Raised By" data-field="RaisedBy">RaisedBy</th>
 											<th title="Request Status" data-field="RequestStatus">Request Status</th>
 											<th title="Action Status" data-field="ActionStatus">Action Status</th>
 											<%--<th title="Field #10" data-field="Type">View</th>--%>
