@@ -19,7 +19,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 {
     public class TicketingController : ApiController
     {
-       
+
 
         #region Ticketing
 
@@ -271,6 +271,48 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             iStatus = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
                             if (iStatus == 1)
                             {
+
+                                //Send SMS
+                                string APIKey = string.Empty;
+                                string SenderID = string.Empty;
+                                string Send_SMS_URL = string.Empty;
+
+                                string TicketNo = string.Empty;
+                                string TextMessage = string.Empty;
+                                string TicketAcceptedBy_Name = string.Empty;
+                                string TicketAcceptedBy_Department = string.Empty;
+                                string TicketRaisedBy_Name = string.Empty;
+                                string TicketRaisedBy_MobileNo = string.Empty;
+
+                                if (DsDataSet.Tables.Count > 1)
+                                {
+                                    if (DsDataSet.Tables[1].Rows.Count > 0)
+                                    {
+                                        APIKey = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Api_Key"]);
+                                        SenderID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Sender_ID"]);
+                                        Send_SMS_URL = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                        SendSMS sms = new SendSMS();
+                                        if (DsDataSet.Tables.Count > 2)
+                                        {
+                                            if (DsDataSet.Tables[2].Rows.Count > 0)
+                                            {
+                                                TicketNo = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketNo"]);
+                                                TicketAcceptedBy_Name = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketAcceptedBy"]);
+                                                TicketAcceptedBy_Department = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketAcceptedBy_Dept"]);
+                                                TicketRaisedBy_Name = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketRaisedBy"]);
+                                                TicketRaisedBy_MobileNo = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                                TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                TextMessage += "%0a%0aYour ticket " + TicketNo + " has been accepted by " + TicketAcceptedBy_Name + " from " + TicketAcceptedBy_Department + "";
+                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Send SMS
+
                                 return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
                             }
                             else
@@ -328,7 +370,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 //ObjLocSqlParameter[3] = new SqlParameter("@TicketImages", objInsert.Ticket_ImagePath);
                 ObjLocSqlParameter[5] = new SqlParameter("@EmpCD", objInsert.EmpCD);
                 ObjLocSqlParameter[6] = new SqlParameter("@RollCD", objInsert.RollCD);
-                
+
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Request_API", ObjLocSqlParameter);
 
                 if (DsDataSet != null)
@@ -342,7 +384,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
-                                Ticket_No= Convert.ToString(dr["TicketNo"]);
+                                Ticket_No = Convert.ToString(dr["TicketNo"]);
                                 TicketID = Convert.ToString(dr["TicketNo"]);
                                 FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
                             }
@@ -461,23 +503,23 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
-                                         select new ClsMyActionableTicket
-                                         {
-                                             TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
-                                             TicketCode = p.Field<string>("Tkt_Code"),
-                                             LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
-                                             Loc_Desc = p.Field<string>("Loc_Desc"),
-                                             CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
-                                             Category_Desc = p.Field<string>("Category_Desc"),
-                                             SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
-                                             SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
-                                             Ticket_Date = p.Field<string>("Ticket_Date"),
-                                             Ticket_Status = p.Field<string>("Tkt_Status"),
-                                             Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
-                                             Ticket_Message = p.Field<string>("Tkt_Message"),
-                                             Ticket_ImagePath = p.Field<string>("ImagePath"),
-                                             Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
-                                         }).ToList();
+                                          select new ClsMyActionableTicket
+                                          {
+                                              TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
+                                              TicketCode = p.Field<string>("Tkt_Code"),
+                                              LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
+                                              Loc_Desc = p.Field<string>("Loc_Desc"),
+                                              CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
+                                              Category_Desc = p.Field<string>("Category_Desc"),
+                                              SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
+                                              SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
+                                              Ticket_Date = p.Field<string>("Ticket_Date"),
+                                              Ticket_Status = p.Field<string>("Tkt_Status"),
+                                              Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
+                                              Ticket_Message = p.Field<string>("Tkt_Message"),
+                                              Ticket_ImagePath = p.Field<string>("ImagePath"),
+                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
+                                          }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
                         }
@@ -485,17 +527,17 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[1].Rows.Count > 0)
                         {
                             objTicketAction = (from p in DsDataSet.Tables[1].AsEnumerable()
-                                                select new ClsTicketActionHistory
-                                                {
-                                                    Level = Convert.ToInt32(p.Field<decimal>("Level")),
-                                                    User = Convert.ToString(p.Field<string>("User")),
-                                                    Remarks = Convert.ToString(p.Field<string>("Remarks")),
-                                                    ActionDateTime = Convert.ToString(p.Field<string>("ActionDate")),
-                                                    ExpectedDateTime = Convert.ToString(p.Field<string>("ExpectedTime")),
-                                                    Ticket_Status = Convert.ToString(p.Field<string>("TicketStatus")),
-                                                    Ticket_ActionStatus = Convert.ToString(p.Field<string>("ActionStatus"))
+                                               select new ClsTicketActionHistory
+                                               {
+                                                   Level = Convert.ToInt32(p.Field<decimal>("Level")),
+                                                   User = Convert.ToString(p.Field<string>("User")),
+                                                   Remarks = Convert.ToString(p.Field<string>("Remarks")),
+                                                   ActionDateTime = Convert.ToString(p.Field<string>("ActionDate")),
+                                                   ExpectedDateTime = Convert.ToString(p.Field<string>("ExpectedTime")),
+                                                   Ticket_Status = Convert.ToString(p.Field<string>("TicketStatus")),
+                                                   Ticket_ActionStatus = Convert.ToString(p.Field<string>("ActionStatus"))
 
-                                                }).ToList();
+                                               }).ToList();
                         }
 
 
@@ -549,23 +591,78 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[5] = new SqlParameter("@RollCD", objInsert.RollCD);
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Action_API", ObjLocSqlParameter);
 
-                //if (DsDataSet != null)
-                //{
-                //    if (DsDataSet.Tables.Count > 0)
-                //    {
-                //        if (DsDataSet.Tables[0].Rows.Count > 0)
-                //        {
-                //            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
-                //            {
-                //                var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                //                var TicketNo = Convert.ToString(dr["TicketNo"]);
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                //                FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
-                //            }
+                            //    FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
+                            //}
 
-                //        }
-                //    }
-                //}
+                            //Send SMS
+                            string APIKey = string.Empty;
+                            string SenderID = string.Empty;
+                            string Send_SMS_URL = string.Empty;
+
+                            string TicketNo = string.Empty;
+                            string TextMessage = string.Empty;
+                            string TicketRaisedBy_Name = string.Empty;
+                            string TicketRaisedBy_MobileNo = string.Empty;
+                            string strTicketAction = string.Empty;
+                            string TicketAction = string.Empty;
+
+                            if (DsDataSet.Tables.Count > 1)
+                            {
+                                if (DsDataSet.Tables[1].Rows.Count > 0)
+                                {
+                                    APIKey = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Api_Key"]);
+                                    SenderID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Sender_ID"]);
+                                    Send_SMS_URL = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                    strTicketAction = Convert.ToString(objInsert.TicketAction);
+
+                                    SendSMS sms = new SendSMS();
+                                    if (DsDataSet.Tables.Count > 2)
+                                    {
+                                        if (DsDataSet.Tables[2].Rows.Count > 0)
+                                        {
+                                            TicketNo = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketNo"]);
+                                            TicketRaisedBy_Name = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                            TicketRaisedBy_MobileNo = Convert.ToString(DsDataSet.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                            if (strTicketAction == "In Progress")
+                                            {
+                                                TicketAction = "OPEN (In Progress)";
+                                            }
+                                            else if (strTicketAction == "Hold")
+                                            {
+                                                TicketAction = "PARKED (Hold)";
+                                            }
+                                            else if (strTicketAction == "Closed")
+                                            {
+                                                TicketAction = "CLOSED (Done)";
+                                            }
+
+                                            TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                            TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                            TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
+                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                        }
+                                    }
+                                }
+                            }
+
+                            //Send SMS
+
+                        }
+                    }
+                }
 
                 return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
             }
@@ -727,7 +824,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 Directory.CreateDirectory(fileUploadPath);
                             }
 
-                            var ImageName = TicketCode+"_"+ TicketFlag + "_"+ ticketImgCount;
+                            var ImageName = TicketCode + "_" + TicketFlag + "_" + ticketImgCount;
 
                             var fileName = ImageName + extension;
 
@@ -735,7 +832,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             string FileLocation = imgPath + "TicketImages/" + CurrentDate + "/" + fileName;
 
                             //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
-                            
+
 
                             postedFile.SaveAs(SaveLocation);
 
@@ -943,7 +1040,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
                 ObjLocSqlParameter[0] = new SqlParameter("@CategoryID", CategoryID);
-              
+
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Ticket_SubCategory_Department_API", ObjLocSqlParameter);
 
@@ -954,12 +1051,12 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             objSubCategory = (from p in DsDataSet.Tables[0].AsEnumerable()
-                                          select new ClsSubCategory
-                                          {
-                                              SubCategoryID = Convert.ToInt32(p.Field<decimal>("SubCategory_ID")),
-                                              CategoryName = Convert.ToString(p.Field<string>("SubCategory_Desc"))
-                                             
-                                          }).ToList();
+                                              select new ClsSubCategory
+                                              {
+                                                  SubCategoryID = Convert.ToInt32(p.Field<decimal>("SubCategory_ID")),
+                                                  CategoryName = Convert.ToString(p.Field<string>("SubCategory_Desc"))
+
+                                              }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
                         }
@@ -967,12 +1064,12 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[1].Rows.Count > 0)
                         {
                             objDepartment = (from p in DsDataSet.Tables[1].AsEnumerable()
-                                               select new ClsDepartmentName
-                                               {
-                                                   DepartmentID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
-                                                   DepartmentName = Convert.ToString(p.Field<string>("Dept_Desc"))
+                                             select new ClsDepartmentName
+                                             {
+                                                 DepartmentID = Convert.ToInt32(p.Field<decimal>("Department_ID")),
+                                                 DepartmentName = Convert.ToString(p.Field<string>("Dept_Desc"))
 
-                                               }).ToList();
+                                             }).ToList();
                         }
 
 
@@ -1009,9 +1106,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [Route("api/Ticketing/Fetch_Ticket_Dashboard_Count")]
         [HttpGet]
         public HttpResponseMessage Fetch_Ticket_Dashboard_Count(int CompanyID, string EmpCD, string RollCD, string FromDate, string ToDate)
-        {            
+        {
             List<ClsTicketDashboard> objTickets = new List<ClsTicketDashboard>();
-            
+
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
@@ -1022,7 +1119,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
-                
+
                 ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
                 ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
@@ -1040,7 +1137,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         {
                             objTickets = (from p in DsDataSet.Tables[0].AsEnumerable()
                                           select new ClsTicketDashboard
-                                          {                                             
+                                          {
                                               AssignedTicket = Convert.ToInt32(p.Field<int>("AssignedTicketCount")),
                                               AcceptedTicket = Convert.ToInt32(p.Field<int>("AcceptedTicketCount")),
                                               InProgressTicket = Convert.ToInt32(p.Field<int>("InProgressTicketCount")),
@@ -1054,7 +1151,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                           }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, objTickets);
-                        }                        
+                        }
 
                     }
                     else
@@ -1112,10 +1209,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             objTokenNumber = (from p in DsDataSet.Tables[0].AsEnumerable()
-                                          select new ClsEmployeeToken
-                                          {
-                                              TokenNumber = Convert.ToString(p.Field<string>("TokenNumber")),
-                                          }).ToList();
+                                              select new ClsEmployeeToken
+                                              {
+                                                  TokenNumber = Convert.ToString(p.Field<string>("TokenNumber")),
+                                              }).ToList();
                             return Request.CreateResponse(HttpStatusCode.OK, objTokenNumber);
                         }
                         else
@@ -1142,7 +1239,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             finally
             {
                 DsDataSet = null;
-                
+
             }
 
         }
