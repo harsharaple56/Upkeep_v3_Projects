@@ -279,7 +279,6 @@ namespace Upkeep_v3.GatePass
                                     foreach (DataRow dr in dsApproval.Tables[1].Rows)
                                     {
                                         var TokenNO = Convert.ToString(dr["TokenNumber"]);
-
                                         //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
                                         await SendNotification(TokenNO, Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
                                     }
@@ -332,6 +331,5 @@ namespace Upkeep_v3.GatePass
                 }
             }
         }
-
     }
 }

@@ -444,7 +444,6 @@ namespace Upkeep_v3.GatePass
 
                                     //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
                                     await SendNotification(TokenNO,Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-
                                 }
                             }
 
@@ -465,7 +464,6 @@ namespace Upkeep_v3.GatePass
             {
                 throw ex;
             }
-
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
