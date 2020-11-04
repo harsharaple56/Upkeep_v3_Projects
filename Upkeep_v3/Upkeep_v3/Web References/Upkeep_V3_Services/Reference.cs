@@ -6091,8 +6091,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyRequestGatePass(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MyRequestGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_MyRequestGatePass", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -6100,16 +6101,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_MyRequestGatePassAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyRequestGatePassAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestGatePassAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyRequestGatePassAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_MyRequestGatePassOperationCompleted == null)) {
                 this.Fetch_MyRequestGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestGatePassOperationCompleted);
             }
             this.InvokeAsync("Fetch_MyRequestGatePass", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date}, this.Fetch_MyRequestGatePassOperationCompleted, userState);
@@ -6124,8 +6126,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyActionableGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyActionableGatePass(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MyActionableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_MyActionableGatePass", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -6133,16 +6136,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_MyActionableGatePassAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyActionableGatePassAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyActionableGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyActionableGatePassAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyActionableGatePassAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MyActionableGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_MyActionableGatePassOperationCompleted == null)) {
                 this.Fetch_MyActionableGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyActionableGatePassOperationCompleted);
             }
             this.InvokeAsync("Fetch_MyActionableGatePass", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date}, this.Fetch_MyActionableGatePassOperationCompleted, userState);

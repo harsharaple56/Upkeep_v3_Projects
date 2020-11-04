@@ -51,6 +51,7 @@
         });
     </script>
 
+
     <script>
         //$(function () {
 
@@ -423,8 +424,8 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
-                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassDate" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassDate" Visible="true" Display="Dynamic"
+                                                ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass Date"></asp:RequiredFieldValidator>
                                         </div>
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
@@ -514,14 +515,20 @@
 
                                         <div class="form-group m-form__group row" style="padding-left: 1%;">
                                             <label class="col-xl-3 col-lg-2 form-control-label"><%# Convert.ToBoolean(Eval("Mandatory"))  ? "<span style='color: red;'>*</span>" : "&nbsp;" %> <%#Eval("Doc_Desc") %>:</label>
-                                            <div class="col-xl-4 col-lg-4">
+                                            <div class="col-xl-8 col-lg-8">
                                                 <asp:HiddenField ID="hdnDocID" Value='<%#Eval("Doc_Config_Id") %>' runat="server" />
                                                 <%--<asp:Label ID="" runat="server" Text='<%#Eval("Doc_Config_Id") %>' Style="display: none;"></asp:Label>--%>
                                                 <asp:FileUpload AllowMultiple="false" ID="flDoc" runat="server" />
+
+                                                <asp:RegularExpressionValidator ID="rexp" runat="server" ControlToValidate="flDoc"
+                                                    ErrorMessage=" Please upload jpg, jpeg, png, pdf file only." ForeColor="Red"
+                                                    ValidationExpression="(.*\.([Gg][Ii][Ff])|.*\.([Jj][Pp][Gg])|.*\.([Bb][Mm][Pp])|.*\.([pP][nN][gG])|.*\.([pP][dD][fF])$)"></asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
+
+                                
                                 <br />
 
                                 <%-- End Document Section --%>
@@ -547,8 +554,8 @@
                                 <br />
 
                                 <div class="col-lg-9 ml-lg-auto">
-                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                    </div>
+                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                </div>
                                 <br />
                             </div>
                         </div>

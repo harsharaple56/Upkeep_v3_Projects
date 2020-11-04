@@ -298,164 +298,165 @@ namespace Upkeep_v3.GatePass
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-
             try
             {
-
-                string GpHeader = Convert.ToString(hdnGpHeader.Value);
-                string GpHeaderData = Convert.ToString(hdnGpHeaderData.Value);
-
-                string[] strArrayGpHeader = GpHeader.Split(',');
-                string[] strArrayGpHeaderData = GpHeaderData.Split(',');
-
-                int recCount = 0;
-                recCount = strArrayGpHeader.Length - 1;
-
-                DataTable dtHeader = new DataTable();
-
-                // string df = "1,2,1,3";
-
-                int i;
-
-                DataColumn dc = new DataColumn();
-
-                dtHeader.Columns.Add(dc);
-
-                for (i = 0; i < 1; i++)
+                if (Page.IsValid)
                 {
-                    string[] LocArr = strArrayGpHeader[i].Split('#');
-                    int recCount2 = LocArr.Length;
+                    string GpHeader = Convert.ToString(hdnGpHeader.Value);
+                    string GpHeaderData = Convert.ToString(hdnGpHeaderData.Value);
 
-                    for (int j = 0; j < recCount2; j++)
+                    string[] strArrayGpHeader = GpHeader.Split(',');
+                    string[] strArrayGpHeaderData = GpHeaderData.Split(',');
+
+                    int recCount = 0;
+                    recCount = strArrayGpHeader.Length - 1;
+
+                    DataTable dtHeader = new DataTable();
+
+                    // string df = "1,2,1,3";
+
+                    int i;
+
+                    DataColumn dc = new DataColumn();
+
+                    dtHeader.Columns.Add(dc);
+
+                    for (i = 0; i < 1; i++)
                     {
-                        if (LocArr[j] != "")
+                        string[] LocArr = strArrayGpHeader[i].Split('#');
+                        int recCount2 = LocArr.Length;
+
+                        for (int j = 0; j < recCount2; j++)
                         {
-                            //dr[dc] = GpHeader.Split(',')[i];
-                            //dr[dc] = LocArr[j];
-                            //dt.Rows.Add(dr);
-                            dtHeader.Columns.Add(LocArr[j]);
-
-                        }
-                    }
-                }
-
-                string GPDoc = string.Empty;
-                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
-                string fileUploadPath = HttpContext.Current.Server.MapPath("~/GPDocuments/" + CurrentDate);
-                if (!Directory.Exists(fileUploadPath))
-                {
-                    Directory.CreateDirectory(fileUploadPath);
-                }
-
-                List<string> Lst_GP_Document_Uploads = new List<string>();
-
-                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-
-                foreach (RepeaterItem itemHeader in rptDocuments.Items)
-                {
-                    FileUpload flDoc = (itemHeader.FindControl("flDoc") as FileUpload);
-                    string Doc_ConfigID = Convert.ToString((itemHeader.FindControl("hdnDocID") as HiddenField).Value);
-                    string filename = string.Empty;
-                    if (flDoc.HasFile)
-                    {
-                        string trailingPath = Path.GetFileName(flDoc.PostedFile.FileName);
-                        string extension = Path.GetExtension(flDoc.PostedFile.FileName).ToLower();
-
-                        if (extension == ".jpg" || extension == ".png" || extension == ".pdf")
-                        {
-                            filename = "GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmssfff") + extension;
-                            //string fullPath = Path.Combine(Server.MapPath(" ") + "\\GPDocuments\\", filename);
-                            //Server.MapPath(" ") + "\\GPDocuments\\GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString();
-
-                            string SaveLocation = Server.MapPath("~/GPDocuments/" + CurrentDate) + "/" + filename;
-                            string FileLocation = Doc_ConfigID + "$" + imgPath + "/GPDocuments/" + CurrentDate + "/" + filename;
-
-                            flDoc.PostedFile.SaveAs(SaveLocation);
-                            //GPDoc = GPDoc + Doc_ConfigID + ":" + filename + ";";
-                            Lst_GP_Document_Uploads.Add(FileLocation);
-                            //GPDoc = FileLocation;
-                        }
-                        //  Label1.Text = "File Uploaded: " + flDoc.FileName;
-                        //  Label1.Text = "File Uploaded: " + flDoc.FileName;
-                    }
-                }
-
-                GPDoc = String.Join(",", Lst_GP_Document_Uploads);
-
-                string[] LocArray = strArrayGpHeader[1].Split('#');
-
-                DataRow row = dtHeader.NewRow(); ///creating new row in your datatable
-
-                row.ItemArray = LocArray;///copying your data into data row object
-
-                dtHeader.Rows.InsertAt(row, 2);///insert row at 3rd index of datatable
-
-
-                for (int k = 0; k < strArrayGpHeaderData.Length - 1; k++)
-                {
-
-                    string[] HValueArray = strArrayGpHeaderData[k].Split('#');
-
-                    ////if(HValueArray)
-                    DataRow rowHValue = dtHeader.NewRow(); ///creating new row in your datatable
-
-                    rowHValue.ItemArray = HValueArray;///copying your data into data row object
-
-                    dtHeader.Rows.InsertAt(rowHValue, 2);///insert row at 3rd index of datatable
-
-                }
-
-                dtHeader.Columns.Remove("Column1");
-
-                ////string  StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
-                ////SqlBulkCopy bulkInsert = new SqlBulkCopy(StrConn);
-                ////bulkInsert.DestinationTableName = "Tbl_Temp_Gp_HeaderData";
-                ////bulkInsert.WriteToServer(dtHeader);
-
-                int GP_ConfigID = 0;
-                string strGatePassDate = string.Empty;
-                int DeptID = 0;
-                int TypeID = 0;
-
-                GP_ConfigID = Convert.ToInt32(ddlGatePassTitle.SelectedValue);
-                strGatePassDate = Convert.ToString(txtGatePassDate.Text.Trim());
-                if (Convert.ToString(ddlDepartment.SelectedValue) != "")
-                {
-                    DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
-                }
-                TypeID = Convert.ToInt32(ddlGatePassType.SelectedValue);
-
-
-                DataSet dsGpHeaderData = new DataSet();
-                dsGpHeaderData = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, TypeID, GpHeader, GpHeaderData, GPDoc, LoggedInUserID);
-
-                if (dsGpHeaderData.Tables.Count > 0)
-                {
-                    if (dsGpHeaderData.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsGpHeaderData.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            if (dsGpHeaderData.Tables.Count > 2)
+                            if (LocArr[j] != "")
                             {
-                                foreach (DataRow dr in dsGpHeaderData.Tables[2].Rows)
-                                {
-                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                //dr[dc] = GpHeader.Split(',')[i];
+                                //dr[dc] = LocArr[j];
+                                //dt.Rows.Add(dr);
+                                dtHeader.Columns.Add(LocArr[j]);
 
-                                    //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                    await SendNotification(TokenNO,Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                }
                             }
-
-                            lblGPRequestCode.Text = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
-
-                            mpeGpRequestSaveSuccess.Show();
-
-                            //await SendNotification("", "100", "From Local");
                         }
-                        if (Status == 2)
+                    }
+
+                    string GPDoc = string.Empty;
+                    string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/GPDocuments/" + CurrentDate);
+                    if (!Directory.Exists(fileUploadPath))
+                    {
+                        Directory.CreateDirectory(fileUploadPath);
+                    }
+
+                    List<string> Lst_GP_Document_Uploads = new List<string>();
+
+                    string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
+                    foreach (RepeaterItem itemHeader in rptDocuments.Items)
+                    {
+                        FileUpload flDoc = (itemHeader.FindControl("flDoc") as FileUpload);
+                        string Doc_ConfigID = Convert.ToString((itemHeader.FindControl("hdnDocID") as HiddenField).Value);
+                        string filename = string.Empty;
+                        if (flDoc.HasFile)
                         {
-                            lblErrorMsg.Text = "Something went wrong. Please try after some time";
+                            string trailingPath = Path.GetFileName(flDoc.PostedFile.FileName);
+                            string extension = Path.GetExtension(flDoc.PostedFile.FileName).ToLower();
+
+                            if (extension == ".jpg" || extension == ".png" || extension == ".pdf")
+                            {
+                                filename = "GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmssfff") + extension;
+                                //string fullPath = Path.Combine(Server.MapPath(" ") + "\\GPDocuments\\", filename);
+                                //Server.MapPath(" ") + "\\GPDocuments\\GPDoc_" + Doc_ConfigID + "_" + DateTime.Now.ToString();
+
+                                string SaveLocation = Server.MapPath("~/GPDocuments/" + CurrentDate) + "/" + filename;
+                                string FileLocation = Doc_ConfigID + "$" + imgPath + "/GPDocuments/" + CurrentDate + "/" + filename;
+
+                                flDoc.PostedFile.SaveAs(SaveLocation);
+                                //GPDoc = GPDoc + Doc_ConfigID + ":" + filename + ";";
+                                Lst_GP_Document_Uploads.Add(FileLocation);
+                                //GPDoc = FileLocation;
+                            }
+                            //  Label1.Text = "File Uploaded: " + flDoc.FileName;
+                            //  Label1.Text = "File Uploaded: " + flDoc.FileName;
+                        }
+                    }
+
+                    GPDoc = String.Join(",", Lst_GP_Document_Uploads);
+
+                    string[] LocArray = strArrayGpHeader[1].Split('#');
+
+                    DataRow row = dtHeader.NewRow(); ///creating new row in your datatable
+
+                    row.ItemArray = LocArray;///copying your data into data row object
+
+                    dtHeader.Rows.InsertAt(row, 2);///insert row at 3rd index of datatable
+
+
+                    for (int k = 0; k < strArrayGpHeaderData.Length - 1; k++)
+                    {
+
+                        string[] HValueArray = strArrayGpHeaderData[k].Split('#');
+
+                        ////if(HValueArray)
+                        DataRow rowHValue = dtHeader.NewRow(); ///creating new row in your datatable
+
+                        rowHValue.ItemArray = HValueArray;///copying your data into data row object
+
+                        dtHeader.Rows.InsertAt(rowHValue, 2);///insert row at 3rd index of datatable
+
+                    }
+
+                    dtHeader.Columns.Remove("Column1");
+
+                    ////string  StrConn = ConfigurationManager.ConnectionStrings["Upkeep_GP_WP_ConString"].ConnectionString.ToString();
+                    ////SqlBulkCopy bulkInsert = new SqlBulkCopy(StrConn);
+                    ////bulkInsert.DestinationTableName = "Tbl_Temp_Gp_HeaderData";
+                    ////bulkInsert.WriteToServer(dtHeader);
+
+                    int GP_ConfigID = 0;
+                    string strGatePassDate = string.Empty;
+                    int DeptID = 0;
+                    int TypeID = 0;
+
+                    GP_ConfigID = Convert.ToInt32(ddlGatePassTitle.SelectedValue);
+                    strGatePassDate = Convert.ToString(txtGatePassDate.Text.Trim());
+                    if (Convert.ToString(ddlDepartment.SelectedValue) != "")
+                    {
+                        DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
+                    }
+                    TypeID = Convert.ToInt32(ddlGatePassType.SelectedValue);
+
+
+                    DataSet dsGpHeaderData = new DataSet();
+                    dsGpHeaderData = ObjUpkeep.Insert_GatePassRequest(GP_ConfigID, strGatePassDate, DeptID, TypeID, GpHeader, GpHeaderData, GPDoc, LoggedInUserID);
+
+                    if (dsGpHeaderData.Tables.Count > 0)
+                    {
+                        if (dsGpHeaderData.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(dsGpHeaderData.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                if (dsGpHeaderData.Tables.Count > 2)
+                                {
+                                    foreach (DataRow dr in dsGpHeaderData.Tables[2].Rows)
+                                    {
+                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
+
+                                        //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                        await SendNotification(TokenNO, Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                    }
+                                }
+
+                                lblGPRequestCode.Text = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
+
+                                mpeGpRequestSaveSuccess.Show();
+
+                                //await SendNotification("", "100", "From Local");
+                            }
+                            if (Status == 2)
+                            {
+                                lblErrorMsg.Text = "Something went wrong. Please try after some time";
+                            }
                         }
                     }
                 }

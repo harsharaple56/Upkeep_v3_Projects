@@ -948,14 +948,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Fetch_MyRequestGatePass(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyRequestGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_MyRequestGatePass(LoggedInUserID, From_Date, To_Date, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_MyRequestGatePass(CompanyID,LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -964,14 +964,14 @@ public class My_Upkeep
         }
     }
 
-    public DataSet Fetch_MyActionableGatePass(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyActionableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_MyActionableGatePass(LoggedInUserID, From_Date, To_Date, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_MyActionableGatePass(CompanyID,LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)

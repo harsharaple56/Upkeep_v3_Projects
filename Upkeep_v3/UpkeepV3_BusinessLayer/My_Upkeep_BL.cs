@@ -1344,7 +1344,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_MyRequestGatePass(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        public DataSet Fetch_MyRequestGatePass(int CompanyID,string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1352,6 +1352,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_FETCH_MYREQUEST_GP", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
@@ -1365,7 +1366,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_MyActionableGatePass(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        public DataSet Fetch_MyActionableGatePass(int CompanyID,string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1373,6 +1374,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_MyActionable_GP", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
