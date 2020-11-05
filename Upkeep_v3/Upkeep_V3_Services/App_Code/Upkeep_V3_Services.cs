@@ -1351,12 +1351,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_GatePass_MIS(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_GatePass_MIS(int CompanyID,string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_GatePass_MIS(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_GatePass_MIS(CompanyID,LoggedInUserID, From_Date, To_Date);
         }
         catch (Exception ex)
         {

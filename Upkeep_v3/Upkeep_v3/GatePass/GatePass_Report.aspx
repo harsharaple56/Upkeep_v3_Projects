@@ -30,6 +30,7 @@
                                 "Approve": { title: "Approved", class: " m-badge--info" },
                                 "Hold": { title: "Hold", class: " m-badge--warning" },
                                 "Reject": { title: "Rejected", class: " m-badge--danger" },
+                                "Expired": { title: "Expired", class: " m-badge--warning" },
                                 "In Progress": { title: "In Progress", class: " m-badge--success" }
                             }; return '<span class="m-badge ' + t[e.Status].class + ' m-badge--wide">' + t[e.Status].title + "</span>"
                         }
@@ -139,7 +140,7 @@
 
 
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
+            <div class="">
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -180,6 +181,7 @@
                                                         <option value="Hold">Hold</option>
                                                         <option value="Rejected">Rejected</option>
                                                         <option value="Closed">Closed</option>
+                                                        <option value="Expired">Expired</option>
                                                     </select>
                                                 </div>
                                             </div>

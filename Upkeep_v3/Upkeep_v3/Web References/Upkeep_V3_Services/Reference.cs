@@ -6229,8 +6229,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GatePass_MIS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_GatePass_MIS(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_GatePass_MIS(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_GatePass_MIS", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date});
@@ -6238,16 +6239,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_GatePass_MISAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_GatePass_MISAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_GatePass_MISAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_GatePass_MISAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_GatePass_MISAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_GatePass_MISAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_GatePass_MISOperationCompleted == null)) {
                 this.Fetch_GatePass_MISOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_GatePass_MISOperationCompleted);
             }
             this.InvokeAsync("Fetch_GatePass_MIS", new object[] {
+                        CompanyID,
                         LoggedInUserID,
                         From_Date,
                         To_Date}, this.Fetch_GatePass_MISOperationCompleted, userState);
