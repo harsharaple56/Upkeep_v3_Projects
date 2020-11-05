@@ -7257,7 +7257,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request", "GATEPASS");
+                                FunSendAppNotification(TokenNO, TicketNo, "New Gatepass Request", "Gatepass");
                             }
 
                         }
