@@ -137,6 +137,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             objGatepass = (from p in DsDataSet.Tables[0].AsEnumerable()
                                           select new ClsGatepassDashboard
                                           {
+                                              Total_Open=Convert.ToInt32(p.Field<int>("OpenCount")),
                                               InProgress = Convert.ToInt32(p.Field<int>("InProgressCount")),
                                               OnHold = Convert.ToInt32(p.Field<int>("OnHoldCount")),
                                               Approved = Convert.ToInt32(p.Field<int>("ApprovedCount")),
