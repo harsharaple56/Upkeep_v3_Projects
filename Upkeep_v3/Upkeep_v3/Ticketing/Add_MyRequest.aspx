@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Add_MyRequest.aspx.cs" Inherits="Upkeep_v3.Ticketing.Add_MyRequest" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Add_MyRequest.aspx.cs" Inherits="Upkeep_v3.Ticketing.Add_MyRequest" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

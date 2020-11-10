@@ -13,6 +13,9 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Upkeep_v3.Ticketing
 {
@@ -183,7 +186,7 @@ namespace Upkeep_v3.Ticketing
         }
 
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -354,6 +357,7 @@ namespace Upkeep_v3.Ticketing
                                         string TicketRaisedBy_FirstName = string.Empty;
                                         string TicketRaisedBy_MobileNo = string.Empty;
                                         string TextMessage_RaisedBy = string.Empty;
+                                        string TicketRaisedBy_DepartmentName = string.Empty;
 
                                         Category = Convert.ToString(ddlCategory.SelectedItem.Text);
                                         Location= Convert.ToString(ddlLocation.SelectedItem.Text);
@@ -391,7 +395,25 @@ namespace Upkeep_v3.Ticketing
                                                 string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
                                             }
                                         }
-                                        
+
+                                        // Send App Notifications
+                                        string NotificationMsg = string.Empty;
+                                        TicketRaisedBy_DepartmentName= Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_Department_Name"]);
+                                       string TicketRaisedBy_Name = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_FName"]);
+                                        if (dsTicketSave.Tables.Count > 3)
+                                        {
+                                            NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_Name + " from " + TicketRaisedBy_DepartmentName + " Department. Tap to Accept";
+
+                                            foreach (DataRow dr in dsTicketSave.Tables[3].Rows)
+                                            {
+                                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                                var TicketID = Convert.ToInt32(dr["TicketID"]);
+                                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+                                               
+                                                //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                                await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
+                                            }
+                                        }
                                         // Send SMS
                                         lblTicketCode.Text = TicketCode;
                                         Session["NextTicketCode"] = "";
@@ -542,6 +564,31 @@ namespace Upkeep_v3.Ticketing
             Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyRequest.aspx"), false);
         }
 
+        public static async Task SendNotification(string TokenNo,int TicketID, string TicketNo, string strMessage)
+        {
+            //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
+            using (var client = new HttpClient())
+            {
+                //Send HTTP requests from here.  
+                string API_URL = Convert.ToString(ConfigurationManager.AppSettings["API_URL"]);
+                client.BaseAddress = new Uri(API_URL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //GET Method  
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TicketID + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "TICKET");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Departmentdepartment = awaitresponse.Content.ReadAsAsync<Department>();
+                    //Console.WriteLine("Id:{0}\tName:{1}", department.DepartmentId, department.DepartmentName);
+                    //Console.WriteLine("No of Employee in Department: {0}", department.Employees.Count);
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+        }
 
         private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
         {
