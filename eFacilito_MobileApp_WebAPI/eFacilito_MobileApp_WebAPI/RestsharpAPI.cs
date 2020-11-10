@@ -61,13 +61,15 @@ namespace eFacilito_MobileApp_WebAPI
             public string title { get; set; }
             public string body { get; set; }
             public int TransactionID { get; set; }
+            public string click_action { get; set; }
             public string timestamp { get; set; }
 
-            public Data(string title, string body, int TransactionID)
+            public Data(string title, string body, int TransactionID, string click_action)
             {
                 this.title = title;
                 this.body = body;
                 this.TransactionID = TransactionID;
+                this.click_action = click_action;
                 timestamp = DateTime.Now.ToString();
             }
         }
@@ -83,7 +85,7 @@ namespace eFacilito_MobileApp_WebAPI
             // request.AddBody(new Push(token, new Notification(title, message), new Data(title, message)));
             // request.RequestFormat = DataFormat.Json;
 
-            string data = JsonConvert.SerializeObject(new Push(token, new Notification(title, message, TransactionID, click_action), new Data(title, message, TransactionID)));
+            string data = JsonConvert.SerializeObject(new Push(token, new Notification(title, message, TransactionID, click_action), new Data(title, message, TransactionID, click_action)));
             request.AddParameter("application/json", data, ParameterType.RequestBody);
 
             //  Push push = new Push(title, message);
