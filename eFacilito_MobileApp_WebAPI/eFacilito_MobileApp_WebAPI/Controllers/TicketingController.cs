@@ -395,7 +395,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     string Send_SMS_URL = string.Empty;
                     string MobileNo = string.Empty;
                     string TextMessage = string.Empty;
-                    string Department = string.Empty;
+                    string AssignedDepartment = string.Empty;
+                    string TicketRaisedByDepartment = string.Empty;
                     string Category = string.Empty;
                     string Location = string.Empty;
 
@@ -424,13 +425,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                     MobileNo = Convert.ToString(dr["MobileNo"]);
                                     TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
                                     TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
-                                    Department = Convert.ToString(dr["Department"]);
+                                    AssignedDepartment = Convert.ToString(dr["AssignedDepartment"]);
+                                    TicketRaisedByDepartment = Convert.ToString(dr["TicketRaisedByDepartment"]);
                                     Category = Convert.ToString(dr["Category"]);
                                     Location = Convert.ToString(dr["Location"]);
                                     Ticket_No = Convert.ToString(dr["TicketNo"]);
 
                                     TextMessage = "Dear " + FirstName + ",";
-                                    TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
+                                    TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + TicketRaisedByDepartment + " Department.";
                                     TextMessage += "%0a%0aCategory :" + Category;
                                     TextMessage += "%0aLocation :" + Location;
                                     TextMessage += "%0aStatus : OPEN(Assigned)";
@@ -445,7 +447,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             }
                         }
                         TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
-                        TextMessage_RaisedBy += "%0a%0aYour ticket " + Ticket_No + " has been raised successfully & has been sent to the users of " + Department + " Department.";
+                        TextMessage_RaisedBy += "%0a%0aYour ticket " + Ticket_No + " has been raised successfully & has been sent to the users of " + AssignedDepartment + " Department.";
                         if (APIKey != "")
                         {
                             string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
@@ -457,7 +459,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             string NotificationMsg = string.Empty;
-                            NotificationMsg = "A ticket has been raised by "+ TicketRaisedBy_FirstName + " from "+ Department + " Department. Tap to Accept";
+                            NotificationMsg = "A ticket has been raised by "+ TicketRaisedBy_FirstName + " from "+ TicketRaisedByDepartment + " Department. Tap to Accept";
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
