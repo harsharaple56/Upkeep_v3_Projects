@@ -1940,7 +1940,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [HttpGet]
         public string FunTestDemoNotification(string StrTokenNumber)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Upkeep", "New request recieved", "TICKET");
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, 0,"Upkeep", "New request recieved", "TICKET");
             return response;
         }
 
@@ -2068,7 +2068,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                     StrTKTID = Convert.ToString(ObjLocSqlParameters[35].Value);
 
-                    string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + StrTKTID, "New request recieved", "TICKET");
+                    string response = RestsharpAPI.SendNotification(StrTokenNumber,0, "Ticket ID: " + StrTKTID, "New request recieved", "TICKET");
 
                     //if (StrParkedId > 0 && StrParkedId != null)
                     //{
@@ -7342,7 +7342,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [HttpGet]
         public string FunSendAppNotification(string StrTokenNumber, string TicketNo, string StrMessage, string click_action)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage, click_action);
+            string response = RestsharpAPI.SendNotification(StrTokenNumber,0, "Ticket ID: " + TicketNo, StrMessage, click_action);
             return response;
         }
 

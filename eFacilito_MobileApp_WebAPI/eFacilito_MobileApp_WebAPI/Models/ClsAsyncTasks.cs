@@ -79,7 +79,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
                         DblRequestID = Convert.ToDouble(ObjLocSqlParameters[33].Value);
                         Dblflowid = Convert.ToDouble(ObjLocSqlParameters[34].Value);
 
-                        string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + Convert.ToString(ObjLocSqlParameters[35].Value), "New request recieved","TICKET");
+                        string response = RestsharpAPI.SendNotification(StrTokenNumber, 0, "Ticket ID: " + Convert.ToString(ObjLocSqlParameters[35].Value), "New request recieved","TICKET");
 
                     }
 

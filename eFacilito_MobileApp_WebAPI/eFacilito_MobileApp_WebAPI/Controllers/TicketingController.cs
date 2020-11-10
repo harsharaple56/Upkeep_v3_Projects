@@ -353,7 +353,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             DataSet DsDataSet = new DataSet();
             string TicketPrefix = string.Empty;
             string StrLocConnection = null;
-            string TicketID = string.Empty;
+            int TicketID = 0;
             string Ticket_No = string.Empty;
             try
             {
@@ -375,87 +375,153 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 if (DsDataSet != null)
                 {
+                    //if (DsDataSet.Tables.Count > 0)
+                    //{
+                    //    if (DsDataSet.Tables[0].Rows.Count > 0)
+                    //    {
+
+                    //        foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                    //        {
+                    //            var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                    //            var TicketNo = Convert.ToString(dr["TicketNo"]);
+                    //            Ticket_No = Convert.ToString(dr["TicketNo"]);
+                    //            TicketID = Convert.ToString(dr["TicketNo"]);
+                    //            FunSendAppNotification(TokenNO, 0, TicketNo, "New Ticket Request", "TICKET");
+                    //        }
+
+                    //Send SMS
+                    string APIKey = string.Empty;
+                    string SenderID = string.Empty;
+                    string Send_SMS_URL = string.Empty;
+                    string MobileNo = string.Empty;
+                    string TextMessage = string.Empty;
+                    string Department = string.Empty;
+                    string Category = string.Empty;
+                    string Location = string.Empty;
+
+                    string TicketRaisedBy_FirstName = string.Empty;
+                    string TicketRaisedBy_MobileNo = string.Empty;
+                    string TextMessage_RaisedBy = string.Empty;
+
+                    if (DsDataSet.Tables.Count > 1)
+                    {
+                        SendSMS sms = new SendSMS();
+                        if (DsDataSet.Tables.Count > 1)
+                        {
+                            if (DsDataSet.Tables[1].Rows.Count > 0)
+                            {
+
+                                if (DsDataSet.Tables[2].Rows.Count > 0)
+                                {
+                                    APIKey = Convert.ToString(DsDataSet.Tables[2].Rows[0]["Api_Key"]);
+                                    SenderID = Convert.ToString(DsDataSet.Tables[2].Rows[0]["Sender_ID"]);
+                                    Send_SMS_URL = Convert.ToString(DsDataSet.Tables[2].Rows[0]["Send_SMS_URL"]);
+                                }
+
+                                foreach (DataRow dr in DsDataSet.Tables[1].Rows)
+                                {
+                                    string FirstName = Convert.ToString(dr["FirstName"]);
+                                    MobileNo = Convert.ToString(dr["MobileNo"]);
+                                    TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
+                                    TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
+                                    Department = Convert.ToString(dr["Department"]);
+                                    Category = Convert.ToString(dr["Category"]);
+                                    Location = Convert.ToString(dr["Location"]);
+                                    Ticket_No = Convert.ToString(dr["TicketNo"]);
+
+                                    TextMessage = "Dear " + FirstName + ",";
+                                    TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
+                                    TextMessage += "%0a%0aCategory :" + Category;
+                                    TextMessage += "%0aLocation :" + Location;
+                                    TextMessage += "%0aStatus : OPEN(Assigned)";
+                                    TextMessage += "%0aLevel : 1";
+                                    TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
+
+                                    if (APIKey != "")
+                                    {
+                                        string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                                    }
+                                }
+                            }
+                        }
+                        TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
+                        TextMessage_RaisedBy += "%0a%0aYour ticket " + Ticket_No + " has been raised successfully & has been sent to the users of " + Department + " Department.";
+                        if (APIKey != "")
+                        {
+                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
+                        }
+                    }
+
                     if (DsDataSet.Tables.Count > 0)
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            //TicketID = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                            string NotificationMsg = string.Empty;
+                            NotificationMsg = "A ticket has been raised by "+ TicketRaisedBy_FirstName + " from "+ Department + " Department. Tap to Accept";
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
                                 Ticket_No = Convert.ToString(dr["TicketNo"]);
-                                TicketID = Convert.ToString(dr["TicketNo"]);
-                                FunSendAppNotification(TokenNO, TicketNo, "New Ticket Request", "TICKET");
+                                TicketID = Convert.ToInt32(dr["TicketID"]);
+
+                                FunSendAppNotification(TokenNO, TicketID, "Ticket No. " +TicketNo+ ". New Ticket Received.", NotificationMsg, "TICKET");
                             }
-
-                            //Send SMS
-                            string APIKey = string.Empty;
-                            string SenderID = string.Empty;
-                            string Send_SMS_URL = string.Empty;
-                            string MobileNo = string.Empty;
-                            string TextMessage = string.Empty;
-                            string Department = string.Empty;
-                            string Category = string.Empty;
-                            string Location = string.Empty;
-
-                            string TicketRaisedBy_FirstName = string.Empty;
-                            string TicketRaisedBy_MobileNo = string.Empty;
-                            string TextMessage_RaisedBy = string.Empty;
-
-                            if (DsDataSet.Tables.Count > 1)
-                            {
-                                if (DsDataSet.Tables[1].Rows.Count > 0)
-                                {
-                                    APIKey = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Api_Key"]);
-                                    SenderID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Sender_ID"]);
-                                    Send_SMS_URL = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Send_SMS_URL"]);
-
-                                    SendSMS sms = new SendSMS();
-                                    if (DsDataSet.Tables.Count > 2)
-                                    {
-                                        if (DsDataSet.Tables[2].Rows.Count > 0)
-                                        {
-                                            foreach (DataRow dr in DsDataSet.Tables[2].Rows)
-                                            {
-                                                string FirstName = Convert.ToString(dr["FirstName"]);
-                                                MobileNo = Convert.ToString(dr["MobileNo"]);
-                                                TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
-                                                TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
-                                                Department = Convert.ToString(dr["Department"]);
-                                                Category = Convert.ToString(dr["Category"]);
-                                                Location = Convert.ToString(dr["Location"]);
-
-                                                TextMessage = "Dear " + FirstName + ",";
-                                                TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
-                                                TextMessage += "%0a%0aCategory :" + Category;
-                                                TextMessage += "%0aLocation :" + Location;
-                                                TextMessage += "%0aStatus : OPEN(Assigned)";
-                                                TextMessage += "%0aLevel : 1";
-                                                TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
-
-                                                string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
-                                            }
-                                        }
-                                    }
-                                    TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
-                                    TextMessage_RaisedBy += "%0a%0aYour ticket " + Ticket_No + " has been raised successfully & has been sent to the users of " + Department + " Department.";
-                                    string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
-                                }
-                            }
-
-                            // Send SMS
-
                         }
-                        //if (DsDataSet.Tables[1].Rows.Count > 0)
-                        //{
-                        //    TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["TicketNo"]);                           
-                        //}
-                        //else
-                        //{
-                        //    return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
-                        //}
                     }
+
+                    
+                    //if (DsDataSet.Tables[1].Rows.Count > 0)
+                    //{
+                    //    APIKey = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Api_Key"]);
+                    //    SenderID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Sender_ID"]);
+                    //    Send_SMS_URL = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                    //SendSMS sms = new SendSMS();
+                    //if (DsDataSet.Tables.Count > 2)
+                    //{
+                    //    if (DsDataSet.Tables[2].Rows.Count > 0)
+                    //    {
+                    //        foreach (DataRow dr in DsDataSet.Tables[2].Rows)
+                    //        {
+                    //            string FirstName = Convert.ToString(dr["FirstName"]);
+                    //            MobileNo = Convert.ToString(dr["MobileNo"]);
+                    //            TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
+                    //            TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
+                    //            Department = Convert.ToString(dr["Department"]);
+                    //            Category = Convert.ToString(dr["Category"]);
+                    //            Location = Convert.ToString(dr["Location"]);
+
+                    //            TextMessage = "Dear " + FirstName + ",";
+                    //            TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
+                    //            TextMessage += "%0a%0aCategory :" + Category;
+                    //            TextMessage += "%0aLocation :" + Location;
+                    //            TextMessage += "%0aStatus : OPEN(Assigned)";
+                    //            TextMessage += "%0aLevel : 1";
+                    //            TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
+
+                    //            string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                    //        }
+                    //    }
+                    //}
+                    //TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
+                    //TextMessage_RaisedBy += "%0a%0aYour ticket " + Ticket_No + " has been raised successfully & has been sent to the users of " + Department + " Department.";
+                    //string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
+                    //}
+                    //}
+
+                    // Send SMS
+
+                    //}
+                    //if (DsDataSet.Tables[1].Rows.Count > 0)
+                    //{
+                    //    TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["TicketNo"]);                           
+                    //}
+                    //else
+                    //{
+                    //    return Request.CreateResponse(HttpStatusCode.NotFound, "No Workflow Found");
+                    //}
+                    //}
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, TicketID);
@@ -1014,9 +1080,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
         [HttpGet]
-        public string FunSendAppNotification(string StrTokenNumber, string TicketNo, string StrMessage, string click_action)
+        public string FunSendAppNotification(string StrTokenNumber, int TransactionID, string TicketNo, string StrMessage, string click_action)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, "Ticket ID: " + TicketNo, StrMessage, click_action);
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, TransactionID, TicketNo, StrMessage, click_action);
             return response;
         }
 
