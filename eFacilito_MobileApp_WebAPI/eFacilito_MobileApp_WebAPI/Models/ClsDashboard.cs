@@ -31,6 +31,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public decimal PendingPercentage { get; set; }
         public int PendingApprovals { get; set; }
         public int Total { get; set; }
+        public int Total_Open { get; set; }
     }
 
     public class ClsWorkpermitDashboard

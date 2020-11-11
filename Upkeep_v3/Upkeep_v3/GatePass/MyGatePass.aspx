@@ -30,7 +30,7 @@
                                 "Close": { title: "Closed", class: " m-badge--success" },
                                 "Approve": { title: "Approved", class: " m-badge--info" },
                                 "Hold": { title: "Hold", class: " m-badge--warning" },
-                                "Reject": { title: "Rejected", class: " m-badge--danger" },
+                                "Rejected": { title: "Rejected", class: " m-badge--danger" },
                                 "In Progress": { title: "In Progress", class: " m-badge--success" }
                             }; return '<span class="m-badge ' + t[e.Status].class + ' m-badge--wide">' + t[e.Status].title + "</span>"
                         }
