@@ -37,7 +37,7 @@ namespace Upkeep_v3.CheckList
             try
             {
                 //Spr_Fetch_Checklist_Schedule
-                //dsChecklist = ObjUpkeep.Schedule_Checklist_CRUD(CompanyID);
+                dsChecklist = ObjUpkeep.Schedule_Checklist_CRUD(CompanyID);
 
                 if (dsChecklist.Tables.Count > 0)
                 {
@@ -47,12 +47,12 @@ namespace Upkeep_v3.CheckList
 
                         for (int i = 0; i < count; i++)
                         {
-                            int Chk_Map_Id = Convert.ToInt32(dsChecklist.Tables[0].Rows[i]["Workflow_Id"]);
-                            string Checklist_Name = Convert.ToString(dsChecklist.Tables[0].Rows[i]["Workflow_Desc"]);
-                            string Department = Convert.ToString(dsChecklist.Tables[0].Rows[i]["Category_Desc"]);
-                            string Locations = Convert.ToString(dsChecklist.Tables[0].Rows[i]["SubCategory_Desc"]);
+                            int Chk_Map_ID = Convert.ToInt32(dsChecklist.Tables[0].Rows[i]["Chk_Map_ID"]);
+                            string Chk_Desc = Convert.ToString(dsChecklist.Tables[0].Rows[i]["Chk_Title"]);
+                            string Dept_Desc = Convert.ToString(dsChecklist.Tables[0].Rows[i]["Dept_Desc"]);
+                            string Location_Count = Convert.ToString(dsChecklist.Tables[0].Rows[i]["LocationCount"]);
 
-                            data += "<tr><td>" + Checklist_Name + "</td><td>" + Department + "</td><td>" + Locations + "</td><td><a href='Schedule_Checklist.aspx?EditMapId=" + Chk_Map_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Schedule_Checklist.aspx?DelMapID=" + Chk_Map_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Chk_Desc + "</td><td>" + Dept_Desc + "</td><td>" + Location_Count + "</td><td><a href='Schedule_Checklist.aspx?EditMapId=" + Chk_Map_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Schedule_Checklist.aspx?DelMapID=" + Chk_Map_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
@@ -72,5 +72,9 @@ namespace Upkeep_v3.CheckList
             }
             return data;
         }
+
+
+
+        
     }
 }

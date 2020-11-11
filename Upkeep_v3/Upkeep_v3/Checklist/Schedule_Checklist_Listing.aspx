@@ -54,7 +54,10 @@
                         <div class="m-portlet__head-tools">
                            <ul class="m-portlet__nav">
                                 <li class="m-portlet__nav-item">
-                                    <a href="~/Checklist/Schedule_Checklist.aspx" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air" data-toggle="modal">
+
+                                       <a href="<%= Page.ResolveClientUrl("Schedule_Checklist.aspx") %>" class="btn btn-accent  m-btn m-btn--icon" style="padding: 5%;">
+                                 
+                                 <!--   <a href="~/Checklist/Schedule_Checklist.aspx" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air" data-toggle="modal">-->
                                         <span>
                                             <i class="la la-plus"></i>
                                             <span>New Schedule</span>

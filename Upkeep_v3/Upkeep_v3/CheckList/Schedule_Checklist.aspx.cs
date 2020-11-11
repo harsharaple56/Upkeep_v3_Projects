@@ -12,6 +12,9 @@ namespace Upkeep_v3.CheckList
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
+        public static int Chk_Map_ID = 0;
+
+        public static string Action;
         int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,12 +28,56 @@ namespace Upkeep_v3.CheckList
             }
             if (!IsPostBack)
             {
+
+                //bindgrid();
+                Chk_Map_ID = Convert.ToInt32(Request.QueryString["EditMapId"]);
+                int DelChk_Map_ID = Convert.ToInt32(Request.QueryString["DelMapID"]);
+
                 Fetch_Checklist();
                 Fetch_Department();
                 Fetch_Location();
+                if (Chk_Map_ID > 0)
+                {
+                    // bindgrid(Grp_Id);
+                    fetchCHKMap(Chk_Map_ID);
+                   // Fetch_Checklist_NEW( );
+                   // Fetch_Department();
+                }
+                if (DelChk_Map_ID > 0)
+                {
+                    DeleteCHKMap(DelChk_Map_ID);
+                }
+
+              
             }
         }
 
+
+        public void Fetch_Checklist_NEW()
+        {
+            int Chk_Config_ID = 0;
+           DataSet dsChecklist = new DataSet();
+            try
+            {
+                dsChecklist = ObjUpkeep.Fetch_MyChecklist_NEW(Chk_Config_ID, LoggedInUserID, Convert.ToString(CompanyID), "", "");
+
+                if (dsChecklist.Tables.Count > 0)
+                {
+                    if (dsChecklist.Tables[0].Rows.Count > 0)
+                    {
+                        ddlChecklist.DataSource = dsChecklist.Tables[0];
+                        ddlChecklist.DataTextField = "Chk_Title";
+                        ddlChecklist.DataValueField = "Chk_Config_ID";
+                        ddlChecklist.DataBind();
+                        ddlChecklist.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void Fetch_Checklist()
         {
             DataSet dsChecklist = new DataSet();
@@ -110,6 +157,17 @@ namespace Upkeep_v3.CheckList
             DataSet dsChecklist = new DataSet();
             lblSuccessMsg.Text = "";
             lblError.Text = "";
+           
+
+            if (Chk_Map_ID == 0)
+            {
+                Action = "C";
+            }
+            else
+            {
+                Action = "U";
+            }
+
             try
             {
                 Checklist_ConfigID = Convert.ToInt32(ddlChecklist.SelectedValue);
@@ -126,7 +184,7 @@ namespace Upkeep_v3.CheckList
 
                 SelectedLocationID = SelectedLocationID.TrimEnd(',');
 
-                dsChecklist = ObjUpkeep.Save_Checklist_Schedule(Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID);
+                dsChecklist = ObjUpkeep.Save_Checklist_Schedule_NEW(Chk_Map_ID,Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID,Action);
 
                 if (dsChecklist.Tables.Count > 0)
                 {
@@ -267,5 +325,78 @@ namespace Upkeep_v3.CheckList
                 throw ex;
             }
         }
+
+
+
+        public void fetchCHKMap(int Chk_Map_ID)
+        {
+            string SelectedLocationID = string.Empty;
+            int Checklist_ConfigID = 0;
+            int DepartmentID = 0;
+            DataSet dsCHk = new DataSet();
+            try
+            {
+
+
+                dsCHk = ObjUpkeep.Save_Checklist_Schedule_NEW(Chk_Map_ID,Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID, "R");
+
+                if (dsCHk.Tables.Count > 0)
+                {
+                    if (dsCHk.Tables[0].Rows.Count > 0)
+                    {
+                        ddlChecklist.SelectedValue = Convert.ToString(dsCHk.Tables[0].Rows[0]["CHK_Config_ID"]);
+                        ddlDepartment.SelectedValue = Convert.ToString(dsCHk.Tables[0].Rows[0]["Dept_ID"]);
+                        Session["Chk_Map_ID"] = dsCHk.Tables[0].Rows[0]["Chk_Map_ID"];
+                        gvSelectedLocation.DataSource = dsCHk.Tables[0];
+                        gvSelectedLocation.DataBind();
+
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public void DeleteCHKMap(int DelChk_Map_ID)
+        {
+
+            string SelectedLocationID = string.Empty;
+            int Checklist_ConfigID = 0;
+            int DepartmentID = 0;
+            DataSet dsDCHk = new DataSet();
+            try
+            {
+                dsDCHk = ObjUpkeep.Save_Checklist_Schedule_NEW(DelChk_Map_ID, Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID, "D");
+                if (dsDCHk.Tables.Count > 0)
+                {
+                    if (dsDCHk.Tables[0].Rows.Count > 0)
+                    {
+                        Session["Chk_Map_ID"] = "";
+                        //Response.Redirect("~/UserGrp_Mst.aspx", false);
+                        Response.Redirect(Page.ResolveClientUrl("~/CheckList/Schedule_Checklist_Listing.aspx"), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
+
 }

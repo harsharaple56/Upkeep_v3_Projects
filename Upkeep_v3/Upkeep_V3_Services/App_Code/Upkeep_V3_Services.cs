@@ -1791,6 +1791,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    public DataSet Save_Checklist_Schedule_NEW(int Chk_Map_ID,int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID,string Action)
+    {
+        DataSet dsChecklist = new DataSet();
+        try
+        {
+            dsChecklist = ObjUpkeep.Save_Checklist_Schedule_NEW(Chk_Map_ID,Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsChecklist;
+    }
+
+
+
+
     #endregion
 
     #region VMS
@@ -2634,6 +2652,48 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Schedule_Checklist_CRUD(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_Upkeep obj = new My_Upkeep();
+
+            ds = obj.Schedule_Checklist_CRUD(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+    [WebMethod]
+    public DataSet Fetch_MyChecklist_NEW( int Chk_Config_ID,string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyChecklist_NEW(Chk_Config_ID,LoggedInUserID, CompanyID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
 
 }
 
