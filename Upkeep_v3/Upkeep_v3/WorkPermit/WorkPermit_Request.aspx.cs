@@ -828,18 +828,45 @@ namespace Upkeep_v3.WorkPermit
                             //[+][Ajay Prajapati]
                             if (dsWPHeaderData.Tables.Count > 1)
                             {
+                                string NotificationHeader = string.Empty;
+                                string NotificationMsg = string.Empty;
+                                int TransactionID = 0;
+                                string StoreManager_Name = string.Empty;
+                                string Store_Name = string.Empty;
+                                string Employee_Name = string.Empty;
+                                string Emp_Department = string.Empty;
+                                string TicketNo = string.Empty;
+
+                                TransactionID = Convert.ToInt32(dsWPHeaderData.Tables[1].Rows[0]["TransactionID"]);
+                                StoreManager_Name = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["StoreManager_Name"]);
+                                Store_Name = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["Store_Name"]);
+                                Employee_Name = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["Employee_Name"]);
+                                Emp_Department = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["Emp_Department"]);
+                                TicketNo = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["TicketNo"]);
+
+                                NotificationHeader = "Work Permit ID " + TicketNo + ". New Request Received. ";
+
+                                if (StoreManager_Name != "")
+                                {
+                                    NotificationMsg = "A Work Permit has been raised by " + StoreManager_Name + " from " + Store_Name + " store. Tap to take Action";
+                                }
+                                else
+                                {
+                                    NotificationMsg = "A Work Permit has been raised by " + Employee_Name + " from " + Emp_Department + " department. Tap to take Action";
+                                }
+
                                 foreach (DataRow dr in dsWPHeaderData.Tables[1].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                    //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
-
-                                    await SendNotification(TokenNO, Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
+                                    
+                                    //await SendNotification(TokenNO, Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
+                                    await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
                                 }
                             }
                             //[-][Ajay Prajapati]
                             SetRepeater();
                             divInsertButton.Visible = false;
-                            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]);
+                            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["TicketNo"]);
                             mpeWpRequestSaveSuccess.Show();
                         }
                         else
@@ -1253,12 +1280,26 @@ namespace Upkeep_v3.WorkPermit
                         {
                             if (dsWPAction.Tables[1].Rows.Count > 0)
                             {
-                                foreach (DataRow dr in dsWPAction.Tables[1].Rows)
-                                {
-                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                    //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                string NotificationHeader = string.Empty;
+                                string NotificationMsg = string.Empty;
+                                string TicketNo = string.Empty;
+                                string CurrentLevel = string.Empty;
 
-                                    await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                TicketNo = Convert.ToString(dsWPAction.Tables[1].Rows[0]["TicketNo"]);
+                                CurrentLevel = Convert.ToString(dsWPAction.Tables[1].Rows[0]["CurrentLevel"]);
+
+                                NotificationHeader = "Work Permit ID " + TicketNo + ".";
+                                NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                                if (ActionStatus == "Approve")
+                                {
+                                    foreach (DataRow dr in dsWPAction.Tables[1].Rows)
+                                    {
+                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                        //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+
+                                        await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                    }
                                 }
                             }
                         }
@@ -1464,7 +1505,7 @@ namespace Upkeep_v3.WorkPermit
         //    //GenerateTable(colsCount, 1);
         //}
 
-        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        public static async Task SendNotification(string TokenNo, int TransactionID, string NotificationHeader, string NotificationMsg)
         {
             //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
             using (var client = new HttpClient())
@@ -1475,7 +1516,8 @@ namespace Upkeep_v3.WorkPermit
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Workpermit");
+                //HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Workpermit");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&TicketNo=" + NotificationHeader + "&StrMessage=" + NotificationMsg + "&click_action=" + "WORKPERMIT");
 
                 if (response.IsSuccessStatusCode)
                 {
