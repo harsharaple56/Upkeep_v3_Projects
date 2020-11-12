@@ -1479,6 +1479,22 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Save_Checklist_Schedule_NEW(int Chk_Map_ID, int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Save_Checklist_Schedule_NEW(Chk_Map_ID,Checklist_ConfigID, DepartmentID, SelectedLocationID, LoggedInUserID, CompanyID,Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
     #endregion
 
@@ -2355,5 +2371,40 @@ public class My_Upkeep
             throw ex;
         }
     }
+
+    /*Mohammed*/
+    public DataSet Schedule_Checklist_CRUD(int CompanyID)
+    {
+        DataSet dsUsers = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsUsers = ObjUpkeepCC_BL.Schedule_Checklist_CRUD(CompanyID,  StrConn);
+            return dsUsers;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+
+    public DataSet Fetch_MyChecklist_NEW(int Chk_Config_ID, string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_MyChecklist_NEW(Chk_Config_ID,LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
 }

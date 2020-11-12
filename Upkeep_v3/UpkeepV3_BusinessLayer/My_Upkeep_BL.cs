@@ -2069,6 +2069,31 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Save_Checklist_Schedule_NEW(int Chk_Map_ID,int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID, string Action, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Save_Checklist_Schedule_CURD", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Chk_Map_ID", Chk_Map_ID);
+                cmd.Parameters.AddWithValue("@Checklist_ConfigID", Checklist_ConfigID);
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@SelectedLocationID", SelectedLocationID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region VMS
@@ -3263,6 +3288,53 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /*Mohammed*/
+
+        public DataSet Schedule_Checklist_CRUD(int CompanyID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Checklist_Schedule", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+               
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public DataSet Fetch_MyChecklist_NEW(int Chk_Config_ID,string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_CHK_MYCHECKLIST_NEW", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Chk_Config_ID", Chk_Config_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
