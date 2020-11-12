@@ -438,12 +438,39 @@ namespace Upkeep_v3.GatePass
                             {
                                 if (dsGpHeaderData.Tables.Count > 2)
                                 {
+                                    string NotificationHeader = string.Empty;
+                                    string NotificationMsg = string.Empty;
+                                    int TransactionID = 0;
+                                    string StoreManager_Name = string.Empty;
+                                    string Store_Name = string.Empty;
+                                    string Employee_Name = string.Empty;
+                                    string Emp_Department = string.Empty;
+                                    string TicketNo = string.Empty;
+
+                                    TransactionID = Convert.ToInt32(dsGpHeaderData.Tables[1].Rows[0]["TransactionID"]);
+                                    StoreManager_Name = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["StoreManager_Name"]);
+                                    Store_Name = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["Store_Name"]);
+                                    Employee_Name = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["Employee_Name"]);
+                                    Emp_Department = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["Emp_Department"]);
+                                    TicketNo = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
+
+                                    NotificationHeader = "Gate pass ID "+ TicketNo + ". New Request Received. ";
+
+                                    if (StoreManager_Name != "")
+                                    {
+                                        NotificationMsg = "A gate pass has been raised by "+ StoreManager_Name + " from "+ Store_Name + " store. Tap to take Action";
+                                    }
+                                    else
+                                    {
+                                        NotificationMsg = "A gate pass has been raised by " + Employee_Name + " from " + Emp_Department + " department. Tap to take Action";
+                                    }
+
                                     foreach (DataRow dr in dsGpHeaderData.Tables[2].Rows)
                                     {
                                         var TokenNO = Convert.ToString(dr["TokenNumber"]);
 
-                                        //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                        await SendNotification(TokenNO, Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                        //await SendNotification(TokenNO, Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                        await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
                                     }
                                 }
 
@@ -700,7 +727,7 @@ namespace Upkeep_v3.GatePass
         //    }
         //}
 
-        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        public static async Task SendNotification(string TokenNo, int TransactionID, string NotificationHeader, string NotificationMsg)
         {
             //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
             using (var client = new HttpClient())
@@ -711,7 +738,8 @@ namespace Upkeep_v3.GatePass
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Gatepass");
+                //HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Gatepass");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&TicketNo=" + NotificationHeader + "&StrMessage=" + NotificationMsg + "&click_action=" + "GATEPASS");
 
                 if (response.IsSuccessStatusCode)
                 {

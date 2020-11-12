@@ -329,7 +329,6 @@ namespace Upkeep_v3.Ticketing
                         {
                             string list_Images = String.Join(",", Lst_Images);
 
-
                             //string title = "Greetings";
                             //string body = "Welcome to ASPSnippets.com";
                             //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);

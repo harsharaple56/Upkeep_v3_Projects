@@ -276,11 +276,23 @@ namespace Upkeep_v3.GatePass
                             {
                                 if (dsApproval.Tables[1].Rows.Count > 0)
                                 {
-                                    foreach (DataRow dr in dsApproval.Tables[1].Rows)
+                                    string NotificationHeader = string.Empty;
+                                    string NotificationMsg = string.Empty;
+                                    string TicketNo = string.Empty;
+
+                                    if (ActionStatus == "Approve")
                                     {
-                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                        //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
-                                        await SendNotification(TokenNO, Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
+                                        TicketNo = Convert.ToString(dsApproval.Tables[1].Rows[0]["TicketNo"]);
+
+                                        NotificationHeader = "Gate pass ID " + TicketNo + ".";
+                                        NotificationMsg = "A gate pass approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                                        foreach (DataRow dr in dsApproval.Tables[1].Rows)
+                                        {
+                                            var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                            //await SendNotification(TokenNO, Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
+                                            await SendNotification(TokenNO, Convert.ToInt32(TransactionID), NotificationHeader, NotificationMsg);
+                                        }
                                     }
                                 }
                             }
@@ -306,7 +318,7 @@ namespace Upkeep_v3.GatePass
             Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
         }
 
-        public static async Task SendNotification(string TokenNo, string TicketNo, string strMessage)
+        public static async Task SendNotification(string TokenNo, int TransactionID, string NotificationHeader, string NotificationMsg)
         {
             //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
             using (var client = new HttpClient())
@@ -317,7 +329,8 @@ namespace Upkeep_v3.GatePass
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Gatepass");
+                //HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Gatepass");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&TicketNo=" + NotificationHeader + "&StrMessage=" + NotificationMsg + "&click_action=" + "GATEPASS");
 
                 if (response.IsSuccessStatusCode)
                 {
