@@ -1803,6 +1803,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                ProPubStrName = p.Field<string>("Name"),
                                                ProPubStrRollCd = p.Field<string>("rollcd"),
                                                ProPubStrEmpCd = p.Field<string>("empcd"),
+                                               //ProPubStrProfilePhoto = p.Field<string>("Profile_Photo"),
+                                               ProPubStrProfilePic = p.Field<string>("Profile_Photo"),
+
+                                               ProPubStrDepartmentID = p.Field<string>("Department_ID")
+                                               //ProPubStrDeptID = Convert.ToInt32(p.Field<string>("Department_ID"))
                                                //ProPubStrPrtycd = p.Field<string>("Prtycd"),
                                                //ProPubStrGroupCompany = p.Field<string>("groupandcompany")
 
