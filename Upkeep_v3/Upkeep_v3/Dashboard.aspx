@@ -1620,7 +1620,7 @@
             <!--End::Section-->
             <!--Begin::Section-->
 
-            <div class="m-portlet">
+            <%--<div class="m-portlet">
 
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -1693,11 +1693,11 @@
                     </div>
 
                 </div>
-            </div>
+            </div>--%>
 
 
 
-            <div class="m-portlet">
+<%--            <div class="m-portlet">
 
 
 
@@ -1799,7 +1799,7 @@
 
                 <!--End::Section-->
             </div>
-
+--%>
 
 
             <%--</div>--%>

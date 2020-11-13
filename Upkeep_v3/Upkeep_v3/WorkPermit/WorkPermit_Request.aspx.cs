@@ -855,7 +855,7 @@ namespace Upkeep_v3.WorkPermit
                                     NotificationMsg = "A Work Permit has been raised by " + Employee_Name + " from " + Emp_Department + " department. Tap to take Action";
                                 }
 
-                                foreach (DataRow dr in dsWPHeaderData.Tables[1].Rows)
+                                foreach (DataRow dr in dsWPHeaderData.Tables[2].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                     
