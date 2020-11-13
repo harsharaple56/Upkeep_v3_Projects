@@ -921,7 +921,7 @@
                 <!--end:: Widgets/Best Sellers-->
             </div>
 
-            <div class="m-portlet">
+            <%--<div class="m-portlet">
 
                 <!--begin:: Widgets/Best Sellers-->
                 <div class="m-portlet m-portlet--full-height ">
@@ -947,7 +947,7 @@
                 </div>
 
                 <!--end:: Widgets/Best Sellers-->
-            </div>
+            </div>--%>
 
 
 
@@ -965,7 +965,7 @@
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
                                             <h3 class="m-widget1__title">Total Open</h3>
-                                            <span class="m-widget1__desc">Total No. of Open Tickets</span>
+                                            <span class="m-widget1__desc">Total No. of Open Tickets in your Account</span>
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-brand">
@@ -978,7 +978,7 @@
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
                                             <h3 class="m-widget1__title">Total Closed</h3>
-                                            <span class="m-widget1__desc">Total No. of Closed Tickets</span>
+                                            <span class="m-widget1__desc">Total No. of Closed Tickets in your Account</span>
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-success">
@@ -991,7 +991,7 @@
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
                                             <h3 class="m-widget1__title">Total Parked</h3>
-                                            <span class="m-widget1__desc">Total No. of Closed Tickets</span>
+                                            <span class="m-widget1__desc">Total No. of Parked Tickets in your Account</span>
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-brand">
@@ -1081,7 +1081,7 @@
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text m--font-light">Gatepass Summary
+                                    <h3 class="m-portlet__head-text m--font-light"> Your Gate pass Summary
                                     </h3>
                                 </div>
                             </div>
@@ -1175,7 +1175,7 @@
                                                 <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
                                                 <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
                                             </span>
-                                            <span class="m-widget17__subtitle">Approve
+                                            <span class="m-widget17__subtitle">Approved
                                             </span>
                                             <span class="m-widget17__desc">
                                                 <asp:Label ID="lblGPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
@@ -1244,7 +1244,7 @@
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text m--font-light">Work Permit Summary
+                                    <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
                                     </h3>
                                 </div>
                             </div>
@@ -1339,7 +1339,7 @@
                                                 <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
                                                 <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
                                             </span>
-                                            <span class="m-widget17__subtitle">Approve
+                                            <span class="m-widget17__subtitle">Approved
                                             </span>
                                             <span class="m-widget17__desc">
                                                 <asp:Label ID="lblWPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
@@ -1821,7 +1821,7 @@
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text m--font-light">Gatepass Summary
+                                        <h3 class="m-portlet__head-text m--font-light">Your Gate pass Summary
                                         </h3>
                                     </div>
                                 </div>
@@ -1915,7 +1915,7 @@
                                                     <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
                                                     <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
                                                 </span>
-                                                <span class="m-widget17__subtitle">Approve
+                                                <span class="m-widget17__subtitle">Approved
                                                 </span>
                                                 <span class="m-widget17__desc">
                                                     <asp:Label ID="lblR_GP_Approve" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
@@ -1976,7 +1976,7 @@
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text m--font-light">Work Permit Summary
+                                        <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
                                         </h3>
                                     </div>
                                 </div>
