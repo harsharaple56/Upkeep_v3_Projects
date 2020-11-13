@@ -375,7 +375,7 @@ namespace Upkeep_v3
             {
                 chartData.Add(new object[]
                  {
-                    "Department", "Open","Close","Parked"
+                    "Department", "Open","Closed","Parked"
                  });
 
                 StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
@@ -396,7 +396,7 @@ namespace Upkeep_v3
                             {
                                 chartData.Add(new object[]
                                 {
-                                    sdr["Department"], sdr["Open"], sdr["Close"], sdr["Parked"]
+                                    sdr["Department"], sdr["Open"], sdr["Closed"], sdr["Parked"]
                                 });
                             }
                         }
