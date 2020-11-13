@@ -7259,13 +7259,34 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
-                            {
-                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+                            string NotificationHeader = string.Empty;
+                            string NotificationMsg = string.Empty;
+                            string TicketNo = string.Empty;
+                            int TransactionID = 0;
 
-                                FunSendAppNotification(TokenNO,0, TicketNo, "New Gatepass Request", "GATEPASS");
+                            if (objInsert.GP_ActionStatus == "Approve")
+                            {
+                                TicketNo = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                                TransactionID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TransactionID"]);
+
+                                NotificationHeader = "Gate pass ID " + TicketNo + ".";
+                                NotificationMsg = "A gate pass approved at Level " + objInsert.GP_CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                                foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                                {
+                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                   
+                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg,"GATEPASS");
+                                }
                             }
+
+
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+                            //    FunSendAppNotification(TokenNO,0, TicketNo, "New Gatepass Request", "GATEPASS");
+                            //}
 
                         }
                     }
@@ -7347,9 +7368,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
         [HttpGet]
-        public string FunSendAppNotification(string StrTokenNumber, int TransactionID, string TicketNo, string StrMessage, string click_action)
+        public string FunSendAppNotification(string StrTokenNumber, int TransactionID, string NotificationHeader, string NotificationMsg, string click_action)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, TransactionID, TicketNo, StrMessage, click_action);
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, TransactionID, NotificationHeader, NotificationMsg, click_action);
             return response;
         }
 
@@ -7561,13 +7582,36 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            foreach (DataRow dr in DsDataSet.Tables[0].Rows)
-                            {
-                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                var TicketNo = Convert.ToString(dr["TicketNo"]);
+                            string NotificationHeader = string.Empty;
+                            string NotificationMsg = string.Empty;
+                            string TicketNo = string.Empty;
+                            string CurrentLevel = string.Empty;
+                            int TransactionID = 0;
 
-                                FunSendAppNotification(TokenNO, 0,TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                            TicketNo = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
+                            CurrentLevel = Convert.ToString(DsDataSet.Tables[0].Rows[0]["CurrentLevel"]);
+                            TransactionID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TransactionID"]);
+
+                            NotificationHeader = "Work Permit ID " + TicketNo + ".";
+                            NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                            if (objInsert.WP_ActionStatus == "Approve")
+                            {
+                                foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                                {
+                                    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                    //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+
+                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "WORKPERMIT");
+                                }
                             }
+
+                            //foreach (DataRow dr in DsDataSet.Tables[0].Rows)
+                            //{
+                            //    var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                            //    var TicketNo = Convert.ToString(dr["TicketNo"]);
+                            //    FunSendAppNotification(TokenNO, 0,TicketNo, "Action taken Workpermit Request", "WORKPERMIT");
+                            //}
 
                         }
                     }
