@@ -1517,7 +1517,7 @@ namespace Upkeep_v3.WorkPermit
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
                 //HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "Workpermit");
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&TicketNo=" + NotificationHeader + "&StrMessage=" + NotificationMsg + "&click_action=" + "WORKPERMIT");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&NotificationHeader=" + NotificationHeader + "&NotificationMsg=" + NotificationMsg + "&click_action=" + "WORKPERMIT");
 
                 if (response.IsSuccessStatusCode)
                 {

@@ -1082,9 +1082,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
         [HttpGet]
-        public string FunSendAppNotification(string StrTokenNumber, int TransactionID, string TicketNo, string StrMessage, string click_action)
+        public string FunSendAppNotification(string StrTokenNumber, int TransactionID, string NotificationHeader, string NotificationMsg, string click_action)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, TransactionID, TicketNo, StrMessage, click_action);
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, TransactionID, NotificationHeader, NotificationMsg, click_action);
             return response;
         }
 
