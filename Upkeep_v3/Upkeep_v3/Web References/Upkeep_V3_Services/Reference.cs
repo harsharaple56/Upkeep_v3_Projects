@@ -4801,7 +4801,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Event_Insert", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4) {
+        public System.Data.DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int CompanyID) {
             object[] results = this.Invoke("Event_Insert", new object[] {
                         eventName,
                         locationName,
@@ -4816,17 +4816,34 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         option1,
                         option2,
                         option3,
-                        option4});
+                        option4,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Event_InsertAsync(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4) {
-            this.Event_InsertAsync(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, null);
+        public void Event_InsertAsync(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int CompanyID) {
+            this.Event_InsertAsync(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Event_InsertAsync(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, object userState) {
+        public void Event_InsertAsync(
+                    string eventName, 
+                    string locationName, 
+                    string startDateTime, 
+                    string endDateTime, 
+                    string CustomerQuestion, 
+                    string CustQuesType, 
+                    string QuesFor, 
+                    int EventID, 
+                    string EventMode, 
+                    string LoggedInUserID, 
+                    string option1, 
+                    string option2, 
+                    string option3, 
+                    string option4, 
+                    int CompanyID, 
+                    object userState) {
             if ((this.Event_InsertOperationCompleted == null)) {
                 this.Event_InsertOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEvent_InsertOperationCompleted);
             }
@@ -4844,7 +4861,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         option1,
                         option2,
                         option3,
-                        option4}, this.Event_InsertOperationCompleted, userState);
+                        option4,
+                        CompanyID}, this.Event_InsertOperationCompleted, userState);
         }
         
         private void OnEvent_InsertOperationCompleted(object arg) {
@@ -4856,25 +4874,27 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/EventDetails_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet EventDetails_CRUD(int EventID, string actionType) {
+        public System.Data.DataSet EventDetails_CRUD(int EventID, int CompanyID, string actionType) {
             object[] results = this.Invoke("EventDetails_CRUD", new object[] {
                         EventID,
+                        CompanyID,
                         actionType});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void EventDetails_CRUDAsync(int EventID, string actionType) {
-            this.EventDetails_CRUDAsync(EventID, actionType, null);
+        public void EventDetails_CRUDAsync(int EventID, int CompanyID, string actionType) {
+            this.EventDetails_CRUDAsync(EventID, CompanyID, actionType, null);
         }
         
         /// <remarks/>
-        public void EventDetails_CRUDAsync(int EventID, string actionType, object userState) {
+        public void EventDetails_CRUDAsync(int EventID, int CompanyID, string actionType, object userState) {
             if ((this.EventDetails_CRUDOperationCompleted == null)) {
                 this.EventDetails_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEventDetails_CRUDOperationCompleted);
             }
             this.InvokeAsync("EventDetails_CRUD", new object[] {
                         EventID,
+                        CompanyID,
                         actionType}, this.EventDetails_CRUDOperationCompleted, userState);
         }
         
@@ -5066,28 +5086,30 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MIS_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID) {
             object[] results = this.Invoke("Fetch_MIS_Report", new object[] {
                         EventID,
                         From_Date,
-                        To_Date});
+                        To_Date,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_MIS_ReportAsync(string EventID, string From_Date, string To_Date) {
-            this.Fetch_MIS_ReportAsync(EventID, From_Date, To_Date, null);
+        public void Fetch_MIS_ReportAsync(string EventID, string From_Date, string To_Date, int CompanyID) {
+            this.Fetch_MIS_ReportAsync(EventID, From_Date, To_Date, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_MIS_ReportAsync(string EventID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MIS_ReportAsync(string EventID, string From_Date, string To_Date, int CompanyID, object userState) {
             if ((this.Fetch_MIS_ReportOperationCompleted == null)) {
                 this.Fetch_MIS_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MIS_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_MIS_Report", new object[] {
                         EventID,
                         From_Date,
-                        To_Date}, this.Fetch_MIS_ReportOperationCompleted, userState);
+                        To_Date,
+                        CompanyID}, this.Fetch_MIS_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_MIS_ReportOperationCompleted(object arg) {
@@ -5173,28 +5195,30 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MIS_Report_Excel", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date, int CompanyID) {
             object[] results = this.Invoke("Fetch_MIS_Report_Excel", new object[] {
                         EventID,
                         From_Date,
-                        To_Date});
+                        To_Date,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_MIS_Report_ExcelAsync(string EventID, string From_Date, string To_Date) {
-            this.Fetch_MIS_Report_ExcelAsync(EventID, From_Date, To_Date, null);
+        public void Fetch_MIS_Report_ExcelAsync(string EventID, string From_Date, string To_Date, int CompanyID) {
+            this.Fetch_MIS_Report_ExcelAsync(EventID, From_Date, To_Date, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_MIS_Report_ExcelAsync(string EventID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MIS_Report_ExcelAsync(string EventID, string From_Date, string To_Date, int CompanyID, object userState) {
             if ((this.Fetch_MIS_Report_ExcelOperationCompleted == null)) {
                 this.Fetch_MIS_Report_ExcelOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MIS_Report_ExcelOperationCompleted);
             }
             this.InvokeAsync("Fetch_MIS_Report_Excel", new object[] {
                         EventID,
                         From_Date,
-                        To_Date}, this.Fetch_MIS_Report_ExcelOperationCompleted, userState);
+                        To_Date,
+                        CompanyID}, this.Fetch_MIS_Report_ExcelOperationCompleted, userState);
         }
         
         private void OnFetch_MIS_Report_ExcelOperationCompleted(object arg) {

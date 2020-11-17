@@ -2643,6 +2643,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="option2" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="option3" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="option4" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2664,6 +2665,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="actionType" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -2807,6 +2809,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="EventID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2880,6 +2883,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="EventID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>

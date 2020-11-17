@@ -213,6 +213,14 @@
 																			<asp:RadioButton id="rdbRetailer" runat="server" GroupName="question_for" /> Retailers
 																			<span></span>
 																		</label>
+                                                                        <label class="m-radio">
+                                                                         <asp:RadioButton id="rdbVisitor" runat="server" GroupName="question_for" />Visitor
+																		<span></span>
+																	</label>
+                                                                    <label class="m-radio">
+                                                                         <asp:RadioButton id="rdbAll" runat="server" GroupName="question_for" /> All
+																		<span></span>
+																	</label>
 																	</div>
 																	<span id="error_question_for" class="text-danger small"></span>
 																</div>

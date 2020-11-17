@@ -20,10 +20,12 @@ namespace Upkeep_v3.Feedback
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepFeedback = new Upkeep_V3_Services.Upkeep_V3_Services();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-           // frmMain.Action = @"EventListing.aspx"; //commented by suju removed form type 
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            // frmMain.Action = @"EventListing.aspx"; //commented by suju removed form type 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 //Response.Redirect("~/Login.aspx", false);
@@ -36,7 +38,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.EventDetails_CRUD(0, "Select");
+                ds = ObjUpkeepFeedback.EventDetails_CRUD(0, CompanyID, "Select");
 
                 string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
 

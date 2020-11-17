@@ -172,7 +172,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, string strConn)
+        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -189,7 +189,6 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@CustomerQuestion", CustomerQuestion);
             cmd.Parameters.AddWithValue("@CustAnsType", CustQuesType);
             cmd.Parameters.AddWithValue("@QuesFor", QuesFor);
-            //cmd.Parameters.AddWithValue("@RetQuesType", RetQuesType);
             cmd.Parameters.AddWithValue("@EventID", EventID);
             cmd.Parameters.AddWithValue("@EventMode", EventMode);
             cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
@@ -198,6 +197,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@option2", option2);
             cmd.Parameters.AddWithValue("@option3", option3);
             cmd.Parameters.AddWithValue("@option4", option4);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
             con.Open();
 
@@ -207,7 +207,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet EventDetails_CRUD(int EventID, string actionType, string strConn)
+        public DataSet EventDetails_CRUD(int EventID,int CompanyID, string actionType, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -218,6 +218,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
             cmd.Parameters.AddWithValue("@action", actionType);
 
             con.Open();
@@ -546,7 +547,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date, string strConn)
+        public DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date,int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -559,6 +560,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@EventID", EventID);
             cmd.Parameters.AddWithValue("@From_Date", From_Date);
             cmd.Parameters.AddWithValue("@To_Date", To_Date);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
             con.Open();
 
@@ -679,7 +681,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date, string strConn)
+        public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date,int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -692,6 +694,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@EventID", EventID);
             cmd.Parameters.AddWithValue("@From_Date", From_Date);
             cmd.Parameters.AddWithValue("@To_Date", To_Date);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
             con.Open();
 

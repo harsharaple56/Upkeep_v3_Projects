@@ -164,7 +164,7 @@ namespace Upkeep_v3.Feedback
                     {
                         //ds = objFeedbackService.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
 
-                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4);
+                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
 
                         if (ds.Tables.Count > 0)
                         {

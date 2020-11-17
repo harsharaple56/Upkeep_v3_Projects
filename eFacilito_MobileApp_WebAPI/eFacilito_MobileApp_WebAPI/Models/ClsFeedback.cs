@@ -60,6 +60,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         //public string imagePath { get; set; }
        // public string ImageString { get; set; }
         public string LoggedInUserID { get; set; }
+        public int CompanyID { get; set; }
     }
 
     public class ClsCustomerImage

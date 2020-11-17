@@ -20,7 +20,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
     {
 
         [HttpGet]
-        public HttpResponseMessage GetEventList(string eventType)
+        public HttpResponseMessage GetEventList(string eventType, int CompanyID)
         {
             List<ClsEvent> ObjEventList = new List<ClsEvent>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -33,8 +33,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
                 ObjLocSqlParameter[0] = new SqlParameter("@eventType", eventType);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
 
                 DsEventDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Feedback_Proc_Get_EventList", ObjLocSqlParameter);
 
@@ -90,7 +91,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
 
         [HttpGet]
-        public HttpResponseMessage Fetch_RetailerDetails(string storeName)
+        public HttpResponseMessage Fetch_RetailerDetails(string storeName, int CompanyID)
         {
             List<ClsRetailer> ObjRetailer = new List<ClsRetailer>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -103,8 +104,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
                 ObjLocSqlParameter[0] = new SqlParameter("@storeName", storeName);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
 
                 DsRetailerDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Feedback_Proc_Get_RetailerDetails", ObjLocSqlParameter);
 
@@ -287,7 +289,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             try
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
                 ObjLocSqlParameter[0] = new SqlParameter("@firstName", objInsertCustomer.firstName);
                 ObjLocSqlParameter[1] = new SqlParameter("@lastName", objInsertCustomer.lastName);
                 ObjLocSqlParameter[2] = new SqlParameter("@phoneNo", objInsertCustomer.phoneNo);
@@ -295,6 +297,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 ObjLocSqlParameter[4] = new SqlParameter("@gender", objInsertCustomer.gender);
                 //ObjLocSqlParameter[5] = new SqlParameter("@imagePath", objInsertCustomer.imagePath);
                 ObjLocSqlParameter[5] = new SqlParameter("@LoggedInUserID", objInsertCustomer.LoggedInUserID);
+                ObjLocSqlParameter[6] = new SqlParameter("@CompanyID", objInsertCustomer.CompanyID);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Feedback_Proc_Insert_CustomerDetails", ObjLocSqlParameter);
 

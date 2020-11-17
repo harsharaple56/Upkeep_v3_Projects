@@ -58,6 +58,24 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.RadioButton rdbRetailer;
         
         /// <summary>
+        /// rdbVisitor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbVisitor;
+        
+        /// <summary>
+        /// rdbAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbAll;
+        
+        /// <summary>
         /// rdbDaily control.
         /// </summary>
         /// <remarks>

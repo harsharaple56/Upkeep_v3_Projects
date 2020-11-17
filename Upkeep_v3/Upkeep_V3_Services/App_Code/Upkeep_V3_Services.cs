@@ -628,7 +628,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4)
+    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -637,7 +637,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
             //ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
-            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4);
+            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
 
         }
         catch (Exception ex)
@@ -651,7 +651,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet EventDetails_CRUD(int EventID, string actionType)
+    public DataSet EventDetails_CRUD(int EventID,int CompanyID, string actionType)
     {
         DataSet ds = new DataSet();
 
@@ -659,7 +659,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.EventDetails_CRUD(EventID, actionType);
+            ds = obj.EventDetails_CRUD(EventID, CompanyID, actionType);
 
         }
         catch (Exception ex)
@@ -785,7 +785,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date)
+    public DataSet Fetch_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -793,7 +793,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Fetch_MIS_Report(EventID, From_Date, To_Date);
+            ds = obj.Fetch_MIS_Report(EventID, From_Date, To_Date, CompanyID);
 
         }
         catch (Exception ex)
@@ -839,7 +839,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date)
+    public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -847,7 +847,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Fetch_MIS_Report_Excel(EventID, From_Date, To_Date);
+            ds = obj.Fetch_MIS_Report_Excel(EventID, From_Date, To_Date, CompanyID);
 
         }
         catch (Exception ex)

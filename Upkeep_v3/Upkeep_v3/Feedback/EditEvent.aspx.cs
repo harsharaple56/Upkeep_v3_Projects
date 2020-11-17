@@ -54,6 +54,10 @@ namespace Upkeep_v3.Feedback
             { QuesFor = "C"; }
             if (rdbRetailer.Checked == true)
             { QuesFor = "R"; }
+            if (rdbVisitor.Checked == true)
+            { QuesFor = "V"; }
+            if (rdbAll.Checked == true)
+            { QuesFor = "A"; }
 
             string EventMode = string.Empty;
             if (rdbDaily.Checked == true)
@@ -110,9 +114,17 @@ namespace Upkeep_v3.Feedback
                         {
                             rdbCustomer.Checked = true;
                         }
-                        else
+                        else if (User_Type == "R")
                         {
                             rdbRetailer.Checked = true;
+                        }
+                        else if (User_Type == "V")
+                        {
+                            rdbVisitor.Checked = true;
+                        }
+                        else 
+                        {
+                            rdbAll.Checked = true;
                         }
                         string Event_Mode = Convert.ToString(ds.Tables[0].Rows[0]["Event_Mode"]);
                         if (Event_Mode == "D")

@@ -154,7 +154,7 @@ public class My_FeedbackSystem
     }
 
 
-    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID,string EventMode,string LoggedInUserID,string option1,string option2,string option3,string option4)
+    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID,string EventMode,string LoggedInUserID,string option1,string option2,string option3,string option4, int CompanyID)
     {
         try
         {
@@ -163,7 +163,7 @@ public class My_FeedbackSystem
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
             //ds = objEmp.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType,EventID, strConn);
-            ds = ObjFeedback_BL.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID,option1, option2, option3, option4, strConn);
+            ds = ObjFeedback_BL.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID,option1, option2, option3, option4, CompanyID, strConn);
 
             return ds;
         }
@@ -174,7 +174,7 @@ public class My_FeedbackSystem
     }
 
 
-    public DataSet EventDetails_CRUD(int EventID, string actionType)
+    public DataSet EventDetails_CRUD(int EventID,int CompanyID, string actionType)
     {
         try
         {
@@ -182,7 +182,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.EventDetails_CRUD(EventID, actionType, strConn);
+            ds = ObjFeedback_BL.EventDetails_CRUD(EventID, CompanyID, actionType, strConn);
 
             return ds;
         }
@@ -391,7 +391,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Fetch_MIS_Report(string EventID, string From_Date,string To_Date)
+    public DataSet Fetch_MIS_Report(string EventID, string From_Date,string To_Date, int CompanyID)
     {
         try
         {
@@ -399,7 +399,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Fetch_MIS_Report(EventID,From_Date, To_Date, strConn);
+            ds = ObjFeedback_BL.Fetch_MIS_Report(EventID,From_Date, To_Date, CompanyID, strConn);
 
             return ds;
         }
@@ -483,7 +483,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date)
+    public DataSet Fetch_MIS_Report_Excel(string EventID, string From_Date, string To_Date, int CompanyID)
     {
         try
         {
@@ -491,7 +491,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Fetch_MIS_Report_Excel(EventID,From_Date, To_Date, strConn);
+            ds = ObjFeedback_BL.Fetch_MIS_Report_Excel(EventID,From_Date, To_Date, CompanyID, strConn);
 
             return ds;
         }

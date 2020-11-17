@@ -100,7 +100,7 @@ namespace Upkeep_v3.Feedback
 
                 string EventID = Convert.ToString(ddlEventName.SelectedValue);
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Fetch_MIS_Report(EventID, From_Date, To_Date);
+                ds = ObjUpkeepFeedback.Fetch_MIS_Report(EventID, From_Date, To_Date, CompanyID);
                 int ColumnCount = 0;
 
                 if (ds.Tables.Count > 0)
@@ -217,7 +217,7 @@ namespace Upkeep_v3.Feedback
                 string EventID = Convert.ToString(ddlEventName.SelectedValue);
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Fetch_MIS_Report(EventID, From_Date, To_Date);
+                ds = ObjUpkeepFeedback.Fetch_MIS_Report(EventID, From_Date, To_Date, CompanyID);
                 int ColumnCount = 0;
                 string Name = string.Empty;
                 string EmailID = string.Empty;
@@ -368,7 +368,7 @@ namespace Upkeep_v3.Feedback
                 string EventID = Convert.ToString(ddlEventName.SelectedValue);
 
                 DataSet dsMisReport = new DataSet();
-                dsMisReport = ObjUpkeepFeedback.Fetch_MIS_Report_Excel(EventID, From_Date, To_Date);
+                dsMisReport = ObjUpkeepFeedback.Fetch_MIS_Report_Excel(EventID, From_Date, To_Date, CompanyID);
 
                 System.Data.DataTable dtMISReport = new System.Data.DataTable();
 
