@@ -153,6 +153,39 @@
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> First Name:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtFName" runat="server" class="form-control m-input" placeholder="Enter First Name"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFName" Display="Dynamic"
+                                                            ErrorMessage="Enter First Name" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Last Name:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtLName" runat="server" class="form-control m-input" placeholder="Enter Last Name"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtLName" Display="Dynamic"
+                                                            ErrorMessage="Enter Last Name" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Code:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtUserCode" runat="server" class="form-control m-input" placeholder="Enter User Code"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtUserCode" Display="Dynamic"
+                                                            ErrorMessage="Enter User Code" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Department:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtUserDept" runat="server" class="form-control m-input" placeholder="Enter User Department"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtUserDept" Display="Dynamic"
+                                                            ErrorMessage="Enter User Department" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group m-form__group row">
                                                     <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Name:</label>
                                                     <div class="col-xl-4 col-lg-4">
                                                         <asp:TextBox ID="txtAdminName" runat="server" class="form-control m-input" placeholder="Enter Name"></asp:TextBox>

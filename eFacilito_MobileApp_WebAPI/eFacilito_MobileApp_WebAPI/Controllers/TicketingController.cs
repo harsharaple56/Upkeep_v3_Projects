@@ -472,7 +472,12 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         }
                     }
 
-                    
+                    if (DsDataSet.Tables[3].Rows.Count > 0)
+                    {
+                        TicketID = Convert.ToInt32(DsDataSet.Tables[3].Rows[0]["TicketID"]);
+                       
+                    }
+
                     //if (DsDataSet.Tables[1].Rows.Count > 0)
                     //{
                     //    APIKey = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Api_Key"]);

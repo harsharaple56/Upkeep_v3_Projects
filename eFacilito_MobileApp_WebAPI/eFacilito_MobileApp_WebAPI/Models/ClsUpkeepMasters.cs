@@ -17,6 +17,9 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string ProPubStrEmpCd { get; set; }
         public string ProPubStrPrtycd { get; set; }
         public string ProPubStrGroupCompany { get; set; }
+        public string ProPubStrProfilePic { get; set; }
+        public string ProPubStrDepartmentID { get; set; }
+
     }
 
 

@@ -68,6 +68,10 @@
             <s:element minOccurs="0" maxOccurs="1" name="ConString" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="CompanyEmailID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="CompanyMobileNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_FName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_LName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Dept" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_Name" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_Designation" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_EmailID" type="s:string" />
