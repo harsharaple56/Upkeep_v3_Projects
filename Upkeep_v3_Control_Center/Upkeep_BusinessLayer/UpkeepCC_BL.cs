@@ -100,7 +100,7 @@ namespace Upkeep_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyMobileNo", CompanyMobileNo);
 
                 cmd.Parameters.AddWithValue("@User_FName", User_FName);
-                cmd.Parameters.AddWithValue("@User_LName",User_FName);
+                cmd.Parameters.AddWithValue("@User_LName",User_LName);
                 cmd.Parameters.AddWithValue("@User_Dept",User_Dept);
                 cmd.Parameters.AddWithValue("@User_Code",User_Code);
 

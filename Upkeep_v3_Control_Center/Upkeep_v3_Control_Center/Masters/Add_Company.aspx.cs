@@ -164,10 +164,13 @@ namespace Upkeep_v3_Control_Center.Masters
                 int SMS_Available_Balance = 0;
 
                 SMS_ConfigID = Convert.ToInt32(ddlSMS_Config.SelectedValue);
-                SMS_Alloted = Convert.ToInt32(txt_Alloted_SMS.Text.Trim());
-                SMS_Min_Bal_Alert = Convert.ToInt32(txt_SMS_Balance_Alert.Text.Trim());
-                SMS_Available_Balance = Convert.ToInt32(txt_Alloted_SMS.Text.Trim());
 
+                if (Convert.ToInt32(ddlSMS_Config.SelectedValue) > 0)
+                {
+                    SMS_Alloted = Convert.ToInt32(txt_Alloted_SMS.Text.Trim());
+                    SMS_Min_Bal_Alert = Convert.ToInt32(txt_SMS_Balance_Alert.Text.Trim());
+                    SMS_Available_Balance = Convert.ToInt32(txt_Alloted_SMS.Text.Trim());
+                }
                 ds = objUpkeepCC.CompanyMaster_CRUD(CompanyID, txtCompany_Code.Text.Trim(), txtCompDesc.Text.Trim(), GroupID, CompanyLogoName, ClientURL, Is_DBatClientServer, ConString, CompanyEmailID, CompanyMobileNo, User_FName, User_LName, User_Dept, User_Code, User_Name, User_Designation, User_EmailID, User_MobileNo, SMS_ConfigID, SMS_Alloted, SMS_Min_Bal_Alert, SMS_Available_Balance, LoggedInUserID, Action);
 
                 Session["CompanyID"] = "";
@@ -261,7 +264,7 @@ namespace Upkeep_v3_Control_Center.Masters
 
                         txtFName.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_FName"]);
                         txtLName.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_LName"]);
-                        txtUserDept.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Dept"]);
+                        txtUserDept.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Department"]);
                         txtUserCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Code"]);
 
                         txtAdminName.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Name"]);
