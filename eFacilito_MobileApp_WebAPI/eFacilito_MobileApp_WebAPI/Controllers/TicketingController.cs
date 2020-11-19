@@ -474,7 +474,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                     if (DsDataSet.Tables[3].Rows.Count > 0)
                     {
-                        TicketID = Convert.ToInt32(DsDataSet.Tables[3].Rows[0]["TicketID"]);
+                        Ticket_No = Convert.ToString(DsDataSet.Tables[3].Rows[0]["TicketNO"]);
                        
                     }
 
@@ -531,7 +531,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     //}
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
+                return Request.CreateResponse(HttpStatusCode.OK, Ticket_No);
             }
             catch (Exception ex)
             {
