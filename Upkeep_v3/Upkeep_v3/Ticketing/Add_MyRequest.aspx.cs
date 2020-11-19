@@ -563,7 +563,7 @@ namespace Upkeep_v3.Ticketing
             Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyRequest.aspx"), false);
         }
 
-        public static async Task SendNotification(string TokenNo,int TicketID, string TicketNo, string strMessage)
+        public static async Task SendNotification(string TokenNo, int TransactionID, string NotificationHeader, string NotificationMsg)
         {
             //TokenNo = "eSkpv5ZFSGip9BpPA0J2FE:APA91bEBZfqr4bvP7gIzfCdAcjTYU4uPYVMTvz4264ID5q32EfViLz2eRAqSb8tEuajK3l7LORQthSTnV_NMswAy2jXtbjfGyOEfafkijorMe5oAm9NjlUG1TJXGd0t6smmZN1r3mkTE";
             using (var client = new HttpClient())
@@ -574,7 +574,8 @@ namespace Upkeep_v3.Ticketing
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method  
-                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TicketID + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "TICKET");
+                //HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TicketID + "&TicketNo=" + TicketNo + "&StrMessage=" + strMessage + "&click_action=" + "TICKET");
+                HttpResponseMessage response = await client.GetAsync("FunSendAppNotification?StrTokenNumber=" + TokenNo + "&TransactionID=" + TransactionID + "&NotificationHeader=" + NotificationHeader + "&NotificationMsg=" + NotificationMsg + "&click_action=" + "TICKET");
 
                 if (response.IsSuccessStatusCode)
                 {
