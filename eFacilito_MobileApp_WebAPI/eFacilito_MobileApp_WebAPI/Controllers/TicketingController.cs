@@ -1093,6 +1093,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             return response;
         }
 
+        [HttpGet]
+        public string FunSendSMS(string APIKey, string SenderID, string Send_SMS_URL, string MobileNo, string TextMessage)
+        {
+            SendSMS sms = new SendSMS();
+            string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+            return response;
+        }
+
+
         [Route("api/Ticketing/Fetch_Ticket_SubCategory_Department")]
         [HttpGet]
         public HttpResponseMessage Fetch_Ticket_SubCategory_Department(int CategoryID)
