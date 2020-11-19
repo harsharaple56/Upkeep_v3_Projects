@@ -91,6 +91,83 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
 
         [HttpGet]
+
+
+
+
+        public HttpResponseMessage Fetch_RetailerList(int CompanyID)
+        {
+            List<ClsFetchRetailers> ObjRetailer = new List<ClsFetchRetailers>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsRetailerDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
+
+                DsRetailerDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Fetch_Retailers_List", ObjLocSqlParameter);
+
+                if (DsRetailerDataSet != null)
+                {
+                    if (DsRetailerDataSet.Tables.Count > 0)
+                    {
+                        if (DsRetailerDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjRetailer = (from p in DsRetailerDataSet.Tables[0].AsEnumerable()
+                                           select new ClsFetchRetailers
+                                           {
+                                               Store_Name = p.Field<string>("Store_Name"),
+                                               Store_No = p.Field<string>("Store_No"),
+
+                                           }).ToList();
+                            //return ObjRetailer;
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjRetailer);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                            //return ObjRetailer;
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        //return ObjRetailer;
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    //return ObjRetailer;
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsRetailerDataSet = null;
+                ObjRetailer = null;
+            }
+
+        }
+
+
+
+
+
+
+
         public HttpResponseMessage Fetch_RetailerDetails(string storeName, int CompanyID)
         {
             List<ClsRetailer> ObjRetailer = new List<ClsRetailer>();

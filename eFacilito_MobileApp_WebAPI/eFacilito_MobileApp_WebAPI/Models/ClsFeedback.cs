@@ -69,4 +69,13 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string ImageString { get; set; }
     }
 
+    public class ClsFetchRetailers
+    {
+        public string Store_Name { get; set; }
+        public string Store_No { get; set; }
+
+
+    }
+
+
 }
