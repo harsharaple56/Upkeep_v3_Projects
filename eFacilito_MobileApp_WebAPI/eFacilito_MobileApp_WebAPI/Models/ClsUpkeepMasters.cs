@@ -1263,5 +1263,15 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Term_Desc { get; set; }
     }
 
+
     #endregion
+
+    public class ClsChk_AssignLoc_List
+    {
+        public int CompanyID { get; set; }
+        public int Chk_Config_Id { get; set; }
+        public string Loc_Desc { get; set; }
+        public int Loc_id { get; set; }
+
+    }
 }
