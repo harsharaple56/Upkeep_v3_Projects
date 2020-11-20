@@ -1097,6 +1097,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public string FunSendSMS(string APIKey, string SenderID, string Send_SMS_URL, string MobileNo, string TextMessage)
         {
             SendSMS sms = new SendSMS();
+
+            Send_SMS_URL.Replace("&", "%26");
             string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
             return response;
         }
