@@ -570,6 +570,8 @@ namespace Upkeep_v3.Ticketing
                                                 SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
                                                 Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
 
+                                                Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
+
                                                 SendSMS sms = new SendSMS();
                                                 if (dsCloseTicket.Tables.Count > 2)
                                                 {
@@ -670,6 +672,8 @@ namespace Upkeep_v3.Ticketing
                                         SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
                                         Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
 
+                                        Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
+
                                         SendSMS sms = new SendSMS();
                                         if (dsCloseTicket.Tables.Count > 2)
                                         {
@@ -757,6 +761,8 @@ namespace Upkeep_v3.Ticketing
                                     APIKey = Convert.ToString(dsTicket.Tables[1].Rows[0]["Api_Key"]);
                                     SenderID = Convert.ToString(dsTicket.Tables[1].Rows[0]["Sender_ID"]);
                                     Send_SMS_URL = Convert.ToString(dsTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                    Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                     SendSMS sms = new SendSMS();
                                     if (dsTicket.Tables.Count > 2)

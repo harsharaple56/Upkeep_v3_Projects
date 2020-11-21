@@ -21,6 +21,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
                 string sResponse = "";
                 string sURL = "";
 
+                Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
+
                 //sURL = "http://yourdomain.com/api/mt/SendSMS?APIKEY=" + sAPIKey + "&senderid=" + sSenderID + "&channel=" + sChannel + "&DCS=0&flashsms=0&number=" + sNumber + "&text=" + sMessage + "& route = " + sRoute;
                 //sURL = "http://sms.thebulksms.in/api/mt/SendSMS?route=06&channel=Trans&DCS=0&flashsms=0" + "&APIKEY=" + sAPIKey + "&senderid=" + sSenderID + "&number=" + sNumber + "&text=" + sMessage;
 

@@ -370,6 +370,8 @@ namespace Upkeep_v3.Ticketing
                                                 SenderID = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Sender_ID"]);
                                                 Send_SMS_URL = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Send_SMS_URL"]);
 
+                                                Send_SMS_URL = Send_SMS_URL.Replace("%26","&");
+
                                                 SendSMS sms = new SendSMS();
                                                 foreach (DataRow dr in dsTicketSave.Tables[2].Rows)
                                                 {
