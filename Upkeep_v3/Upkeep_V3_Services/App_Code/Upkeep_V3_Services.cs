@@ -507,11 +507,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_CTT_Report(int CompanyID)
+    public DataSet Fetch_CTT_Report(string TicketStatus,string ActionStatus,string From_Date,string To_Date, int CompanyID)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_CTT_Report(CompanyID);
+            ds = ObjUpkeep.Fetch_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
         }
         catch (Exception ex)
         {

@@ -480,13 +480,13 @@ public class My_Upkeep
         //return ds;
     }
 
-    public DataSet Fetch_CTT_Report(int CompanyID)
+    public DataSet Fetch_CTT_Report(string TicketStatus,string ActionStatus,string From_Date,string To_Date, int CompanyID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             //string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_CTT_Report(CompanyID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID, StrConn);
             return ds;
         }
         catch (Exception ex)
