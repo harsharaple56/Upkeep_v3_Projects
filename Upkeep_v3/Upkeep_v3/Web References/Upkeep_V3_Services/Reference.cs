@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Insert_WorkPermitRequestOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestSavedDataOperationCompleted;
         
         private System.Threading.SendOrPostCallback Update_WorkPermitRequestOperationCompleted;
@@ -183,6 +185,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CustomReports_RUOperationCompleted;
         
         private System.Threading.SendOrPostCallback UserTypeMaster_CRUDOperationCompleted;
         
@@ -346,8 +350,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Bind_WorkPermitRequestDetailsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Insert_WorkPermitRequestOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -385,6 +387,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Insert_WorkPermitRequestCompletedEventHandler Insert_WorkPermitRequestCompleted;
         
         /// <remarks/>
         public event Fetch_WorkPermitRequestSavedDataCompletedEventHandler Fetch_WorkPermitRequestSavedDataCompleted;
@@ -616,6 +621,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event MenuMaster_CRUDCompletedEventHandler MenuMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event CustomReports_RUCompletedEventHandler CustomReports_RUCompleted;
         
         /// <remarks/>
         public event UserTypeMaster_CRUDCompletedEventHandler UserTypeMaster_CRUDCompleted;
@@ -861,7 +869,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Bind_WorkPermitRequestDetailsCompletedEventHandler Bind_WorkPermitRequestDetailsCompleted;
         
         /// <remarks/>
-        public event Insert_WorkPermitRequestCompletedEventHandler Insert_WorkPermitRequestCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_WorkPermitRequest(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
+            object[] results = this.Invoke("Insert_WorkPermitRequest", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID,
+                        strWpDate,
+                        strWpTpDate,
+                        strWpSectionHeaderData});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
+            this.Insert_WorkPermitRequestAsync(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData, object userState) {
+            if ((this.Insert_WorkPermitRequestOperationCompleted == null)) {
+                this.Insert_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WorkPermitRequestOperationCompleted);
+            }
+            this.InvokeAsync("Insert_WorkPermitRequest", new object[] {
+                        WP_ConfigID,
+                        LoggedInUserID,
+                        strWpDate,
+                        strWpTpDate,
+                        strWpSectionHeaderData}, this.Insert_WorkPermitRequestOperationCompleted, userState);
+        }
+        
+        private void OnInsert_WorkPermitRequestOperationCompleted(object arg) {
+            if ((this.Insert_WorkPermitRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_WorkPermitRequestCompleted(this, new Insert_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestSavedData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3521,6 +3563,45 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.MenuMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.MenuMaster_CRUDCompleted(this, new MenuMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CustomReports_RU", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CustomReports_RU(int Report_ID, string Report_Name, string Report_Desc, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("CustomReports_RU", new object[] {
+                        Report_ID,
+                        Report_Name,
+                        Report_Desc,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CustomReports_RUAsync(int Report_ID, string Report_Name, string Report_Desc, int Company_ID, string LoggedInUserID, string Action) {
+            this.CustomReports_RUAsync(Report_ID, Report_Name, Report_Desc, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void CustomReports_RUAsync(int Report_ID, string Report_Name, string Report_Desc, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.CustomReports_RUOperationCompleted == null)) {
+                this.CustomReports_RUOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCustomReports_RUOperationCompleted);
+            }
+            this.InvokeAsync("CustomReports_RU", new object[] {
+                        Report_ID,
+                        Report_Name,
+                        Report_Desc,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.CustomReports_RUOperationCompleted, userState);
+        }
+        
+        private void OnCustomReports_RUOperationCompleted(object arg) {
+            if ((this.CustomReports_RUCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CustomReports_RUCompleted(this, new CustomReports_RUCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6621,43 +6702,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_WorkPermitRequest(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
-            object[] results = this.Invoke("Insert_WorkPermitRequest", new object[] {
-                        WP_ConfigID,
-                        LoggedInUserID,
-                        strWpDate,
-                        strWpTpDate,
-                        strWpSectionHeaderData});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData) {
-            this.Insert_WorkPermitRequestAsync(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData, null);
-        }
-        
-        /// <remarks/>
-        public void Insert_WorkPermitRequestAsync(int WP_ConfigID, string LoggedInUserID, string strWpDate, string strWpTpDate, string strWpSectionHeaderData, object userState) {
-            if ((this.Insert_WorkPermitRequestOperationCompleted == null)) {
-                this.Insert_WorkPermitRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WorkPermitRequestOperationCompleted);
-            }
-            this.InvokeAsync("Insert_WorkPermitRequest", new object[] {
-                        WP_ConfigID,
-                        LoggedInUserID,
-                        strWpDate,
-                        strWpTpDate,
-                        strWpSectionHeaderData}, this.Insert_WorkPermitRequestOperationCompleted, userState);
-        }
-        
-        private void OnInsert_WorkPermitRequestOperationCompleted(object arg) {
-            if ((this.Insert_WorkPermitRequestCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_WorkPermitRequestCompleted(this, new Insert_WorkPermitRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -6673,6 +6717,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Insert_WorkPermitRequestCompletedEventHandler(object sender, Insert_WorkPermitRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -8665,6 +8735,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal MenuMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CustomReports_RUCompletedEventHandler(object sender, CustomReports_RUCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CustomReports_RUCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CustomReports_RUCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -10771,32 +10867,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Bind_WorkPermitRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Insert_WorkPermitRequestCompletedEventHandler(object sender, Insert_WorkPermitRequestCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_WorkPermitRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_WorkPermitRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

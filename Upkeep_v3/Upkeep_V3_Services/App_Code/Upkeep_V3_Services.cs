@@ -94,6 +94,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet CustomReports_RU(int Report_ID, string Report_Name, string Report_Desc, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            DataSet dsCustom = new DataSet();
+            dsCustom = ObjUpkeep.CustomReports_RU(Report_ID,Report_Name,Report_Desc, Company_ID, LoggedInUserID, Action);
+            return dsCustom;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        
+    }
+
+    [WebMethod]
     public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc, int CompanyID, string LoggedInUserID, string Action)
     {
         try

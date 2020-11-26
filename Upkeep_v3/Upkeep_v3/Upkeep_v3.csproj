@@ -978,6 +978,8 @@
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="CSM\Service_Reports.aspx" />
+    <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
+    <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -4170,6 +4172,20 @@
     </Compile>
     <Compile Include="CSM\Service_Reports.aspx.designer.cs">
       <DependentUpon>Service_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_Reports\Custom_Reports_Listing.aspx.cs">
+      <DependentUpon>Custom_Reports_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom_Reports\Custom_Reports_Listing.aspx.designer.cs">
+      <DependentUpon>Custom_Reports_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx.cs">
+      <DependentUpon>Daily_versus_CurrentMonth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx.designer.cs">
+      <DependentUpon>Daily_versus_CurrentMonth.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
