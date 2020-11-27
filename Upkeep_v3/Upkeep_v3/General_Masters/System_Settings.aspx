@@ -318,7 +318,9 @@
 												                            </div>
 											                            </div>
 
-                                                                        <div id="m_gmap_6" style="height:300px;"></div>
+                                                                        <div id="m_gmap_6" style=width="640" height="480">
+                                                                            <iframe src="https://www.google.com/maps/d/embed?mid=15VeEbeTCNB81rzmQHEC-UMUEaJ5fbw_V" ></iframe>
+                                                                        </div>
 
                             
                                                                     <div class="alert m-alert m-alert--default" role="alert">
