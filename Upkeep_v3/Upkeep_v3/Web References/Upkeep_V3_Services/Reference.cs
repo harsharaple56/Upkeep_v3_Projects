@@ -176,6 +176,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Import_User_MasterOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Import_Checklist_MasterOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Schedule_Checklist_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_MyChecklist_NEWOperationCompleted;
@@ -604,6 +606,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Import_User_MasterCompletedEventHandler Import_User_MasterCompleted;
+        
+        /// <remarks/>
+        public event Import_Checklist_MasterCompletedEventHandler Import_Checklist_MasterCompleted;
         
         /// <remarks/>
         public event Schedule_Checklist_CRUDCompletedEventHandler Schedule_Checklist_CRUDCompleted;
@@ -3385,6 +3390,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Import_User_MasterCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_User_MasterCompleted(this, new Import_User_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Checklist_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Checklist_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Checklist_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_Checklist_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_Checklist_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_Checklist_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_Checklist_MasterOperationCompleted == null)) {
+                this.Import_Checklist_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_Checklist_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_Checklist_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_Checklist_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_Checklist_MasterOperationCompleted(object arg) {
+            if ((this.Import_Checklist_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_Checklist_MasterCompleted(this, new Import_Checklist_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8561,6 +8597,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Import_User_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Import_Checklist_MasterCompletedEventHandler(object sender, Import_Checklist_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_Checklist_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_Checklist_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

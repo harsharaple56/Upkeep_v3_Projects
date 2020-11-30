@@ -2373,6 +2373,22 @@ public class My_Upkeep
     }
 
     /*Mohammed*/
+
+    public DataSet Import_Checklist_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsUsers = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsUsers = ObjUpkeepCC_BL.Import_Checklist_Master(CompanyID, LoggedInUserID, StrConn);
+            return dsUsers;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet Schedule_Checklist_CRUD(int CompanyID)
     {
         DataSet dsUsers = new DataSet();

@@ -8,7 +8,14 @@ using System.Web.UI.HtmlControls;
 using System.Xml;
 using System.Text;
 using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Globalization;
+using System.Data.OleDb;
+using System.Data.Common;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace Upkeep_v3.CheckList
 {
@@ -123,6 +130,112 @@ namespace Upkeep_v3.CheckList
         {
             DeleteChkRequestListing();
         }
+
+        protected void lnkSampleFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = "~/General_Masters/Template/Checklist_Import_Template.xlsx";
+
+                //string filePath = "~/Feedback/Template/RetailerData.xls";
+                //string filePath = Page.ResolveClientUrl("~/Feedback/Template/RetailerData.xls");
+
+                //Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filePath + "\"");
+                string filename = "Checklist_Import_Template.xlsx";
+                Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                Response.TransmitFile(Server.MapPath(filePath));
+
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            DataSet dsResult = new DataSet();
+            int CompanyID = 0;
+            if (FU_ChecklistMst.PostedFile != null)
+            {
+                try
+                {
+                    CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                    string path = string.Concat(Server.MapPath("~/Checklist/ImportFile/" + FU_ChecklistMst.FileName));
+                    FU_ChecklistMst.SaveAs(path);
+                    // Connection String to Excel Workbook  
+                  //string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+                    string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}; Extended Properties='Excel 12.0 Xml;HDR=YES'", path);
+
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("select * from [Sheet1$]", con);
+                        con.Open();
+                        // Create DbDataReader to Data Worksheet  
+                        DbDataReader dr = cmd.ExecuteReader();
+                        // SQL Server Connection String  
+                        string CS = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString;
+                        // Bulk Copy to SQL Server   
+                        SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
+                        bulkInsert.DestinationTableName = "Tbl_CHK_Temp_Import";
+                        bulkInsert.ColumnMappings.Add("Checklist_Name", "Checklist_Name");
+                        bulkInsert.ColumnMappings.Add("Section_Name", "Section_Name");
+                        bulkInsert.ColumnMappings.Add("Question_Desc", "Question_Desc");
+                        bulkInsert.ColumnMappings.Add("Ans_Type", "Ans_Type");
+                        //bulkInsert.ColumnMappings.Add(CompanyID.ToString(), "CompanyID");
+                     
+                        bulkInsert.WriteToServer(dr);
+
+                        dsResult = ObjUpkeep.Import_Checklist_Master(CompanyID, LoggedInUserID);
+
+                        if (dsResult.Tables.Count > 0)
+                        {
+                            if (dsResult.Tables[0].Rows.Count > 0)
+                            {
+
+                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
+                                pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
+
+                                mpeUserMst.Show();
+                                lblImportErrorMsg.Text = "Below mentioned users can not be created, kindly check error message.";
+                                gvImportError.DataSource = dsResult;
+                                gvImportError.DataBind();
+                            }
+                            else
+                            {
+                                fetchChkRequestListing();
+                            }
+                        }
+                        else
+                        {
+                            fetchChkRequestListing();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+
+                }
+            }
+            else
+            {
+                //lbl
+            }
+        }
+
+        protected void btnCloseImportPopUp_Click(object sender, EventArgs e)
+        {
+            lblImportErrorMsg.Text = "";
+            gvImportError.DataSource = null;
+            gvImportError.DataBind();
+            mpeUserMst.Hide();
+        }
+
+       
+
     }
 
 }

@@ -2653,6 +2653,29 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    [WebMethod]
+    public DataSet Import_Checklist_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_Upkeep obj = new My_Upkeep();
+
+            ds = obj.Import_Checklist_Master(CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
     [WebMethod]
     public DataSet Schedule_Checklist_CRUD(int CompanyID)
     {

@@ -3944,6 +3944,7 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\Tsc8ad6edcc.out" />
     <Content Include="VMS\Visits_Report.aspx" />
+    <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -5712,6 +5713,7 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CheckList\ImportFile\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
