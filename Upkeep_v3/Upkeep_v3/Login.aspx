@@ -79,7 +79,7 @@
                                 <a href="https://play.google.com/store/apps/details?id=com.compelconsultancy.efacilito" target="_blank">
                                     <img style="width: 200px; height: 60px;" src="assets/app/media/img/logos/PlayStore_download.png" />
                                 </a>
-                                <a href="#">
+                                <a href="https://apps.apple.com/us/app/efacilito/id1520937169">
                                     <img style="width: 200px; height: 60px;" src="assets/app/media/img/logos/AppleStore_download.png" />
                                 </a>
                             </div>

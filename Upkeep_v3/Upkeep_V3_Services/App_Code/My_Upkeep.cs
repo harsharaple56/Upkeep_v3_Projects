@@ -2422,5 +2422,23 @@ public class My_Upkeep
         }
     }
 
+    public DataSet CustomReports_RU(int Report_ID, string Report_Name, string Report_Desc, int Company_ID,string LoggedInUserID,string Action)
+    {
+        try
+        {
+            DataSet dsCustom = new DataSet();
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsCustom = ObjUpkeepCC_BL.CustomReports_RU(Report_ID, Report_Name, Report_Desc,Company_ID,LoggedInUserID, Action, StrConn);
+
+            return dsCustom;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        
+    }
+
+
 
 }

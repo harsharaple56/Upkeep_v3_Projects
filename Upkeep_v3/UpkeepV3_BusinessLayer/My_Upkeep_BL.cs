@@ -44,6 +44,41 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+
+        public DataSet CustomReports_RU(int Report_ID, string Report_Name, string Report_Desc, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Custom_Reports", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Report_ID", Report_ID);
+                cmd.Parameters.AddWithValue("@Report_Name", Report_Name);
+                cmd.Parameters.AddWithValue("@Report_Desc", Report_Desc);
+                
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                
+                cmd.Parameters.AddWithValue("@Action", Action);
+              
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
         public DataSet UserTypeMaster_CRUD(int User_Type_ID, string User_Type_Desc, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             try
