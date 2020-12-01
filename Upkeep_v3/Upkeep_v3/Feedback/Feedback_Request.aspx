@@ -315,7 +315,7 @@ background-color: blanchedalmond;
 
 
         function SubmitHeader() {
-            
+            //debugger;
             var cols_len = 0;
             $('#ContentPlaceHolder1_tblFeedbackHeader').find('tr:first td').each(function () {
                 var cspan = $(this).attr('colspan');
@@ -350,7 +350,7 @@ background-color: blanchedalmond;
                 infox.innerHTML = infox.innerHTML + ',';
                 arrDataParent.push(arrDataChild);
             });
-            // alert(infox.innerHTML);
+             //alert(infox.innerHTML);
             // alert(JSON.stringify(arrDataParent));
             document.getElementById("hdnFeedbackHeader").value = infox.innerHTML;
             var myTab = document.getElementById('ContentPlaceHolder1_tblFeedbackHeader');
@@ -537,7 +537,8 @@ background-color: blanchedalmond;
                                     <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Feedback Details</label>
                                 </div>
 
-
+                                <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
+                                <br />
                                 <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
                                     <ItemTemplate>
 

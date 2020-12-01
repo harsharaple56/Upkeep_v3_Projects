@@ -242,7 +242,7 @@ namespace Upkeep_v3.Feedback
                 { strGender = "Other"; }
 
 
-
+                lblFeedbackError.Text = "";
 
                 #endregion
 
@@ -359,6 +359,15 @@ namespace Upkeep_v3.Feedback
                         HtmlGenericControl sample = itemQuestion.FindControl("divEmoji") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+
+                        if(sVal=="")
+                        {
+                            lblFeedbackError.Text = "Kindly fill all the feedback";
+                            BindEvent();
+                            return;
+                        }
+                        
+
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerType;
