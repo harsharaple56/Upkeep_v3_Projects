@@ -198,7 +198,7 @@ namespace Upkeep_v3.CheckList
                                 pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
 
                                 mpeUserMst.Show();
-                                lblImportErrorMsg.Text = "Below mentioned users can not be created, kindly check error message.";
+                                lblImportErrorMsg.Text = "Below checklist can not be created, kindly check error message.";
                                 gvImportError.DataSource = dsResult;
                                 gvImportError.DataBind();
                             }
