@@ -111,7 +111,7 @@ namespace Upkeep_v3
                         Session["CompanyCode"] = Convert.ToString(txtCompanyCode.Text.Trim());
                         Session["CompanyLogo"] = Company_Logo;
 
-                        dvCompanyCode.Attributes.Add("style","display:none;");
+                        dvCompanyCode.Attributes.Add("style", "display:none;");
                         dvLogin.Attributes.Add("style", "display:block;");
                         dvCompanyLogo.Attributes.Add("style", "display:block; text-align: center;");
                         imgCompany_Logo.ImageUrl = Company_Logo;
@@ -138,6 +138,10 @@ namespace Upkeep_v3
                     }
 
 
+                }
+                else
+                {
+                    lblError.Text = "Invalid Company Code";
                 }
             }
             catch (Exception ex)
