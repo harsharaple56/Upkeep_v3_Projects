@@ -2676,6 +2676,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="storeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Store_No" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />

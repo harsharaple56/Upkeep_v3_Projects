@@ -57,13 +57,25 @@
                                 <div class="m-form__section m-form__section--first">
 
                                     <div class="form-group m-form__group row">
-                                        <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Store:</label>
+                                        <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Store Name:</label>
                                         <div class="col-xl-6 col-lg-9">
                                             <asp:TextBox ID="store" runat="server" class="form-control m-input" placeholder="Enter store name"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvstore" runat="server" Display="Dynamic" ControlToValidate="store" Visible="true" ValidationGroup="validateRetailer" ForeColor="Red" ErrorMessage="Please enter Store name"></asp:RequiredFieldValidator>
                                             <span id="error_store" class="text-danger small"></span>
                                         </div>
                                     </div>
+
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Store No.:</label>
+                                        <div class="col-xl-6 col-lg-9">
+                                            <asp:TextBox ID="txtStoreNo" runat="server" class="form-control m-input" placeholder="Enter store no"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" Display="Dynamic" ControlToValidate="txtStoreNo" Visible="true" 
+                                                ValidationGroup="validateRetailer" ForeColor="Red" ErrorMessage="Please enter Store No."></asp:RequiredFieldValidator>
+                                            
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group m-form__group row">
                                         <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Manager First name:</label>
                                         <div class="col-xl-6 col-lg-9">

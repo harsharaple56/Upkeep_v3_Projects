@@ -62,6 +62,7 @@ namespace Upkeep_v3.General_Masters
                 string Action = "";
                 string Username = string.Empty;
                 string Password = string.Empty;
+                string Store_No = string.Empty;
 
                 if (Retailer_ID > 0)
                 {
@@ -75,8 +76,10 @@ namespace Upkeep_v3.General_Masters
                 Username = Convert.ToString(txtUsername.Text.Trim());
                 Password = Convert.ToString(txtPassword.Text.Trim());
 
+                Store_No = Convert.ToString(txtStoreNo.Text.Trim());
+
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, CompanyID, LoggedInUserID, Action);
+                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), Store_No, first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, CompanyID, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -118,13 +121,14 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "R");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         store.Text = Convert.ToString(ds.Tables[0].Rows[0]["Store_Name"]);
+                        txtStoreNo.Text = Convert.ToString(ds.Tables[0].Rows[0]["Store_No"]);
                         first_name.Text = Convert.ToString(ds.Tables[0].Rows[0]["StoreManagerFirstName"]);
                         last_name.Text = Convert.ToString(ds.Tables[0].Rows[0]["StoreManagerLastName"]);
                         email.Text = Convert.ToString(ds.Tables[0].Rows[0]["EmailID"]);
@@ -150,7 +154,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "D");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

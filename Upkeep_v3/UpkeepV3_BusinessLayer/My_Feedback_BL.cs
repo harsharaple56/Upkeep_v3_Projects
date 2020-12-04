@@ -142,7 +142,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Retailer_CRUD(string storeName, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType, string strConn)
+        public DataSet Retailer_CRUD(string storeName,string Store_No, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -153,6 +153,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@storeName", storeName);
+            cmd.Parameters.AddWithValue("@Store_No", Store_No);
             cmd.Parameters.AddWithValue("@FName", firstName);
             cmd.Parameters.AddWithValue("@LName", lastName);
             cmd.Parameters.AddWithValue("@email", email);

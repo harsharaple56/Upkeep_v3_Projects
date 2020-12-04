@@ -152,11 +152,13 @@
                     </div>
                     <div class="m-portlet__body">
 
+                        <div  style="overflow-x: auto;">
                         <!--begin: Datatable -->
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                                 <tr>
                                     <th>Store Name</th>
+                                    <th>Store No</th>
                                     <th>Manager Name</th>
                                     <th>Email</th>
                                     <th>Contact</th>
@@ -171,12 +173,12 @@
 
 
                         </table>
-
-                        <div class="m-form m-form--label-align-left- m-form--state- m--margin-10" id="event_form1" runat="server">
+</div>
+                        <div class="m-form m-form--label-align-left- m-form--state- m--margin-10" id="event_form1" runat="server" style="display:none;">
 
                             <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
 
-                            <div class="pull-right">
+                            <div class="pull-right" style="display:none;">
                                 <asp:LinkButton ID="lnkSampleFile" runat="server" Text="Download Sample File" OnClick="lnkSampleFile_Click"></asp:LinkButton>
                                 <asp:FileUpload ID="fileUpload" runat="server" />
                                 <asp:Button ID="btnImportExcel1" runat="server" OnClick="btnImportExcel_Click" Text="Import From Excel" class="btn btn-primary btn-success" />
