@@ -3351,6 +3351,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
+                cmd.CommandTimeout = 300;
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
