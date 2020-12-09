@@ -38,6 +38,16 @@ namespace Upkeep_v3.Ticketing
             {
                 //BindLocationDetails(0, 0);
                 Fetch_LocationTree();
+
+                if (Convert.ToString(Session["UserType"]) == "R")
+                {
+                    if (Convert.ToString(Session["Retailer_Location"]) != "")
+                    {
+                        ddlLocation.SelectedValue = Convert.ToString(Session["Retailer_Location"]);
+                        ddlLocation.Enabled = false;
+                    }
+                }
+
                 Fetch_CategorySubCategory(0);
             }
         }

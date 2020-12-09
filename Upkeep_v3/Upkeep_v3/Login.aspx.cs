@@ -218,6 +218,7 @@ namespace Upkeep_v3
                                     else
                                     {
                                         Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
+                                        Session["Retailer_Location"] = Convert.ToString(ds.Tables[0].Rows[0]["Loc_ID"]);
                                     }
 
                                     Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());

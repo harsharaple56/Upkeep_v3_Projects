@@ -29,7 +29,7 @@ namespace Upkeep_v3.General_Masters
 
             if (!IsPostBack)
             {
-
+                Fetch_LocationTree();
                 int RetailerID = Convert.ToInt32(Request.QueryString["RetID"]);
 
                 int RetailerID_Delete = Convert.ToInt32(Request.QueryString["DelRetID"]);
@@ -48,6 +48,31 @@ namespace Upkeep_v3.General_Masters
 
             }
 
+        }
+
+        public void Fetch_LocationTree()
+        {
+            DataSet dsLocDetails = new DataSet();
+            try
+            {
+                dsLocDetails = ObjUpkeepFeedback.Fetch_LocationTree(CompanyID);
+
+                if (dsLocDetails.Tables.Count > 0)
+                {
+                    if (dsLocDetails.Tables[0].Rows.Count > 0)
+                    {
+                        ddlLocation.DataSource = dsLocDetails.Tables[0];
+                        ddlLocation.DataTextField = "Loc_Desc";
+                        ddlLocation.DataValueField = "Loc_ID";
+                        ddlLocation.DataBind();
+                        ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -78,8 +103,10 @@ namespace Upkeep_v3.General_Masters
 
                 Store_No = Convert.ToString(txtStoreNo.Text.Trim());
 
+                int LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), Store_No, first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, CompanyID, LoggedInUserID, Action);
+                ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), Store_No, first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, LocationID, CompanyID, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -121,7 +148,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "R");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","",0, CompanyID,LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -154,7 +181,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","", CompanyID,LoggedInUserID, "D");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, RetailerID,"","",0, CompanyID,LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

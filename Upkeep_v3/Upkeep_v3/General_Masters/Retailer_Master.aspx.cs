@@ -49,7 +49,7 @@ namespace Upkeep_v3.General_Masters
             {
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0,"","", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0,"","",0, CompanyID, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -64,11 +64,13 @@ namespace Upkeep_v3.General_Masters
                             string StoreNo = Convert.ToString(ds.Tables[0].Rows[i]["Store_No"]);
                             string ManagerName = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
 
+                            string Location = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Desc"]);
+
                             string PhoneNo = Convert.ToString(ds.Tables[0].Rows[i]["PhoneNo"]);
                             string EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
                             string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
-                            data += "<tr><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + ManagerName + "</td><td>" + EmailID + "</td><td>" + PhoneNo + "</td><td>" + Created_Date + "</td> <td style='width: 10%;'><a href='Add_Retailer.aspx?RetID=" + RetID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='Add_Retailer.aspx?DelRetID=" + RetID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + ManagerName + "</td><td>" + Location + "</td><td>" + EmailID + "</td><td>" + PhoneNo + "</td><td>" + Created_Date + "</td> <td style='width: 10%;'><a href='Add_Retailer.aspx?RetID=" + RetID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='Add_Retailer.aspx?DelRetID=" + RetID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
 
@@ -105,7 +107,7 @@ namespace Upkeep_v3.General_Masters
             try
             {
                 DataSet dsRetailer = new DataSet();
-                dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "R");
+                dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "",0, CompanyID, LoggedInUserID, "R");
 
                 System.Data.DataTable dtRetailer = new System.Data.DataTable();
                 dtRetailer = dsRetailer.Tables[0];
@@ -238,7 +240,7 @@ namespace Upkeep_v3.General_Masters
             System.Data.DataTable dtRetailerMaster = new System.Data.DataTable();
             try
             {
-                dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "R");
+                dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "",0, CompanyID, LoggedInUserID, "R");
                 if (dsRetailer != null)
                 {
                     if (dsRetailer.Tables.Count > 0)
@@ -319,7 +321,7 @@ namespace Upkeep_v3.General_Masters
         {
 
             DataSet dsRetailer = new DataSet();
-            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0,"","", CompanyID, LoggedInUserID, "R");
+            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0,"","",0, CompanyID, LoggedInUserID, "R");
 
             System.Data.DataTable dtRetailer = new System.Data.DataTable();
             dtRetailer = dsRetailer.Tables[0];
@@ -390,7 +392,7 @@ namespace Upkeep_v3.General_Masters
         {
 
             DataSet dsRetailer = new DataSet();
-            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "", CompanyID, LoggedInUserID, "R");
+            dsRetailer = ObjUpkeepFeedback.Retailer_CRUD("","", "", "", "", 0, 0, "", "",0, CompanyID, LoggedInUserID, "R");
 
             System.Data.DataTable dtRetailer = new System.Data.DataTable();
             dtRetailer = dsRetailer.Tables[0];

@@ -135,7 +135,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Retailer_CRUD(string storeName,string Store_No, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName,string Store_No, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password,int LocationID, int CompanyID, string LoggedInUserID, string actionType)
     {
         try
         {
@@ -143,7 +143,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Retailer_CRUD(storeName, Store_No, firstName, lastName, email, phone, RetailerID, Username, Password, CompanyID, LoggedInUserID, actionType, strConn);
+            ds = ObjFeedback_BL.Retailer_CRUD(storeName, Store_No, firstName, lastName, email, phone, RetailerID, Username, Password, LocationID, CompanyID, LoggedInUserID, actionType, strConn);
 
             return ds;
         }

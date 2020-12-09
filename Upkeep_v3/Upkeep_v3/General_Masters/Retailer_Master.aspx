@@ -35,6 +35,7 @@
             $('#m_table_1').DataTable({
                 responsive: true,
                 pagingType: 'full_numbers',
+                scrollX: true,
                 'fnDrawCallback': function () {
                     init_plugins();
                 }
@@ -75,7 +76,7 @@
 
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="">
-                <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
@@ -88,7 +89,7 @@
                                 <li class="m-portlet__nav-item">
                                     <a href="<%= Page.ResolveClientUrl("Add_Retailer.aspx") %>" class="btn btn-accent  m-btn m-btn--icon" style="padding: 5%;">
                                         <span>
-                                            
+
                                             <img src="../assets/app/media/img/icons/Add_Retailer_35.png" />
                                             <span>New Retailer</span>
                                         </span>
@@ -100,7 +101,7 @@
 
                             <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
 
-                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%;margin-left: 7%;">
+                                <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%; margin-left: 7%;">
                                     <img src="../assets/app/media/img/icons/database_export_35.png" />
                                     Export
                                 </a>
@@ -152,33 +153,34 @@
                     </div>
                     <div class="m-portlet__body">
 
-                        <div  style="overflow-x: auto;">
-                        <!--begin: Datatable -->
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                            <thead>
-                                <tr>
-                                    <th>Store Name</th>
-                                    <th>Store No</th>
-                                    <th>Manager Name</th>
-                                    <th>Email</th>
-                                    <th>Contact</th>
-                                    <th>Created on</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                        <div id="" style="overflow-x: auto;" >
+                            <!--begin: Datatable -->
+                            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" >
+                                <thead>
+                                    <tr>
+                                        <th>Store Name</th>
+                                        <th>Store No</th>
+                                        <th>Manager Name</th>
+                                        <th>Location</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Created on</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody>
-                                <%=fetchRetailerDetails()%>
-                            </tbody>
+                                <tbody>
+                                    <%=fetchRetailerDetails()%>
+                                </tbody>
 
 
-                        </table>
-</div>
-                        <div class="m-form m-form--label-align-left- m-form--state- m--margin-10" id="event_form1" runat="server" style="display:none;">
+                            </table>
+                        </div>
+                        <div class="m-form m-form--label-align-left- m-form--state- m--margin-10" id="event_form1" runat="server" style="display: none;">
 
                             <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
 
-                            <div class="pull-right" style="display:none;">
+                            <div class="pull-right" style="display: none;">
                                 <asp:LinkButton ID="lnkSampleFile" runat="server" Text="Download Sample File" OnClick="lnkSampleFile_Click"></asp:LinkButton>
                                 <asp:FileUpload ID="fileUpload" runat="server" />
                                 <asp:Button ID="btnImportExcel1" runat="server" OnClick="btnImportExcel_Click" Text="Import From Excel" class="btn btn-primary btn-success" />
@@ -255,15 +257,15 @@
                                     <asp:FileUpload ID="FU_RetailerMst" runat="server" />
                                 </div>
                                 <div class="col-xl-6 col-lg-6">
-                                    <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_RetailerMst" ErrorMessage="Please upload a file" ForeColor="Red" 
-                                        Display="Dynamic" ValidationGroup="ValidationImport" ></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_RetailerMst" ErrorMessage="Please upload a file" ForeColor="Red"
+                                        Display="Dynamic" ValidationGroup="ValidationImport"></asp:RequiredFieldValidator>
                                     <span id="ImportError_Msg" style="color: red;"></span>
                                 </div>
                             </div>
                             <div class="form-group m-form__group row">
                                 <div class="col-xl-2 col-lg-2 col-form-label"></div>
                                 <img src="../assets/app/media/img/icons/download_sample_26.png" />
-                               
+
                                 <asp:LinkButton ID="btnDownloadSampleFile" runat="server" OnClick="lnkSampleFile_Click" Text="Download Sample Import File" ClientIDMode="Static"></asp:LinkButton>
 
                             </div>
@@ -282,9 +284,9 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="form-group m-form__group row"  >
+                            <div class="form-group m-form__group row">
                                 <div class="col-xl-1 col-lg-1"></div>
-                                <div class="col-xl-10 col-lg-10" style="overflow-y:auto; height:280px; display:none;" id="dvErrorGrid" runat="server">
+                                <div class="col-xl-10 col-lg-10" style="overflow-y: auto; height: 280px; display: none;" id="dvErrorGrid" runat="server">
                                     <asp:GridView ID="gvImportError" runat="server" AutoGenerateColumns="true" HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black"
                                         CssClass="table table-striped- table-bordered table-hover table-checkable">
                                     </asp:GridView>
@@ -305,7 +307,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </asp:Panel>
 
 

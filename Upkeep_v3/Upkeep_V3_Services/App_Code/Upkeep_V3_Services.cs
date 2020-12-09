@@ -622,7 +622,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Retailer_CRUD(string storeName,string Store_No, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password, int CompanyID, string LoggedInUserID, string actionType)
+    public DataSet Retailer_CRUD(string storeName,string Store_No, string firstName, string lastName, string email, Int64 phone, int RetailerID, string Username, string Password,int LocationID, int CompanyID, string LoggedInUserID, string actionType)
     {
         DataSet ds = new DataSet();
 
@@ -630,7 +630,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Retailer_CRUD(storeName, Store_No,firstName, lastName, email, phone, RetailerID, Username, Password, CompanyID, LoggedInUserID, actionType);
+            ds = obj.Retailer_CRUD(storeName, Store_No,firstName, lastName, email, phone, RetailerID, Username, Password, LocationID, CompanyID, LoggedInUserID, actionType);
 
         }
         catch (Exception ex)

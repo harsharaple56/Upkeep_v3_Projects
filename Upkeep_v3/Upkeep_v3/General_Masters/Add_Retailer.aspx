@@ -69,9 +69,9 @@
                                         <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Store No.:</label>
                                         <div class="col-xl-6 col-lg-9">
                                             <asp:TextBox ID="txtStoreNo" runat="server" class="form-control m-input" placeholder="Enter store no"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" Display="Dynamic" ControlToValidate="txtStoreNo" Visible="true" 
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" Display="Dynamic" ControlToValidate="txtStoreNo" Visible="true"
                                                 ValidationGroup="validateRetailer" ForeColor="Red" ErrorMessage="Please enter Store No."></asp:RequiredFieldValidator>
-                                            
+
                                         </div>
                                     </div>
 
@@ -121,6 +121,15 @@
                                     </div>
 
                                     <div class="form-group m-form__group row">
+                                        <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Location:</label>
+                                        <div class="col-xl-8 col-lg-9">
+                                            <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
+                                                ValidationGroup="validateRetailer" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-form__group row">
                                         <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Username:</label>
                                         <div class="col-xl-6 col-lg-9">
                                             <%--<input type="text" name="email" id="email" class="form-control m-input" placeholder="Enter Email" value="">--%>
@@ -151,9 +160,9 @@
                     <%--</form>--%>
                 </div>
 
-            <!--end::Portlet-->
+                <!--end::Portlet-->
+            </div>
         </div>
-    </div>
     </div>
 
 </asp:Content>
