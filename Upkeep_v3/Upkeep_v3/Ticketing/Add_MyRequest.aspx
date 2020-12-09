@@ -144,8 +144,8 @@
                                                 </div>
                                                 <div class="form-group m-form__group row" style="padding-left: 10%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
+                                                    <div class="col-xl-9 col-lg-9" >
+                                                        <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server" ></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
                                                             ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
                                                     </div>

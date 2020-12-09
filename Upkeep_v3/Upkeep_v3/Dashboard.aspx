@@ -1568,11 +1568,114 @@
             <!--End::Section-->
             <!--Begin::Section-->
             <div class="row">
-                <div class="col-xl-4">
+                <!--Begin:: Store Attendance-->
+                
+                <div class="col-xl-12">
 
                     <!--begin:: Widgets/Blog-->
+
+                    <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Retail Store Attendance Portal<small>Log your Store Opening & Closing Time below</small>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+
+                            <div class="row m-row--no-padding m-row--col-separator-xl">
+									<div class="col-md-6">
+
+										<!--begin::Total Profit-->
+										<div class="m-widget24">
+											<div class="m-widget24__item">
+												<h4 class="m-widget24__title">
+													Store Punch-IN
+												</h4><br>
+												<span class="m-widget24__desc">
+													Click to log the time when your store Opens
+												</span>
+												<span class="m-widget24__stats m--font-info">
+                                                    <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air">
+                                                        <span>
+                                                            <i class="la la-hand-pointer-o"></i>
+                                                            <span>Punch IN</span>
+                                                        </span>
+                                                    </a>
+                                                </span>
+												<div class="m--space-10"></div>
+												<div class="progress m-progress--sm">
+													<div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<span class="m-widget24__change">
+													Last Punch-IN Logged Today
+												</span>
+												<span class="m-widget24__number">
+													7-Dec-2020 11.12 AM
+												</span>
+											</div>
+										</div>
+
+										<!--end::Total Profit-->
+									</div>
+									<div class="col-md-6">
+
+										<!--begin::New Feedbacks-->
+										<div class="m-widget24">
+											<div class="m-widget24__item">
+												<h4 class="m-widget24__title">
+													Store Punch-OUT
+												</h4><br>
+												<span class="m-widget24__desc">
+													Click to log the time when your store Closes
+												</span>
+                                                <span class="m-widget24__stats m--font-info">
+                                                    <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                                        <span>
+                                                            <i class="la la-hand-peace-o"></i>
+                                                            <span>Punch OUT</span>
+                                                        </span>
+                                                    </a>
+                                                </span>
+                                                
+
+                                                
+												<div class="m--space-10"></div>
+												<div class="progress m-progress--sm">
+													<div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<span class="m-widget24__change">
+													Last Punch-OUT Logged Today
+												</span>
+												<span class="m-widget24__number">
+													7-Dec-2020 11.12 AM
+												</span>
+											</div>
+										</div>
+
+										<!--end::New Feedbacks-->
+									</div>
+									
+									
+								</div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
                     <!--end:: Widgets/Blog-->
                 </div>
+
+                <!--End::Store Attendance-->
+
+
                 <div class="col-xl-4">
 
                     <!--begin:: Widgets/Blog-->
