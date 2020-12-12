@@ -8557,12 +8557,75 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         #region "CheckList"
 
+        //[Route("api/UpKeep/Fetch_CheckList_Config_List")]
+        //[HttpGet]
+        //public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID, int DeptID) //int UserID,
+        //{
+        //    // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+        //    //ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+        //    ClsCommunication ObjLocComm = new ClsCommunication();
+        //    DataSet DsDataSet = new DataSet();
+        //    DataTable dt = new DataTable();
+        //    string StrLocConnection = null;
+
+        //    try
+        //    {
+        //        StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+        //        SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+        //        // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+        //        ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+        //        ObjLocSqlParameter[1] = new SqlParameter("@Dept_ID", DeptID);
+
+        //        DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
+
+        //        if (DsDataSet != null)
+        //        {
+        //            if (DsDataSet.Tables.Count > 0)
+        //            {
+        //                if (DsDataSet.Tables[0].Rows.Count > 0)
+        //                {
+        //                    return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+        //                }
+        //                else
+        //                {
+        //                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+        //        }
+        //        throw new Exception("Error while processing request.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+
+        //    }
+        //    finally
+        //    {
+        //        DsDataSet = null;
+        //        //  ObjGatePass = null;
+        //    }
+
+        //}
+
+
+
         [Route("api/UpKeep/Fetch_CheckList_Config_List")]
         [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyCode) //int UserID,
+        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID) //int UserID,
         {
             // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
-            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+            //ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
 
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
@@ -8573,9 +8636,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
                 // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
-                ObjLocSqlParameter[0] = new SqlParameter("@CompanyCode", CompanyCode);
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+             
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
 
@@ -8616,6 +8680,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
+
+
+
 
 
         [Route("api/UpKeep/Fetch_CheckList_AssignLoc_List")]
