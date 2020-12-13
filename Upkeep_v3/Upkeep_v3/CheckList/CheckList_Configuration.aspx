@@ -496,10 +496,12 @@
 
                 //alert("lblAnswerCnt click");
                 var answers = $(this).parent().find('.hdnRepeaterAnswer').val();
-                alert(answers);
+                //alert(answers);
                 if ($('#hdnCLConfigID').val() != "0") {
                     answers = "ii:||;" + $(this).parent().find('.hdnRepeaterAnswer').val();
                 }
+
+                debugger;
                 var arrAns = answers.split(";");
 
                 for (var i = 0; i < arrAns.length; i++) {
@@ -526,12 +528,12 @@
                     //alert(isMand);
                     // alert(isAttc);
                     if (isMand == "1" || isMand == "true") {
-                        //alert(":f:");
+                        alert(":f:");
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").prop("checked", true);
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsFlag][]']").parent().parent().addClass('active');
                     }
                     if (isAttc == "1" || isAttc == "true") {
-                        // alert(":oof:");
+                         //alert(":oof:");
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").prop("checked", true);
                         $("input[name~='AnswerType[" + i + "][ctl00$ContentPlaceHolder1$ChkAnsDef][]']").parent().parent().addClass('active');
                     }
@@ -603,6 +605,8 @@
                     else {
                         answers += ";" + $(this).siblings('#hdnAnswerDataID').val() + ":" + $(this).val() + ":" + isChkAnsFlag + ":" + isChkAnsDef;
                     }
+
+                    //alert(answers);
 
                     cnt++;
 

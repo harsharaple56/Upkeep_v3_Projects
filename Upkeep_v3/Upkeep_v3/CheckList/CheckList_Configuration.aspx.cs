@@ -120,7 +120,8 @@ namespace Upkeep_v3.CheckList
                                 + string.Join(";", ds.Tables[3].AsEnumerable().Where(ans =>
                                 ans.Field<decimal>("CHK_Question_ID").ToString() == s.Field<decimal>("CHK_Question_ID").ToString()).Select(ans =>
                                 ans.Field<decimal>("Chk_Ans_Value_ID").ToString() + ":" + ans.Field<string>("Chk_Ans_Desc").ToString()
-                                + ":" + ans.Field<bool>("Is_Default").ToString() + ":" + ans.Field<bool>("Ans_Is_Flag").ToString()))
+                                + ":" + ans.Field<bool>("Ans_Is_Flag").ToString() + ":" + ans.Field<bool>("Is_Default").ToString()))
+                                //+ ":" + ans.Field<bool>("Is_Default").ToString() + ":" + ans.Field<bool>("Ans_Is_Flag").ToString()))
                                 ).ToArray();
 
                     hdnCLQuestions.Value = string.Join("~", HeaderValues);

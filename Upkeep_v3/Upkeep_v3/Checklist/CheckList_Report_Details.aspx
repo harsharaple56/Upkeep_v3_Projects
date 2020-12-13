@@ -28,9 +28,9 @@
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                    <a href="<%= Page.ResolveClientUrl("~/WorkPermit/MyWorkPermit.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                <div class="m-portlet__head-tools">
+                                    <%--<asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
+                                    <a href="<%= Page.ResolveClientUrl("~/Checklist/CheckList_Report_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
@@ -42,10 +42,10 @@
                                             <span>Back</span>
                                         </span>
                                     </a>--%>
-                                    <div class="btn-group">
+                                    <%--<div class="btn-group">
                                         <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" Text="Save" Style="display: none" />
-                                        <%--OnClick="btnSave_Click"--%>
-                                    </div>
+                                       
+                                    </div>--%>
                                 </div>
 
                             </div>

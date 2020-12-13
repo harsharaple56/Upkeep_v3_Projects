@@ -888,13 +888,28 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     public class ClsChecklist_Response_Data_Values
     {
-
         public int AnswerID { get; set; }
         public string value { get; set; }
        // public Guid RefID { get; set; }
         public int RefID { get; set; }
+    }
 
-
+    public class clsChecklist_Config_Test
+    {
+        public List<clsChecklist_Config> Checklist_Config { get; set; }
+    }
+    public class clsChecklist_Config
+    {
+        public int Chk_Config_ID { get; set; }
+        public string Chk_Title { get; set; }
+        public string Chk_Desc { get; set; }
+        public int Dept_ID { get; set; }
+        public List<clsChecklist_Config_Location> Checklist_Config_Location { get; set; }
+    }
+    public class clsChecklist_Config_Location
+    {
+        public int Loc_ID { get; set; }
+        public string Loc_Desc { get; set; }
     }
 
     #endregion

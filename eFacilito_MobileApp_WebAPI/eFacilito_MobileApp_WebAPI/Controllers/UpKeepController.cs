@@ -1945,7 +1945,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [HttpGet]
         public string FunTestDemoNotification(string StrTokenNumber)
         {
-            string response = RestsharpAPI.SendNotification(StrTokenNumber, 0,"Upkeep", "New request recieved", "TICKET");
+            string response = RestsharpAPI.SendNotification(StrTokenNumber, 0, "Upkeep", "New request recieved", "TICKET");
             return response;
         }
 
@@ -2073,7 +2073,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                     StrTKTID = Convert.ToString(ObjLocSqlParameters[35].Value);
 
-                    string response = RestsharpAPI.SendNotification(StrTokenNumber,0, "Ticket ID: " + StrTKTID, "New request recieved", "TICKET");
+                    string response = RestsharpAPI.SendNotification(StrTokenNumber, 0, "Ticket ID: " + StrTKTID, "New request recieved", "TICKET");
 
                     //if (StrParkedId > 0 && StrParkedId != null)
                     //{
@@ -7275,8 +7275,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                   
-                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg,"GATEPASS");
+
+                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "GATEPASS");
                                 }
                             }
 
@@ -8106,7 +8106,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
 
-                                FunSendAppNotification(TokenNO,0, TicketNo, "New Ticket Request", "TICKET");
+                                FunSendAppNotification(TokenNO, 0, TicketNo, "New Ticket Request", "TICKET");
                             }
                         }
                         else
@@ -8557,9 +8557,94 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         #region "CheckList"
 
+        [Route("api/UpKeep/Fetch_CheckList_Config_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID, int DeptID) //int UserID,
+        {
+            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
+            //ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+            List<clsChecklist_Config> Checklist_Config = new List<clsChecklist_Config>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Dept_ID", DeptID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Checklist_Config = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                                select new clsChecklist_Config
+                                                {
+                                                    Chk_Config_ID = Convert.ToInt32(p.Field<Int32>("Chk_Config_ID")),
+                                                    Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
+                                                    Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
+                                                    Dept_ID = Convert.ToInt32(p.Field<Int32>("Dept_ID")),
+
+                                                    Checklist_Config_Location = (from x in DsDataSet.Tables[1].AsEnumerable()
+                                                                                 where x.Field<Int32>("Chk_Config_ID") == p.Field<Int32>("Chk_Config_ID")
+                                                                                 select new clsChecklist_Config_Location
+                                                                                 {
+                                                                                     Loc_ID = Convert.ToInt32(x.Field<Int32>("Loc_ID")),
+                                                                                     Loc_Desc = Convert.ToString(Convert.ToString(x.Field<string>("Loc_Desc")).Replace("\t", "")),
+
+                                                                                 }).ToList()
+                                                }).ToList();
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Checklist_Config);
+
+                            //return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+
+
         //[Route("api/UpKeep/Fetch_CheckList_Config_List")]
         //[HttpGet]
-        //public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID, int DeptID) //int UserID,
+        //public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID) //int UserID,
         //{
         //    // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
         //    //ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
@@ -8573,10 +8658,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         //    {
         //        StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-        //        SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+        //        SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
         //        // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
         //        ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
-        //        ObjLocSqlParameter[1] = new SqlParameter("@Dept_ID", DeptID);
+
 
         //        DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
 
@@ -8617,69 +8702,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         //    }
 
         //}
-
-
-
-        [Route("api/UpKeep/Fetch_CheckList_Config_List")]
-        [HttpGet]
-        public HttpResponseMessage Fetch_CheckList_Config_List(int CompanyID) //int UserID,
-        {
-            // List<ClsWorkPermitMain> ObjWorkPermit = new List<ClsWorkPermitMain>();
-            //ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
-
-            ClsCommunication ObjLocComm = new ClsCommunication();
-            DataSet DsDataSet = new DataSet();
-            DataTable dt = new DataTable();
-            string StrLocConnection = null;
-
-            try
-            {
-                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
-                // ObjLocSqlParameter[0] = new SqlParameter("@USERID", UserID);
-                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
-             
-
-                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "SPR_FETCH_CHK_CONFIG_LIST", ObjLocSqlParameter);
-
-                if (DsDataSet != null)
-                {
-                    if (DsDataSet.Tables.Count > 0)
-                    {
-                        if (DsDataSet.Tables[0].Rows.Count > 0)
-                        {
-                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-                    }
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
-
-                }
-                throw new Exception("Error while processing request.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-
-            }
-            finally
-            {
-                DsDataSet = null;
-                //  ObjGatePass = null;
-            }
-
-        }
 
 
 
@@ -9573,7 +9595,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
 
                 int isJsonPassed = 0;
-                ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>(""); 
+                ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>("");
                 var httpRequestMain = HttpContext.Current.Request;
                 foreach (string fileJson in httpRequestMain.Form)
                 {
@@ -9595,7 +9617,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 if (isJsonPassed == 1)
                 {
-                     
+
 
                     // foreach (string fileX in httpRequestMain.Files)
                     // {
