@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
@@ -180,9 +181,9 @@
                                                 <table class="table table-light table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center" style="width:33%;word-wrap: break-word; height: auto;" >Question</th>
-                                                            <th class="text-center" style="width:33%;word-wrap: break-word; height: auto;" >Flag</th>
-                                                            <th class="text-center" style="width:33%;word-wrap: break-word; height: auto;" >Response</th>
+                                                            <th class="text-center" style="width:35%;word-wrap: break-word; height: auto;" >Question</th>
+                                                            <th class="text-center" style="width:15%;word-wrap: break-word; height: auto;" >Flag</th>
+                                                            <th class="text-center" style="width:50%;word-wrap: break-word; height: auto;" >Response</th>
                                                         </tr>
                                                     </thead>
                                                     <tr>
@@ -198,9 +199,9 @@
                                                                  </tr>--%>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td style="width:33%;word-wrap: break-word; height: auto;"><%#Eval("Qn_Desc")%></td>
-                                                                                <td style="width:33%;word-wrap: break-word; height: auto;"><%#Eval("Flag")%></td>
-                                                                                <td style="width:33%;word-wrap: break-word; height: auto;"><%#Eval("Chk_Ans_Value_Data")%></td>
+                                                                                <td style="width:35%;word-wrap: break-word; height: auto;"><%#Eval("Qn_Desc")%></td>
+                                                                                <td style="width:15%;word-wrap: break-word; height: auto;"><%#Eval("Flag")%></td>
+                                                                                <td style="width:50%;word-wrap: break-word; height: auto;"><%#Eval("Chk_Ans_Value_Data")%></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
