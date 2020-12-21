@@ -85,7 +85,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         [Route("api/Ticketing/Fetch_MyActionable_Ticket")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyActionable_Ticket(int CompanyID, string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyActionable_Ticket(int CompanyID, string EmpCD, string RollCD, int PageCount)
         {
             List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -97,10 +97,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
                 ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
                 ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@PageCount", PageCount);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Fetch_MyActionable_API", ObjLocSqlParameter);
 
@@ -164,7 +165,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         [Route("api/Ticketing/Fetch_MyRequest_Ticket")]
         [HttpGet]
-        public HttpResponseMessage Fetch_MyRequest_Ticket(int CompanyID, string EmpCD, string RollCD)
+        public HttpResponseMessage Fetch_MyRequest_Ticket(int CompanyID, string EmpCD, string RollCD, int PageCount)
         {
             List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
             ClsCommunication ObjLocComm = new ClsCommunication();
@@ -176,10 +177,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
                 ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
                 ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
                 ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@PageCount", PageCount);
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Fetch_MyRequest_API", ObjLocSqlParameter);
 
