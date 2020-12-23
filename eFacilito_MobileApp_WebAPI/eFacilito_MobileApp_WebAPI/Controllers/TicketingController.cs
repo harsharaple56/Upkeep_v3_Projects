@@ -461,7 +461,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
                             string NotificationMsg = string.Empty;
-                            NotificationMsg = "A ticket has been raised by "+ TicketRaisedBy_FirstName + " from "+ TicketRaisedByDepartment + " Department. Tap to Accept";
+                            NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_FirstName + " from " + TicketRaisedByDepartment + " Department. Tap to Accept";
                             foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                             {
                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
@@ -469,7 +469,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 Ticket_No = Convert.ToString(dr["TicketNo"]);
                                 TicketID = Convert.ToInt32(dr["TicketID"]);
 
-                                FunSendAppNotification(TokenNO, TicketID, "Ticket No. " +TicketNo+ ". New Ticket Received.", NotificationMsg, "TICKET");
+                                FunSendAppNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg, "TICKET");
                             }
                         }
                     }
@@ -477,7 +477,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     if (DsDataSet.Tables[3].Rows.Count > 0)
                     {
                         Ticket_No = Convert.ToString(DsDataSet.Tables[3].Rows[0]["TicketNO"]);
-                       
+
                     }
 
                     //if (DsDataSet.Tables[1].Rows.Count > 0)
@@ -1386,7 +1386,100 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/Ticketing/Search_MyActionable_TicketNo")]
+        [HttpGet]
+        public HttpResponseMessage Search_MyActionable_TicketNo(int CompanyID, string EmpCD, string RollCD, string TicketNo)
+        {
+            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
 
+            string StrLocConnection = null;
+            //List<clsTicketSearch> TicketSearch = new List<clsTicketSearch>();
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@TicketNo", TicketNo);
+
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Ticket_Fetch_MyActionable_Search_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Models.clsTicketSearch TicketSearch = new Models.clsTicketSearch();
+                            {
+                                TicketSearch.Status = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
+                                TicketSearch.Message = Convert.ToString(DsDataSet.Tables[0].Rows[0]["StatusMsg"]);
+                                TicketSearch.TicketDetails = new List<ClsMyActionableTicket>();
+
+                                if (DsDataSet.Tables.Count > 1)
+                                {
+                                    if (DsDataSet.Tables[1].Rows.Count > 0)
+                                    {
+                                        TicketSearch.TicketDetails.Add(new ClsMyActionableTicket
+                                        {
+                                            TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_ID"]),
+                                            TicketCode = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Code"]),
+                                            LocID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Id"]),
+                                            Loc_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Desc"]),
+                                            CategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_ID"]),
+                                            Category_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_Desc"]),
+                                            SubCategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_ID"]),
+                                            SubCategory_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_Desc"]),
+                                            Ticket_Date = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_Date"]),
+                                            Ticket_Status = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Status"]),
+                                            Level = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Level"]),
+                                            Ticket_ActionStatus = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_ActionStatus"]),
+                                            Ticket_Message = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Message"]),
+                                            Ticket_ImagePath = Convert.ToString(DsDataSet.Tables[1].Rows[0]["ImagePath"]),
+                                        });
+                                    }
+                                }
+                            };
+
+                            return Request.CreateResponse(HttpStatusCode.OK, TicketSearch);
+
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
 
     }
 }

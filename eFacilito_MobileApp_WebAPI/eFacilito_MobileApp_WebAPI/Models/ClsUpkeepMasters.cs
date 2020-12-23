@@ -1025,7 +1025,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string DepartmentName { get; set; }
     }
 
-    
+    public class clsTicketSearch
+    {
+        public int Status { get; set; }
+        public string Message { get; set; }
+        public List<ClsMyActionableTicket> TicketDetails { get; set; }
+    }
 
 
     public class ClsEmployeeToken
