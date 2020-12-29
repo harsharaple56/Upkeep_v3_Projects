@@ -1827,6 +1827,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CRU_System_Setting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Setting_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Open" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Close" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Open" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Close" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Expiry" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRU_System_SettingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CRU_System_SettingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -4345,6 +4374,12 @@
   <wsdl:message name="Fetch_MyChecklist_NEWSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyChecklist_NEWResponse" />
   </wsdl:message>
+  <wsdl:message name="CRU_System_SettingSoapIn">
+    <wsdl:part name="parameters" element="tns:CRU_System_Setting" />
+  </wsdl:message>
+  <wsdl:message name="CRU_System_SettingSoapOut">
+    <wsdl:part name="parameters" element="tns:CRU_System_SettingResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5157,6 +5192,10 @@
     <wsdl:operation name="Fetch_MyChecklist_NEW">
       <wsdl:input message="tns:Fetch_MyChecklist_NEWSoapIn" />
       <wsdl:output message="tns:Fetch_MyChecklist_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <wsdl:input message="tns:CRU_System_SettingSoapIn" />
+      <wsdl:output message="tns:CRU_System_SettingSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6184,6 +6223,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklist_NEW">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <soap:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7636,6 +7684,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyChecklist_NEW">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <soap12:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -3407,6 +3407,35 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action,string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRU_SYS_Settings", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Setting_ID", Setting_ID);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Img_Open", Tkt_Is_Img_Open);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Img_Close", Tkt_Is_Img_Close);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Open", Tkt_Is_Remark_Open);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Close", Tkt_Is_Remark_Close);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Expiry", Tkt_Is_Expiry);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+               
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
 
 
     }

@@ -2731,6 +2731,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.CRU_System_Setting( Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, CompanyID, LoggedInUserID,  Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
 
 
 
