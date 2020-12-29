@@ -582,6 +582,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                           {
                                               TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
                                               TicketCode = p.Field<string>("Tkt_Code"),
+                                              RaisedBy = p.Field<string>("RaisedBy"),
                                               LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
                                               Loc_Desc = p.Field<string>("Loc_Desc"),
                                               CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),

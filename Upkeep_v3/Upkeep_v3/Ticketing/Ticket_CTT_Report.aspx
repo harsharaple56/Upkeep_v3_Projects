@@ -357,8 +357,9 @@
                                             <asp:BoundField DataField="Dept_Desc" HeaderText="Department" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="Category_Desc" HeaderText="Category" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="SubCategory_Desc" HeaderText="Sub Category" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Ticket_Date" HeaderText="Ticket Date" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Ticket_Date_Time" HeaderText="Ticket Date & Time" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="Ticket_RaisedBy" HeaderText="Ticket RaisedBy" ItemStyle-Width="100" />
+                                            <asp:BoundField DataField="Ticket_Closing_Date_Time" HeaderText="Ticket Closing Date & Time" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="RequestStatus" HeaderText="Request Status" ItemStyle-Width="100" />
                                             <asp:BoundField DataField="ActionStatus" HeaderText="Action Status" ItemStyle-Width="100" />
                                             <asp:BoundField DataField="Down_Time" HeaderText="Down Time" ItemStyle-Width="150" />

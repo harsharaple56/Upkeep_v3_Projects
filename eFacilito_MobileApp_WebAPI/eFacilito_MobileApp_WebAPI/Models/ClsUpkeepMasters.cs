@@ -928,6 +928,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     {
         public string TicketID { get; set; }
         public string TicketCode { get; set; }
+        public string RaisedBy { get; set; }
         public string LocID { get; set; }
         public string Loc_Desc { get; set; }
         public string CategoryID { get; set; }

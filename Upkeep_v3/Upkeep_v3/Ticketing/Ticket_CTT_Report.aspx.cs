@@ -110,8 +110,8 @@ namespace Upkeep_v3.Ticketing
             {
                 //Get the cell content
                 //Change the cell index as per your gridview
-                string ReqStatus = e.Row.Cells[7].Text;
-                string ActionStatus = e.Row.Cells[8].Text;
+                string ReqStatus = e.Row.Cells[8].Text;
+                string ActionStatus = e.Row.Cells[9].Text;
                 string ReqStatusClass = string.Empty;
                 string ActionStatusClass = string.Empty;
 
@@ -153,8 +153,8 @@ namespace Upkeep_v3.Ticketing
                         break;
                 }
 
-                e.Row.Cells[7].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ReqStatusClass + " m-badge--wide'>" + ReqStatus + "</span></span>";
-                e.Row.Cells[8].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ActionStatusClass + " m-badge--dot'></span>&nbsp;" +
+                e.Row.Cells[8].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ReqStatusClass + " m-badge--wide'>" + ReqStatus + "</span></span>";
+                e.Row.Cells[9].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ActionStatusClass + " m-badge--dot'></span>&nbsp;" +
                     "<span class='m--font-bold m--font-" + ActionStatusClass + "'>" + ActionStatus + "</span></span>";
 
             }
@@ -207,12 +207,13 @@ namespace Upkeep_v3.Ticketing
                         dtCTTReport.Columns["Tkt_Code"].ColumnName = "Ticket No";
                         dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
                         dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
-                        dtCTTReport.Columns["Ticket_Date"].ColumnName = "Ticket Date";
+                        dtCTTReport.Columns["Ticket_Date_Time"].ColumnName = "Ticket Date Time";
                         dtCTTReport.Columns["Loc_Desc"].ColumnName = "Location";
                         dtCTTReport.Columns["Category_Desc"].ColumnName = "Category";
                         dtCTTReport.Columns["SubCategory_Desc"].ColumnName = "SubCategory";
                         dtCTTReport.Columns["Dept_Desc"].ColumnName = "Department";
                         dtCTTReport.Columns["Ticket_RaisedBy"].ColumnName = "Ticket RaisedBy";
+                        dtCTTReport.Columns["Ticket_Closing_Date_Time"].ColumnName = "Ticket Closing Date Time";
                         dtCTTReport.Columns["Down_Time"].ColumnName = "Down Time";
                         dtCTTReport.AcceptChanges();
 
@@ -279,7 +280,7 @@ namespace Upkeep_v3.Ticketing
 
                 string TicketID = ((HiddenField)row.FindControl("hdnTicketID")).Value;
 
-                string Downtime = gvCTT_Report.Rows[rowIndex].Cells[8].Text;
+                string Downtime = gvCTT_Report.Rows[rowIndex].Cells[9].Text;
                 Session["Downtime"] = Downtime;
 
                 Response.Redirect(Page.ResolveClientUrl("~/Ticketing/View_Ticket_Details.aspx?TicketID=" + TicketID), false);
