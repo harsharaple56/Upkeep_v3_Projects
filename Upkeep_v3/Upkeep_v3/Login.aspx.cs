@@ -219,6 +219,9 @@ namespace Upkeep_v3
                                     {
                                         Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
                                         Session["Retailer_Location"] = Convert.ToString(ds.Tables[0].Rows[0]["Loc_ID"]);
+                                        Session["StoreManager_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
+                                        Session["StoreName"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_Name"]);
+                                        Session["StoreNo"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_No"]);
                                     }
 
                                     Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
