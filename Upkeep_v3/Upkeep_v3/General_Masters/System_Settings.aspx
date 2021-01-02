@@ -48,6 +48,7 @@
 																	    </label>
 																	
 																	    <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
+
 																		    <input type="checkbox" checked="checked"> Photo Upload Compulsory while closing ticket
 																		    <span></span>
 																	    </label>
