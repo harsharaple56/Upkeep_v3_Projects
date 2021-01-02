@@ -42,24 +42,56 @@
 															    <div class="m-form__group form-group">
 																
 																    <div class="m-checkbox-list">
-																	    <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
-																		    <input type="checkbox"> Photo Upload Compulsory while raising ticket
-																		    <span></span>
-																	    </label>
-																	
-																	    <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
 
-																		    <input type="checkbox" checked="checked"> Photo Upload Compulsory while closing ticket
+
+                                                                   
+																	<%--    <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand"></label>--%>
+
+                                                                            <!--      <div class="col-xl-3 col-lg-3">-->
+                                                   <input type="checkbox" id="photoRaisingCheck" runat="server" class="customcontrolinput" clientidmode="Static" />
+                                                                                        Photo Upload Compulsory while raising ticket :
+
+
+                                         <!--   </div>-->
+																		   <%-- <input type="checkbox"> Photo Upload Compulsory while raising ticket--%>
 																		    <span></span>
-																	    </label>
-                                                                        <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
+																	    <br />
+                                                                        <br/>
+																	
+																	 <!--   <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">-->
+
+                                                                               <input type="checkbox" id="PhotoClosingCheck" runat="server" class="customcontrolinput" clientidmode="Static" />
+																		 
+                                                                             Photo Upload Compulsory while closing ticket
+                                                                            
+                                                                            <%-- <input type="checkbox" checked="checked"> Photo Upload Compulsory while closing ticket
+																		    <span></span>--%>
+																	 <!--   </label>-->
+                                                                      
+                                                                        <br />
+                                                                        <br />
+
+                                                                        
+                                                                            <input type="checkbox" id="RemarksCompRaising" runat="server" class="customcontrolinput" clientidmode="Static" />
+																		 Remarks Compulsory while raising ticket
+                                                                        
+                                                                     <%--   <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
 																		    <input type="checkbox" checked="checked" > Remarks Compulsory while raising ticket
 																		    <span></span>
 																	    </label>
+
                                                                         <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
 																		    <input type="checkbox" > Remarks Compulsory while closing ticket
 																		    <span></span>
-																	    </label>
+																	    </label>--%>
+
+                                                                        <br />
+                                                                        <br />
+
+                                                                              <input type="checkbox" id="RemarksCompclosing" runat="server" class="customcontrolinput" clientidmode="Static" />
+																	
+                                                                         Remarks Compulsory while closing ticket
+
 																    </div>
 															    </div>
 
@@ -70,7 +102,12 @@
 																            <div class="col-3">
 																	            <span class="m-switch m-switch--sm m-switch--icon">
 																		            <label>
-																			            <input type="checkbox" checked="checked" name="">
+
+
+                                                                                                  <input type="checkbox" id="TicketExpiry" runat="server" class="customcontrolinput" clientidmode="Static" />
+																	
+
+																			        <%--    <input type="checkbox" checked="checked" name="">--%>
 																			            <span></span>
 																		            </label>
 																	            </span>
@@ -83,6 +120,10 @@
 															            </div>
 
 
+
+                                                                      <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSave_Click" Text="Save" ValidationGroup="ValidateUser" />
+                                                                       <asp:Label ID="lblUserErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                        
 
 														    </form>
 

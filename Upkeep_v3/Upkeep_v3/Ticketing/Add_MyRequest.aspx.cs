@@ -368,19 +368,23 @@ namespace Upkeep_v3.Ticketing
                                         string TextMessage_RaisedBy = string.Empty;
                                         string TicketRaisedBy_DepartmentName = string.Empty;
 
+                                        string StoreManager_Name = string.Empty;
+                                        string Store_Name = string.Empty;
+                                        string Store_No = string.Empty;
+
                                         Category = Convert.ToString(ddlCategory.SelectedItem.Text);
-                                        Location= Convert.ToString(ddlLocation.SelectedItem.Text);
+                                        Location = Convert.ToString(ddlLocation.SelectedItem.Text);
                                         Department = Convert.ToString(Session["Department"]);
 
                                         if (dsTicketSave.Tables.Count > 1)
                                         {
                                             if (dsTicketSave.Tables[1].Rows.Count > 0)
                                             {
-                                                APIKey=Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Api_Key"]);
+                                                APIKey = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Api_Key"]);
                                                 SenderID = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Sender_ID"]);
                                                 Send_SMS_URL = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Send_SMS_URL"]);
 
-                                                Send_SMS_URL = Send_SMS_URL.Replace("%26","&");
+                                                Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                                 SendSMS sms = new SendSMS();
                                                 foreach (DataRow dr in dsTicketSave.Tables[2].Rows)
@@ -390,37 +394,68 @@ namespace Upkeep_v3.Ticketing
                                                     TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
                                                     TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
 
-                                                    TextMessage = "Dear "+ FirstName+",";
-                                                    TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by "+ TicketRaisedBy_FirstName + " from "+ Department + " Department.";
+                                                    TextMessage = "Dear " + FirstName + ",";
+                                                    if (Convert.ToString(Session["UserType"]) == "E")
+                                                    {
+                                                        TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
+                                                    }
+                                                    else
+                                                    {
+                                                        StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
+                                                        Store_Name = Convert.ToString(Session["StoreName"]);
+                                                        Store_No = Convert.ToString(Session["StoreNo"]);
+
+                                                        TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store.";
+                                                    }
                                                     TextMessage += "%0a%0aCategory :" + Category;
                                                     TextMessage += "%0aLocation :" + Location;
-                                                    TextMessage += "%0aStatus : OPEN(Assigned)";                                                  
+                                                    TextMessage += "%0aStatus : OPEN(Assigned)";
                                                     TextMessage += "%0aLevel : 1";
                                                     TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
 
                                                     string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
                                                 }
 
-                                                TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
-                                                TextMessage_RaisedBy += "%0a%0aYour ticket "+ TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
+                                                if (Convert.ToString(Session["UserType"]) == "E")
+                                                {
+                                                    TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
+                                                }
+                                                else
+                                                {
+                                                    StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
+                                                    TextMessage_RaisedBy = "Dear " + StoreManager_Name + ",";
+                                                }
+                                                TextMessage_RaisedBy += "%0a%0aYour ticket " + TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
                                                 string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
                                             }
                                         }
 
                                         // Send App Notifications
                                         string NotificationMsg = string.Empty;
-                                        TicketRaisedBy_DepartmentName= Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_Department_Name"]);
-                                       string TicketRaisedBy_Name = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_FName"]);
+                                        TicketRaisedBy_DepartmentName = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_Department_Name"]);
+                                        string TicketRaisedBy_Name = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_FName"]);
                                         if (dsTicketSave.Tables.Count > 3)
                                         {
-                                            NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_Name + " from " + TicketRaisedBy_DepartmentName + " Department. Tap to Accept";
+                                            if (Convert.ToString(Session["UserType"]) == "E")
+                                            {
+                                                NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_Name + " from " + TicketRaisedBy_DepartmentName + " Department. Tap to Accept";
+                                            }
+                                            else
+                                            {
+                                                StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
+                                                Store_Name = Convert.ToString(Session["StoreName"]);
+                                                Store_No = Convert.ToString(Session["StoreNo"]);
+
+                                                NotificationMsg = "A ticket has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store. Tap to Accept";
+
+                                            }
 
                                             foreach (DataRow dr in dsTicketSave.Tables[3].Rows)
                                             {
                                                 var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                                 var TicketID = Convert.ToInt32(dr["TicketID"]);
                                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
-                                               
+
                                                 //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
                                                 await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
                                             }
@@ -544,7 +579,7 @@ namespace Upkeep_v3.Ticketing
                     if (dsWorkflow.Tables[1].Rows.Count > 0)
                     {
                         lblDepartmentName.Text = Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
-                        Session["Department"]= Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
+                        Session["Department"] = Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
                     }
 
                     if (dsWorkflow.Tables[2].Rows.Count > 0)

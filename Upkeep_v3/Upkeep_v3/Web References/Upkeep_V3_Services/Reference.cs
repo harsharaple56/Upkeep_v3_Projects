@@ -184,6 +184,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_MyChecklist_NEWOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CRU_System_SettingOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
@@ -620,6 +622,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_MyChecklist_NEWCompletedEventHandler Fetch_MyChecklist_NEWCompleted;
+        
+        /// <remarks/>
+        public event CRU_System_SettingCompletedEventHandler CRU_System_SettingCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -3529,6 +3534,51 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_MyChecklist_NEWCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_MyChecklist_NEWCompleted(this, new Fetch_MyChecklist_NEWCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRU_System_Setting", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("CRU_System_Setting", new object[] {
+                        Setting_ID,
+                        Tkt_Is_Img_Open,
+                        Tkt_Is_Img_Close,
+                        Tkt_Is_Remark_Open,
+                        Tkt_Is_Remark_Close,
+                        Tkt_Is_Expiry,
+                        CompanyID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action) {
+            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, CompanyID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action, object userState) {
+            if ((this.CRU_System_SettingOperationCompleted == null)) {
+                this.CRU_System_SettingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRU_System_SettingOperationCompleted);
+            }
+            this.InvokeAsync("CRU_System_Setting", new object[] {
+                        Setting_ID,
+                        Tkt_Is_Img_Open,
+                        Tkt_Is_Img_Close,
+                        Tkt_Is_Remark_Open,
+                        Tkt_Is_Remark_Close,
+                        Tkt_Is_Expiry,
+                        CompanyID,
+                        LoggedInUserID,
+                        Action}, this.CRU_System_SettingOperationCompleted, userState);
+        }
+        
+        private void OnCRU_System_SettingOperationCompleted(object arg) {
+            if ((this.CRU_System_SettingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CRU_System_SettingCompleted(this, new CRU_System_SettingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8749,6 +8799,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_MyChecklist_NEWCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CRU_System_SettingCompletedEventHandler(object sender, CRU_System_SettingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CRU_System_SettingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CRU_System_SettingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

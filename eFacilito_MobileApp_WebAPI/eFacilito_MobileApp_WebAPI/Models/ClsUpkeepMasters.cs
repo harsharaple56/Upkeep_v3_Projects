@@ -928,6 +928,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     {
         public string TicketID { get; set; }
         public string TicketCode { get; set; }
+        public string RaisedBy { get; set; }
         public string LocID { get; set; }
         public string Loc_Desc { get; set; }
         public string CategoryID { get; set; }
@@ -1025,7 +1026,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string DepartmentName { get; set; }
     }
 
-    
+    public class clsTicketSearch
+    {
+        public int Status { get; set; }
+        public string Message { get; set; }
+        public List<ClsMyActionableTicket> TicketDetails { get; set; }
+    }
 
 
     public class ClsEmployeeToken
