@@ -54,16 +54,61 @@
                 });
                 //$('.carousel').carousel();
             })
+
+             $('#btnClose').click(function () {
+                 var ddlAction = $('#ddlAction').val();
+                 //alert(ddlAction);
+                 debugger;
+                 var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
+                 var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
+
+                 var FileUpload_TicketImage = $("#FileUpload_TicketImage").val(); 
+                 var txtCloseTicketDesc = $("#txtCloseTicketDesc").val(); 
+
+                 //alert(FileUpload_TicketImage);
+                 //alert(hdn_Mandatory_Remark_Close); 
+                  $('#ImageUpload_Msg').text('').hide();
+                 $('#Remarks_Msg').text('').hide();
+
+                 if (ddlAction == "Closed") {
+                     if (hdn_Mandatory_Img_Close == "True") {
+                         //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = true;
+                         if (FileUpload_TicketImage == "") {
+                             $('#ImageUpload_Msg').text("Please upload image").show();
+                             return false;
+                         }
+                     }
+                     if (hdn_Mandatory_Remark_Close == "True") {
+                         //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
+                         if (txtCloseTicketDesc == "") {
+                             $('#Remarks_Msg').text("Please enter remarks").show();
+                             return false;
+                         }
+                     }
+                 }
+
+                 else if (ddlAction == "Hold") {
+                     //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
+                     //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
+                     if (txtCloseTicketDesc == "") {
+                         $('#Remarks_Msg').text("Please enter remarks").show();
+                         return false;
+                     }
+                 }
+                 else {
+                     //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = false;
+                     //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
+                 }
+
+
+            });
+
+
         });
     </script>
 
-    <%-- <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
-                                                <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
-    --%>
-
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content">
+        <div class="">
             <div class="row">
                 <div class="col-lg-12">
 
@@ -74,6 +119,9 @@
                             <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
                             <asp:HiddenField ID="hdnImage" runat="server" ClientIDMode="Static" />
+                            <asp:HiddenField ID="hdn_Mandatory_Img_Close" runat="server" ClientIDMode="Static" />
+                            <asp:HiddenField ID="hdn_Mandatory_Remark_Close" runat="server" ClientIDMode="Static" />
+
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-progress">
 
@@ -82,35 +130,21 @@
                                 <div class="m-portlet__head-wrapper">
                                     <div class="m-portlet__head-caption">
                                         <div class="m-portlet__head-title">
-                                            <h3 class="m-portlet__head-text">My Request Details
+                                            <h3 class="m-portlet__head-text">Ticket Details
                                             </h3>
                                         </div>
                                     </div>
 
                                     <div class="m-portlet__head-tools">
-                                        <a href="<%= Page.ResolveClientUrl("~/Ticketing/MyRequest.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <a runat="server" onserverclick="btnBack_Click" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                             <span>
                                                 <i class="la la-arrow-left"></i>
                                                 <span>Back</span>
                                             </span>
                                         </a>
-                                        <%--<div class="btn-group">
-
-                                            <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnClose_Click" Text="Close" />
-
-                                            <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                            <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
-                                                CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                            </cc1:ModalPopupExtender>
-
-                                        </div>--%>
                                     </div>
-
                                 </div>
                             </div>
-
-
-
 
                             <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
                                 <!--begin: Form Body -->
@@ -118,247 +152,235 @@
                                     <%--  <br />--%>
                                     <div class="m-form__section m-form__section--first">
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
-                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Ticket No. :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:Label ID="lblTicketID" runat="server" Text="" class="form-control-label"></asp:Label>
+                                        <div class="form-group row" style="background-color: #00c5dc;">
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Details</label>
+                                        </div>
+
+                                        <div class="row" style="padding-left: 2%;">
+
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Ticket No :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblTicketNo" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Request Date :</label>
-                                            <div class="col-xl-3 col-lg-3">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Request Date :</label>
+                                            <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblRequestDate" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Ticket Status :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:Label ID="lblRequestStatus" runat="server" Text="" class="form-control-label"></asp:Label>
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblTicketRaisedBy" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <label class="col-xl-3 col-lg-3 form-control-label font-weight-bold">Action Status :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:Label ID="lblActionStatus" runat="server" Text="" class="form-control-label"></asp:Label>
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group row" style="background-color: #00c5dc;">
-                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Select Location Details</label>
-                                        </div>
-
-                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Zone :</label>
-                                                    <div class="col-xl-5 col-lg-9">
-                                                        <asp:Label ID="lblZone" runat="server" Text="" class="form-control-label"></asp:Label>
-                                                    </div>
-                                                </div>--%>
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Location :</label>
-                                            <div class="col-xl-9 col-lg-9">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Location :</label>
+                                            <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
+                                        </div>
+
+
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Category :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblCategory" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Sub Category :</label>
+                                            <div class="col-xl-5 col-lg-5 col-form-label">
+                                                <asp:Label ID="lblSubCategory" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
 
                                         </div>
-                                      
-                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
-                                                    <div class="col-xl-5 col-lg-9">
-                                                        <asp:Label ID="lblSubLocation" runat="server" Text="" class="form-control-label"></asp:Label>
-                                                    </div>                                                
-                                                </div>--%>
 
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
+                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                                <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="imgbtnViewWorkflow"
+                                                    CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </div>
 
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
+                                            <div class="col-xl-2 col-lg-2 col-form-label">
+                                                <asp:Label ID="lblRaisedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                            <div class="col-xl-1 col-lg-1">
+                                                <asp:Repeater ID="rptTicketImage" runat="server">
+                                                    <ItemTemplate>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width: 5%">
+                                                                    <button type='button' data-toggle='modal' id="btnShowImage" data-target="#exampleModal" data-images="<%#Eval("ImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Uploaded Image'>
+                                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
+                                        </div>
 
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Ticket Description :</label>
+                                            <div class="col-xl-8 col-lg-8 col-form-label" style="margin-left: -8%;">
+                                                <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+
+                                            <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
+                                        </div>
                                         <br />
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
-                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Select Ticket Categorization</label>
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Assignment</label>
                                         </div>
 
-                                        <%--</div>
-                                    </div>--%>                                        <%--<asp:Panel ID="pnlTicketSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;" class="modal fade" role="dialog">--%>
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Category :</label>
-                                            <div class="col-xl-5 col-lg-9">
-
-                                                <asp:Label ID="lblCategory" runat="server" Text="" class="form-control-label"></asp:Label>
-
-
-
+                                        <div class="row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Assigned To Department :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblAssignedDept" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Current Level :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblCurrentLevel" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Sub Category :</label>
-                                            <div class="col-xl-5 col-lg-9">
-
-                                                <asp:Label ID="lblSubCategory" runat="server" Text="" class="form-control-label"></asp:Label>
-
-
-
+                                        <div class="row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Action Status :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblActionStatus" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <%--<asp:Button ID="btnTicketSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnTicketSuccessOk_Click" />--%><%--<hr style="width: 100%" />
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-5 col-lg-3 col-form-label">Note: Ticket closure will be approved by :</label>
-                                            <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlApprover" class="form-control m-input" runat="server"></asp:DropDownList>
-
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlApprover" Visible="true" Display="Dynamic"
-                                                    ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Approver"></asp:RequiredFieldValidator>
-
-                                            </div>
-                                        </div>--%>
-                                            <div class="col-xl-3 col-lg-9 m-section__content">
-                                                <asp:Button ID="btnViewWorkflow" runat="server" class="btn btn-accent  m-btn m-btn--icon dark disabled" Style="padding: 0.45rem 1.15rem; pointer-events: none;"
-                                                    OnClick="btnViewWorkflow_Click" Text="View Workflow" />
-
-                                                <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="btnViewWorkflow"
-                                                    CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
-
-                                                <asp:Button ID="btnWorkflow" runat="server" Visible="false" />
-
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Ticket Status :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblTicketStatus" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
 
-                                        <div class="row" style="padding-left: 15%; display: none;" id="dvDepartment" runat="server">
-                                            <label class="col-form-label">Note: Ticket will be assigned to </label>
-                                            <%--  <br />--%>
-                                            <asp:Label ID="lblDepartmentName" CssClass="col-form-label" runat="server" Text=""></asp:Label>
-                                            <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
-                                            <label class="col-form-label">department</label>
-                                        </div>
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Downtime :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblDowntime" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
 
-                                        <%--<asp:Button ID="m_sweetalert_demo_3_3" ClientIDMode="Static"  runat="server"/>--%>
-                                        <%--</div>
-                                    </div>--%>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
+                                            <div class="col-xl-1 col-lg-1 col-form-label">
+                                                <asp:Label ID="lblClosedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2">
+                                                <asp:Repeater ID="rptTicketClosingImage" runat="server">
+                                                    <ItemTemplate>
+                                                        <table>
+                                                            <tr>
+                                                                <td style="width: 5%">
+                                                                    <button type='button' data-toggle='modal' id="btnShowImageClose" data-target="#exampleModal" data-images="<%#Eval("CloseImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Ticket Closing Image'>
+                                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>
+
+                                        </div>
+                                        <br />
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action History</label>
                                         </div>
 
-                                        <asp:GridView ID="gvTicketActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
-                                        OnRowDataBound="gvTicketActionHistory_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-                                        AutoGenerateColumns="false">
-                                        <Columns>                                          
-                                            <asp:BoundField DataField="Level" HeaderText="Level" ItemStyle-Width="50" />
-                                            <asp:BoundField DataField="User" HeaderText="User" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="300" />
-                                            <asp:BoundField DataField="Action Date" HeaderText="Action Date" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Expected Time" HeaderText="Expected Time" ItemStyle-Width="150" />
-                                            <asp:BoundField DataField="Ticket Status" HeaderText="Ticket Status" ItemStyle-Width="110" />
-                                            <asp:BoundField DataField="Action Status" HeaderText="Action Status" ItemStyle-Width="110" />
-                                        </Columns>
-                                        <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
-                                    </asp:GridView>
+                                        <div class="form-group m-form__group row" style="padding-left: 2%;">
 
-
-                                        <div class="form-group row" style="background-color: #00c5dc;">
-                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Description</label>
-                                        </div>
-
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"> Ticket Description :</label>
-                                            <div class="col-xl-9 col-lg-9">
-
-                                                <asp:Label ID="lblTicketdesc" runat="server" Text="" class="form-control-label"></asp:Label>
-
-
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Ticket Images :</label>
-                                            <div class="col-xl-7 col-lg-9">
-                                                <%--<asp:Panel ID="pnlTicketSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;" class="modal fade" role="dialog">--%>
-                                                <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="validate" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
-                                            </div>
-
-
-                                            <asp:Repeater ID="rptTicketImage" runat="server">
-                                                <ItemTemplate>
-                                                    <table>
-                                                        <tr>
-                                                            <td style="width: 5%">
-                                                                <button type='button' data-toggle='modal' id="btnShowImage" data-target="#exampleModal" data-images="<%#Eval("ImagePath") %>" class='btn btn-accent m-btn m-btn--icon' data-container='body' style="width: 41px; height: 41px;" data-toggle='m-tooltip' data-placement='top' title='View Uploaded Image'>
-                                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
+                                            <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                                HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+                                                AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:BoundField DataField="Level" HeaderText="Level" ItemStyle-Width="50" />
+                                                    <asp:BoundField DataField="User" HeaderText="User" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Remarks" HeaderText="Remarks" ItemStyle-Width="300" />
+                                                    <asp:BoundField DataField="Action Date" HeaderText="Action Date" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Expected Time" HeaderText="Expected Time" ItemStyle-Width="150" />
+                                                    <asp:BoundField DataField="Ticket Status" HeaderText="Ticket Status" ItemStyle-Width="110" />
+                                                    <asp:BoundField DataField="Action Status" HeaderText="Action Status" ItemStyle-Width="110" />
+                                                </Columns>
+                                                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
+                                            </asp:GridView>
 
                                         </div>
+                                        <br />
 
-                                        <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
-                                            <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
-                                            <div class="col-xl-3 col-lg-4">
-                                                <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server">
-                                                    <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                    <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                                    <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                                    <asp:ListItem Value="Closed" Text="Close"></asp:ListItem>
-                                                </asp:DropDownList>
 
+                                        <div id="dvTicketAction" runat="server">
+                                            <div class="form-group row" style="background-color: #00c5dc;">
+                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action</label>
                                             </div>
-                                            
-                                                <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Remarks :</label>
-                                                <div class="col-xl-5 col-lg-4">
-                                                    <asp:TextBox ID="txtCloseTicketDesc" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
+
+                                            <div id="dvAction" runat="server">
+
+                                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Ticket Images :</label>
+                                                    <div class="col-xl-7 col-lg-9">
+                                                        <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" ClientIDMode="Static" />
+                                                        <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
+                                                            ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
+                                                        <span id="ImageUpload_Msg" style="color: red;"></span>
+                                                    </div>
+
                                                 </div>
-                                            
+
+                                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
+                                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
+                                                    <div class="col-xl-3 col-lg-4">
+                                                        <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server" ClientIDMode="Static">
+                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                                                            <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
+                                                            <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Close"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red"
+                                                            ErrorMessage="Please select action" ControlToValidate="ddlAction" InitialValue="0"></asp:RequiredFieldValidator>
+                                                    </div>
+
+                                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold">Remarks :</label>
+                                                    <div class="col-xl-5 col-lg-4">
+                                                        <asp:TextBox ID="txtCloseTicketDesc" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" ClientIDMode="Static"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvClosingRemarks" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
+                                                            ErrorMessage="Please enter remarks" ControlToValidate="txtCloseTicketDesc"></asp:RequiredFieldValidator>
+                                                        <span id="Remarks_Msg" style="color: red;"></span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group m-form__group row" id="dvClose" runat="server">
+                                                    <div class="col-xl-3 col-lg-3"></div>
+                                                    <div class="btn-group col-xl-3 col-lg-3">
+
+                                                        <%-- <asp:Button ID="btnAccept" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAccept_Click" Text="Accept" />
+                                                    &nbsp;&nbsp;&nbsp;--%>
+                                                        <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" Text="Submit" ValidationGroup="validate" ClientIDMode="Static" />
+
+                                                        <asp:Button ID="Button1" Style="display: none;" runat="server" />
+                                                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                                        </cc1:ModalPopupExtender>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-
-                                        <%--<div class="form-group m-form__group row" style="padding-left: 15%;" id="dvActionRemark" runat="server">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Action Remark :</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="txtCloseTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
-                                            </div>
-                                        </div>--%>
-
-                                        <div class="form-group m-form__group row" id="dvClose" runat="server">
+                                        <div class="form-group m-form__group row" id="dvAccept" runat="server">
                                             <div class="col-xl-3 col-lg-3"></div>
                                             <div class="btn-group col-xl-3 col-lg-3">
 
                                                 <asp:Button ID="btnAccept" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAccept_Click" Text="Accept" />
-                                                &nbsp;&nbsp;&nbsp;
-                                                <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" Text="Submit" />
 
-                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                                <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
-                                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
                                             </div>
                                         </div>
-
-                                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-                                        <%--<asp:Button ID="btnTicketSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnTicketSuccessOk_Click" />--%>
-
-
-
-
-
-                                        <%--<hr style="width: 100%" />
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-5 col-lg-3 col-form-label">Note: Ticket closure will be approved by :</label>
-                                            <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlApprover" class="form-control m-input" runat="server"></asp:DropDownList>
-
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlApprover" Visible="true" Display="Dynamic"
-                                                    ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Approver"></asp:RequiredFieldValidator>
-
-                                            </div>
-                                        </div>--%>
-                                        <%--  <br />--%>
-                                        <br />
-
-                                        <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
-                                        <%--<asp:Button ID="m_sweetalert_demo_3_3" ClientIDMode="Static"  runat="server"/>--%>
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
                                             <asp:Label ID="lblTicketErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
@@ -367,8 +389,7 @@
                                         </div>
 
                                     </div>
-                                    <%--</div>
-                                    </div>--%>
+
                                 </div>
                             </div>
 
@@ -412,12 +433,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group m-form__group row">
-
                                                             <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Ticket has been saved successfully</label>
-
                                                         </div>
-
-
 
                                                         <div class="form-group m-form__group row">
                                                             <label for="message-text" class="col-xl-5 col-lg-3 form-control-label">Ticket Number :</label>
@@ -425,18 +442,13 @@
 
                                                         </div>
                                                     </div>
-
-
                                                     <div class="modal-footer">
-                                                        <%--<asp:Button ID="btnTicketSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnTicketSuccessOk_Click" />--%>
                                                     </div>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
                                                 </Triggers>
                                             </asp:UpdatePanel>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -481,12 +493,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
 </asp:Content>

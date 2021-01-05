@@ -24,7 +24,6 @@ namespace Upkeep_v3.Ticketing
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -49,6 +48,7 @@ namespace Upkeep_v3.Ticketing
                 }
 
                 Fetch_CategorySubCategory(0);
+                Fetch_System_settings();
             }
         }
 
@@ -195,6 +195,38 @@ namespace Upkeep_v3.Ticketing
 
         }
 
+        public void Fetch_System_settings()
+        {
+            DataSet dsSetting = new DataSet();
+            try
+            {
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+                if (dsSetting.Tables.Count > 0)
+                {
+                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    {
+                        int Tkt_Is_Img_Open = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Img_Open"]);
+                        if (Tkt_Is_Img_Open == 0)
+                        {
+                            rfvFileupload.Enabled = false;
+                        }
+                        int Tkt_Is_Img_Close = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Img_Close"]);
+                        int Tkt_Is_Remark_Open = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Remark_Open"]);
+                        if (Tkt_Is_Remark_Open == 0)
+                        {
+                            rfvTicketDesc.Enabled = false;
+                        }
+
+                        int Tkt_Is_Remark_Close = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Remark_Close"]);
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         protected async void btnSave_Click(object sender, EventArgs e)
         {
@@ -232,17 +264,19 @@ namespace Upkeep_v3.Ticketing
 
                 TicketCode = Convert.ToString(Session["NextTicketCode"]);
 
+
+                //if (FileUpload_TicketImage.HasFile)
+                //{
+                string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
+
+                if (!Directory.Exists(fileUploadPath))
+                {
+                    Directory.CreateDirectory(fileUploadPath);
+                }
+
+                int i = 0;
                 if (FileUpload_TicketImage.HasFile)
                 {
-                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/TicketImages/" + CurrentDate);
-
-                    if (!Directory.Exists(fileUploadPath))
-                    {
-                        Directory.CreateDirectory(fileUploadPath);
-                    }
-
-                    int i = 0;
-
                     foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
                     {
                         string filetype = Path.GetExtension(postfiles.FileName);
@@ -331,114 +365,74 @@ namespace Upkeep_v3.Ticketing
                         lblTicketErrorMsg.Text = "Image upload failed, please try again";
                         txtTicketDesc.Focus();
                     }
-                    else
+                }
+                //else
+                //{
+                //Save details       
+                DataSet dsTicketSave = new DataSet();
+                try
+                {
+                    string list_Images = String.Join(",", Lst_Images);
+
+                    //string title = "Greetings";
+                    //string body = "Welcome to ASPSnippets.com";
+                    //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
+
+                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
+                    //mpeTicketSaveSuccess.Show();
+
+                    if (dsTicketSave.Tables.Count > 0)
                     {
-                        //Save details       
-                        DataSet dsTicketSave = new DataSet();
-                        try
+                        if (dsTicketSave.Tables[0].Rows.Count > 0)
                         {
-                            string list_Images = String.Join(",", Lst_Images);
-
-                            //string title = "Greetings";
-                            //string body = "Welcome to ASPSnippets.com";
-                            //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
-
-                            dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
-                            //mpeTicketSaveSuccess.Show();
-
-                            if (dsTicketSave.Tables.Count > 0)
+                            int Status = Convert.ToInt32(dsTicketSave.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
                             {
-                                if (dsTicketSave.Tables[0].Rows.Count > 0)
+                                //Send SMS
+                                string APIKey = string.Empty;
+                                string SenderID = string.Empty;
+                                string Send_SMS_URL = string.Empty;
+                                string MobileNo = string.Empty;
+                                string TextMessage = string.Empty;
+                                string Department = string.Empty;
+                                string Category = string.Empty;
+                                string Location = string.Empty;
+
+                                string TicketRaisedBy_FirstName = string.Empty;
+                                string TicketRaisedBy_MobileNo = string.Empty;
+                                string TextMessage_RaisedBy = string.Empty;
+                                string TicketRaisedBy_DepartmentName = string.Empty;
+
+                                string StoreManager_Name = string.Empty;
+                                string Store_Name = string.Empty;
+                                string Store_No = string.Empty;
+
+                                Category = Convert.ToString(ddlCategory.SelectedItem.Text);
+                                Location = Convert.ToString(ddlLocation.SelectedItem.Text);
+                                Department = Convert.ToString(Session["Department"]);
+
+                                if (dsTicketSave.Tables.Count > 1)
                                 {
-                                    int Status = Convert.ToInt32(dsTicketSave.Tables[0].Rows[0]["Status"]);
-                                    if (Status == 1)
+                                    if (dsTicketSave.Tables[1].Rows.Count > 0)
                                     {
-                                        //Send SMS
-                                        string APIKey = string.Empty;
-                                        string SenderID = string.Empty;
-                                        string Send_SMS_URL = string.Empty;
-                                        string MobileNo = string.Empty;
-                                        string TextMessage = string.Empty;
-                                        string Department = string.Empty;
-                                        string Category = string.Empty;
-                                        string Location = string.Empty;
+                                        APIKey = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Api_Key"]);
+                                        SenderID = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Sender_ID"]);
+                                        Send_SMS_URL = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Send_SMS_URL"]);
 
-                                        string TicketRaisedBy_FirstName = string.Empty;
-                                        string TicketRaisedBy_MobileNo = string.Empty;
-                                        string TextMessage_RaisedBy = string.Empty;
-                                        string TicketRaisedBy_DepartmentName = string.Empty;
+                                        Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
-                                        string StoreManager_Name = string.Empty;
-                                        string Store_Name = string.Empty;
-                                        string Store_No = string.Empty;
-
-                                        Category = Convert.ToString(ddlCategory.SelectedItem.Text);
-                                        Location = Convert.ToString(ddlLocation.SelectedItem.Text);
-                                        Department = Convert.ToString(Session["Department"]);
-
-                                        if (dsTicketSave.Tables.Count > 1)
+                                        SendSMS sms = new SendSMS();
+                                        foreach (DataRow dr in dsTicketSave.Tables[2].Rows)
                                         {
-                                            if (dsTicketSave.Tables[1].Rows.Count > 0)
-                                            {
-                                                APIKey = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Api_Key"]);
-                                                SenderID = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Sender_ID"]);
-                                                Send_SMS_URL = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Send_SMS_URL"]);
+                                            string FirstName = Convert.ToString(dr["FirstName"]);
+                                            MobileNo = Convert.ToString(dr["MobileNo"]);
+                                            TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
+                                            TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
 
-                                                Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
-
-                                                SendSMS sms = new SendSMS();
-                                                foreach (DataRow dr in dsTicketSave.Tables[2].Rows)
-                                                {
-                                                    string FirstName = Convert.ToString(dr["FirstName"]);
-                                                    MobileNo = Convert.ToString(dr["MobileNo"]);
-                                                    TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
-                                                    TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
-
-                                                    TextMessage = "Dear " + FirstName + ",";
-                                                    if (Convert.ToString(Session["UserType"]) == "E")
-                                                    {
-                                                        TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
-                                                    }
-                                                    else
-                                                    {
-                                                        StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
-                                                        Store_Name = Convert.ToString(Session["StoreName"]);
-                                                        Store_No = Convert.ToString(Session["StoreNo"]);
-
-                                                        TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store.";
-                                                    }
-                                                    TextMessage += "%0a%0aCategory :" + Category;
-                                                    TextMessage += "%0aLocation :" + Location;
-                                                    TextMessage += "%0aStatus : OPEN(Assigned)";
-                                                    TextMessage += "%0aLevel : 1";
-                                                    TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
-
-                                                    string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
-                                                }
-
-                                                if (Convert.ToString(Session["UserType"]) == "E")
-                                                {
-                                                    TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
-                                                }
-                                                else
-                                                {
-                                                    StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
-                                                    TextMessage_RaisedBy = "Dear " + StoreManager_Name + ",";
-                                                }
-                                                TextMessage_RaisedBy += "%0a%0aYour ticket " + TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
-                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
-                                            }
-                                        }
-
-                                        // Send App Notifications
-                                        string NotificationMsg = string.Empty;
-                                        TicketRaisedBy_DepartmentName = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_Department_Name"]);
-                                        string TicketRaisedBy_Name = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_FName"]);
-                                        if (dsTicketSave.Tables.Count > 3)
-                                        {
+                                            TextMessage = "Dear " + FirstName + ",";
                                             if (Convert.ToString(Session["UserType"]) == "E")
                                             {
-                                                NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_Name + " from " + TicketRaisedBy_DepartmentName + " Department. Tap to Accept";
+                                                TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + TicketRaisedBy_FirstName + " from " + Department + " Department.";
                                             }
                                             else
                                             {
@@ -446,43 +440,84 @@ namespace Upkeep_v3.Ticketing
                                                 Store_Name = Convert.ToString(Session["StoreName"]);
                                                 Store_No = Convert.ToString(Session["StoreNo"]);
 
-                                                NotificationMsg = "A ticket has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store. Tap to Accept";
-
+                                                TextMessage += "%0a%0aA ticket " + TicketCode + " has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store.";
                                             }
+                                            TextMessage += "%0a%0aCategory :" + Category;
+                                            TextMessage += "%0aLocation :" + Location;
+                                            TextMessage += "%0aStatus : OPEN(Assigned)";
+                                            TextMessage += "%0aLevel : 1";
+                                            TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
 
-                                            foreach (DataRow dr in dsTicketSave.Tables[3].Rows)
-                                            {
-                                                var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                                var TicketID = Convert.ToInt32(dr["TicketID"]);
-                                                var TicketNo = Convert.ToString(dr["TicketNo"]);
-
-                                                //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                                await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
-                                            }
+                                            string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
                                         }
-                                        // Send SMS
-                                        lblTicketCode.Text = TicketCode;
-                                        Session["NextTicketCode"] = "";
-                                        Session["Department"] = "";
-                                        mpeTicketSaveSuccess.Show();
+
+                                        if (Convert.ToString(Session["UserType"]) == "E")
+                                        {
+                                            TextMessage_RaisedBy = "Dear " + TicketRaisedBy_FirstName + ",";
+                                        }
+                                        else
+                                        {
+                                            StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
+                                            TextMessage_RaisedBy = "Dear " + StoreManager_Name + ",";
+                                        }
+                                        TextMessage_RaisedBy += "%0a%0aYour ticket " + TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
+                                        string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
                                     }
                                 }
+
+                                // Send App Notifications
+                                string NotificationMsg = string.Empty;
+                                TicketRaisedBy_DepartmentName = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_Department_Name"]);
+                                string TicketRaisedBy_Name = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["TicketRaisedBy_FName"]);
+                                if (dsTicketSave.Tables.Count > 3)
+                                {
+                                    if (Convert.ToString(Session["UserType"]) == "E")
+                                    {
+                                        NotificationMsg = "A ticket has been raised by " + TicketRaisedBy_Name + " from " + TicketRaisedBy_DepartmentName + " Department. Tap to Accept";
+                                    }
+                                    else
+                                    {
+                                        StoreManager_Name = Convert.ToString(Session["StoreManager_Name"]);
+                                        Store_Name = Convert.ToString(Session["StoreName"]);
+                                        Store_No = Convert.ToString(Session["StoreNo"]);
+
+                                        NotificationMsg = "A ticket has been raised by " + StoreManager_Name + " from " + Store_Name + " - " + Store_No + " store. Tap to Accept";
+
+                                    }
+
+                                    foreach (DataRow dr in dsTicketSave.Tables[3].Rows)
+                                    {
+                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                        var TicketID = Convert.ToInt32(dr["TicketID"]);
+                                        var TicketNo = Convert.ToString(dr["TicketNo"]);
+
+                                        //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
+                                        await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
+                                    }
+                                }
+                                // Send SMS
+                                lblTicketCode.Text = TicketCode;
+                                Session["NextTicketCode"] = "";
+                                Session["Department"] = "";
+                                mpeTicketSaveSuccess.Show();
                             }
-
-
-                        }
-
-                        catch (Exception ex)
-                        {
-                            throw ex;
                         }
                     }
+
+
                 }
-                else
+
+                catch (Exception ex)
                 {
-                    lblTicketErrorMsg.Text = "Please select image";
-                    FileUpload_TicketImage.Focus();
+                    throw ex;
                 }
+                //}
+                //}
+                //else
+                //{
+                //    lblTicketErrorMsg.Text = "Please select image";
+                //    FileUpload_TicketImage.Focus();
+                //}
             }
             catch (Exception ex)
             {

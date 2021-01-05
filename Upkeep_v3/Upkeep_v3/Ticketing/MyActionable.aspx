@@ -22,7 +22,7 @@
 
 
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
+            <div class="">
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -125,6 +125,7 @@
 											<th title="Sub Category" data-field="SubCat">Sub Category</th>
 											<th title="Request Date" data-field="RequestDate">Request Date</th>
                                             <th title="Raised By" data-field="RaisedBy">RaisedBy</th>
+                                             <th title="Down Time" data-field="Down_Time">Down Time</th>
 											<th title="Request Status" data-field="RequestStatus">Request Status</th>
 											<th title="Action Status" data-field="ActionStatus">Action Status</th>
 											<%--<th title="Field #10" data-field="Type">View</th>--%>

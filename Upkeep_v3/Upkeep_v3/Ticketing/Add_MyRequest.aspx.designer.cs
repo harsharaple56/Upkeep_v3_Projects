@@ -184,6 +184,15 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.TextBox txtTicketDesc;
         
         /// <summary>
+        /// rfvTicketDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTicketDesc;
+        
+        /// <summary>
         /// FileUpload_TicketImage control.
         /// </summary>
         /// <remarks>

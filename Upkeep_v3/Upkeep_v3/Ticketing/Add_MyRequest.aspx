@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
-   
+
 
 
     <%-- <script src="https://keenthemes.com/preview/metronic/theme/assets/global/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js" type="text/javascript"></script>
@@ -117,7 +117,7 @@
                                         <div class="col-xl-10 offset-xl-2">--%>
                                     <div class="m-form__section m-form__section--first">
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%; display:none;">
+                                        <div class="form-group m-form__group row" style="padding-left: 15%; display: none;">
                                             <label class="col-xl-3 col-lg-3 form-control-label">Company :</label>
                                             <div class="col-xl-3 col-lg-3">
                                                 <asp:Label ID="lblCompanyName" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -131,11 +131,11 @@
                                         <asp:UpdatePanel runat="server" style="width: 100%;">
                                             <ContentTemplate>
 
-                                                <div class="form-group m-form__group row" style="padding-left: 10%; display:none;">
+                                                <div class="form-group m-form__group row" style="padding-left: 10%; display: none;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Zone :</label>
                                                     <div class="col-xl-5 col-lg-9">
                                                         <asp:DropDownList ID="ddlZone" class="form-control m-input" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                                                       <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlZone" Visible="true" Display="Dynamic"
+                                                        <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlZone" Visible="true" Display="Dynamic"
                                                             ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Zone"></asp:RequiredFieldValidator>--%>
                                                     </div>
                                                     <div class="col-xl-3 col-lg-9">
@@ -144,8 +144,8 @@
                                                 </div>
                                                 <div class="form-group m-form__group row" style="padding-left: 10%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                                    <div class="col-xl-9 col-lg-9" >
-                                                        <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server" ></asp:DropDownList>
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
                                                             ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
                                                     </div>
@@ -153,7 +153,7 @@
                                                         <asp:Button ID="btnAddLocation" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem;" OnClick="btnSave_Click" Text="Add Location" />
                                                     </div>--%>
                                                 </div>
-                                                <div class="form-group m-form__group row" style="padding-left: 10%;display:none;">
+                                                <div class="form-group m-form__group row" style="padding-left: 10%; display: none;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
                                                     <div class="col-xl-5 col-lg-9">
                                                         <asp:DropDownList ID="ddlSublocation" class="form-control m-input" OnSelectedIndexChanged="ddlSublocation_SelectedIndexChanged" runat="server"></asp:DropDownList>
@@ -236,116 +236,24 @@
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Ticket Description :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Ticket Description :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:TextBox ID="txtTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvTicketDesc" ValidationGroup="validateTicket" runat="server" Display="Dynamic"
+                                                    ErrorMessage="Please enter ticket description"  ForeColor="Red" ControlToValidate="txtTicketDesc"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Ticket Images :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Ticket Images :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
-                                                <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validateTicket" runat="server" Display="Dynamic"
+                                                    ErrorMessage="Please upload image"  ForeColor="Red" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
                                             </div>
 
                                         </div>
 
-
-                                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-                                        <%--<div class="row fileupload-buttonbar">
-                                        <div class="col-lg-7">
-                                            <!-- The fileinput-button span is used to style the file input field as button -->
-                                            <span class="btn green fileinput-button">
-                                                <i class="fa fa-plus"></i>
-                                                <span> Add files... </span>
-                                                <input type="file" name="files[]" multiple=""/> </span>
-                                            <button type="submit" class="btn blue start">
-                                                <i class="fa fa-upload"></i>
-                                                <span> Start upload </span>
-                                            </button>
-                                            <button type="reset" class="btn warning cancel">
-                                                <i class="fa fa-ban-circle"></i>
-                                                <span> Cancel upload </span>
-                                            </button>
-                                            <button type="button" class="btn red delete">
-                                                <i class="fa fa-trash"></i>
-                                                <span> Delete </span>
-                                            </button>
-                                            <input type="checkbox" class="toggle"/>
-                                           
-                                            <span class="fileupload-process"> </span>
-                                        </div>
-                                      
-                                        <div class="col-lg-5 fileupload-progress fade">
-                                           
-                                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar progress-bar-success" style="width:0%;"> </div>
-                                            </div>
-                                            
-                                            <div class="progress-extended"> &nbsp; </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <table role="presentation" class="table table-striped clearfix">
-                                        <tbody class="files"> </tbody>
-                                    </table>
-
-
-                                      
-                        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-                            <div class="slides"> </div>
-                            <h3 class="title"></h3>
-                            <a class="prev"> ‹ </a>
-                            <a class="next"> › </a>
-                            <a class="close white"> </a>
-                            <a class="play-pause"> </a>
-                            <ol class="indicator"> </ol>
-                        </div>
-                        
-                        <script id="template-upload" type="text/x-tmpl"> {% for (var i=0, file; file=o.files[i]; i++) { %}
-                            <tr class="template-upload fade">
-                                <td>
-                                    <span class="preview"></span>
-                                </td>
-                                <td>
-                                    <p class="name">{%=file.name%}</p>
-                                    <strong class="error label label-danger"></strong>
-                                </td>
-                                <td>
-                                    <p class="size">Processing...</p>
-                                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                        <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                                    </div>
-                                </td>
-                                <td> {% if (!i && !o.options.autoUpload) { %}
-                                    <button class="btn blue start" disabled>
-                                        <i class="fa fa-upload"></i>
-                                        <span>Start</span>
-                                    </button> {% } %} {% if (!i) { %}
-                                    <button class="btn red cancel">
-                                        <i class="fa fa-ban"></i>
-                                        <span>Cancel</span>
-                                    </button> {% } %} </td>
-                            </tr> {% } %} </script>--%>
-
-
-
-
-
-                                        <%--<hr style="width: 100%" />
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
-                                            <label class="col-xl-5 col-lg-3 col-form-label">Note: Ticket closure will be approved by :</label>
-                                            <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlApprover" class="form-control m-input" runat="server"></asp:DropDownList>
-
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlApprover" Visible="true" Display="Dynamic"
-                                                    ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Approver"></asp:RequiredFieldValidator>
-
-                                            </div>
-                                        </div>--%>
-                                        <%--  <br />--%>
                                         <br />
 
                                         <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
@@ -403,15 +311,15 @@
                                                         <div class="form-group m-form__group row">
 
                                                             <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Ticket has been saved successfully</label>
-                                                           
+
                                                         </div>
-                                                       
+
 
 
                                                         <div class="form-group m-form__group row">
                                                             <label for="message-text" class="col-xl-5 col-lg-3 form-control-label">Ticket Number :</label>
-                                                        <asp:Label ID="lblTicketCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px);margin-left: -10%;" ></asp:Label>
-                                                            
+                                                            <asp:Label ID="lblTicketCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+
                                                         </div>
                                                     </div>
 
