@@ -1482,5 +1482,87 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/Ticketing/Fetch_System_settings")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_System_settings(int CompanyID)
+        {
+            List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+            //List<clsTicketSearch> TicketSearch = new List<clsTicketSearch>();
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_SYS_Settings_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Models.clsSystemSettings SysSettings = new Models.clsSystemSettings();
+                            {
+                                SysSettings.Status = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
+                                SysSettings.Message = Convert.ToString(DsDataSet.Tables[0].Rows[0]["StatusMsg"]);
+                                SysSettings.SystemSettings = new List<ClsSystemSettingsDetails>();
+
+                                if (DsDataSet.Tables.Count > 1)
+                                {
+                                    if (DsDataSet.Tables[1].Rows.Count > 0)
+                                    {
+                                        SysSettings.SystemSettings.Add(new ClsSystemSettingsDetails
+                                        {
+                                            Tkt_Is_Img_Open = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Img_Open"]),
+                                            Tkt_Is_Remark_Open = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Remark_Open"]),
+                                            Tkt_Is_Img_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Img_Close"]),
+                                            Tkt_Is_Remark_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Remark_Close"]),
+                                            Tkt_Is_Expiry = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Expiry"]),
+                                        });
+                                    }
+                                }
+                            };
+
+                            return Request.CreateResponse(HttpStatusCode.OK, SysSettings);
+
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                Objticket = null;
+            }
+
+        }
+
     }
 }

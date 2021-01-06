@@ -1038,6 +1038,24 @@ namespace eFacilito_MobileApp_WebAPI.Models
     {
         public string TokenNumber { get; set; }
     }
+
+    public class clsSystemSettings
+    {
+        public int Status { get; set; }
+        public string Message { get; set; }
+        public List<ClsSystemSettingsDetails> SystemSettings { get; set; }
+    }
+    public class ClsSystemSettingsDetails
+    {
+        public bool Tkt_Is_Img_Open { get; set; }
+        public bool Tkt_Is_Remark_Open { get; set; }
+        public bool Tkt_Is_Img_Close { get; set; }
+        public bool Tkt_Is_Remark_Close { get; set; }
+        public bool Tkt_Is_Expiry { get; set; }
+    }
+
+
+
     #endregion
 
 
