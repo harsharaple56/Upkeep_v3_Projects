@@ -279,6 +279,9 @@ namespace Upkeep_v3.Ticketing
                 {
                     foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
                     {
+
+                        IsExeFile(Server.MapPath(FileUpload_TicketImage.FileName));
+
                         string filetype = Path.GetExtension(postfiles.FileName);
                         if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
                         {
@@ -320,7 +323,7 @@ namespace Upkeep_v3.Ticketing
                                 Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
                                 var targetFile = SaveLocation;
                                 //ReduceImageSize(0.5, strm, targetFile);
-                                GenerateThumbnails(0.5, strm, targetFile);
+                                //GenerateThumbnails(0.5, strm, targetFile);
                                 //[-][Size Compress]
 
 
@@ -733,6 +736,18 @@ namespace Upkeep_v3.Ticketing
         {
             return ImageCodecInfo.GetImageDecoders().SingleOrDefault(c => c.FormatID == format.Guid);
         }
+
+        public bool IsExeFile(string path)
+        {
+            var twoBytes = new byte[2];
+            using (var fileStream = File.Open(path, FileMode.Open))
+            {
+                fileStream.Read(twoBytes, 0, 2);
+            }
+
+            return Encoding.UTF8.GetString(twoBytes) == "MZ";
+        }
+
 
     }
 }

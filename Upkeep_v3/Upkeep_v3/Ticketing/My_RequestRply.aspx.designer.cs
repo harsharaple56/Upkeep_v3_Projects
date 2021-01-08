@@ -247,6 +247,15 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAction;
         
         /// <summary>
+        /// dvImageUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvImageUpload;
+        
+        /// <summary>
         /// FileUpload_TicketImage control.
         /// </summary>
         /// <remarks>

@@ -55,23 +55,23 @@
                 //$('.carousel').carousel();
             })
 
-             $('#btnClose').click(function () {
-                 var ddlAction = $('#ddlAction').val();
-                 //alert(ddlAction);
-                 debugger;
-                 var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
-                 var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
+            $('#btnClose').click(function () {
+                var ddlAction = $('#ddlAction').val();
+                //alert(ddlAction);
+                debugger;
+                var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
+                var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
 
-                 var FileUpload_TicketImage = $("#FileUpload_TicketImage").val(); 
-                 var txtCloseTicketDesc = $("#txtCloseTicketDesc").val(); 
+                var FileUpload_TicketImage = $("#FileUpload_TicketImage").val();
+                var txtCloseTicketDesc = $("#txtCloseTicketDesc").val();
 
-                 //alert(FileUpload_TicketImage);
-                 //alert(hdn_Mandatory_Remark_Close); 
-                  $('#ImageUpload_Msg').text('').hide();
-                 $('#Remarks_Msg').text('').hide();
+                //alert(FileUpload_TicketImage);
+                //alert(hdn_Mandatory_Remark_Close); 
+                $('#ImageUpload_Msg').text('').hide();
+                $('#Remarks_Msg').text('').hide();
 
-                 if (ddlAction == "Closed") {
-                     if (hdn_Mandatory_Img_Close == "True") {
+                if (ddlAction == "Closed") {
+                    if (hdn_Mandatory_Img_Close == "True") {
                          //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = true;
                          if (FileUpload_TicketImage == "") {
                              $('#ImageUpload_Msg').text("Please upload image").show();
@@ -98,10 +98,20 @@
                  else {
                      //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = false;
                      //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
-                 }
-
-
+                }
             });
+
+            $("#ddlAction").change(function () {
+                //alert($('option:selected', this).text());
+                var ddlAction=$('option:selected', this).text();
+                if (ddlAction == "Close") {
+                    $('.dvImageUpload').show();
+                }
+                else {
+                    $('.dvImageUpload').hide();
+                }
+            });
+
 
 
         });
@@ -322,7 +332,7 @@
 
                                             <div id="dvAction" runat="server">
 
-                                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                                <div class="form-group m-form__group row dvImageUpload" style="padding-left: 1%; display: none;" id="dvImageUpload" runat="server">
                                                     <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Ticket Images :</label>
                                                     <div class="col-xl-7 col-lg-9">
                                                         <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" ClientIDMode="Static" />

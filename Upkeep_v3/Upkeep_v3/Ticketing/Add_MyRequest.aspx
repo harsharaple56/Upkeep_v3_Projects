@@ -47,6 +47,27 @@
         })
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $('#<%=FileUpload_TicketImage.ClientID %>').change(function () {
+                var fileExtension = ['jpeg', 'jpg', 'png'];
+                $('#ImageUpload_Msg').text('').hide();
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    //alert("Only '.jpeg','.jpg', '.png', formats are allowed."); 
+                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
+                    $(this).replaceWith($(this).val('').clone(true));
+                }
+                //100000 Byte -- 100 KB
+                if ($(this).get(0).files[0].size > (100000)) {
+                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
+                    $(this).replaceWith($(this).val('').clone(true));
+                }
+            })
+          
+        })
+    </script>
+
+
     <%--  <script type="text/javascript">
         function ShowPopup(title, body) {
             alert('hiiiiii');
@@ -193,7 +214,7 @@
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
-                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub Category :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Sub Category :</label>
                                             <div class="col-xl-5 col-lg-9">
                                                 <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
                                                 <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Display="Dynamic"
@@ -250,6 +271,7 @@
                                                 <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
                                                 <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validateTicket" runat="server" Display="Dynamic"
                                                     ErrorMessage="Please upload image"  ForeColor="Red" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
+                                            <span id="ImageUpload_Msg" style="color: red;"></span>
                                             </div>
 
                                         </div>

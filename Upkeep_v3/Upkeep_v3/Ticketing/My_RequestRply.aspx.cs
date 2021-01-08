@@ -526,106 +526,104 @@ namespace Upkeep_v3.Ticketing
                             return;
 
                         }
+                    }
+                    try
+                    {
+                        list_Images = String.Join(",", Lst_Images);
 
-                        try
+                        string strTicketAction = string.Empty;
+                        strTicketAction = Convert.ToString(ddlAction.SelectedValue);
+
+
+                        string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
+
+                        dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);                        //mpeTicketSaveSuccess.Show();
+
+                        //Samvedna
+                        if (dsCloseTicket.Tables.Count > 0)
                         {
-                            list_Images = String.Join(",", Lst_Images);
-
-                            string strTicketAction = string.Empty;
-                            strTicketAction = Convert.ToString(ddlAction.SelectedValue);
-
-
-                            string CurrentLevel = Convert.ToString(Session["CurrentLevel"]);
-
-                            dsCloseTicket = ObjUpkeep.Close_Ticket_Details(strTicketID, CloseTicketDesc, LoggedInUserID, list_Images, strTicketAction, CurrentLevel);                        //mpeTicketSaveSuccess.Show();
-
-                            //Samvedna
-                            if (dsCloseTicket.Tables.Count > 0)
+                            if (dsCloseTicket.Tables[0].Rows.Count > 0)
                             {
-                                if (dsCloseTicket.Tables[0].Rows.Count > 0)
+                                int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
+                                if (Status == 1)
                                 {
-                                    int Status = Convert.ToInt32(dsCloseTicket.Tables[0].Rows[0]["Status"]);
-                                    if (Status == 1)
+                                    //Send SMS
+                                    string APIKey = string.Empty;
+                                    string SenderID = string.Empty;
+                                    string Send_SMS_URL = string.Empty;
+
+                                    string TicketNo = string.Empty;
+                                    string TextMessage = string.Empty;
+                                    string TicketRaisedBy_Name = string.Empty;
+                                    string TicketRaisedBy_MobileNo = string.Empty;
+                                    string TicketAction = string.Empty;
+
+                                    if (dsCloseTicket.Tables.Count > 1)
                                     {
-                                        //Send SMS
-                                        string APIKey = string.Empty;
-                                        string SenderID = string.Empty;
-                                        string Send_SMS_URL = string.Empty;
-
-                                        string TicketNo = string.Empty;
-                                        string TextMessage = string.Empty;
-                                        string TicketRaisedBy_Name = string.Empty;
-                                        string TicketRaisedBy_MobileNo = string.Empty;
-                                        string TicketAction = string.Empty;
-
-                                        if (dsCloseTicket.Tables.Count > 1)
+                                        if (dsCloseTicket.Tables[1].Rows.Count > 0)
                                         {
-                                            if (dsCloseTicket.Tables[1].Rows.Count > 0)
+                                            APIKey = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Api_Key"]);
+                                            SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
+                                            Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
+
+                                            Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
+
+                                            SendSMS sms = new SendSMS();
+                                            if (dsCloseTicket.Tables.Count > 2)
                                             {
-                                                APIKey = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Api_Key"]);
-                                                SenderID = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Sender_ID"]);
-                                                Send_SMS_URL = Convert.ToString(dsCloseTicket.Tables[1].Rows[0]["Send_SMS_URL"]);
-
-                                                Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
-
-                                                SendSMS sms = new SendSMS();
-                                                if (dsCloseTicket.Tables.Count > 2)
+                                                if (dsCloseTicket.Tables[2].Rows.Count > 0)
                                                 {
-                                                    if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                                    TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                    TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                                    TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+
+                                                    if (strTicketAction == "In Progress")
                                                     {
-                                                        TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
-                                                        TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
-                                                        TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
-
-                                                        if (strTicketAction == "In Progress")
-                                                        {
-                                                            TicketAction = "OPEN (In Progress)";
-                                                        }
-                                                        else if (strTicketAction == "Hold")
-                                                        {
-                                                            TicketAction = "PARKED (Hold)";
-                                                        }
-                                                        else if (strTicketAction == "Closed")
-                                                        {
-                                                            TicketAction = "CLOSED (Done)";
-                                                        }
-
-                                                        TextMessage = "Dear " + TicketRaisedBy_Name + ",";
-                                                        TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
-                                                        TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
-                                                        string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                        TicketAction = "OPEN (In Progress)";
                                                     }
+                                                    else if (strTicketAction == "Hold")
+                                                    {
+                                                        TicketAction = "PARKED (Hold)";
+                                                    }
+                                                    else if (strTicketAction == "Closed")
+                                                    {
+                                                        TicketAction = "CLOSED (Done)";
+                                                    }
+
+                                                    TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                    TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                                    TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
+                                                    string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
                                                 }
                                             }
                                         }
-
-                                        //Send SMS
-
-                                        Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
                                     }
-                                    else
-                                    {
-                                        lblTicketErrorMsg.Text = "Something went wrong, please try again";
-                                    }
+
+                                    //Send SMS
+
+                                    Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
+                                }
+                                else
+                                {
+                                    lblTicketErrorMsg.Text = "Something went wrong, please try again";
                                 }
                             }
-
-
                         }
 
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                        //}
+
                     }
-                    else
+
+                    catch (Exception ex)
                     {
-
-                        lblTicketErrorMsg.Text = "Please select image";
-                        FileUpload_TicketImage.Focus();
-
+                        throw ex;
                     }
+                    //}
+                    //}
+                    //else
+                    //{
+                    //    lblTicketErrorMsg.Text = "Please select image";
+                    //    FileUpload_TicketImage.Focus();
+                    //}
                 }
 
                 else
