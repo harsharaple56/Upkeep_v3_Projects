@@ -109,16 +109,7 @@ namespace Upkeep_v3.Ticketing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgbtnViewWorkflow;
-        
-        /// <summary>
-        /// btnTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
+        protected global::System.Web.UI.WebControls.Button imgbtnViewWorkflow;
         
         /// <summary>
         /// mpeWorkflow control.
@@ -137,6 +128,15 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRaisedImageCount;
+        
+        /// <summary>
+        /// dvRaiseImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvRaiseImage;
         
         /// <summary>
         /// rptTicketImage control.
@@ -209,6 +209,15 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblClosedImageCount;
+        
+        /// <summary>
+        /// dvCloseImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseImage;
         
         /// <summary>
         /// rptTicketClosingImage control.
@@ -337,13 +346,13 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// Button1 control.
+        /// btnTest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnTest;
         
         /// <summary>
         /// mpeTicketSaveSuccess control.

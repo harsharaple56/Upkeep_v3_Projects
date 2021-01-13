@@ -73,29 +73,29 @@
                 if (ddlAction == "Closed") {
                     if (hdn_Mandatory_Img_Close == "True") {
                          //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = true;
-                         if (FileUpload_TicketImage == "") {
-                             $('#ImageUpload_Msg').text("Please upload image").show();
-                             return false;
-                         }
-                     }
-                     if (hdn_Mandatory_Remark_Close == "True") {
+                        if (FileUpload_TicketImage == "") {
+                            $('#ImageUpload_Msg').text("Please upload image").show();
+                            return false;
+                        }
+                    }
+                    if (hdn_Mandatory_Remark_Close == "True") {
                          //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
-                         if (txtCloseTicketDesc == "") {
-                             $('#Remarks_Msg').text("Please enter remarks").show();
-                             return false;
-                         }
-                     }
-                 }
+                        if (txtCloseTicketDesc == "") {
+                            $('#Remarks_Msg').text("Please enter remarks").show();
+                            return false;
+                        }
+                    }
+                }
 
-                 else if (ddlAction == "Hold") {
+                else if (ddlAction == "Hold") {
                      //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
                      //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
-                     if (txtCloseTicketDesc == "") {
-                         $('#Remarks_Msg').text("Please enter remarks").show();
-                         return false;
-                     }
-                 }
-                 else {
+                    if (txtCloseTicketDesc == "") {
+                        $('#Remarks_Msg').text("Please enter remarks").show();
+                        return false;
+                    }
+                }
+                else {
                      //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = false;
                      //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
                 }
@@ -103,7 +103,7 @@
 
             $("#ddlAction").change(function () {
                 //alert($('option:selected', this).text());
-                var ddlAction=$('option:selected', this).text();
+                var ddlAction = $('option:selected', this).text();
                 if (ddlAction == "Close") {
                     $('.dvImageUpload').show();
                 }
@@ -205,20 +205,29 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
-                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                            <%--<label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>--%>
+                                            <div class="col-xl-5 col-lg-5 col-form-label" style="text-align: center;">
+                                                <%--<asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />--%>
+                                                <asp:Button ID="imgbtnViewWorkflow" runat="server" Text="Click to View Workflow"  class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
                                                 <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="imgbtnViewWorkflow"
                                                     CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
                                                 </cc1:ModalPopupExtender>
+
+                                               <%-- <a runat="server" onserverclick="btnBack_Click" class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                                    <span>
+                                                        <img src="../assets/app/media/img/icons/workflow.png" />
+                                                        <span>View Workflow</span>
+                                                    </span>
+                                                </a>--%>
+
+
                                             </div>
 
                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
                                             <div class="col-xl-2 col-lg-2 col-form-label">
                                                 <asp:Label ID="lblRaisedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <div class="col-xl-1 col-lg-1">
+                                            <div class="col-xl-1 col-lg-1" id="dvRaiseImage" runat="server">
                                                 <asp:Repeater ID="rptTicketImage" runat="server">
                                                     <ItemTemplate>
                                                         <table>
@@ -281,7 +290,7 @@
                                             <div class="col-xl-1 col-lg-1 col-form-label">
                                                 <asp:Label ID="lblClosedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <div class="col-xl-2 col-lg-2">
+                                            <div class="col-xl-2 col-lg-2" id="dvCloseImage" runat="server">
                                                 <asp:Repeater ID="rptTicketClosingImage" runat="server">
                                                     <ItemTemplate>
                                                         <table>
@@ -374,7 +383,7 @@
                                                     &nbsp;&nbsp;&nbsp;--%>
                                                         <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" Text="Submit" ValidationGroup="validate" ClientIDMode="Static" />
 
-                                                        <asp:Button ID="Button1" Style="display: none;" runat="server" />
+                                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                                         <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
                                                             CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
                                                         </cc1:ModalPopupExtender>

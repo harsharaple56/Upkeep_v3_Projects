@@ -280,7 +280,7 @@ namespace Upkeep_v3.Ticketing
                     foreach (HttpPostedFile postfiles in FileUpload_TicketImage.PostedFiles)
                     {
 
-                        IsExeFile(Server.MapPath(FileUpload_TicketImage.FileName));
+                        //IsExeFile(Server.MapPath(FileUpload_TicketImage.FileName));
 
                         string filetype = Path.GetExtension(postfiles.FileName);
                         if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")

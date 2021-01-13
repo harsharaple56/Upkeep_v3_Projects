@@ -94,7 +94,16 @@ namespace Upkeep_v3.Ticketing
                         lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
 
                         lblRaisedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]);
+                        if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]) == 0)
+                        {
+                            dvRaiseImage.Attributes.Add("style", "display:none");
+                        }
+
                         lblClosedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketClosed_Image_Count"]);
+                        if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketClosed_Image_Count"]) == 0)
+                        {
+                            dvCloseImage.Attributes.Add("style", "display:none");
+                        }
 
                         rptTicketImage.DataSource = dsTicket.Tables[0];
                         rptTicketImage.DataBind();
@@ -251,7 +260,15 @@ namespace Upkeep_v3.Ticketing
                         lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
 
                         lblRaisedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]);
+                        if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]) == 0)
+                        {
+                            dvRaiseImage.Attributes.Add("style", "display:none");
+                        }
                         lblClosedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketClosed_Image_Count"]);
+                        if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketClosed_Image_Count"]) == 0)
+                        {
+                            dvCloseImage.Attributes.Add("style", "display:none");
+                        }
 
                         rptTicketImage.DataSource = dsTicket.Tables[0];
                         rptTicketImage.DataBind();

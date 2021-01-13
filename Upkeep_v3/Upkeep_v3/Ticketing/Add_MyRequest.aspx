@@ -44,6 +44,25 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
+
+            $('#btnSave').click(function () {
+                var Is_ImageUpload_ValidFile=$("#Is_ImageUpload_ValidFile").val();
+                //alert(Is_ImageUpload_ValidFile);
+                if (Is_ImageUpload_ValidFile==0) {
+                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
+                    return false;
+                }
+                else if (Is_ImageUpload_ValidFile==1){
+                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
+                    return false;
+                }
+                //else
+                //{ }
+
+            });
+
+
+
         })
     </script>
 
@@ -56,14 +75,23 @@
                     //alert("Only '.jpeg','.jpg', '.png', formats are allowed."); 
                     $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
                     $(this).replaceWith($(this).val('').clone(true));
+                    $("#Is_ImageUpload_ValidFile").val("0");
+
+                }
+                else {
+                    $("#Is_ImageUpload_ValidFile").val("3");
                 }
                 //100000 Byte -- 100 KB
                 if ($(this).get(0).files[0].size > (100000)) {
                     $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
                     $(this).replaceWith($(this).val('').clone(true));
+                    $("#Is_ImageUpload_ValidFile").val("1");
+                }
+                else {
+                    $("#Is_ImageUpload_ValidFile").val("3");
                 }
             })
-          
+
         })
     </script>
 
@@ -112,7 +140,7 @@
                                         </a>
                                         <div class="btn-group">
 
-                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />
+                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" ClientIDMode="Static" />
 
                                             <%--<cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnSave"
                                                 CancelControlID="btnTKTCloseHeader" BackgroundCssClass="modalBackground">
@@ -261,7 +289,7 @@
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:TextBox ID="txtTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfvTicketDesc" ValidationGroup="validateTicket" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Please enter ticket description"  ForeColor="Red" ControlToValidate="txtTicketDesc"></asp:RequiredFieldValidator>
+                                                    ErrorMessage="Please enter ticket description" ForeColor="Red" ControlToValidate="txtTicketDesc"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
 
@@ -270,8 +298,9 @@
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
                                                 <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validateTicket" runat="server" Display="Dynamic"
-                                                    ErrorMessage="Please upload image"  ForeColor="Red" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
-                                            <span id="ImageUpload_Msg" style="color: red;"></span>
+                                                    ErrorMessage="Please upload image" ForeColor="Red" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
+                                                <span id="ImageUpload_Msg" style="color: red;"></span>
+                                                <asp:HiddenField ID="Is_ImageUpload_ValidFile" runat="server" ClientIDMode="Static" />
                                             </div>
 
                                         </div>
