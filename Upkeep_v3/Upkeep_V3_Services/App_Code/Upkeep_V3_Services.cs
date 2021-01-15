@@ -2748,6 +2748,58 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
 
+    [WebMethod]
+    public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.FetchUserEmail(EmailID,UserType,CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet ForgetPasswordSendOTP(string EmailID, string OTP, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.ForgetPasswordSendOTP(EmailID, OTP, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet UpdatePassword(string User_ID , string EmailID, string Password,string UserType, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.UpdatePassword(User_ID,EmailID, Password, UserType, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+
+
 
 
 }
