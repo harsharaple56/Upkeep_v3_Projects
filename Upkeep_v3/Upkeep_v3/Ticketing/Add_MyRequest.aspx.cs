@@ -40,11 +40,18 @@ namespace Upkeep_v3.Ticketing
 
                 if (Convert.ToString(Session["UserType"]) == "R")
                 {
+                    dvEmployeeLocation.Attributes.Add("style", "display:none");
+                    dvRetailerLocation.Attributes.Add("style", "display:block");
                     if (Convert.ToString(Session["Retailer_Location"]) != "")
                     {
                         ddlLocation.SelectedValue = Convert.ToString(Session["Retailer_Location"]);
                         ddlLocation.Enabled = false;
                     }
+                }
+                else
+                {
+                    dvEmployeeLocation.Attributes.Add("style", "display:block");
+                    dvRetailerLocation.Attributes.Add("style", "display:none");
                 }
 
                 Fetch_CategorySubCategory(0);
@@ -68,6 +75,15 @@ namespace Upkeep_v3.Ticketing
                         ddlLocation.DataValueField = "Loc_ID";
                         ddlLocation.DataBind();
                         ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                        var builder = new System.Text.StringBuilder();
+
+                        for (int i = 0; i < dsLocDetails.Tables[0].Rows.Count; i++)
+                        {
+                            builder.Append(String.Format("<option value='{0}' text='{1}'>", dsLocDetails.Tables[0].Rows[i]["Loc_Desc"], dsLocDetails.Tables[0].Rows[i]["Loc_id"]));
+                        }
+                        dlassetLocation.InnerHtml = builder.ToString();
+                        dlassetLocation.DataBind();
                     }
                 }
             }
@@ -251,7 +267,10 @@ namespace Upkeep_v3.Ticketing
 
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
                 //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
-                LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+                //LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+
+                LocationID = Convert.ToInt32(hdnassetLocation.Value);
+
                 //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
                 CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
