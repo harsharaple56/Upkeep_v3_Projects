@@ -283,6 +283,15 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFileupload;
         
         /// <summary>
+        /// Is_ImageUpload_ValidFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField Is_ImageUpload_ValidFile;
+        
+        /// <summary>
         /// dvApprovalDetails control.
         /// </summary>
         /// <remarks>

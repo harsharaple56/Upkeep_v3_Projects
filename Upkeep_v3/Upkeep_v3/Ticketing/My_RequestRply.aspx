@@ -58,12 +58,23 @@
             $('#btnClose').click(function () {
                 var ddlAction = $('#ddlAction').val();
                 //alert(ddlAction);
-                debugger;
+                //debugger;
                 var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
                 var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
 
                 var FileUpload_TicketImage = $("#FileUpload_TicketImage").val();
                 var txtCloseTicketDesc = $("#txtCloseTicketDesc").val();
+
+                var Is_ImageUpload_ValidFile = $("#Is_ImageUpload_ValidFile").val();
+                //alert(Is_ImageUpload_ValidFile);
+                if (Is_ImageUpload_ValidFile == 0) {
+                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
+                    return false;
+                }
+                else if (Is_ImageUpload_ValidFile == 1) {
+                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
+                    return false;
+                }
 
                 //alert(FileUpload_TicketImage);
                 //alert(hdn_Mandatory_Remark_Close); 
@@ -115,6 +126,35 @@
 
 
         });
+    </script>
+
+     <script type="text/javascript">
+        $(function () {
+            $('#<%=FileUpload_TicketImage.ClientID %>').change(function () {
+                var fileExtension = ['jpeg', 'jpg', 'png'];
+                $('#ImageUpload_Msg').text('').hide();
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    //alert("Only '.jpeg','.jpg', '.png', formats are allowed."); 
+                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
+                    $(this).replaceWith($(this).val('').clone(true));
+                    $("#Is_ImageUpload_ValidFile").val("0");
+
+                }
+                else {
+                    $("#Is_ImageUpload_ValidFile").val("3");
+                }
+                //100000 Byte -- 100 KB
+                if ($(this).get(0).files[0].size > (100000)) {
+                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
+                    $(this).replaceWith($(this).val('').clone(true));
+                    $("#Is_ImageUpload_ValidFile").val("1");
+                }
+                else {
+                    $("#Is_ImageUpload_ValidFile").val("3");
+                }
+            })
+
+        })
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -343,11 +383,12 @@
 
                                                 <div class="form-group m-form__group row dvImageUpload" style="padding-left: 1%; display: none;" id="dvImageUpload" runat="server">
                                                     <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Ticket Images :</label>
-                                                    <div class="col-xl-7 col-lg-9">
+                                                    <div class="col-xl-9 col-lg-9">
                                                         <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" ClientIDMode="Static" />
                                                         <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
                                                             ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
                                                         <span id="ImageUpload_Msg" style="color: red;"></span>
+                                                        <asp:HiddenField ID="Is_ImageUpload_ValidFile" runat="server" ClientIDMode="Static" />
                                                     </div>
 
                                                 </div>

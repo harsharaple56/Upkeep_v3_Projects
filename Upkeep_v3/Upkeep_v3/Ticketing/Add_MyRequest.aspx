@@ -46,21 +46,44 @@
             });
 
             $('#btnSave').click(function () {
-                var Is_ImageUpload_ValidFile=$("#Is_ImageUpload_ValidFile").val();
+
+                $('#ImageUpload_Msg').text('').hide();
+                $('#LocationError_Msg').text('').hide();
+
+                if ($('#hdnassetLocation').val() == '') {
+                    //alert("Please Select Proper Location!");
+                    $('#LocationError_Msg').text("Please Select Proper Location").show();
+                    return false;
+                }
+
+                var Is_ImageUpload_ValidFile = $("#Is_ImageUpload_ValidFile").val();
                 //alert(Is_ImageUpload_ValidFile);
-                if (Is_ImageUpload_ValidFile==0) {
+                if (Is_ImageUpload_ValidFile == 2) {
                     $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
                     return false;
                 }
-                else if (Is_ImageUpload_ValidFile==1){
+                else if (Is_ImageUpload_ValidFile == 1) {
                     $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
                     return false;
                 }
-                //else
-                //{ }
 
             });
 
+            $("#txtassetLocation").on('input', function () {
+                var val = this.value;
+
+                $('#hdnassetLocation').val("");
+                if ($('#dlassetLocation option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnassetLocation').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                }
+            });
 
 
         })
@@ -75,7 +98,7 @@
                     //alert("Only '.jpeg','.jpg', '.png', formats are allowed."); 
                     $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
                     $(this).replaceWith($(this).val('').clone(true));
-                    $("#Is_ImageUpload_ValidFile").val("0");
+                    $("#Is_ImageUpload_ValidFile").val("2");
 
                 }
                 else {
@@ -193,15 +216,27 @@
                                                 </div>
                                                 <div class="form-group m-form__group row" style="padding-left: 10%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
-                                                    <div class="col-xl-9 col-lg-9">
+                                                    <div class="col-xl-9 col-lg-9" id="dvRetailerLocation" runat="server">
                                                         <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
-                                                            ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
+                                                            ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>--%>
                                                     </div>
-                                                    <%--<div class="col-xl-3 col-lg-9" style="display:none;">
-                                                        <asp:Button ID="btnAddLocation" runat="server" class="btn btn-accent  m-btn m-btn--icon" Style="padding: 0.45rem 1.15rem;" OnClick="btnSave_Click" Text="Add Location" />
-                                                    </div>--%>
+                                                    <div class="col-xl-9 col-lg-9" id="dvEmployeeLocation" runat="server">
+                                                        <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
+
+                                                        <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                                            class="form-control" runat="server" clientidmode="Static" />
+                                                        <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
+                                                            Display="Dynamic" ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0"
+                                                            ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                                        <span id="LocationError_Msg" style="color: red;"></span>
+
+                                                    </div>
+
                                                 </div>
+
+
                                                 <div class="form-group m-form__group row" style="padding-left: 10%; display: none;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Sub-Location :</label>
                                                     <div class="col-xl-5 col-lg-9">
