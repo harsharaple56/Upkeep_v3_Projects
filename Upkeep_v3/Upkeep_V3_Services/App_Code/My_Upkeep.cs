@@ -2459,4 +2459,77 @@ public class My_Upkeep
 
 
 
+
+
+    public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.FetchUserEmail(EmailID,UserType,CompanyID, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    public DataSet ForgetPasswordSendOTP(string EmailID, string OTP, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.ForgetPasswordSendOTP(EmailID, OTP, CompanyID, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    public DataSet UpdatePassword(string User_ID, string EmailID, string Password,String UserType, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.UpdatePassword(User_ID,EmailID, Password, UserType, CompanyID, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+    public DataSet SiteMaster_CRUD(int Site_ID, string Site_Code, string Site_Name, int CompanyID, string LoggedInUserID,string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.SiteMaster_CRUD(Site_ID, Site_Code, Site_Name, CompanyID, LoggedInUserID,Action,StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+
+
+
+
 }

@@ -1856,6 +1856,103 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FetchUserEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchUserEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchUserEmailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForgetPasswordSendOTP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OTP" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForgetPasswordSendOTPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ForgetPasswordSendOTPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePasswordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SiteMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Site_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SiteMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -4380,6 +4477,30 @@
   <wsdl:message name="CRU_System_SettingSoapOut">
     <wsdl:part name="parameters" element="tns:CRU_System_SettingResponse" />
   </wsdl:message>
+  <wsdl:message name="FetchUserEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchUserEmail" />
+  </wsdl:message>
+  <wsdl:message name="FetchUserEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ForgetPasswordSendOTPSoapIn">
+    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTP" />
+  </wsdl:message>
+  <wsdl:message name="ForgetPasswordSendOTPSoapOut">
+    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="SiteMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="SiteMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5196,6 +5317,22 @@
     <wsdl:operation name="CRU_System_Setting">
       <wsdl:input message="tns:CRU_System_SettingSoapIn" />
       <wsdl:output message="tns:CRU_System_SettingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <wsdl:input message="tns:FetchUserEmailSoapIn" />
+      <wsdl:output message="tns:FetchUserEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <wsdl:input message="tns:ForgetPasswordSendOTPSoapIn" />
+      <wsdl:output message="tns:ForgetPasswordSendOTPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <wsdl:input message="tns:UpdatePasswordSoapIn" />
+      <wsdl:output message="tns:UpdatePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6232,6 +6369,42 @@
     </wsdl:operation>
     <wsdl:operation name="CRU_System_Setting">
       <soap:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <soap:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <soap:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7693,6 +7866,42 @@
     </wsdl:operation>
     <wsdl:operation name="CRU_System_Setting">
       <soap12:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <soap12:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <soap12:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

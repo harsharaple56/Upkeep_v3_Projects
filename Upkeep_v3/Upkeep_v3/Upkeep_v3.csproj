@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Anjali.html" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
     <Content Include="AssetManagement\AssetManagementList.aspx" />
@@ -1018,6 +1019,7 @@
     <Content Include="General_Masters\Print_LocationQRCode.aspx" />
     <Content Include="General_Masters\Priority_Master.aspx" />
     <Content Include="General_Masters\Retailer_Master.aspx" />
+    <Content Include="General_Masters\Site_Mst.aspx" />
     <Content Include="General_Masters\System_Settings.aspx" />
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
@@ -4450,6 +4452,13 @@
     </Compile>
     <Compile Include="General_Masters\Retailer_Master.aspx.designer.cs">
       <DependentUpon>Retailer_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Site_Mst.aspx.cs">
+      <DependentUpon>Site_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Site_Mst.aspx.designer.cs">
+      <DependentUpon>Site_Mst.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\System_Settings.aspx.cs">
       <DependentUpon>System_Settings.aspx</DependentUpon>
