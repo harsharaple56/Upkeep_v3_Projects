@@ -129,9 +129,9 @@
                                     ValidationGroup="ForgotPassword"></asp:RequiredFieldValidator>
 
                                 <div class="m-login__action"  >
-                                  <d>  <a href="<%= Page.ResolveClientUrl("~/Login.aspx") %>" class="m-link">
+                                  <b>  <a href="<%= Page.ResolveClientUrl("~/Login.aspx") %>" class="m-link">
                                         <span>Back To Login</span>
-                                    </a></d>
+                                    </a></b>
                                     
                                     <a>
                                         <asp:Button ID="btnSubmit" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" ValidationGroup="ForgotPassword"

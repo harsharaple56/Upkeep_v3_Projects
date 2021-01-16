@@ -1927,6 +1927,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SiteMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Site_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SiteMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -4469,6 +4495,12 @@
   <wsdl:message name="UpdatePasswordSoapOut">
     <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="SiteMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="SiteMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5297,6 +5329,10 @@
     <wsdl:operation name="UpdatePassword">
       <wsdl:input message="tns:UpdatePasswordSoapIn" />
       <wsdl:output message="tns:UpdatePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6360,6 +6396,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7848,6 +7893,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap12:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

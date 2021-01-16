@@ -3493,7 +3493,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UpdatePassword(string User_ID,String EmailID, string Password,string UserType, int CompanyID, string StrConn)
+        public DataSet UpdatePassword(string User_ID,string EmailID, string Password,string UserType, int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3508,6 +3508,35 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@UserType", UserType);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
+        public DataSet SiteMaster_CRUD(int Site_ID, string Site_Code, string Site_Name, int CompanyID,string LoggedInUserID,string Action, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_Site_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Site_ID", Site_ID);
+                cmd.Parameters.AddWithValue("@Site_Code", Site_Code);
+                cmd.Parameters.AddWithValue("@Site_Desc", Site_Name);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

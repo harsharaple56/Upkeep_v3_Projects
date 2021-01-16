@@ -2796,6 +2796,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    public DataSet SiteMaster_CRUD(int Site_ID, string Site_Code, string Site_Name, int CompanyID, string LoggedInUserID,string Action)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.SiteMaster_CRUD(Site_ID, Site_Code, Site_Name, CompanyID, LoggedInUserID, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
 
 
 
