@@ -1018,6 +1018,7 @@
     <Content Include="General_Masters\Print_LocationQRCode.aspx" />
     <Content Include="General_Masters\Priority_Master.aspx" />
     <Content Include="General_Masters\Retailer_Master.aspx" />
+    <Content Include="General_Masters\Site_Mst.aspx" />
     <Content Include="General_Masters\System_Settings.aspx" />
     <Content Include="General_Masters\UserGrp_Mst.aspx" />
     <Content Include="General_Masters\User_Mst.aspx" />
@@ -3951,10 +3952,10 @@
     <Content Include="obj\Debug\Tsc8ad6edcc.out" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4450,6 +4451,13 @@
     </Compile>
     <Compile Include="General_Masters\Retailer_Master.aspx.designer.cs">
       <DependentUpon>Retailer_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General_Masters\Site_Mst.aspx.cs">
+      <DependentUpon>Site_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General_Masters\Site_Mst.aspx.designer.cs">
+      <DependentUpon>Site_Mst.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\System_Settings.aspx.cs">
       <DependentUpon>System_Settings.aspx</DependentUpon>
