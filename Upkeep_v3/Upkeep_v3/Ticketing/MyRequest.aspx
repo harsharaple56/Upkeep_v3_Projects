@@ -65,8 +65,8 @@
                                                         <option value="">All</option>
                                                         <option value="Open">Open</option>
                                                         <option value="Closed">Closed</option>
-                                                        <option value="Transferred">Transferred</option>
-                                                        <option value="FaultyTicket">Faulty Ticket</option>
+                                                        <option value="Parked">Parked</option>
+                                                        <option value="Expired">Expired</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -81,9 +81,11 @@
                                                     <select class="form-control m-bootstrap-select" id="m_form_type">
                                                         <option value="">All</option>
                                                         <option value="Assigned">Assigned</option>
-                                                        <option value="Reassigned">Re-assigned</option>
-                                                        <option value="Parked">Parked</option>
-                                                        <option value="ApprovalSent">Approval Sent</option>
+                                                        <option value="Accepted">Accepted</option>
+                                                        <option value="InProgress">In Progress</option>
+                                                        <option value="Hold">Hold</option>
+                                                        <option value="Closed">Closed</option>
+                                                        <option value="Expired">Expired</option>
                                                     </select>
                                                 </div>
                                             </div>
