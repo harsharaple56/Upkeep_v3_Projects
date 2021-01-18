@@ -10,11 +10,10 @@
     <form id="form1" runat="server">
         <div>
 
-            <span>test ajay</span>
-            <p>ajay sdasd</p>
+            <h2>Sample Video</h2>
             <%--<video src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4"></video>--%>
 
-            <video width="920" height="540" controls="controls" >
+            <video width="720" height="540" controls="controls" >
                 <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4" type="audio/mp4" />
 
                 <%--<source src="http://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Ticketing_Setup.wmv" type="audio/mp4" />--%>
