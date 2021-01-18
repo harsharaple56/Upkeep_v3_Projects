@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Anjali.html" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
     <Content Include="AssetManagement\AssetManagementList.aspx" />
@@ -982,6 +983,8 @@
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
+    <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
+    <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
     <Content Include="Error_Pages\Error.html" />
     <Content Include="Feedback\AddEventQuestion.aspx" />
@@ -4206,6 +4209,20 @@
     </Compile>
     <Compile Include="Dashboard1.aspx.designer.cs">
       <DependentUpon>Dashboard1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
+      <DependentUpon>Electricity_Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.designer.cs">
+      <DependentUpon>Electricity_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Electricity_Monitoring\Electricity_Consumption.aspx.cs">
+      <DependentUpon>Electricity_Consumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electricity_Monitoring\Electricity_Consumption.aspx.designer.cs">
+      <DependentUpon>Electricity_Consumption.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error_Pages\404.aspx.cs">
       <DependentUpon>404.aspx</DependentUpon>

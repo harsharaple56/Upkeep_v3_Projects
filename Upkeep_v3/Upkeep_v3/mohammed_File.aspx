@@ -9,6 +9,19 @@
 <body>
     <form id="form1" runat="server">
         <div>
+
+            <h2>Sample Video</h2>
+            <%--<video src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4"></video>--%>
+
+            <video width="720" height="540" controls="controls" >
+                <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4" type="audio/mp4" />
+
+                <%--<source src="http://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Ticketing_Setup.wmv" type="audio/mp4" />--%>
+                <%--<source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4" type="audio/mp4" />--%>
+               <%-- <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="audio/mp4" />--%>
+                Your browser does not support the video tag.
+            </video>
+            <br/>
         </div>
     </form>
 </body>
