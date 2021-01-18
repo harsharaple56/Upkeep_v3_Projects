@@ -58,7 +58,7 @@
             $('#btnClose').click(function () {
                 var ddlAction = $('#ddlAction').val();
                 //alert(ddlAction);
-                //debugger;
+                debugger;
                 var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
                 var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
 
@@ -120,6 +120,7 @@
                 }
                 else {
                     $('.dvImageUpload').hide();
+                    $("#Is_ImageUpload_ValidFile").val("3");
                 }
             });
 
