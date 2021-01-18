@@ -18,18 +18,18 @@ namespace Upkeep_v3
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dtMenuDetails = new DataTable();
-            //dtMenuDetails = ObjUpkeep.FetchMenu(0).Tables[0];
+            //DataTable dtMenuDetails = new DataTable();
+            ////dtMenuDetails = ObjUpkeep.FetchMenu(0).Tables[0];
 
-            dtGlobal = dtMenuDetails.Copy();
+            //dtGlobal = dtMenuDetails.Copy();
 
-            DataTable dtx = new DataTable();
-            dtx = dtMenuDetails.Copy();
-            dtx.DefaultView.RowFilter = "Parent_Menu_Id = 0";
-            dtx = dtx.DefaultView.ToTable();
+            //DataTable dtx = new DataTable();
+            //dtx = dtMenuDetails.Copy();
+            //dtx.DefaultView.RowFilter = "Parent_Menu_Id = 0";
+            //dtx = dtx.DefaultView.ToTable();
 
-            rptVerMenu.DataSource = dtx;
-            rptVerMenu.DataBind();
+            //rptVerMenu.DataSource = dtx;
+            //rptVerMenu.DataBind();
             //if (!this.IsPostBack)
             //{
             //    //populateMenuItem();
