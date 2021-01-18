@@ -42,7 +42,7 @@ namespace Upkeep_v3.General_Masters
             }
             if (DelSite_ID > 0)
             {
-               // DeleteSite_Master(DelSite_ID);
+                DeleteSite_Master(DelSite_ID);
             }
 
         }
@@ -63,6 +63,39 @@ namespace Upkeep_v3.General_Masters
                         txtSitecode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Site_Code"]);
                         txtSiteDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Site_Desc"]);
                         mpeCategoryMaster.Show();
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public void DeleteSite_Master(int Site_ID)
+        {
+            try
+            {
+                ds = ObjUpkeepCC.SiteMaster_CRUD(Site_ID, "", "", CompanyID, LoggedInUserID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        //Session["Site_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Site_ID"]);
+                        //txtSitecode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Site_Code"]);
+                        //txtSiteDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Site_Desc"]);
+                        //mpeCategoryMaster.Show();
                     }
                     else
                     {
@@ -193,7 +226,7 @@ namespace Upkeep_v3.General_Masters
                             string Site_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Site_Desc"]);
                            
 
-                            data += "<tr><td>" + Site_Code + "</td><td>" + Site_Desc + "</td><td><a href='Site_Mst.aspx?Site_ID=" + SiteID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Site_Mst.aspx.aspx?DelSite_ID=" + SiteID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Site_Code + "</td><td>" + Site_Desc + "</td><td><a href='Site_Mst.aspx?Site_ID=" + SiteID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Site_Mst.aspx?DelSite_ID=" + SiteID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
