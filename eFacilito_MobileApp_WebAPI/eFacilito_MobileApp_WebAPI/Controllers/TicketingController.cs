@@ -1396,7 +1396,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             DataSet DsDataSet = new DataSet();
 
             string StrLocConnection = null;
-            //List<clsTicketSearch> TicketSearch = new List<clsTicketSearch>();
+            List<ClsMyActionableTicket> TicketSearch = new List<ClsMyActionableTicket>();
 
             try
             {
@@ -1417,36 +1417,60 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     {
                         if (DsDataSet.Tables[0].Rows.Count > 0)
                         {
-                            Models.clsTicketSearch TicketSearch = new Models.clsTicketSearch();
-                            {
-                                TicketSearch.Status = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
-                                TicketSearch.Message = Convert.ToString(DsDataSet.Tables[0].Rows[0]["StatusMsg"]);
-                                TicketSearch.TicketDetails = new List<ClsMyActionableTicket>();
+                            //Models.clsTicketSearch TicketSearch = new Models.clsTicketSearch();
+                            //{
+                            //    TicketSearch.Status = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["Status"]);
+                            //    TicketSearch.Message = Convert.ToString(DsDataSet.Tables[0].Rows[0]["StatusMsg"]);
+                            //    TicketSearch.TicketDetails = new List<ClsMyActionableTicket>();
 
-                                if (DsDataSet.Tables.Count > 1)
-                                {
-                                    if (DsDataSet.Tables[1].Rows.Count > 0)
-                                    {
-                                        TicketSearch.TicketDetails.Add(new ClsMyActionableTicket
-                                        {
-                                            TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_ID"]),
-                                            TicketCode = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Code"]),
-                                            LocID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Id"]),
-                                            Loc_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Desc"]),
-                                            CategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_ID"]),
-                                            Category_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_Desc"]),
-                                            SubCategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_ID"]),
-                                            SubCategory_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_Desc"]),
-                                            Ticket_Date = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_Date"]),
-                                            Ticket_Status = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Status"]),
-                                            Level = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Level"]),
-                                            Ticket_ActionStatus = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_ActionStatus"]),
-                                            Ticket_Message = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Message"]),
-                                            Ticket_ImagePath = Convert.ToString(DsDataSet.Tables[1].Rows[0]["ImagePath"]),
-                                        });
-                                    }
-                                }
-                            };
+                            TicketSearch = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                            select new ClsMyActionableTicket
+                                            {
+                                                TicketID = Convert.ToString(p.Field<decimal>("Ticket_ID")),
+                                                TicketCode = p.Field<string>("Tkt_Code"),
+                                                LocID = Convert.ToString(p.Field<decimal>("Loc_Id")),
+                                                Loc_Desc = p.Field<string>("Loc_Desc"),
+                                                CategoryID = Convert.ToString(p.Field<decimal>("Category_ID")),
+                                                Category_Desc = p.Field<string>("Category_Desc"),
+                                                SubCategoryID = Convert.ToString(p.Field<decimal>("SubCategory_ID")),
+                                                SubCategory_Desc = p.Field<string>("SubCategory_Desc"),
+                                                Ticket_Date = p.Field<string>("Ticket_Date"),
+                                                Ticket_Status = p.Field<string>("Tkt_Status"),
+                                                Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
+                                                Ticket_Message = p.Field<string>("Tkt_Message"),
+                                                Ticket_ImagePath = p.Field<string>("ImagePath"),
+                                                Level = Convert.ToString(p.Field<Int32>("Tkt_Level"))
+
+                                            }).ToList();
+
+
+
+
+
+                            //if (DsDataSet.Tables.Count > 1)
+                            //    {
+                            //        if (DsDataSet.Tables[1].Rows.Count > 0)
+                            //        {
+                            //            TicketSearch.TicketDetails.Add(new ClsMyActionableTicket
+                            //            {
+                            //                TicketID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_ID"]),
+                            //                TicketCode = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Code"]),
+                            //                LocID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Id"]),
+                            //                Loc_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Loc_Desc"]),
+                            //                CategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_ID"]),
+                            //                Category_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Category_Desc"]),
+                            //                SubCategoryID = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_ID"]),
+                            //                SubCategory_Desc = Convert.ToString(DsDataSet.Tables[1].Rows[0]["SubCategory_Desc"]),
+                            //                Ticket_Date = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Ticket_Date"]),
+                            //                Ticket_Status = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Status"]),
+                            //                Level = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Level"]),
+                            //                Ticket_ActionStatus = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_ActionStatus"]),
+                            //                Ticket_Message = Convert.ToString(DsDataSet.Tables[1].Rows[0]["Tkt_Message"]),
+                            //                Ticket_ImagePath = Convert.ToString(DsDataSet.Tables[1].Rows[0]["ImagePath"]),
+                            //            });
+                            //        }
+                            //    }
+                            //};
 
                             return Request.CreateResponse(HttpStatusCode.OK, TicketSearch);
 
@@ -1499,7 +1523,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
                 ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
-                
+
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_SYS_Settings_API", ObjLocSqlParameter);
 
                 if (DsDataSet != null)

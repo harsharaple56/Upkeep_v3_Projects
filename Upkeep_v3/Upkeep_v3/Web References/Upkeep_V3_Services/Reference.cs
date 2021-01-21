@@ -194,6 +194,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback SiteMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
@@ -645,6 +647,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event SiteMaster_CRUDCompletedEventHandler SiteMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -3741,6 +3746,43 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.SiteMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SiteMaster_CRUDCompleted(this, new SiteMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_Electricity_Category", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
+            object[] results = this.Invoke("INSERT_Electricity_Category", new object[] {
+                        Electricity_CatXML,
+                        CompanyID,
+                        LoggedInUserID,
+                        Electricity_Cat_ID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
+            this.INSERT_Electricity_CategoryAsync(Electricity_CatXML, CompanyID, LoggedInUserID, Electricity_Cat_ID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction, object userState) {
+            if ((this.INSERT_Electricity_CategoryOperationCompleted == null)) {
+                this.INSERT_Electricity_CategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_Electricity_CategoryOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_Electricity_Category", new object[] {
+                        Electricity_CatXML,
+                        CompanyID,
+                        LoggedInUserID,
+                        Electricity_Cat_ID,
+                        strAction}, this.INSERT_Electricity_CategoryOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_Electricity_CategoryOperationCompleted(object arg) {
+            if ((this.INSERT_Electricity_CategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9091,6 +9133,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal SiteMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void INSERT_Electricity_CategoryCompletedEventHandler(object sender, INSERT_Electricity_CategoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class INSERT_Electricity_CategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

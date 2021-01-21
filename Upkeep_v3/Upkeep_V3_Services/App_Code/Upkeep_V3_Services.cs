@@ -2812,11 +2812,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
+    #region Electricity Monitoring
 
+    [WebMethod]
+    public DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID,string strAction)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.INSERT_Electricity_Category(Electricity_CatXML, CompanyID, LoggedInUserID, Electricity_Cat_ID, strAction);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
-
-
-
+    #endregion
 
 }
 

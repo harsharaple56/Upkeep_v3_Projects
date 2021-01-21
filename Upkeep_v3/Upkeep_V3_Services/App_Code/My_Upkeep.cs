@@ -2526,10 +2526,25 @@ public class My_Upkeep
     }
 
 
+    #region Electricity Monitoring
+
+    public DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID,int Electricity_Cat_ID,string strAction)
+    {
+        DataSet dsElectricity = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            dsElectricity = ObjUpkeepCC_BL.INSERT_Electricity_Category(Electricity_CatXML, CompanyID, LoggedInUserID, Electricity_Cat_ID, strAction, StrConn);
+            return dsElectricity;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
-
-
-
+    #endregion
 
 }
