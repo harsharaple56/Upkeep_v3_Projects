@@ -1,0 +1,67 @@
+/****** Object:  View [dbo].[viewbrandopening]    Script Date: 09/03/2012 20:05:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[viewbrandopening]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW [dbo].[viewbrandopening]
+GO
+/****** Object:  View [dbo].[vw_fetchdistinctVariance]    Script Date: 09/03/2012 20:05:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_fetchdistinctVariance]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW [dbo].[vw_fetchdistinctVariance]
+GO
+/****** Object:  View [dbo].[vw_FetchVarianceTable]    Script Date: 09/03/2012 20:05:04 ******/
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_FetchVarianceTable]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW [dbo].[vw_FetchVarianceTable]
+GO
+/****** Object:  View [dbo].[viewbrandopening]    Script Date: 09/03/2012 20:05:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[viewbrandopening]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+EXEC dbo.sp_executesql @statement = N'CREATE view [dbo].[viewbrandopening]
+As
+select bh.brandid, bh.BrandDesc ,c.CategorySizeLinkID,c.Alias,ca.CategoryDesc,l.LicenseDesc  from tbl_brandopening bo
+join tbl_brandhead bh on bh.brandid=bo.brandid
+join Tbl_CategorySizeLinkup c on bo.CategorySizeLinkUpID=c.CategorySizeLinkID
+join tbl_category ca on ca.CategoryID=bh.CategoryID
+join tbl_license l on l.LicenseID=bo.LicenseID
+--order by bh.BrandDesc asc
+'
+GO
+/****** Object:  View [dbo].[vw_fetchdistinctVariance]    Script Date: 09/03/2012 20:05:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_fetchdistinctVariance]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+EXEC dbo.sp_executesql @statement = N'create view [dbo].[vw_fetchdistinctVariance] 
+as
+select distinct LicenseID,VarDate from tbl_Variance
+'
+GO
+/****** Object:  View [dbo].[vw_FetchVarianceTable]    Script Date: 09/03/2012 20:05:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_FetchVarianceTable]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+EXEC dbo.sp_executesql @statement = N'Create View [dbo].[vw_FetchVarianceTable]
+as
+select VarianceID, LicenseID, VarDate, BrandOpeningID,
+case when varbottle<>-99999 then varbottle end as Bottle, 
+case when varspeg<>-99999 then varspeg end as sPeg, 
+case when varglass<>-99999 then varglass end as Glass
+from tbl_Variance
+'
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[vw_BrandOpeningDetails]') AND OBJECTPROPERTY(id, N'IsView') = 1)
+DROP VIEW [dbo].[vw_BrandOpeningDetails]
+GO
+
+Create view vw_BrandOpeningDetails
+As
+Select l.licenseid, l.licensedesc, bo.brandopeningid, bo.CategorySizeLinkUpID, bh.branddesc, lnk.alias
+from tbl_Brandopening bo
+join tbl_categorysizelinkup lnk on bo.CategorySizeLinkUpID = lnk.CategorySizeLinkID and bo.licenseid = lnk.licenseid
+join tbl_brandHead bh on bh.brandid = bo.brandid
+join tbl_license l on l.licenseid = lnk.licenseid
+go

@@ -1,0 +1,91 @@
+﻿###### INVENTORY #######
+
+--select * from v_mi_inventory_item;
+--select * from v_mi_inventory order by business_date desc;
+--select * from v_mi_item where item_id = 1663;
+select
+hd.inventory_id, hd.inventory_name, hd.business_date, hd.costcenter_id, cnt.costcenter_name, itm.item_id, itm.item_no, itm.item_name, dtl.qty_theo, dtl.qty_actual, dtl.cos, u.qty_contained_bu,
+temp.item_group_id, temp.item_group_name,  temp.major_group_id, temp.major_group_name, temp.over_group_id, temp.over_group_name
+from v_mi_inventory hd
+join v_mi_inventory_item dtl on hd.inventory_id = dtl.inventory_id
+join v_mi_item itm on itm.item_id = dtl.item_id
+join v_mi_unit u on u.unit_id = itm.unit_id_store
+join v_mi_costcenter cnt on cnt.costcenter_id = hd.costcenter_id
+join (SELECT itm.item_id, itm.item_name, itm.item_no, itm.item_group_id, grp.item_group_name,  maj.major_group_id, maj.major_group_name, ovr.over_group_id, ovr.over_group_name
+FROM V_MI_ITEM itm
+left outer join v_mi_item_group grp on itm.item_group_id = grp.item_group_id
+left outer join v_mi_major_group maj on maj.major_group_id = grp.major_group_id
+left outer join v_mi_over_group ovr on ovr.over_group_id = maj.over_group_id) temp on temp.item_id = itm.item_id
+where hd.business_date >= to_date('1-Apr-2013', 'dd-mm-yyyy') and dtl.qty_theo <> 0 and dtl.qty_actual <> 0
+--hd.inventory_id = 5005 
+--and itm.item_name in ('BEER CARLSBERG  PREMIUM 330 ml', 'SCOTCH DELUX CHIVAS REGAL WHISKY 12 Y.O750ML','SCOTCH MALT GLENLIVET WHISKY  750ML','MARLBORO LIGHTS 20S', 'CLASSIC MILDS 20S', 'CANS DIET PEPSI 250ML') 
+order by hd.business_date, hd.inventory_id; --and dtl.item_id = 1663;
+
+
+
+select
+hd.inventory_id, hd.inventory_name, to_char(hd.business_date, 'mm/dd/yyyy'), hd.costcenter_id, cnt.costcenter_name, itm.item_id, itm.item_no, itm.item_name, dtl.qty_theo, dtl.qty_actual, dtl.cos, u.qty_contained_bu,
+temp.item_group_id, temp.item_group_name,  temp.major_group_id, temp.major_group_name, temp.over_group_id, temp.over_group_name
+from v_mi_inventory hd
+join v_mi_inventory_item dtl on hd.inventory_id = dtl.inventory_id
+join v_mi_item itm on itm.item_id = dtl.item_id
+join v_mi_unit u on u.unit_id = itm.unit_id_store
+join v_mi_costcenter cnt on cnt.costcenter_id = hd.costcenter_id
+join (SELECT itm.item_id, itm.item_name, itm.item_no, itm.item_group_id, grp.item_group_name,  maj.major_group_id, maj.major_group_name, ovr.over_group_id, ovr.over_group_name
+FROM V_MI_ITEM itm
+left outer join v_mi_item_group grp on itm.item_group_id = grp.item_group_id
+left outer join v_mi_major_group maj on maj.major_group_id = grp.major_group_id
+left outer join v_mi_over_group ovr on ovr.over_group_id = maj.over_group_id) temp on temp.item_id = itm.item_id
+where dtl.qty_theo <> 0 and dtl.qty_actual <> 0 and 
+hd.business_date = to_date('30-May-2013', 'dd-mm-yyyy')
+order by hd.business_date, hd.inventory_id;
+
+--'27-Apr-2013'
+--'28-Apr-2013' 
+--'29-Apr-2013' 
+--'30-May-2013'
+
+###### PURCHASE #######
+
+
+select hd.invoice_id, hd.invoice_name, hd.vendor_id, hd.business_date, dtl.costcenter_id, cnt.costcenter_name,
+itm.item_id, itm.item_no, itm.item_name, dtl.qty_delivered, dtl.qty_delivered_bu, dtl.net_total, dtl.discount, dtl.vat, dtl.gross_total,
+temp.item_group_id, temp.item_group_name,  temp.major_group_id, temp.major_group_name, temp.over_group_id, temp.over_group_name
+--select sum(dtl.qty_delivered_bu)
+--select hd.*, dtl.*
+from v_mi_invoice hd 
+join v_mi_invoice_detail dtl on hd.invoice_id = dtl.invoice_id
+join v_mi_item itm on itm.item_id = dtl.item_id
+join v_mi_unit u on u.unit_id = itm.unit_id_store
+join v_mi_costcenter cnt on cnt.costcenter_id = dtl.costcenter_id
+join (SELECT itm.item_id, itm.item_name, itm.item_no, itm.item_group_id, grp.item_group_name,  maj.major_group_id, maj.major_group_name, ovr.over_group_id, ovr.over_group_name
+FROM V_MI_ITEM itm
+left outer join v_mi_item_group grp on itm.item_group_id = grp.item_group_id
+left outer join v_mi_major_group maj on maj.major_group_id = grp.major_group_id
+left outer join v_mi_over_group ovr on ovr.over_group_id = maj.over_group_id) temp on temp.item_id = itm.item_id
+where 
+--dtl.costcenter_id = 12
+--and lower(itm.item_name) like '%mineral water 20ltr bibos%'
+--and hd.business_date between to_date('29-Mar-2013', 'dd-mm-yyyy') and to_date('27-Apr-2013', 'dd-mm-yyyy')
+hd.business_date >= to_date('1-Apr-2013', 'dd-mm-yyyy')
+order by hd.business_date, hd.invoice_id;
+
+
+###### PURCHASE #######
+
+select hd.transfer_id, hd.transfer_name, hd.business_date, fcnt.costcenter_name, tcnt.costcenter_name, 
+itm.item_id, itm.item_no, itm.item_name, dtl.qty_transfered, dtl.qty_transfered_bu, dtl.cos, dtl.qty_requested,
+temp.item_group_id, temp.item_group_name,  temp.major_group_id, temp.major_group_name, temp.over_group_id, temp.over_group_name
+from v_mi_transfer hd
+join v_mi_transfer_detail dtl on hd.transfer_id = dtl.transfer_id
+join v_mi_item itm on itm.item_id = dtl.item_id
+join v_mi_costcenter fcnt on fcnt.costcenter_id = dtl.costcenter_id_from
+join v_mi_costcenter tcnt on tcnt.costcenter_id = dtl.costcenter_id_to
+join (SELECT itm.item_id, itm.item_name, itm.item_no, itm.item_group_id, grp.item_group_name,  maj.major_group_id, maj.major_group_name, ovr.over_group_id, ovr.over_group_name
+FROM V_MI_ITEM itm
+left outer join v_mi_item_group grp on itm.item_group_id = grp.item_group_id
+left outer join v_mi_major_group maj on maj.major_group_id = grp.major_group_id
+left outer join v_mi_over_group ovr on ovr.over_group_id = maj.over_group_id) temp on temp.item_id = itm.item_id
+where hd.business_date >= to_date('1-Mar-2013', 'dd-mm-yyyy')
+--and itm.item_name in ('BEER CARLSBERG  PREMIUM 330 ml', 'SCOTCH DELUX CHIVAS REGAL WHISKY 12 Y.O750ML','SCOTCH MALT GLENLIVET WHISKY  750ML','MARLBORO LIGHTS 20S', 'CLASSIC MILDS 20S', 'CANS DIET PEPSI 250ML') 
+order by hd.business_date, hd.transfer_id;
