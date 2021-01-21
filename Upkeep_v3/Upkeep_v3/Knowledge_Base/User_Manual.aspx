@@ -167,7 +167,7 @@
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed-" role="tab" id="m_section_1_content_1_head" data-toggle="collapse" href="#m_section_1_content_1_body">
-                                                <span class="m-accordion__item-title">Sample Video</span>
+                                                <span class="m-accordion__item-title">Getting Started</span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
                                             <div class="m-accordion__item-body collapse show" id="m_section_1_content_1_body" role="tabpanel" aria-labelledby="m_section_1_content_1_head" data-parent="#m_section_1_content">
@@ -177,6 +177,12 @@
                                                         <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/test_videos.mp4" type="audio/mp4" />
                                                         Your browser does not support the video tag.
                                                     </video>
+                                                    <br />
+                                                    </br>
+
+                                                    <p>
+                                                       
+                                                    </p>
 
                                                 </div>
                                             </div>
@@ -187,34 +193,107 @@
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_2_head" data-toggle="collapse" href="#m_section_1_content_2_body">
-                                                <span class="m-accordion__item-title">It has survived not only five centuries</span>
+                                                <span class="m-accordion__item-title">eFacilito User-Manual<h6>2021</h6></span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_1_content_2_body" role="tabpanel" aria-labelledby="m_section_1_content_2_head" data-parent="#m_section_1_content">
                                                 <div class="m-accordion__item-content">
                                                     <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever
+                                                       <h2><u>Ticketing</u></h2>
+                                                     
+                                                        Manage your facility’s daily complaints & tasks in the form of Ticket , assigned to respective Departments such as Operations , Engineering & Housekeeping.
+                                                       <br /> &nbsp;<h4>Log Complaints & ensure a progressive TAT</h4>
                                                     </p>
                                                     <p>
-                                                        Since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into nto Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha.
+                                                       <ol>
+                                                           <li>Manage your facility's daily complaints &  tasks in the form of Ticket</li>
+                                                           <li>Assign Tickets to respective Departments & Users</li>
+                                                           <li>Automated Escalations & Notifications on raised tickets</li>
+                                                           <li>Convert Checklist flags to tickets</li>
+                                                           <li>Detailed Category-wise , Department-wise & User Ticket Downtime Reports. </li>
+                                                       </ol>
                                                     </p>
                                                     <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
+                                                        <h2><u>Login Process</u> </h2>
+                                                        <h6>Credentials for eFacilito will be provided to users by Administration / Operations Department</h6>
+
+
                                                     </p>
                                                     <p>
-                                                        It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-																	book. It has survived not only five centuries, but also the leap into
+                                                        <h4>How to Sign In ?</h4>
+                                                        <ul>
+                                                            <li>Enter your Company Code in Company Code section eg. PHXKURLA </li>
+                                                            <li>Once you enter your company code logo your company will be fetched </li>
+                                                            <li>Select Employee Or Retailer</li>
+                                                            <li>Enter your unique credentials                                                   eg. Username - abc@companyname.com                    password - 123456</li>
+                                                            <li>Finally Click on SIGN IN</li>
+                                                        </ul>
+                                                        <h2><u>Forget Password</u></h2>
+                                                        <h6>What If User Forget Password.There Is Option Of Forget Password When User Login</h6>
+                                                        
+                                                        <ul>
+                                                            <li>Click On Forget Password</li>
+                                                            <li>User Needs To Enter Email Id Which Is Linked With The Account </li>
+                                                            <li>OTP Will BE Generated On User Email Id</li>
+                                                            <li>Enter The OTP</li>
+                                                            <li>Enter New Password And Confirm It Again</li>
+                                                            <li>Click On Submit</li>
+                                                            <li>Back To Login</li>
+                                                        </ul>
+
                                                     </p>
                                                     <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
+                                                       <h2><u>Dashboard</u> </h2>
+                                                        &nbsp
+                                                        This will help users to quickly gain insights into the most important aspects of their data. They get real time insights and competitive analyses, and use them to identify items that require urgent action, streamlining workflows and properly purposing resources.
+                                                     
+                                                          <br />&nbsp <h4>What Is On The Dashboard ?</h4>
+                                                        <ul>
+                                                            <li>In Ticketing users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed from their Account</li>
+                                                            <li>In Checklist users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed </li>
+                                                            <li>In Work Permit users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed          </li>
+                                                            <li>In Gate Pass users will be able to check overall status of Tickets and also how many tickets are   Assigned,Accepted,In Process,On Hold and Closed</li>
+                                                        </ul>
+                                                        <h2><u>Transactions</u> </h2>
+                                                        This will help users to quickly gain insights into the most important aspects of their data. They get real time insights and competitive analyses, and use them to identify items that require urgent action, streamlining workflows and properly purposing resources.
+                                                        <br />&nbsp  <h4>How To Raise a Ticket ?</h4>
+                                                        <ul>
+                                                            <li>Click On Ticketing Module</li>
+                                                            <li>Click On My Tickets </li>
+                                                            <li>Click On New Request Button</li>
+                                                        </ul>
+                                                            <h6>My Request Details Gets Displayed</h6>
+                                                        <ul>
+                                                            <li>User Needs to Fill This Form For Raising Any Request</li>
+                                                            <li>Select the location eg: PMC > GRD FLOOR > PEST CRTL > 2ND FLOOR</li>
+                                                            <li>Select Category eg. Housekeeping</li>
+                                                            <li>Then Select Sub-Category eg. Chairs to be cleaned </li>
+                                                            <li>Insert Image against the ticket by clicking On Select Image   </li>
+                                                            <li>After Selecting Images Click On Done </li>
+                                                            <li>Finally Click On Save  </li>
+                                                        </ul>
+                                                        <h4>Where User Can See The Raised Ticket ?</h4>
+                                                        <ul>
+                                                            <li>Click On Ticketing Module</li>
+                                                            <li>Click On My Tickets</li>
+                                                            <li>Enter The Unique Ticket No. Generated While Raising Ticket In the Search Box</li>
+                                                        </ul>
+                                                      
+                                                    &nbsp<br />
+                                                        <h4>How And From Where Take Action On Raised Tickets ?</h4>
+                                                        <ul>
+                                                            <li>Click On Ticket Module</li>
+                                                            <li>Click On My Actionable</li>
+                                                        </ul>
+                                                        <h6>Here User Can See All The Raised Ticket</h6>
+                                                        <ul>
+                                                            <h6><u>User Can Take Action Here</u></h6>
+                                                            <li>Open</li>
+                                                            <li>hold</li>
+                                                            <li>Closed</li>
+                                                        </ul>
+
+                                                    
                                                     </p>
                                                 </div>
                                             </div>
