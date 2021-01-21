@@ -1,0 +1,23 @@
+﻿--select * from tbl_bulkinsertfilepath
+
+update tbl_bulkinsertfilepath
+set SelectQuery = 'select r.recipe_id, r.recipe_name, sgrp.sales_item_group_name, rgrp.recipe_group_name, r.number_of_portions,     
+r.cos, d.unit_id, d.qty_actual,d.qty_actual_bu,d.qty_potential,d.qty_potential_bu,d.item_id,temp.item_name, temp.item_no,     
+temp.item_group_id, temp.item_group_name,  temp.major_group_id, temp.major_group_name, temp.over_group_id, temp.over_group_name,     
+s.costcenter_id_sales, rv.costcenter_name, s.SALES_ITEM_DETAIL_PLU     
+from v_mi_recipe r     
+join v_mi_recipe_detail d on r.recipe_id = d.recipe_id     
+join v_mi_sales_item_detail s on d.recipe_id = s.recipe_id     
+join v_mi_major_group grp on grp.major_group_id=r.major_group_id     
+join v_mi_sales_item_group sgrp on r.sales_item_group_id=sgrp.sales_item_group_id     
+join v_mi_recipe_group rgrp on r.recipe_group_id=rgrp.recipe_group_id     
+join v_mi_costcenter rv on rv.costcenter_id = s.costcenter_id_sales     
+left outer join (SELECT itm.item_id, itm.item_name, itm.item_no, itm.item_group_id, grp.item_group_name,      
+maj.major_group_id, maj.major_group_name, ovr.over_group_id, ovr.over_group_name     
+FROM V_MI_ITEM itm     
+left outer join v_mi_item_group grp on itm.item_group_id = grp.item_group_id     
+left outer join v_mi_major_group maj on maj.major_group_id = grp.major_group_id     
+left outer join v_mi_over_group ovr on ovr.over_group_id = maj.over_group_id) temp on temp.item_id = d.item_id     
+where lower(r.active) <> ''s''     
+order by r.recipe_name'
+where operationname = 'DailyRecipe'
