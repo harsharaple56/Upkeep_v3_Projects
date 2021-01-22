@@ -360,6 +360,13 @@ namespace Upkeep_v3.Ticketing
                     if (dsTicket.Tables[1].Rows.Count > 0)
                     {
                         Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
+
+                        if (Convert.ToInt32(dsTicket.Tables[1].Rows[0]["ShowAction"]) == 0)
+                        {
+                            dvApprovalDetails.Attributes.Add("style","display:none");
+                            dvClose.Attributes.Add("style", "display:none");
+                        }
+
                     }
                     if (dsTicket.Tables.Count > 2)
                     {

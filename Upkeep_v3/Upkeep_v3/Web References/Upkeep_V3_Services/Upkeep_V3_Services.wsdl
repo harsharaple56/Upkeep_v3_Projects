@@ -1953,6 +1953,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="INSERT_Electricity_Category">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Electricity_CatXML" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Electricity_Cat_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_Electricity_CategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -4501,6 +4526,12 @@
   <wsdl:message name="SiteMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="INSERT_Electricity_CategorySoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_Electricity_Category" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_Electricity_CategorySoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5333,6 +5364,10 @@
     <wsdl:operation name="SiteMaster_CRUD">
       <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
       <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
+      <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6405,6 +6440,15 @@
     </wsdl:operation>
     <wsdl:operation name="SiteMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7902,6 +7946,15 @@
     </wsdl:operation>
     <wsdl:operation name="SiteMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -3549,6 +3549,36 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        #region Electricity Monitoring
+
+        public DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID,int Electricity_Cat_ID,string strAction, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_Electricity_Category", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Electricity_CatXML", Electricity_CatXML);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Electricity_Cat_ID", Electricity_Cat_ID);
+                cmd.Parameters.AddWithValue("@strAction", strAction);
+                
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        #endregion
 
     }
 
