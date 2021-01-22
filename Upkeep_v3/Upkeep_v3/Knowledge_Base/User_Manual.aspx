@@ -51,14 +51,14 @@
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_2" href="#">
-                                            <span class="m-nav__link-text">Google Maps</span>
+                                            <span class="m-nav__link-text">Checklist</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link collapsed" role="tab" id="m_nav_link_1" data-toggle="collapse" href="#m_nav_sub_1" aria-expanded=" false">
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
-                                                    <span class="m-nav__link-text">Datatables</span>
+                                                    <span class="m-nav__link-text">WorkPermit</span>
                                                 </span>
                                             </span>
                                             <span class="m-nav__link-arrow"></span>
@@ -90,14 +90,14 @@
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link  m-tabs__item" data-tab-target="#m_section_6" href="#">
-                                            <span class="m-nav__link-text">Theme Configuration</span>
+                                            <span class="m-nav__link-text">GatePass</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_2" aria-expanded="  false">
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
-                                                    <span class="m-nav__link-text">Top Menu</span>
+                                                    <span class="m-nav__link-text">Feedback</span>
                                                 </span>
                                             </span>
                                             <span class="m-nav__link-arrow"></span>
@@ -129,27 +129,27 @@
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link" data-toggle="pill" href="#">
-                                            <span class="m-nav__link-text">Sidebar Menu</span>
+                                            <span class="m-nav__link-text">Asset Manager</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link" data-toggle="pill" href="#">
-                                            <span class="m-nav__link-text">Horizontal Menu</span>
+                                            <span class="m-nav__link-text">VMS</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a class="m-nav__link" data-toggle="pill" href="#">
-                                            <span class="m-nav__link-text">GULP Tasks</span>
+                                            <span class="m-nav__link-text">General Setup</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a href="" class="m-nav__link">
-                                            <span class="m-nav__link-text">Coding & Extending</span>
+                                            <span class="m-nav__link-text">Rights Management</span>
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
                                         <a href="" class="m-nav__link">
-                                            <span class="m-nav__link-text">References</span>
+                                            <span class="m-nav__link-text">Inventory</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -292,8 +292,52 @@
                                                             <li>hold</li>
                                                             <li>Closed</li>
                                                         </ul>
-
-                                                    
+                                                        <h2><u>Ticket Category</u></h2>
+                                                        &nbsp <br />
+                                                        <h4>How To Create Category ?</h4>
+                                                        <ul>
+                                                            <li>Click On Ticket Module</li>
+                                                            <li>Click On Ticket Category</li>
+                                                            <li>Click On New Cattegory Button</li>
+                                                        </ul>
+                                                            <h6>Category Master Page Gets Displayed</h6>
+                                                    <ul>
+                                                        <li>Select Department From DropDown List</li>
+                                                        <li>Enter The Category Description</li>
+                                                        <li>Click On Save</li>
+                                                    </ul>
+                                                     <h2><u>Ticket Sub Category</u></h2>
+                                                        <h4>How To Create Sub Category ?</h4>
+                                                        <ul>
+                                                            <li>Click On Ticket Module</li>
+                                                            <li>Click On Ticket Sub Category</li>
+                                                            <li>Click On Add SubCategory Button</li>
+                                                        </ul>
+                                                        <h6>Category Master Page Gets Displayed</h6>
+                                                        <ul>
+                                                            <li>Select Category</li>
+                                                            <li>Enter Sub Category Description</li>
+                                                            <li>Click On Save</li>
+                                                        </ul>
+                                                        <h2><u>Configure Workflow</u></h2>
+                                                        <ul>
+                                                            <li>Click On Ticket Moduke</li>
+                                                            <li>Click On Configure Workflow</li>
+                                                            <li>Click On New Workflow Button</li>
+                                                        </ul>
+                                                        <h4>Workflow Details Page Gets Displayed</h4>
+                                                        <ul>
+                                                            <li>Enter Workflow Description</li>
+                                                            <li>Select Category From DropDown List</li>
+                                                            <li>Select Sub Category From DropDown List</li>
+                                                            <li>Enter No.Of Levels</li>
+                                                            <li>Click On Make Combination</li>
+                                                            <li>Level Will Get Created In The Form Of Tables</li>
+                                                            <li>Select Action Group</li>
+                                                            <li>Click On Checkboxes Email SMS Notification As Per User Requirment</li>
+                                                            <li>Enter Time To Each Level</li>
+                                                            <li>Click On Save</li>
+                                                        </ul>
                                                     </p>
                                                 </div>
                                             </div>
@@ -304,7 +348,7 @@
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_3_head" data-toggle="collapse" href="#m_section_1_content_3_body">
-                                                <span class="m-accordion__item-title">Type and scrambled it to make a type specimen book</span>
+                                                <span class="m-accordion__item-title">Checklist</span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_1_content_3_body" role="tabpanel" aria-labelledby="m_section_1_content_3_head" data-parent="#m_section_1_content">
