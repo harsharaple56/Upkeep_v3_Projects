@@ -39,6 +39,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="m-portlet__body">
                     <div class="row">
                         <div class="col-xl-3">
@@ -49,109 +50,63 @@
                                             <span class="m-nav__link-text">Ticketing</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_2" href="#">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_2" href="#">
                                             <span class="m-nav__link-text">Checklist</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link collapsed" role="tab" id="m_nav_link_1" data-toggle="collapse" href="#m_nav_sub_1" aria-expanded=" false">
-                                            <span class="m-nav__link-title">
-                                                <span class="m-nav__link-wrap">
+                                         <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_3" href="#">
+                                   
                                                     <span class="m-nav__link-text">WorkPermit</span>
-                                                </span>
-                                            </span>
-                                            <span class="m-nav__link-arrow"></span>
                                         </a>
-                                        <ul class="m-nav__sub collapse" id="m_nav_sub_1" role="tabpanel" aria-labelledby="m_nav_link_1" data-parent="#m_nav">
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_3" href="#">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--dot"><span></span></span>
-                                                    <span class="m-nav__link-text">Ul Fatures</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_4" href="#">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--dot"><span></span></span>
-                                                    <span class="m-nav__link-title">
-                                                        <span class="m-nav__link-wrap">
-                                                            <span class="m-nav__link-text">Configuration</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_5" href="#">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--dot"><span></span></span>
-                                                    <span class="m-nav__link-text">Menu Options</span>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link  m-tabs__item" data-tab-target="#m_section_6" href="#">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_4" href="#">
                                             <span class="m-nav__link-text">GatePass</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_2" aria-expanded="  false">
-                                            <span class="m-nav__link-title">
-                                                <span class="m-nav__link-wrap">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_5" href="#">
                                                     <span class="m-nav__link-text">Feedback</span>
-                                                </span>
-                                            </span>
-                                            <span class="m-nav__link-arrow"></span>
                                         </a>
-                                        <ul class="m-nav__sub collapse" id="m_nav_sub_2" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link" data-toggle="tab" href="#m_section_7" role="tab">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
-                                                    <span class="m-nav__link-text">New</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link" data-toggle="tab" href="#m_section_8" role="tab">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
-                                                    <span class="m-nav__link-title">
-                                                        <span class="m-nav__link-wrap">
-                                                            <span class="m-nav__link-text">Pending</span>
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="m-nav__item">
-                                                <a class="m-nav__link" data-toggle="tab" href="#m_section_9" role="tab">
-                                                    <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
-                                                    <span class="m-nav__link-text">Replied</span>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </li>
+
+                                       
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link" data-toggle="pill" href="#">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_6" href="#">
                                             <span class="m-nav__link-text">Asset Manager</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link" data-toggle="pill" href="#">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_7" href="#">
                                             <span class="m-nav__link-text">VMS</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a class="m-nav__link" data-toggle="pill" href="#">
+                                        <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_8" href="#">
                                             <span class="m-nav__link-text">General Setup</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
+                                         <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_9" href="#">
                                             <span class="m-nav__link-text">Rights Management</span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
+                                         <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_10" href="#">
                                             <span class="m-nav__link-text">Inventory</span>
                                         </a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -166,11 +121,11 @@
 
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed-" role="tab" id="m_section_1_content_1_head" data-toggle="collapse" href="#m_section_1_content_1_body">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_1_head" data-toggle="collapse" href="#m_section_1_content_1_body">
                                                 <span class="m-accordion__item-title">Getting Started</span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
-                                            <div class="m-accordion__item-body collapse show" id="m_section_1_content_1_body" role="tabpanel" aria-labelledby="m_section_1_content_1_head" data-parent="#m_section_1_content">
+                                            <div class="m-accordion__item-body collapse" id="m_section_1_content_1_body" role="tabpanel" aria-labelledby="m_section_1_content_1_head" data-parent="#m_section_1_content">
                                                 <div class="m-accordion__item-content">
 
                                                     <video width="720" height="540" controls="controls">
@@ -189,20 +144,19 @@
                                         </div>
 
                                         <!--end::Item-->
-
-                                        <!--begin::Item-->
+                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_2_head" data-toggle="collapse" href="#m_section_1_content_2_body">
-                                                <span class="m-accordion__item-title">eFacilito User-Manual<h6>2021</h6></span>
+                                                <span class="m-accordion__item-title">Ticketing</span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_1_content_2_body" role="tabpanel" aria-labelledby="m_section_1_content_2_head" data-parent="#m_section_1_content">
                                                 <div class="m-accordion__item-content">
                                                     <p>
-                                                       <h2><u>Ticketing</u></h2>
+                                                       <h2>Ticketing</h2>
                                                      
-                                                        Manage your facility’s daily complaints & tasks in the form of Ticket , assigned to respective Departments such as Operations , Engineering & Housekeeping.
-                                                       <br /> &nbsp;<h4>Log Complaints & ensure a progressive TAT</h4>
+                                                        Manage your facility’s daily complaints Issues & Task in the form of Ticket , assigned It To Respective Department.
+                                                        <br /> &nbsp;<h4>Log Complaints & ensure a progressive TAT</h4>
                                                     </p>
                                                     <p>
                                                        <ol>
@@ -214,7 +168,7 @@
                                                        </ol>
                                                     </p>
                                                     <p>
-                                                        <h2><u>Login Process</u> </h2>
+                                                        <h2>Login Process</h2>
                                                         <h6>Credentials for eFacilito will be provided to users by Administration / Operations Department</h6>
 
 
@@ -228,7 +182,7 @@
                                                             <li>Enter your unique credentials                                                   eg. Username - abc@companyname.com                    password - 123456</li>
                                                             <li>Finally Click on SIGN IN</li>
                                                         </ul>
-                                                        <h2><u>Forget Password</u></h2>
+                                                        <h2>Forget Password</h2>
                                                         <h6>What If User Forget Password.There Is Option Of Forget Password When User Login</h6>
                                                         
                                                         <ul>
@@ -243,18 +197,8 @@
 
                                                     </p>
                                                     <p>
-                                                       <h2><u>Dashboard</u> </h2>
-                                                        &nbsp
-                                                        This will help users to quickly gain insights into the most important aspects of their data. They get real time insights and competitive analyses, and use them to identify items that require urgent action, streamlining workflows and properly purposing resources.
-                                                     
-                                                          <br />&nbsp <h4>What Is On The Dashboard ?</h4>
-                                                        <ul>
-                                                            <li>In Ticketing users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed from their Account</li>
-                                                            <li>In Checklist users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed </li>
-                                                            <li>In Work Permit users will be able to check overall status of Tickets and also how many tickets are Assigned,Accepted,In Process,On Hold and Closed          </li>
-                                                            <li>In Gate Pass users will be able to check overall status of Tickets and also how many tickets are   Assigned,Accepted,In Process,On Hold and Closed</li>
-                                                        </ul>
-                                                        <h2><u>Transactions</u> </h2>
+                                                      
+                                                        <h2>Transactions</h2>
                                                         This will help users to quickly gain insights into the most important aspects of their data. They get real time insights and competitive analyses, and use them to identify items that require urgent action, streamlining workflows and properly purposing resources.
                                                         <br />&nbsp  <h4>How To Raise a Ticket ?</h4>
                                                         <ul>
@@ -292,8 +236,9 @@
                                                             <li>hold</li>
                                                             <li>Closed</li>
                                                         </ul>
-                                                        <h2><u>Ticket Category</u></h2>
+                                                        <h2>Ticket Category</h2>
                                                         &nbsp <br />
+                                                        There Are Different Category User Can Create According Which User Can Raise Ticket To Respective Category .
                                                         <h4>How To Create Category ?</h4>
                                                         <ul>
                                                             <li>Click On Ticket Module</li>
@@ -306,7 +251,7 @@
                                                         <li>Enter The Category Description</li>
                                                         <li>Click On Save</li>
                                                     </ul>
-                                                     <h2><u>Ticket Sub Category</u></h2>
+                                                     <h2>Ticket Sub Category</h2>
                                                         <h4>How To Create Sub Category ?</h4>
                                                         <ul>
                                                             <li>Click On Ticket Module</li>
@@ -319,7 +264,7 @@
                                                             <li>Enter Sub Category Description</li>
                                                             <li>Click On Save</li>
                                                         </ul>
-                                                        <h2><u>Configure Workflow</u></h2>
+                                                        <h2>Configure Workflow</h2>
                                                         <ul>
                                                             <li>Click On Ticket Moduke</li>
                                                             <li>Click On Configure Workflow</li>
@@ -339,171 +284,50 @@
                                                             <li>Click On Save</li>
                                                         </ul>
                                                     </p>
-                                                </div>
+                                                  
                                             </div>
                                         </div>
 
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_3_head" data-toggle="collapse" href="#m_section_1_content_3_body">
-                                                <span class="m-accordion__item-title">Checklist</span>
-                                                <span class="m-accordion__item-mode"></span>
                                             </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_1_content_3_body" role="tabpanel" aria-labelledby="m_section_1_content_3_head" data-parent="#m_section_1_content">
-                                                <div class="m-accordion__item-content">
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
-                                                </div>
                                             </div>
-                                        </div>
 
-                                        <!--end::Item-->
                                     </div>
-                                </div>
-
-                                <!--begin::Section 1-->
+                                        <!--end::Item-->
 
                                 <!--begin::Section 2-->
-                                <div class="m-tabs-content__item" id="m_section_2">
-                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20">Terms & Conditions</h4>
+
+                                <div class="m-tabs-content__item m-tabs-content__item" id="m_section_2">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> Checklist </h4>
                                     <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_2_content">
+
 
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed-" role="tab" id="m_section_2_content_1_head" data-toggle="collapse" href="#m_section_2_content_1_body">
-                                                <span class="m-accordion__item-icon"><i class="flaticon-gift"></i></span>
-                                                <span class="m-accordion__item-title">Lorem Ipsum has been the industry</span>
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_2_content_1_head" data-toggle="collapse"  href="#m_section_2_content_1_body">
+                                                <span class="m-accordion__item-title"> Checklist </span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
-                                            <div class="m-accordion__item-body collapse show" id="m_section_2_content_1_body" role="tabpanel" aria-labelledby="m_section_2_content_1_head" data-parent="#m_section_2_content">
+                                            <div class="m-accordion__item-body collapse" id="m_section_2_content_1_body" role="tabpanel" aria-labelledby="m_section_2_content_1_head" data-parent="#m_section_2_content">
                                                 <div class="m-accordion__item-content">
+
+                                                   
                                                     <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                                                    </p>
-                                                    <p>
-                                                        Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
 																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
 																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
 																	into
                                                     </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
+
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_2_content_2_head" data-toggle="collapse" href="#m_section_2_content_2_body">
-                                                <span class="m-accordion__item-icon"><i class="flaticon-calendar-3"></i></span>
-                                                <span class="m-accordion__item-title">It has survived not only five centuries</span>
-                                                <span class="m-accordion__item-mode"></span>
-                                            </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_2_content_2_body" role="tabpanel" aria-labelledby="m_section_2_content_2_head" data-parent="#m_section_2_content">
-                                                <div class="m-accordion__item-content">
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever
-                                                    </p>
-                                                    <p>
-                                                        Since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into nto Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha.
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-																	book. It has survived not only five centuries, but also the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
-                                                </div>
-                                            </div>
                                         </div>
-
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_2_content_3_head" data-toggle="collapse" href="#m_section_2_content_3_body">
-                                                <span class="m-accordion__item-icon"><i class="flaticon-security"></i></span>
-                                                <span class="m-accordion__item-title">Type and scrambled it to make a type specimen book</span>
-                                                <span class="m-accordion__item-mode"></span>
-                                            </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_2_content_3_body" role="tabpanel" aria-labelledby="m_section_2_content_3_head" data-parent="#m_section_2_content">
-                                                <div class="m-accordion__item-content">
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--end::Item-->
                                     </div>
-                                </div>
 
-                                <!--begin::Section 2-->
-
-                                <!--begin::Section 3-->
+                                        <!--end::Item-->
+                                        
+                                        <!--begin::Section 3-->
                                 <div class="m-tabs-content__item" id="m_section_3">
                                     <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20">User Policy</h4>
                                     <div class="m-accordion m-accordion--bordered" id="m_section_3_content">
@@ -547,93 +371,258 @@
                                             </div>
                                         </div>
 
-                                        <!--end::Item-->
-
-                                        <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_2_head" data-toggle="collapse" href="#m_section_3_content_2_body">
-                                                <span class="m-accordion__item-icon"><i class="flaticon-calendar-3"></i></span>
-                                                <span class="m-accordion__item-title">It has survived not only five centuries</span>
-                                                <span class="m-accordion__item-mode"></span>
-                                            </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_3_content_2_body" role="tabpanel" aria-labelledby="m_section_3_content_2_head" data-parent="#m_section_3_content">
-                                                <div class="m-accordion__item-content">
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever
-                                                    </p>
-                                                    <p>
-                                                        Since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into nto Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It ha.
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-																	book. It has survived not only five centuries, but also the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
-                                                </div>
-                                            </div>
                                         </div>
 
+                                    </div>
+
                                         <!--end::Item-->
+
+                                          
+                                         <!--begin::Section 4-->
+
+                                <div class="m-tabs-content__item m-tabs-content__item" id="m_section_4">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> GatePass </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_4_content">
+
 
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_3_head" data-toggle="collapse" href="#m_section_3_content_3_body">
-                                                <span class="m-accordion__item-icon"><i class="flaticon-security"></i></span>
-                                                <span class="m-accordion__item-title">Type and scrambled it to make a type specimen book</span>
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_1_head" data-toggle="collapse"  href="#m_section_4_content_1_body">
+                                                <span class="m-accordion__item-title"> GatePass </span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_3_content_3_body" role="tabpanel" aria-labelledby="m_section_3_content_3_head" data-parent="#m_section_3_content">
+                                            <div class="m-accordion__item-body collapse" id="m_section_4_content_1_body" role="tabpanel" aria-labelledby="m_section_4_content_1_head" data-parent="#m_section_4_content">
                                                 <div class="m-accordion__item-content">
+
+                                                   
                                                     <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
 																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
 																	into
                                                     </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-																	into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-																	leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-																	the leap into
-                                                    </p>
-                                                    <p>
-                                                        Lorem Ipsum has been the industry's <a href="#" class="m-link m--font-boldest">Example boldest link</a>
-                                                    </p>
+
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!--end::Item-->
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!--begin::Section 3-->
+                                        <!--end::Item-->
+                               
+
+                                 <!--begin::Section 5-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_5">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> FeedBack </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_5_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_5_content_1_head" data-toggle="collapse"  href="#m_section_5_content_1_body">
+                                                <span class="m-accordion__item-title"> FeedBack </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_5_content_1_body" role="tabpanel" aria-labelledby="m_section_5_content_1_head" data-parent="#m_section_5_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+                                
+                                 <!--begin::Section 6-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_6">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> AssetManager </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_6_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_6_content_1_head" data-toggle="collapse"  href="#m_section_6_content_1_body">
+                                                <span class="m-accordion__item-title"> AssetManager </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_6_content_1_body" role="tabpanel" aria-labelledby="m_section_6_content_1_head" data-parent="#m_section_5_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+
+                                
+                                 <!--begin::Section 7-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_7">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> VMS </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_7_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_7_content_1_head" data-toggle="collapse"  href="#m_section_7_content_1_body">
+                                                <span class="m-accordion__item-title"> VMS </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_7_content_1_body" role="tabpanel" aria-labelledby="m_section_7_content_1_head" data-parent="#m_section_7_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+
+                                
+                                 <!--begin::Section 8-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_8">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> GeneralSetup </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_8_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_8_content_1_head" data-toggle="collapse"  href="#m_section_8_content_1_body">
+                                                <span class="m-accordion__item-title"> GeneralSetup </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_8_content_1_body" role="tabpanel" aria-labelledby="m_section_8_content_1_head" data-parent="#m_section_8_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+
+                                
+                                 <!--begin::Section 9-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_9">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> RightsManagement </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_9_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_9_content_1_head" data-toggle="collapse"  href="#m_section_9_content_1_body">
+                                                <span class="m-accordion__item-title"> RightsManagement </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_9_content_1_body" role="tabpanel" aria-labelledby="m_section_9_content_1_head" data-parent="#m_section_9_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+
+                                
+                                 <!--begin::Section 10-->
+                 
+                                   <div class="m-tabs-content__item m-tabs-content__item" id="m_section_10">
+                                    <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20"> Inventory </h4>
+                                    <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_10_content">
+
+
+                                        <!--begin::Item-->
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_10_content_1_head" data-toggle="collapse"  href="#m_section_10_content_1_body">
+                                                <span class="m-accordion__item-title"> Inventory </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_10_content_1_body" role="tabpanel" aria-labelledby="m_section_10_content_1_head" data-parent="#m_section_10_content">
+                                                <div class="m-accordion__item-content">
+
+                                                   
+                                                    <p>
+                                                       Type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+																	galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+																	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+																	into
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                  <!--end::Item-->
+
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        
+
+                        
+                                 </div>
 
             <!--end::Portlet-->
-        </div>
+       
 
     </div>
 
-
+                    </div>
+                    </div>
+                </div>
+            </div>
+       
 </asp:Content>
