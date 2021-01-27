@@ -112,6 +112,39 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CW_Integrations\Assign_Brand_Codes.aspx" />
+    <Content Include="CW_Integrations\Assign_Cocktail_Codes.aspx" />
+    <Content Include="CW_Integrations\Assign_MMS_Brand_Codes.aspx" />
+    <Content Include="CW_Masters\Bill_Book.aspx" />
+    <Content Include="CW_Masters\Brands_Categories.aspx" />
+    <Content Include="CW_Masters\Brands_Category_Taxes.aspx" />
+    <Content Include="CW_Masters\Brands_Mst.aspx" />
+    <Content Include="CW_Masters\Brands_Opening_Stock.aspx" />
+    <Content Include="CW_Masters\Brands_Sizes_Mst.aspx" />
+    <Content Include="CW_Masters\Brands_SubCategories.aspx" />
+    <Content Include="CW_Masters\Cocktail_Recipies_Mst.aspx" />
+    <Content Include="CW_Masters\License_Mst.aspx" />
+    <Content Include="CW_Masters\Suppliers_Mst.aspx" />
+    <Content Include="CW_Reports\Brandwise_Monthly_Report.aspx" />
+    <Content Include="CW_Reports\Brandwise_Summary_Report.aspx" />
+    <Content Include="CW_Reports\Brand_Summary_Closing_Report.aspx" />
+    <Content Include="CW_Reports\Cash_Memo.aspx" />
+    <Content Include="CW_Reports\Cost_Evaluation_Report.aspx" />
+    <Content Include="CW_Reports\Cost_Report.aspx" />
+    <Content Include="CW_Reports\Non_Moving_Report.aspx" />
+    <Content Include="CW_Reports\Purchase_Report.aspx" />
+    <Content Include="CW_Reports\Sales_Report.aspx" />
+    <Content Include="CW_Reports\Slow_Moving_Report.aspx" />
+    <Content Include="CW_Reports\Transfer_Report.aspx" />
+    <Content Include="CW_Transactions\Add_Auto_Billing.aspx" />
+    <Content Include="CW_Transactions\Add_Purchase.aspx" />
+    <Content Include="CW_Transactions\Add_Sale.aspx" />
+    <Content Include="CW_Transactions\Add_Transfer.aspx" />
+    <Content Include="CW_Transactions\Auto_Billing_Details.aspx" />
+    <Content Include="CW_Transactions\Purchase_Details.aspx" />
+    <Content Include="CW_Transactions\Sale_Details.aspx" />
+    <Content Include="CW_Transactions\Transfer_Details.aspx" />
+    <Content Include="CW_Transactions\Wash_Transactions.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -125,6 +158,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="CW_MasterPage.Master" />
+    <Content Include="CW_Masters\Permit_Holders.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -177,12 +211,250 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CW_Integrations\Assign_Brand_Codes.aspx.cs">
+      <DependentUpon>Assign_Brand_Codes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Integrations\Assign_Brand_Codes.aspx.designer.cs">
+      <DependentUpon>Assign_Brand_Codes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Integrations\Assign_Cocktail_Codes.aspx.cs">
+      <DependentUpon>Assign_Cocktail_Codes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Integrations\Assign_Cocktail_Codes.aspx.designer.cs">
+      <DependentUpon>Assign_Cocktail_Codes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Integrations\Assign_MMS_Brand_Codes.aspx.cs">
+      <DependentUpon>Assign_MMS_Brand_Codes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Integrations\Assign_MMS_Brand_Codes.aspx.designer.cs">
+      <DependentUpon>Assign_MMS_Brand_Codes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CW_MasterPage.Master.cs">
       <DependentUpon>CW_MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CW_MasterPage.Master.designer.cs">
       <DependentUpon>CW_MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Bill_Book.aspx.cs">
+      <DependentUpon>Bill_Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Bill_Book.aspx.designer.cs">
+      <DependentUpon>Bill_Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Categories.aspx.cs">
+      <DependentUpon>Brands_Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Categories.aspx.designer.cs">
+      <DependentUpon>Brands_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Category_Taxes.aspx.cs">
+      <DependentUpon>Brands_Category_Taxes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Category_Taxes.aspx.designer.cs">
+      <DependentUpon>Brands_Category_Taxes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Mst.aspx.cs">
+      <DependentUpon>Brands_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Mst.aspx.designer.cs">
+      <DependentUpon>Brands_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Opening_Stock.aspx.cs">
+      <DependentUpon>Brands_Opening_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Opening_Stock.aspx.designer.cs">
+      <DependentUpon>Brands_Opening_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Sizes_Mst.aspx.cs">
+      <DependentUpon>Brands_Sizes_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_Sizes_Mst.aspx.designer.cs">
+      <DependentUpon>Brands_Sizes_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_SubCategories.aspx.cs">
+      <DependentUpon>Brands_SubCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Brands_SubCategories.aspx.designer.cs">
+      <DependentUpon>Brands_SubCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Cocktail_Recipies_Mst.aspx.cs">
+      <DependentUpon>Cocktail_Recipies_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Cocktail_Recipies_Mst.aspx.designer.cs">
+      <DependentUpon>Cocktail_Recipies_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\License_Mst.aspx.cs">
+      <DependentUpon>License_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\License_Mst.aspx.designer.cs">
+      <DependentUpon>License_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Permit_Holders.Master.cs">
+      <DependentUpon>Permit_Holders.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Permit_Holders.Master.designer.cs">
+      <DependentUpon>Permit_Holders.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Masters\Suppliers_Mst.aspx.cs">
+      <DependentUpon>Suppliers_Mst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Masters\Suppliers_Mst.aspx.designer.cs">
+      <DependentUpon>Suppliers_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Brandwise_Monthly_Report.aspx.cs">
+      <DependentUpon>Brandwise_Monthly_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Brandwise_Monthly_Report.aspx.designer.cs">
+      <DependentUpon>Brandwise_Monthly_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Brandwise_Summary_Report.aspx.cs">
+      <DependentUpon>Brandwise_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Brandwise_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Brandwise_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Brand_Summary_Closing_Report.aspx.cs">
+      <DependentUpon>Brand_Summary_Closing_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Brand_Summary_Closing_Report.aspx.designer.cs">
+      <DependentUpon>Brand_Summary_Closing_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Cash_Memo.aspx.cs">
+      <DependentUpon>Cash_Memo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Cash_Memo.aspx.designer.cs">
+      <DependentUpon>Cash_Memo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Cost_Evaluation_Report.aspx.cs">
+      <DependentUpon>Cost_Evaluation_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Cost_Evaluation_Report.aspx.designer.cs">
+      <DependentUpon>Cost_Evaluation_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Cost_Report.aspx.cs">
+      <DependentUpon>Cost_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Cost_Report.aspx.designer.cs">
+      <DependentUpon>Cost_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Non_Moving_Report.aspx.cs">
+      <DependentUpon>Non_Moving_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Non_Moving_Report.aspx.designer.cs">
+      <DependentUpon>Non_Moving_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Purchase_Report.aspx.cs">
+      <DependentUpon>Purchase_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Purchase_Report.aspx.designer.cs">
+      <DependentUpon>Purchase_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Sales_Report.aspx.cs">
+      <DependentUpon>Sales_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Sales_Report.aspx.designer.cs">
+      <DependentUpon>Sales_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Slow_Moving_Report.aspx.cs">
+      <DependentUpon>Slow_Moving_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Slow_Moving_Report.aspx.designer.cs">
+      <DependentUpon>Slow_Moving_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Reports\Transfer_Report.aspx.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Reports\Transfer_Report.aspx.designer.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Auto_Billing.aspx.cs">
+      <DependentUpon>Add_Auto_Billing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Auto_Billing.aspx.designer.cs">
+      <DependentUpon>Add_Auto_Billing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Purchase.aspx.cs">
+      <DependentUpon>Add_Purchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Purchase.aspx.designer.cs">
+      <DependentUpon>Add_Purchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Sale.aspx.cs">
+      <DependentUpon>Add_Sale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Sale.aspx.designer.cs">
+      <DependentUpon>Add_Sale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Transfer.aspx.cs">
+      <DependentUpon>Add_Transfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Add_Transfer.aspx.designer.cs">
+      <DependentUpon>Add_Transfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Auto_Billing_Details.aspx.cs">
+      <DependentUpon>Auto_Billing_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Auto_Billing_Details.aspx.designer.cs">
+      <DependentUpon>Auto_Billing_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Purchase_Details.aspx.cs">
+      <DependentUpon>Purchase_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Purchase_Details.aspx.designer.cs">
+      <DependentUpon>Purchase_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Sale_Details.aspx.cs">
+      <DependentUpon>Sale_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Sale_Details.aspx.designer.cs">
+      <DependentUpon>Sale_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Transfer_Details.aspx.cs">
+      <DependentUpon>Transfer_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Transfer_Details.aspx.designer.cs">
+      <DependentUpon>Transfer_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CW_Transactions\Wash_Transactions.aspx.cs">
+      <DependentUpon>Wash_Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CW_Transactions\Wash_Transactions.aspx.designer.cs">
+      <DependentUpon>Wash_Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -219,11 +491,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CW_Excise_Reports\Maharashtra\" />
-    <Folder Include="CW_Forms\" />
-    <Folder Include="CW_Masters\" />
-    <Folder Include="CW_POS_Integration\" />
-    <Folder Include="CW_Reports\" />
+    <Folder Include="CW_Controls\" />
+    <Folder Include="CW_Eval_Pack_Masters\" />
+    <Folder Include="CW_Eval_Pack_Reports\" />
+    <Folder Include="CW_Reports_Excise\Andhra_Pradesh\" />
+    <Folder Include="CW_Reports_Excise\Karnataka\" />
+    <Folder Include="CW_Reports_Excise\Maharashtra\" />
+    <Folder Include="CW_Reports_Excise\Punjab\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
