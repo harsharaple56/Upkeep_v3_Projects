@@ -360,7 +360,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath,string Sign_FilePath, int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath,string Sign_FilePath, int CompanyID,int Is_Email_Verified, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -391,6 +391,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Profile_photo", ProfilePhoto_FilePath);
                 cmd.Parameters.AddWithValue("@Sign_photo", Sign_FilePath);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Is_Email_Verified", Is_Email_Verified);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 //cmd.Parameters.AddWithValue("Is_Deleted", Is_Deleted);
                 cmd.Parameters.AddWithValue("Action", Action);
@@ -405,6 +406,30 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Email_Verification_Mail(string EmailID, string OTP, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("eFacilito_spr_Email_Verification_Mail", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmailID", EmailID);
+                cmd.Parameters.AddWithValue("@OTP", OTP);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public DataSet LoginUser(string UserName, string strPassword, string UserType, int CompanyID, string strConn)
         {
@@ -3306,6 +3331,27 @@ namespace UpkeepV3_BusinessLayer
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dsEscalation);
                 return dsEscalation;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet My_Profile_Email_Verification(int Is_Email_Verified, string LoggedInUserID, int CompanyID, string StrConn)
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Update_User_Profile_Email_Verification", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Is_Email_Verified", Is_Email_Verified);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsProfile);
+                return dsProfile;
             }
             catch (Exception ex)
             {

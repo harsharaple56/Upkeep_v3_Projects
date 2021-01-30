@@ -594,7 +594,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                               Ticket_Message = p.Field<string>("Tkt_Message"),
                                               Ticket_ImagePath = p.Field<string>("ImagePath"),
-                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
+                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
+                                              ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
                                           }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);

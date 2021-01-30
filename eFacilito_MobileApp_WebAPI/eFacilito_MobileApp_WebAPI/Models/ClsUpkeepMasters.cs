@@ -941,7 +941,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_Message { get; set; }
         public string Ticket_ImagePath { get; set; }
         public string Level { get; set; }
-
+        public bool ShowAction { get; set; }
     }
 
     public class ClsTicketActionHistory

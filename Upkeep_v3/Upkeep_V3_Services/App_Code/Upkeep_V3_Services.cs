@@ -221,11 +221,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath, string Sign_FilePath, int CompanyID, string LoggedInUserID, string Action)
+    public DataSet UserMaster_CRUD(int User_ID, string User_Code, string F_name, string L_Name, string User_Mobile, string User_Email, string User_MobileAlter, string User_Landline, string User_Designation, int User_Type_ID, int Zone_ID, int Loc_ID, int SubLoc_Id, int Department_Id, string Login_Id, string Password, int Is_Approver, int Is_GobalApprover, int Approver_ID, int RoleID, string ProfilePhoto_FilePath, string Sign_FilePath, int CompanyID,int Is_Email_Verified, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.UserMaster_CRUD(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, LoggedInUserID, Action);
+            ds = ObjUpkeep.UserMaster_CRUD(User_ID, User_Code, F_name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone_ID, Loc_ID, SubLoc_Id, Department_Id, Login_Id, Password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, Is_Email_Verified, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -234,6 +234,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Email_Verification_Mail(string EmailID, string OTP)
+    {
+        DataSet dsVerifyEmail = new DataSet();
+        try
+        {
+            dsVerifyEmail = ObjUpkeep.Email_Verification_Mail(EmailID, OTP);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsVerifyEmail;
+    }
+
+
+
 
     [WebMethod]
     public DataSet LoginUser(string UserId, string strPassword, string UserType, int CompanyID)
@@ -2642,6 +2660,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             throw ex;
         }
         return dsEscalation;
+    }
+
+    [WebMethod]
+    public DataSet My_Profile_Email_Verification(int Is_Email_Verified,string LoggedInUserID, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            dsProfile = ObjUpkeep.My_Profile_Email_Verification(Is_Email_Verified, LoggedInUserID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsProfile;
     }
 
 

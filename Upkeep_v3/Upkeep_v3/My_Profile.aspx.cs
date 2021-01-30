@@ -34,11 +34,12 @@ namespace Upkeep_v3
 
             if (!IsPostBack)
             {
+                //dvOTPBox.Attributes.Add("style", "display:none;");
                 Fetch_My_Profile_Details(LoggedInUserID, UserType, CompanyID);
             }
         }
 
-        public void Fetch_My_Profile_Details(string LoggedInUserID,string UserType, int CompanyID)
+        public void Fetch_My_Profile_Details(string LoggedInUserID, string UserType, int CompanyID)
         {
             DataSet dsProfile = new DataSet();
             try
@@ -80,6 +81,19 @@ namespace Upkeep_v3
                         {
                             imgProfilePic.ImageUrl = Page.ResolveClientUrl("~/assets/app/media/img/users/user4.png");
                         }
+
+                        int Is_Email_Verified = Convert.ToInt32(dsProfile.Tables[0].Rows[0]["Is_Email_Verified"]);
+                        if (Is_Email_Verified == 1)
+                        {
+                            lnkVerifyEmail.Attributes.Add("style", "display:none;");
+                            lblMailVerifySuccess.Attributes.Add("style", "display:block;margin-top: 13px;");
+
+                            dvOTPBox.Attributes.Add("style", "display:none;");
+                            //dvOTPSubmit.Attributes.Add("style", "display:none;");
+                            lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                        }
+
+
                     }
                     else
                     {
@@ -140,11 +154,11 @@ namespace Upkeep_v3
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnChangePassword_Submit_Click(object sender, EventArgs e)
-        {           
+        {
             DataSet dsChangePassword = new DataSet();
             try
             {
@@ -186,6 +200,93 @@ namespace Upkeep_v3
         protected void btnChangePassword_Cancel_Click(object sender, EventArgs e)
         {
             mpeChangePassword.Hide();
+        }
+
+        protected void lnkVerifyEmail_Click(object sender, EventArgs e)
+        {
+            DataSet dsVerifyEmail = new DataSet();
+            try
+            {
+                Random random = new Random();
+                string OTP = string.Empty;
+
+                OTP = random.Next(0, 999999).ToString("D6");
+
+                Session["OTP"] = OTP;
+
+                dsVerifyEmail = ObjUpkeep.Email_Verification_Mail(Convert.ToString(txtEmail.Text.Trim()), OTP);
+
+                if (dsVerifyEmail.Tables.Count > 0)
+                {
+                    if (dsVerifyEmail.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsVerifyEmail.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            lnkVerifyEmail.Attributes.Add("style", "display:none;");
+                            lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                            lblMailVerifySuccess.Attributes.Add("style", "display:none;");
+
+                            dvOTPBox.Attributes.Add("class", "form-group m-form__group row");
+                            dvOTPBox.Visible = true;
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnVerifyOTP_Click(object sender, EventArgs e)
+        {
+            DataSet dsProfile = new DataSet();
+            int Is_Email_Verified = 0;
+            try
+            {
+                if (Convert.ToString(txtEmailOTP.Text) == Convert.ToString(Session["OTP"]))
+                {
+                    Is_Email_Verified = 1;
+                    lblMailVerifySuccess.Attributes.Add("style", "display:block;margin-top: 13px;");
+
+                    dvOTPBox.Attributes.Add("style", "display:none;");
+                    //dvOTPSubmit.Attributes.Add("style", "display:none;");
+                    lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                }
+
+                else
+                {
+                    Is_Email_Verified = 0;
+                    lblMailVerifyFail.Attributes.Add("style", "display:block;");
+                    lblMailVerifyFail.Text = "Invalid OTP";
+
+                }
+
+                dsProfile = ObjUpkeep.My_Profile_Email_Verification(Is_Email_Verified, LoggedInUserID, CompanyID);
+                if (dsProfile.Tables.Count > 0)
+                {
+                    if (dsProfile.Tables[0].Rows.Count > 0)
+                    {
+                        //int Status = Convert.ToInt32(dsProfile.Tables[0].Rows[0]["Status"]);
+
+                        //if (Status == 1)
+                        //{
+                            
+                        //}
+                    }
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

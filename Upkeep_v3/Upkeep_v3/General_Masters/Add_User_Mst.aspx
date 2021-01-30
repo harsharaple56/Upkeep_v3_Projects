@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="eFacilito | Users" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Add_User_Mst.aspx.cs" Inherits="Upkeep_v3.General_Masters.Add_User_Mst" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -104,7 +106,7 @@
 
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
-
+                        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
 
                         <div class="m-portlet__head">
@@ -223,22 +225,45 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row">
-                                            <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Email:</label>
-                                            <div class="col-xl-4 col-lg-4">
-                                                <asp:TextBox ID="txtuseremail" runat="server" class="form-control m-input" placeholder="User Email"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfvUserEmail" runat="server" ControlToValidate="txtUserEmail" ValidationGroup="ValidateUser"
-                                                    ErrorMessage="Please enter User Email" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                            </div>
 
+                                        <asp:UpdatePanel ID="updt" runat="server">
+                                            <ContentTemplate>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Email:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtuseremail" runat="server" class="form-control m-input" placeholder="User Email"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfvUserEmail" runat="server" ControlToValidate="txtUserEmail" ValidationGroup="ValidateUser"
+                                                            ErrorMessage="Please enter User Email" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-2 ">
+                                                        <asp:LinkButton ID="lnkVerifyEmail" runat="server" Style="margin-top: 13px;" Text="Verify Email" OnClick="lnkVerifyEmail_Click"></asp:LinkButton>
+                                                        <asp:Label ID="lblMailVerifySuccess" runat="server" CssClass="fa fa-check-circle" Style="display: none;margin-top: 13px;" ForeColor="Green" Font-Bold="true" Text="Verified"></asp:Label>
+                                                        <asp:Label ID="lblMailVerifyFail" runat="server" Style="display: none;" ForeColor="Red" Font-Bold="true" Text="Not Verified"></asp:Label>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-2" style="display: none;" id="dvOTPBox" runat="server">
+                                                        <asp:TextBox ID="txtEmailOTP" runat="server" class="form-control m-input" placeholder="OTP"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmailOTP" ValidationGroup="EmailVerify"
+                                                            ErrorMessage="Please enter OTP" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                        <span>Please check your email</span>
+                                                    </div>
+                                                    <div class="col-xl-2 col-lg-2" style="display: none;" id="dvOTPSubmit" runat="server">
+                                                        <asp:Button ID="btnVerifyOTP" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnVerifyOTP_Click" Text="Verify OTP" ValidationGroup="EmailVerify" />
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+
+
+
+                                        <div class="form-group m-form__group row">
                                             <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Mobile Number:</label>
                                             <div class="col-xl-4 col-lg-4">
                                                 <asp:TextBox ID="txtmobile" runat="server" class="form-control m-input" placeholder="Mobile Number"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfvmobile" runat="server" ControlToValidate="txtmobile" ValidationGroup="ValidateUser"
                                                     ErrorMessage="Please enter Mobile number" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </div>
-                                        </div>
 
+                                        </div>
                                         <%--<div class="form-group m-form__group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> User Designation:</label>
                                                     <div class="col-xl-9 col-lg-9">                                                     
@@ -378,11 +403,11 @@
 
 
                     </div>
-            </div>
+                </div>
 
-            <!--end::Portlet-->
+                <!--end::Portlet-->
+            </div>
         </div>
-    </div>
     </div>
 
 
