@@ -51,7 +51,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeep.UserMaster_CRUD(0, "", "", "","", "", "", "", "",0,0,0,0,0,"","",0,0,0,0,"","", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeep.UserMaster_CRUD(0, "", "", "","", "", "", "", "",0,0,0,0,0,"","",0,0,0,0,"","", CompanyID,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {

@@ -144,9 +144,9 @@
                                                                 <li class="m-nav__section">
                                                                     <span class="m-nav__section-text">Useful Links</span>
                                                                 </li>
-                                                               <li class="m-nav__item">
+                                                                <li class="m-nav__item">
 
-                                                                   
+
                                                                     <a href="<%= Page.ResolveClientUrl("~/Knowledge_Base/User_Manual.aspx") %>" class="m-nav__link">
                                                                         <i class="m-nav__link-icon flaticon-questions-circular-button"></i>
                                                                         <span class="m-nav__link-text">User Manual</span>
@@ -158,7 +158,7 @@
                                                                         <span class="m-nav__link-text">Support</span>
                                                                     </a>
                                                                 </li>
-                                                                
+
                                                                 <li class="m-nav__separator m-nav__separator--fit m--hide"></li>
                                                                 <li class="m-nav__item m--hide">
                                                                     <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
@@ -220,12 +220,42 @@
                                                 <asp:TextBox ID="txtAltPhoneNo" runat="server" class="form-control m-input"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="form-group m-form__group row" style="padding-top: 0px !important;">
-                                            <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Email</label>
-                                            <div class="col-7">
-                                                <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" class="form-control m-input"></asp:TextBox>
-                                            </div>
-                                        </div>
+
+                                        <asp:UpdatePanel ID="updt" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="form-group m-form__group row" style="padding-top: 0px !important;">
+                                                    <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Email</label>
+                                                    <div class="col-7">
+                                                        <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" class="form-control m-input"></asp:TextBox>
+
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <asp:LinkButton ID="lnkVerifyEmail" runat="server" Style="margin-top: 13px;" Text="Verify Email" OnClick="lnkVerifyEmail_Click"></asp:LinkButton>
+                                                        <asp:Label ID="lblMailVerifySuccess" runat="server" CssClass="fa fa-check-circle" Style="display: none; margin-top: 13px;" ForeColor="Green" Font-Bold="true" Text="Verified"></asp:Label>
+                                                        <asp:Label ID="lblMailVerifyFail" runat="server" Style="display: none;" ForeColor="Red" Font-Bold="true" Text="Not Verified"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group m-form__group row" style="padding-top: 0px !important;" visible="false" id="dvOTPBox" runat="server">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-4">
+                                                        <asp:TextBox ID="txtEmailOTP" runat="server" class="form-control m-input" placeholder="OTP"></asp:TextBox>
+
+                                                        <span>Please check your email</span>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <asp:Button ID="btnVerifyOTP" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnVerifyOTP_Click" Text="Verify OTP" ValidationGroup="EmailVerify" />
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmailOTP" ValidationGroup="EmailVerify"
+                                                            ErrorMessage="Please enter OTP" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                </div>
+
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        <br />
                                         <div class="form-group m-form__group row" style="padding-top: 0px !important;">
                                             <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Address</label>
                                             <div class="col-7">
@@ -416,11 +446,11 @@
 
                                     <div class="form-group m-form__group row">
                                         <div class="col-xl-1 col-lg-1">
-                                            </div>
+                                        </div>
                                         <asp:Label ID="lblChangePasswordError" runat="server" ForeColor="Red"></asp:Label>
                                         <asp:Label ID="lblChangePasswordSuccess" runat="server" ForeColor="Green"></asp:Label>
 
-                                        </div>
+                                    </div>
 
                                 </div>
 

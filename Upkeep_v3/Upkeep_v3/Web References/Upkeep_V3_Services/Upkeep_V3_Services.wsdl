@@ -3,6 +3,28 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Bind_WorkPermitRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_WorkPermitRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_WorkPermitRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Insert_WorkPermitRequest">
         <s:complexType>
           <s:sequence>
@@ -1737,6 +1759,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="My_Profile_Email_Verification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Is_Email_Verified" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="My_Profile_Email_VerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="My_Profile_Email_VerificationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Import_User_Master">
         <s:complexType>
           <s:sequence>
@@ -2220,6 +2265,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="ProfilePhoto_FilePath" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Sign_FilePath" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Is_Email_Verified" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
@@ -2229,6 +2275,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Email_Verification_Mail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OTP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Email_Verification_MailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Email_Verification_MailResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4005,28 +4073,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_WorkPermitRequestDetails">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Bind_WorkPermitRequestDetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Bind_WorkPermitRequestDetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4034,6 +4080,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="Insert_WorkPermitRequestSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_WorkPermitRequest" />
   </wsdl:message>
@@ -4472,6 +4524,12 @@
   <wsdl:message name="Retailer_Escalation_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:Retailer_Escalation_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="My_Profile_Email_VerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:My_Profile_Email_Verification" />
+  </wsdl:message>
+  <wsdl:message name="My_Profile_Email_VerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:My_Profile_Email_VerificationResponse" />
+  </wsdl:message>
   <wsdl:message name="Import_User_MasterSoapIn">
     <wsdl:part name="parameters" element="tns:Import_User_Master" />
   </wsdl:message>
@@ -4597,6 +4655,12 @@
   </wsdl:message>
   <wsdl:message name="UserMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:UserMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Email_Verification_MailSoapIn">
+    <wsdl:part name="parameters" element="tns:Email_Verification_Mail" />
+  </wsdl:message>
+  <wsdl:message name="Email_Verification_MailSoapOut">
+    <wsdl:part name="parameters" element="tns:Email_Verification_MailResponse" />
   </wsdl:message>
   <wsdl:message name="LoginUserSoapIn">
     <wsdl:part name="parameters" element="tns:LoginUser" />
@@ -5030,13 +5094,11 @@
   <wsdl:message name="Bind_WorkPermitConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Bind_WorkPermitConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetails" />
-  </wsdl:message>
-  <wsdl:message name="Bind_WorkPermitRequestDetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetailsResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <wsdl:input message="tns:Bind_WorkPermitRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_WorkPermitRequestDetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitRequest">
       <wsdl:input message="tns:Insert_WorkPermitRequestSoapIn" />
       <wsdl:output message="tns:Insert_WorkPermitRequestSoapOut" />
@@ -5329,6 +5391,10 @@
       <wsdl:input message="tns:Retailer_Escalation_CRUDSoapIn" />
       <wsdl:output message="tns:Retailer_Escalation_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="My_Profile_Email_Verification">
+      <wsdl:input message="tns:My_Profile_Email_VerificationSoapIn" />
+      <wsdl:output message="tns:My_Profile_Email_VerificationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Import_User_Master">
       <wsdl:input message="tns:Import_User_MasterSoapIn" />
       <wsdl:output message="tns:Import_User_MasterSoapOut" />
@@ -5412,6 +5478,10 @@
     <wsdl:operation name="UserMaster_CRUD">
       <wsdl:input message="tns:UserMaster_CRUDSoapIn" />
       <wsdl:output message="tns:UserMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Email_Verification_Mail">
+      <wsdl:input message="tns:Email_Verification_MailSoapIn" />
+      <wsdl:output message="tns:Email_Verification_MailSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="LoginUser">
       <wsdl:input message="tns:LoginUserSoapIn" />
@@ -5702,13 +5772,18 @@
       <wsdl:input message="tns:Bind_WorkPermitConfigurationSoapIn" />
       <wsdl:output message="tns:Bind_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Bind_WorkPermitRequestDetails">
-      <wsdl:input message="tns:Bind_WorkPermitRequestDetailsSoapIn" />
-      <wsdl:output message="tns:Bind_WorkPermitRequestDetailsSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitRequest">
       <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitRequest" style="document" />
       <wsdl:input>
@@ -6366,6 +6441,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="My_Profile_Email_Verification">
+      <soap:operation soapAction="http://tempuri.org/My_Profile_Email_Verification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Import_User_Master">
       <soap:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
       <wsdl:input>
@@ -6548,6 +6632,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/UserMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Email_Verification_Mail">
+      <soap:operation soapAction="http://tempuri.org/Email_Verification_Mail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7203,18 +7296,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_WorkPermitRequestDetails">
-      <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_WorkPermitRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitRequest">
       <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitRequest" style="document" />
       <wsdl:input>
@@ -7872,6 +7965,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="My_Profile_Email_Verification">
+      <soap12:operation soapAction="http://tempuri.org/My_Profile_Email_Verification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Import_User_Master">
       <soap12:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
       <wsdl:input>
@@ -8054,6 +8156,15 @@
     </wsdl:operation>
     <wsdl:operation name="UserMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/UserMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Email_Verification_Mail">
+      <soap12:operation soapAction="http://tempuri.org/Email_Verification_Mail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8702,15 +8813,6 @@
     </wsdl:operation>
     <wsdl:operation name="Bind_WorkPermitConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitConfiguration" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Bind_WorkPermitRequestDetails">
-      <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

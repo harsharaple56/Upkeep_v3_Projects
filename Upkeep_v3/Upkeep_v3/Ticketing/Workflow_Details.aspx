@@ -13,18 +13,18 @@
             //DatatableHtmlTableDemo.init();
             DatatableHtmlTableDemoGroup.init();
 
-             //$("#ddlDepartment").on("change", function () {
-             //           //alert('department clicked');
-             //           var selection = $("#ddlDepartment option:selected").html();
-             //           var dataset = $('#grdInfodetails tbody').find('tr');
-             //           // show all rows first
-             //           dataset.show();
-             //           // filter the rows that should be hidden
-             //           dataset.filter(function (index, item) {
-             //               return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
-             //           }).hide();
-             //           //e.search($(this).val().toLowerCase(), "Department")
-             //       })
+            //$("#ddlDepartment").on("change", function () {
+            //           //alert('department clicked');
+            //           var selection = $("#ddlDepartment option:selected").html();
+            //           var dataset = $('#grdInfodetails tbody').find('tr');
+            //           // show all rows first
+            //           dataset.show();
+            //           // filter the rows that should be hidden
+            //           dataset.filter(function (index, item) {
+            //               return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+            //           }).hide();
+            //           //e.search($(this).val().toLowerCase(), "Department")
+            //       })
         });
 
         var DatatableHtmlTableDemo = {
@@ -41,12 +41,12 @@
                     //    init_plugins();
                     //}
                 })
-            //    ,
-            //$("#ddlDepartment").on("change", function () {
-            //        alert('department clicked');
-            //    e.search($(this).val().toLowerCase(), "Department")
-            //        })
-                    //$("#ddlDepartment").selectpicker()
+                //    ,
+                //$("#ddlDepartment").on("change", function () {
+                //        alert('department clicked');
+                //    e.search($(this).val().toLowerCase(), "Department")
+                //        })
+                //$("#ddlDepartment").selectpicker()
             }
         };
 
@@ -112,29 +112,115 @@
             txtControl = obj;
         }
 
-         function funddl() {
-             //alert('department clicked');
-                        var selection = $("#ddlDepartment option:selected").html();
-                        var dataset = $('#grdInfodetails tbody').find('tr');
-                        // show all rows first
-                        dataset.show();
-                        // filter the rows that should be hidden
-                        dataset.filter(function (index, item) {
-                            return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
-                        }).hide();
+        function funddl() {
+            //alert('department clicked');
+            var selection = $("#ddlDepartment option:selected").html();
+            var dataset = $('#grdInfodetails tbody').find('tr');
+            // show all rows first
+            dataset.show();
+            // filter the rows that should be hidden
+            dataset.filter(function (index, item) {
+                return $(item).find('td:nth-child(4)').text().indexOf(selection) === -1;
+            }).hide();
         }
 
-        function FunEditClick(ID, Desc) {
-            //debugger;
-            //alert(ID);
+        function FunEditClick(ID, Desc, UserIDs) {
+            debugger;
             //alert(Desc);
-            txtControl.value = Desc.replace("$", ",");
-            document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
-            //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
-            $find('<%= mpeWorkflowUsers.ClientID %>').hide();
-            //window.close();
+            //alert(UserIDs);
+            //$('#hdnPreviousLevelUserIDs').val(UserIDs)
+           // $('#hdnCurrentLevelUserIDs').val(UserIDs)
 
+            var PreviousLevelUserIDArray, CurrentLevelUserIDArray;
+            //PreviousLevelUserIDArray = UserIDs;
+            CurrentLevelUserIDArray = UserIDs;
+
+            var currentlevelUsers = CurrentLevelUserIDArray.split(',');
+            
+            var i, j, cur;
+            var ClickCount;
+
+            var IsFound, check_exists = false;
+
+            for (i = 0, j = currentlevelUsers.length; i < j; i++) {
+                cur = currentlevelUsers[i];
+               IsFound= anyMatchInArray(cur)
+                //alert(IsFound);
+                if (IsFound == true) {
+                    check_exists = true;
+                }
+                //console.log(anyMatchInArray(cur));
+            }
+
+            $find('<%= mpeWorkflowUsers.ClientID %>').hide();
+
+            if (check_exists == false) {
+                txtControl.value = Desc.replace("$", ",");
+                document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+
+                if ($('#hdnPreviousLevelUserIDs').val() != "") {
+                    PreviousLevelUserIDArray = $('#hdnPreviousLevelUserIDs').val() + "," + UserIDs;
+                }
+                else {
+                    PreviousLevelUserIDArray =UserIDs;
+                }
+
+                if (PreviousLevelUserIDArray != "") {
+                    $('#hdnCurrentLevelUserIDs').val(PreviousLevelUserIDArray);
+                }
+
+                var allArray = $('#hdnCurrentLevelUserIDs').val().split(',');
+                //$('#hdnCurrentLevelUserIDs').val(UserIDs);
+
+                $('#hdnAllUserIDs').val(JSON.stringify(allArray));
+
+                //$('#hdnPreviousLevelUserIDs').val(PreviousLevelUserIDArray.split(','));
+
+                //ClickCount = ClickCount + 1;
+
+                <%--$find('<%= mpeWorkflowUsers.ClientID %>').hide();--%>
+                //window.close();
+            }
+            else {
+                alert('User is already present at previous level, same user cannot be present at more than 1 level');
+            }
         }
+
+        var anyMatchInArray = (function () {
+            "use strict";
+            //debugger;
+            var targetArray, func, AllValue;
+            //alert('fdf');
+            //AllValue = $('#hdnAllUserIDs').val();
+            //alert(AllValue);
+            var Fullvalue=[];
+            //if ($('#hdnAllUserIDs').val() != "") {
+            //    alert('value not null');
+            //    Fullvalue = $('#hdnAllUserIDs').val(); //retrieve array
+            //    Fullvalue = JSON.parse(Fullvalue);
+
+                
+            //}
+          
+
+            targetArray = Fullvalue;  //["9", "8", "3"];// create array of each success level
+
+            alert(targetArray);
+
+            func = function (checkerArray) {
+                //alert(checkerArray);
+                var found = false;
+                for (var i = 0, j = checkerArray.length; !found && i < j; i++) {
+                    if (targetArray.indexOf(checkerArray[i]) > -1) {
+                        found = true;
+                        //alert('found');
+                    }
+                }
+                return found;
+            };
+
+            return func;
+        }());
 
         function SelectUser() {
             //alert('method call');
@@ -159,8 +245,8 @@
             //SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
             //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';
 
-            //alert(SelectedUsersID);
-            //alert(SelectedUsersName);
+            alert(SelectedUsersID);
+            alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
         }
@@ -171,7 +257,8 @@
         }
 
         function FunSetXML() {
-            debugger;
+            //debugger;
+            alert('FunSetXML');
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             document.getElementById("<%=lblWorkflowDescError.ClientID%>").innerHTML = "";
             document.getElementById("<%=lblNoOfLevelError.ClientID%>").innerHTML = "";
@@ -195,15 +282,15 @@
                 document.getElementById("<%=lblCategoryError.ClientID%>").innerHTML = 'Please select Category';
                 return false;
             }
-           
+
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
             if (VarLocTab.rows.length == 1) {
                 document.getElementById("<%=lblMakeCombination.ClientID%>").innerHTML = 'Escalations can not blank';
                 return false;
             }
 
-             //return false;
-           
+            //return false;
+
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
                 var VarLocRowObj = VarLocTab.rows[i].id;
                 var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
@@ -334,7 +421,7 @@
                                                 <div class="btn-group">
 
                                                     <asp:Button ID="btnSaveWorkflowDetail" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSaveWorkflowDetail_Click"
-                                                        Text="Save" OnClientClick="return FunSetXML();" ValidationGroup="validationWorkflow"  />
+                                                        Text="Save" OnClientClick="return FunSetXML();" ValidationGroup="validationWorkflow" />
 
                                                 </div>
                                             </ContentTemplate>
@@ -350,11 +437,11 @@
                                             <div class="row" style="margin-bottom: 0;">
                                                 <div class="col-xs-6 col-lg-6 form-inline">
                                                     <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Workflow Description :</label>
-                                                    <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtWorkflowDesc" class="form-control m-input" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkflowDesc" Visible="true"
                                                         Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <div class="col-xs-6 col-lg-6 form-inline" >
+                                                <div class="col-xs-6 col-lg-6 form-inline">
                                                     <asp:Label ID="lblWorkflowDescError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red"></asp:Label>
                                                     <%--<label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
                                                     <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 43%;" runat="server"></asp:DropDownList>--%>
@@ -365,15 +452,15 @@
                                             </div>
 
                                             <%--<div class="row" >--%>
-                                                <asp:UpdatePanel runat="server" style="width: 100%;">
-                                                    <ContentTemplate>
-                                                        <div class="form-group row" style="margin-bottom: 0;">
+                                            <asp:UpdatePanel runat="server" style="width: 100%;">
+                                                <ContentTemplate>
+                                                    <div class="form-group row" style="margin-bottom: 0;">
                                                         <div class="col-xs-6 col-lg-6 form-inline">
                                                             <label for="message-text" class="col-xl-5 col-lg-5 form-control-label" style="text-align: right;">Category :</label>
-                                                            <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 43%;" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
                                                             <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;"
                                                                 ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
-                                                    <asp:Label ID="lblCategoryError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: -148px;"></asp:Label>
+                                                            <asp:Label ID="lblCategoryError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" Style="margin-left: -148px;"></asp:Label>
 
                                                         </div>
                                                         <div class="col-xs-6 col-lg-6 form-inline" style="margin-bottom: 0;">
@@ -382,10 +469,10 @@
                                                             <%--<asp:RequiredFieldValidator ID="rfvSubCat" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;"
                                                                 ValidationGroup="validationWorkflow" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                                         </div>
-                                                            </div>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                           <%-- </div>--%>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                            <%-- </div>--%>
                                             <%--<div class="form-group row" style="margin-bottom: 0;">
                                                     <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Zone :</label>
                                                     <asp:DropDownList ID="ddlZone" class="form-control m-input" Style="width: 25%;" runat="server"></asp:DropDownList>
@@ -397,11 +484,11 @@
                                                 <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%; margin-left: 4%;"></asp:TextBox>
 
                                                 <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationWorkflow" />
-                                                <asp:Label ID="lblMakeCombination" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: 5%;" ></asp:Label>
+                                                <asp:Label ID="lblMakeCombination" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" Style="margin-left: 5%;"></asp:Label>
 
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
                                                     Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
-                                               <asp:Label ID="lblNoOfLevelError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" style="margin-left: 21%;" ></asp:Label>
+                                                <asp:Label ID="lblNoOfLevelError" runat="server" class="form-control-label" ClientIDMode="Static" ForeColor="Red" Style="margin-left: 21%;"></asp:Label>
 
 
                                             </div>
@@ -497,7 +584,7 @@
                                                                         </div>
                                                                         <div class="col-md-6 row">
                                                                             <label class="col-form-label col-xl-4 col-lg-3 ">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;"  onchange="funddl();"  OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"  runat="server"></asp:DropDownList>
+                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" ClientIDMode="Static" Style="width: 40%;" onchange="funddl();" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" runat="server"></asp:DropDownList>
 
                                                                         </div>
                                                                         <div class="col-md-3" style="text-align: right;">
@@ -508,6 +595,10 @@
 
                                                                     <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
                                                                     <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+
+                                                                    <asp:HiddenField ID="hdnPreviousLevelUserIDs" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnCurrentLevelUserIDs" runat="server" ClientIDMode="Static" />
+                                                                    <asp:HiddenField ID="hdnAllUserIDs" runat="server" Value="" ClientIDMode="Static" />
 
                                                                     <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableUser"
                                                                         AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound">
@@ -567,7 +658,7 @@
 
                                                                     <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="ActionInfoGroupDesc">
                                                                         <ItemTemplate>
-                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
+                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>','<%# (DataBinder.Eval(Container.DataItem,"UserIDs")) %>')">
                                                                                 <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
                                                                             </a>
                                                                         </ItemTemplate>

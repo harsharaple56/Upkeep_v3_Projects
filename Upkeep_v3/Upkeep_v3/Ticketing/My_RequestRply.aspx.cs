@@ -365,6 +365,7 @@ namespace Upkeep_v3.Ticketing
                         {
                             dvApprovalDetails.Attributes.Add("style","display:none");
                             dvClose.Attributes.Add("style", "display:none");
+                            dvAccept.Attributes.Add("style", "display:none");
                         }
 
                     }

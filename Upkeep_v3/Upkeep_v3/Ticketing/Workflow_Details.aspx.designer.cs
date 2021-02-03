@@ -220,6 +220,33 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.HiddenField hdnSelectedUserName;
         
         /// <summary>
+        /// hdnPreviousLevelUserIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPreviousLevelUserIDs;
+        
+        /// <summary>
+        /// hdnCurrentLevelUserIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCurrentLevelUserIDs;
+        
+        /// <summary>
+        /// hdnAllUserIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnAllUserIDs;
+        
+        /// <summary>
         /// grdInfodetails control.
         /// </summary>
         /// <remarks>

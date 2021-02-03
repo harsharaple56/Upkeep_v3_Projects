@@ -94,6 +94,7 @@ namespace Upkeep_v3.General_Masters
             int Approver_ID = 0;
             int Is_GobalApprover = 0;
             int RoleID = 0;
+            int Is_Email_Verified = 0;
 
 
             User_Code = txtUserCode.Text.Trim();
@@ -185,7 +186,13 @@ namespace Upkeep_v3.General_Masters
             Approver_ID = Convert.ToInt32(ddlApprover.SelectedValue);
             RoleID = Convert.ToInt32(ddlRole.SelectedValue);
 
-            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, LoggedInUserID, Action);
+            if (Convert.ToString(Session["Is_Email_Verified"]) != "")
+            {
+                Is_Email_Verified = Convert.ToInt32(Session["Is_Email_Verified"]);
+            }
+                
+
+            ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, User_Code, F_Name, L_Name, User_Mobile, User_Email, User_MobileAlter, User_Landline, User_Designation, User_Type_ID, Zone, location, subLocation, Department, Login_Id, password, Is_Approver, Is_GobalApprover, Approver_ID, RoleID, ProfilePhoto_FilePath, Sign_FilePath, CompanyID, Is_Email_Verified, LoggedInUserID, Action);
 
             if (ds.Tables.Count > 0)
             {
@@ -353,12 +360,7 @@ namespace Upkeep_v3.General_Masters
         {
             try
             {
-
-
-
                 DataSet ds = new DataSet();
-
-
 
                 ds = ObjUpkeepCC.Fetch_Department(CompanyID);
 
@@ -437,7 +439,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID, LoggedInUserID, "R");
+                ds = ObjUpkeepCC.UserMaster_CRUD(User_ID, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -453,6 +455,22 @@ namespace Upkeep_v3.General_Masters
                         TxtLandline.Text = Convert.ToString(ds.Tables[0].Rows[0]["User_Landine"]);
                         txtPassword.Text = Convert.ToString(ds.Tables[0].Rows[0]["Password"]);
                         txtAlterMobile.Text = Convert.ToString(ds.Tables[0].Rows[0]["USer_MobileAlter"]);
+
+
+                        int Is_Email_Verified = Convert.ToInt32(ds.Tables[0].Rows[0]["Is_Email_Verified"]);
+                        if (Is_Email_Verified == 1)
+                        {
+                            lnkVerifyEmail.Attributes.Add("style", "display:none;");
+                            lblMailVerifySuccess.Attributes.Add("style", "display:block;margin-top: 13px;");
+
+                            dvOTPBox.Attributes.Add("style", "display:none;");
+                            dvOTPSubmit.Attributes.Add("style", "display:none;");
+                            lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                        }
+                        else
+                        {
+
+                        }
 
                         //Commented by sujata
                         //ddlZone.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Zone_Id"]);
@@ -520,7 +538,7 @@ namespace Upkeep_v3.General_Masters
             {
                 DataSet ds = new DataSet();
 
-                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID, LoggedInUserID, "D");
+                ds = ds = ObjUpkeepCC.UserMaster_CRUD(User_ID_Delete, "", "", "", "", "", "", "", "", 0, 0, 0, 0, 0, "", "", 0, 0, 0,0, "","", CompanyID,0, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -543,6 +561,71 @@ namespace Upkeep_v3.General_Masters
 
         }
 
+        protected void lnkVerifyEmail_Click(object sender, EventArgs e)
+        {
+            DataSet dsVerifyEmail = new DataSet();
+            try
+            {
+                Random random = new Random();
+                string OTP = string.Empty;
 
+                OTP = random.Next(0, 999999).ToString("D6");
+
+                Session["OTP"] = OTP;
+
+                dsVerifyEmail = ObjUpkeepCC.Email_Verification_Mail(Convert.ToString(txtuseremail.Text.Trim()), OTP);
+
+                if (dsVerifyEmail.Tables.Count > 0)
+                {
+                    if (dsVerifyEmail.Tables[0].Rows.Count > 0)
+                    {
+                       int Status= Convert.ToInt32(dsVerifyEmail.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            lnkVerifyEmail.Attributes.Add("style","display:none;");
+                            lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                            lblMailVerifySuccess.Attributes.Add("style", "display:none;");
+
+                            dvOTPBox.Attributes.Add("style", "display:block;");
+                            dvOTPSubmit.Attributes.Add("style", "display:block;");
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnVerifyOTP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtEmailOTP.Text) == Convert.ToString(Session["OTP"]))
+                {
+                    Session["Is_Email_Verified"] = "1";
+                    lblMailVerifySuccess.Attributes.Add("style", "display:block;");
+
+                    dvOTPBox.Attributes.Add("style", "display:none;");
+                    dvOTPSubmit.Attributes.Add("style", "display:none;");
+                    lblMailVerifyFail.Attributes.Add("style", "display:none;");
+                }
+
+                else
+                {
+                    Session["Is_Email_Verified"] = "0";
+                    lblMailVerifyFail.Attributes.Add("style", "display:block;");
+                    lblMailVerifyFail.Text = "Invalid OTP";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

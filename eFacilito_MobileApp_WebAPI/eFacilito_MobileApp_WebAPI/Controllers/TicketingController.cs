@@ -432,6 +432,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                     Category = Convert.ToString(dr["Category"]);
                                     Location = Convert.ToString(dr["Location"]);
                                     Ticket_No = Convert.ToString(dr["TicketNo"]);
+                                    int Is_SMS_Send = Convert.ToInt32(dr["Is_SMS_Send"]);
 
                                     TextMessage = "Dear " + FirstName + ",";
                                     TextMessage += "%0a%0aA ticket " + Ticket_No + " has been raised by " + TicketRaisedBy_FirstName + " from " + TicketRaisedByDepartment + " Department.";
@@ -443,7 +444,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                                     if (APIKey != "")
                                     {
-                                        string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                                        //Send SMS only when the user has access to send SMS in workflow
+                                        if (Is_SMS_Send > 0)
+                                        {
+                                            string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                                        }
                                     }
                                 }
                             }
@@ -468,8 +473,13 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 var TicketNo = Convert.ToString(dr["TicketNo"]);
                                 Ticket_No = Convert.ToString(dr["TicketNo"]);
                                 TicketID = Convert.ToInt32(dr["TicketID"]);
+                                int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
 
-                                FunSendAppNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg, "TICKET");
+                                //Send app notification only when the user has access to send app notification in workflow
+                                if (Is_App_Notification_Send > 0)
+                                {
+                                    FunSendAppNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg, "TICKET");
+                                }
                             }
                         }
                     }
@@ -594,7 +604,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                               Ticket_Message = p.Field<string>("Tkt_Message"),
                                               Ticket_ImagePath = p.Field<string>("ImagePath"),
-                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
+                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
+                                              ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
                                           }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);

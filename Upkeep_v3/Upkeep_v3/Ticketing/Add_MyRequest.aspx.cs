@@ -234,7 +234,7 @@ namespace Upkeep_v3.Ticketing
                         }
 
                         int Tkt_Is_Remark_Close = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Remark_Close"]);
-                        
+
                     }
                 }
             }
@@ -450,6 +450,7 @@ namespace Upkeep_v3.Ticketing
                                             MobileNo = Convert.ToString(dr["MobileNo"]);
                                             TicketRaisedBy_FirstName = Convert.ToString(dr["TicketRaisedBy"]);
                                             TicketRaisedBy_MobileNo = Convert.ToString(dr["TicketRaisedByMobileNo"]);
+                                            int Is_SMS_Send = Convert.ToInt32(dr["Is_SMS_Send"]);
 
                                             TextMessage = "Dear " + FirstName + ",";
                                             if (Convert.ToString(Session["UserType"]) == "E")
@@ -470,7 +471,14 @@ namespace Upkeep_v3.Ticketing
                                             TextMessage += "%0aLevel : 1";
                                             TextMessage += "%0a%0aPlease accept the ticket to take further Action.";
 
-                                            string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                                            if (APIKey != "")
+                                            {
+                                                //Send SMS only when the user has access to send SMS in workflow
+                                                if (Is_SMS_Send > 0)
+                                                {
+                                                    string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
+                                                }
+                                            }
                                         }
 
                                         if (Convert.ToString(Session["UserType"]) == "E")
@@ -483,7 +491,11 @@ namespace Upkeep_v3.Ticketing
                                             TextMessage_RaisedBy = "Dear " + StoreManager_Name + ",";
                                         }
                                         TextMessage_RaisedBy += "%0a%0aYour ticket " + TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
-                                        string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
+
+                                        if (APIKey != "")
+                                        {
+                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage_RaisedBy);
+                                        }
                                     }
                                 }
 
@@ -512,9 +524,14 @@ namespace Upkeep_v3.Ticketing
                                         var TokenNO = Convert.ToString(dr["TokenNumber"]);
                                         var TicketID = Convert.ToInt32(dr["TicketID"]);
                                         var TicketNo = Convert.ToString(dr["TicketNo"]);
+                                        int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
 
                                         //await SendNotification(TokenNO, "Ticket No: " + Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                        await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
+                                        //Send app notification only when the user has access to send app notification in workflow
+                                        if (Is_App_Notification_Send > 0)
+                                        {
+                                            await SendNotification(TokenNO, TicketID, "Ticket No. " + TicketNo + ". New Ticket Received.", NotificationMsg);
+                                        }
                                     }
                                 }
                                 // Send SMS
