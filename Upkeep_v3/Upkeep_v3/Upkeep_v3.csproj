@@ -858,6 +858,7 @@
     <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
     <Content Include="assets\demo\media\img\logo\client_logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_banner.png" />
+    <Content Include="assets\demo\media\img\logo\efacilito_Banner_logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_White.png" />
     <Content Include="assets\demo\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\media\img\logo\logo.png" />
@@ -1041,6 +1042,7 @@
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
     <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
+    <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
     <Content Include="Login.aspx" />
     <Content Include="mohammed_File.aspx" />
     <Content Include="My_Profile.aspx" />
