@@ -58,6 +58,9 @@
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -65,15 +68,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="QRCoder">
       <HintPath>..\..\..\..\QRCoder.dll</HintPath>
-    </Reference>
-    <Reference Include="QRGenerator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\QRGenerator.dll</HintPath>
     </Reference>
     <Reference Include="Sharpbrake.Client, Version=5.1.0.0, Culture=neutral, PublicKeyToken=c5537f4669e4dbaa, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharpbrake.Client.5.1.0\lib\net452\Sharpbrake.Client.dll</HintPath>
@@ -858,6 +854,7 @@
     <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
     <Content Include="assets\demo\media\img\logo\client_logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_banner.png" />
+    <Content Include="assets\demo\media\img\logo\efacilito_Banner_logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_White.png" />
     <Content Include="assets\demo\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\media\img\logo\logo.png" />
@@ -1041,6 +1038,7 @@
     <Content Include="Inventory\Inventory_Transaction_List.aspx" />
     <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
+    <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
     <Content Include="Login.aspx" />
     <Content Include="mohammed_File.aspx" />
     <Content Include="My_Profile.aspx" />
@@ -3955,10 +3953,10 @@
     <Content Include="obj\Debug\Tsc8ad6edcc.out" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -5799,19 +5797,6 @@
     <Folder Include="vendors\markdown\node_modules\.bin\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:60461/Upkeep_V3_Services.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\Upkeep_V3_Services\</RelPath>
-      <UpdateFromURL>http://localhost:60461/Upkeep_V3_Services.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="ACTIVEXLib">
       <Guid>{012F24C1-35B0-11D0-BF2D-0000E8D0D146}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -5848,15 +5833,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="MSHTML">
-      <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
-      <VersionMajor>4</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -5866,6 +5842,19 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:60461/Upkeep_V3_Services.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Upkeep_V3_Services\</RelPath>
+      <UpdateFromURL>http://localhost:60461/Upkeep_V3_Services.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
