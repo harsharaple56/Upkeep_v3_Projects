@@ -91,8 +91,9 @@ namespace Upkeep_v3.GatePass
                             string RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["RequestDate"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["GP_Status"]);
                             string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
+                            string Store = Convert.ToString(ds.Tables[0].Rows[i]["Store"]);
 
-                            data += "<tr><td> <a href='..\\Gatepass\\GatePass_Approval.aspx?TransactionID=" + TransactionID + "' style='text-decoration: underline;' > " + TicketNo + " </a></td><td>" + GatePass_Title + "</td><td>" + Department + "</td><td>" + GP_Type + "</td><td>" + GatePassDate + "</td><td>" + RequestDate + "</td><td>" + Status + "</td><td>" + Created_By + "</td></tr>";
+                            data += "<tr><td> <a href='..\\Gatepass\\GatePass_Approval.aspx?TransactionID=" + TransactionID + "' style='text-decoration: underline;' > " + TicketNo + " </a></td><td>" + GatePass_Title + "</td><td>" + Department + "</td><td>" + GP_Type + "</td><td>" + GatePassDate + "</td><td>" + RequestDate + "</td><td>" + Status + "</td><td>" + Created_By + "</td><td>" + Store + "</td></tr>";
 
                         }
 
