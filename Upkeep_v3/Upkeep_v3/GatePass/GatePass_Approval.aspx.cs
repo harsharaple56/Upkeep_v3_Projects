@@ -290,8 +290,12 @@ namespace Upkeep_v3.GatePass
                                         foreach (DataRow dr in dsApproval.Tables[1].Rows)
                                         {
                                             var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                            int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
                                             //await SendNotification(TokenNO, Convert.ToString(lblTicketNo.Text), "New Gatepass Request");
-                                            await SendNotification(TokenNO, Convert.ToInt32(TransactionID), NotificationHeader, NotificationMsg);
+                                            if (Is_App_Notification_Send > 0)
+                                            {
+                                                await SendNotification(TokenNO, Convert.ToInt32(TransactionID), NotificationHeader, NotificationMsg);
+                                            }
                                         }
                                     }
                                 }

@@ -249,7 +249,7 @@
                                     <th title="Request Date" data-field="RequestDate">Request Date</th>
                                     <th title="Status" data-field="Status">Status</th>
                                     <th title="Requested By" data-field="RequestedBy">Requested By</th>
-
+                                    <th title="Store" data-field="Store">Store</th>
                                 </tr>
                             </thead>
                             <tbody>
