@@ -108,7 +108,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
                 
                 ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
 
@@ -123,6 +123,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             ObjRetailer = (from p in DsRetailerDataSet.Tables[0].AsEnumerable()
                                            select new ClsFetchRetailers
                                            {
+                                               Retailer_ID = p.Field<int>("Retailer_ID"),
                                                Store_Name = p.Field<string>("Store_Name"),
                                                Store_No = p.Field<string>("Store_No"),
 

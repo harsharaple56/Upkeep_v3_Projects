@@ -976,6 +976,8 @@
     <Content Include="CheckList\My_Checklists.aspx" />
     <Content Include="CheckList\Schedule_Checklist.aspx" />
     <Content Include="CheckList\Schedule_Checklist_Listing.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
+    <Content Include="Cocktail_World\Setup\Licenses.aspx" />
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
@@ -1044,6 +1046,8 @@
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
     <Content Include="Login.aspx" />
+    <Content Include="Manage_Account\Billing\Invoices_Listing.aspx" />
+    <Content Include="Manage_Account\Billing\Invoice_Details.aspx" />
     <Content Include="mohammed_File.aspx" />
     <Content Include="My_Profile.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
@@ -4156,6 +4160,20 @@
     <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.designer.cs">
       <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.cs">
+      <DependentUpon>Brand_Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.designer.cs">
+      <DependentUpon>Brand_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Licenses.aspx.cs">
+      <DependentUpon>Licenses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Licenses.aspx.designer.cs">
+      <DependentUpon>Licenses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Coming_Soon.aspx.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4599,6 +4617,20 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Account\Billing\Invoices_Listing.aspx.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage_Account\Billing\Invoices_Listing.aspx.designer.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage_Account\Billing\Invoice_Details.aspx.cs">
+      <DependentUpon>Invoice_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage_Account\Billing\Invoice_Details.aspx.designer.cs">
+      <DependentUpon>Invoice_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -5789,6 +5821,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CheckList\ImportFile\" />
+    <Folder Include="Cocktail_World\Reports\Excise\Maharashtra\" />
+    <Folder Include="Cocktail_World\Reports\Generic\" />
+    <Folder Include="Cocktail_World\Transactions\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
