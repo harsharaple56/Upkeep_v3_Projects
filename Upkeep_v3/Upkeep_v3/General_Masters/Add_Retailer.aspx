@@ -10,6 +10,35 @@
             $("#email").blur(function () {
                 $("#txtUsername").val($("#email").val());
             });
+
+            $("#txtassetLocation").on('input', function () {
+                var val = this.value;
+
+                $('#hdnassetLocation').val("");
+                if ($('#dlassetLocation option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnassetLocation').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                }
+            });
+
+            $('#btnSave').click(function () {
+                $('#LocationError_Msg').text('').hide();
+
+                if ($('#hdnassetLocation').val() == '') {
+                    //alert("Please Select Proper Location!");
+                    $('#LocationError_Msg').text("Please Select Proper Location").show();
+                    return false;
+                }
+            });
+
+
+
         });
     </script>
 
@@ -41,7 +70,7 @@
                                 </a>
                                 <div class="btn-group">
 
-                                    <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateRetailer" OnClick="btnSave_Click" Text="Save" />
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateRetailer" OnClick="btnSave_Click" Text="Save" ClientIDMode="Static" />
 
                                 </div>
                             </div>
@@ -123,9 +152,18 @@
                                     <div class="form-group m-form__group row">
                                         <label class="col-xl-4 col-lg-3 col-form-label"><span style="color: red;">*</span> Location:</label>
                                         <div class="col-xl-8 col-lg-9">
-                                            <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
+                                            <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
+
+                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                                class="form-control" runat="server" clientidmode="Static" />
+                                            <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
+                                                Display="Dynamic" ValidationGroup="validateRetailer" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                            <span id="LocationError_Msg" style="color: red;"></span>
+                                            <%-- <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
-                                                ValidationGroup="validateRetailer" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                                ValidationGroup="validateRetailer" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>--%>
                                         </div>
                                     </div>
 

@@ -7033,7 +7033,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                GP_Date = p.Field<string>("GatePassDate"),
                                                GP_RequestDate = p.Field<string>("RequestDate"),
                                                GP_Status = p.Field<string>("GP_Status"),
-                                               GP_CreatedBy = p.Field<string>("Created_By")
+                                               GP_CreatedBy = p.Field<string>("Created_By"),
+                                               Store = p.Field<string>("Store")
                                            }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjGatePass);
@@ -7524,7 +7525,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                  WorkPermitDate = p.Field<string>("WorkPermitDate"),
                                                  RequestDate = p.Field<string>("RequestDate"),
                                                  WP_Status = p.Field<string>("WP_Status"),
-                                                 Created_By = p.Field<string>("Created_By")
+                                                 Created_By = p.Field<string>("Created_By"),
+                                                 Store = p.Field<string>("Store")
                                              }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
