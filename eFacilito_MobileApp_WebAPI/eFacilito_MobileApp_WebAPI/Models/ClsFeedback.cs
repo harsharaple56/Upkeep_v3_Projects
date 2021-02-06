@@ -71,6 +71,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     public class ClsFetchRetailers
     {
+        public int Retailer_ID { get; set; }
         public string Store_Name { get; set; }
         public string Store_No { get; set; }
 
