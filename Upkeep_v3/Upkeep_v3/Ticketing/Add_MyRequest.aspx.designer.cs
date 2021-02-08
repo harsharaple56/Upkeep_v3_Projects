@@ -148,13 +148,31 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Button btnAddSubLoc;
         
         /// <summary>
-        /// ddlCategory control.
+        /// hdnCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCategory;
+        
+        /// <summary>
+        /// txtCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCategory;
+        
+        /// <summary>
+        /// dlCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dlCategory;
         
         /// <summary>
         /// RequiredFieldValidator4 control.
