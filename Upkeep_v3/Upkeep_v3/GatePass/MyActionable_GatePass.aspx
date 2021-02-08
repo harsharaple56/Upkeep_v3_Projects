@@ -29,6 +29,7 @@
                                 "Open": { title: "Open", class: "m-badge--danger" },
                                 "Close": { title: "Close", class: " m-badge--success" },
                                 "Approve": { title: "Approved", class: " m-badge--info" },
+                                "Expired": { title: "Expired", class: "bg-secondary text-black" },
                                 "Hold": { title: "Hold", class: " m-badge--warning" },
                                 "Rejected": { title: "Rejected", class: " m-badge--danger" },
                                 "In Progress": { title: "In Progress", class: " m-badge--success" }
