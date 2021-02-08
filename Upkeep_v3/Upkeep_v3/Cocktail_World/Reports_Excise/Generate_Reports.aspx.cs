@@ -11,7 +11,7 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            div_Maharashtra_Excise.Visible = true;
         }
     }
 }
