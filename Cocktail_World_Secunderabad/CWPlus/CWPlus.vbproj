@@ -152,14 +152,6 @@
       <HintPath>C:\Users\Sachin\Documents\Visual Studio 2010\SQL Dlls\Microsoft.SqlServer.Smo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="MKDataGridView, Version=1.0.4555.23057, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MKDataGridView.dll</HintPath>
-    </Reference>
-    <Reference Include="MKProgress">
-      <HintPath>..\..\MKProgress.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -1879,6 +1871,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\CButtonLib.dll" />
+    <Content Include="bin\Debug\cErrorLog.dll" />
+    <Content Include="bin\Debug\CWPlusBL.dll" />
     <Content Include="bin\Debug\IGClassLibrary.dll" />
     <Content Include="bin\Debug\itextsharp.DLL" />
     <Content Include="bin\Debug\Menu.xml">
@@ -1892,6 +1887,20 @@
     <None Include="Resources\email_open.png" />
     <None Include="Resources\arrow_left %281%29.png" />
     <None Include="Resources\arrow_right %281%29.png" />
+    <Content Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="bin\Debug\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.Diagnostics.STrace.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.Dmf.Common.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.Smo.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.SqlClrProvider.dll" />
+    <Content Include="bin\Debug\Microsoft.SqlServer.SqlEnum.dll" />
+    <Content Include="bin\Debug\MKDataGridView.dll" />
+    <Content Include="bin\Debug\MKProgress.dll" />
+    <Content Include="bin\Debug\System.Windows.Forms.Calendar.dll" />
     <Content Include="Script\ACCOR File Query\DailyRecipe.txt" />
     <Content Include="Script\ACCOR File Query\Recipe.txt" />
     <Content Include="Script\CWPlus_DB.sql" />
