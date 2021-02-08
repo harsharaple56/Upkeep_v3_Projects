@@ -160,11 +160,21 @@ namespace Upkeep_v3.Ticketing
 
                 if (CategoryID == 0)
                 {
-                    ddlCategory.DataSource = dsCategory.Tables[0];
-                    ddlCategory.DataTextField = "Category_Desc";
-                    ddlCategory.DataValueField = "Category_ID";
-                    ddlCategory.DataBind();
-                    ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    //ddlCategory.DataSource = dsCategory.Tables[0];
+                    //ddlCategory.DataTextField = "Category_Desc";
+                    //ddlCategory.DataValueField = "Category_ID";
+                    //ddlCategory.DataBind();
+                    //ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    var builder = new System.Text.StringBuilder();
+
+                    for (int i = 0; i < dsCategory.Tables[0].Rows.Count; i++)
+                    {
+                        builder.Append(String.Format("<option value='{0}' text='{1}'>", dsCategory.Tables[0].Rows[i]["Category_Desc"], dsCategory.Tables[0].Rows[i]["Category_ID"]));
+                    }
+                    dlCategory.InnerHtml = builder.ToString();
+                    dlCategory.DataBind();
+
                 }
                 else if (CategoryID > 0)
                 {
@@ -272,7 +282,8 @@ namespace Upkeep_v3.Ticketing
                 LocationID = Convert.ToInt32(hdnassetLocation.Value);
 
                 //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
-                CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+                //CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+                CategoryID = Convert.ToInt32(hdnCategory.Value);
                 SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
                 TicketMessage = txtTicketDesc.Text.Trim();
 
@@ -429,7 +440,9 @@ namespace Upkeep_v3.Ticketing
                                 string Store_Name = string.Empty;
                                 string Store_No = string.Empty;
 
-                                Category = Convert.ToString(ddlCategory.SelectedItem.Text);
+                                //Category = Convert.ToString(ddlCategory.SelectedItem.Text);
+                                Category = Convert.ToString(hdnCategory.Value);
+                                
                                 Location = Convert.ToString(ddlLocation.SelectedItem.Text);
                                 Department = Convert.ToString(Session["Department"]);
 
@@ -568,7 +581,7 @@ namespace Upkeep_v3.Ticketing
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+            int CategoryID = Convert.ToInt32(hdnCategory.Value);
             Fetch_CategorySubCategory(CategoryID);
 
             //btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon dark disabled");
@@ -581,7 +594,7 @@ namespace Upkeep_v3.Ticketing
 
             BindWorkflow(CategoryID, SubCategoryID);
 
-            dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
+            dvDepartment.Attributes.Add("style", "display:block; padding-left: 10%;");
         }
 
         protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -593,7 +606,7 @@ namespace Upkeep_v3.Ticketing
             int SubCategoryID = 0;
             int CategoryID = 0;
             //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
-            CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+            CategoryID = Convert.ToInt32(hdnCategory.Value);
             SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
             BindWorkflow(CategoryID, SubCategoryID);
 
@@ -608,7 +621,7 @@ namespace Upkeep_v3.Ticketing
             int SubCategoryID = 0;
             int CategoryID = 0;
             //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
-            CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+            CategoryID = Convert.ToInt32(hdnCategory.Value);
             SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
             BindWorkflow(CategoryID, SubCategoryID);
 

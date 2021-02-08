@@ -172,6 +172,8 @@ namespace Upkeep_v3.General_Masters
                         contact.Text = Convert.ToString(ds.Tables[0].Rows[0]["PhoneNo"]);
                         txtUsername.Text = Convert.ToString(ds.Tables[0].Rows[0]["Username"]);
                         txtPassword.Text = Convert.ToString(ds.Tables[0].Rows[0]["Password"]);
+
+                        txtassetLocation.Value = ds.Tables[0].Rows[0]["Loc_Desc"].ToString();
                     }
 
                 }
