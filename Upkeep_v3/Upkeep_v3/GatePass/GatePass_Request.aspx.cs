@@ -468,9 +468,13 @@ namespace Upkeep_v3.GatePass
                                     foreach (DataRow dr in dsGpHeaderData.Tables[2].Rows)
                                     {
                                         var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                        int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
 
                                         //await SendNotification(TokenNO, Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]), "New Gatepass Request");
-                                        await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
+                                        if (Is_App_Notification_Send > 0)
+                                        {
+                                            await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
+                                        }
                                     }
                                 }
 

@@ -858,9 +858,12 @@ namespace Upkeep_v3.WorkPermit
                                 foreach (DataRow dr in dsWPHeaderData.Tables[2].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                    
+                                    int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
                                     //await SendNotification(TokenNO, Convert.ToString(dsWPHeaderData.Tables[0].Rows[0]["RequestID"]), "New WorkPermit Request");
-                                    await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
+                                    if (Is_App_Notification_Send > 0)
+                                    {
+                                        await SendNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg);
+                                    }
                                 }
                             }
                             //[-][Ajay Prajapati]
@@ -1296,9 +1299,12 @@ namespace Upkeep_v3.WorkPermit
                                     foreach (DataRow dr in dsWPAction.Tables[1].Rows)
                                     {
                                         var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                        int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
                                         //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
-
-                                        await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                        if (Is_App_Notification_Send > 0)
+                                        {
+                                            await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                        }
                                     }
                                 }
                             }

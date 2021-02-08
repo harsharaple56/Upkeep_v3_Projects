@@ -61,11 +61,20 @@ namespace Upkeep_v3.General_Masters
                 {
                     if (dsLocDetails.Tables[0].Rows.Count > 0)
                     {
-                        ddlLocation.DataSource = dsLocDetails.Tables[0];
-                        ddlLocation.DataTextField = "Loc_Desc";
-                        ddlLocation.DataValueField = "Loc_ID";
-                        ddlLocation.DataBind();
-                        ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+                        //ddlLocation.DataSource = dsLocDetails.Tables[0];
+                        //ddlLocation.DataTextField = "Loc_Desc";
+                        //ddlLocation.DataValueField = "Loc_ID";
+                        //ddlLocation.DataBind();
+                        //ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                        var builder = new System.Text.StringBuilder();
+
+                        for (int i = 0; i < dsLocDetails.Tables[0].Rows.Count; i++)
+                        {
+                            builder.Append(String.Format("<option value='{0}' text='{1}'>", dsLocDetails.Tables[0].Rows[i]["Loc_Desc"], dsLocDetails.Tables[0].Rows[i]["Loc_id"]));
+                        }
+                        dlassetLocation.InnerHtml = builder.ToString();
+                        dlassetLocation.DataBind();
                     }
                 }
             }
@@ -103,7 +112,8 @@ namespace Upkeep_v3.General_Masters
 
                 Store_No = Convert.ToString(txtStoreNo.Text.Trim());
 
-                int LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+                int LocationID = 0; //Convert.ToInt32(ddlLocation.SelectedValue);
+                LocationID = Convert.ToInt32(hdnassetLocation.Value);
 
                 DataSet ds = new DataSet();
                 ds = ObjUpkeepFeedback.Retailer_CRUD(store.Text.Trim(), Store_No, first_name.Text.Trim(), last_name.Text.Trim(), email.Text.Trim(), Convert.ToInt64(contact.Text.Trim()), Retailer_ID, Username, Password, LocationID, CompanyID, LoggedInUserID, Action);

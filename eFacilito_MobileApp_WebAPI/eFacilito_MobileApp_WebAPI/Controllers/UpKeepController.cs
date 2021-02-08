@@ -7033,7 +7033,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                GP_Date = p.Field<string>("GatePassDate"),
                                                GP_RequestDate = p.Field<string>("RequestDate"),
                                                GP_Status = p.Field<string>("GP_Status"),
-                                               GP_CreatedBy = p.Field<string>("Created_By")
+                                               GP_CreatedBy = p.Field<string>("Created_By"),
+                                               Store = p.Field<string>("Store")
                                            }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjGatePass);
@@ -7268,15 +7269,19 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 TicketNo = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
                                 TransactionID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TransactionID"]);
-
+                               
                                 NotificationHeader = "Gate pass ID " + TicketNo + ".";
                                 NotificationMsg = "A gate pass approved at Level " + objInsert.GP_CurrentLevel + " is now pending in your Account. Tap to take Action.";
 
                                 foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                    int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
 
-                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "GATEPASS");
+                                    if (Is_App_Notification_Send > 0)
+                                    {
+                                        FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "GATEPASS");
+                                    }
                                 }
                             }
 
@@ -7520,7 +7525,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                  WorkPermitDate = p.Field<string>("WorkPermitDate"),
                                                  RequestDate = p.Field<string>("RequestDate"),
                                                  WP_Status = p.Field<string>("WP_Status"),
-                                                 Created_By = p.Field<string>("Created_By")
+                                                 Created_By = p.Field<string>("Created_By"),
+                                                 Store = p.Field<string>("Store")
                                              }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
@@ -7600,9 +7606,12 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                 foreach (DataRow dr in DsDataSet.Tables[0].Rows)
                                 {
                                     var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                    int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
                                     //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
-
-                                    FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "WORKPERMIT");
+                                    if (Is_App_Notification_Send > 0)
+                                    {
+                                        FunSendAppNotification(TokenNO, TransactionID, NotificationHeader, NotificationMsg, "WORKPERMIT");
+                                    }
                                 }
                             }
 

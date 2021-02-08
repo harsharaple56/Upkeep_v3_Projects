@@ -85,8 +85,9 @@ namespace Upkeep_v3.WorkPermit
                             string RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["RequestDate"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["WP_Status"]);
                             string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
+                            string Store = Convert.ToString(ds.Tables[0].Rows[i]["Store"]);
 
-                            data += "<tr><td> <a href='WorkPermit_Request.aspx?TransactionID=" + TransactionID + "&MyAction=1' style='text-decoration: underline;' > " + TicketNo + " </a></td><td>" + WorkPermit_Title + "</td><td>" + Department + "</td><td>" + WorkPermitDate + "</td><td>" + RequestDate + "</td><td>" + Status + "</td><td>" + Created_By + "</td></tr>";
+                            data += "<tr><td> <a href='WorkPermit_Request.aspx?TransactionID=" + TransactionID + "&MyAction=1' style='text-decoration: underline;' > " + TicketNo + " </a></td><td>" + WorkPermit_Title + "</td><td>" + Department + "</td><td>" + WorkPermitDate + "</td><td>" + RequestDate + "</td><td>" + Status + "</td><td>" + Created_By + "</td><td>" + Store + "</td></tr>";
 
                         }
 

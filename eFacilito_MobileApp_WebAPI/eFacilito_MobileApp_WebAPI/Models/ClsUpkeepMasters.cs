@@ -653,6 +653,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string GP_RequestDate { get; set; }
         public string GP_Status { get; set; }
         public string GP_CreatedBy { get; set; }
+        public string Store { get; set; }
     }
 
     public class ClsGatePassAction
@@ -678,6 +679,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string RequestDate { get; set; }
         public string WP_Status { get; set; }
         public string Created_By { get; set; }
+        public string Store { get; set; }
     }
 
     public class ClsWorkPermitAction
