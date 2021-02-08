@@ -105,8 +105,7 @@
 
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
-                        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-
+                        
 
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
