@@ -178,11 +178,20 @@ namespace Upkeep_v3.Ticketing
                 }
                 else if (CategoryID > 0)
                 {
-                    ddlSubCategory.DataSource = dsCategory.Tables[0];
-                    ddlSubCategory.DataTextField = "SubCategory_Desc";
-                    ddlSubCategory.DataValueField = "SubCategory_ID";
-                    ddlSubCategory.DataBind();
-                    ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    //ddlSubCategory.DataSource = dsCategory.Tables[0];
+                    //ddlSubCategory.DataTextField = "SubCategory_Desc";
+                    //ddlSubCategory.DataValueField = "SubCategory_ID";
+                    //ddlSubCategory.DataBind();
+                    //ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    var builder = new System.Text.StringBuilder();
+
+                    for (int i = 0; i < dsCategory.Tables[0].Rows.Count; i++)
+                    {
+                        builder.Append(String.Format("<option value='{0}' text='{1}'>", dsCategory.Tables[0].Rows[i]["SubCategory_Desc"], dsCategory.Tables[0].Rows[i]["SubCategory_ID"]));
+                    }
+                    dlSubCategory.InnerHtml = builder.ToString();
+                    dlSubCategory.DataBind();
                 }
 
             }
@@ -284,7 +293,7 @@ namespace Upkeep_v3.Ticketing
                 //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
                 //CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 CategoryID = Convert.ToInt32(hdnCategory.Value);
-                SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
+                SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
                 TicketMessage = txtTicketDesc.Text.Trim();
 
                 string fileName = string.Empty;
@@ -588,7 +597,7 @@ namespace Upkeep_v3.Ticketing
             //btnViewWorkflow.Attributes.Add("style", "pointer-events: none;;padding: 0.45rem 1.15rem;");
 
             int SubCategoryID = 0;
-            SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
+            SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
             btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
@@ -607,7 +616,7 @@ namespace Upkeep_v3.Ticketing
             int CategoryID = 0;
             //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
             CategoryID = Convert.ToInt32(hdnCategory.Value);
-            SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
+            SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             BindWorkflow(CategoryID, SubCategoryID);
 
             dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
@@ -622,7 +631,7 @@ namespace Upkeep_v3.Ticketing
             int CategoryID = 0;
             //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
             CategoryID = Convert.ToInt32(hdnCategory.Value);
-            SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
+            SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             BindWorkflow(CategoryID, SubCategoryID);
 
 
@@ -797,6 +806,45 @@ namespace Upkeep_v3.Ticketing
             return Encoding.UTF8.GetString(twoBytes) == "MZ";
         }
 
+        protected void btnCategoryChange_Click(object sender, EventArgs e)
+        {
+            int CategoryID = Convert.ToInt32(hdnCategory.Value);
 
+            //dlSubCategory.InnerHtml = "";
+            //dlSubCategory.DataBind();
+
+            Fetch_CategorySubCategory(CategoryID);
+
+            //btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon dark disabled");
+            //btnViewWorkflow.Attributes.Add("style", "pointer-events: none;;padding: 0.45rem 1.15rem;");
+
+            int SubCategoryID = 0;
+            if (Convert.ToString(hdnSubCategory.Value) != "")
+            {
+                SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+            }
+            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
+            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
+
+            BindWorkflow(CategoryID, SubCategoryID);
+
+            dvDepartment.Attributes.Add("style", "display:block; padding-left: 10%;");
+        }
+
+        protected void btnSubCategoryChange_Click(object sender, EventArgs e)
+        {
+            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
+            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
+
+            //int ZoneID = 0;
+            int SubCategoryID = 0;
+            int CategoryID = 0;
+            //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
+            CategoryID = Convert.ToInt32(hdnCategory.Value);
+            SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+            BindWorkflow(CategoryID, SubCategoryID);
+
+            dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
+        }
     }
 }

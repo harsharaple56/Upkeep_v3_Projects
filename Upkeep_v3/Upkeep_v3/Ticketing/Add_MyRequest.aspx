@@ -98,9 +98,31 @@
                 }).length) {
                     //send ajax request
                     //alert(this.id);
+                    $("#btnCategoryChange").click();
                 }
             });
 
+            $("#txtSubCategory").on('input', function () {
+                var val = this.value;
+
+                $('#hdnSubCategory').val("");
+                if ($('#dlSubCategory option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnSubCategory').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                    $("#btnSubCategoryChange").click();
+                }
+            });
+
+            function Category_Change() {
+                //alert('hi');
+                $("#btnCategoryChange").click();
+            }
 
         })
     </script>
@@ -239,7 +261,6 @@
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9" id="dvEmployeeLocation" runat="server">
                                                         <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
-
                                                         <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
                                                             class="form-control" runat="server" clientidmode="Static" />
                                                         <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
@@ -288,10 +309,11 @@
                                             <div class="col-xl-5 col-lg-9">
 
                                                 <asp:HiddenField ID="hdnCategory" runat="server" ClientIDMode="Static" />
+                                                <asp:Button ID="btnCategoryChange" runat="server" Style="display: none;" OnClick="btnCategoryChange_Click" ClientIDMode="Static" />
+
                                                 <input list="dlCategory" id="txtCategory" name="txtassetLocation"
                                                     class="form-control" runat="server" clientidmode="Static" />
                                                 <datalist id="dlCategory" runat="server" clientidmode="Static"></datalist>
-
 
                                                 <%--<asp:DropDownList ID="ddlCategory" class="form-control m-input" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>--%>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCategory" Visible="true" Display="Dynamic"
@@ -302,7 +324,15 @@
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Sub Category :</label>
                                             <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+
+                                                <asp:HiddenField ID="hdnSubCategory" runat="server" ClientIDMode="Static" />
+                                                <asp:Button ID="btnSubCategoryChange" runat="server" Style="display: none;" OnClick="btnSubCategoryChange_Click" ClientIDMode="Static" />
+
+                                                <input list="dlSubCategory" id="txtSubCategory" name="txtassetLocation"
+                                                    class="form-control" runat="server" clientidmode="Static" />
+                                                <datalist id="dlSubCategory" runat="server" clientidmode="Static"></datalist>
+
+                                                <%--<asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>--%>
                                                 <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Display="Dynamic"
                                                     ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                             </div>
