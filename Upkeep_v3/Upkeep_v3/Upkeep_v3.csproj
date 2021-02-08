@@ -972,6 +972,7 @@
     <Content Include="CheckList\My_Checklists.aspx" />
     <Content Include="CheckList\Schedule_Checklist.aspx" />
     <Content Include="CheckList\Schedule_Checklist_Listing.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
     <Content Include="Cocktail_World\Setup\Licenses.aspx" />
     <Content Include="Coming_Soon.aspx" />
@@ -4155,6 +4156,13 @@
     </Compile>
     <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.designer.cs">
       <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.cs">
+      <DependentUpon>Generate_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
+      <DependentUpon>Generate_Reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.cs">
       <DependentUpon>Brand_Categories.aspx</DependentUpon>
