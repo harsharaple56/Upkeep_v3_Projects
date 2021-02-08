@@ -157,6 +157,15 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.HiddenField hdnCategory;
         
         /// <summary>
+        /// btnCategoryChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCategoryChange;
+        
+        /// <summary>
         /// txtCategory control.
         /// </summary>
         /// <remarks>
@@ -184,13 +193,40 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// ddlSubCategory control.
+        /// hdnSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubCategory;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSubCategory;
+        
+        /// <summary>
+        /// btnSubCategoryChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubCategoryChange;
+        
+        /// <summary>
+        /// txtSubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtSubCategory;
+        
+        /// <summary>
+        /// dlSubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dlSubCategory;
         
         /// <summary>
         /// btnViewWorkflow control.
