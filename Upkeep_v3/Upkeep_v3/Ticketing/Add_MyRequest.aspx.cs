@@ -40,6 +40,7 @@ namespace Upkeep_v3.Ticketing
 
                 if (Convert.ToString(Session["UserType"]) == "R")
                 {
+                    hdnIs_Retailer.Value = "1";
                     dvEmployeeLocation.Attributes.Add("style", "display:none");
                     dvRetailerLocation.Attributes.Add("style", "display:block");
                     if (Convert.ToString(Session["Retailer_Location"]) != "")
@@ -47,9 +48,15 @@ namespace Upkeep_v3.Ticketing
                         ddlLocation.SelectedValue = Convert.ToString(Session["Retailer_Location"]);
                         ddlLocation.Enabled = false;
                     }
+                    else
+                    {
+                        ddlLocation.Enabled = false;
+                        lblRetailerLocError.Text = "No Location is mapped for your store. Please contact your property Admin";
+                    }
                 }
                 else
                 {
+                    hdnIs_Retailer.Value = "0";
                     dvEmployeeLocation.Attributes.Add("style", "display:block");
                     dvRetailerLocation.Attributes.Add("style", "display:none");
                 }
@@ -287,13 +294,22 @@ namespace Upkeep_v3.Ticketing
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
                 //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
                 //LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
-
-                LocationID = Convert.ToInt32(hdnassetLocation.Value);
-
+                if (Convert.ToString(Session["UserType"]) == "R")
+                {
+                    LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+                }
+                else
+                {
+                    LocationID = Convert.ToInt32(hdnassetLocation.Value);
+                }
                 //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
                 //CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 CategoryID = Convert.ToInt32(hdnCategory.Value);
-                SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                if (Convert.ToString(hdnSubCategory.Value) != "")
+                {
+                    SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                }
+
                 TicketMessage = txtTicketDesc.Text.Trim();
 
                 string fileName = string.Empty;
@@ -451,7 +467,7 @@ namespace Upkeep_v3.Ticketing
 
                                 //Category = Convert.ToString(ddlCategory.SelectedItem.Text);
                                 Category = Convert.ToString(hdnCategory.Value);
-                                
+
                                 Location = Convert.ToString(ddlLocation.SelectedItem.Text);
                                 Department = Convert.ToString(Session["Department"]);
 
