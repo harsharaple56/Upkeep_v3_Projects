@@ -46,15 +46,23 @@
             });
 
             $('#btnSave').click(function () {
-
+                //debugger;
                 $('#ImageUpload_Msg').text('').hide();
                 $('#LocationError_Msg').text('').hide();
 
-                if ($('#hdnassetLocation').val() == '') {
-                    //alert("Please Select Proper Location!");
-                    $('#LocationError_Msg').text("Please Select Proper Location").show();
-                    return false;
+                if ($('#hdnIs_Retailer').val() == '0') {
+                    if ($('#hdnassetLocation').val() == '') {
+                        //alert("Please Select Proper Location!");
+                        $('#LocationError_Msg').text("Please Select Proper Location").show();
+                        return false;
+                    }
                 }
+
+                if ($('#hdnCategory').val() == '') {
+                        //alert("Please Select Proper Location!");
+                        $('#CategoryError_Msg').text("Please Select Category").show();
+                        return false;
+                    }
 
                 var Is_ImageUpload_ValidFile = $("#Is_ImageUpload_ValidFile").val();
                 //alert(Is_ImageUpload_ValidFile);
@@ -255,9 +263,11 @@
                                                 <div class="form-group m-form__group row" style="padding-left: 10%;">
                                                     <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Location :</label>
                                                     <div class="col-xl-9 col-lg-9" id="dvRetailerLocation" runat="server">
+                                                        <asp:HiddenField ID="hdnIs_Retailer" runat="server" ClientIDMode="Static" />
                                                         <asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server"></asp:DropDownList>
                                                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" Visible="true" Display="Dynamic"
                                                             ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>--%>
+                                                    <asp:Label ID="lblRetailerLocError" runat="server" ForeColor="Red" ></asp:Label>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9" id="dvEmployeeLocation" runat="server">
                                                         <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
@@ -318,7 +328,8 @@
                                                 <%--<asp:DropDownList ID="ddlCategory" class="form-control m-input" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>--%>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCategory" Visible="true" Display="Dynamic"
                                                     ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
-                                            </div>
+                                           <span id="CategoryError_Msg" style="color: red;"></span>
+                                                </div>
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
