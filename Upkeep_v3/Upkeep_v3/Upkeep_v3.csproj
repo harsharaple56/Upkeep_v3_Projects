@@ -972,8 +972,26 @@
     <Content Include="CheckList\My_Checklists.aspx" />
     <Content Include="CheckList\Schedule_Checklist.aspx" />
     <Content Include="CheckList\Schedule_Checklist_Listing.aspx" />
+    <Content Include="Cocktail_World\Reports\Brand_Summary_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Cost_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Purchase_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Sales_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Transfers_Report.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
+    <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
+    <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Sizes.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx" />
+    <Content Include="Cocktail_World\Setup\Cocktail_Recipes.aspx" />
     <Content Include="Cocktail_World\Setup\Licenses.aspx" />
+    <Content Include="Cocktail_World\Setup\Permit_Holders.aspx" />
+    <Content Include="Cocktail_World\Setup\Suppliers.aspx" />
+    <Content Include="Cocktail_World\Transactions\Auto_Billing.aspx" />
+    <Content Include="Cocktail_World\Transactions\Purchases.aspx" />
+    <Content Include="Cocktail_World\Transactions\Sales.aspx" />
+    <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
@@ -4156,6 +4174,62 @@
     <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.designer.cs">
       <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports\Brand_Summary_Report.aspx.cs">
+      <DependentUpon>Brand_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Brand_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Brand_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Cost_Report.aspx.cs">
+      <DependentUpon>Cost_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Cost_Report.aspx.designer.cs">
+      <DependentUpon>Cost_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Purchase_Report.aspx.cs">
+      <DependentUpon>Purchase_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Purchase_Report.aspx.designer.cs">
+      <DependentUpon>Purchase_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Sales_Report.aspx.cs">
+      <DependentUpon>Sales_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Sales_Report.aspx.designer.cs">
+      <DependentUpon>Sales_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Transfers_Report.aspx.cs">
+      <DependentUpon>Transfers_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Transfers_Report.aspx.designer.cs">
+      <DependentUpon>Transfers_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.cs">
+      <DependentUpon>Generate_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
+      <DependentUpon>Generate_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Bill_Book.aspx.cs">
+      <DependentUpon>Bill_Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Bill_Book.aspx.designer.cs">
+      <DependentUpon>Bill_Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brands.aspx.cs">
+      <DependentUpon>Brands.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brands.aspx.designer.cs">
+      <DependentUpon>Brands.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.cs">
       <DependentUpon>Brand_Categories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4163,12 +4237,82 @@
     <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.designer.cs">
       <DependentUpon>Brand_Categories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx.cs">
+      <DependentUpon>Brand_Opening_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx.designer.cs">
+      <DependentUpon>Brand_Opening_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Sizes.aspx.cs">
+      <DependentUpon>Brand_Sizes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Sizes.aspx.designer.cs">
+      <DependentUpon>Brand_Sizes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx.cs">
+      <DependentUpon>Brand_Sub_Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx.designer.cs">
+      <DependentUpon>Brand_Sub_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Cocktail_Recipes.aspx.cs">
+      <DependentUpon>Cocktail_Recipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Cocktail_Recipes.aspx.designer.cs">
+      <DependentUpon>Cocktail_Recipes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Licenses.aspx.cs">
       <DependentUpon>Licenses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Licenses.aspx.designer.cs">
       <DependentUpon>Licenses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Permit_Holders.aspx.cs">
+      <DependentUpon>Permit_Holders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Permit_Holders.aspx.designer.cs">
+      <DependentUpon>Permit_Holders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Suppliers.aspx.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Suppliers.aspx.designer.cs">
+      <DependentUpon>Suppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Auto_Billing.aspx.cs">
+      <DependentUpon>Auto_Billing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Auto_Billing.aspx.designer.cs">
+      <DependentUpon>Auto_Billing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Purchases.aspx.cs">
+      <DependentUpon>Purchases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Purchases.aspx.designer.cs">
+      <DependentUpon>Purchases.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Sales.aspx.cs">
+      <DependentUpon>Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Sales.aspx.designer.cs">
+      <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Transfers.aspx.cs">
+      <DependentUpon>Transfers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Transfers.aspx.designer.cs">
+      <DependentUpon>Transfers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Coming_Soon.aspx.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
@@ -5817,9 +5961,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CheckList\ImportFile\" />
-    <Folder Include="Cocktail_World\Reports\Excise\Maharashtra\" />
-    <Folder Include="Cocktail_World\Reports\Generic\" />
-    <Folder Include="Cocktail_World\Transactions\" />
+    <Folder Include="Cocktail_World\Integrations\MMS\" />
+    <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
+    <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />

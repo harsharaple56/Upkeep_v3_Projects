@@ -154,7 +154,7 @@
                                         <div class="col-xl-8 col-lg-9">
                                             <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
 
-                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation" 
                                                 class="form-control" runat="server" clientidmode="Static" />
                                             <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
