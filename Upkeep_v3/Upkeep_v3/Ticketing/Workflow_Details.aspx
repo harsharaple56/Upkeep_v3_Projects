@@ -124,8 +124,8 @@
             }).hide();
         }
 
-        function FunEditClick(ID, Desc, UserIDs) {
-            debugger;
+        <%--function FunEditClick(ID, Desc) {
+            //debugger;
             //alert(Desc);
             //alert(UserIDs);
             //$('#hdnPreviousLevelUserIDs').val(UserIDs)
@@ -178,49 +178,62 @@
 
                 //ClickCount = ClickCount + 1;
 
-                <%--$find('<%= mpeWorkflowUsers.ClientID %>').hide();--%>
                 //window.close();
             }
             else {
                 alert('User is already present at previous level, same user cannot be present at more than 1 level');
             }
-        }
+        }--%>
 
-        var anyMatchInArray = (function () {
-            "use strict";
-            //debugger;
-            var targetArray, func, AllValue;
-            //alert('fdf');
-            //AllValue = $('#hdnAllUserIDs').val();
-            //alert(AllValue);
-            var Fullvalue=[];
-            //if ($('#hdnAllUserIDs').val() != "") {
-            //    alert('value not null');
-            //    Fullvalue = $('#hdnAllUserIDs').val(); //retrieve array
-            //    Fullvalue = JSON.parse(Fullvalue);
+        //var anyMatchInArray = (function () {
+        //    "use strict";
+        //    //debugger;
+        //    var targetArray, func, AllValue;
+        //    //alert('fdf');
+        //    //AllValue = $('#hdnAllUserIDs').val();
+        //    //alert(AllValue);
+        //    var Fullvalue=[];
+        //    //if ($('#hdnAllUserIDs').val() != "") {
+        //    //    alert('value not null');
+        //    //    Fullvalue = $('#hdnAllUserIDs').val(); //retrieve array
+        //    //    Fullvalue = JSON.parse(Fullvalue);
 
                 
-            //}
+        //    //}
           
 
-            targetArray = Fullvalue;  //["9", "8", "3"];// create array of each success level
+        //    targetArray = Fullvalue;  //["9", "8", "3"];// create array of each success level
 
-            alert(targetArray);
+        //    alert(targetArray);
 
-            func = function (checkerArray) {
-                //alert(checkerArray);
-                var found = false;
-                for (var i = 0, j = checkerArray.length; !found && i < j; i++) {
-                    if (targetArray.indexOf(checkerArray[i]) > -1) {
-                        found = true;
-                        //alert('found');
-                    }
-                }
-                return found;
-            };
+        //    func = function (checkerArray) {
+        //        //alert(checkerArray);
+        //        var found = false;
+        //        for (var i = 0, j = checkerArray.length; !found && i < j; i++) {
+        //            if (targetArray.indexOf(checkerArray[i]) > -1) {
+        //                found = true;
+        //                //alert('found');
+        //            }
+        //        }
+        //        return found;
+        //    };
 
-            return func;
-        }());
+        //    return func;
+        //}());
+
+
+        function FunEditClick(ID, Desc) {
+            //debugger;
+            //alert(ID);
+            //alert(Desc);
+            txtControl.value = Desc.replace("$", ",");
+            document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+            //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
+            $find('<%= mpeWorkflowUsers.ClientID %>').hide();
+            //window.close();
+
+        }
+
 
         function SelectUser() {
             //alert('method call');
@@ -245,8 +258,8 @@
             //SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
             //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';
 
-            alert(SelectedUsersID);
-            alert(SelectedUsersName);
+            //alert(SelectedUsersID);
+            //alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
         }
@@ -616,7 +629,7 @@
                                                                             </asp:TemplateField>
                                                                             <asp:TemplateField HeaderText="Action/Info Description" SortExpression="ActionInfoDesc">
                                                                                 <ItemTemplate>
-                                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
+                                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0')">
                                                                                         <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
                                                                                     </a>
                                                                                 </ItemTemplate>
