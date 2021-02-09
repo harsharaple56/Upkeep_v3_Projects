@@ -146,9 +146,9 @@
                 cur = currentlevelUsers[i];
                IsFound= anyMatchInArray(cur)
                 //alert(IsFound);
-                if (IsFound == true) {
-                    check_exists = true;
-                }
+                //if (IsFound == true) {
+                //    check_exists = true;
+                //}
                 //console.log(anyMatchInArray(cur));
             }
 
@@ -205,7 +205,7 @@
 
             targetArray = Fullvalue;  //["9", "8", "3"];// create array of each success level
 
-            alert(targetArray);
+            //alert(targetArray);
 
             func = function (checkerArray) {
                 //alert(checkerArray);
@@ -245,8 +245,8 @@
             //SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
             //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';
 
-            alert(SelectedUsersID);
-            alert(SelectedUsersName);
+            //alert(SelectedUsersID);
+            //alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
         }
