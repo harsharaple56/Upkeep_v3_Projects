@@ -563,11 +563,23 @@
                                                                 </a>
                                                             </li>
                                                             <li class="m-nav__item">
+                                                                <a onserverclick="lnkUserManual_Click" runat="server" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-doc"></i>
+                                                                    <span class="m-nav__link-title">
+                                                                        <span class="m-nav__link-wrap">
+                                                                            <span class="m-nav__link-text">User Manual</span>
+                                                                            <%--<input type="button" id="btnsubmit" runat="server" class="m-nav__link-text" onserverclick="lnkProfile_Click" value="My Profile settings Ajay" />--%>
+                                                                            <span class="m-nav__link-badge"></span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
                                                                 <a href="header/profile.html" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-share"></i>
                                                                     <span class="m-nav__link-text">Activity</span>
                                                                 </a>
-                                                            </li>
+                                                            </li>--%>
 
                                                             <li class="m-nav__separator m-nav__separator--fit"></li>
                                                             <li class="m-nav__item">
