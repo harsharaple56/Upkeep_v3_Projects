@@ -85,6 +85,44 @@
                 }
             });
 
+            $("#txtCategory").on('input', function () {
+                var val = this.value;
+
+                $('#hdnCategory').val("");
+                if ($('#dlCategory option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnCategory').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                    $("#btnCategoryChange").click();
+                }
+            });
+
+            $("#txtSubCategory").on('input', function () {
+                var val = this.value;
+
+                $('#hdnSubCategory').val("");
+                if ($('#dlSubCategory option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnSubCategory').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                    $("#btnSubCategoryChange").click();
+                }
+            });
+
+            function Category_Change() {
+                //alert('hi');
+                $("#btnCategoryChange").click();
+            }
 
         })
     </script>
@@ -131,7 +169,7 @@
     </script>--%>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content">
+        <div class="">
             <div class="row">
                 <div class="col-lg-12">
 
@@ -223,7 +261,6 @@
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9" id="dvEmployeeLocation" runat="server">
                                                         <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
-
                                                         <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
                                                             class="form-control" runat="server" clientidmode="Static" />
                                                         <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
@@ -270,8 +307,16 @@
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Category :</label>
                                             <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlCategory" class="form-control m-input" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlCategory" Visible="true" Display="Dynamic"
+
+                                                <asp:HiddenField ID="hdnCategory" runat="server" ClientIDMode="Static" />
+                                                <asp:Button ID="btnCategoryChange" runat="server" Style="display: none;" OnClick="btnCategoryChange_Click" ClientIDMode="Static" />
+
+                                                <input list="dlCategory" id="txtCategory" name="txtassetLocation"
+                                                    class="form-control" runat="server" clientidmode="Static" />
+                                                <datalist id="dlCategory" runat="server" clientidmode="Static"></datalist>
+
+                                                <%--<asp:DropDownList ID="ddlCategory" class="form-control m-input" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>--%>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCategory" Visible="true" Display="Dynamic"
                                                     ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -279,7 +324,15 @@
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Sub Category :</label>
                                             <div class="col-xl-5 col-lg-9">
-                                                <asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+
+                                                <asp:HiddenField ID="hdnSubCategory" runat="server" ClientIDMode="Static" />
+                                                <asp:Button ID="btnSubCategoryChange" runat="server" Style="display: none;" OnClick="btnSubCategoryChange_Click" ClientIDMode="Static" />
+
+                                                <input list="dlSubCategory" id="txtSubCategory" name="txtassetLocation"
+                                                    class="form-control" runat="server" clientidmode="Static" />
+                                                <datalist id="dlSubCategory" runat="server" clientidmode="Static"></datalist>
+
+                                                <%--<asp:DropDownList ID="ddlSubCategory" class="form-control m-input" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>--%>
                                                 <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Display="Dynamic"
                                                     ValidationGroup="validateTicket" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Sub Category"></asp:RequiredFieldValidator>--%>
                                             </div>
@@ -300,7 +353,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" style="padding-left: 15%; display: none;" id="dvDepartment" runat="server">
+                                        <div class="row" style="padding-left: 10%; display: none;" id="dvDepartment" runat="server">
                                             <label class="col-form-label">Note: Ticket will be assigned to </label>
                                             <%-- &nbsp;--%>
                                             <asp:Label ID="lblDepartmentName" CssClass="col-form-label" runat="server" Text=""></asp:Label>
@@ -319,7 +372,7 @@
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Description</label>
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Ticket Description :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:TextBox ID="txtTicketDesc" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
@@ -328,7 +381,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Ticket Images :</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" />
@@ -345,7 +398,7 @@
                                         <%--<button type="button" class="btn btn-success m-btn m-btn--custom" id="m_sweetalert_demo_3_4">Success</button>--%>
                                         <%--<asp:Button ID="m_sweetalert_demo_3_3" ClientIDMode="Static"  runat="server"/>--%>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 15%;">
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <asp:Label ID="lblTicketErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                         </div>
 

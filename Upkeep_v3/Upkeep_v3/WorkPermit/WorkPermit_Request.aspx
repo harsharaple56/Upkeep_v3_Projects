@@ -528,8 +528,9 @@
                                     <%--OnClientClick="SubmitHeader()" --%>
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateWorkPermit" />
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
-                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                 </div>
+                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+
 
                                 <div class="col-lg-9 ml-lg-auto" style="display: none" id="divUpdateButton" runat="server">
                                     <asp:Button ID="btnApprove" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" Text="Submit" OnClick="btnApprove_Click" ValidationGroup="validateWP" />

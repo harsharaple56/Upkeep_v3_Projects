@@ -813,7 +813,7 @@ namespace Upkeep_v3.WorkPermit
                 }
                 #endregion
 
-
+            
                 #region SaveDataToDB
                 DataSet dsWPHeaderData = new DataSet();
                 dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData);
@@ -875,7 +875,8 @@ namespace Upkeep_v3.WorkPermit
                         else
                         {
                             SetRepeater();
-                            lblErrorMsg1.Text = "Error Occured !!!";
+                            lblErrorMsg1.Text = "Something went wrong. Please Try again by Clicking on SUBMIT !!!";
+                            btnSubmit.Focus();
                         }
                     }
                 }
@@ -1188,6 +1189,42 @@ namespace Upkeep_v3.WorkPermit
 
                     }
 
+                    if (dsData.Tables.Count > 1)
+                    {
+
+                        if (dsData.Tables.Count > 0)
+                        {
+                            if (dsData.Tables[1].Rows.Count > 0)
+                            {
+                                string strUserType = Convert.ToString(dsData.Tables[1].Rows[0]["UserType"]);
+                                if (strUserType == "E")
+                                {
+                                    dvEmployee.Attributes.Add("style", "display:block;");
+                                    dvRetailer.Attributes.Add("style", "display:none;");
+                                }
+                                else
+                                {
+                                    dvEmployee.Attributes.Add("style", "display:none;");
+                                    dvRetailer.Attributes.Add("style", "display:block;");
+                                }
+
+                                if (strUserType == "E")
+                                {
+                                    lblEmpName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Name"]);
+                                    lblEmpCode.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Code"]);
+                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Mobile"]);
+                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Email"]);
+                                }
+                                else
+                                {
+                                    lblStoreName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Retail_Store_Name"]);
+                                    lblRetailerName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Store_Mger_Name"]);
+                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Contact"]);
+                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Email"]);
+                                }
+                            }
+                        }
+                    }
 
                     if (dsData.Tables.Count > 3)
                     {
