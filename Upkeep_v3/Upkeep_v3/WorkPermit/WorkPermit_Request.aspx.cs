@@ -1300,6 +1300,16 @@ namespace Upkeep_v3.WorkPermit
         {
             try
             {
+                int TransactionID = 0;
+                if (Convert.ToString(Session["TransactionID"]) != "")
+                {
+                    TransactionID = Convert.ToInt32(Session["TransactionID"]);
+                }
+                else
+                {
+                    Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                }
+
                 if (ddlAction.SelectedIndex < 1)
                 {
                     LabelERRORmsg.Text = "Please enter Proper Action type";
@@ -1315,7 +1325,7 @@ namespace Upkeep_v3.WorkPermit
                 string ActionStatus = string.Empty;
                 ActionStatus = Convert.ToString(ddlAction.SelectedItem.Text);
                 DataSet dsWPAction = new DataSet();
-                dsWPAction = ObjUpkeep.Update_WorkPermitRequest(Convert.ToInt32(Session["TransactionID"].ToString()), LoggedInUserID, ActionStatus, txtRemarks.Text);
+                dsWPAction = ObjUpkeep.Update_WorkPermitRequest(TransactionID, LoggedInUserID, ActionStatus, txtRemarks.Text);
 
                 if (dsWPAction.Tables.Count > 0)
                 {
