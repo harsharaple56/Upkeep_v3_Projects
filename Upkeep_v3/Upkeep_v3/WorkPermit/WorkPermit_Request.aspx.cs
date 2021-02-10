@@ -1298,69 +1298,78 @@ namespace Upkeep_v3.WorkPermit
         }
         protected async void btnApprove_Click(object sender, EventArgs e)
         {
-            if (ddlAction.SelectedIndex < 1)
+            try
             {
-                LabelERRORmsg.Text = "Please enter Proper Action type";
-                return;
-            }
-            if (txtRemarks.Text.Trim() == "")
-            {
-                LabelERRORmsg.Text = "Please enter remarks";
-                return;
-            }
-            string ActionStatus = string.Empty;
-            ActionStatus = Convert.ToString(ddlAction.SelectedItem.Text);
-            DataSet dsWPAction = new DataSet();
-            dsWPAction = ObjUpkeep.Update_WorkPermitRequest(Convert.ToInt32(Session["TransactionID"].ToString()), LoggedInUserID, ActionStatus, txtRemarks.Text);
-
-            if (dsWPAction.Tables.Count > 0)
-            {
-                if (dsWPAction.Tables[0].Rows.Count > 0)
+                if (ddlAction.SelectedIndex < 1)
                 {
-                    int Status = Convert.ToInt32(dsWPAction.Tables[0].Rows[0]["Status"]);
-                    if (Status == 1)
+                    LabelERRORmsg.Text = "Please enter Proper Action type";
+                    divUpdateButton.Attributes.Add("style", "display:block;");
+                    return;
+                }
+                if (txtRemarks.Text.Trim() == "")
+                {
+                    LabelERRORmsg.Text = "Please enter remarks";
+                    divUpdateButton.Attributes.Add("style", "display:block;");
+                    return;
+                }
+                string ActionStatus = string.Empty;
+                ActionStatus = Convert.ToString(ddlAction.SelectedItem.Text);
+                DataSet dsWPAction = new DataSet();
+                dsWPAction = ObjUpkeep.Update_WorkPermitRequest(Convert.ToInt32(Session["TransactionID"].ToString()), LoggedInUserID, ActionStatus, txtRemarks.Text);
+
+                if (dsWPAction.Tables.Count > 0)
+                {
+                    if (dsWPAction.Tables[0].Rows.Count > 0)
                     {
-                        //[+][Ajay]
-                        if (dsWPAction.Tables.Count > 1)
+                        int Status = Convert.ToInt32(dsWPAction.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
                         {
-                            if (dsWPAction.Tables[1].Rows.Count > 0)
+                            //[+][Ajay]
+                            if (dsWPAction.Tables.Count > 1)
                             {
-                                string NotificationHeader = string.Empty;
-                                string NotificationMsg = string.Empty;
-                                string TicketNo = string.Empty;
-                                string CurrentLevel = string.Empty;
-
-                                TicketNo = Convert.ToString(dsWPAction.Tables[1].Rows[0]["TicketNo"]);
-                                CurrentLevel = Convert.ToString(dsWPAction.Tables[1].Rows[0]["CurrentLevel"]);
-
-                                NotificationHeader = "Work Permit ID " + TicketNo + ".";
-                                NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
-
-                                if (ActionStatus == "Approve")
+                                if (dsWPAction.Tables[1].Rows.Count > 0)
                                 {
-                                    foreach (DataRow dr in dsWPAction.Tables[1].Rows)
+                                    string NotificationHeader = string.Empty;
+                                    string NotificationMsg = string.Empty;
+                                    string TicketNo = string.Empty;
+                                    string CurrentLevel = string.Empty;
+
+                                    TicketNo = Convert.ToString(dsWPAction.Tables[1].Rows[0]["TicketNo"]);
+                                    CurrentLevel = Convert.ToString(dsWPAction.Tables[1].Rows[0]["CurrentLevel"]);
+
+                                    NotificationHeader = "Work Permit ID " + TicketNo + ".";
+                                    NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                                    if (ActionStatus == "Approve")
                                     {
-                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                        int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
-                                        //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
-                                        if (Is_App_Notification_Send > 0)
+                                        foreach (DataRow dr in dsWPAction.Tables[1].Rows)
                                         {
-                                            await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                            var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                            int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
+                                            //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                            if (Is_App_Notification_Send > 0)
+                                            {
+                                                await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                            }
                                         }
                                     }
                                 }
                             }
+                            //[-][Ajay]
+                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
+                            //lblWpRequestCode.Text = Convert.ToString(dsWPAction.Tables[1].Rows[0]["RequestID"]);
+                            //mpeWpRequestSaveSuccess.Show();
                         }
-                        //[-][Ajay]
-                        Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
-                        //lblWpRequestCode.Text = Convert.ToString(dsWPAction.Tables[1].Rows[0]["RequestID"]);
-                        //mpeWpRequestSaveSuccess.Show();
-                    }
-                    else if (Status == 2)
-                    {
-                        LabelERRORmsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        else if (Status == 2)
+                        {
+                            LabelERRORmsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
         }

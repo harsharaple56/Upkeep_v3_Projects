@@ -520,7 +520,7 @@
                                     <div class="col-xl-6 col-lg-4">
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtRemarks" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateWP" ForeColor="Red" InitialValue="0" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateWP" ForeColor="Red" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
