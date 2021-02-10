@@ -1210,10 +1210,10 @@ namespace Upkeep_v3.WorkPermit
 
                                 if (strUserType == "E")
                                 {
-                                    lblEmpName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Name"]);
-                                    lblEmpCode.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Code"]);
-                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Mobile"]);
-                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Email"]);
+                                    lblEmpName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpName"]);
+                                    lblEmpCode.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpCode"]);
+                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpMobileNo"]);
+                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpEmail"]);
                                 }
                                 else
                                 {
