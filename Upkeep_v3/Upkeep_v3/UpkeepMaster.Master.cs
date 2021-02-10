@@ -154,5 +154,18 @@ namespace Upkeep_v3
                 Response.Redirect("~/Retailer_Profile.aspx");
             }
         }
+
+        protected void lnkUserManual_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToString(Session["UserType"]) == "E")
+            {
+                Response.Redirect("~/Knowledge_Base/User_Manual.aspx");
+            }
+            else if (Convert.ToString(Session["UserType"]) == "R")
+            {
+                Response.Redirect("~/Knowledge_Base/Retailer_Manual.aspx");
+            }
+        }
+
     }
 }

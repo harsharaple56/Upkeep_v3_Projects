@@ -671,7 +671,7 @@
 
                                                                     <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="ActionInfoGroupDesc">
                                                                         <ItemTemplate>
-                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>','<%# (DataBinder.Eval(Container.DataItem,"UserIDs")) %>')">
+                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
                                                                                 <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
                                                                             </a>
                                                                         </ItemTemplate>
