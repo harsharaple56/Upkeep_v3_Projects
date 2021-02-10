@@ -3978,7 +3978,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="obj\Debug\Tsc68f31e79.out" />
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />

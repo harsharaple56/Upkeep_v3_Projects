@@ -82,6 +82,9 @@ namespace Upkeep_v3.WorkPermit
                     else
                         rdbRetailer.Checked = true;
 
+                    rdbEmployee.Enabled = false;
+                    rdbRetailer.Enabled = false;
+
                     ChkLinkDept.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["Link_Dept"]);
 
 
