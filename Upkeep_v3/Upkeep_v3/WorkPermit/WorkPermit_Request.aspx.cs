@@ -49,6 +49,11 @@ namespace Upkeep_v3.WorkPermit
                 //LoggedInUserID = "zara";
             }
 
+            if (Convert.ToString(Session["CompanyID"]) == "")
+            {
+                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+            }
+
 
             if (!IsPostBack)
             {
@@ -249,7 +254,7 @@ namespace Upkeep_v3.WorkPermit
                     HtmlGenericControl sample = e.Item.FindControl("divCheckBox") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == "SSLCT" ) //Single Selection [Radio Button]
+                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divRadioButton") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
@@ -432,7 +437,7 @@ namespace Upkeep_v3.WorkPermit
 
                 foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                 {
-                   // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                    // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
                     string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                     string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
@@ -459,7 +464,7 @@ namespace Upkeep_v3.WorkPermit
                         HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == "NUMBR" ) //Number Text Field
+                    else if (AnswerType == "NUMBR") //Number Text Field
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
@@ -813,7 +818,7 @@ namespace Upkeep_v3.WorkPermit
                 }
                 #endregion
 
-            
+
                 #region SaveDataToDB
                 DataSet dsWPHeaderData = new DataSet();
                 dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData);
