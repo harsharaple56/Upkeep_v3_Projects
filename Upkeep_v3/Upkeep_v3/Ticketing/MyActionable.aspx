@@ -64,7 +64,7 @@
                                                 <div class="m-form__control">
                                                     <select class="form-control m-bootstrap-select" id="m_form_status">
                                                         <option value="">All</option>
-                                                        <option value="Open">Open</option>
+                                                        <option value="Open" selected="selected">Open</option>
                                                         <option value="Closed">Closed</option>
                                                         <option value="Parked">Parked</option>
                                                         <option value="Expired">Expired</option>
@@ -81,7 +81,7 @@
                                                 <div class="m-form__control">
                                                     <select class="form-control m-bootstrap-select" id="m_form_type">
                                                         <option value="">All</option>
-                                                        <option value="Assigned">Assigned</option>
+                                                        <option value="Assigned" selected="selected">Assigned</option>
                                                         <option value="Accepted">Accepted</option>
                                                         <option value="InProgress">In Progress</option>
                                                         <option value="Hold">Hold</option>

@@ -3974,10 +3974,10 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
