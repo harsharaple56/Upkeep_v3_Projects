@@ -855,6 +855,7 @@
     <Content Include="assets\demo\media\img\logo\client_logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_banner.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_Banner_logo.png" />
+    <Content Include="assets\demo\media\img\logo\efacilito_report_Logo.png" />
     <Content Include="assets\demo\media\img\logo\efacilito_White.png" />
     <Content Include="assets\demo\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\media\img\logo\logo.png" />
