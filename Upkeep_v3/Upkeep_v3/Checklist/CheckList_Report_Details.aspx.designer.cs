@@ -31,6 +31,15 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.HiddenField hdnWpHeader;
         
         /// <summary>
+        /// btnExportPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportPDF;
+        
+        /// <summary>
         /// Div1 control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.Label lblTotalScore;
         
         /// <summary>
+        /// lblProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProgress;
+        
+        /// <summary>
         /// rptSectionDetails control.
         /// </summary>
         /// <remarks>
@@ -137,5 +155,14 @@ namespace Upkeep_v3.CheckList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptSectionDetails;
+        
+        /// <summary>
+        /// ReportViewer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
     }
 }
