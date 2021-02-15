@@ -13,6 +13,15 @@ namespace eFacilito_CompanyGroup_Portal {
     public partial class Group_Dashboard {
         
         /// <summary>
+        /// frmMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
+        
+        /// <summary>
         /// ScriptMgr control.
         /// </summary>
         /// <remarks>
@@ -344,5 +353,122 @@ namespace eFacilito_CompanyGroup_Portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPowerBankTotal;
+        
+        /// <summary>
+        /// dvRetailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvRetailer;
+        
+        /// <summary>
+        /// lblR_GP_Total control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Total;
+        
+        /// <summary>
+        /// lblR_GP_Hold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Hold;
+        
+        /// <summary>
+        /// lblR_GP_Approve control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Approve;
+        
+        /// <summary>
+        /// lblR_GP_Open control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Open;
+        
+        /// <summary>
+        /// lblR_GP_Rejected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Rejected;
+        
+        /// <summary>
+        /// lblR_GP_Close control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_GP_Close;
+        
+        /// <summary>
+        /// lblR_WP_Total control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Total;
+        
+        /// <summary>
+        /// lblR_WP_Hold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Hold;
+        
+        /// <summary>
+        /// lblR_WP_Approve control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Approve;
+        
+        /// <summary>
+        /// lblR_WP_Open control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Open;
+        
+        /// <summary>
+        /// lblR_WP_Rejected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Rejected;
+        
+        /// <summary>
+        /// lblR_WP_Close control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblR_WP_Close;
     }
 }

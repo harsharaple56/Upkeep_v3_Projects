@@ -3,19 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>eFacilito Dashboard</title>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+
+    <%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
+    <%-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>--%>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         function CallDashboardEvent() {
             //alert('onch');
             document.getElementById('<%= btnDashboard.ClientID %>').click();
         }
+    </script>
 
-
-
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=lstFruits]').multiselect({
+                includeSelectAllOption: true
+            });
+        });
     </script>
 
     <script>
@@ -91,7 +103,7 @@
         });
     </script>
 
-    <script>
+    <%--  <script>
         google.charts.load('current', { 'packages': ['line'] });
         google.charts.setOnLoadCallback(drawChart);
 
@@ -136,73 +148,6 @@
 
     </script>
 
-
-    <%--<script>
-        google.charts.load('current', { packages: ['corechart', 'bar'] });
-        google.charts.setOnLoadCallback(drawMultSeries);
-
-        function drawMultSeries() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['City', 'Closed', 'Open', 'Parked'],
-                ['Housekeeping', 8, 8, 4],
-                ['Engineering', 3, 4, 4],
-                ['FLS', 3, 5, 4],
-                ['Operations', 6, 5, 4],
-                ['Security', 3, 7, 4]
-            ]);
-
-            var options = {
-                title: 'Ticketing / Complaints Dashboard',
-                chartArea: { width: '50%' },
-                hAxis: {
-                    title: 'Total Tickets',
-                    minValue: 0
-                },
-                vAxis: {
-                    title: 'Departments'
-                }
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-
-    </script>--%>
-
-
-    <%--<script>
-        google.charts.load('current', { packages: ['corechart', 'bar'] });
-        google.charts.setOnLoadCallback(drawMultSeries);
-
-        function drawMultSeries() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['City', 'Closed', 'Open', 'Expired'],
-                ['Housekeeping', 8, 8, 4],
-                ['Engineering', 3, 1, 4],
-                ['FLS', 3, 5, 4],
-                ['Operations', 6, 2, 4],
-                ['Security', 3, 7, 10]
-            ]);
-
-            var options = {
-                title: 'Checklist Dashboard',
-                chartArea: { width: '50%' },
-                hAxis: {
-                    title: 'Total Checklists',
-                    minValue: 0
-                },
-                vAxis: {
-                    title: 'Departments'
-                }
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
-            chart.draw(data, options);
-        }
-
-    </script>--%>
 
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -605,247 +550,26 @@
 
             // chart.draw(data, options);
         }
-    </script>
-
-
-    <%--<script type="text/javascript">
-
-        var api_url = 'http://101.53.152.242/feedo_UAT_Service/FeedbackSystemMobService.asmx/';
-        //var api_url = 'http://localhost:5176/FeedbackSystemMobService.asmx/';
-
-        var chart = {
-            update_all: function () {
-                this.update_Checklist_share();
-            },
-
-            update_Checklist_share: function () {
-                this.show_loader('#m_chart_checklist_share');
-
-                var event_id = $('#retailer_events').val();
-                var start_date = $('#start_date').val();
-                var end_date = $('#end_date').val();
-
-                event_id = "13";
-                //alert(start_date);
-                _chart = this;
-                var chart_id = '#m_chart_checklist_share';
-                //debugger;
-                $.ajax({
-                    type: 'POST',
-                    url: api_url + 'Get_ChartData',
-                    data: { 'EventID': event_id, 'fromDate': start_date, 'toDate': end_date },
-                    dataType: 'json',
-                    //beforeSend: function () {
-                    //    _chart.show_loader(chart_id);
-                    //},
-
-                    success: function (data) {
-
-                        Console.log('success');
-                        _chart.render(chart_id, data);
-                        _chart.show_legends(chart_id, data);
-                        _chart.hide_loader(chart_id);
-                    },
-                    error: function (data) {
-                        Console.log('sdsadas');
-                        _chart.show_error(chart_id, data.status);
-                    }
-                });
-            },
-            show_loader: function (chart_id) {
-                $(chart_id).find('svg').remove();
-                $(chart_id).find('.m-widget14__stat').html('Loading...');
-            },
-            hide_loader: function (chart_id) {
-                setTimeout(function () {
-                    $(chart_id).find('.m-widget14__stat').html('');
-                }, 3000);
-            },
-            show_error: function (chart_id, status_code) {
-                $(chart_id).find('svg').remove();
-                $(chart_id).find('.m-widget14__stat').html('Error ' + status_code);
-                $(chart_id).closest('.row').find('.m-widget14__legends .m-widget14__legend-text').html('Error occurred while loading data..');
-            },
-            render: function (chart_id, data) {
-                var positive = data[0].Positive;
-                var neutral = data[0].Neutral;
-                var negative = data[0].Negative;
-
-                $(function () {
-                    var chart = new Chartist.Pie(chart_id, {
-                        series: [{
-                            value: positive,
-                            className: 'custom',
-                            meta: {
-                                color: mApp.getColor('success')
-                            }
-                        },
-                        {
-                            value: neutral,
-                            className: 'custom',
-                            meta: {
-                                color: mApp.getColor('warning')
-                            }
-                        },
-                        {
-                            value: negative,
-                            className: 'custom',
-                            meta: {
-                                color: mApp.getColor('danger')
-                            }
-                        }
-                        ],
-                    },
-                        {
-                            donut: true,
-                            showLabel: false
-                        });
-
-                    chart.on('draw', function (data) {
-                        if (data.type === 'slice') {
-                            // Get the total path length in order to use for dash array animation
-                            var pathLength = data.element._node.getTotalLength();
-
-                            // Set a dasharray that matches the path length as prerequisite to animate dashoffset
-                            data.element.attr({
-                                'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-                            });
-
-                            // Create animation definition while also assigning an ID to the animation for later sync usage
-                            var animationDefinition = {
-                                'stroke-dashoffset': {
-                                    id: 'anim' + data.index,
-                                    dur: 1000,
-                                    from: -pathLength + 'px',
-                                    to: '0px',
-                                    easing: Chartist.Svg.Easing.easeOutQuint,
-                                    // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
-                                    fill: 'freeze',
-                                    'stroke': data.meta.color
-                                }
-                            };
-
-                            // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
-                            if (data.index !== 0) {
-                                animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
-                            }
-
-                            // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
-
-                            data.element.attr({
-                                'stroke-dashoffset': -pathLength + 'px',
-                                'stroke': data.meta.color
-                            });
-
-                            // We can't use guided mode as the animations need to rely on setting begin manually
-                            // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
-                            data.element.animate(animationDefinition, false);
-                        }
-                    });
-
-                    return;
-
-                });
-            },
-            show_legends: function (id, data) {
-                var positive = data[0].Positive;
-                var neutral = data[0].Neutral;
-                var negative = data[0].Negative;
-
-                var parent_row = $(id).closest('.row');
-                parent_row.find('.m-widget14__legends .m-widget14__legend-text:eq(0)').html(positive + '% Positive');
-                parent_row.find('.m-widget14__legends .m-widget14__legend-text:eq(1)').html(neutral + '% Neutral');
-                parent_row.find('.m-widget14__legends .m-widget14__legend-text:eq(2)').html(negative + '% Negative');
-            }
-        }
-
-        $(function () {
-            //$('.m_selectpicker').selectpicker();
-
-
-            $('#btnDashboard').click(function () {
-                //alert('hhhhh');
-                //chart.update_Checklist_share();
-            }
-            );
-
-            $('.m_selectpicker').change(function () {
-                var id = $(this).attr('id');
-                if (id == 'retailer_events') {
-                    chart.update_Checklist_share();
-                }
-                if (id == 'customer_events') {
-                    chart.update_Checklist_share();
-                }
-            });
-
-            var dropdowns = [
-                { 'id': 'retailer_events', 'type': 'R' },
-                { 'id': 'customer_events', 'type': 'C' }
-            ];
-        });
-
     </script>--%>
 
 
 
-    <%--<form method="post" runat="server" id="frmMain">--%>
-    <asp:ScriptManager ID="ScriptMgr" runat="server" EnablePageMethods="true"></asp:ScriptManager>
-
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-
-        <!-- BEGIN: Subheader -->
-        <div class="m-subheader ">
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
-                    <h3 class="m-subheader__title ">Dashboard</h3>
-
-                    <span class="multiselect-native-select">
-                        <select class="mt-multiselect btn btn-default" multiple="multiple" data-width="100%">
-                            <option value="cheese">Cheese</option>
-                            <option value="tomatoes">Tomatoes</option>
-                            <option value="mozarella">Mozzarella</option>
-                            <option value="mushrooms">Mushrooms</option>
-                            <option value="pepperoni">Pepperoni</option>
-                            <option value="onions">Onions</option>
-                        </select><div class="btn-group" style="width: 100%;">
-                            <button type="button" class="multiselect dropdown-toggle mt-multiselect btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;" aria-expanded="false"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button>
-                            <ul class="multiselect-container dropdown-menu">
-                                <li class="active"><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="cheese">
-                                        Cheese</label></a></li>
-                                <li class="active"><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="tomatoes">
-                                        Tomatoes</label></a></li>
-                                <li><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="mozarella">
-                                        Mozzarella</label></a></li>
-                                <li><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="mushrooms">
-                                        Mushrooms</label></a></li>
-                                <li><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="pepperoni">
-                                        Pepperoni</label></a></li>
-                                <li><a tabindex="0">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="onions">
-                                        Onions</label></a></li>
-                            </ul>
-                        </div>
-                    </span>
 
 
 
+    <form runat="server" id="frmMain">
+        <asp:ScriptManager ID="ScriptMgr" runat="server" EnablePageMethods="true"></asp:ScriptManager>
 
+        <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
+            <!-- BEGIN: Subheader -->
+            <div class="m-subheader ">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="m-subheader__title ">Dashboard</h3>
 
-                    <div class="m-portlet__head-tools">
-                        <%--<ul class="m-portlet__nav">            
+                        <div class="m-portlet__head-tools">
+                            <%--<ul class="m-portlet__nav">            
                             <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
                                 <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-primary">Select Company
                                 </a>
@@ -896,7 +620,7 @@
                             </li>
                         </ul>--%>
 
-                        <%--<asp:DropDownCheckBoxes ID="ddlCompany" runat="server" Width="180px" UseSelectAllNode="false">
+                            <%--<asp:DropDownCheckBoxes ID="ddlCompany" runat="server" Width="180px" UseSelectAllNode="false">
                                 <Style SelectBoxWidth="195" DropDownBoxBoxWidth="160" DropDownBoxBoxHeight="90" />
 
                             
@@ -905,67 +629,128 @@
                             &nbsp;
                                                 <asp:ExtendedRequiredFieldValidator ID="ExtendedRequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany"
                                                     ErrorMessage="Please select Company" ForeColor="Red"></asp:ExtendedRequiredFieldValidator>--%>
-                        <asp:DropDownList ID="ddlCompany" runat="server" ToolTip="Company Name" Style="display: none;"
-                            CssClass="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-primary">
+                            <asp:DropDownList ID="ddlCompany" runat="server" ToolTip="Company Name" CssClass="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-primary">
                         </asp:DropDownList>
 
-                    </div>
-                </div>
+                           <%-- <asp:ListBox ID="lstFruits" runat="server" SelectionMode="Multiple" ClientIDMode="Static">
+                                <asp:ListItem Text="Mango" Value="1" />
+                                <asp:ListItem Text="Apple" Value="2" />
+                                <asp:ListItem Text="Banana" Value="3" />
+                                <asp:ListItem Text="Guava" Value="4" />
+                                <asp:ListItem Text="Orange" Value="5" />
+                            </asp:ListBox>--%>
 
-                <div>
-                    <span class="m-subheader__daterange" id="daterangepicker">
-                        <span class="m-subheader__daterange-label">
-                            <span class="m-subheader__daterange-title"></span>
-                            <span class="m-subheader__daterange-date m--font-brand"></span>
-                            <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                            <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                            <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                            <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                            <asp:HiddenField ID="hdnCompanyID" ClientIDMode="Static" runat="server" />
+                            <span class="multiselect-native-select" style="display:none;">
+                                <select class="mt-multiselect btn btn-default" multiple="multiple" data-width="100%">
+                                    <option value="cheese">Cheese</option>
+                                    <option value="tomatoes">Tomatoes</option>
+                                    <option value="mozarella">Mozzarella</option>
+                                    <option value="mushrooms">Mushrooms</option>
+                                    <option value="pepperoni">Pepperoni</option>
+                                    <option value="onions">Onions</option>
+                                </select>
+                                <div class="btn-group" style="width: 100%;">
+                                    <button type="button" class="multiselect dropdown-toggle mt-multiselect btn btn-default"
+                                        data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;" aria-expanded="false">
+                                        <span class="multiselect-selected-text">None selected</span>
+                                        <b class="caret"></b>
+                                    </button>
+                                    <ul class="multiselect-container dropdown-menu">
+                                        <li class="active"><a tabindex="0">
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="cheese">
+                                                Cheese</label></a></li>
+                                        <li class="active"><a tabindex="0">
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="tomatoes">
+                                                Tomatoes</label></a></li>
+                                        <li>
+                                            <a tabindex="0">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="mozarella">
+                                                    Mozzarella</label></a></li>
+                                        <li><a tabindex="0">
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="mushrooms">
+                                                Mushrooms</label></a></li>
+                                        <li>
+                                            <a tabindex="0">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="pepperoni">
+                                                    Pepperoni</label></a></li>
+                                        <li><a tabindex="0">
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="onions">
+                                                Onions</label></a></li>
+                                    </ul>
+                                </div>
+                            </span>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="m-subheader__daterange" id="daterangepicker">
+                            <span class="m-subheader__daterange-label">
+                                <span class="m-subheader__daterange-title"></span>
+                                <span class="m-subheader__daterange-date m--font-brand"></span>
+                                <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="hdnCompanyID" ClientIDMode="Static" runat="server" />
+                            </span>
+                            <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+                                <i class="la la-angle-down"></i>
+                            </a>
                         </span>
-                        <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
-                            <i class="la la-angle-down"></i>
-                        </a>
-                    </span>
-                    <%--<button id="btnDashboard" onclick="CallDashboardEvent()" style="display: none;"></button>--%>
-                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" CssClass="btn btn-sm btn-brand" />
+                        <%--<button id="btnDashboard" onclick="CallDashboardEvent()" style="display: none;"></button>--%>
+                        <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" CssClass="btn btn-sm btn-brand" />
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- END: Subheader -->
-        <div class="m-content" id="dvEmployee" runat="server" style="display: block;">
+            <!-- END: Subheader -->
+            <div class="m-content" id="dvEmployee" runat="server" style="display: block;">
 
 
-            <div class="m-portlet">
+                <div class="m-portlet">
 
-                <!--begin:: Widgets/Best Sellers-->
-                <div class="m-portlet m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Ticketing / Complaints Dashboard
-                                </h3>
+                    <!--begin:: Widgets/Best Sellers-->
+                    <div class="m-portlet m-portlet--full-height ">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Ticketing / Complaints Dashboard
+                                    </h3>
+                                </div>
                             </div>
+
                         </div>
+                        <div class="m-portlet__body">
 
-                    </div>
-                    <div class="m-portlet__body">
+                            <!--begin::Content-->
+                            <div class="tab-content">
+                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                <div id="chart_ticket_departmentwise"></div>
+                            </div>
 
-                        <!--begin::Content-->
-                        <div class="tab-content">
-                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                            <div id="chart_ticket_departmentwise"></div>
+                            <!--end::Content-->
                         </div>
-
-                        <!--end::Content-->
                     </div>
+
+                    <!--end:: Widgets/Best Sellers-->
                 </div>
 
-                <!--end:: Widgets/Best Sellers-->
-            </div>
-
-            <%--<div class="m-portlet">
+                <%--<div class="m-portlet">
 
                 <!--begin:: Widgets/Best Sellers-->
                 <div class="m-portlet m-portlet--full-height ">
@@ -995,100 +780,100 @@
 
 
 
-            <%--<div class="m-portlet">--%>
+                <%--<div class="m-portlet">--%>
 
-            <%--<div class="m-portlet__body  m-portlet__body--no-padding">--%>
-            <div class="m-portlet">
-                <div class="m-portlet__body  m-portlet__body--no-padding">
-                    <div class="row m-row--no-padding m-row--col-separator-xl">
-                        <div class="col-xl-3">
+                <%--<div class="m-portlet__body  m-portlet__body--no-padding">--%>
+                <div class="m-portlet">
+                    <div class="m-portlet__body  m-portlet__body--no-padding">
+                        <div class="row m-row--no-padding m-row--col-separator-xl">
+                            <div class="col-xl-3">
 
-                            <!--begin:: Widgets/Stats2-1 -->
-                            <div class="m-widget1">
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">Total Open</h3>
-                                            <span class="m-widget1__desc">Total No. of Open Tickets in your Account</span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-brand">
-                                                <asp:Label ID="lblOpenTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
+                                <!--begin:: Widgets/Stats2-1 -->
+                                <div class="m-widget1">
+                                    <div class="m-widget1__item">
+                                        <div class="row m-row--no-padding align-items-center">
+                                            <div class="col">
+                                                <h3 class="m-widget1__title">Total Open</h3>
+                                                <span class="m-widget1__desc">Total No. of Open Tickets in your Account</span>
+                                            </div>
+                                            <div class="col m--align-right">
+                                                <span class="m-widget1__number m--font-brand">
+                                                    <asp:Label ID="lblOpenTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">Total Closed</h3>
-                                            <span class="m-widget1__desc">Total No. of Closed Tickets in your Account</span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-success">
-                                                <asp:Label ID="lblCloseTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-widget1__item">
-                                    <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">Total Parked</h3>
-                                            <span class="m-widget1__desc">Total No. of Parked Tickets in your Account</span>
-                                        </div>
-                                        <div class="col m--align-right">
-                                            <span class="m-widget1__number m--font-brand">
-                                                <asp:Label ID="lblParkedTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
+                                    <div class="m-widget1__item">
+                                        <div class="row m-row--no-padding align-items-center">
+                                            <div class="col">
+                                                <h3 class="m-widget1__title">Total Closed</h3>
+                                                <span class="m-widget1__desc">Total No. of Closed Tickets in your Account</span>
+                                            </div>
+                                            <div class="col m--align-right">
+                                                <span class="m-widget1__number m--font-success">
+                                                    <asp:Label ID="lblCloseTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="m-widget1__item">
+                                        <div class="row m-row--no-padding align-items-center">
+                                            <div class="col">
+                                                <h3 class="m-widget1__title">Total Parked</h3>
+                                                <span class="m-widget1__desc">Total No. of Parked Tickets in your Account</span>
+                                            </div>
+                                            <div class="col m--align-right">
+                                                <span class="m-widget1__number m--font-brand">
+                                                    <asp:Label ID="lblParkedTicket" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
 
-
+                                <!--end:: Widgets/Stats2-1 -->
                             </div>
+                            <div class="col-xl-4">
 
-                            <!--end:: Widgets/Stats2-1 -->
-                        </div>
-                        <div class="col-xl-4">
+                                <!--begin:: Widgets/Daily Sales-->
+                                <div class="m-widget14">
+                                    <div class="m-widget14__header m--margin-bottom-30">
+                                        <h3 class="m-widget14__title">Category wise Tickets
+                                        </h3>
+                                        <span class="m-widget14__desc">Bifurcation of tickets based on different Categories
+                                        </span>
+                                    </div>
+                                    <div class="tab-content">
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <div id="chart_Ticket_categorywise"></div>
+                                    </div>
 
-                            <!--begin:: Widgets/Daily Sales-->
-                            <div class="m-widget14">
-                                <div class="m-widget14__header m--margin-bottom-30">
-                                    <h3 class="m-widget14__title">Category wise Tickets
-                                    </h3>
-                                    <span class="m-widget14__desc">Bifurcation of tickets based on different Categories
-                                    </span>
-                                </div>
-                                <div class="tab-content">
-                                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                    <div id="chart_Ticket_categorywise"></div>
-                                </div>
-
-                                <%--<div class="m-widget14__chart" style="height: 120px;">
+                                    <%--<div class="m-widget14__chart" style="height: 120px;">
                                     <canvas id="m_chart_daily_sales"></canvas>
                                 </div>--%>
-                            </div>
-
-                            <!--end:: Widgets/Daily Sales-->
-                        </div>
-                        <div class="col-xl-5">
-
-                            <!--begin:: Widgets/Profit Share-->
-                            <div class="m-widget14">
-                                <div class="m-widget14__header">
-                                    <h3 class="m-widget14__title">Checklists
-                                    </h3>
-                                    <span class="m-widget14__desc">Summary of Checklists for the period
-                                    </span>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div id="m_chart_checklist_share" class="m-widget14__chart">
-                                            <div class="m-widget14__stat"></div>
-                                        </div>
+
+                                <!--end:: Widgets/Daily Sales-->
+                            </div>
+                            <div class="col-xl-5">
+
+                                <!--begin:: Widgets/Profit Share-->
+                                <div class="m-widget14">
+                                    <div class="m-widget14__header">
+                                        <h3 class="m-widget14__title">Checklists
+                                        </h3>
+                                        <span class="m-widget14__desc">Summary of Checklists for the period
+                                        </span>
                                     </div>
-                                    <%--<div class="col">                                       
+                                    <div class="row">
+                                        <div class="col">
+                                            <div id="m_chart_checklist_share" class="m-widget14__chart">
+                                                <div class="m-widget14__stat"></div>
+                                            </div>
+                                        </div>
+                                        <%--<div class="col">                                       
                                         <div class="m-widget14__legends">
                                             <div class="m-widget14__legend">
                                                 <span class="m-widget14__legend-bullet m--bg-accent"></span>
@@ -1104,35 +889,35 @@
                                             </div>
                                         </div>
                                     </div>--%>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!--end:: Widgets/Profit Share-->
+                                <!--end:: Widgets/Profit Share-->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
 
-            <%-- <div class="m-portlet">--%>
-            <!--Begin::Section-->
-            <div class="row">
-                <div class="col-xl-4">
+                <%-- <div class="m-portlet">--%>
+                <!--Begin::Section-->
+                <div class="row">
+                    <div class="col-xl-4">
 
-                    <!--begin:: Widgets/Top Products-->
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text m--font-light">Your Gate pass Summary
-                                    </h3>
+                        <!--begin:: Widgets/Top Products-->
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text m--font-light">Your Gate pass Summary
+                                        </h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                        <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
                                                         <i class="fa fa-genderless m--font-light"></i>
                                                     </a>
                                                     <div class="m-dropdown__wrapper">
@@ -1177,128 +962,128 @@
                                                             </div>
                                                         </div>
                                                     </div>--%>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="m-portlet__body">
-                            <div class="m-widget17">
-                                <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
-                                    <div class="m-widget17__chart" style="height: 109px;">
-                                    </div>
-                                </div>
-                                <div class="m-widget17__stats">
-                                    <div class="m-widget17__items m-widget17__items-col1">
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-truck m--font-brand"></i>--%>
-                                                <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Total
-                                            </span>
-                                            <%--<asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" style="font-weight:bold;" Text="15" ></asp:Label>--%>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests raised
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">On Hold
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Approved
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="m-widget17__items m-widget17__items-col2">
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <i class="flaticon-pie-chart m--font-success"></i>
-
-                                            </span>
-                                            <span class="m-widget17__subtitle">Open
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Rejected
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Closed
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblGPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvGPPendingApproval" runat="server">
-                                    <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
-                                    <span class="m-widget17__desc">
-                                        <asp:Label ID="lblGPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                    </span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
+                            <div class="m-portlet__body">
+                                <div class="m-widget17">
+                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                                        <div class="m-widget17__chart" style="height: 109px;">
+                                        </div>
+                                    </div>
+                                    <div class="m-widget17__stats">
+                                        <div class="m-widget17__items m-widget17__items-col1">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
+                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Total
+                                                </span>
+                                                <%--<asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" style="font-weight:bold;" Text="15" ></asp:Label>--%>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests raised
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">On Hold
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Approved
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="m-widget17__items m-widget17__items-col2">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <i class="flaticon-pie-chart m--font-success"></i>
+
+                                                </span>
+                                                <span class="m-widget17__subtitle">Open
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Rejected
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text="15"></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Closed
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblGPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvGPPendingApproval" runat="server">
+                                        <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
+                                        <span class="m-widget17__desc">
+                                            <asp:Label ID="lblGPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <!--end:: Widgets/Top Products-->
                     </div>
 
-                    <!--end:: Widgets/Top Products-->
-                </div>
+                    <div class="col-xl-4">
 
-                <div class="col-xl-4">
-
-                    <!--begin:: Widgets/Activity-->
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
-                                    </h3>
+                        <!--begin:: Widgets/Activity-->
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
+                                        </h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                        <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
                                                         <i class="fa fa-genderless m--font-light"></i>
                                                     </a>--%>
-                                        <%--<div class="m-dropdown__wrapper">
+                                            <%--<div class="m-dropdown__wrapper">
                                                         <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                                         <div class="m-dropdown__inner">
                                                             <div class="m-dropdown__body">
@@ -1342,426 +1127,426 @@
                                                             </div>
                                                         </div>
                                                     </div>--%>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="m-widget17">
+                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                                        <div class="m-widget17__chart" style="height: 109px;">
+                                        </div>
+                                    </div>
+                                    <div class="m-widget17__stats">
+                                        <div class="m-widget17__items m-widget17__items-col1">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
+                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Total
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests raised
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">On Hold
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Approved
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="m-widget17__items m-widget17__items-col2">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <i class="flaticon-pie-chart m--font-success"></i>
+                                                </span>
+                                                <span class="m-widget17__subtitle">Open
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Rejected
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Closed
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblWPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvWPPendingApproval" runat="server">
+                                        <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
+                                        <span class="m-widget17__desc">
+                                            <asp:Label ID="lblWPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                        </span>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
-                        <div class="m-portlet__body">
-                            <div class="m-widget17">
-                                <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
-                                    <div class="m-widget17__chart" style="height: 109px;">
-                                    </div>
-                                </div>
-                                <div class="m-widget17__stats">
-                                    <div class="m-widget17__items m-widget17__items-col1">
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-truck m--font-brand"></i>--%>
-                                                <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Total
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests raised
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">On Hold
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPHold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Approved
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPApproved" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="m-widget17__items m-widget17__items-col2">
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <i class="flaticon-pie-chart m--font-success"></i>
-                                            </span>
-                                            <span class="m-widget17__subtitle">Open
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Rejected
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPRejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
-                                        <div class="m-widget17__item">
-                                            <span class="m-widget17__icon">
-                                                <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
-                                            </span>
-                                            <span class="m-widget17__subtitle">Closed
-                                            </span>
-                                            <span class="m-widget17__desc">
-                                                <asp:Label ID="lblWPClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                Requests
-                                            </span>
-                                        </div>
 
-                                    </div>
-                                </div>
-                                <div class="m-widget17__item m-widget17__items m-widget17__items-col2" style="text-align: center;" id="dvWPPendingApproval" runat="server">
-                                    <span class="m-widget17__subtitle" style="font-weight: bold;">Pending Approvals :</span>
-                                    <span class="m-widget17__desc">
-                                        <asp:Label ID="lblWPPendingApprovalCount" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                    </span>
-                                </div>
+                        <!--end:: Widgets/Activity-->
 
-
-                            </div>
-                        </div>
                     </div>
+                    <div class="col-xl-4">
 
-                    <!--end:: Widgets/Activity-->
-
-                </div>
-                <div class="col-xl-4">
-
-                    <!--begin:: Packages-->
-                    <div class="m-portlet m--bg-warning m-portlet--bordered-semi m-portlet--full-height ">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text m--font-light">WOW Centre Services
-                                    </h3>
+                        <!--begin:: Packages-->
+                        <div class="m-portlet m--bg-warning m-portlet--bordered-semi m-portlet--full-height ">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text m--font-light">WOW Centre Services
+                                        </h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                        <%--<a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill m-btn btn-outline-light m-btn--hover-light">2018
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                            <%--<a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill m-btn btn-outline-light m-btn--hover-light">2018
                                                     </a>--%>
-                                        <div class="m-dropdown__wrapper">
-                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                            <div class="m-dropdown__inner">
-                                                <div class="m-dropdown__body">
-                                                    <div class="m-dropdown__content">
-                                                        <ul class="m-nav">
-                                                            <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">Reports</span>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                                                    <span class="m-nav__link-text">Activity</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                    <span class="m-nav__link-text">Messages</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                                                    <span class="m-nav__link-text">FAQ</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">Export</span>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">PDF</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">Excel</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="" class="m-nav__link">
-                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                    <span class="m-nav__link-text">CSV</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                            <div class="m-dropdown__wrapper">
+                                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                                <div class="m-dropdown__inner">
+                                                    <div class="m-dropdown__body">
+                                                        <div class="m-dropdown__content">
+                                                            <ul class="m-nav">
+                                                                <li class="m-nav__section m-nav__section--first">
+                                                                    <span class="m-nav__section-text">Reports</span>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-share"></i>
+                                                                        <span class="m-nav__link-text">Activity</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                                        <span class="m-nav__link-text">Messages</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-info"></i>
+                                                                        <span class="m-nav__link-text">FAQ</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__section m-nav__section--first">
+                                                                    <span class="m-nav__section-text">Export</span>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <span class="m-nav__link-text">PDF</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <span class="m-nav__link-text">Excel</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <span class="m-nav__link-text">CSV</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+
+                                <!--begin::Widget 29-->
+                                <div class="m-widget29">
+                                    <div class="m-widget_content">
+                                        <h3 class="m-widget_content-title">Baggage Service Requests</h3>
+                                        <div class="m-widget_content-items">
+                                            <div class="m-widget_content-item">
+                                                <span>Total</span>
+                                                <span class="m--font-accent">
+                                                    <asp:Label ID="lblBaggageTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>Open</span>
+                                                <span>
+                                                    <asp:Label ID="lblBaggageOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>Closed</span>
+                                                <span>
+                                                    <asp:Label ID="lblBaggageClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <div class="m-widget_content">
+                                        <h3 class="m-widget_content-title">Power Bank Service Requests</h3>
+                                        <div class="m-widget_content-items">
+                                            <div class="m-widget_content-item">
+                                                <span>Total</span>
+                                                <span class="m--font-accent">
+                                                    <asp:Label ID="lblPowerBankTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>Open</span>
+                                                <span>
+                                                    <asp:Label ID="lblPowerBankOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>Closed</span>
+                                                <span>
+                                                    <asp:Label ID="lblPowerBankClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                        <h3 class="m-widget_content-title">Power Bank Inventory</h3>
+                                        <div class="m-widget_content-items">
+                                            <div class="m-widget_content-item">
+                                                <span>Available</span>
+                                                <span>
+                                                    <asp:Label ID="lblPowerBankAvailable" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>In Use</span>
+                                                <span>
+                                                    <asp:Label ID="lblPowerBankInUse" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget_content-item">
+                                                <span>Total</span>
+                                                <span>
+                                                    <asp:Label ID="lblPowerBankTotal" runat="server" CssClass="form-control-label widget17__desc m--font-accent" Style="font-weight: bold;" Text=""></asp:Label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--end::Widget 29-->
                             </div>
                         </div>
-                        <div class="m-portlet__body">
 
-                            <!--begin::Widget 29-->
-                            <div class="m-widget29">
-                                <div class="m-widget_content">
-                                    <h3 class="m-widget_content-title">Baggage Service Requests</h3>
-                                    <div class="m-widget_content-items">
-                                        <div class="m-widget_content-item">
-                                            <span>Total</span>
-                                            <span class="m--font-accent">
-                                                <asp:Label ID="lblBaggageTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                        <div class="m-widget_content-item">
-                                            <span>Open</span>
-                                            <span>
-                                                <asp:Label ID="lblBaggageOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                        <div class="m-widget_content-item">
-                                            <span>Closed</span>
-                                            <span>
-                                                <asp:Label ID="lblBaggageClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
+                        <!--end:: Packages-->
+                    </div>
+                    <div class="col-xl-4">
+
+                        <!--begin:: Widgets/Blog-->
+                        <!--end:: Widgets/Blog-->
+                    </div>
+                </div>
+                <%--</div>--%>
+                <!--End::Section-->
+                <!--Begin::Section-->
+                <!--End::Section-->
+                <!--Begin::Section-->
+                <div class="row">
+                    <!--Begin:: Store Attendance-->
+
+                    <div class="col-xl-12">
+
+                        <!--begin:: Widgets/Blog-->
+
+                        <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">Retail Store Attendance Portal<small>Log your Store Opening & Closing Time below</small>
+                                        </h3>
                                     </div>
                                 </div>
-                                <div class="m-widget_content">
-                                    <h3 class="m-widget_content-title">Power Bank Service Requests</h3>
-                                    <div class="m-widget_content-items">
-                                        <div class="m-widget_content-item">
-                                            <span>Total</span>
-                                            <span class="m--font-accent">
-                                                <asp:Label ID="lblPowerBankTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                        <div class="m-widget_content-item">
-                                            <span>Open</span>
-                                            <span>
-                                                <asp:Label ID="lblPowerBankOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                        <div class="m-widget_content-item">
-                                            <span>Closed</span>
-                                            <span>
-                                                <asp:Label ID="lblPowerBankClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                            </span>
+                            </div>
+                            <div class="m-portlet__body">
+
+                                <div class="row m-row--no-padding m-row--col-separator-xl">
+                                    <div class="col-md-6">
+
+                                        <!--begin::Total Profit-->
+                                        <div class="m-widget24">
+                                            <div class="m-widget24__item">
+                                                <h4 class="m-widget24__title">Store Punch-IN
+                                                </h4>
+                                                <br>
+                                                <span class="m-widget24__desc">Click to log the time when your store Opens
+                                                </span>
+                                                <span class="m-widget24__stats m--font-info">
+                                                    <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air">
+                                                        <span>
+                                                            <i class="la la-hand-pointer-o"></i>
+                                                            <span>Punch IN</span>
+                                                        </span>
+                                                    </a>
+                                                </span>
+                                                <div class="m--space-10"></div>
+                                                <div class="progress m-progress--sm">
+                                                    <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="m-widget24__change">Last Punch-IN Logged Today
+                                                </span>
+                                                <span class="m-widget24__number">7-Dec-2020 11.12 AM
+                                                </span>
+                                            </div>
                                         </div>
 
+                                        <!--end::Total Profit-->
                                     </div>
-                                    <br />
-                                    <h3 class="m-widget_content-title">Power Bank Inventory</h3>
-                                    <div class="m-widget_content-items">
-                                        <div class="m-widget_content-item">
-                                            <span>Available</span>
-                                            <span>
-                                                <asp:Label ID="lblPowerBankAvailable" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                            </span>
+                                    <div class="col-md-6">
+
+                                        <!--begin::New Feedbacks-->
+                                        <div class="m-widget24">
+                                            <div class="m-widget24__item">
+                                                <h4 class="m-widget24__title">Store Punch-OUT
+                                                </h4>
+                                                <br>
+                                                <span class="m-widget24__desc">Click to log the time when your store Closes
+                                                </span>
+                                                <span class="m-widget24__stats m--font-info">
+                                                    <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                                        <span>
+                                                            <i class="la la-hand-peace-o"></i>
+                                                            <span>Punch OUT</span>
+                                                        </span>
+                                                    </a>
+                                                </span>
+
+
+
+                                                <div class="m--space-10"></div>
+                                                <div class="progress m-progress--sm">
+                                                    <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="m-widget24__change">Last Punch-OUT Logged Today
+                                                </span>
+                                                <span class="m-widget24__number">7-Dec-2020 11.12 AM
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="m-widget_content-item">
-                                            <span>In Use</span>
-                                            <span>
-                                                <asp:Label ID="lblPowerBankInUse" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
-                                        <div class="m-widget_content-item">
-                                            <span>Total</span>
-                                            <span>
-                                                <asp:Label ID="lblPowerBankTotal" runat="server" CssClass="form-control-label widget17__desc m--font-accent" Style="font-weight: bold;" Text=""></asp:Label>
-                                            </span>
-                                        </div>
+
+                                        <!--end::New Feedbacks-->
                                     </div>
+
+
                                 </div>
 
                             </div>
-
-                            <!--end::Widget 29-->
                         </div>
+
+
+
+
+
+
+
+                        <!--end:: Widgets/Blog-->
                     </div>
 
-                    <!--end:: Packages-->
-                </div>
-                <div class="col-xl-4">
-
-                    <!--begin:: Widgets/Blog-->
-                    <!--end:: Widgets/Blog-->
-                </div>
-            </div>
-            <%--</div>--%>
-            <!--End::Section-->
-            <!--Begin::Section-->
-            <!--End::Section-->
-            <!--Begin::Section-->
-            <div class="row">
-                <!--Begin:: Store Attendance-->
-
-                <div class="col-xl-12">
-
-                    <!--begin:: Widgets/Blog-->
-
-                    <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">Retail Store Attendance Portal<small>Log your Store Opening & Closing Time below</small>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="m-portlet__body">
-
-                            <div class="row m-row--no-padding m-row--col-separator-xl">
-                                <div class="col-md-6">
-
-                                    <!--begin::Total Profit-->
-                                    <div class="m-widget24">
-                                        <div class="m-widget24__item">
-                                            <h4 class="m-widget24__title">Store Punch-IN
-                                            </h4>
-                                            <br>
-                                            <span class="m-widget24__desc">Click to log the time when your store Opens
-                                            </span>
-                                            <span class="m-widget24__stats m--font-info">
-                                                <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air">
-                                                    <span>
-                                                        <i class="la la-hand-pointer-o"></i>
-                                                        <span>Punch IN</span>
-                                                    </span>
-                                                </a>
-                                            </span>
-                                            <div class="m--space-10"></div>
-                                            <div class="progress m-progress--sm">
-                                                <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <span class="m-widget24__change">Last Punch-IN Logged Today
-                                            </span>
-                                            <span class="m-widget24__number">7-Dec-2020 11.12 AM
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Total Profit-->
-                                </div>
-                                <div class="col-md-6">
-
-                                    <!--begin::New Feedbacks-->
-                                    <div class="m-widget24">
-                                        <div class="m-widget24__item">
-                                            <h4 class="m-widget24__title">Store Punch-OUT
-                                            </h4>
-                                            <br>
-                                            <span class="m-widget24__desc">Click to log the time when your store Closes
-                                            </span>
-                                            <span class="m-widget24__stats m--font-info">
-                                                <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
-                                                    <span>
-                                                        <i class="la la-hand-peace-o"></i>
-                                                        <span>Punch OUT</span>
-                                                    </span>
-                                                </a>
-                                            </span>
+                    <!--End::Store Attendance-->
 
 
+                    <div class="col-xl-4">
 
-                                            <div class="m--space-10"></div>
-                                            <div class="progress m-progress--sm">
-                                                <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <span class="m-widget24__change">Last Punch-OUT Logged Today
-                                            </span>
-                                            <span class="m-widget24__number">7-Dec-2020 11.12 AM
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!--end::New Feedbacks-->
-                                </div>
-
-
-                            </div>
-
-                        </div>
+                        <!--begin:: Widgets/Blog-->
+                        <!--end:: Widgets/Blog-->
                     </div>
+                    <div class="col-xl-4">
 
-
-
-
-
-
-
-                    <!--end:: Widgets/Blog-->
+                        <!--begin:: Packages-->
+                        <!--end:: Packages-->
+                    </div>
                 </div>
 
-                <!--End::Store Attendance-->
+                <!--End::Section-->
+                <!--Begin::Section-->
+                <div class="row">
+                    <div class="col-xl-6">
 
+                        <!--begin:: Widgets/Tasks -->
+                        <!--end:: Widgets/Tasks -->
+                    </div>
+                    <div class="col-xl-6">
 
-                <div class="col-xl-4">
-
-                    <!--begin:: Widgets/Blog-->
-                    <!--end:: Widgets/Blog-->
+                        <!--begin:: Widgets/Support Tickets -->
+                        <!--end:: Widgets/Support Tickets -->
+                    </div>
                 </div>
-                <div class="col-xl-4">
 
-                    <!--begin:: Packages-->
-                    <!--end:: Packages-->
+                <!--End::Section-->
+                <!--Begin::Section-->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12">
+
+                        <!--Begin::Portlet-->
+                        <!--End::Portlet-->
+                    </div>
+                    <div class="col-xl-6 col-lg-12">
+
+                        <!--Begin::Portlet-->
+                        <!--End::Portlet-->
+                    </div>
                 </div>
-            </div>
 
-            <!--End::Section-->
-            <!--Begin::Section-->
-            <div class="row">
-                <div class="col-xl-6">
+                <!--End::Section-->
+                <!--Begin::Section-->
+                <!--End::Section-->
+                <!--Begin::Section-->
 
-                    <!--begin:: Widgets/Tasks -->
-                    <!--end:: Widgets/Tasks -->
-                </div>
-                <div class="col-xl-6">
-
-                    <!--begin:: Widgets/Support Tickets -->
-                    <!--end:: Widgets/Support Tickets -->
-                </div>
-            </div>
-
-            <!--End::Section-->
-            <!--Begin::Section-->
-            <div class="row">
-                <div class="col-xl-6 col-lg-12">
-
-                    <!--Begin::Portlet-->
-                    <!--End::Portlet-->
-                </div>
-                <div class="col-xl-6 col-lg-12">
-
-                    <!--Begin::Portlet-->
-                    <!--End::Portlet-->
-                </div>
-            </div>
-
-            <!--End::Section-->
-            <!--Begin::Section-->
-            <!--End::Section-->
-            <!--Begin::Section-->
-
-            <%--<div class="m-portlet">
+                <%--<div class="m-portlet">
 
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -1838,7 +1623,7 @@
 
 
 
-            <%--            <div class="m-portlet">
+                <%--            <div class="m-portlet">
 
 
 
@@ -1935,25 +1720,346 @@
                 </div>
 
                 <%-- </div>--%>
-            <div class="row">
+                <div class="row">
+                </div>
+
+                <!--End::Section-->
             </div>
 
-            <!--End::Section-->
+
+            <%--</div>--%>
+
+
+
+
+            <%-- </div>--%>
         </div>
 
 
-        <%--</div>--%>
+        <div class="m-content bg-white" id="dvRetailer" runat="server" style="display: block;">
+            <div class="m-portlet">
+                <div class="row">
+                    <div class="col-xl-4">
+
+                        <!--begin:: Widgets/Top Products-->
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text m--font-light">Your Gate pass Summary
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                                        <i class="fa fa-genderless m--font-light"></i>
+                                                    </a>
+                                                    <div class="m-dropdown__wrapper">
+                                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                                        <div class="m-dropdown__inner">
+                                                            <div class="m-dropdown__body">
+                                                                <div class="m-dropdown__content">
+                                                                    <ul class="m-nav">
+                                                                        <li class="m-nav__section m-nav__section--first">
+                                                                            <span class="m-nav__section-text">Quick Actions</span>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-share"></i>
+                                                                                <span class="m-nav__link-text">Activity</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                                                <span class="m-nav__link-text">Messages</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-info"></i>
+                                                                                <span class="m-nav__link-text">FAQ</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                                <span class="m-nav__link-text">Support</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>--%>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="m-widget17">
+                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                                        <div class="m-widget17__chart" style="height: 109px;">
+                                        </div>
+                                    </div>
+                                    <div class="m-widget17__stats">
+                                        <div class="m-widget17__items m-widget17__items-col1">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
+                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Total
+                                                </span>
+                                                <%--<asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" style="font-weight:bold;" Text="15" ></asp:Label>--%>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Total" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests raised
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">On Hold
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Hold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Approved
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Approve" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="m-widget17__items m-widget17__items-col2">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <i class="flaticon-pie-chart m--font-success"></i>
+                                                </span>
+                                                <span class="m-widget17__subtitle">Open
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Open" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Rejected
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Rejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Closed
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_GP_Close" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end:: Widgets/Top Products-->
+                    </div>
+
+                    <div class="col-xl-4">
+
+                        <!--begin:: Widgets/Activity-->
+                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                                        <i class="fa fa-genderless m--font-light"></i>
+                                                    </a>--%>
+                                            <%--<div class="m-dropdown__wrapper">
+                                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                                        <div class="m-dropdown__inner">
+                                                            <div class="m-dropdown__body">
+                                                                <div class="m-dropdown__content">
+                                                                    <ul class="m-nav">
+                                                                        <li class="m-nav__section m-nav__section--first">
+                                                                            <span class="m-nav__section-text">Quick Actions</span>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-share"></i>
+                                                                                <span class="m-nav__link-text">Activity</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                                                <span class="m-nav__link-text">Messages</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-info"></i>
+                                                                                <span class="m-nav__link-text">FAQ</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="" class="m-nav__link">
+                                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                                <span class="m-nav__link-text">Support</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                                                                        <li class="m-nav__item">
+                                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
+                                                                        </li>
 
 
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>--%>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="m-widget17">
+                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                                        <div class="m-widget17__chart" style="height: 109px;">
+                                        </div>
+                                    </div>
+                                    <div class="m-widget17__stats">
+                                        <div class="m-widget17__items m-widget17__items-col1">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
+                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Total
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Total" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests raised
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">On Hold
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Hold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
+                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Approve
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Approve" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="m-widget17__items m-widget17__items-col2">
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <i class="flaticon-pie-chart m--font-success"></i>
+                                                </span>
+                                                <span class="m-widget17__subtitle">Open
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Open" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Rejected
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Rejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+                                            <div class="m-widget17__item">
+                                                <span class="m-widget17__icon">
+                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
+                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
+                                                </span>
+                                                <span class="m-widget17__subtitle">Closed
+                                                </span>
+                                                <span class="m-widget17__desc">
+                                                    <asp:Label ID="lblR_WP_Close" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
+                                                    Requests
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end:: Widgets/Activity-->
+
+                    </div>
 
 
-        <%-- </div>--%>
-    </div>
+                </div>
 
+            </div>
+        </div>
+        <!-- end:: Body -->
 
-    <!-- end:: Body -->
-
-    </div>
+    </form>
     <%--</form>--%>
     <%--</div>--%>
 </asp:Content>
