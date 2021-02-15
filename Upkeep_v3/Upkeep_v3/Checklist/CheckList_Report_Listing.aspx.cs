@@ -9,7 +9,11 @@ using System.Xml;
 using System.Text;
 using System.Data;
 using System.Globalization;
-
+using System.Data.OleDb;
+using System.Data.Common;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace Upkeep_v3.CheckList
 {
@@ -87,14 +91,16 @@ namespace Upkeep_v3.CheckList
                             string StartTime = Convert.ToString(ds.Tables[0].Rows[i]["Start Time"]);
                             string EndTime = Convert.ToString(ds.Tables[0].Rows[i]["End Time"]);
                             string TotalHrs = Convert.ToString(ds.Tables[0].Rows[i]["Total Hrs"]);
+                            string PercentCompleted = Convert.ToString(ds.Tables[0].Rows[i]["PercentCompleted"]);
                             string Generated_By = Convert.ToString(ds.Tables[0].Rows[i]["Generated_By"]);
-                            string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]); 
+                            string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
 
+                            
                             data += "<tr><td> <a href='CheckList_Report_Details.aspx?Ans_Response_ID=" + Ans_Response_ID + "' style='text-decoration: underline;' > " + Chk_Response_No + " </a></td>" +
                                 "<td>" + ChecklistName + "</td>" + "<td>" + Department + "</td>" + "<td>" + Location + "</td>" +
                                 "<td>" + StartTime + "</td>" +
                                 "<td>" + EndTime + "</td>" +
-                                "<td>" + TotalHrs + "</td>" +
+                                "<td>" + TotalHrs + "</td>" + "<td class='Progress'>" + PercentCompleted + "</td>" +
                                 "<td>" + Generated_By + "</td>" +
                                 "<td>" + Status + "</td>" + 
                                 "</tr>";
@@ -217,7 +223,133 @@ namespace Upkeep_v3.CheckList
         }
         protected void btnExportPDF_Click(object sender, EventArgs e)
         {
+            GridView dgGrid = new GridView();
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
+            Document doc = new Document();
+            try
+            {
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
 
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
+                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                DataSet dsReport = new DataSet();
+                dsReport = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date);
+
+
+                System.Data.DataTable dtReport = new System.Data.DataTable();
+                dtReport = dsReport.Tables[0];
+
+                if (dsReport != null)
+                {
+                    if (dsReport.Tables.Count > 0)
+                    {
+                        if (dsReport.Tables[0].Rows.Count > 0)
+                        {
+                           
+                            dtReport.Columns.Remove("Chk_Response_ID");
+                            dtReport.Columns.Remove("Chk_Config_ID");
+                            dtReport.Columns["Chk_Response_No"].ColumnName = "Checklist Response No";
+                            ////dtReport.Columns["Store_Name"].ColumnName = "Store Name";
+                            ////dtReport.Columns["Name"].ColumnName = "Manager Name";
+                            ////dtReport.Columns.Remove("Password");
+
+                            dtReport.AcceptChanges();
+
+                            dgGrid.DataSource = dtReport;
+                            dgGrid.DataBind();
+
+
+                            System.IO.StringWriter tw = new System.IO.StringWriter();
+                            System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+
+                            string filename = "Checklist_Report_" + DateTime.Now + ".pdf";
+
+                            string HeaderText = "CHECKLIST REPORT AS ON " + DateTime.Now;
+
+                            Style textStyle = new Style();
+                            textStyle.ForeColor = System.Drawing.Color.DarkCyan;
+                            hw.EnterStyle(textStyle);
+
+                            hw.Write("<h2><center>" + HeaderText + "</center></h2> </br>");
+                            hw.ExitStyle(textStyle);
+
+                            //Write the HTML back to the browser.
+
+                            Response.ContentType = "application/pdf";
+                            //Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                            Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.pdf", "Checklist_Report"));
+
+                            
+                            iTextSharp.text.pdf.PdfPTable grd;
+
+                            PdfWriter writer = PdfWriter.GetInstance(doc, Response.OutputStream);
+                            doc.Open();
+
+                            grd = new PdfPTable(dtReport.Columns.Count);
+                            grd.WidthPercentage = 100.0F;
+
+                            PdfPCell cellRptNm = new PdfPCell(new Phrase("CHECKLIST REPORT AS ON " +From_Date + " to " + To_Date));
+                            cellRptNm.HorizontalAlignment = 1;
+                            cellRptNm.Colspan = dtReport.Columns.Count;
+                            cellRptNm.Border = 0;
+                            cellRptNm.PaddingBottom = 20.0F;
+                            grd.AddCell(cellRptNm);
+
+                            BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
+                            iTextSharp.text.Font fnt = new iTextSharp.text.Font(bfTimes, 7);
+
+                            for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
+                            {
+                                PdfPCell cellHD1 = new PdfPCell(new Phrase(dtReport.Columns[IntLocColCnt].ColumnName, fnt));
+                                cellHD1.PaddingBottom = 10.0F;
+                                cellHD1.BackgroundColor = iTextSharp.text.Color.LIGHT_GRAY;
+                                cellHD1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                                cellHD1.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                                grd.AddCell(cellHD1);
+                            }
+
+                            for (var IntLocRowCnt = 0; IntLocRowCnt <= dtReport.Rows.Count - 1; IntLocRowCnt++)
+                            {
+                                for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
+                                {
+                                    string str = Convert.ToString(dtReport.Rows[IntLocRowCnt][IntLocColCnt]);
+                                    PdfPCell cell = new PdfPCell(new Phrase(str, fnt));
+                                    cell.PaddingBottom = 10.0F;
+                                    grd.AddCell(cell);
+                                }
+                            }
+                            doc.Add(grd);
+                        }
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                doc.Close();
+            }
+            // Indicate that the data to send to the client has ended
+            Response.End();
         }
 
     }

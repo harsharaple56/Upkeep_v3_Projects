@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChecklistReport" targetNamespace="http://tempuri.org/ChecklistReport.xsd" xmlns:mstns="http://tempuri.org/ChecklistReport.xsd" xmlns="http://tempuri.org/ChecklistReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ChecklistReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ChecklistReport" msprop:Generator_UserDSName="ChecklistReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_ChecklistReport_Header" msprop:Generator_TableClassName="dt_ChecklistReport_HeaderDataTable" msprop:Generator_TableVarName="tabledt_ChecklistReport_Header" msprop:Generator_TablePropName="dt_ChecklistReport_Header" msprop:Generator_RowDeletingName="dt_ChecklistReport_HeaderRowDeleting" msprop:Generator_RowChangingName="dt_ChecklistReport_HeaderRowChanging" msprop:Generator_RowEvHandlerName="dt_ChecklistReport_HeaderRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_ChecklistReport_HeaderRowDeleted" msprop:Generator_UserTableName="dt_ChecklistReport_Header" msprop:Generator_RowChangedName="dt_ChecklistReport_HeaderRowChanged" msprop:Generator_RowEvArgName="dt_ChecklistReport_HeaderRowChangeEvent" msprop:Generator_RowClassName="dt_ChecklistReport_HeaderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Chk_Response_No" msprop:Generator_ColumnVarNameInTable="columnChk_Response_No" msprop:Generator_ColumnPropNameInRow="Chk_Response_No" msprop:Generator_ColumnPropNameInTable="Chk_Response_NoColumn" msprop:Generator_UserColumnName="Chk_Response_No" type="xs:string" minOccurs="0" />
+              <xs:element name="ChecklistName" msprop:Generator_ColumnVarNameInTable="columnChecklistName" msprop:Generator_ColumnPropNameInRow="ChecklistName" msprop:Generator_ColumnPropNameInTable="ChecklistNameColumn" msprop:Generator_UserColumnName="ChecklistName" type="xs:string" minOccurs="0" />
+              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+              <xs:element name="ChecklistDesc" msprop:Generator_ColumnVarNameInTable="columnChecklistDesc" msprop:Generator_ColumnPropNameInRow="ChecklistDesc" msprop:Generator_ColumnPropNameInTable="ChecklistDescColumn" msprop:Generator_UserColumnName="ChecklistDesc" type="xs:string" minOccurs="0" />
+              <xs:element name="StartTime" msprop:Generator_ColumnVarNameInTable="columnStartTime" msprop:Generator_ColumnPropNameInRow="StartTime" msprop:Generator_ColumnPropNameInTable="StartTimeColumn" msprop:Generator_UserColumnName="StartTime" type="xs:string" minOccurs="0" />
+              <xs:element name="EndTime" msprop:Generator_ColumnVarNameInTable="columnEndTime" msprop:Generator_ColumnPropNameInRow="EndTime" msprop:Generator_ColumnPropNameInTable="EndTimeColumn" msprop:Generator_UserColumnName="EndTime" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalHrs" msprop:Generator_ColumnVarNameInTable="columnTotalHrs" msprop:Generator_ColumnPropNameInRow="TotalHrs" msprop:Generator_ColumnPropNameInTable="TotalHrsColumn" msprop:Generator_UserColumnName="TotalHrs" type="xs:string" minOccurs="0" />
+              <xs:element name="Generated_By" msprop:Generator_ColumnVarNameInTable="columnGenerated_By" msprop:Generator_ColumnPropNameInRow="Generated_By" msprop:Generator_ColumnPropNameInTable="Generated_ByColumn" msprop:Generator_UserColumnName="Generated_By" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="PercentCompleted" msprop:Generator_ColumnVarNameInTable="columnPercentCompleted" msprop:Generator_ColumnPropNameInRow="PercentCompleted" msprop:Generator_ColumnPropNameInTable="PercentCompletedColumn" msprop:Generator_UserColumnName="PercentCompleted" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt_ChecklistReport_Data" msprop:Generator_TableClassName="dt_ChecklistReport_DataDataTable" msprop:Generator_TableVarName="tabledt_ChecklistReport_Data" msprop:Generator_TablePropName="dt_ChecklistReport_Data" msprop:Generator_RowDeletingName="dt_ChecklistReport_DataRowDeleting" msprop:Generator_RowChangingName="dt_ChecklistReport_DataRowChanging" msprop:Generator_RowEvHandlerName="dt_ChecklistReport_DataRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_ChecklistReport_DataRowDeleted" msprop:Generator_UserTableName="dt_ChecklistReport_Data" msprop:Generator_RowChangedName="dt_ChecklistReport_DataRowChanged" msprop:Generator_RowEvArgName="dt_ChecklistReport_DataRowChangeEvent" msprop:Generator_RowClassName="dt_ChecklistReport_DataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Qn_Desc" msprop:Generator_ColumnVarNameInTable="columnQn_Desc" msprop:Generator_ColumnPropNameInRow="Qn_Desc" msprop:Generator_ColumnPropNameInTable="Qn_DescColumn" msprop:Generator_UserColumnName="Qn_Desc" type="xs:string" minOccurs="0" />
+              <xs:element name="FlagValue" msprop:Generator_ColumnVarNameInTable="columnFlagValue" msprop:Generator_ColumnPropNameInRow="FlagValue" msprop:Generator_ColumnPropNameInTable="FlagValueColumn" msprop:Generator_UserColumnName="FlagValue" type="xs:string" minOccurs="0" />
+              <xs:element name="Chk_Ans_Value_Data" msprop:Generator_ColumnVarNameInTable="columnChk_Ans_Value_Data" msprop:Generator_ColumnPropNameInRow="Chk_Ans_Value_Data" msprop:Generator_ColumnPropNameInTable="Chk_Ans_Value_DataColumn" msprop:Generator_UserColumnName="Chk_Ans_Value_Data" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
