@@ -56,7 +56,7 @@
 
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
-                            <div class="m-portlet__body border-bottom " style="padding: 0.3rem 2.2rem;">
+                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Checklist Details </label>
                                 </div>
@@ -94,7 +94,7 @@
                                             </div>
                                         </div>--%>
 
-                                        <div class="col-md-8 border-left" style="padding-left: 1%; margin-bottom: 0;">
+                                        <div class="col-md-8" style="padding-left: 1%; margin-bottom: 0;">
                                             <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
 
                                                 <div class="col-md-6" style="padding-left: 1%; margin-bottom: 0;">
@@ -176,7 +176,7 @@
                             <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound">
                                 <ItemTemplate>
 
-                                    <div class="m-portlet__body border-bottom " style="padding: 0.3rem 2.2rem;">
+                                    <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
                                             <%--SECTION NAME --%>

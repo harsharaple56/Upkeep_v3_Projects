@@ -283,8 +283,6 @@
                                                 </div>
                                                 <div class="d-md-none m--margin-bottom-10"></div>
                                             </div>
-
-
                                             <div class="col-md-6">
                                                 <div class="m-form__group m-form__group--inline">
                                                     <div class="m-form__label">
@@ -312,9 +310,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
 
                                         </div>
                                         <br />

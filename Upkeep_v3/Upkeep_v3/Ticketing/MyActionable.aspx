@@ -56,50 +56,89 @@
                             <div class="row align-items-center">
                                 <div class="col-xl-8 order-2 order-xl-1">
                                     <div class="form-group m-form__group row align-items-center">
-                                        <div class="col-md-4">
-                                            <div class="m-form__group m-form__group--inline">
-                                                <div class="m-form__label">
-                                                    <label>Status:</label>
+                                        <div class="col-md-3">
+                                                <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label>Status:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+                                                        <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                            <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
+                                                            <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                        </asp:DropDownList>
+
+
+                                                        <%--<select class="form-control m-bootstrap-select" id="m_form_status">
+                                                            <option value="">All</option>
+                                                            <option value="Open">Open</option>
+                                                            <option value="Parked">Parked</option>
+                                                            <option value="Closed">Closed</option>
+                                                        </select>--%>
+                                                    </div>
                                                 </div>
-                                                <div class="m-form__control">
-                                                    <select class="form-control m-bootstrap-select" id="m_form_status">
-                                                        <option value="">All</option>
-                                                        <option value="Open">Open</option>
-                                                        <option value="Closed">Closed</option>
-                                                        <option value="Parked">Parked</option>
-                                                        <option value="Expired">Expired</option>
-                                                    </select>
+                                                <div class="d-md-none m--margin-bottom-10"></div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label class="m-label m-label--single">Action:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+
+                                                        <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                            <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
+                                                            <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
+                                                            <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
+                                                            <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                        </asp:DropDownList>
+
+
+                                                        <%--<select class="form-control m-bootstrap-select" id="m_form_type">
+                                                            <option value="">All</option>
+                                                            <option value="In Progress">In Progress</option>
+                                                            <option value="Accepted">Accepted</option>
+                                                            <option value="Assigned">Assigned</option>
+                                                            <option value="Hold">Hold</option>
+                                                            <option value="Closed">Closed</option>
+                                                        </select>--%>
+                                                    </div>
+                                                </div>
+                                                <div class="d-md-none m--margin-bottom-10"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label>Date:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+                                                        <span class="m-subheader__daterange btn btn-sm btn-outline-accent" style="padding: 0.15rem 0.8rem;" id="daterangepicker">
+                                                            <span class="m-subheader__daterange-label">
+                                                                <span class="m-subheader__daterange-title"></span>
+                                                                <span class="m-subheader__daterange-date"></span>
+                                                                <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
+                                                            </span>
+                                                            <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
+                                                                <i class="la la-angle-down"></i>
+                                                            </button>
+                                                        </span>
+                                                        <div class="btn-group" style="margin-left: 50px;">
+                                                            <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Search" OnClick="btnSearch_Click" />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="m-form__group m-form__group--inline">
-                                                <div class="m-form__label">
-                                                    <label class="m-label m-label--single">Action:</label>
-                                                </div>
-                                                <div class="m-form__control">
-                                                    <select class="form-control m-bootstrap-select" id="m_form_type">
-                                                        <option value="">All</option>
-                                                        <option value="Assigned">Assigned</option>
-                                                        <option value="Accepted">Accepted</option>
-                                                        <option value="InProgress">In Progress</option>
-                                                        <option value="Hold">Hold</option>
-                                                        <option value="Closed">Closed</option>
-                                                        <option value="Expired">Expired</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="m-input-icon m-input-icon--left">
-                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                                                <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                    <span><i class="la la-search"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-xl-4 order-1 order-xl-2 m--align-right">
