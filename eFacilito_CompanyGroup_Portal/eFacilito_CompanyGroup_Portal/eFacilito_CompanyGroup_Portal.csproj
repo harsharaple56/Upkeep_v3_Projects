@@ -201,6 +201,7 @@
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\efacilito_350.png" />
+    <Content Include="assets\app\media\img\logos\efacilito_Banner_logo.png" />
     <Content Include="assets\app\media\img\logos\efacilito_no_bg.png" />
     <Content Include="assets\app\media\img\logos\efacilito_s.png" />
     <Content Include="assets\app\media\img\logos\Forum_Logo.jpg" />
@@ -664,8 +665,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="eFacilito_CG_Portal.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Group_Dashboard.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -4523,6 +4526,13 @@
     </Compile>
     <Compile Include="Group_Dashboard.aspx.designer.cs">
       <DependentUpon>Group_Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
