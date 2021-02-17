@@ -99,7 +99,7 @@
                                         </a>
                                     </li>
 
-                                    
+
 
                                     <%-- <li class="m-nav__item">
                                          <a class="m-nav__link m-tabs__item m-tabs__item" data-tab-target="#m_section_9" href="#">
@@ -206,7 +206,7 @@
                                             </div>
                                         </div>
                                         <!--end::Item-->
-                                        
+
                                     </div>
                                 </div>
 
@@ -253,7 +253,32 @@
                                                 <div class="m-accordion__item-content">
 
                                                     <video width="720" height="340" controls="controls">
-                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Ticket_Configuration.mp4" type="audio/mp4" />
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Raise_Tickets.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                    <br />
+                                                    </br>
+
+                                                    <p>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--end::Item-->
+                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_1b_head" data-toggle="collapse" href="#m_section_1_content_1b_body">
+                                                <span class="m-accordion__item-title">Manage Assigned Tickets</span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_1_content_1b_body" role="tabpanel" aria-labelledby="m_section_1_content_1_head" data-parent="#m_section_1_content">
+                                                <div class="m-accordion__item-content">
+
+                                                    <video width="720" height="340" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Ticketing_MyActionable.mp4" type="audio/mp4" />
                                                         Your browser does not support the video tag.
                                                     </video>
                                                     <br />
@@ -268,7 +293,8 @@
 
                                         <!--end::Item-->
 
-                                      
+
+
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_5_head" data-toggle="collapse" href="#m_section_1_content_5_body">
@@ -438,39 +464,8 @@
                                     <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20">Work Permit </h4>
                                     <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_3_content">
 
-
                                         <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_1_head" data-toggle="collapse" href="#m_section_3_content_1_body">
-                                                <span class="m-accordion__item-title">Work Permit </span>
-                                                <span class="m-accordion__item-mode"></span>
-                                            </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_3_content_1_body" role="tabpanel" aria-labelledby="m_section_3_content_1_head" data-parent="#m_section_3_content">
-                                                <div class="m-accordion__item-content">
-
-
-                                                    <p>
-                                                        <h6>Work Permit Is For Contractor Visitor (Create Permit When Contractor Will Visit Date & Time And When The Permits Ends Date & Time) . </h6>
-                                                        <h4>How To Create Work Permit ?</h4>
-                                                        <ul>
-                                                            <li>Click On Work Permit</li>
-                                                            <li>Click On My Request</li>
-                                                            <li>Click On New Request Button</li>
-                                                            <li>Select Work Permit Title</li>
-                                                            <li>Initiator Details (Get Filled AutoMatically When Selected Title)</li>
-                                                            <li>Select From Date (Contractor Visit Date & Time)</li>
-                                                            <li>Select To Date (Permit Ends Date & Time)</li>
-                                                            <li>Click On Check Box To Agree Work Permit Terms And Conditions</li>
-                                                            <li>Click On Submit</li>
-                                                            <li>User Will Get Message Work Permit Request has been saved successfully With Unique Ticket No</li>
-                                                        </ul>
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_2_head" data-toggle="collapse" href="#m_section_3_content_2_body">
                                                 <span class="m-accordion__item-title">Configure Work Permit </span>
@@ -478,6 +473,11 @@
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_3_content_2_body" role="tabpanel" aria-labelledby="m_section_3_content_2_head" data-parent="#m_section_3_content">
                                                 <div class="m-accordion__item-content">
+
+                                                    <video width="720" height="340" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/WorkPermit_Config.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
 
                                                     <h6>User Can Create What All Thing Contractor Needs To Mention When User Issue Work Permit
                                                     </h6>
@@ -517,6 +517,65 @@
                                             </div>
                                         </div>
                                         <!--end::Item-->
+
+                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_1_head" data-toggle="collapse" href="#m_section_3_content_1_body">
+                                                <span class="m-accordion__item-title">Generate Work Permit </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_3_content_1_body" role="tabpanel" aria-labelledby="m_section_3_content_1_head" data-parent="#m_section_3_content">
+                                                <div class="m-accordion__item-content">
+
+                                                    <video width="740" height="380" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Work_Permit_Raise.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+
+                                                    <p>
+                                                        <h6>Work Permit Is For Contractor Visitor (Create Permit When Contractor Will Visit Date & Time And When The Permits Ends Date & Time) . </h6>
+                                                        <h4>How To Create Work Permit ?</h4>
+                                                        <ul>
+                                                            <li>Click On Work Permit</li>
+                                                            <li>Click On My Request</li>
+                                                            <li>Click On New Request Button</li>
+                                                            <li>Select Work Permit Title</li>
+                                                            <li>Initiator Details (Get Filled AutoMatically When Selected Title)</li>
+                                                            <li>Select From Date (Contractor Visit Date & Time)</li>
+                                                            <li>Select To Date (Permit Ends Date & Time)</li>
+                                                            <li>Click On Check Box To Agree Work Permit Terms And Conditions</li>
+                                                            <li>Click On Submit</li>
+                                                            <li>User Will Get Message Work Permit Request has been saved successfully With Unique Ticket No</li>
+                                                        </ul>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Item-->
+
+                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_1a_head" data-toggle="collapse" href="#m_section_3_content_1a_body">
+                                                <span class="m-accordion__item-title">Approving Work Permits </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_3_content_1a_body" role="tabpanel" aria-labelledby="m_section_3_content_1a_head" data-parent="#m_section_3_content">
+                                                <div class="m-accordion__item-content">
+
+                                                    <video width="740" height="380" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Work_Permit_Actions.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Item-->
+
+
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_3_content_3_head" data-toggle="collapse" href="#m_section_3_content_3_body">
@@ -540,7 +599,7 @@
                                             </div>
                                         </div>
                                         <!--end::Item-->
-                                        
+
 
                                     </div>
                                 </div>
@@ -554,14 +613,14 @@
                                     <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20">Checklist </h4>
                                     <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_2_content">
 
-                                        <div class="m-accordion__item" >
+                                        <div class="m-accordion__item">
                                             <span class="fa fa-video"></span>
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_1_content_1_head" data-toggle="collapse" href="#m_section_2_content_1_body">
-                                              
+
                                                 <span class="m-accordion__item-title">Configure Checklists Tutorial</span>
-                                                
+
                                                 <span class="m-accordion__item-mode"></span>
-                                                
+
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_2_content_1_body" role="tabpanel" aria-labelledby="m_section_1_content_1_head" data-parent="#m_section_1_content">
                                                 <div class="m-accordion__item-content">
@@ -657,49 +716,20 @@
                                     <h4 class="m--font-bold m--margin-top-15 m--margin-bottom-20">GatePass </h4>
                                     <div class="m-accordion m-accordion--section m-accordion--padding-lg" id="m_section_4_content">
 
-
                                         <!--begin::Item-->
-                                        <div class="m-accordion__item">
-                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_1_head" data-toggle="collapse" href="#m_section_4_content_1_body">
-                                                <span class="m-accordion__item-title">GatePass </span>
-                                                <span class="m-accordion__item-mode"></span>
-                                            </div>
-                                            <div class="m-accordion__item-body collapse" id="m_section_4_content_1_body" role="tabpanel" aria-labelledby="m_section_4_content_1_head" data-parent="#m_section_4_content">
-                                                <div class="m-accordion__item-content">
-
-                                                    <h6>Gate Pass Is Used For Inward And OutWard Of Material </h6>
-                                                    <p>
-                                                        <h4>How To Create Gate Pass ?</h4>
-                                                        <ul>
-                                                            <li>Click On Gate Pass</li>
-                                                            <li>Click On My Request</li>
-                                                            <li>Click On New Request Button</li>
-                                                            <li>Select Gate Pass Title</li>
-                                                            <li>Gate Pass Description & Initiator Details  (Get Filled AutoMatically When Selected Title)</li>
-                                                            <li>Select Gate Pass Date (Material Visit Date & Time)</li>
-                                                            <li>Select Department</li>
-                                                            <li>Gate Pass Details : Select Gate Pass Type & Fill All Detail Mention In It.</li>
-                                                            <li>Click On Check Box To Agree Gate Pass Terms & Conditions</li>
-                                                            <li>Upload Gate Pass Document</li>
-                                                            <li>Click On Submit</li>
-                                                            <li>User Will Get Message Work Permit Request has been saved successfully With Unique Ticket No</li>
-                                                        </ul>
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end::Item-->
-
-
-                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_2_head" data-toggle="collapse" href="#m_section_4_content_2_body">
-                                                <span class="m-accordion__item-title">Configure GatePass </span>
+                                                <span class="m-accordion__item-title">Configure Gate Pass </span>
                                                 <span class="m-accordion__item-mode"></span>
                                             </div>
                                             <div class="m-accordion__item-body collapse" id="m_section_4_content_2_body" role="tabpanel" aria-labelledby="m_section_4_content_2_head" data-parent="#m_section_4_content">
                                                 <div class="m-accordion__item-content">
+
+                                                     <video width="740" height="380" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Gatepass_Config.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
 
                                                     <h6>User Can Create What All Things Needs To Mention When User Issue GatePass</h6>
                                                     <p>
@@ -741,6 +771,107 @@
                                             </div>
                                         </div>
                                         <!--end::Item-->
+
+                                        <!--begin::Item-->
+                                        <span class="fa fa-video"></span>
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_2a_head" data-toggle="collapse" href="#m_section_4_content_2a_body">
+                                                <span class="m-accordion__item-title">Raise Gate Pass </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_4_content_2a_body" role="tabpanel" aria-labelledby="m_section_4_content_2a_head" data-parent="#m_section_4_content">
+                                                <div class="m-accordion__item-content">
+
+                                                     <video width="740" height="380" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Gatepass_Actions.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+
+                                                    <h6>User Can Create What All Things Needs To Mention When User Issue GatePass</h6>
+                                                    <p>
+                                                        <h4>How To Configure GatePass ?</h4>
+                                                        <ul>
+                                                            <li>Click On GatePass</li>
+                                                            <li>Click On Configure GatePass </li>
+                                                            <li>CLick On New Configure Button</li>
+                                                            <li>Enter Title</li>
+                                                            <li>Initiator (Employee , Retailer)</li>
+                                                            <li>Click On CheckBox</li>
+                                                            <li>Enter Work Permit Transaction Prefix</li>
+                                                            <li>Enter GatePass Description</li>
+                                                            <li>GatePass Header<ol>
+                                                                <li>Enter Question</li>
+                                                                <li>Click On Check Box If User Wants The Question Is Mandatory</li>
+                                                                <li>Select From Drop-Down List Type Of Answer User Need(multi-Select , Single Select Etc.)</li>
+                                                            </ol>
+                                                            </li>
+                                                            <li>User Can Also Add More Gate Pass Header By Clicking On Add Header </li>
+                                                            <li>Enter Gate Pass Type & User Can Also Add More Gate Pass Type By Clicking On Add Add Gate Pass Type</li>
+                                                            <li>Enter Gate Pass Type & User Can Also Add More Gate Pass Document By Clicking On Add Add Gate Pass Document</li>
+                                                            <li>Enter No Of Level & Click On Make Combination</li>
+                                                            <li>The Table Boxes Will Get Created<ol>
+                                                                <li>Click On The Icon Display In Action/Action Group & Select User</li>
+                                                                <li>Click On Check Boxes (What All Notification,Access,Rights User Need To Enabled)</li>
+                                                            </ol>
+                                                            </li>
+                                                            <li>Select Gate Pass Closure By : Click On Icon To Select User</li>
+                                                            <li>Click On Add Term & Condition And Enter The Term & Condition</li>
+                                                            <li>CLick On Save</li>
+                                                        </ul>
+                                                    </p>
+                                                    <p>
+                                                        <h6>If Want to Delete any Section Or Sub Section Click On Red Delete Icon On Right Side</h6>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Item-->
+
+
+                                        <!--begin::Item-->
+
+                                        <span class="fa fa-video"></span>
+                                        <div class="m-accordion__item">
+                                            <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_1_head" data-toggle="collapse" href="#m_section_4_content_1_body">
+                                                <span class="m-accordion__item-title">Generating Gatepass </span>
+                                                <span class="m-accordion__item-mode"></span>
+                                            </div>
+                                            <div class="m-accordion__item-body collapse" id="m_section_4_content_1_body" role="tabpanel" aria-labelledby="m_section_4_content_1_head" data-parent="#m_section_4_content">
+                                                <div class="m-accordion__item-content">
+
+
+                                                     <video width="740" height="380" controls="controls">
+                                                        <source src="https://compelapps.in/eFacilito_UAT/Knowledge_Base/Videos/Files/Gatepass_Raise.mp4" type="audio/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
+
+                                                    <h6>Gate Pass Is Used For Inward And OutWard Of Material </h6>
+                                                    <p>
+                                                        <h4>How To Create Gate Pass ?</h4>
+                                                        <ul>
+                                                            <li>Click On Gate Pass</li>
+                                                            <li>Click On My Request</li>
+                                                            <li>Click On New Request Button</li>
+                                                            <li>Select Gate Pass Title</li>
+                                                            <li>Gate Pass Description & Initiator Details  (Get Filled AutoMatically When Selected Title)</li>
+                                                            <li>Select Gate Pass Date (Material Visit Date & Time)</li>
+                                                            <li>Select Department</li>
+                                                            <li>Gate Pass Details : Select Gate Pass Type & Fill All Detail Mention In It.</li>
+                                                            <li>Click On Check Box To Agree Gate Pass Terms & Conditions</li>
+                                                            <li>Upload Gate Pass Document</li>
+                                                            <li>Click On Submit</li>
+                                                            <li>User Will Get Message Work Permit Request has been saved successfully With Unique Ticket No</li>
+                                                        </ul>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Item-->
+
+
+                                        
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_4_content_3_head" data-toggle="collapse" href="#m_section_4_content_3_body">
@@ -1373,7 +1504,7 @@
                                             </div>
                                         </div>
                                         <!--end::Item-->
-                                      
+
                                         <!--begin::Item-->
                                         <div class="m-accordion__item">
                                             <div class="m-accordion__item-head collapsed" role="tab" id="m_section_8_content_8_head" data-toggle="collapse" href="#m_section_8_content_8_body">
