@@ -368,6 +368,8 @@ namespace Upkeep_v3.Ticketing
                             dvAccept.Attributes.Add("style", "display:none");
                         }
 
+                        lblTicketErrorMsg.Text= Convert.ToString(dsTicket.Tables[1].Rows[0]["AcceptTicketMsg"]);
+
                     }
                     if (dsTicket.Tables.Count > 2)
                     {
@@ -807,7 +809,8 @@ namespace Upkeep_v3.Ticketing
                         }
                         else if (Status == 2)
                         {
-                            lblTicketErrorMsg.Text = "This ticket is already accepted by other user.";
+                            lblTicketErrorMsg.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["AcceptedMsg"]);
+                            //lblTicketErrorMsg.Text = "This ticket is already accepted by other user.";
                         }
                     }
                 }
