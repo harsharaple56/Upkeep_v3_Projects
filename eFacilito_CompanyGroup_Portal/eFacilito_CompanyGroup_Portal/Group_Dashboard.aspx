@@ -630,9 +630,9 @@
                                                 <asp:ExtendedRequiredFieldValidator ID="ExtendedRequiredFieldValidator1" runat="server" ControlToValidate="ddlCompany"
                                                     ErrorMessage="Please select Company" ForeColor="Red"></asp:ExtendedRequiredFieldValidator>--%>
                             <asp:DropDownList ID="ddlCompany" runat="server" ToolTip="Company Name" CssClass="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-primary">
-                        </asp:DropDownList>
+                            </asp:DropDownList>
 
-                           <%-- <asp:ListBox ID="lstFruits" runat="server" SelectionMode="Multiple" ClientIDMode="Static">
+                            <%-- <asp:ListBox ID="lstFruits" runat="server" SelectionMode="Multiple" ClientIDMode="Static">
                                 <asp:ListItem Text="Mango" Value="1" />
                                 <asp:ListItem Text="Apple" Value="2" />
                                 <asp:ListItem Text="Banana" Value="3" />
@@ -640,7 +640,7 @@
                                 <asp:ListItem Text="Orange" Value="5" />
                             </asp:ListBox>--%>
 
-                            <span class="multiselect-native-select" style="display:none;">
+                            <span class="multiselect-native-select" style="display: none;">
                                 <select class="mt-multiselect btn btn-default" multiple="multiple" data-width="100%">
                                     <option value="cheese">Cheese</option>
                                     <option value="tomatoes">Tomatoes</option>
@@ -721,8 +721,80 @@
             <!-- END: Subheader -->
             <div class="m-content" id="dvEmployee" runat="server" style="display: block;">
 
+                <div class="m-portlet ">
+							<div class="m-portlet__body  m-portlet__body--no-padding">
+								<div class="row m-row--no-padding m-row--col-separator-xl">
+									<div class="col-md-6">
+
+										<!--begin::Total Profit-->
+										<div class="m-widget24">
+											<div class="m-widget24__item">
+												<h4 class="m-widget24__title">
+                                                    <span class="fa fa-store ">
+                                                    </span>
+													Retailers
+                                                    
+												</h4><br>
+												<span class="m-widget24__desc">
+													Total No. of Active Retailers
+												</span>
+												<span class="m-widget24__stats m--font-brand">
+													180
+												</span>
+												<div class="m--space-10"></div>
+												<div class="progress m-progress--sm">
+													<div class="progress-bar m--bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<span class="m-widget24__change">
+													From Overall 345 Users
+												</span>
+												<span class="m-widget24__number">
+													78%
+												</span>
+											</div>
+										</div>
+
+										<!--end::Total Profit-->
+									</div>
+									<div class="col-md-6">
+
+										<!--begin::New Feedbacks-->
+										<div class="m-widget24">
+											<div class="m-widget24__item">
+												<h4 class="m-widget24__title">
+													<span class="fa fa-user ">
+                                                    </span>
+                                                    Users
+												</h4><br/>
+												<span class="m-widget24__desc">
+													Total No. of Active Users
+												</span>
+												<span class="m-widget24__stats m--font-info">
+													134
+												</span>
+												<div class="m--space-10"></div>
+												<div class="progress m-progress--sm">
+													<div class="progress-bar m--bg-info" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<span class="m-widget24__change">
+													From Overall 345 Users
+												</span>
+												<span class="m-widget24__number">
+													84%
+												</span>
+											</div>
+										</div>
+
+										<!--end::New Feedbacks-->
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
 
                 <div class="m-portlet">
+
 
                     <!--begin:: Widgets/Best Sellers-->
                     <div class="m-portlet m-portlet--full-height ">
@@ -742,6 +814,12 @@
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                 <div id="chart_ticket_departmentwise"></div>
                             </div>
+
+
+
+
+
+
 
                             <!--end::Content-->
                         </div>
@@ -903,7 +981,7 @@
                 <%-- <div class="m-portlet">--%>
                 <!--Begin::Section-->
                 <div class="row">
-                    <div class="col-xl-4">
+                    <div class="col-xl-6">
 
                         <!--begin:: Widgets/Top Products-->
                         <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
@@ -1066,7 +1144,7 @@
                         <!--end:: Widgets/Top Products-->
                     </div>
 
-                    <div class="col-xl-4">
+                    <div class="col-xl-6">
 
                         <!--begin:: Widgets/Activity-->
                         <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
@@ -1230,317 +1308,17 @@
                         <!--end:: Widgets/Activity-->
 
                     </div>
-                    <div class="col-xl-4">
-
-                        <!--begin:: Packages-->
-                        <div class="m-portlet m--bg-warning m-portlet--bordered-semi m-portlet--full-height ">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text m--font-light">WOW Centre Services
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-                                    <ul class="m-portlet__nav">
-                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                            <%--<a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill m-btn btn-outline-light m-btn--hover-light">2018
-                                                    </a>--%>
-                                            <div class="m-dropdown__wrapper">
-                                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                                <div class="m-dropdown__inner">
-                                                    <div class="m-dropdown__body">
-                                                        <div class="m-dropdown__content">
-                                                            <ul class="m-nav">
-                                                                <li class="m-nav__section m-nav__section--first">
-                                                                    <span class="m-nav__section-text">Reports</span>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-share"></i>
-                                                                        <span class="m-nav__link-text">Activity</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                        <span class="m-nav__link-text">Messages</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                                                        <span class="m-nav__link-text">FAQ</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__section m-nav__section--first">
-                                                                    <span class="m-nav__section-text">Export</span>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                        <span class="m-nav__link-text">PDF</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                        <span class="m-nav__link-text">Excel</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="m-nav__item">
-                                                                    <a href="" class="m-nav__link">
-                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                        <span class="m-nav__link-text">CSV</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-
-                                <!--begin::Widget 29-->
-                                <div class="m-widget29">
-                                    <div class="m-widget_content">
-                                        <h3 class="m-widget_content-title">Baggage Service Requests</h3>
-                                        <div class="m-widget_content-items">
-                                            <div class="m-widget_content-item">
-                                                <span>Total</span>
-                                                <span class="m--font-accent">
-                                                    <asp:Label ID="lblBaggageTotal" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>Open</span>
-                                                <span>
-                                                    <asp:Label ID="lblBaggageOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>Closed</span>
-                                                <span>
-                                                    <asp:Label ID="lblBaggageClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-widget_content">
-                                        <h3 class="m-widget_content-title">Power Bank Service Requests</h3>
-                                        <div class="m-widget_content-items">
-                                            <div class="m-widget_content-item">
-                                                <span>Total</span>
-                                                <span class="m--font-accent">
-                                                    <asp:Label ID="lblPowerBankTotalRequest" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>Open</span>
-                                                <span>
-                                                    <asp:Label ID="lblPowerBankOpen" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>Closed</span>
-                                                <span>
-                                                    <asp:Label ID="lblPowerBankClosed" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-
-                                        </div>
-                                        <br />
-                                        <h3 class="m-widget_content-title">Power Bank Inventory</h3>
-                                        <div class="m-widget_content-items">
-                                            <div class="m-widget_content-item">
-                                                <span>Available</span>
-                                                <span>
-                                                    <asp:Label ID="lblPowerBankAvailable" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: green;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>In Use</span>
-                                                <span>
-                                                    <asp:Label ID="lblPowerBankInUse" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold; color: red;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                            <div class="m-widget_content-item">
-                                                <span>Total</span>
-                                                <span>
-                                                    <asp:Label ID="lblPowerBankTotal" runat="server" CssClass="form-control-label widget17__desc m--font-accent" Style="font-weight: bold;" Text=""></asp:Label>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!--end::Widget 29-->
-                            </div>
-                        </div>
-
-                        <!--end:: Packages-->
-                    </div>
-                    <div class="col-xl-4">
-
-                        <!--begin:: Widgets/Blog-->
-                        <!--end:: Widgets/Blog-->
-                    </div>
+                   
                 </div>
                 <%--</div>--%>
                 <!--End::Section-->
                 <!--Begin::Section-->
                 <!--End::Section-->
                 <!--Begin::Section-->
-                <div class="row">
-                    <!--Begin:: Store Attendance-->
-
-                    <div class="col-xl-12">
-
-                        <!--begin:: Widgets/Blog-->
-
-                        <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Retail Store Attendance Portal<small>Log your Store Opening & Closing Time below</small>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-
-                                <div class="row m-row--no-padding m-row--col-separator-xl">
-                                    <div class="col-md-6">
-
-                                        <!--begin::Total Profit-->
-                                        <div class="m-widget24">
-                                            <div class="m-widget24__item">
-                                                <h4 class="m-widget24__title">Store Punch-IN
-                                                </h4>
-                                                <br>
-                                                <span class="m-widget24__desc">Click to log the time when your store Opens
-                                                </span>
-                                                <span class="m-widget24__stats m--font-info">
-                                                    <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air">
-                                                        <span>
-                                                            <i class="la la-hand-pointer-o"></i>
-                                                            <span>Punch IN</span>
-                                                        </span>
-                                                    </a>
-                                                </span>
-                                                <div class="m--space-10"></div>
-                                                <div class="progress m-progress--sm">
-                                                    <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <span class="m-widget24__change">Last Punch-IN Logged Today
-                                                </span>
-                                                <span class="m-widget24__number">7-Dec-2020 11.12 AM
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!--end::Total Profit-->
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <!--begin::New Feedbacks-->
-                                        <div class="m-widget24">
-                                            <div class="m-widget24__item">
-                                                <h4 class="m-widget24__title">Store Punch-OUT
-                                                </h4>
-                                                <br>
-                                                <span class="m-widget24__desc">Click to log the time when your store Closes
-                                                </span>
-                                                <span class="m-widget24__stats m--font-info">
-                                                    <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
-                                                        <span>
-                                                            <i class="la la-hand-peace-o"></i>
-                                                            <span>Punch OUT</span>
-                                                        </span>
-                                                    </a>
-                                                </span>
-
-
-
-                                                <div class="m--space-10"></div>
-                                                <div class="progress m-progress--sm">
-                                                    <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <span class="m-widget24__change">Last Punch-OUT Logged Today
-                                                </span>
-                                                <span class="m-widget24__number">7-Dec-2020 11.12 AM
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!--end::New Feedbacks-->
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-                        <!--end:: Widgets/Blog-->
-                    </div>
-
-                    <!--End::Store Attendance-->
-
-
-                    <div class="col-xl-4">
-
-                        <!--begin:: Widgets/Blog-->
-                        <!--end:: Widgets/Blog-->
-                    </div>
-                    <div class="col-xl-4">
-
-                        <!--begin:: Packages-->
-                        <!--end:: Packages-->
-                    </div>
-                </div>
-
+                
                 <!--End::Section-->
                 <!--Begin::Section-->
-                <div class="row">
-                    <div class="col-xl-6">
-
-                        <!--begin:: Widgets/Tasks -->
-                        <!--end:: Widgets/Tasks -->
-                    </div>
-                    <div class="col-xl-6">
-
-                        <!--begin:: Widgets/Support Tickets -->
-                        <!--end:: Widgets/Support Tickets -->
-                    </div>
-                </div>
-
-                <!--End::Section-->
-                <!--Begin::Section-->
-                <div class="row">
-                    <div class="col-xl-6 col-lg-12">
-
-                        <!--Begin::Portlet-->
-                        <!--End::Portlet-->
-                    </div>
-                    <div class="col-xl-6 col-lg-12">
-
-                        <!--Begin::Portlet-->
-                        <!--End::Portlet-->
-                    </div>
-                </div>
-
+                
                 <!--End::Section-->
                 <!--Begin::Section-->
                 <!--End::Section-->
@@ -1733,329 +1511,6 @@
 
 
             <%-- </div>--%>
-        </div>
-
-
-        <div class="m-content bg-white" id="dvRetailer" runat="server" style="display: block;">
-            <div class="m-portlet">
-                <div class="row">
-                    <div class="col-xl-4">
-
-                        <!--begin:: Widgets/Top Products-->
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text m--font-light">Your Gate pass Summary
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-                                    <ul class="m-portlet__nav">
-                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                                        <i class="fa fa-genderless m--font-light"></i>
-                                                    </a>
-                                                    <div class="m-dropdown__wrapper">
-                                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                                        <div class="m-dropdown__inner">
-                                                            <div class="m-dropdown__body">
-                                                                <div class="m-dropdown__content">
-                                                                    <ul class="m-nav">
-                                                                        <li class="m-nav__section m-nav__section--first">
-                                                                            <span class="m-nav__section-text">Quick Actions</span>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-share"></i>
-                                                                                <span class="m-nav__link-text">Activity</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                                <span class="m-nav__link-text">Messages</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                                <span class="m-nav__link-text">FAQ</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                                <span class="m-nav__link-text">Support</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>--%>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <div class="m-widget17">
-                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
-                                        <div class="m-widget17__chart" style="height: 109px;">
-                                        </div>
-                                    </div>
-                                    <div class="m-widget17__stats">
-                                        <div class="m-widget17__items m-widget17__items-col1">
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
-                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Total
-                                                </span>
-                                                <%--<asp:Label ID="lblGPTotal" runat="server" CssClass="form-control-label widget17__desc" style="font-weight:bold;" Text="15" ></asp:Label>--%>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Total" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests raised
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">On Hold
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Hold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Approved
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Approve" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-widget17__items m-widget17__items-col2">
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <i class="flaticon-pie-chart m--font-success"></i>
-                                                </span>
-                                                <span class="m-widget17__subtitle">Open
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Open" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Rejected
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Rejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Closed
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_GP_Close" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--end:: Widgets/Top Products-->
-                    </div>
-
-                    <div class="col-xl-4">
-
-                        <!--begin:: Widgets/Activity-->
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded-force">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text m--font-light">Your Work Permit Summary
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-                                    <ul class="m-portlet__nav">
-                                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                            <%--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                                        <i class="fa fa-genderless m--font-light"></i>
-                                                    </a>--%>
-                                            <%--<div class="m-dropdown__wrapper">
-                                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                                        <div class="m-dropdown__inner">
-                                                            <div class="m-dropdown__body">
-                                                                <div class="m-dropdown__content">
-                                                                    <ul class="m-nav">
-                                                                        <li class="m-nav__section m-nav__section--first">
-                                                                            <span class="m-nav__section-text">Quick Actions</span>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-share"></i>
-                                                                                <span class="m-nav__link-text">Activity</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                                <span class="m-nav__link-text">Messages</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                                <span class="m-nav__link-text">FAQ</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                                <span class="m-nav__link-text">Support</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                                        <li class="m-nav__item">
-                                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
-                                                                        </li>
-
-
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>--%>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <div class="m-widget17">
-                                    <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
-                                        <div class="m-widget17__chart" style="height: 109px;">
-                                        </div>
-                                    </div>
-                                    <div class="m-widget17__stats">
-                                        <div class="m-widget17__items m-widget17__items-col1">
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-truck m--font-brand"></i>--%>
-                                                    <img src="assets/app/media/img/icons/total.png" style="width: 55px; height: 39px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Total
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Total" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests raised
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                    <img src="assets/app/media/img/icons/hold-90.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">On Hold
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Hold" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-paper-plane m--font-info"></i>--%>
-                                                    <img src="assets/app/media/img/icons/approved-64.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Approve
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Approve" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-widget17__items m-widget17__items-col2">
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <i class="flaticon-pie-chart m--font-success"></i>
-                                                </span>
-                                                <span class="m-widget17__subtitle">Open
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Open" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                    <img src="assets/app/media/img/icons/rejcted-144.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Rejected
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Rejected" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-                                            <div class="m-widget17__item">
-                                                <span class="m-widget17__icon">
-                                                    <%--<i class="flaticon-time m--font-danger"></i>--%>
-                                                    <img src="assets/app/media/img/icons/closed-96.png" style="width: 55px; height: 42px;" />
-                                                </span>
-                                                <span class="m-widget17__subtitle">Closed
-                                                </span>
-                                                <span class="m-widget17__desc">
-                                                    <asp:Label ID="lblR_WP_Close" runat="server" CssClass="form-control-label widget17__desc" Style="font-weight: bold;" Text=""></asp:Label>
-                                                    Requests
-                                                </span>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--end:: Widgets/Activity-->
-
-                    </div>
-
-
-                </div>
-
-            </div>
         </div>
         <!-- end:: Body -->
 
