@@ -923,7 +923,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
         public List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
         public List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
-
+        public List<ClsMyActionableShowAction> objTicketShowAction = new List<ClsMyActionableShowAction>();
     }
 
     public class ClsMyActionableTicket
@@ -943,7 +943,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_Message { get; set; }
         public string Ticket_ImagePath { get; set; }
         public string Level { get; set; }
-        public bool ShowAction { get; set; }
+        //public bool ShowAction { get; set; }
     }
 
     public class ClsTicketActionHistory
@@ -957,6 +957,11 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_ActionStatus { get; set; }
     }
 
+    public class ClsMyActionableShowAction
+    {
+        public bool ShowAction { get; set; }
+        public string AcceptTicketMsg { get; set; }
+    }
     public class ClsTicketRaise
     {
         //public string TicketPrefix { get; set; }

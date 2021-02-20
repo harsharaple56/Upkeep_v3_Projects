@@ -173,6 +173,9 @@ namespace Upkeep_v3.Ticketing
                     //ddlCategory.DataBind();
                     //ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
 
+                    //dlCategory.InnerHtml = "";
+                    //dlCategory.DataBind();
+
                     var builder = new System.Text.StringBuilder();
 
                     for (int i = 0; i < dsCategory.Tables[0].Rows.Count; i++)
@@ -338,7 +341,7 @@ namespace Upkeep_v3.Ticketing
                         //IsExeFile(Server.MapPath(FileUpload_TicketImage.FileName));
 
                         string filetype = Path.GetExtension(postfiles.FileName);
-                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".jpeg" || filetype.ToLower() == ".png")
                         {
                             Lst_ValidImage.Add(1);
                         }
@@ -353,7 +356,7 @@ namespace Upkeep_v3.Ticketing
                         //{
 
                         string filetype = Path.GetExtension(postfiles.FileName);
-                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".jpeg" || filetype.ToLower() == ".png")
                         {
                             try
                             {

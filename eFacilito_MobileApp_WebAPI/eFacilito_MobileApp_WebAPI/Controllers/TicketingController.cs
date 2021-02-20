@@ -563,8 +563,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
             List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
             List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
-
-            ClsCommunication ObjLocComm = new ClsCommunication();
+            List<ClsMyActionableShowAction> objTicketShowAction = new List<ClsMyActionableShowAction>();
+        ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
             string StrLocConnection = null;
@@ -604,8 +604,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                               Ticket_Message = p.Field<string>("Tkt_Message"),
                                               Ticket_ImagePath = p.Field<string>("ImagePath"),
-                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
-                                              ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
+                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
+                                              //ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
                                           }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
@@ -627,9 +627,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                }).ToList();
                         }
 
+                        if (DsDataSet.Tables[2].Rows.Count > 0)
+                        {
+                            objTicketShowAction = (from p in DsDataSet.Tables[2].AsEnumerable()
+                                               select new ClsMyActionableShowAction
+                                               {
+                                                   ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction")),
+                                                   AcceptTicketMsg = Convert.ToString(p.Field<string>("AcceptTicketMsg"))
+                                               }).ToList();
+                        }
+
 
                         ObjTicketDetailsMst.objTickets = objTickets;
                         ObjTicketDetailsMst.objTicketAction = objTicketAction;
+                        ObjTicketDetailsMst.objTicketShowAction = objTicketShowAction;
                         return Request.CreateResponse(HttpStatusCode.OK, ObjTicketDetailsMst);
                     }
                     else
