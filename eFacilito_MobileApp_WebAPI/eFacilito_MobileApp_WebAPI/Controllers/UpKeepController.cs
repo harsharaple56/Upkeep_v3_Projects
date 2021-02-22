@@ -1806,7 +1806,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                //ProPubStrProfilePhoto = p.Field<string>("Profile_Photo"),
                                                ProPubStrProfilePic = p.Field<string>("Profile_Photo"),
 
-                                               ProPubStrDepartmentID = p.Field<string>("Department_ID")
+                                               ProPubStrDepartmentID = p.Field<string>("Department_ID"),
+                                               Role_Name = p.Field<string>("Role_Name")
                                                //ProPubStrDeptID = Convert.ToInt32(p.Field<string>("Department_ID"))
                                                //ProPubStrPrtycd = p.Field<string>("Prtycd"),
                                                //ProPubStrGroupCompany = p.Field<string>("groupandcompany")
@@ -7526,7 +7527,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                  RequestDate = p.Field<string>("RequestDate"),
                                                  WP_Status = p.Field<string>("WP_Status"),
                                                  Created_By = p.Field<string>("Created_By"),
-                                                 Store = p.Field<string>("Store")
+                                                 Store = p.Field<string>("Store"),
+                                                 Is_Approved = Convert.ToBoolean(p.Field<Int32>("Is_Approved"))
                                              }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
