@@ -19,7 +19,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string ProPubStrGroupCompany { get; set; }
         public string ProPubStrProfilePic { get; set; }
         public string ProPubStrDepartmentID { get; set; }
-
+        public string Role_Name { get; set; }
     }
 
 
@@ -680,6 +680,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string WP_Status { get; set; }
         public string Created_By { get; set; }
         public string Store { get; set; }
+        public bool Is_Approved { get; set; }
     }
 
     public class ClsWorkPermitAction

@@ -3986,11 +3986,10 @@
     <Content Include="CheckList\ChecklistReport.xss">
       <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Content>
-    <Content Include="obj\Debug\Tsc68f31e79.out" />
-    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -6040,9 +6039,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/Upkeep_V3_Services.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Upkeep_V3_Services\</RelPath>
@@ -6054,6 +6050,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
