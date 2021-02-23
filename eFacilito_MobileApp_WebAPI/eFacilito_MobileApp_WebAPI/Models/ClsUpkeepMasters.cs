@@ -1321,4 +1321,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int Loc_id { get; set; }
 
     }
+
+    public class ClsTicketAccept
+    {
+        public int Status { get; set; }
+        public string AcceptMessage { get; set; }
+    }
+
+
 }
