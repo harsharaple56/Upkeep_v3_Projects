@@ -1688,6 +1688,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                      Gatepass_Rejected = Convert.ToInt32(p.Field<int>("Gatepass_Rejected")),
                                                      Gatepass_Expired = Convert.ToInt32(p.Field<int>("Gatepass_Expired")),
                                                      Gatepass_PendingApproval = Convert.ToInt32(p.Field<int>("Gatepass_PendingApproval")),
+                                                     Gatepass_Closed = Convert.ToInt32(p.Field<int>("Gatepass_Closed")),
                                                      Gatepass_Total = Convert.ToInt32(p.Field<int>("Gatepass_Total")),
                                                      Gatepass_Open_Percentage = Convert.ToDecimal(p.Field<decimal>("Gatepass_Open_Percentage"))
 

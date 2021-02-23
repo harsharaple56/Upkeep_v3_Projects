@@ -108,6 +108,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int Gatepass_Rejected { get; set; }
         public int Gatepass_Expired { get; set; }
         public int Gatepass_PendingApproval { get; set; }
+        public int Gatepass_Closed { get; set; }
         public int Gatepass_Total { get; set; }
         public decimal Gatepass_Open_Percentage { get; set; }
     }
