@@ -320,16 +320,18 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             }
                             else
                             {
-                                ObjAccept = (from p in DsDataSet.Tables[0].AsEnumerable()
-                                             select new ClsTicketAccept
-                                             {
-                                                 Status = Convert.ToInt32(p.Field<Int32>("Status")),
-                                                 AcceptMessage = p.Field<string>("AcceptedMsg")
+                                //ObjAccept = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                //             select new ClsTicketAccept
+                                //             {
+                                //                 Status = Convert.ToInt32(p.Field<Int32>("Status")),
+                                //                 AcceptMessage = p.Field<string>("AcceptedMsg")
 
-                                             }).ToList();
+                                //             }).ToList();
 
-                                return Request.CreateResponse(HttpStatusCode.OK, ObjAccept);
+                                //return Request.CreateResponse(HttpStatusCode.OK, ObjAccept[0]);
                                 //return Request.CreateResponse(HttpStatusCode.NotFound, "This ticket already accepted by other user");
+
+                                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
                             }
                         }
                         else
