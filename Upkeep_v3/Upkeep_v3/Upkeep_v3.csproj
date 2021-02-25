@@ -3978,6 +3978,7 @@
     <Content Include="CheckList\ChecklistReport.xsc">
       <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Content>
+    <Content Include="BlankMaster.Master" />
     <None Include="CheckList\ChecklistReport.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4079,6 +4080,13 @@
     </Compile>
     <Compile Include="AssetManagement\Asset_Report.aspx.designer.cs">
       <DependentUpon>Asset_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlankMaster.Master.cs">
+      <DependentUpon>BlankMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlankMaster.Master.designer.cs">
+      <DependentUpon>BlankMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="CheckList\Add_Checklist.aspx.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>

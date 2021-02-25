@@ -26,6 +26,17 @@ namespace Upkeep_v3.Feedback
 
         #region Event 
 
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (!System.String.IsNullOrWhiteSpace(Request.QueryString["EventID"]))
+            {
+                this.MasterPageFile = "~/BlankMaster.master";
+            }
+            else
+            {
+                this.MasterPageFile = "~/UpkeepMaster.master";
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
@@ -34,7 +45,6 @@ namespace Upkeep_v3.Feedback
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
-
 
             if (!IsPostBack)
             {
@@ -55,6 +65,8 @@ namespace Upkeep_v3.Feedback
                         }
 
                         BindEvent();
+
+                        dvBackButton.Attributes.Add("style","display:none;");
                     }
                 }
 
@@ -66,6 +78,7 @@ namespace Upkeep_v3.Feedback
 
                 BindFeedbackEventTitle();
             }
+
             //if (!System.String.IsNullOrWhiteSpace(Request.QueryString["WPEventID"]))
             //{
             //    strWPEventID = Request.QueryString["WPEventID"].ToString();
@@ -453,12 +466,18 @@ namespace Upkeep_v3.Feedback
 
                             //divinsertbutton.visible = false;
                             //lblFeedbackRequestCode.Text = Convert.ToString(dsFeedbackQuestionData.Tables[0].Rows[0]["requestid"]);
+
                             Response.Write(@"
                                                  <script>
                                                     alert('Thanks for your valuable time, Your feedback helps us to serve you better.');
                                                     window.location = '" + Request.RawUrl + @"';
                                                 </script>
                                             ");
+
+                            BindEvent();
+
+                            //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "callSaveAlert();", true);
+
                             //mpeFeedbackRequestSaveSuccess.Show();
                             //Response.Redirect("~/Dashboard.aspx");
                         }
@@ -544,5 +563,10 @@ namespace Upkeep_v3.Feedback
 
         #endregion
 
+        protected void btntest1_Click(object sender, EventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "callSaveAlert();", false);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "callSaveAlert();", true);
+        }
     }
 }
