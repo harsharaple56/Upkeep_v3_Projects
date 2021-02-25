@@ -1013,6 +1013,7 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="Feedback_Form_banners\Feedback_Banner.jpg" />
     <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
