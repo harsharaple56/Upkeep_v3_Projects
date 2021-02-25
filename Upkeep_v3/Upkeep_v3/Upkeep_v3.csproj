@@ -1013,7 +1013,6 @@
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
-    <Content Include="Feedback_Form_banners\Feedback_Banner.jpg" />
     <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
@@ -5981,6 +5980,7 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
+    <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
