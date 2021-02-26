@@ -10,7 +10,7 @@
 namespace Upkeep_v3.Feedback {
     
     
-    public partial class Feedback_Request {
+    public partial class Customer_Feedback {
         
         /// <summary>
         /// hdnFeedbackHeaderData control.
@@ -47,6 +47,15 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStatus;
+        
+        /// <summary>
+        /// lblEventName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEventName;
         
         /// <summary>
         /// dvBackButton control.
@@ -92,6 +101,24 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeFeedbackRequestSaveSuccess;
+        
+        /// <summary>
+        /// dvBanner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBanner;
+        
+        /// <summary>
+        /// imgBanner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgBanner;
         
         /// <summary>
         /// divTitle control.
@@ -209,6 +236,15 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptHeaderDetails;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// pop2 control.

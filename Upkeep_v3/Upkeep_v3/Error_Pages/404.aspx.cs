@@ -45,9 +45,14 @@ namespace Upkeep_v3.Error_Pages
                 {
                     FormType = Convert.ToChar(dsURL.Tables[0].Rows[0]["FormType"]);
                     if (FormType == 'V')
-                    { VisitFormURL = "~/VMS/Visit_Request.aspx?ConfigID="; }
+                    {
+                        VisitFormURL = "~/VMS/Visit_Request.aspx?ConfigID=";
+                    }
                     else if (FormType == 'F')
-                    { VisitFormURL = "~/Feedback/Feedback_Request.aspx?EventID="; }
+                    {
+                        //VisitFormURL = "~/Feedback/Feedback_Request.aspx?EventID=";
+                        VisitFormURL = "~/Feedback/Customer_Feedback.aspx?EventID=";
+                    }
                     VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
 
                     Session["Visitor"] = "Visitor";

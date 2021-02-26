@@ -1,8 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Feedback_Request.aspx.cs" Inherits="Upkeep_v3.Feedback.Feedback_Request" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Customer_Feedback.aspx.cs" Inherits="Upkeep_v3.Feedback.Customer_Feedback" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <%--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.6/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.6/dist/sweetalert2.min.css" rel="stylesheet"/>
+<script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>--%>
 
     <style type="text/css">
         /* start Range Slider*/
@@ -418,13 +422,48 @@ background-color: blanchedalmond;
         function callSaveAlert() {
             //alert('hiiiiii');
             //$("#m_sweetalert_demo_61").click();
-             $("#m_sweetalert_demo_61").click(function () {
+            $("#m_sweetalert_demo_61").click(function () {
                 //alert('show msg');
                 swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 3000 })
                 //alert('show msg2312987978');
-                 event.preventDefault()
+                event.preventDefault()
             });
         }
+
+        function SessionExpireAlert(timeout) {
+            //alert('hiiiiii');
+            //    swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 3000 })
+
+            swal({
+                title: "Checking...",
+                text: "Please wait",
+                //imageUrl: "images/ajaxloader.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+
+            //using setTimeout to simulate ajax request
+            setTimeout(() => {
+                swal({
+                    title: "Finished!",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            }, 2000);
+
+        }
+
+        function successalert() {
+            swal({
+                    position: "center",
+                    type: "success",
+                    title: "Thanks for your valuable time, Your feedback helps us to serve you better.",
+                    showConfirmButton: !1,
+                    timer: 3000
+                })
+
+        }
+
     </script>
 
 
@@ -458,7 +497,9 @@ background-color: blanchedalmond;
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Feedback Request
+                                        <h3 class="m-portlet__head-text">
+                                            <%--Feedback Request--%>
+                                            <asp:Label ID="lblEventName" Style="font-size: large; margin-top: 0.5rem;" runat="server"></asp:Label>
                                         </h3>
                                     </div>
                                 </div>
@@ -484,7 +525,6 @@ background-color: blanchedalmond;
                                         </cc1:ModalPopupExtender>
 
                                         <%--<button type="button" class="btn btn-success m-btn m-btn--custom m_sweetalert_demo_6" id="m_sweetalert_demo_3" runat="server">Success</button>--%>
-
                                     </div>
                                 </div>
 
@@ -495,11 +535,11 @@ background-color: blanchedalmond;
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
-                               <%-- <div class="form-group m-form__group row" id="dvBanner" runat="server">
+                                <div class="form-group m-form__group row" id="dvBanner" runat="server">
 
-                                    <img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />
-
-                                </div>--%>
+                                    <%--<img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />--%>
+                                    <asp:Image ID="imgBanner" runat="server" Style="width: 100%; height: 225px;" />
+                                </div>
 
                                 <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
                                     <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
@@ -514,7 +554,7 @@ background-color: blanchedalmond;
 
                                 <div id="divCustomer" runat="server">
                                     <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Customer Details</label>
+                                        <label class="col-md-3" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Customer Details</label>
                                     </div>
 
 
@@ -576,7 +616,7 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Feedback Details</label>
+                                    <label class="col-md-3" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Feedback Details</label>
                                 </div>
 
                                 <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
@@ -587,7 +627,7 @@ background-color: blanchedalmond;
                                         <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
                                         <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
-                                        <div class="form-group" style="padding-left: 1%; margin-top: 4%;">
+                                        <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
                                             <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
                                             <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
                                             <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
@@ -637,8 +677,8 @@ background-color: blanchedalmond;
                                             <div id="divTextArea" style="display: none" runat="server">
                                                 <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                             </div>
-                                            <div id="divOptions" style="display: none" runat="server">
-                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
+                                            <div id="divOptions" class="text-center" style="display: none" runat="server">
+                                                <asp:RadioButtonList class="m-radio-inline" Style="margin-left: 40%;" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
                                             </div>
                                             <div id="divOptions1" style="display: none" runat="server">
                                                 <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
@@ -662,6 +702,11 @@ background-color: blanchedalmond;
 
                                 <br />
 
+                                <br />
+                                <br />
+                                <div style="text-align: center;">
+                                    <asp:Button ID="Button1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
+                                </div>
                                 <br />
                                 <br />
                             </div>
@@ -717,4 +762,5 @@ background-color: blanchedalmond;
             </div>
         </div>
     </div>
+
 </asp:Content>

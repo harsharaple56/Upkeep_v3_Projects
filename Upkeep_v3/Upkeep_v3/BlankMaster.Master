@@ -86,7 +86,8 @@
     <!--RTL version:<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
     <!--end::Page Vendors Styles -->
-    <link rel="shortcut icon" href="assets1/demo/default/media/img/logo/favicon.ico" />
+    <%--<link rel="shortcut icon" href="assets1/demo/default/media/img/logo/favicon.ico" />--%>
+    <link rel="shortcut icon" href="assets1/demo/default/media/img/logo/favicon-32x32.png" />
 
     <style>
         #load {
@@ -235,7 +236,7 @@
 
 
         <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200" style="height: auto;">
+        <%--<header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200" style="height: auto;">
             <div class="m-container m-container--fluid m-container--full-height">
                 <div class="m-stack m-stack--ver m-stack--desktop">
 
@@ -280,8 +281,7 @@
 
                     <!-- END: Brand -->
                     <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
-                        <%--<asp:ContentPlaceHolder runat="server" ID="cntPlaceHolder">
-                </asp:ContentPlaceHolder>--%>
+                       
                         <!-- BEGIN: Horizontal Menu -->
                         <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
 
@@ -306,13 +306,13 @@
                     </div>
                 </div>
             </div>
-        </header>
-         <br/>
+        </header>--%>
+        <%-- <br/>--%>
         <!-- END: Header -->
 
         <form runat="server">
             <!-- begin::Body -->
-            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: 20px !important;">
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: 20px !important;padding-top: 0px !important;">
                 <%--<cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></cc1:ToolkitScriptManager>--%>
                 <!-- BEGIN: Left Aside -->
                 
@@ -373,8 +373,8 @@
     <footer class="m-grid__item	m-footer" style="margin-left: 0px !important;">
         <div class="m-container m-container--fluid m-container--full-height m-page__container">
             <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
-                    <span class="m-footer__copyright">2019 &copy; eFacilito - Powered by <a href="javascript:;" class="m-link">Compel Consultancy</a>
+                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last" style="text-align: center;">
+                    <span class="m-footer__copyright">2019 &copy; eFacilito - Powered by <a href="https://efacilito.com/" class="m-link">Compel Consultancy</a>
                     </span>
                 </div>
             </div>

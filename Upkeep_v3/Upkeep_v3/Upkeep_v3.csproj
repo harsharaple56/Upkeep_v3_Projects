@@ -331,6 +331,7 @@
     <Content Include="assets1\demo\default\custom\crud\metronic-datatable\scrolling\vertical.js" />
     <Content Include="assets1\demo\default\custom\crud\wizard\wizard.js" />
     <Content Include="assets1\demo\default\custom\header\actions.js" />
+    <Content Include="assets1\demo\default\media\img\logo\favicon-32x32.png" />
     <Content Include="assets1\demo\default\media\img\logo\favicon.ico" />
     <Content Include="assets1\demo\default\media\img\logo\favicon_old.ico" />
     <Content Include="assets1\demo\default\media\img\logo\logo.png" />
@@ -1007,12 +1008,14 @@
     <Content Include="Error_Pages\Error.html" />
     <Content Include="Feedback\AddEventQuestion.aspx" />
     <Content Include="Feedback\Customers.aspx" />
+    <Content Include="Feedback\Customer_Feedback.aspx" />
     <Content Include="Feedback\EditEvent.aspx" />
     <Content Include="Feedback\EventDetails.aspx" />
     <Content Include="Feedback\EventListing.aspx" />
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="Feedback\ThankYou.aspx" />
     <Content Include="Feedback_Form_banners\Feedback_Banner.jpg" />
     <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
@@ -4430,6 +4433,13 @@
     <Compile Include="Feedback\Customers.aspx.designer.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Feedback\Customer_Feedback.aspx.cs">
+      <DependentUpon>Customer_Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\Customer_Feedback.aspx.designer.cs">
+      <DependentUpon>Customer_Feedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Feedback\EditEvent.aspx.cs">
       <DependentUpon>EditEvent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4471,6 +4481,13 @@
     </Compile>
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback\ThankYou.aspx.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\ThankYou.aspx.designer.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forgot_Password.aspx.cs">
       <DependentUpon>Forgot_Password.aspx</DependentUpon>
