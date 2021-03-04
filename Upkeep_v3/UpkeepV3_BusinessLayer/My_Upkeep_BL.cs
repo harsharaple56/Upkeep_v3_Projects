@@ -713,7 +713,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             try
             {
@@ -723,6 +723,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@TicketID", TicketID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
