@@ -228,8 +228,8 @@ namespace Upkeep_v3.CheckList
             var rows = gvLocation.Rows;
             int count = gvLocation.Rows.Count;
 
-            DataTable dtLocation = new DataTable();
-            DataTable dtSelectedLocation = new DataTable();
+            DataTable dtLocation = new DataTable("dtLocation");
+            DataTable dtSelectedLocation = new DataTable("dtSelectedLocation");
             dtSelectedLocation.Columns.Add("Loc_Id", typeof(string));
             dtSelectedLocation.Columns.Add("Loc_Name", typeof(string));
 
@@ -249,6 +249,7 @@ namespace Upkeep_v3.CheckList
             mpeAddLocation.Hide();
 
             dtLocation.Merge(dtSelectedLocation);
+            dtLocation.AcceptChanges();
 
             DataTable dtLocRows = new DataTable();
             if (Convert.ToString(Session["LocRows"]) != "")
@@ -260,6 +261,7 @@ namespace Upkeep_v3.CheckList
                 if (dtLocRows.Rows.Count > 0)
                 {
                     dtLocation.Merge(dtLocRows);
+                    dtLocation.AcceptChanges();
                 }
             }
             //dtLocation = dtSelectedLocation;
@@ -347,6 +349,9 @@ namespace Upkeep_v3.CheckList
                         ddlChecklist.SelectedValue = Convert.ToString(dsCHk.Tables[0].Rows[0]["CHK_Config_ID"]);
                         ddlDepartment.SelectedValue = Convert.ToString(dsCHk.Tables[0].Rows[0]["Dept_ID"]);
                         Session["Chk_Map_ID"] = dsCHk.Tables[0].Rows[0]["Chk_Map_ID"];
+
+                        Session.Add("LocRows", dsCHk.Tables[0]);
+
                         gvSelectedLocation.DataSource = dsCHk.Tables[0];
                         gvSelectedLocation.DataBind();
 

@@ -463,13 +463,13 @@ public class My_Upkeep
         //return ds;
     }
 
-    public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID)
+    public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)

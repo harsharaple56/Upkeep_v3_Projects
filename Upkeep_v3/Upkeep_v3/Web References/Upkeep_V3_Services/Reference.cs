@@ -5004,28 +5004,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_MyActionable", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_Ticket_MyActionable", new object[] {
                         TicketID,
                         CompanyID,
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID) {
-            this.Fetch_Ticket_MyActionableAsync(TicketID, CompanyID, LoggedInUserID, null);
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_Ticket_MyActionableAsync(TicketID, CompanyID, LoggedInUserID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID, object userState) {
+        public void Fetch_Ticket_MyActionableAsync(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_Ticket_MyActionableOperationCompleted == null)) {
                 this.Fetch_Ticket_MyActionableOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_MyActionableOperationCompleted);
             }
             this.InvokeAsync("Fetch_Ticket_MyActionable", new object[] {
                         TicketID,
                         CompanyID,
-                        LoggedInUserID}, this.Fetch_Ticket_MyActionableOperationCompleted, userState);
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_Ticket_MyActionableOperationCompleted, userState);
         }
         
         private void OnFetch_Ticket_MyActionableOperationCompleted(object arg) {
