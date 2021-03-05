@@ -554,7 +554,7 @@ background-color: blanchedalmond;
 
                                 <div id="divCustomer" runat="server">
                                     <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-md-3" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Customer Details</label>
+                                        <label class="col-md-6" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Customer Details</label>
                                     </div>
 
 
@@ -562,33 +562,33 @@ background-color: blanchedalmond;
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">First Name::</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="First name"></asp:TextBox>
+                                                <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
                                                 <span id="error_First_name" class="text-danger small"></span>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Last Name:</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Last Name"></asp:TextBox>
+                                                <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
                                                 <span id="error_Last_Name" class="text-danger small"></span>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Phone No:</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Phoneno" TextMode="Phone" runat="server" class="form-control m-input" placeholder="Phone No."></asp:TextBox>
+                                                <asp:TextBox ID="Phoneno" TextMode="Phone" runat="server" class="form-control m-input" placeholder="Enter your Phone No."></asp:TextBox>
                                                 <span id="error_Phone_No" class="text-danger small"></span>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">EmailID:</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Email ID:</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="EmailID" TextMode="Email" runat="server" class="form-control m-input" placeholder="EmailID"></asp:TextBox>
+                                                <asp:TextBox ID="EmailID" TextMode="Email" runat="server" class="form-control m-input" placeholder="Enter your Email ID"></asp:TextBox>
                                                 <span id="error_EmailID" class="text-danger small"></span>
                                             </div>
                                         </div>
                                         <div class="m-form__group form-group row">
-                                            <label class="col-3 col-form-label">Gender:</label>
+                                            <label class="col-3 col-form-label">Select your Gender:</label>
                                             <div class="col-9">
                                                 <div class="m-radio-inline">
                                                     <label class="m-radio">
@@ -604,7 +604,7 @@ background-color: blanchedalmond;
 
                                                     <label class="m-radio">
                                                         <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
-                                                        Other
+                                                        Trans
 																			<span></span>
                                                     </label>
                                                 </div>
@@ -616,7 +616,7 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-md-3" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Feedback Details</label>
+                                    <label class="col-md-6" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Feedback Details</label>
                                 </div>
 
                                 <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
@@ -678,7 +678,7 @@ background-color: blanchedalmond;
                                                 <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                             </div>
                                             <div id="divOptions" class="text-center" style="display: none" runat="server">
-                                                <asp:RadioButtonList class="m-radio-inline" Style="margin-left: 40%;" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
+                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
                                             </div>
                                             <div id="divOptions1" style="display: none" runat="server">
                                                 <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>

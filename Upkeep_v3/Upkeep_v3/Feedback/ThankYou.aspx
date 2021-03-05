@@ -16,7 +16,7 @@
 
             setTimeout(function () {
                 window.location.href = feedbackURL
-            }, 3000);
+            }, 2200);
 
 
             function getUrlParameter(sParam) {
@@ -55,17 +55,14 @@
         <div class="m-grid__item m-grid__item--fluid m-grid  m-error-6">
             <div class="m-error_container">
                 <div>
-                    <img src="<%= Page.ResolveClientUrl("~/assets/app/media/img/bg/coming-soon-9.gif") %>" />
-
-                    <h1>Coming Soon...</h1>
+                    <img src="<%= Page.ResolveClientUrl("~/assets/app/media/img/bg/Feedback_Thankyou.gif") %>" />
+                    <br />
+                    <br />
+                    <h1>Thanks for your Feedback</h1>
 
                 </div>
                 <p>
-                    This feature is under Development<br>
-                    Your will be notified soon once its available for use.
-                        <br />
-                    <br />
-                    <br />
+                   <h2>Your feedback will help us serve you better.</h2>
                 </p>
             </div>
         </div>
