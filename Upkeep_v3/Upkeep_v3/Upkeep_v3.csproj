@@ -396,6 +396,7 @@
     <Content Include="assets\app\media\img\bg\bg-6.jpg" />
     <Content Include="assets\app\media\img\bg\bg-6.png" />
     <Content Include="assets\app\media\img\bg\bg-7.jpg" />
+    <Content Include="assets\app\media\img\bg\Feedback_Thankyou.gif" />
     <Content Include="assets\app\media\img\bg\coming-soon-9.gif" />
     <Content Include="assets\app\media\img\blog\blog1.jpg" />
     <Content Include="assets\app\media\img\blog\blog2.jpg" />
@@ -913,6 +914,7 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.min.js" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
+    <Content Include="Billing\Billing_Details.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
@@ -1016,7 +1018,6 @@
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
     <Content Include="Feedback\ThankYou.aspx" />
-    <Content Include="Feedback_Form_banners\Feedback_Banner.jpg" />
     <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
@@ -4085,6 +4086,13 @@
     <Compile Include="AssetManagement\Asset_Report.aspx.designer.cs">
       <DependentUpon>Asset_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.designer.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlankMaster.Master.cs">
       <DependentUpon>BlankMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6006,6 +6014,7 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
+    <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
