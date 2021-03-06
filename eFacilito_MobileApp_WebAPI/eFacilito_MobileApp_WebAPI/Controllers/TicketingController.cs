@@ -1583,6 +1583,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                             Tkt_Is_Img_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Img_Close"]),
                                             Tkt_Is_Remark_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Remark_Close"]),
                                             Tkt_Is_Expiry = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Expiry"]),
+                                            Chk_Is_QR_Compulsory = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Chk_Is_QR_Compulsory"]),
                                         });
                                     }
                                 }

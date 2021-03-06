@@ -1060,6 +1060,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public bool Tkt_Is_Img_Close { get; set; }
         public bool Tkt_Is_Remark_Close { get; set; }
         public bool Tkt_Is_Expiry { get; set; }
+        public bool Chk_Is_QR_Compulsory { get; set; }
     }
 
 

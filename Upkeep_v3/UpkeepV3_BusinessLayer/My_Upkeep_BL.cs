@@ -736,6 +736,28 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Ticket_MyActionable_Details(int TicketID, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Ticket_Fetch_MyActionable_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketID", TicketID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet Accept_Ticket(int TicketID, string LoggedInUserID, string StrConn)
         {
             try

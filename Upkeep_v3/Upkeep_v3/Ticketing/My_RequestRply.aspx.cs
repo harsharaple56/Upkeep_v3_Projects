@@ -228,8 +228,8 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID,"","");
-
+                //dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID,"","");
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable_Details(TicketID, CompanyID, LoggedInUserID);
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
                 string Zone = string.Empty;

@@ -526,6 +526,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Fetch_Ticket_MyActionable_Details(int TicketID, int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Ticket_MyActionable_Details(TicketID, CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Accept_Ticket(int TicketID, string LoggedInUserID)
     {
         try

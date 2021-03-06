@@ -30,6 +30,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_WorkPermitConfigurationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Bind_WorkPermitRequestDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Insert_WorkPermitRequestOperationCompleted;
@@ -198,8 +202,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback SiteMaster_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
@@ -259,6 +261,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Insert_Ticket_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Ticket_MyActionableOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Ticket_MyActionable_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Accept_TicketOperationCompleted;
         
@@ -366,8 +370,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_WorkPermitConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Bind_WorkPermitConfigurationOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -405,6 +407,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Bind_WorkPermitConfigurationCompletedEventHandler Bind_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
         public event Bind_WorkPermitRequestDetailsCompletedEventHandler Bind_WorkPermitRequestDetailsCompleted;
@@ -659,9 +667,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event SiteMaster_CRUDCompletedEventHandler SiteMaster_CRUDCompleted;
         
         /// <remarks/>
-        public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -750,6 +755,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Ticket_MyActionableCompletedEventHandler Fetch_Ticket_MyActionableCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Ticket_MyActionable_DetailsCompletedEventHandler Fetch_Ticket_MyActionable_DetailsCompleted;
         
         /// <remarks/>
         public event Accept_TicketCompletedEventHandler Accept_TicketCompleted;
@@ -911,7 +919,70 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_WorkPermitConfigurationCompletedEventHandler Fetch_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
-        public event Bind_WorkPermitConfigurationCompletedEventHandler Bind_WorkPermitConfigurationCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_Electricity_Category", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
+            object[] results = this.Invoke("INSERT_Electricity_Category", new object[] {
+                        Electricity_CatXML,
+                        CompanyID,
+                        LoggedInUserID,
+                        Electricity_Cat_ID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
+            this.INSERT_Electricity_CategoryAsync(Electricity_CatXML, CompanyID, LoggedInUserID, Electricity_Cat_ID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction, object userState) {
+            if ((this.INSERT_Electricity_CategoryOperationCompleted == null)) {
+                this.INSERT_Electricity_CategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_Electricity_CategoryOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_Electricity_Category", new object[] {
+                        Electricity_CatXML,
+                        CompanyID,
+                        LoggedInUserID,
+                        Electricity_Cat_ID,
+                        strAction}, this.INSERT_Electricity_CategoryOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_Electricity_CategoryOperationCompleted(object arg) {
+            if ((this.INSERT_Electricity_CategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_WorkPermitConfiguration(int WP_ConfigID) {
+            object[] results = this.Invoke("Bind_WorkPermitConfiguration", new object[] {
+                        WP_ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID) {
+            this.Bind_WorkPermitConfigurationAsync(WP_ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID, object userState) {
+            if ((this.Bind_WorkPermitConfigurationOperationCompleted == null)) {
+                this.Bind_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_WorkPermitConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_WorkPermitConfiguration", new object[] {
+                        WP_ConfigID}, this.Bind_WorkPermitConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_WorkPermitConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_WorkPermitConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_WorkPermitConfigurationCompleted(this, new Bind_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3824,43 +3895,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_Electricity_Category", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
-            object[] results = this.Invoke("INSERT_Electricity_Category", new object[] {
-                        Electricity_CatXML,
-                        CompanyID,
-                        LoggedInUserID,
-                        Electricity_Cat_ID,
-                        strAction});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction) {
-            this.INSERT_Electricity_CategoryAsync(Electricity_CatXML, CompanyID, LoggedInUserID, Electricity_Cat_ID, strAction, null);
-        }
-        
-        /// <remarks/>
-        public void INSERT_Electricity_CategoryAsync(string Electricity_CatXML, int CompanyID, string LoggedInUserID, int Electricity_Cat_ID, string strAction, object userState) {
-            if ((this.INSERT_Electricity_CategoryOperationCompleted == null)) {
-                this.INSERT_Electricity_CategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_Electricity_CategoryOperationCompleted);
-            }
-            this.InvokeAsync("INSERT_Electricity_Category", new object[] {
-                        Electricity_CatXML,
-                        CompanyID,
-                        LoggedInUserID,
-                        Electricity_Cat_ID,
-                        strAction}, this.INSERT_Electricity_CategoryOperationCompleted, userState);
-        }
-        
-        private void OnINSERT_Electricity_CategoryOperationCompleted(object arg) {
-            if ((this.INSERT_Electricity_CategoryCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -5036,6 +5070,39 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Ticket_MyActionableCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Ticket_MyActionableCompleted(this, new Fetch_Ticket_MyActionableCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Ticket_MyActionable_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Ticket_MyActionable_Details(int TicketID, int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Ticket_MyActionable_Details", new object[] {
+                        TicketID,
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Ticket_MyActionable_DetailsAsync(int TicketID, int CompanyID, string LoggedInUserID) {
+            this.Fetch_Ticket_MyActionable_DetailsAsync(TicketID, CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Ticket_MyActionable_DetailsAsync(int TicketID, int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_Ticket_MyActionable_DetailsOperationCompleted == null)) {
+                this.Fetch_Ticket_MyActionable_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Ticket_MyActionable_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Ticket_MyActionable_Details", new object[] {
+                        TicketID,
+                        CompanyID,
+                        LoggedInUserID}, this.Fetch_Ticket_MyActionable_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Ticket_MyActionable_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_Ticket_MyActionable_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Ticket_MyActionable_DetailsCompleted(this, new Fetch_Ticket_MyActionable_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7050,35 +7117,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_WorkPermitConfiguration(int WP_ConfigID) {
-            object[] results = this.Invoke("Bind_WorkPermitConfiguration", new object[] {
-                        WP_ConfigID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID) {
-            this.Bind_WorkPermitConfigurationAsync(WP_ConfigID, null);
-        }
-        
-        /// <remarks/>
-        public void Bind_WorkPermitConfigurationAsync(int WP_ConfigID, object userState) {
-            if ((this.Bind_WorkPermitConfigurationOperationCompleted == null)) {
-                this.Bind_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_WorkPermitConfigurationOperationCompleted);
-            }
-            this.InvokeAsync("Bind_WorkPermitConfiguration", new object[] {
-                        WP_ConfigID}, this.Bind_WorkPermitConfigurationOperationCompleted, userState);
-        }
-        
-        private void OnBind_WorkPermitConfigurationOperationCompleted(object arg) {
-            if ((this.Bind_WorkPermitConfigurationCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_WorkPermitConfigurationCompleted(this, new Bind_WorkPermitConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -7094,6 +7132,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void INSERT_Electricity_CategoryCompletedEventHandler(object sender, INSERT_Electricity_CategoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class INSERT_Electricity_CategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Bind_WorkPermitConfigurationCompletedEventHandler(object sender, Bind_WorkPermitConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -9283,32 +9373,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void INSERT_Electricity_CategoryCompletedEventHandler(object sender, INSERT_Electricity_CategoryCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class INSERT_Electricity_CategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -10074,6 +10138,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Ticket_MyActionableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Ticket_MyActionable_DetailsCompletedEventHandler(object sender, Fetch_Ticket_MyActionable_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Ticket_MyActionable_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Ticket_MyActionable_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -11452,32 +11542,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Bind_WorkPermitConfigurationCompletedEventHandler(object sender, Bind_WorkPermitConfigurationCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Bind_WorkPermitConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Bind_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
