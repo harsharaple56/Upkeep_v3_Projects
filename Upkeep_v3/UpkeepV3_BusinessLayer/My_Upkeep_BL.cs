@@ -600,6 +600,32 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+
+        public DataSet RetailerPunch_CR(string LoggedInUserID, string Punch_Type, int CompanyID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Retailer_Att_Punches_CR", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("Punch_Type", Punch_Type);
+                cmd.Parameters.AddWithValue("Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
         {
             try

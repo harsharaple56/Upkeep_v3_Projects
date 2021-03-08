@@ -3,6 +3,32 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="SiteMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Site_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Site_Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SiteMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="INSERT_Electricity_Category">
         <s:complexType>
           <s:sequence>
@@ -18,6 +44,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermitConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermitConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2018,32 +2066,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SiteMaster_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Site_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Site_Code" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Site_Name" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SiteMaster_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SiteMaster_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2617,6 +2639,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="CategoryMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetailerPunch_CR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Punch_Type" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetailerPunch_CRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetailerPunch_CRResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4076,28 +4122,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_WorkPermitConfiguration">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_WorkPermitConfigurationResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitConfigurationResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4105,11 +4129,23 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="SiteMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="SiteMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapIn">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_Category" />
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Bind_WorkPermitConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Bind_WorkPermitConfiguration" />
@@ -4615,12 +4651,6 @@
   <wsdl:message name="UpdatePasswordSoapOut">
     <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
   </wsdl:message>
-  <wsdl:message name="SiteMaster_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:SiteMaster_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="SiteMaster_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4764,6 +4794,12 @@
   </wsdl:message>
   <wsdl:message name="CategoryMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:CategoryMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetailerPunch_CRSoapIn">
+    <wsdl:part name="parameters" element="tns:RetailerPunch_CR" />
+  </wsdl:message>
+  <wsdl:message name="RetailerPunch_CRSoapOut">
+    <wsdl:part name="parameters" element="tns:RetailerPunch_CRResponse" />
   </wsdl:message>
   <wsdl:message name="SubCategoryMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:SubCategoryMaster_CRUD" />
@@ -5119,16 +5155,18 @@
   <wsdl:message name="Fetch_AnswerSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_WorkPermitConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfiguration" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_WorkPermitConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfigurationResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="SiteMaster_CRUD">
+      <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <wsdl:input message="tns:Fetch_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Bind_WorkPermitConfiguration">
       <wsdl:input message="tns:Bind_WorkPermitConfigurationSoapIn" />
@@ -5466,10 +5504,6 @@
       <wsdl:input message="tns:UpdatePasswordSoapIn" />
       <wsdl:output message="tns:UpdatePasswordSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SiteMaster_CRUD">
-      <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
-      <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -5565,6 +5599,10 @@
     <wsdl:operation name="CategoryMaster_CRUD">
       <wsdl:input message="tns:CategoryMaster_CRUDSoapIn" />
       <wsdl:output message="tns:CategoryMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetailerPunch_CR">
+      <wsdl:input message="tns:RetailerPunch_CRSoapIn" />
+      <wsdl:output message="tns:RetailerPunch_CRSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SubCategoryMaster_CRUD">
       <wsdl:input message="tns:SubCategoryMaster_CRUDSoapIn" />
@@ -5803,15 +5841,29 @@
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitConfiguration">
-      <wsdl:input message="tns:Fetch_WorkPermitConfigurationSoapIn" />
-      <wsdl:output message="tns:Fetch_WorkPermitConfigurationSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6575,15 +6627,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SiteMaster_CRUD">
-      <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -6793,6 +6836,15 @@
     </wsdl:operation>
     <wsdl:operation name="CategoryMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/CategoryMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetailerPunch_CR">
+      <soap:operation soapAction="http://tempuri.org/RetailerPunch_CR" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7331,20 +7383,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SiteMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8108,15 +8169,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SiteMaster_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8326,6 +8378,15 @@
     </wsdl:operation>
     <wsdl:operation name="CategoryMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/CategoryMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetailerPunch_CR">
+      <soap12:operation soapAction="http://tempuri.org/RetailerPunch_CR" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8857,15 +8918,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_WorkPermitConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
