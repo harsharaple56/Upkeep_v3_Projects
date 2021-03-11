@@ -383,6 +383,29 @@ public class My_Upkeep
         return ds;
     }
 
+
+
+
+    public DataSet RetailerPunch_CR(string LoggedInUserID, string Punch_Type, int CompanyID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.RetailerPunch_CR( LoggedInUserID,  Punch_Type,  CompanyID,  Action, StrConn);
+            //return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+
     public DataSet SubCategoryMaster_CRUD(int ComapnyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
     {
         try

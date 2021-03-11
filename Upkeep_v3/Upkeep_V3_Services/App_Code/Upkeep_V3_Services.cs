@@ -436,6 +436,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    [WebMethod]
+    public DataSet RetailerPunch_CR(string LoggedInUserID, string Punch_Type, int CompanyID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.RetailerPunch_CR(LoggedInUserID, Punch_Type, CompanyID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
     [WebMethod]
     public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
     {

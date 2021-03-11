@@ -1079,10 +1079,10 @@
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
     <Content Include="Security\Role_Menu_Rights.aspx" />
-    <Content Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx" />
-    <Content Include="Store_Attendance\Store_Opening_Closing_Report.aspx" />
-    <Content Include="Store_Attendance\Store_Shifts_Listing.aspx" />
-    <Content Include="Store_Attendance\Store_Shift_Assign.aspx" />
+    <Content Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx" />
+    <Content Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx" />
+    <Content Include="Retailer_Attendance\Store_Shifts_Listing.aspx" />
+    <Content Include="Retailer_Attendance\Store_Shift_Assign.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
@@ -4888,32 +4888,32 @@
       <DependentUpon>Role_Menu_Rights.aspx</DependentUpon>
     </Compile>
     <Compile Include="SendSMS.cs" />
-    <Compile Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
+    <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.designer.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Opening_Closing_Report.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx.cs">
       <DependentUpon>Store_Opening_Closing_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Opening_Closing_Report.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx.designer.cs">
       <DependentUpon>Store_Opening_Closing_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shifts_Listing.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Shifts_Listing.aspx.cs">
       <DependentUpon>Store_Shifts_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shifts_Listing.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Shifts_Listing.aspx.designer.cs">
       <DependentUpon>Store_Shifts_Listing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shift_Assign.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shift_Assign.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.designer.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestMaster.Master.cs">
