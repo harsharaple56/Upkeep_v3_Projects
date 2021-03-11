@@ -47,12 +47,13 @@
                 startDate: moment().format('YYYY-MM-DD'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtWorkPermitDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                //var endDate   = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var endDate   = moment($('#txtWorkPermitToDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
-                //if(endDate < startDate)
-                //{
-                //    $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
-                //}
+                if(endDate < startDate)
+                {
+                    $('#error_endDate').html('Workpermit To datetime can not be less than From datetime.').parents('.form-group').addClass('has-error');
+                    $('#txtWorkPermitToDate').val('');
+                }
             });
 
             $('.FileUpload_ChecklistImage').on('change', function (event) {
@@ -313,7 +314,7 @@
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtWorkPermitDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtWorkPermitDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time" ClientIDMode="Static"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
@@ -327,15 +328,16 @@
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtWorkPermitToDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtWorkPermitToDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time" ClientIDMode="Static"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkPermitToDate" Visible="true" Display="Dynamic"
                                                 ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Work Permit Date"></asp:RequiredFieldValidator>
                                         </div>
-                                        <span id="error_startDate" class="text-danger small"></span>
+                                        <span id="error_ToDate" class="text-danger small"></span>
                                     </div>
+                                    <span id="error_endDate" class="text-danger"></span>
                                 </div>
 
 

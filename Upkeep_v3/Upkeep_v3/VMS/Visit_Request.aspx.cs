@@ -20,7 +20,7 @@ namespace Upkeep_v3.VMS
         string LoggedInUserID = string.Empty;
         string SessionVisitor = string.Empty;
         DataSet dsConfig = new DataSet();
-        int CompanyID = 0;
+        //int CompanyID = 0;
         int ConfigID = 0;
         #endregion
 
