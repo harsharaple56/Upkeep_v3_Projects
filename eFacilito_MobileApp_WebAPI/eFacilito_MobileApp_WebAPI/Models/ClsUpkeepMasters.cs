@@ -738,6 +738,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Name { get; set; }
         public string PhoneNo { get; set; }
         public string EmailID { get; set; }
+        public string EmpCD { get; set; }
+
 
     }
     public class ClsWorkPermitSection

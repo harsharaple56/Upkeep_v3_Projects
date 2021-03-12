@@ -7703,6 +7703,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                 UserType = Convert.ToString(p.Field<string>("UserType")),
                                                 Username = Convert.ToString(p.Field<string>("Username")),
                                                 Store_Name = Convert.ToString(p.Field<string>("Store_Name")),
+                                                EmpCD = Convert.ToString(p.Field<string>("Username")),
                                                 Name = Convert.ToString(p.Field<string>("Name")),
                                                 PhoneNo = Convert.ToString(p.Field<string>("PhoneNo")),
                                                 EmailID = Convert.ToString(p.Field<string>("EmailID")),
