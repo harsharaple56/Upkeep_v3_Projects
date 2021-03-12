@@ -7695,8 +7695,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                   Created_Date = Convert.ToString(p.Field<string>("Created_Date")),
                                                   Wp_date = Convert.ToString(p.Field<string>("Wp_date")),
                                                   Wp_To_date = Convert.ToString(p.Field<string>("Wp_To_date")),
-                                                  ShowApprovalMatrix_Initiators = Convert.ToBoolean(p.Field<Int32>("ShowApprovalMatrix_Initiators")),
-                                                  ShowApprovalMatrix_Approvers = Convert.ToBoolean(p.Field<Int32>("ShowApprovalMatrix_Approvers"))
+                                                  ShowApprovalMatrix_Initiators = Convert.ToBoolean(p.Field<bool>("ShowApprovalMatrix_Initiators")),
+                                                  ShowApprovalMatrix_Approvers = Convert.ToBoolean(p.Field<bool>("ShowApprovalMatrix_Approvers"))
                                               }).ToList();
 
                             ObjInitiator = (from p in DsDataSet.Tables[1].AsEnumerable()
