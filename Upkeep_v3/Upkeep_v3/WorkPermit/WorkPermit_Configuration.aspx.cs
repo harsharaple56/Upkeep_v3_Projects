@@ -302,7 +302,11 @@ namespace Upkeep_v3.WorkPermit
                 bool LinkDepartment = false;
                 string strTransactionPrefix = string.Empty;
 
-                bool ShowApprovalMatrix = false;
+                bool ShowApprovalMatrix_Initiator = false;
+                bool ShowApprovalMatrix_Approver = false;
+
+                ShowApprovalMatrix_Initiator = chkShowApprovalMatrix_Initiator.Checked;
+                ShowApprovalMatrix_Approver = chkShowApprovalMatrix_Approver.Checked;
 
                 strConfigTitle = txtTitle.Text.Trim();
                 //CompanyID = Convert.ToInt32(ddlCompany.SelectedValue);
@@ -345,9 +349,9 @@ namespace Upkeep_v3.WorkPermit
                 CompanyID = Convert.ToInt32(Session["CompanyID"].ToString());
 
                 if (ViewState["ConfigID"].ToString() != "0")
-                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
                 else
-                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
 
                 if (dsWorkPermitConfig.Tables.Count > 0)
                 {

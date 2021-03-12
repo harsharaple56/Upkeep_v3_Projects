@@ -728,6 +728,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Created_Date { get; set; }
         public string Wp_date { get; set; }
         public string Wp_To_date { get; set; }
+        public bool ShowApprovalMatrix_Initiators { get; set; }
+        public bool ShowApprovalMatrix_Approvers { get; set; }
     }
     public class ClsWorkPermitInitiator
     {

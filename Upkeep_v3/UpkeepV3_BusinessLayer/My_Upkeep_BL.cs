@@ -1578,7 +1578,7 @@ namespace UpkeepV3_BusinessLayer
 
         //Added by RC WorkPermitConfiguration Save
 
-        public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, string StrConn)
+        public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1596,7 +1596,8 @@ namespace UpkeepV3_BusinessLayer
                 //cmd.Parameters.AddWithValue("@XmlGatepass_Type", strXmlGatepass_Type);
                 cmd.Parameters.AddWithValue("@XmlWorkPermit_TermCondition", strXmlWorkPermit_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
-                cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Initiator", chkShowApprovalMatrix_Initiator);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Approver", chkShowApprovalMatrix_Approver);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -1863,7 +1864,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC WorkPermitConfiguration Update
-        public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, string StrConn)
+        public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1882,7 +1883,8 @@ namespace UpkeepV3_BusinessLayer
                 //cmd.Parameters.AddWithValue("@XmlGatepass_Type", strXmlGatepass_Type);
                 cmd.Parameters.AddWithValue("@XmlWorkPermit_TermCondition", strXmlWorkPermit_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
-                cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Initiator", chkShowApprovalMatrix_Initiator);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Approver", chkShowApprovalMatrix_Approver);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
