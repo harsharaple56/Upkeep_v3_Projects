@@ -1455,12 +1455,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC WorkPermitConfiguration Save
     [WebMethod]
-    public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID)
+    public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID);
+            ds = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator,chkShowApprovalMatrix_Approver, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1657,12 +1657,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //Added by RC WorkPermitConfiguration Update
 
     [WebMethod]
-    public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID)
+    public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator,bool chkShowApprovalMatrix_Approver, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Update_WorkPermitConfiguration(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID);
+            ds = ObjUpkeep.Update_WorkPermitConfiguration(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, LoggedInUserID);
         }
         catch (Exception ex)
         {

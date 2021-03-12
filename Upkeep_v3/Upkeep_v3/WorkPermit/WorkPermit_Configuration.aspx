@@ -999,6 +999,18 @@
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
 
+                                <div class="form-group row" style="margin-bottom: 0;">
+                                    <div class="col-lg-6">
+                                        <asp:CheckBox ID="chkShowApprovalMatrix_Initiator" CssClass="m-checkbox--success" runat="server" />
+                                        <label for="message-text" class="form-control-label" style="text-align: center;">Show Approval Matrix to Initiator</label>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <asp:CheckBox ID="chkShowApprovalMatrix_Approver" CssClass="m-checkbox--success" runat="server" />
+                                        <label for="message-text" class="form-control-label" style="text-align: center;">Show Approval Matrix to Approver</label>
+                                    </div>
+                                </div>
+
                                 <br />
 
                                 <div class="form-group row" style="background-color: #00c5dc;">

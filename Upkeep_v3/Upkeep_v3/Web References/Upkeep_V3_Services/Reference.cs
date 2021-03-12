@@ -1329,7 +1329,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+        public System.Data.DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID) {
             object[] results = this.Invoke("Update_WorkPermitConfiguration", new object[] {
                         WP_Config_ID,
                         strConfigTitle,
@@ -1340,18 +1340,19 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlWorkPermit_Header,
                         strXmlWorkPermit_TermCondition,
                         strXmlApprovalMatrix,
-                        ShowApprovalMatrix,
+                        chkShowApprovalMatrix_Initiator,
+                        chkShowApprovalMatrix_Approver,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
-            this.Update_WorkPermitConfigurationAsync(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID, null);
+        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID) {
+            this.Update_WorkPermitConfigurationAsync(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, object userState) {
+        public void Update_WorkPermitConfigurationAsync(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, object userState) {
             if ((this.Update_WorkPermitConfigurationOperationCompleted == null)) {
                 this.Update_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_WorkPermitConfigurationOperationCompleted);
             }
@@ -1365,7 +1366,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlWorkPermit_Header,
                         strXmlWorkPermit_TermCondition,
                         strXmlApprovalMatrix,
-                        ShowApprovalMatrix,
+                        chkShowApprovalMatrix_Initiator,
+                        chkShowApprovalMatrix_Approver,
                         LoggedInUserID}, this.Update_WorkPermitConfigurationOperationCompleted, userState);
         }
         
@@ -7084,7 +7086,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WorkPermitConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
+        public System.Data.DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_WorkPermitConfiguration", new object[] {
                         strConfigTitle,
                         CompanyID,
@@ -7094,18 +7096,19 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlWorkPermit_Header,
                         strXmlWorkPermit_TermCondition,
                         strXmlApprovalMatrix,
-                        ShowApprovalMatrix,
+                        chkShowApprovalMatrix_Initiator,
+                        chkShowApprovalMatrix_Approver,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID) {
-            this.Insert_WorkPermitConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, LoggedInUserID, null);
+        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID) {
+            this.Insert_WorkPermitConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, object userState) {
+        public void Insert_WorkPermitConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, object userState) {
             if ((this.Insert_WorkPermitConfigurationOperationCompleted == null)) {
                 this.Insert_WorkPermitConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WorkPermitConfigurationOperationCompleted);
             }
@@ -7118,7 +7121,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlWorkPermit_Header,
                         strXmlWorkPermit_TermCondition,
                         strXmlApprovalMatrix,
-                        ShowApprovalMatrix,
+                        chkShowApprovalMatrix_Initiator,
+                        chkShowApprovalMatrix_Approver,
                         LoggedInUserID}, this.Insert_WorkPermitConfigurationOperationCompleted, userState);
         }
         
