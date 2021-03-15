@@ -392,6 +392,16 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="form-group m-form__group row" style="padding-left: 10%;">
+                                        <asp:Repeater ID="Repeater_Tkt_CustomFields" runat="server">
+                                             <label class="col-xl-3 col-lg-3 col-form-label" id="lbl_Tkt_CustomFields"></label>
+                                              <asp:TextBox ID="TB_Tkt_CustomFields_Value" runat="server" class="form-control"></asp:TextBox>
+
+                                        </asp:Repeater>
+                                        </div>
+
+
                                         <div class="form-group m-form__group row" style="padding-left: 10%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label">Ticket Images :</label>
                                             <div class="col-xl-9 col-lg-9">

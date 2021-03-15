@@ -683,6 +683,24 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public bool Is_Approved { get; set; }
     }
 
+
+    public class ClsAllWorkPermitRequestDetails
+    {
+        public string WP_Trans_ID { get; set; }
+        public string TicketNo { get; set; }
+        public string Wp_Config_ID { get; set; }
+        public string WP_Title { get; set; }
+        public string DepartmentName { get; set; }
+        public string WorkPermitDate { get; set; }
+        public string RequestDate { get; set; }
+        public string WP_Status { get; set; }
+        public string Created_By { get; set; }
+        public string Store { get; set; }
+        public bool Is_Approved { get; set; }
+    }
+
+
+
     public class ClsWorkPermitAction
     {
         public string WP_TransacationID { get; set; }

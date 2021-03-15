@@ -310,6 +310,24 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTicketDesc;
         
         /// <summary>
+        /// Repeater_Tkt_CustomFields control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater_Tkt_CustomFields;
+        
+        /// <summary>
+        /// TB_Tkt_CustomFields_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Tkt_CustomFields_Value;
+        
+        /// <summary>
         /// FileUpload_TicketImage control.
         /// </summary>
         /// <remarks>
