@@ -112,6 +112,9 @@ namespace Upkeep_v3.WorkPermit
 
                     hdnWPTerms.Value = string.Join("~", TermsValues);
 
+                    chkShowApprovalMatrix_Initiator.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]);
+                    chkShowApprovalMatrix_Approver.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["ShowApprovalMatrix_Approvers"]);
+
                 }
 
             }

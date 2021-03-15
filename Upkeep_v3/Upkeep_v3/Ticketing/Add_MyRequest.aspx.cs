@@ -63,6 +63,7 @@ namespace Upkeep_v3.Ticketing
 
                 Fetch_CategorySubCategory(0);
                 Fetch_System_settings();
+                Fetch_Custom_Fields();
             }
         }
 
@@ -439,7 +440,29 @@ namespace Upkeep_v3.Ticketing
                     //string body = "Welcome to ASPSnippets.com";
                     //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
 
-                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
+                    //RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
+                    StringBuilder strXmlCustomFields = new StringBuilder();
+                    string CustomFields_XML = string.Empty;
+
+                    if (Convert.ToString(Session["CustomeFields"]) == "True")
+                    {
+                        strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
+                        strXmlCustomFields.Append(@"<CustomFields>");
+
+                        foreach (RepeaterItem item in rptCustomFields.Items)
+                        {
+                            string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
+                            string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
+
+                            strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
+                            strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                        }
+                        strXmlCustomFields.Append(@"</CustomFields>");
+                    }
+
+                    CustomFields_XML = strXmlCustomFields.ToString();
+
+                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, "C");
                     //mpeTicketSaveSuccess.Show();
 
                     if (dsTicketSave.Tables.Count > 0)
@@ -865,5 +888,30 @@ namespace Upkeep_v3.Ticketing
 
             dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
         }
+
+        public void Fetch_Custom_Fields()
+        {
+            DataSet dsSetting = new DataSet();
+            try
+            {
+                dsSetting = ObjUpkeep.Fetch_Custom_Fields(CompanyID);
+                if (dsSetting.Tables.Count > 0)
+                {
+                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    {
+                        Session["CustomeFields"] = "True";
+                        rptCustomFields.DataSource = dsSetting.Tables[0];
+                        rptCustomFields.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
 }

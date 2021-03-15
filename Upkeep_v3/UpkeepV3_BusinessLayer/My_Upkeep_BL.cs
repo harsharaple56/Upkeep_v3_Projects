@@ -712,7 +712,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, string StrConn)
+        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,string CustomFields_XML, string LoggedInUserID, string strAction, string StrConn)
         {
             try
             {
@@ -727,6 +727,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@SubCategoryID", SubCategoryID);
                 cmd.Parameters.AddWithValue("@TicketMessage", TicketMessage);
                 cmd.Parameters.AddWithValue("@TicketImages", list_Images);
+                cmd.Parameters.AddWithValue("@CustomFields_XML", CustomFields_XML);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", strAction);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -3535,6 +3536,27 @@ namespace UpkeepV3_BusinessLayer
             
         }
 
+        public DataSet Fetch_Custom_Fields(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("spr_Sys_Settings_Tkt_Fields", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+              
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
 
         public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID, string StrConn)

@@ -470,13 +470,13 @@ public class My_Upkeep
         //return ds;
     }
 
-    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction)
+    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,string CustomFields_XML, string LoggedInUserID, string strAction)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction, StrConn);
+            ds = ObjUpkeepCC_BL.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, strAction, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -2525,7 +2525,20 @@ public class My_Upkeep
         return ds;
     }
 
-
+    public DataSet Fetch_Custom_Fields(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Fetch_Custom_Fields(CompanyID, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
 

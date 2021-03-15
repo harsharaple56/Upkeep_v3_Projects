@@ -516,11 +516,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction)
+    public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,string CustomFields_XML, string LoggedInUserID, string strAction)
     {
         try
         {
-            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, strAction);
+            ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, strAction);
         }
         catch (Exception ex)
         {
@@ -2803,6 +2803,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.CRU_System_Setting( Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, CompanyID, LoggedInUserID,  Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Custom_Fields(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Custom_Fields(CompanyID);
         }
         catch (Exception ex)
         {
