@@ -981,6 +981,12 @@ namespace Upkeep_v3.WorkPermit
                 {
                     gvApprovalMatrix.DataSource = dsConfig.Tables[5];
                     gvApprovalMatrix.DataBind();
+
+                    if (Convert.ToInt32(dsConfig.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
 
             }
@@ -1279,6 +1285,11 @@ namespace Upkeep_v3.WorkPermit
                         divUpdateButton.Attributes.Add("style", "display:none;");
                     }
 
+                    if (Convert.ToInt32(dsData.Tables[0].Rows[0]["ShowApprovalMatrix_Approvers"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
                 else
                 {
@@ -1288,6 +1299,12 @@ namespace Upkeep_v3.WorkPermit
                     divUpdateButton.Attributes.Add("style", "display:none;");
                     //dvApprovalDetails.Attributes.Add("Style", "display:none;");
                     //dvSubmitSection.Attributes.Add("Style", "display:none;"); ;
+
+                    if (Convert.ToInt32(dsData.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
 
             }

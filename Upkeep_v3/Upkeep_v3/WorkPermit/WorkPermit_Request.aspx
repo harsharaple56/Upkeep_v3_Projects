@@ -47,10 +47,9 @@
                 startDate: moment().format('YYYY-MM-DD'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtWorkPermitDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                var endDate   = moment($('#txtWorkPermitToDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var endDate = moment($('#txtWorkPermitToDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
-                if(endDate < startDate)
-                {
+                if (endDate < startDate) {
                     $('#error_endDate').html('Workpermit To datetime can not be less than From datetime.').parents('.form-group').addClass('has-error');
                     $('#txtWorkPermitToDate').val('');
                 }
@@ -241,7 +240,7 @@
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-xl-3 col-form-label font-weight-bold"><span style="color: red;" class="col-x-1">*</span>Work Permit Title :</label>
-                                    
+
                                     <div class="col-xl-4">
                                         <asp:DropDownList ID="ddlWorkPermitTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlWorkPermitTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlWorkPermitTitle" Visible="true" Display="Dynamic"
@@ -471,12 +470,13 @@
                                 </asp:Repeater>
 
                                 <br />
-
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
-                                </div>
-                                <div>
-                                    <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                <div id="dvApprovalMatrix" runat="server">
+                                    <div class="form-group row" style="background-color: #00c5dc;">
+                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
+                                    </div>
+                                    <div>
+                                        <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                    </div>
                                 </div>
                                 <br />
 
@@ -531,7 +531,7 @@
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateWorkPermit" />
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
                                 </div>
-                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
 
                                 <div class="col-lg-9 ml-lg-auto" style="display: none" id="divUpdateButton" runat="server">
