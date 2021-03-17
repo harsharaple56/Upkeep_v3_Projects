@@ -3,6 +3,52 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_City">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="State_Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CityResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_Electricity_Category">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Electricity_CatXML" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Electricity_Cat_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_Electricity_CategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Bind_WorkPermitRequestDetails">
         <s:complexType>
           <s:sequence>
@@ -1998,21 +2044,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="INSERT_Electricity_Category">
+      <s:element name="Fetch_states">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Electricity_CatXML" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="Electricity_Cat_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Country_Id" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="INSERT_Electricity_CategoryResponse">
+      <s:element name="Fetch_statesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_statesResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4080,6 +4122,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_CitySoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_City" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CitySoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CityResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_Electricity_CategorySoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_Electricity_Category" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_Electricity_CategorySoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
   <wsdl:message name="Bind_WorkPermitRequestDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Bind_WorkPermitRequestDetails" />
   </wsdl:message>
@@ -4584,11 +4638,11 @@
   <wsdl:message name="SiteMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="INSERT_Electricity_CategorySoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_Electricity_Category" />
+  <wsdl:message name="Fetch_statesSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_states" />
   </wsdl:message>
-  <wsdl:message name="INSERT_Electricity_CategorySoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  <wsdl:message name="Fetch_statesSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_statesResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -5095,6 +5149,14 @@
     <wsdl:part name="parameters" element="tns:Bind_WorkPermitConfigurationResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_City">
+      <wsdl:input message="tns:Fetch_CitySoapIn" />
+      <wsdl:output message="tns:Fetch_CitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
+      <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Bind_WorkPermitRequestDetails">
       <wsdl:input message="tns:Bind_WorkPermitRequestDetailsSoapIn" />
       <wsdl:output message="tns:Bind_WorkPermitRequestDetailsSoapOut" />
@@ -5431,9 +5493,9 @@
       <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
       <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="INSERT_Electricity_Category">
-      <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
-      <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    <wsdl:operation name="Fetch_states">
+      <wsdl:input message="tns:Fetch_statesSoapIn" />
+      <wsdl:output message="tns:Fetch_statesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5775,6 +5837,24 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_City">
+      <soap:operation soapAction="http://tempuri.org/Fetch_City" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Bind_WorkPermitRequestDetails">
       <soap:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
       <wsdl:input>
@@ -6531,8 +6611,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_Electricity_Category">
-      <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+    <wsdl:operation name="Fetch_states">
+      <soap:operation soapAction="http://tempuri.org/Fetch_states" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7299,6 +7379,24 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_City">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_City" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_Electricity_Category">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Bind_WorkPermitRequestDetails">
       <soap12:operation soapAction="http://tempuri.org/Bind_WorkPermitRequestDetails" style="document" />
       <wsdl:input>
@@ -8055,8 +8153,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_Electricity_Category">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+    <wsdl:operation name="Fetch_states">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_states" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

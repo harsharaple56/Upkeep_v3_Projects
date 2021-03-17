@@ -311,5 +311,14 @@ namespace Upkeep_v3.Ticketing
 
         }
 
+        protected void btnCloseCategory_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCategorySave_Click2(object sender, EventArgs e)
+        {
+
+        }
     }
 }

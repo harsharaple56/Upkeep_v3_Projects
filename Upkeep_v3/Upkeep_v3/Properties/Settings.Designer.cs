@@ -32,5 +32,15 @@ namespace Upkeep_v3.Properties {
                 return ((string)(this["Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:60461/CocktailWorld_Service.asmx")]
+        public string Upkeep_v3_CocktailWorld_Service_CocktailWorld_Service {
+            get {
+                return ((string)(this["Upkeep_v3_CocktailWorld_Service_CocktailWorld_Service"]));
+            }
+        }
     }
 }

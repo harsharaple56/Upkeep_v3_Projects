@@ -5,5 +5,8 @@
     <Setting Name="Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:60461/Upkeep_V3_Services.asmx</Value>
     </Setting>
+    <Setting Name="Upkeep_v3_CocktailWorld_Service_CocktailWorld_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:60461/CocktailWorld_Service.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
