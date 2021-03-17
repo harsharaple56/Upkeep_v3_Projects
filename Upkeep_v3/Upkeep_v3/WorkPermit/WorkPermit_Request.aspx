@@ -85,6 +85,29 @@
                 });
                 //$('.carousel').carousel();
             })
+
+
+            $("#divNumberid").bind("keypress", function (e) {
+                //debugger;
+                 var keyCode = e.which ? e.which : e.keyCode
+
+                if (!(keyCode >= 48 && keyCode <= 57)) {
+                    //$(".error").css("display", "inline");
+                    return false;
+                } else {
+                    //$(".error").css("display", "none");
+                }
+                var maxlength = new Number(5); // Change number to your max length. 
+                var txtCardNumber = $('#divNumberid').val();
+                var txtCardNumber_length = $('#divNumberid').val().length;
+
+                if (txtCardNumber_length >= maxlength) {
+                    var txtCardNumber_value = txtCardNumber.substring(0, maxlength);
+                    $('#divNumberid').val(txtCardNumber_value);
+                }
+            });
+
+
         });
         function AddRow(tblName) {
             var contnt = tblName
@@ -392,13 +415,14 @@
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <div id="divText" style="display: none" runat="server">
-                                                            <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
+                                                            <input name="divTextName" id="divTextid" type="text" maxlength="100" class="form-control" runat="server" />
                                                         </div>
                                                         <div id="divNumber" style="display: none" runat="server">
-                                                            <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
+                                                            <%--<input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />--%>
+                                                            <asp:TextBox ID="divNumberid" runat="server" min="0" MaxLength="15" TextMode="Number" onkeypress="return this.value.length<=15" class="form-control"></asp:TextBox>
                                                         </div>
                                                         <div id="divTextArea" style="display: none" runat="server">
-                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" maxlength="500" class="form-control" runat="server"></textarea>
                                                         </div>
 
                                                         <div id="divRadioButton" style="display: none" runat="server">

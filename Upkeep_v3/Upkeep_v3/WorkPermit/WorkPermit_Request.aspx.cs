@@ -268,21 +268,33 @@ namespace Upkeep_v3.WorkPermit
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divNumber") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlInputText divNumberid = (HtmlInputText)e.Item.FindControl("divNumberid");
+                    //divNumberid.MaxLength = 20;
                 }
                 else if (AnswerType == "STEXT") //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][16/03/2021][Validation]
+                    //HtmlInputText divTextid = (HtmlInputText)e.Item.FindControl("divTextid");
+                    //divTextid.MaxLength = 100;
                 }
                 else if (AnswerType == "LTEXT") // Textarea Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divTextArea") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlTextArea divTextAreaid = (HtmlTextArea)e.Item.FindControl("divTextAreaid");
+                    //divTextAreaid.MaxLength = 500;
                 }
                 else  //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlInputText divTextid = (HtmlInputText)e.Item.FindControl("divTextid");
+                    //divTextid.MaxLength = 100;
                 }
 
 
