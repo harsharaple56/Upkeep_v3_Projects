@@ -55,6 +55,69 @@ namespace Upkeep_BusinessLayer
             }
         }
 
+        public DataSet CC_Dashboard(string strConn)
+        {
+            DataSet ds = new DataSet();
+            string strOutput = string.Empty;
+
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_CC_Dashboard", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //cmd.Parameters.AddWithValue("@Total_Employee_Users", Total_Employee_Users);
+                //cmd.Parameters.AddWithValue("@Total_Retailers", Total_Retailers);
+
+                //cmd.Parameters.AddWithValue("@Total_Users", Total_Users);
+               
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //public DataSet CC_Dashboard_Company(string strConn)
+        //{
+        //    DataSet ds = new DataSet();
+        //    string strOutput = string.Empty;
+
+        //    try
+        //    {
+        //        SqlConnection con = new SqlConnection(strConn);
+
+        //        SqlCommand cmd = new SqlCommand("Spr_CC_Dashboard_Company", con);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+
+        //        //cmd.Parameters.AddWithValue("@Total_Employee_Users", Total_Employee_Users);
+        //        //cmd.Parameters.AddWithValue("@Total_Retailers", Total_Retailers);
+
+        //        //cmd.Parameters.AddWithValue("@Total_Users", Total_Users);
+
+        //        con.Open();
+
+        //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //        da.Fill(ds);
+
+
+        //        return ds;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+
         public DataSet Fetch_GroupDesc(string strConn)
         {
             DataSet ds = new DataSet();

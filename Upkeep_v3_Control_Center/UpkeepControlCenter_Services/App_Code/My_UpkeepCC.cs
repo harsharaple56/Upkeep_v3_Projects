@@ -38,6 +38,44 @@ public class My_UpkeepCC
         }
     }
 
+
+    public DataSet CC_Dashboard()
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["UpkeepCC_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+            ds = objUpkeepCC_BL.CC_Dashboard(strConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    //public DataSet CC_Dashboard_Company()
+    //{
+    //    try
+    //    {
+    //        strConn = System.Configuration.ConfigurationManager.ConnectionStrings["UpkeepCC_ConString"].ConnectionString.ToString();
+    //        string strOutput = string.Empty;
+    //        DataSet ds = new DataSet();
+    //        Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+    //        ds = objUpkeepCC_BL.CC_Dashboard_Company(strConn);
+
+    //        return ds;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw ex;
+    //    }
+    //}
+
+
+
     public DataSet Fetch_GroupDesc()
     {
         try

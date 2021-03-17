@@ -34,6 +34,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback GroupMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CC_DashboardOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_GroupDescOperationCompleted;
         
         private System.Threading.SendOrPostCallback CompanyMaster_CRUDOperationCompleted;
@@ -60,7 +62,7 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         /// <remarks/>
         public UpkeepControlCenter_Service() {
-            this.Url = "http://localhost:57330/UpkeepControlCenter_Service.asmx";
+            this.Url = global::Upkeep_v3_Control_Center.Properties.Settings.Default.Upkeep_v3_Control_Center_UpkeepControlCenter_Service_UpkeepControlCenter_Service;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -99,6 +101,9 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         /// <remarks/>
         public event GroupMaster_CRUDCompletedEventHandler GroupMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event CC_DashboardCompletedEventHandler CC_DashboardCompleted;
         
         /// <remarks/>
         public event Fetch_GroupDescCompletedEventHandler Fetch_GroupDescCompleted;
@@ -196,6 +201,33 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.GroupMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GroupMaster_CRUDCompleted(this, new GroupMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CC_Dashboard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CC_Dashboard() {
+            object[] results = this.Invoke("CC_Dashboard", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CC_DashboardAsync() {
+            this.CC_DashboardAsync(null);
+        }
+        
+        /// <remarks/>
+        public void CC_DashboardAsync(object userState) {
+            if ((this.CC_DashboardOperationCompleted == null)) {
+                this.CC_DashboardOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCC_DashboardOperationCompleted);
+            }
+            this.InvokeAsync("CC_Dashboard", new object[0], this.CC_DashboardOperationCompleted, userState);
+        }
+        
+        private void OnCC_DashboardOperationCompleted(object arg) {
+            if ((this.CC_DashboardCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CC_DashboardCompleted(this, new CC_DashboardCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -743,6 +775,32 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         private object[] results;
         
         internal GroupMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CC_DashboardCompletedEventHandler(object sender, CC_DashboardCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CC_DashboardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CC_DashboardCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
