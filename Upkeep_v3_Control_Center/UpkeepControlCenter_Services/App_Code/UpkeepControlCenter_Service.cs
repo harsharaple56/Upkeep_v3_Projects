@@ -78,6 +78,33 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         return ds;
     }
 
+
+    //Method for Invoices Management in Control Center
+
+    [WebMethod]
+    public DataSet Invoices_CRUD(int Group_ID, string Group_Desc, string Group_Code, string LoggedInUserID, string Is_Deleted, string Action)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.GroupMaster_CRUD(Group_ID, Group_Desc, Group_Code, LoggedInUserID, Is_Deleted, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+
     [WebMethod]
     public DataSet CC_Dashboard()
     {
