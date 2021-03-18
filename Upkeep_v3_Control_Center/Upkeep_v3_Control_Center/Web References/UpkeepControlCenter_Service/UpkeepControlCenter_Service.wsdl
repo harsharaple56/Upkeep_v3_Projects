@@ -38,6 +38,45 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Invoices_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Invoice_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_Amount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_CSGT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_SGST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Transaction_Details" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Company_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Payment_Mode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nature_of_Invoice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Billing_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Due_date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GSTIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_File_Path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Invoices_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Invoices_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CC_Dashboard">
         <s:complexType />
       </s:element>
@@ -62,6 +101,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_GroupDescResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CompanyDesc">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_CompanyDescResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CompanyDescResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -341,6 +397,12 @@
   <wsdl:message name="GroupMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:GroupMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Invoices_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:Invoices_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="Invoices_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:Invoices_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="CC_DashboardSoapIn">
     <wsdl:part name="parameters" element="tns:CC_Dashboard" />
   </wsdl:message>
@@ -352,6 +414,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_GroupDescSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_GroupDescResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CompanyDescSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CompanyDesc" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CompanyDescSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CompanyDescResponse" />
   </wsdl:message>
   <wsdl:message name="CompanyMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CompanyMaster_CRUD" />
@@ -422,6 +490,10 @@
       <wsdl:input message="tns:GroupMaster_CRUDSoapIn" />
       <wsdl:output message="tns:GroupMaster_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Invoices_CRUD">
+      <wsdl:input message="tns:Invoices_CRUDSoapIn" />
+      <wsdl:output message="tns:Invoices_CRUDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="CC_Dashboard">
       <wsdl:input message="tns:CC_DashboardSoapIn" />
       <wsdl:output message="tns:CC_DashboardSoapOut" />
@@ -429,6 +501,10 @@
     <wsdl:operation name="Fetch_GroupDesc">
       <wsdl:input message="tns:Fetch_GroupDescSoapIn" />
       <wsdl:output message="tns:Fetch_GroupDescSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CompanyDesc">
+      <wsdl:input message="tns:Fetch_CompanyDescSoapIn" />
+      <wsdl:output message="tns:Fetch_CompanyDescSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CompanyMaster_CRUD">
       <wsdl:input message="tns:CompanyMaster_CRUDSoapIn" />
@@ -491,6 +567,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Invoices_CRUD">
+      <soap:operation soapAction="http://tempuri.org/Invoices_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CC_Dashboard">
       <soap:operation soapAction="http://tempuri.org/CC_Dashboard" style="document" />
       <wsdl:input>
@@ -502,6 +587,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_GroupDesc">
       <soap:operation soapAction="http://tempuri.org/Fetch_GroupDesc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CompanyDesc">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CompanyDesc" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -620,6 +714,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Invoices_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/Invoices_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CC_Dashboard">
       <soap12:operation soapAction="http://tempuri.org/CC_Dashboard" style="document" />
       <wsdl:input>
@@ -631,6 +734,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_GroupDesc">
       <soap12:operation soapAction="http://tempuri.org/Fetch_GroupDesc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CompanyDesc">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CompanyDesc" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

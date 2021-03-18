@@ -54,14 +54,17 @@
                             <tr>
                                 <th>Company Name</th>
                                 <th>Invoice No.</th>
-                                <th>Desc</th>
+                                <th>Invoice Date</th>
                                 <th>Amount</th>
                                 <th>CGST</th>
                                 <th>SGST</th>
-                                <th>Invoice Date</th>
+                                <th>Total</th>
+
                                 <th>Status</th>
                                 <th>Invoice Type</th>
                                 <th>Billing Name</th>
+                                <th>GSTIN</th>
+
                                 <th>Due Date</th>
                                 <th>Actions</th>
                             </tr>
@@ -74,7 +77,7 @@
                             </tr>
                         </tbody>--%>
                         <tbody>
-                            <%=bindGrid()%>
+                            <%=bindGrid_Invoices()%>
                         </tbody>
                     </table>
                 </div>

@@ -39,7 +39,7 @@ public class My_UpkeepCC
     }
 
     //Method for Invoices Management in Control Center
-    public DataSet Invoices_CRUD(int Group_ID, string Group_Desc, string Group_Code, string LoggedInUserID, string Is_Deleted, string Action)
+    public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, String Invoice_Amount, String Invoice_CSGT, String Invoice_SGST, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action)
     {
         try
         {
@@ -47,7 +47,7 @@ public class My_UpkeepCC
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
-            ds = objUpkeepCC_BL.GroupMaster_CRUD(Group_ID, Group_Desc, Group_Code, LoggedInUserID, Is_Deleted, Action, strConn);
+            ds = objUpkeepCC_BL.Invoices_CRUD(Invoice_ID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_CSGT, Invoice_SGST, Invoice_Date, Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID, Action, strConn);
 
             return ds;
         }
@@ -105,6 +105,24 @@ public class My_UpkeepCC
             DataSet ds = new DataSet();
             Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
             ds = objUpkeepCC_BL.Fetch_GroupDesc(strConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_CompanyDesc()
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["UpkeepCC_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+            ds = objUpkeepCC_BL.Fetch_CompanyDesc(strConn);
 
             return ds;
         }

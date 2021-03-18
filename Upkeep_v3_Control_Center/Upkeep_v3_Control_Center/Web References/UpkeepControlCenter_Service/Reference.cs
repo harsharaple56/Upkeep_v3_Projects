@@ -34,9 +34,13 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback GroupMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Invoices_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback CC_DashboardOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_GroupDescOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_CompanyDescOperationCompleted;
         
         private System.Threading.SendOrPostCallback CompanyMaster_CRUDOperationCompleted;
         
@@ -103,10 +107,16 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         public event GroupMaster_CRUDCompletedEventHandler GroupMaster_CRUDCompleted;
         
         /// <remarks/>
+        public event Invoices_CRUDCompletedEventHandler Invoices_CRUDCompleted;
+        
+        /// <remarks/>
         public event CC_DashboardCompletedEventHandler CC_DashboardCompleted;
         
         /// <remarks/>
         public event Fetch_GroupDescCompletedEventHandler Fetch_GroupDescCompleted;
+        
+        /// <remarks/>
+        public event Fetch_CompanyDescCompletedEventHandler Fetch_CompanyDescCompleted;
         
         /// <remarks/>
         public event CompanyMaster_CRUDCompletedEventHandler CompanyMaster_CRUDCompleted;
@@ -205,6 +215,129 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Invoices_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Invoices_CRUD(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_CSGT, 
+                    string Invoice_SGST, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action) {
+            object[] results = this.Invoke("Invoices_CRUD", new object[] {
+                        Invoice_ID,
+                        Invoice_No,
+                        Invoice_Desc,
+                        Invoice_Amount,
+                        Invoice_CSGT,
+                        Invoice_SGST,
+                        Invoice_Date,
+                        Status,
+                        Transaction_Details,
+                        Company_ID,
+                        Company_Desc,
+                        Payment_Mode,
+                        Nature_of_Invoice,
+                        Billing_Name,
+                        Due_date,
+                        GSTIN,
+                        Invoice_File_Path,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Invoices_CRUDAsync(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_CSGT, 
+                    string Invoice_SGST, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action) {
+            this.Invoices_CRUDAsync(Invoice_ID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_CSGT, Invoice_SGST, Invoice_Date, Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void Invoices_CRUDAsync(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_CSGT, 
+                    string Invoice_SGST, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action, 
+                    object userState) {
+            if ((this.Invoices_CRUDOperationCompleted == null)) {
+                this.Invoices_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInvoices_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("Invoices_CRUD", new object[] {
+                        Invoice_ID,
+                        Invoice_No,
+                        Invoice_Desc,
+                        Invoice_Amount,
+                        Invoice_CSGT,
+                        Invoice_SGST,
+                        Invoice_Date,
+                        Status,
+                        Transaction_Details,
+                        Company_ID,
+                        Company_Desc,
+                        Payment_Mode,
+                        Nature_of_Invoice,
+                        Billing_Name,
+                        Due_date,
+                        GSTIN,
+                        Invoice_File_Path,
+                        LoggedInUserID,
+                        Action}, this.Invoices_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnInvoices_CRUDOperationCompleted(object arg) {
+            if ((this.Invoices_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Invoices_CRUDCompleted(this, new Invoices_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CC_Dashboard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet CC_Dashboard() {
             object[] results = this.Invoke("CC_Dashboard", new object[0]);
@@ -255,6 +388,33 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.Fetch_GroupDescCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_GroupDescCompleted(this, new Fetch_GroupDescCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CompanyDesc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CompanyDesc() {
+            object[] results = this.Invoke("Fetch_CompanyDesc", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyDescAsync() {
+            this.Fetch_CompanyDescAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyDescAsync(object userState) {
+            if ((this.Fetch_CompanyDescOperationCompleted == null)) {
+                this.Fetch_CompanyDescOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CompanyDescOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_CompanyDesc", new object[0], this.Fetch_CompanyDescOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CompanyDescOperationCompleted(object arg) {
+            if ((this.Fetch_CompanyDescCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CompanyDescCompleted(this, new Fetch_CompanyDescCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -790,6 +950,32 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Invoices_CRUDCompletedEventHandler(object sender, Invoices_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Invoices_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Invoices_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void CC_DashboardCompletedEventHandler(object sender, CC_DashboardCompletedEventArgs e);
     
     /// <remarks/>
@@ -827,6 +1013,32 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         private object[] results;
         
         internal Fetch_GroupDescCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_CompanyDescCompletedEventHandler(object sender, Fetch_CompanyDescCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CompanyDescCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CompanyDescCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

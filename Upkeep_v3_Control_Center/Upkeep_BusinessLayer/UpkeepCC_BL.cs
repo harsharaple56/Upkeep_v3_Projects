@@ -140,6 +140,31 @@ namespace Upkeep_BusinessLayer
             }
         }
 
+        public DataSet Fetch_CompanyDesc(string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Company_Desc", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
         public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString,string CompanyEmailID,string CompanyMobileNo, string User_FName, string User_LName, string User_Dept, string User_Code, string User_Name,string User_Designation,string User_EmailID,string User_MobileNo,int SMS_ConfigID,int SMS_Alloted,int SMS_Min_Bal_Alert,int SMS_Available_Balance, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
@@ -197,7 +222,7 @@ namespace Upkeep_BusinessLayer
 
         //Method for Invoices Management in Control Center
 
-        public DataSet Invoices_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc, int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer, string ConString, string CompanyEmailID, string CompanyMobileNo, string User_FName, string User_LName, string User_Dept, string User_Code, string User_Name, string User_Designation, string User_EmailID, string User_MobileNo, int SMS_ConfigID, int SMS_Alloted, int SMS_Min_Bal_Alert, int SMS_Available_Balance, string LoggedInUserID, string Action, string strConn)
+        public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_CSGT, string Invoice_SGST, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -207,33 +232,26 @@ namespace Upkeep_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_Invoices", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
-                cmd.Parameters.AddWithValue("@Company_Code", strCompanyCode);
-                cmd.Parameters.AddWithValue("@Company_Desc", strCompanyDesc);
-                cmd.Parameters.AddWithValue("@Group_ID", GroupID);
+                cmd.Parameters.AddWithValue("@Invoice_ID", Invoice_ID);
+                cmd.Parameters.AddWithValue("@Invoice_No", Invoice_No);
+                cmd.Parameters.AddWithValue("@Invoice_Desc", Invoice_Desc);
+                cmd.Parameters.AddWithValue("@Invoice_Amount", Invoice_Amount);
+                cmd.Parameters.AddWithValue("@Invoice_CSGT", Invoice_CSGT);
+                cmd.Parameters.AddWithValue("@Invoice_SGST", Invoice_SGST);
+                cmd.Parameters.AddWithValue("@Invoice_Date", Invoice_Date);
+                cmd.Parameters.AddWithValue("@Status", Status);
+                cmd.Parameters.AddWithValue("@Transaction_Details", Transaction_Details);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Company_Desc", Company_Desc);
 
-                cmd.Parameters.AddWithValue("@Company_Logo", CompanyLogo);
-                cmd.Parameters.AddWithValue("@Client_URL", ClientURL);
-                cmd.Parameters.AddWithValue("@Is_DBatClientServer", Is_DBatClientServer);
-                cmd.Parameters.AddWithValue("@Con_String", ConString);
-                cmd.Parameters.AddWithValue("@CompanyEmailID", CompanyEmailID);
-                cmd.Parameters.AddWithValue("@CompanyMobileNo", CompanyMobileNo);
+                cmd.Parameters.AddWithValue("@Payment_Mode", Payment_Mode);
+                
+                cmd.Parameters.AddWithValue("@Nature_of_Invoice", Nature_of_Invoice);
+                cmd.Parameters.AddWithValue("@Billing_Name", Billing_Name);
+                cmd.Parameters.AddWithValue("@Due_Date", Due_date);
+                cmd.Parameters.AddWithValue("@GSTIN", GSTIN);
 
-                cmd.Parameters.AddWithValue("@User_FName", User_FName);
-                cmd.Parameters.AddWithValue("@User_LName", User_LName);
-                cmd.Parameters.AddWithValue("@User_Dept", User_Dept);
-                cmd.Parameters.AddWithValue("@User_Code", User_Code);
-
-                cmd.Parameters.AddWithValue("@User_Name", User_Name);
-                cmd.Parameters.AddWithValue("@User_Designation", User_Designation);
-                cmd.Parameters.AddWithValue("@User_EmailID", User_EmailID);
-                cmd.Parameters.AddWithValue("@User_MobileNo", User_MobileNo);
-
-                cmd.Parameters.AddWithValue("@SMS_ConfigID", SMS_ConfigID);
-                cmd.Parameters.AddWithValue("@SMS_Alloted", SMS_Alloted);
-                cmd.Parameters.AddWithValue("@SMS_Min_Bal_Alert", SMS_Min_Bal_Alert);
-                cmd.Parameters.AddWithValue("@SMS_Available_Balance", SMS_Available_Balance);
-
+                cmd.Parameters.AddWithValue("@Invoice_File_Path", Invoice_File_Path);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
 

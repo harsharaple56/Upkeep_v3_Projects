@@ -38,6 +38,20 @@
             //    console.log(response);
             //});
         });
+
+        
+        var BootstrapTimepicker = {
+            init: function () {
+                $("#ActivationDate").datetimepicker(
+                    { format: "dd/mm/yyyy", todayHighlight: !0, autoclose: !0, startView: 2, minView: 2, forceParse: 0, pickerPosition: "bottom-left" }
+                    //, { minDate: today }
+                );
+                $('#ActivationDate').datetimepicker({
+                    minDate:new Date()
+                });
+            }
+        };
+
     </script>
 
 
@@ -110,245 +124,101 @@
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Invoice Amount :</label>
                                                     <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txt_Invoice_Amount" runat="server" TextMode="Email" class="form-control m-input" placeholder="Enter Invoice Amount"></asp:TextBox>
+                                                        <asp:TextBox ID="txt_Invoice_Amount" runat="server" TextMode="number" class="form-control m-input" placeholder="Enter Invoice Amount"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfv_Invoice_Amount" runat="server" ControlToValidate="txt_Invoice_Amount" Display="Dynamic"
                                                             ErrorMessage="Enter Invoice Amount" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                     <label class="col-xl-2 col-lg-2 col-form-label">Total Amount :</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:Label ID="lbl_Total_Amount" runat="server" class="form-control m-input"></asp:Label>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Invoice CGST :</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label">CGST :</label>
                                                     <div class="col-xl-4 col-lg-4">
                                                         <asp:Label ID="lbl_Invoice_CGST" runat="server" class="form-control m-input"></asp:Label>
                                                     </div>
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Invoice SGST :</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label">SGST :</label>
                                                     <div class="col-xl-4 col-lg-4">
                                                         <asp:Label ID="lbl_Invoice_SGST" runat="server" class="form-control m-input"></asp:Label>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Group Description:</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Select Company:</label>
                                                     <div class="col-xl-4 col-lg-4">
-                                                        <asp:DropDownList ID="ddlGroupDesc" class="form-control m_selectpicker" runat="server"></asp:DropDownList>
-                                                        <asp:RequiredFieldValidator ID="rfvGroupDesc" runat="server" ControlToValidate="ddlGroupDesc" InitialValue="0" Display="Dynamic"
-                                                            ErrorMessage="Please select Group description" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        <asp:DropDownList ID="ddl_Company_Desc" class="form-control m_selectpicker" runat="server"></asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfv_Company_Desc" runat="server" ControlToValidate="ddl_Company_Desc" InitialValue="0" Display="Dynamic"
+                                                            ErrorMessage="Please select Company" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
 
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Company Logo</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>GSTIN</label>
                                                     <div class="col-xl-4 col-lg-4">
-                                                        <asp:FileUpload ID="fileUpload_CompanyLogo" runat="server" />
+                                                        <asp:TextBox ID="Txt_GSTIN" runat="server" TextMode="number" class="form-control m-input" placeholder="Enter Company GSTIN"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfv_GSTIN" runat="server" ControlToValidate="txt_GSTIN" Display="Dynamic"
+                                                            ErrorMessage="Enter GSTIN" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Nature/Type of Invoice:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:DropDownList ID="ddl_Nature_of_Invoice" class="form-control m_selectpicker" runat="server">
+                                                            <asp:ListItem Value="">--Select--</asp:ListItem>  
+                                                            <asp:ListItem>Subscription</asp:ListItem>  
+                                                            <asp:ListItem>AMC</asp:ListItem>  
+                                                            <asp:ListItem>License</asp:ListItem> 
+                                                    </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="rfv_Nature_of_Invoice" runat="server" ControlToValidate="ddl_Nature_of_Invoice" InitialValue="0" Display="Static"
+                                                            ErrorMessage="Please select Nature of Invoice" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+
+
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Upload Invoice</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:FileUpload ID="fileUpload_Invoice" runat="server" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Client URL:</label>
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:TextBox ID="txtClientURL" runat="server" class="form-control m-input" placeholder="Enter Client URL"></asp:TextBox>
-                                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtClientURL" Display="Dynamic"
-                                                            ErrorMessage="Please enter client URL" ForeColor="Red"></asp:RequiredFieldValidator>--%>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row" style="background-color: #00c5dc;">
-                                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">User Details</label>
-                                                </div>
-
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> First Name:</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label">Select Due Date:</label>
                                                     <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtFName" runat="server" class="form-control m-input" placeholder="Enter First Name"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFName" Display="Dynamic"
-                                                            ErrorMessage="Enter First Name" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
+                                                        <div class="input-group date">
+                                                            <%--<asp:TextBox ID="ActivationDate" runat="server" AutoCompleteType="Disabled" class="form-control m-input datetimepicker" OnTextChanged="ActivationDate_TextChanged" AutoPostBack="true" placeholder="Select activation date"></asp:TextBox>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                            </div>--%>
+                                                            <asp:TextBox ID="Invoice_Due_Date" runat="server" ClientIDMode="Static" autocomplete="off" class="form-control m-input datetimepicker m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm btn-secondary m-btn m-btn--label-primary"
+                                                                OnTextChanged="Invoice_Due_Date_TextChanged" AutoPostBack="true" placeholder="Select Invoice Due Date"></asp:TextBox>
 
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Last Name:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtLName" runat="server" class="form-control m-input" placeholder="Enter Last Name"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtLName" Display="Dynamic"
-                                                            ErrorMessage="Enter Last Name" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Code:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtUserCode" runat="server" class="form-control m-input" placeholder="Enter User Code"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtUserCode" Display="Dynamic"
-                                                            ErrorMessage="Enter User Code" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Department:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtUserDept" runat="server" class="form-control m-input" placeholder="Enter User Department"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtUserDept" Display="Dynamic"
-                                                            ErrorMessage="Enter User Department" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Name:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtAdminName" runat="server" class="form-control m-input" placeholder="Enter Name"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtAdminName" Display="Dynamic"
-                                                            ErrorMessage="Enter Name" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Designation:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtUserDesignation" runat="server" class="form-control m-input" placeholder="User Designation"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtUserDesignation" Display="Dynamic"
-                                                            ErrorMessage="Enter User Designation" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Email ID:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtUserEmailID" runat="server" TextMode="Email" class="form-control m-input" placeholder="Enter User Email ID"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtUserEmailID" Display="Dynamic"
-                                                            ErrorMessage="Enter User Email ID" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> User Mobile No:</label>
-                                                    <div class="col-xl-4 col-lg-4">
-                                                        <asp:TextBox ID="txtUserMobileNo" runat="server" TextMode="Number" MaxLength="10" class="form-control m-input" placeholder="Enter User Mobile No"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtUserMobileNo" Display="Dynamic"
-                                                            ErrorMessage="Enter User Mobile No" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row" style="background-color: #00c5dc;">
-                                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Other Details</label>
-                                                </div>
-
-
-                                                <div class="form-group m-form__group row">
-                                                    <div class="col-xl-1 col-lg-3 col-form-label">
-                                                        <span style="color: red;">*</span><asp:CheckBox ID="chk_IsDBatClient" OnCheckedChanged="chk_IsDBatClient_CheckedChanged" AutoPostBack="true" runat="server" Style="margin-left: 3px;" />
-                                                    </div>
-                                                    <label class="col-xl-8 col-lg-3 col-form-label">Check the Box if Database is on Client Server.</label>
-                                                </div>
-
-                                                <div id="dvServerDetails" runat="server" visible="false">
-                                                    <div class="form-group m-form__group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Server Name:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                            <asp:TextBox ID="txtServerName" runat="server" class="form-control m-input" placeholder="Enter Database Server Name"></asp:TextBox>
-                                                            <span id="error_txtServerName" class="text-danger small"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Database Name:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                            <asp:TextBox ID="txtDatabase" runat="server" class="form-control m-input" placeholder="Enter Database Name"></asp:TextBox>
-                                                            <span id="error_txtDatabase" class="text-danger small"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Username:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                            <asp:TextBox ID="txtDbUser" runat="server" class="form-control m-input" placeholder="Enter Database User Name"></asp:TextBox>
-                                                            <span id="error_txtDbUser" class="text-danger small"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Password:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <%--<input type="text" name="name" class="form-control m-input" placeholder="Enter last name" value="">--%>
-                                                            <asp:TextBox ID="txtDbPassword" runat="server" class="form-control m-input" placeholder="Enter Database User Password"></asp:TextBox>
-                                                            <span id="error_txtDbPassword" class="text-danger small"></span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group m-form__group row">
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="form-group row" style="background-color: #00c5dc;">
-                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">SMS Configurataion</label>
-                                            </div>
-
-                                            <div class="form-group m-form__group row">
-                                                <div class="col-xl-1 col-lg-3 col-form-label">
-                                                    <span style="color: red;">*</span><asp:CheckBox ID="chk_Is_SMS_Enable" OnCheckedChanged="chk_Is_SMS_Enable_CheckedChanged" AutoPostBack="true" runat="server" Style="margin-left: 3px;" />
-                                                </div>
-                                                <label class="col-xl-8 col-lg-3 col-form-label">Enable SMS</label>
-                                            </div>
-
-                                            <div id="SMS_Config_Details" runat="server" visible="false">
-                                                <asp:UpdatePanel ID="updSMS" runat="server">
-                                                    <ContentTemplate>
-                                                        <div class="form-group m-form__group row">
-                                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Select SMS Configuration:</label>
-                                                            <div class="col-xl-5 col-lg-5">
-                                                                <asp:DropDownList ID="ddlSMS_Config" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlSMS_Config_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                                                <span id="error_SMS_Config" class="text-danger small"></span>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="la la-calendar glyphicon-th"></i>
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group m-form__group row">
-                                                            <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Available Allot SMS Balance:</label>
-                                                            <div class="col-xl-3 col-lg-3">
-                                                                <asp:Label ID="Available_Allot_SMS_Bal" runat="server" class="form-control m-input"></asp:Label>
-                                                                <span id="error_Available_Allot_SMS_Bal" class="text-danger small"></span>
-                                                            </div>
-                                                        </div>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
+                                                        <span id="error_Invoice_Due_Date" class="text-danger small"></span>
+                                                        <asp:Label ID="lbl_Invoice_Due_Date" runat="server" ForeColor="Red" Visible="false" Font-Bold="true">Due Date cannot be Less than Current Date</asp:Label>
+                                                    </div>
 
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Billing Name</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txt_Billing_Name" runat="server" TextMode="number" class="form-control m-input" placeholder="Enter Company Billing Name"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfv_Billing_Name" runat="server" ControlToValidate="txt_Billing_Name" Display="Dynamic"
+                                                            ErrorMessage="Enter Billing Name" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </div>
+
+                                                </div>
                                                 <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Alloted SMS Balance:</label>
-                                                    <div class="col-xl-3 col-lg-3">
-                                                        <asp:TextBox ID="txt_Alloted_SMS" runat="server" class="form-control m-input" placeholder="Enter No. of SMS to be alloted"></asp:TextBox>
-                                                        <span id="error_txt_Alloted_SMS" class="text-danger small"></span>
-                                                    </div>
-
-                                                    <label class="col-xl-3 col-lg-3 col-form-label"><span style="color: red;">*</span> Alert When SMS Balance is:</label>
-                                                    <div class="col-xl-3 col-lg-3">
-                                                        <asp:TextBox ID="txt_SMS_Balance_Alert" runat="server" class="form-control m-input" placeholder="Alert When SMS Balance"></asp:TextBox>
-                                                        <span id="error_txt_SMS_Bal_Alert" class="text-danger small"></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="m-form m-form--group-seperator-dashed">
-                                                    <div class="form-group m-form__group row" style="padding-bottom: 0px !important; padding-top: 0px !important;"></div>
-                                                    <div class="form-group m-form__group row">
-                                                        <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Enter Mobile No.:</label>
-                                                        <div class="col-xl-2 col-lg-2">
-                                                            <asp:TextBox ID="txtSendTestSMSMobileNo" runat="server" class="form-control m-input" placeholder="Enter Mobile No"></asp:TextBox>
-                                                        </div>
-
-                                                        <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Enter Test Message:</label>
-                                                        <div class="col-xl-3 col-lg-3">
-                                                            <asp:TextBox ID="txtSendTestSMSText" runat="server" TextMode="MultiLine" class="form-control m-input" placeholder="Enter Test Message"></asp:TextBox>
-                                                        </div>
-                                                        <div class="col-xl-3 col-lg-3">
-                                                            <asp:Button ID="btnSendTestSMS" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSendTestSMS_Click" Text="Send Test SMS" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                                 <div class="col-xl-9 col-lg-9">
-                                                    <asp:Label ID="lblTestSMSSuccess" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Green"></asp:Label>
-                                                    <asp:Label ID="lblTestSMSError" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+                                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                                 </div>
+                                                </div>
+
 
                                             </div>
-                                            <div class="form-group m-form__group row">
-                                                <div class="col-xl-9 col-lg-9">
-                                                    <asp:Label ID="Label1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
