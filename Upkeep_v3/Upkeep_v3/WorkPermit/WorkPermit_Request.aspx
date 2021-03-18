@@ -415,14 +415,14 @@
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <div id="divText" style="display: none" runat="server">
-                                                            <input name="divTextName" id="divTextid" type="text" maxlength="100" class="form-control" runat="server" />
+                                                            <input name="divTextName" id="divTextid" type="text" onpaste="return false;" maxlength="100" class="form-control" runat="server" />
                                                         </div>
                                                         <div id="divNumber" style="display: none" runat="server">
                                                             <%--<input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />--%>
-                                                            <asp:TextBox ID="divNumberid" runat="server" min="0" MaxLength="15" TextMode="Number" onkeypress="return this.value.length<=15" class="form-control"></asp:TextBox>
+                                                            <asp:TextBox ID="divNumberid" runat="server" min="0" MaxLength="15" onpaste="return false;" TextMode="Number" onkeypress="return this.value.length<=15" class="form-control"></asp:TextBox>
                                                         </div>
                                                         <div id="divTextArea" style="display: none" runat="server">
-                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" maxlength="500" class="form-control" runat="server"></textarea>
+                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" onpaste="return false;" maxlength="500" class="form-control" runat="server"></textarea>
                                                         </div>
 
                                                         <div id="divRadioButton" style="display: none" runat="server">
