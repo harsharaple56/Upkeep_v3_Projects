@@ -79,6 +79,48 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet CC_Dashboard()
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.CC_Dashboard();
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+    //public DataSet CC_Dashboard_Company()
+    //{
+    //    DataSet ds = new DataSet();
+
+    //    try
+    //    {
+    //        My_UpkeepCC obj = new My_UpkeepCC();
+
+    //        ds = obj.CC_Dashboard_Company();
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw ex;
+
+    //    }
+
+    //    return ds;
+    //}
+
+
+    [WebMethod]
     public DataSet Fetch_GroupDesc()
     {
         DataSet ds = new DataSet();

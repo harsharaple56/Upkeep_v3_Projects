@@ -38,6 +38,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CC_Dashboard">
+        <s:complexType />
+      </s:element>
+      <s:element name="CC_DashboardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CC_DashboardResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_GroupDesc">
         <s:complexType />
       </s:element>
@@ -324,6 +341,12 @@
   <wsdl:message name="GroupMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:GroupMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="CC_DashboardSoapIn">
+    <wsdl:part name="parameters" element="tns:CC_Dashboard" />
+  </wsdl:message>
+  <wsdl:message name="CC_DashboardSoapOut">
+    <wsdl:part name="parameters" element="tns:CC_DashboardResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_GroupDescSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_GroupDesc" />
   </wsdl:message>
@@ -399,6 +422,10 @@
       <wsdl:input message="tns:GroupMaster_CRUDSoapIn" />
       <wsdl:output message="tns:GroupMaster_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CC_Dashboard">
+      <wsdl:input message="tns:CC_DashboardSoapIn" />
+      <wsdl:output message="tns:CC_DashboardSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_GroupDesc">
       <wsdl:input message="tns:Fetch_GroupDescSoapIn" />
       <wsdl:output message="tns:Fetch_GroupDescSoapOut" />
@@ -457,6 +484,15 @@
     </wsdl:operation>
     <wsdl:operation name="GroupMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/GroupMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CC_Dashboard">
+      <soap:operation soapAction="http://tempuri.org/CC_Dashboard" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -577,6 +613,15 @@
     </wsdl:operation>
     <wsdl:operation name="GroupMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/GroupMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CC_Dashboard">
+      <soap12:operation soapAction="http://tempuri.org/CC_Dashboard" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
