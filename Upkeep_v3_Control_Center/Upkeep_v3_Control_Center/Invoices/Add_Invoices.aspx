@@ -11,8 +11,15 @@
 
     
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/assets1/demo/default/custom/crud/forms/widgets/bootstrap-datetimepicker.js") %>" type="text/javascript"></script>
+
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+        $('#lbl_Invoice_CGST').text('Hello, I am Arun Banik');
+        });
+
         $(document).ready(function () {
             //debugger;
             //$.ajax({
@@ -42,11 +49,11 @@
         
         var BootstrapTimepicker = {
             init: function () {
-                $("#ActivationDate").datetimepicker(
+                $("#Invoice_Due_Date").datetimepicker(
                     { format: "dd/mm/yyyy", todayHighlight: !0, autoclose: !0, startView: 2, minView: 2, forceParse: 0, pickerPosition: "bottom-left" }
                     //, { minDate: today }
                 );
-                $('#ActivationDate').datetimepicker({
+                $('#Invoice_Due_Date').datetimepicker({
                     minDate:new Date()
                 });
             }

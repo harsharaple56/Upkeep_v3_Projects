@@ -103,8 +103,12 @@ namespace Upkeep_v3_Control_Center.Invoices
                 Invoice_No = txt_Invoice_No.Text.Trim();
                 Invoice_Desc = txt_Invoice_Desc.Text.Trim();
                 Invoice_Amount = txt_Invoice_Amount.Text.Trim();
-                Invoice_CGST = lbl_Invoice_CGST.Text.Trim();
-                Invoice_SGST = lbl_Invoice_SGST.Text.Trim();
+
+                Invoice_CGST=Convert.ToString((Convert.ToDecimal(Invoice_Amount)*18)/ 100);
+                Invoice_SGST = Convert.ToString((Convert.ToDecimal(Invoice_Amount) * 18) / 100);
+
+                //Invoice_CGST = lbl_Invoice_CGST.Text.Trim();
+                //Invoice_SGST = lbl_Invoice_SGST.Text.Trim();
                 Company_ID = Convert.ToInt32(ddl_Company_Desc.SelectedValue);
                 GSTIN = Txt_GSTIN.Text.Trim();
                 Nature_of_Invoice = Convert.ToString(ddl_Nature_of_Invoice.SelectedValue);
@@ -112,40 +116,39 @@ namespace Upkeep_v3_Control_Center.Invoices
                 //Invoice_File_Path = fileUpload_Invoice.Text.Trim();
                 //Due_Date = txt_Invoice_No.Text.Trim();
 
-                
+                string Invoice_FilePath = string.Empty;
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
 
+                if (fileUpload_Invoice.HasFile)
+                {
+                    string fileUploadInvoice = string.Empty;
 
+                    string fileUploadPath_Invoice = HttpContext.Current.Server.MapPath("~/Invoices/Uploads/");
 
-                //if (fileUpload_Invoice.HasFile)
-                //{
-                //    string fileUpload_Invoice = string.Empty;
+                    if (!Directory.Exists(fileUploadPath_Invoice))
+                    {
+                        Directory.CreateDirectory(fileUploadPath_Invoice);
+                    }
 
-                //    string fileUploadPath_Invoice = HttpContext.Current.Server.MapPath("~/Invoices/Uploads/");
+                    string fileExtension = Path.GetExtension(fileUpload_Invoice.FileName);
+                   string Invoice_FileName = Invoice_No + fileExtension;
 
-                //    if (!Directory.Exists(fileUploadPath_Invoice))
-                //    {
-                //        Directory.CreateDirectory(fileUploadPath_Invoice);
-                //    }
+                    string Invoice_SaveLocation = Server.MapPath("~/Invoices/Uploads/") + Invoice_FileName;
+                    Invoice_FilePath = imgPath + "/Invoices/Uploads/" + Invoice_FileName;
 
-                //    string fileExtension_Sign = Path.GetExtension(fileUpload_Invoice.FileName);
-                //    CompanyLogo_Pic = CompanyCode + fileExtension_Sign;
+                    fileUpload_Invoice.PostedFile.SaveAs(Invoice_SaveLocation);
 
-                //    string Sign_SaveLocation = Server.MapPath("~/CompanyLogo/") + "/" + CompanyLogo_Pic;
-                //    CompanyLogoName = imgPath + "/CompanyLogo/" + CompanyLogo_Pic;
-
-                //    fileUpload_CompanyLogo.PostedFile.SaveAs(Sign_SaveLocation);
-
-                //    fileUpload_CompanyLogo.PostedFile.SaveAs(Server.MapPath("~/Images/") + CompanyCode + ".PNG");
-                //    //CompanyLogoName = CompanyCode + ".PNG";
-                //}
-                //else
-                //{
-                //    CompanyLogoName = "";
-                //}
+                   
+                    //CompanyLogoName = CompanyCode + ".PNG";
+                }
+                else
+                {
+                    Invoice_FilePath = "";
+                }
 
                 //ConString = "";
 
-                ds = objUpkeepCC.Invoices_CRUD(0, Invoice_No, Invoice_Desc, "0", "0", "0","","Pending", "", Company_ID,"","", Nature_of_Invoice, Billing_Name, "", GSTIN, "", LoggedInUserID, Action);
+                ds = objUpkeepCC.Invoices_CRUD(0, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_CGST, Invoice_SGST, "","Pending", "", Company_ID,"","", Nature_of_Invoice, Billing_Name, "", GSTIN, Invoice_FilePath, LoggedInUserID, Action);
 
 
                 Session["InvoiceID"] = "";

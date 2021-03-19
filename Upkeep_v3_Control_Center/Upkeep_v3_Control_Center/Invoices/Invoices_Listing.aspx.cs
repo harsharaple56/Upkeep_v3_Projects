@@ -57,7 +57,7 @@ namespace Upkeep_v3_Control_Center.Invoices
 
                             string Invoice_CGST = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_CGST"]);
                             string Invoice_SGST = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_SGST"]);
-                            string Invoice_Total = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_Amount"]);
+                            string Invoice_Total = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_Total"]);
 
                             string Invoice_Date = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_date"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
@@ -68,6 +68,8 @@ namespace Upkeep_v3_Control_Center.Invoices
                             string Billing_Name = Convert.ToString(ds.Tables[0].Rows[i]["Billing_Name"]);
                             string Due_date = Convert.ToString(ds.Tables[0].Rows[i]["Due_date"]);
                             string GSTIN = Convert.ToString(ds.Tables[0].Rows[i]["GSTIN"]);
+                            string Invoice_File_Path = Convert.ToString(ds.Tables[0].Rows[i]["Invoice_File_Path"]);
+
 
 
                             //string Created_On = Created_Date.Substring(0, 10);
@@ -78,7 +80,7 @@ namespace Upkeep_v3_Control_Center.Invoices
                             //    Created_On = dt.ToString("dd/MMM/yyyy");
                             //}
 
-                            data += "<tr><td>" + Company_Desc + "</td><td>" + Invoice_No + "</td><td>" + Invoice_Date + "</td><td>" + Invoice_Amount + "</td><td>" + Invoice_CGST + "</td><td>" + Invoice_SGST + "</td><td>" + Invoice_Total + "</td><td>" + Status + "</td><td>" + Nature_of_Invoice + "</td><td>" + Billing_Name + "</td><td>" + GSTIN + "</td><td>" + Due_date + "</td><td><a href='Add_Company.aspx?CompanyID=' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='Add_Company.aspx?DelCompanyID=' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Company_Desc + "</td><td>" + Invoice_No + "</td><td>" + Invoice_Date + "</td><td>" + Invoice_Amount + "</td><td>" + Invoice_CGST + "</td><td>" + Invoice_SGST + "</td><td>" + Invoice_Total + "</td><td>" + Status + "</td><td>" + Nature_of_Invoice + "</td><td>" + Billing_Name + "</td><td>" + GSTIN + "</td><td>" + Due_date + "</td><td><a href='Add_Company.aspx?CompanyID=' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>   <a href='" + Invoice_File_Path + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Invoice'> <i class='la la-eye'></i> </a>    <a href='Add_Company.aspx?DelCompanyID=' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else
