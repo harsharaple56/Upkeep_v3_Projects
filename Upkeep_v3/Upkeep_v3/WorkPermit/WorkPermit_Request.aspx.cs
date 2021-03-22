@@ -244,9 +244,9 @@ namespace Upkeep_v3.WorkPermit
                 string HeadMandatoryId = (e.Item.FindControl("hdnIs_Mandatory") as HiddenField).Value;
                 if (HeadMandatoryId == "*")
                 {
-
-                    Label sample = e.Item.FindControl("lblIsMandatory") as Label;
-                    sample.Attributes.Remove("style");
+                    // Commented by Ajay
+                    //Label sample = e.Item.FindControl("lblIsMandatory") as Label;
+                    //sample.Attributes.Remove("style");
                 }
 
                 if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
@@ -456,9 +456,9 @@ namespace Upkeep_v3.WorkPermit
                     string HeadMandatoryId = (itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value;
                     if (HeadMandatoryId == "*")
                     {
-
-                        Label sample = itemHeader.FindControl("lblIsMandatory") as Label;
-                        sample.Attributes.Remove("style");
+                        // Commented by Ajay
+                        //Label sample = itemHeader.FindControl("lblIsMandatory") as Label;
+                        //sample.Attributes.Remove("style");
                     }
 
                     if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
@@ -591,7 +591,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -621,7 +626,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                             //String YrStr = String.Join(";", RadioStrList.ToArray());
@@ -711,7 +721,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -728,13 +743,23 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -750,15 +775,25 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
-
-
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //LabelERRORmsg.Text = "Please provide all valid data.";
+                                    //divUpdateButton.Attributes.Add("style", "display:block;");
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                         }
@@ -774,13 +809,23 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                         }
@@ -796,6 +841,11 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
@@ -803,6 +853,12 @@ namespace Upkeep_v3.WorkPermit
                                 {
                                     Is_Not_Valid = "True";
                                     lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
+                                   
                                 }
                             }
                         }

@@ -171,6 +171,15 @@
             document.getElementById("hdnWpHeaderData").value = info.innerHTML;
         }
 
+        //function FormValidation() {
+        //    //alert('hiii');
+        //    $("[id*=rptSectionDetails]").find("[id*=divTextid]").attr('maxlength', 10);
+        //    var abc = $("[id*=rptSectionDetails]").find("[id*=divTextid]").value();
+
+        //    alert(abc);
+
+        //}
+
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -218,6 +227,14 @@
                             </div>
                             <div class="m-alert__text">
                                 <strong>Rejected!</strong> This Request is Rejected.
+                            </div>
+                        </div>
+                         <div class="alert alert-danger m-alert--icon" id="dvMandatoryMsg" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Mandatory Details Missing!</strong> Please provide all mandatory data marked with (*)
                             </div>
                         </div>
                         <div class="m-portlet__head">
@@ -295,7 +312,7 @@
                                             <asp:Label ID="lblEmpName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
 
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Employee Code :</label>
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Employee Code :</label>
                                         <div class="col-xl-3 col-lg-3 col-form-label">
                                             <asp:Label ID="lblEmpCode" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
@@ -332,7 +349,7 @@
                                 </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">From Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span style="color: red;">*</span>From Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
@@ -346,7 +363,7 @@
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">To Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span style="color: red;">*</span>To Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
@@ -387,7 +404,7 @@
                                 <asp:Label ID="lbTable" runat="server" />
 
 
-                                <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound">
+                                <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound" ClientIDMode="Static" >
                                     <ItemTemplate>
                                         <asp:HiddenField ID="hfCustomerId" runat="server" Value='<%# Eval("WP_Section_ID") %>' />
                                         <div class="form-group row" style="background-color: #00c5dc;" id="DivSectionID">
@@ -552,6 +569,8 @@
 
                                 <div id="divInsertButton" class="col-lg-9 ml-lg-auto" runat="server">
                                     <%--OnClientClick="SubmitHeader()" --%>
+                                    <%--<asp:Button ID="btnTestValidation" runat="server" ClientIDMode="Static" Text="Test Validation" OnClientClick="FormValidation()" />--%>
+
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateWorkPermit" />
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
                                 </div>

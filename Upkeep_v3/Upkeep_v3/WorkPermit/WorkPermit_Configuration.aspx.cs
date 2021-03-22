@@ -162,13 +162,15 @@ namespace Upkeep_v3.WorkPermit
 
 
 
-                    foreach (string key in Request.Form.AllKeys)
-                    {
-                        if (key == "WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
-                        {
-                            WPHeaderMandatory = "1";
-                        }
-                    }
+                    //foreach (string key in Request.Form.AllKeys)
+                    //{
+                    //    //if (key == "WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
+                    //    //WorkPermitSection[0][WorkPermitHeader][0][ctl00$ContentPlaceHolder1$ChkMandatory][]
+                    //    if (key == "WorkPermitSection["+i+"][WorkPermitHeader][" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
+                    //    {
+                    //        WPHeaderMandatory = "1";
+                    //    }
+                    //}
 
                     //string[] WorkPermitType_Array = Request.Form.GetValues("WorkPermitType[" + i + "][ctl00$ContentPlaceHolder1$txtWorkPermitType]");
                     //if (WorkPermitType_Array != null)
@@ -193,7 +195,8 @@ namespace Upkeep_v3.WorkPermit
                         {
                             string[] WorkPermitHeaderArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$txtWorkPermitHeader]");
 
-                            string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory]");
+                            //string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory]");
+                            string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$ChkMandatory][]");
 
                             string[] WorkPermitHeaderIDArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$hdnWorkPermitHeader]");
 
@@ -217,6 +220,21 @@ namespace Upkeep_v3.WorkPermit
                             if (WorkPermitHeader_AnsArray != null)
                             {
                                 WPHeaderAns = WorkPermitHeader_AnsArray[0];
+                            }
+                            if (WorkPermitHeader_MandatoryArray != null)
+                            {
+                                if (Convert.ToString(WorkPermitHeader_MandatoryArray[0]) == "on")
+                                {
+                                    WPHeaderMandatory = "1";
+                                }
+                                else
+                                {
+                                    WPHeaderMandatory = "0";
+                                }
+                            }
+                            else
+                            {
+                                WPHeaderMandatory = "0";
                             }
 
                             if (WorkPermitHeaderArray != null && WorkPermitHeader_AnsArray != null)
