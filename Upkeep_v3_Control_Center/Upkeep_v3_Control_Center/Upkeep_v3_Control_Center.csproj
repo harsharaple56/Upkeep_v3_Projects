@@ -846,6 +846,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\CCPL1004.PNG" />
     <Content Include="Images\PhoenixLogo.png" />
+    <Content Include="Invoices\Add_Invoices.aspx" />
+    <Content Include="Invoices\Invoices_Listing.aspx" />
     <Content Include="License_Management.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MasterPage.Master" />
@@ -4771,6 +4773,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Invoices\Add_Invoices.aspx.cs">
+      <DependentUpon>Add_Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices\Add_Invoices.aspx.designer.cs">
+      <DependentUpon>Add_Invoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices\Invoices_Listing.aspx.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices\Invoices_Listing.aspx.designer.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="License_Management.aspx.cs">
       <DependentUpon>License_Management.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4905,6 +4921,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CompanyLogo\" />
+    <Folder Include="Invoices\Uploads\" />
     <Folder Include="vendors\dropzone\.idea\" />
     <Folder Include="vendors\handlebars\.idea\copyright\" />
     <Folder Include="vendors\handlebars\bin\" />

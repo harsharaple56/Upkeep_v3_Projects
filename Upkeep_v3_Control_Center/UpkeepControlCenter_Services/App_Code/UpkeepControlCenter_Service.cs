@@ -78,6 +78,33 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         return ds;
     }
 
+
+    //Method for Invoices Management in Control Center
+
+    [WebMethod]
+    public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_CSGT, string Invoice_SGST, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.Invoices_CRUD( Invoice_ID,  Invoice_No,  Invoice_Desc,  Invoice_Amount,  Invoice_CSGT,  Invoice_SGST,  Invoice_Date,  Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID,Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+
     [WebMethod]
     public DataSet CC_Dashboard()
     {
@@ -140,6 +167,29 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
 
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Fetch_CompanyDesc()
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.Fetch_CompanyDesc();
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
 
     [WebMethod]
     public DataSet CompanyMaster_CRUD(int CompanyID, string strCompanyCode, string strCompanyDesc,int GroupID, string CompanyLogo, string ClientURL, int Is_DBatClientServer,string ConString,string CompanyEmailID,string CompanyMobileNo, string User_FName, string User_LName, string User_Dept, string User_Code, string User_Name,string User_Designation,string User_EmailID,string User_MobileNo,int SMS_ConfigID,int SMS_Alloted,int SMS_Min_Bal_Alert,int SMS_Available_Balance, string LoggedInUserID,string Action)

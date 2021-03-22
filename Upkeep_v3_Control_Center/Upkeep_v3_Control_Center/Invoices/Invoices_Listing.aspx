@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Company_Mst.aspx.cs" Inherits="Upkeep_v3_Control_Center.Masters.Company_Mst" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Invoices_Listing.aspx.cs" Inherits="Upkeep_v3_Control_Center.Invoices.Invoices_Listing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,17 +21,17 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Company Master		
+                            <h3 class="m-portlet__head-text">Invoices
                             </h3>
                         </div>
                     </div>
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="<%= Page.ResolveClientUrl("~/Masters/Add_Company.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
+                                <a href="<%= Page.ResolveClientUrl("~/Invoices/Add_Invoices.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
                                     <span>
                                         <i class="la la-plus"></i>
-                                        <span>New Company</span>
+                                        <span>Add Invoice</span>
                                     </span>
                                 </a>
                             </li>
@@ -54,18 +53,31 @@
                         <thead>
                             <tr>
                                 <th>Company Name</th>
-                                <th>Company Code</th>
-                                <th>Company EmailID</th>
-                                <th>Company MobileNo</th>
-                                <th>Group Description</th>
-                                <th>Created On</th>
+                                <th>Invoice No.</th>
+                                <th>Invoice Date</th>
+                                <th>Amount</th>
+                                <th>CGST</th>
+                                <th>SGST</th>
+                                <th>Total</th>
+
+                                <th>Status</th>
+                                <th>Invoice Type</th>
+                                <th>Billing Name</th>
+                                <th>GSTIN</th>
+
+                                <th>Due Date</th>
                                 <th>Actions</th>
                             </tr>
 
                         </thead>
-                       
+                        <%-- <tbody>
+                            <tr>
+                                <td>compel</td>
+                                <td>hjsdhfsj</td>
+                            </tr>
+                        </tbody>--%>
                         <tbody>
-                            <%=bindGrid()%>
+                            <%=bindGrid_Invoices()%>
                         </tbody>
                     </table>
                 </div>

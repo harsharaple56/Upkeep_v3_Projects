@@ -211,6 +211,8 @@
                                     <li class="m-menu__item" aria-haspopup="true"><a href="<%= Page.ResolveClientUrl("~/Masters/Group_Mst.aspx") %>" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Group</span></a></li>
                                     <li class="m-menu__item" aria-haspopup="true"><a href="<%= Page.ResolveClientUrl("~/Masters/Company_Mst.aspx") %>" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Company</span></a></li>
                                     <li class="m-menu__item" aria-haspopup="true"><a href="<%= Page.ResolveClientUrl("~/License_Management.aspx") %>" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">License</span></a></li>
+                                    <li class="m-menu__item" aria-haspopup="true"><a href="<%= Page.ResolveClientUrl("~/Invoices/Invoices_Listing.aspx") %>" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Invoices</span></a></li>
+
                                     <li class="m-menu__item" aria-haspopup="true"><a href="<%= Page.ResolveClientUrl("~/Masters/SubPack_Mst.aspx") %>" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Pack</span></a></li>
 
                                 </ul>
