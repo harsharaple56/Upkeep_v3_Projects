@@ -221,8 +221,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string Invoice_No, 
                     string Invoice_Desc, 
                     string Invoice_Amount, 
-                    string Invoice_CSGT, 
-                    string Invoice_SGST, 
+                    string Invoice_GST, 
+                    string GST_Type, 
                     string Invoice_Date, 
                     string Status, 
                     string Transaction_Details, 
@@ -241,8 +241,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         Invoice_No,
                         Invoice_Desc,
                         Invoice_Amount,
-                        Invoice_CSGT,
-                        Invoice_SGST,
+                        Invoice_GST,
+                        GST_Type,
                         Invoice_Date,
                         Status,
                         Transaction_Details,
@@ -265,8 +265,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string Invoice_No, 
                     string Invoice_Desc, 
                     string Invoice_Amount, 
-                    string Invoice_CSGT, 
-                    string Invoice_SGST, 
+                    string Invoice_GST, 
+                    string GST_Type, 
                     string Invoice_Date, 
                     string Status, 
                     string Transaction_Details, 
@@ -280,7 +280,7 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string Invoice_File_Path, 
                     string LoggedInUserID, 
                     string Action) {
-            this.Invoices_CRUDAsync(Invoice_ID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_CSGT, Invoice_SGST, Invoice_Date, Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID, Action, null);
+            this.Invoices_CRUDAsync(Invoice_ID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_GST, GST_Type, Invoice_Date, Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -289,8 +289,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                     string Invoice_No, 
                     string Invoice_Desc, 
                     string Invoice_Amount, 
-                    string Invoice_CSGT, 
-                    string Invoice_SGST, 
+                    string Invoice_GST, 
+                    string GST_Type, 
                     string Invoice_Date, 
                     string Status, 
                     string Transaction_Details, 
@@ -313,8 +313,8 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
                         Invoice_No,
                         Invoice_Desc,
                         Invoice_Amount,
-                        Invoice_CSGT,
-                        Invoice_SGST,
+                        Invoice_GST,
+                        GST_Type,
                         Invoice_Date,
                         Status,
                         Transaction_Details,

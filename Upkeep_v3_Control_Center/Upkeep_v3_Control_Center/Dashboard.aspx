@@ -99,6 +99,8 @@
             <!--Begin::Section-->
             <div class="m-portlet">
                 <div class="m-portlet__body  m-portlet__body--no-padding">
+
+
                     <div class="row m-row--no-padding m-row--col-separator-xl">
                         <div class="col-xl-6">
 
@@ -165,6 +167,112 @@
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-success">
                                                 <asp:Label ID="lbl_Total_Retailers" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                    </div>
+                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Tickets</h3>
+                                            <span class="m-widget1__desc">Total No. of Tickets raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_TKT_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Checklists</h3>
+                                            <span class="m-widget1__desc">Total No. of Checklists Attended</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-success">
+                                                <asp:Label ID="lbl_Total_CHK_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Work-Permits</h3>
+                                            <span class="m-widget1__desc">Total No. of Permits raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_WP_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Gate-Passes</h3>
+                                            <span class="m-widget1__desc">Total No. of Gate passes raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-success">
+                                                <asp:Label ID="lbl_Total_GP_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Feedbacks</h3>
+                                            <span class="m-widget1__desc">Total No. of Feedbacks Collected</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-brand">
+                                                <asp:Label ID="lbl_Total_Feedback_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Assets</h3>
+                                            <span class="m-widget1__desc">Total No. of Assets Created</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_Asset_Count" runat="server"></asp:Label>
                                             </span>
                                         </div>
                                     </div>

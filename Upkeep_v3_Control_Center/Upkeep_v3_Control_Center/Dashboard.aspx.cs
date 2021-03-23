@@ -58,6 +58,15 @@ namespace Upkeep_v3_Control_Center
                         lbl_Total_Users.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Users"]);
                         lbl_Total_Employee_Users.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Employee_Users"]);
                         lbl_Total_Retailers.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Retailers"]);
+                        
+                        lbl_Total_Asset_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Asset_Count"]);
+                        lbl_Total_CHK_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_CHK_Count"]);
+                        lbl_Total_GP_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_GP_Count"]);
+                        lbl_Total_WP_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_WP_Count"]);
+                        lbl_Total_TKT_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_TKT_Count"]);
+                        lbl_Total_Feedback_Count.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Feedback_Count"]);
+
+
                     }
                 }
             }
@@ -88,8 +97,10 @@ namespace Upkeep_v3_Control_Center
                         {
 
                             string Company_Name = Convert.ToString(ds.Tables[1].Rows[i]["CompanyName"]);
-                            int Total_Users = Convert.ToInt32(ds.Tables[1].Rows[i]["UserCount"]);
-                            int Total_Retailers = Convert.ToInt32(ds.Tables[1].Rows[i]["RetailerCount"]);
+                            string Total_Users = Convert.ToString(ds.Tables[1].Rows[i]["UserCount"]);
+                            string Total_Retailers = Convert.ToString(ds.Tables[1].Rows[i]["RetailerCount"]);
+
+                            
 
                             data += "<tr><td>" + Company_Name + "</td><td>" + Total_Users + "</td><td>" + Total_Retailers + "</td></tr>";
 

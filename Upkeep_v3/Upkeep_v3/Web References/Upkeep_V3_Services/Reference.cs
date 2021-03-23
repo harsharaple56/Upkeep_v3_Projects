@@ -30,11 +30,15 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback ForgetPasswordSendOTPOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdatePasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback SiteMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_AnswerOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_WorkPermitConfigurationOperationCompleted;
         
@@ -204,9 +208,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback FetchUserEmailOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ForgetPasswordSendOTPOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_InvoicesOperationCompleted;
         
         private System.Threading.SendOrPostCallback MenuMaster_CRUDOperationCompleted;
         
@@ -372,8 +376,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Insert_WorkPermitConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_AnswerOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -413,6 +415,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event ForgetPasswordSendOTPCompletedEventHandler ForgetPasswordSendOTPCompleted;
+        
+        /// <remarks/>
         public event UpdatePasswordCompletedEventHandler UpdatePasswordCompleted;
         
         /// <remarks/>
@@ -420,6 +425,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Fetch_AnswerCompletedEventHandler Fetch_AnswerCompleted;
         
         /// <remarks/>
         public event Fetch_WorkPermitConfigurationCompletedEventHandler Fetch_WorkPermitConfigurationCompleted;
@@ -674,10 +682,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event FetchUserEmailCompletedEventHandler FetchUserEmailCompleted;
         
         /// <remarks/>
-        public event ForgetPasswordSendOTPCompletedEventHandler ForgetPasswordSendOTPCompleted;
+        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
-        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        public event Fetch_InvoicesCompletedEventHandler Fetch_InvoicesCompleted;
         
         /// <remarks/>
         public event MenuMaster_CRUDCompletedEventHandler MenuMaster_CRUDCompleted;
@@ -926,7 +934,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Insert_WorkPermitConfigurationCompletedEventHandler Insert_WorkPermitConfigurationCompleted;
         
         /// <remarks/>
-        public event Fetch_AnswerCompletedEventHandler Fetch_AnswerCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ForgetPasswordSendOTP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ForgetPasswordSendOTP(string EmailID, string OTP, int CompanyID) {
+            object[] results = this.Invoke("ForgetPasswordSendOTP", new object[] {
+                        EmailID,
+                        OTP,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ForgetPasswordSendOTPAsync(string EmailID, string OTP, int CompanyID) {
+            this.ForgetPasswordSendOTPAsync(EmailID, OTP, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void ForgetPasswordSendOTPAsync(string EmailID, string OTP, int CompanyID, object userState) {
+            if ((this.ForgetPasswordSendOTPOperationCompleted == null)) {
+                this.ForgetPasswordSendOTPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnForgetPasswordSendOTPOperationCompleted);
+            }
+            this.InvokeAsync("ForgetPasswordSendOTP", new object[] {
+                        EmailID,
+                        OTP,
+                        CompanyID}, this.ForgetPasswordSendOTPOperationCompleted, userState);
+        }
+        
+        private void OnForgetPasswordSendOTPOperationCompleted(object arg) {
+            if ((this.ForgetPasswordSendOTPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ForgetPasswordSendOTPCompleted(this, new ForgetPasswordSendOTPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdatePassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1038,6 +1076,33 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Answer() {
+            object[] results = this.Invoke("Fetch_Answer", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerAsync() {
+            this.Fetch_AnswerAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerAsync(object userState) {
+            if ((this.Fetch_AnswerOperationCompleted == null)) {
+                this.Fetch_AnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Answer", new object[0], this.Fetch_AnswerOperationCompleted, userState);
+        }
+        
+        private void OnFetch_AnswerOperationCompleted(object arg) {
+            if ((this.Fetch_AnswerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_AnswerCompleted(this, new Fetch_AnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3934,39 +3999,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ForgetPasswordSendOTP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ForgetPasswordSendOTP(string EmailID, string OTP, int CompanyID) {
-            object[] results = this.Invoke("ForgetPasswordSendOTP", new object[] {
-                        EmailID,
-                        OTP,
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ForgetPasswordSendOTPAsync(string EmailID, string OTP, int CompanyID) {
-            this.ForgetPasswordSendOTPAsync(EmailID, OTP, CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void ForgetPasswordSendOTPAsync(string EmailID, string OTP, int CompanyID, object userState) {
-            if ((this.ForgetPasswordSendOTPOperationCompleted == null)) {
-                this.ForgetPasswordSendOTPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnForgetPasswordSendOTPOperationCompleted);
-            }
-            this.InvokeAsync("ForgetPasswordSendOTP", new object[] {
-                        EmailID,
-                        OTP,
-                        CompanyID}, this.ForgetPasswordSendOTPOperationCompleted, userState);
-        }
-        
-        private void OnForgetPasswordSendOTPOperationCompleted(object arg) {
-            if ((this.ForgetPasswordSendOTPCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ForgetPasswordSendOTPCompleted(this, new ForgetPasswordSendOTPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -3990,6 +4022,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Invoices", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Invoices(int Company_ID) {
+            object[] results = this.Invoke("Fetch_Invoices", new object[] {
+                        Company_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_InvoicesAsync(int Company_ID) {
+            this.Fetch_InvoicesAsync(Company_ID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_InvoicesAsync(int Company_ID, object userState) {
+            if ((this.Fetch_InvoicesOperationCompleted == null)) {
+                this.Fetch_InvoicesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_InvoicesOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Invoices", new object[] {
+                        Company_ID}, this.Fetch_InvoicesOperationCompleted, userState);
+        }
+        
+        private void OnFetch_InvoicesOperationCompleted(object arg) {
+            if ((this.Fetch_InvoicesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_InvoicesCompleted(this, new Fetch_InvoicesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7170,33 +7231,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Answer() {
-            object[] results = this.Invoke("Fetch_Answer", new object[0]);
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_AnswerAsync() {
-            this.Fetch_AnswerAsync(null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_AnswerAsync(object userState) {
-            if ((this.Fetch_AnswerOperationCompleted == null)) {
-                this.Fetch_AnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Answer", new object[0], this.Fetch_AnswerOperationCompleted, userState);
-        }
-        
-        private void OnFetch_AnswerOperationCompleted(object arg) {
-            if ((this.Fetch_AnswerCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_AnswerCompleted(this, new Fetch_AnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -7212,6 +7246,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ForgetPasswordSendOTPCompletedEventHandler(object sender, ForgetPasswordSendOTPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ForgetPasswordSendOTPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ForgetPasswordSendOTPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -7280,6 +7340,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_AnswerCompletedEventHandler(object sender, Fetch_AnswerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_AnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_AnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -9479,32 +9565,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void ForgetPasswordSendOTPCompletedEventHandler(object sender, ForgetPasswordSendOTPCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ForgetPasswordSendOTPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ForgetPasswordSendOTPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -9525,6 +9585,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_InvoicesCompletedEventHandler(object sender, Fetch_InvoicesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_InvoicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_InvoicesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
@@ -11648,32 +11734,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_WorkPermitConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_AnswerCompletedEventHandler(object sender, Fetch_AnswerCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_AnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_AnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -3,6 +3,29 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ForgetPasswordSendOTP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OTP" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForgetPasswordSendOTPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ForgetPasswordSendOTPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UpdatePassword">
         <s:complexType>
           <s:sequence>
@@ -69,6 +92,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Answer">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_AnswerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AnswerResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2065,29 +2105,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ForgetPasswordSendOTP">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="OTP" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ForgetPasswordSendOTPResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ForgetPasswordSendOTPResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2095,6 +2112,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Invoices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_InvoicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_InvoicesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -4129,23 +4167,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Answer">
-        <s:complexType />
-      </s:element>
-      <s:element name="Fetch_AnswerResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AnswerResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4153,6 +4174,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ForgetPasswordSendOTPSoapIn">
+    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTP" />
+  </wsdl:message>
+  <wsdl:message name="ForgetPasswordSendOTPSoapOut">
+    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTPResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdatePasswordSoapIn">
     <wsdl:part name="parameters" element="tns:UpdatePassword" />
   </wsdl:message>
@@ -4170,6 +4197,12 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AnswerSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Answer" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AnswerSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_AnswerResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_WorkPermitConfigurationSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_WorkPermitConfiguration" />
@@ -4675,17 +4708,17 @@
   <wsdl:message name="FetchUserEmailSoapOut">
     <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
   </wsdl:message>
-  <wsdl:message name="ForgetPasswordSendOTPSoapIn">
-    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTP" />
-  </wsdl:message>
-  <wsdl:message name="ForgetPasswordSendOTPSoapOut">
-    <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTPResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_InvoicesSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_InvoicesSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_InvoicesResponse" />
   </wsdl:message>
   <wsdl:message name="MenuMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:MenuMaster_CRUD" />
@@ -5179,13 +5212,11 @@
   <wsdl:message name="Insert_WorkPermitConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_AnswerSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Answer" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_AnswerSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_AnswerResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <wsdl:input message="tns:ForgetPasswordSendOTPSoapIn" />
+      <wsdl:output message="tns:ForgetPasswordSendOTPSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <wsdl:input message="tns:UpdatePasswordSoapIn" />
       <wsdl:output message="tns:UpdatePasswordSoapOut" />
@@ -5197,6 +5228,10 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Answer">
+      <wsdl:input message="tns:Fetch_AnswerSoapIn" />
+      <wsdl:output message="tns:Fetch_AnswerSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_WorkPermitConfiguration">
       <wsdl:input message="tns:Fetch_WorkPermitConfigurationSoapIn" />
@@ -5534,13 +5569,13 @@
       <wsdl:input message="tns:FetchUserEmailSoapIn" />
       <wsdl:output message="tns:FetchUserEmailSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ForgetPasswordSendOTP">
-      <wsdl:input message="tns:ForgetPasswordSendOTPSoapIn" />
-      <wsdl:output message="tns:ForgetPasswordSendOTPSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Invoices">
+      <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
+      <wsdl:output message="tns:Fetch_InvoicesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="MenuMaster_CRUD">
       <wsdl:input message="tns:MenuMaster_CRUDSoapIn" />
@@ -5871,13 +5906,18 @@
       <wsdl:input message="tns:Insert_WorkPermitConfigurationSoapIn" />
       <wsdl:output message="tns:Insert_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Answer">
-      <wsdl:input message="tns:Fetch_AnswerSoapIn" />
-      <wsdl:output message="tns:Fetch_AnswerSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <soap:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
       <wsdl:input>
@@ -5898,6 +5938,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Answer">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6661,8 +6710,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ForgetPasswordSendOTP">
-      <soap:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6670,8 +6719,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="HelloWorld">
-      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+    <wsdl:operation name="Fetch_Invoices">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Invoices" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7417,18 +7466,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Answer">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ForgetPasswordSendOTP">
+      <soap12:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap12:operation soapAction="http://tempuri.org/UpdatePassword" style="document" />
       <wsdl:input>
@@ -7449,6 +7498,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Answer">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8212,8 +8270,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ForgetPasswordSendOTP">
-      <soap12:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8221,8 +8279,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="HelloWorld">
-      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+    <wsdl:operation name="Fetch_Invoices">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Invoices" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8961,15 +9019,6 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_WorkPermitConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Answer">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Answer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

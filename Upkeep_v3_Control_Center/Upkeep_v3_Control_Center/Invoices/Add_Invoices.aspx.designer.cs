@@ -76,6 +76,42 @@ namespace Upkeep_v3_Control_Center.Invoices {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Invoice_Desc;
         
         /// <summary>
+        /// txt_Invoice_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Invoice_Date;
+        
+        /// <summary>
+        /// lbl_Invoice_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Invoice_Date;
+        
+        /// <summary>
+        /// txt_Invoice_Due_Date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Invoice_Due_Date;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// txt_Invoice_Amount control.
         /// </summary>
         /// <remarks>
@@ -94,67 +130,31 @@ namespace Upkeep_v3_Control_Center.Invoices {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Invoice_Amount;
         
         /// <summary>
-        /// lbl_Total_Amount control.
+        /// ddl_GST_Type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Total_Amount;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_GST_Type;
         
         /// <summary>
-        /// lbl_Invoice_CGST control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Invoice_CGST;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// lbl_Invoice_SGST control.
+        /// lbl_Invoice_GST control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Invoice_SGST;
-        
-        /// <summary>
-        /// ddl_Company_Desc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_Company_Desc;
-        
-        /// <summary>
-        /// rfv_Company_Desc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Company_Desc;
-        
-        /// <summary>
-        /// Txt_GSTIN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_GSTIN;
-        
-        /// <summary>
-        /// rfv_GSTIN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_GSTIN;
+        protected global::System.Web.UI.WebControls.Label lbl_Invoice_GST;
         
         /// <summary>
         /// ddl_Nature_of_Invoice control.
@@ -175,31 +175,22 @@ namespace Upkeep_v3_Control_Center.Invoices {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Nature_of_Invoice;
         
         /// <summary>
-        /// fileUpload_Invoice control.
+        /// ddl_Company_Desc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload_Invoice;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Company_Desc;
         
         /// <summary>
-        /// Invoice_Due_Date control.
+        /// rfv_Company_Desc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Invoice_Due_Date;
-        
-        /// <summary>
-        /// lbl_Invoice_Due_Date control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Invoice_Due_Date;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Company_Desc;
         
         /// <summary>
         /// txt_Billing_Name control.
@@ -218,6 +209,33 @@ namespace Upkeep_v3_Control_Center.Invoices {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Billing_Name;
+        
+        /// <summary>
+        /// Txt_GSTIN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_GSTIN;
+        
+        /// <summary>
+        /// rfv_GSTIN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_GSTIN;
+        
+        /// <summary>
+        /// fileUpload_Invoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload_Invoice;
         
         /// <summary>
         /// lblErrorMsg control.

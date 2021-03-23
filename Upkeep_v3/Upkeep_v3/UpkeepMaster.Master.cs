@@ -167,5 +167,17 @@ namespace Upkeep_v3
             }
         }
 
+        protected void lnkManageAccount_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToString(Session["UserType"]) == "E")
+            {
+                Response.Redirect("~/Manage_Account/Billing/Invoices_listing.aspx");
+            }
+            else if (Convert.ToString(Session["UserType"]) == "R")
+            {
+                Response.Redirect("~/Dashboard.aspx");
+            }
+        }
+
     }
 }

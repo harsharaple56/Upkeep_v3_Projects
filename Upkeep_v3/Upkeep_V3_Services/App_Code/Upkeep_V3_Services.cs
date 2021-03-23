@@ -77,6 +77,26 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return "Hello World";
     }
 
+
+
+    [WebMethod]
+    public DataSet Fetch_Invoices(int Company_ID)
+    {
+        try
+        {
+
+            ds = ObjUpkeep.Fetch_Invoices(Company_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
     [WebMethod]
     public DataSet MenuMaster_CRUD(int Menu_ID, string Menu_Desc, string Parent_Menu_Id, string Toot_Tip, string Menu_Url, string Module_Menu_Id, string Is_Deleted, string Action)
     {

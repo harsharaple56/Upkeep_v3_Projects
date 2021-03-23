@@ -56,8 +56,8 @@
                                 <th>Invoice No.</th>
                                 <th>Invoice Date</th>
                                 <th>Amount</th>
-                                <th>CGST</th>
-                                <th>SGST</th>
+                                <th>GST</th>
+                                <th>GST Type</th>
                                 <th>Total</th>
 
                                 <th>Status</th>

@@ -82,7 +82,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
     //Method for Invoices Management in Control Center
 
     [WebMethod]
-    public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_CSGT, string Invoice_SGST, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action)
+    public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_GST, string GST_Type, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action)
     {
         DataSet ds = new DataSet();
 
@@ -90,7 +90,7 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         {
             My_UpkeepCC obj = new My_UpkeepCC();
 
-            ds = obj.Invoices_CRUD( Invoice_ID,  Invoice_No,  Invoice_Desc,  Invoice_Amount,  Invoice_CSGT,  Invoice_SGST,  Invoice_Date,  Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID,Action);
+            ds = obj.Invoices_CRUD( Invoice_ID,  Invoice_No,  Invoice_Desc,  Invoice_Amount,  Invoice_GST,  GST_Type,  Invoice_Date,  Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID,Action);
 
         }
         catch (Exception ex)

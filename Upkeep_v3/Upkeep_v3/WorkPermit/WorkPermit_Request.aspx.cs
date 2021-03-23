@@ -107,7 +107,9 @@ namespace Upkeep_v3.WorkPermit
                     Initiator = Convert.ToString(Session["UserType"]);
                 }
 
-                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
+                //dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
+                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Convert.ToString(Session["CompanyID"]));
+
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -371,7 +373,9 @@ namespace Upkeep_v3.WorkPermit
 
             if (TransLoggedInUserID != "")
             {
-                dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID, Session["TransactionID"].ToString());
+                //dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID, Session["TransactionID"].ToString());
+                dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID,Convert.ToString(Session["TransactionID"]));
+
             }
             else
             {
@@ -520,7 +524,8 @@ namespace Upkeep_v3.WorkPermit
             try
             {
                 #region UserData
-                int WP_ConfigID = Convert.ToInt32(ddlWorkPermitTitle.SelectedValue.ToString());
+                //int WP_ConfigID = Convert.ToInt32(ddlWorkPermitTitle.SelectedValue.ToString());
+                int WP_ConfigID = Convert.ToInt32(Convert.ToString(ddlWorkPermitTitle.SelectedValue));
                 string LoggedInUser = LoggedInUserID;
                 string strWpDate = txtWorkPermitDate.Text;
                 string strWpTpDate = txtWorkPermitToDate.Text;
@@ -1030,7 +1035,9 @@ namespace Upkeep_v3.WorkPermit
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("");
-                    lbTable.Text = sb.ToString();
+                    //lbTable.Text = sb.ToString();
+
+                    lbTable.Text = Convert.ToString(sb);
                 }
 
                 // GenerateTableHeader(ConfigTitleID);
@@ -1092,15 +1099,23 @@ namespace Upkeep_v3.WorkPermit
                         ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         setWorkPermitData();
 
-                        txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
-                        txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
+                        //txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
+                        txtWorkPermitDate.Text = Convert.ToString(dsData.Tables[0].Rows[0]["Wp_Date"]);
+
+                        //txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
+                        txtWorkPermitToDate.Text = Convert.ToString(dsData.Tables[0].Rows[0]["Wp_To_Date"]);
+
 
                         lblTicketNo.Visible = true;
                         lblTicket.Visible = true;
-                        lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+                        //lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+                        lblTicket.Text = Convert.ToString(dsData.Tables[0].Rows[0]["TicketNo"]);
+
+
                         divStatus.Visible = true;
 
-                        switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        //switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        switch (Convert.ToString(dsData.Tables[0].Rows[0]["WP_Status"]))
                         {
                             case "Close":
                                 lblRequestStatus.Text = "Closed";
@@ -1151,6 +1166,8 @@ namespace Upkeep_v3.WorkPermit
                                             for (int j = 0; j < dta.Rows.Count; j++)
                                             {
                                                 string vals = divCheckBoxIDI.Items[i].Value;
+
+                                                //if (vals == dta.Rows[j]["Header_Data"].ToString())
                                                 if (vals == dta.Rows[j]["Header_Data"].ToString())
                                                 {
                                                     divCheckBoxIDI.Items[i].Selected = true;

@@ -222,7 +222,7 @@ namespace Upkeep_BusinessLayer
 
         //Method for Invoices Management in Control Center
 
-        public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_CSGT, string Invoice_SGST, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action, string strConn)
+        public DataSet Invoices_CRUD(int Invoice_ID, string Invoice_No, string Invoice_Desc, string Invoice_Amount, string Invoice_GST, string GST_Type, string Invoice_Date, string Status, string Transaction_Details, int Company_ID, string Company_Desc, string Payment_Mode, string Nature_of_Invoice, string Billing_Name, string Due_date, string GSTIN, string Invoice_File_Path, string LoggedInUserID, string Action, string strConn)
         {
             DataSet ds = new DataSet();
             try
@@ -236,8 +236,8 @@ namespace Upkeep_BusinessLayer
                 cmd.Parameters.AddWithValue("@Invoice_No", Invoice_No);
                 cmd.Parameters.AddWithValue("@Invoice_Desc", Invoice_Desc);
                 cmd.Parameters.AddWithValue("@Invoice_Amount", Invoice_Amount);
-                cmd.Parameters.AddWithValue("@Invoice_CSGT", Invoice_CSGT);
-                cmd.Parameters.AddWithValue("@Invoice_SGST", Invoice_SGST);
+                cmd.Parameters.AddWithValue("@Invoice_GST", Invoice_GST);
+                cmd.Parameters.AddWithValue("@GST_Type", GST_Type);
                 cmd.Parameters.AddWithValue("@Invoice_Date", Invoice_Date);
                 cmd.Parameters.AddWithValue("@Status", Status);
                 cmd.Parameters.AddWithValue("@Transaction_Details", Transaction_Details);

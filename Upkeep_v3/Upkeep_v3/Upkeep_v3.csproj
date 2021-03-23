@@ -1004,6 +1004,7 @@
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
+    <Content Include="Dashboard_v2.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -4405,6 +4406,13 @@
     </Compile>
     <Compile Include="Dashboard1.aspx.designer.cs">
       <DependentUpon>Dashboard1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_v2.aspx.cs">
+      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_v2.aspx.designer.cs">
+      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
       <DependentUpon>Electricity_Categories.aspx</DependentUpon>

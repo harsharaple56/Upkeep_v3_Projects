@@ -45,8 +45,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Invoice_No" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Invoice_Desc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Invoice_Amount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Invoice_CSGT" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Invoice_SGST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_GST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GST_Type" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Invoice_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Transaction_Details" type="s:string" />
