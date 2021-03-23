@@ -44,9 +44,13 @@ namespace Upkeep_v3_Control_Center.Invoices
 
                 if (Invoice_ID_Update > 0)
                 {
-                    Session["Invoice_ID_Update"] = Convert.ToString(Invoice_ID_Update);
+                    Session["InvoiceID"] = Convert.ToString(Invoice_ID_Update);
                     //bindInvoice_Master(InvoiceID);
                     bind_Invoice_Details(Invoice_ID_Update);
+                }
+                else
+                {
+                    dvStatus.Attributes.Add("style", "display:none;");
                 }
                 if (Invoice_ID_Delete > 0)
                 {
@@ -95,7 +99,8 @@ namespace Upkeep_v3_Control_Center.Invoices
                 string Billing_Name = string.Empty;
                 string ConString = string.Empty;
                 string Invoice_Date = string.Empty;
-
+                string strStatus = string.Empty;
+                string Transaction_Details = string.Empty;
 
                 Invoice_No = txt_Invoice_No.Text.Trim();
                 Invoice_Desc = txt_Invoice_Desc.Text.Trim();
@@ -112,6 +117,8 @@ namespace Upkeep_v3_Control_Center.Invoices
                 Due_Date = txt_Invoice_Due_Date.Text.Trim();
                 Invoice_Date = txt_Invoice_Date.Text.Trim();
 
+                strStatus = Convert.ToString(ddlStatus.SelectedValue);
+                Transaction_Details = Convert.ToString(txtTransaction_Details.Text.Trim());
 
                 string Invoice_FilePath = string.Empty;
                 string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
@@ -149,7 +156,7 @@ namespace Upkeep_v3_Control_Center.Invoices
 
                 //ConString = "";
 
-                ds = objUpkeepCC.Invoices_CRUD(0, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_GST, GST_Type, Invoice_Date,"Pending", "", Company_ID,"","", Nature_of_Invoice, Billing_Name,Due_Date, GSTIN, Invoice_FilePath, LoggedInUserID, Action);
+                ds = objUpkeepCC.Invoices_CRUD(InvoiceID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_GST, GST_Type, Invoice_Date, strStatus, Transaction_Details, Company_ID,"","", Nature_of_Invoice, Billing_Name,Due_Date, GSTIN, Invoice_FilePath, LoggedInUserID, Action);
 
 
                 Session["InvoiceID"] = "";
@@ -270,19 +277,20 @@ namespace Upkeep_v3_Control_Center.Invoices
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        //txt_Invoice_No = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_No"]);
-                        //txt_Invoice_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Desc"]);
-                        //txt_Invoice_Date = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Date"]);
-                        //txt_Invoice_Due_Date = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Due_Date"]);
-                        //txt_Invoice_Amount = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Amount"]);
-                        //lbl_Invoice_GST = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_GST"]);
-                        //ddl_GST_Type = Convert.ToString(ds.Tables[0].Rows[0]["GST_Type"]);
-                        //ddl_Nature_of_Invoice = Convert.ToString(ds.Tables[0].Rows[0]["Nature_of_Invoice"]);
-                        //ddl_Company_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Company_Desc"]);
-                        //txt_Billing_Name = Convert.ToString(ds.Tables[0].Rows[0]["Billing_Name"]);
-                        //Txt_GSTIN = Convert.ToString(ds.Tables[0].Rows[0]["GSTIN"]);
-                        
-                        
+                        txt_Invoice_No.Text = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_No"]);
+                        txt_Invoice_Desc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Desc"]);
+                        txt_Invoice_Date.Text = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Date"]);
+                        txt_Invoice_Due_Date.Text = Convert.ToString(ds.Tables[0].Rows[0]["Due_Date"]);
+                        txt_Invoice_Amount.Text = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_Amount"]);
+                        lbl_Invoice_GST.Text = Convert.ToString(ds.Tables[0].Rows[0]["Invoice_GST"]);
+                        ddl_GST_Type.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["GST_Type"]);
+                        ddl_Nature_of_Invoice.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Nature_of_Invoice"]);
+                        ddl_Company_Desc.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Company_ID"]);
+                        txt_Billing_Name.Text = Convert.ToString(ds.Tables[0].Rows[0]["Billing_Name"]);
+                        Txt_GSTIN.Text = Convert.ToString(ds.Tables[0].Rows[0]["GSTIN"]);
+
+                        ddlStatus.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Status"]);
+                        txtTransaction_Details.Text = Convert.ToString(ds.Tables[0].Rows[0]["Transaction_Details"]);
                     }
                 }
             }
