@@ -501,7 +501,8 @@
                 //Bind WP Headers with answesrs
                 var headers = $('#hdnWPHeaders').val();
                 var arrHeaders = headers.split("~");
-                //alert(arrTerms);
+                //alert(arrHeaders);
+                //debugger;
                 for (var i = 0; i < arrHeaders.length; i++) {
                     //$("#divSectionAdd").click();
                     //alert(arrTerms[i]);   
@@ -517,6 +518,13 @@
                     //alert(arrHeaderData[4]);
                     //alert(section.children().find("#ddlAns").val());  $('.lblAnswerCnt').hide();
                     //alert(header.children().find("select").val());
+
+                    var IsMandatory = arrHeaderData[3];
+                    if (IsMandatory == "*") {
+                        header.children().find(".clsMandatory input").prop('checked', true);
+                        //header.children().find(".clsMandatory").find("input[type='checkbox']").prop('checked', true);
+                    }
+
                     header.children().find("select").val(arrHeaderData[4]);
                     //header.children().find("select").selectpicker('refresh');
                     header.children().find(".hdnRepeaterAnswer").val(arrHeaderData[5]);
@@ -830,7 +838,7 @@
                                                                                 <div class="col-md-2">
                                                                                     <div class="m-form__group">
                                                                                         <div class="m-form__control ">
-                                                                                            <asp:CheckBox ID="ChkMandatory" runat="server" ClientIDMode="Static" Text="Mandatory" />
+                                                                                            <asp:CheckBox ID="ChkMandatory" runat="server" ClientIDMode="Static" class="clsMandatory" Text="Mandatory" />
                                                                                             <%--<label for="ChkMandatory" class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>--%>
                                                                                         </div>
                                                                                     </div>

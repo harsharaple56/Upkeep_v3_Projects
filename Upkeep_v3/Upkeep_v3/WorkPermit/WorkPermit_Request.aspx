@@ -423,7 +423,7 @@
                                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                                     <div class="col-xl-3 col-lg-3">
                                                         <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("WP_Header_ID") %>' />
-                                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("WP_Header_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp;  <%#Eval("Header_Name") %>  :</label>
+                                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("WP_Header_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;  <%#Eval("Header_Name") %>  :</label>
                                                         <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
 
                                                         <asp:Label ID="lblIsMandatory" Text="*" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold; display: none;"></asp:Label>
