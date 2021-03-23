@@ -176,7 +176,7 @@
                                                     <div class="col-xl-4 col-lg-4">
                                                         <div class="input-group date">
                                                             <asp:TextBox ID="txt_Invoice_Date" runat="server" ClientIDMode="Static" autocomplete="off" class="form-control m-input datetimepicker m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm btn-secondary m-btn m-btn--label-primary"
-                                                                OnTextChanged="Invoice_Date_TextChanged" AutoPostBack="true" placeholder="Select Invoice Date"></asp:TextBox>
+                                                                OnTextChanged="Invoice_Date_TextChanged" AutoPostBack="false" placeholder="Select Invoice Date"></asp:TextBox>
 
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">
@@ -191,7 +191,7 @@
                                                     <div class="col-xl-4 col-lg-4">
                                                         <div class="input-group date">
                                                             <asp:TextBox ID="txt_Invoice_Due_Date" runat="server" ClientIDMode="Static" autocomplete="off" class="form-control m-input datetimepicker m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm btn-secondary m-btn m-btn--label-primary"
-                                                                OnTextChanged="Invoice_Due_Date_TextChanged" AutoPostBack="true" placeholder="Select Invoice Due Date"></asp:TextBox>
+                                                                OnTextChanged="Invoice_Due_Date_TextChanged" AutoPostBack="false" placeholder="Select Invoice Due Date"></asp:TextBox>
 
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">
@@ -255,16 +255,13 @@
                                                             ErrorMessage="Please select Company" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
 
-                                                    
-
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Billing Name</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Billing Name:</label>
                                                     <div class="col-xl-4 col-lg-4">
                                                         <asp:TextBox ID="txt_Billing_Name" runat="server" class="form-control m-input" placeholder="Enter Company Billing Name"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="rfv_Billing_Name" runat="server" ControlToValidate="txt_Billing_Name" Display="Dynamic"
                                                             ErrorMessage="Enter Billing Name" ForeColor="Red"></asp:RequiredFieldValidator>
                                                     </div>
 
-                                                    
                                                 </div>
                                                 
                                                 <div class="form-group m-form__group row">
@@ -276,12 +273,36 @@
                                                     </div>
 
                                                     
-                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Upload Invoice</label>
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Upload Invoice:</label>
                                                     <div class="col-xl-4 col-lg-4">
                                                         <asp:FileUpload ID="fileUpload_Invoice" runat="server" />
                                                     </div>
                                                     
                                                 </div>
+
+                                                <div class="form-group m-form__group row" id="dvStatus" runat="server">
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Status:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:DropDownList ID="ddlStatus" class="form-control m_selectpicker" runat="server">
+                                                            <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
+                                                            <asp:ListItem Text="Cleared" Value="Cleared"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                       
+                                                    </div>
+
+                                                    <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Transaction Details:</label>
+                                                    <div class="col-xl-4 col-lg-4">
+                                                        <asp:TextBox ID="txtTransaction_Details" runat="server" class="form-control m-input" placeholder="Enter Transaction Details"></asp:TextBox>
+                                                      <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_Billing_Name" Display="Dynamic"
+                                                            ErrorMessage="Enter Billing Name" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                                    </div>
+
+                                                </div>
+
+
+
+
+
                                                 <div class="form-group m-form__group row">
                                                 <div class="col-xl-9 col-lg-9">
                                                     <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>

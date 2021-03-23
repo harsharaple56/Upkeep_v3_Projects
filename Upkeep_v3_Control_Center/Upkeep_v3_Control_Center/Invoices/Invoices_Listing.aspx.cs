@@ -28,7 +28,7 @@ namespace Upkeep_v3_Control_Center.Invoices
             }
             if (!IsPostBack)
             {
-                bindGrid_Invoices();
+                //bindGrid_Invoices();
             }
         }
 
