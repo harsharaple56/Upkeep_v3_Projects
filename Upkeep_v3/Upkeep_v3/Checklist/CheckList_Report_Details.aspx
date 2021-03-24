@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="CheckList_Report_Details.aspx.cs" Inherits="Upkeep_v3.CheckList.CheckList_Report_Details" %>
 
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,10 +45,10 @@
                                             <span>Back</span>
                                         </span>
                                     </a>--%>
-                                    <%--<div class="btn-group">
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" Text="Save" Style="display: none" />
+                                    <div class="btn-group">
+                                        <asp:Button ID="btnExportPDF" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Export to PDF" OnClick="btnExportPDF_Click" />
                                        
-                                    </div>--%>
+                                    </div>
                                 </div>
 
                             </div>
@@ -54,7 +56,7 @@
 
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
-                            <div class="m-portlet__body border-bottom border-primary" style="padding: 0.3rem 2.2rem;">
+                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Checklist Details </label>
                                 </div>
@@ -92,7 +94,7 @@
                                             </div>
                                         </div>--%>
 
-                                        <div class="col-md-8 border-left border-primary" style="padding-left: 1%; margin-bottom: 0;">
+                                        <div class="col-md-8" style="padding-left: 1%; margin-bottom: 0;">
                                             <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
 
                                                 <div class="col-md-6" style="padding-left: 1%; margin-bottom: 0;">
@@ -153,6 +155,15 @@
                                                             <asp:Label ID="lblTotalScore" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-form-label font-weight-bold">Progress : </label>
+                                                        <br />
+                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
+                                                            <asp:Label ID="lblProgress" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
@@ -165,7 +176,7 @@
                             <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound">
                                 <ItemTemplate>
 
-                                    <div class="m-portlet__body border-bottom border-primary" style="padding: 0.3rem 2.2rem;">
+                                    <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
                                             <%--SECTION NAME --%>
@@ -253,5 +264,9 @@
             </div>
         </div>
     </div>
+
+      <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" BorderWidth="0px" Visible="false" ShowFindControls="False" Height="100%" ShowBackButton="True"
+                        ProcessingMode="Remote" ShowPromptAreaButton="False">
+        </rsweb:ReportViewer>
 
 </asp:Content>

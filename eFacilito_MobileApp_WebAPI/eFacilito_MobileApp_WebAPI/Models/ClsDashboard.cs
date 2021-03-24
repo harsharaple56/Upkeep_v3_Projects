@@ -73,4 +73,45 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Reporting_Manager { get; set; }
         public string ProfilePhoto { get; set; }
     }
+
+    public class ClsManagerDashboard
+    {
+        public int Ticket_Open { get; set; }
+        public int Ticket_Assigned { get; set; }
+        public int Ticket_Accepted { get; set; }
+        public int Ticket_InProgress { get; set; }
+        public int Ticket_Parked { get; set; }
+        public int Ticket_Expired { get; set; }
+        public int Ticket_Close { get; set; }
+        public int Ticket_Total { get; set; }
+        public decimal Ticket_Open_Percentage { get; set; }
+        public int Checklist_Open { get; set; }
+        public int Checklist_Configured { get; set; }
+        public int Checklist_Assigned { get; set; }
+        public int Checklist_Pending { get; set; }
+        public int Checklist_Close { get; set; }
+        public int Checklist_Total { get; set; }
+        public decimal Checklist_Open_Percentage { get; set; }
+        public int Workpermit_Open { get; set; }
+        public int Workpermit_InProgress { get; set; }
+        public int Workpermit_Hold { get; set; }
+        public int Workpermit_Approved { get; set; }
+        public int Workpermit_Rejected { get; set; }
+        public int Workpermit_Expired { get; set; }
+        public int Workpermit_PendingApproval { get; set; }
+        public int Workpermit_Total { get; set; }
+        public decimal Workpermit_Open_Percentage { get; set; }
+        public int Gatepass_Open { get; set; }
+        public int Gatepass_InProgress { get; set; }
+        public int Gatepass_Hold { get; set; }
+        public int Gatepass_Approved { get; set; }
+        public int Gatepass_Rejected { get; set; }
+        public int Gatepass_Expired { get; set; }
+        public int Gatepass_PendingApproval { get; set; }
+        public int Gatepass_Closed { get; set; }
+        public int Gatepass_Total { get; set; }
+        public decimal Gatepass_Open_Percentage { get; set; }
+    }
+
+
 }

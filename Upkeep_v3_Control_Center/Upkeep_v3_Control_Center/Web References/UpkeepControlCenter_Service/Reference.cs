@@ -24,7 +24,7 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="UpkeepControlCenter_ServiceSoap", Namespace="http://tempuri.org/")]
@@ -34,7 +34,13 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback GroupMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Invoices_CRUDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CC_DashboardOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_GroupDescOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_CompanyDescOperationCompleted;
         
         private System.Threading.SendOrPostCallback CompanyMaster_CRUDOperationCompleted;
         
@@ -101,7 +107,16 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         public event GroupMaster_CRUDCompletedEventHandler GroupMaster_CRUDCompleted;
         
         /// <remarks/>
+        public event Invoices_CRUDCompletedEventHandler Invoices_CRUDCompleted;
+        
+        /// <remarks/>
+        public event CC_DashboardCompletedEventHandler CC_DashboardCompleted;
+        
+        /// <remarks/>
         public event Fetch_GroupDescCompletedEventHandler Fetch_GroupDescCompleted;
+        
+        /// <remarks/>
+        public event Fetch_CompanyDescCompletedEventHandler Fetch_CompanyDescCompleted;
         
         /// <remarks/>
         public event CompanyMaster_CRUDCompletedEventHandler CompanyMaster_CRUDCompleted;
@@ -200,6 +215,156 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Invoices_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Invoices_CRUD(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_GST, 
+                    string GST_Type, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action) {
+            object[] results = this.Invoke("Invoices_CRUD", new object[] {
+                        Invoice_ID,
+                        Invoice_No,
+                        Invoice_Desc,
+                        Invoice_Amount,
+                        Invoice_GST,
+                        GST_Type,
+                        Invoice_Date,
+                        Status,
+                        Transaction_Details,
+                        Company_ID,
+                        Company_Desc,
+                        Payment_Mode,
+                        Nature_of_Invoice,
+                        Billing_Name,
+                        Due_date,
+                        GSTIN,
+                        Invoice_File_Path,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Invoices_CRUDAsync(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_GST, 
+                    string GST_Type, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action) {
+            this.Invoices_CRUDAsync(Invoice_ID, Invoice_No, Invoice_Desc, Invoice_Amount, Invoice_GST, GST_Type, Invoice_Date, Status, Transaction_Details, Company_ID, Company_Desc, Payment_Mode, Nature_of_Invoice, Billing_Name, Due_date, GSTIN, Invoice_File_Path, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void Invoices_CRUDAsync(
+                    int Invoice_ID, 
+                    string Invoice_No, 
+                    string Invoice_Desc, 
+                    string Invoice_Amount, 
+                    string Invoice_GST, 
+                    string GST_Type, 
+                    string Invoice_Date, 
+                    string Status, 
+                    string Transaction_Details, 
+                    int Company_ID, 
+                    string Company_Desc, 
+                    string Payment_Mode, 
+                    string Nature_of_Invoice, 
+                    string Billing_Name, 
+                    string Due_date, 
+                    string GSTIN, 
+                    string Invoice_File_Path, 
+                    string LoggedInUserID, 
+                    string Action, 
+                    object userState) {
+            if ((this.Invoices_CRUDOperationCompleted == null)) {
+                this.Invoices_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInvoices_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("Invoices_CRUD", new object[] {
+                        Invoice_ID,
+                        Invoice_No,
+                        Invoice_Desc,
+                        Invoice_Amount,
+                        Invoice_GST,
+                        GST_Type,
+                        Invoice_Date,
+                        Status,
+                        Transaction_Details,
+                        Company_ID,
+                        Company_Desc,
+                        Payment_Mode,
+                        Nature_of_Invoice,
+                        Billing_Name,
+                        Due_date,
+                        GSTIN,
+                        Invoice_File_Path,
+                        LoggedInUserID,
+                        Action}, this.Invoices_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnInvoices_CRUDOperationCompleted(object arg) {
+            if ((this.Invoices_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Invoices_CRUDCompleted(this, new Invoices_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CC_Dashboard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CC_Dashboard() {
+            object[] results = this.Invoke("CC_Dashboard", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CC_DashboardAsync() {
+            this.CC_DashboardAsync(null);
+        }
+        
+        /// <remarks/>
+        public void CC_DashboardAsync(object userState) {
+            if ((this.CC_DashboardOperationCompleted == null)) {
+                this.CC_DashboardOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCC_DashboardOperationCompleted);
+            }
+            this.InvokeAsync("CC_Dashboard", new object[0], this.CC_DashboardOperationCompleted, userState);
+        }
+        
+        private void OnCC_DashboardOperationCompleted(object arg) {
+            if ((this.CC_DashboardCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CC_DashboardCompleted(this, new CC_DashboardCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_GroupDesc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Fetch_GroupDesc() {
             object[] results = this.Invoke("Fetch_GroupDesc", new object[0]);
@@ -223,6 +388,33 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.Fetch_GroupDescCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_GroupDescCompleted(this, new Fetch_GroupDescCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CompanyDesc", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CompanyDesc() {
+            object[] results = this.Invoke("Fetch_CompanyDesc", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyDescAsync() {
+            this.Fetch_CompanyDescAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CompanyDescAsync(object userState) {
+            if ((this.Fetch_CompanyDescOperationCompleted == null)) {
+                this.Fetch_CompanyDescOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CompanyDescOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_CompanyDesc", new object[0], this.Fetch_CompanyDescOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CompanyDescOperationCompleted(object arg) {
+            if ((this.Fetch_CompanyDescCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CompanyDescCompleted(this, new Fetch_CompanyDescCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -705,11 +897,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -731,11 +923,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void GroupMaster_CRUDCompletedEventHandler(object sender, GroupMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GroupMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -757,11 +949,63 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Invoices_CRUDCompletedEventHandler(object sender, Invoices_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Invoices_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Invoices_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CC_DashboardCompletedEventHandler(object sender, CC_DashboardCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CC_DashboardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CC_DashboardCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_GroupDescCompletedEventHandler(object sender, Fetch_GroupDescCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_GroupDescCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -783,11 +1027,37 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_CompanyDescCompletedEventHandler(object sender, Fetch_CompanyDescCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CompanyDescCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CompanyDescCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void CompanyMaster_CRUDCompletedEventHandler(object sender, CompanyMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CompanyMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -809,11 +1079,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void PopulateLicenseMastersCompletedEventHandler(object sender, PopulateLicenseMastersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PopulateLicenseMastersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -835,11 +1105,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void FetchLicenseExpiryDateCompletedEventHandler(object sender, FetchLicenseExpiryDateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FetchLicenseExpiryDateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -861,11 +1131,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void License_CRUDCompletedEventHandler(object sender, License_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class License_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -887,11 +1157,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void LoginUserCompletedEventHandler(object sender, LoginUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -913,11 +1183,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void AdminLogin_MasterCompletedEventHandler(object sender, AdminLogin_MasterCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AdminLogin_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -939,11 +1209,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ValidateCompanyCompletedEventHandler(object sender, ValidateCompanyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidateCompanyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -965,11 +1235,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void UpdatedsLicenseActionCompletedEventHandler(object sender, UpdatedsLicenseActionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdatedsLicenseActionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -991,11 +1261,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Subscription_Package_CRUDCompletedEventHandler(object sender, Subscription_Package_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Subscription_Package_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1017,11 +1287,11 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_SMS_Config_DetailsCompletedEventHandler(object sender, Fetch_SMS_Config_DetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_SMS_Config_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

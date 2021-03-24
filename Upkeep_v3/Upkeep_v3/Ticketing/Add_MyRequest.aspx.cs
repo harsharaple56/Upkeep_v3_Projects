@@ -40,6 +40,7 @@ namespace Upkeep_v3.Ticketing
 
                 if (Convert.ToString(Session["UserType"]) == "R")
                 {
+                    hdnIs_Retailer.Value = "1";
                     dvEmployeeLocation.Attributes.Add("style", "display:none");
                     dvRetailerLocation.Attributes.Add("style", "display:block");
                     if (Convert.ToString(Session["Retailer_Location"]) != "")
@@ -47,15 +48,22 @@ namespace Upkeep_v3.Ticketing
                         ddlLocation.SelectedValue = Convert.ToString(Session["Retailer_Location"]);
                         ddlLocation.Enabled = false;
                     }
+                    else
+                    {
+                        ddlLocation.Enabled = false;
+                        lblRetailerLocError.Text = "No Location is mapped for your store. Please contact your property Admin";
+                    }
                 }
                 else
                 {
+                    hdnIs_Retailer.Value = "0";
                     dvEmployeeLocation.Attributes.Add("style", "display:block");
                     dvRetailerLocation.Attributes.Add("style", "display:none");
                 }
 
                 Fetch_CategorySubCategory(0);
                 Fetch_System_settings();
+                Fetch_Custom_Fields();
             }
         }
 
@@ -165,6 +173,9 @@ namespace Upkeep_v3.Ticketing
                     //ddlCategory.DataValueField = "Category_ID";
                     //ddlCategory.DataBind();
                     //ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    //dlCategory.InnerHtml = "";
+                    //dlCategory.DataBind();
 
                     var builder = new System.Text.StringBuilder();
 
@@ -287,13 +298,22 @@ namespace Upkeep_v3.Ticketing
                 TicketPrefix = Convert.ToString(ConfigurationManager.AppSettings["TicketPrefix"]);
                 //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
                 //LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
-
-                LocationID = Convert.ToInt32(hdnassetLocation.Value);
-
+                if (Convert.ToString(Session["UserType"]) == "R")
+                {
+                    LocationID = Convert.ToInt32(ddlLocation.SelectedValue);
+                }
+                else
+                {
+                    LocationID = Convert.ToInt32(hdnassetLocation.Value);
+                }
                 //SubLocationID = Convert.ToInt32(ddlSublocation.SelectedValue);
                 //CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
                 CategoryID = Convert.ToInt32(hdnCategory.Value);
-                SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                if (Convert.ToString(hdnSubCategory.Value) != "")
+                {
+                    SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                }
+
                 TicketMessage = txtTicketDesc.Text.Trim();
 
                 string fileName = string.Empty;
@@ -322,7 +342,7 @@ namespace Upkeep_v3.Ticketing
                         //IsExeFile(Server.MapPath(FileUpload_TicketImage.FileName));
 
                         string filetype = Path.GetExtension(postfiles.FileName);
-                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".jpeg" || filetype.ToLower() == ".png")
                         {
                             Lst_ValidImage.Add(1);
                         }
@@ -337,7 +357,7 @@ namespace Upkeep_v3.Ticketing
                         //{
 
                         string filetype = Path.GetExtension(postfiles.FileName);
-                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".jpeg" || filetype.ToLower() == ".png")
                         {
                             try
                             {
@@ -420,7 +440,29 @@ namespace Upkeep_v3.Ticketing
                     //string body = "Welcome to ASPSnippets.com";
                     //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
 
-                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, LoggedInUserID, "C");
+                    //RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
+                    StringBuilder strXmlCustomFields = new StringBuilder();
+                    string CustomFields_XML = string.Empty;
+
+                    if (Convert.ToString(Session["CustomeFields"]) == "True")
+                    {
+                        strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
+                        strXmlCustomFields.Append(@"<CustomFields>");
+
+                        foreach (RepeaterItem item in rptCustomFields.Items)
+                        {
+                            string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
+                            string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
+
+                            strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
+                            strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                        }
+                        strXmlCustomFields.Append(@"</CustomFields>");
+                    }
+
+                    CustomFields_XML = strXmlCustomFields.ToString();
+
+                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, "C");
                     //mpeTicketSaveSuccess.Show();
 
                     if (dsTicketSave.Tables.Count > 0)
@@ -451,7 +493,7 @@ namespace Upkeep_v3.Ticketing
 
                                 //Category = Convert.ToString(ddlCategory.SelectedItem.Text);
                                 Category = Convert.ToString(hdnCategory.Value);
-                                
+
                                 Location = Convert.ToString(ddlLocation.SelectedItem.Text);
                                 Department = Convert.ToString(Session["Department"]);
 
@@ -846,5 +888,30 @@ namespace Upkeep_v3.Ticketing
 
             dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
         }
+
+        public void Fetch_Custom_Fields()
+        {
+            DataSet dsSetting = new DataSet();
+            try
+            {
+                dsSetting = ObjUpkeep.Fetch_Custom_Fields(CompanyID);
+                if (dsSetting.Tables.Count > 0)
+                {
+                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    {
+                        Session["CustomeFields"] = "True";
+                        rptCustomFields.DataSource = dsSetting.Tables[0];
+                        rptCustomFields.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
 }

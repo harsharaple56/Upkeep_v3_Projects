@@ -389,7 +389,7 @@
                                                         <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
                                                             ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
                                                         <span id="ImageUpload_Msg" style="color: red;"></span>
-                                                        <asp:HiddenField ID="Is_ImageUpload_ValidFile" runat="server" ClientIDMode="Static" />
+                                                        <asp:HiddenField ID="Is_ImageUpload_ValidFile" runat="server" ClientIDMode="Static" Value="3" />
                                                     </div>
 
                                                 </div>

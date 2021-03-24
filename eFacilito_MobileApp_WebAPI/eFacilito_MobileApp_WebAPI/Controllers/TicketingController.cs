@@ -248,6 +248,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Accept_Ticket(int TicketID, string EmpCD, string RollCD)
         {
             //List<ClsMyActionableTicket> Objticket = new List<ClsMyActionableTicket>();
+            List<ClsTicketAccept> ObjAccept = new List<ClsTicketAccept>();
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
@@ -319,7 +320,18 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             }
                             else
                             {
-                                return Request.CreateResponse(HttpStatusCode.NotFound, "This ticket already accepted by other user");
+                                //ObjAccept = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                //             select new ClsTicketAccept
+                                //             {
+                                //                 Status = Convert.ToInt32(p.Field<Int32>("Status")),
+                                //                 AcceptMessage = p.Field<string>("AcceptedMsg")
+
+                                //             }).ToList();
+
+                                //return Request.CreateResponse(HttpStatusCode.OK, ObjAccept[0]);
+                                //return Request.CreateResponse(HttpStatusCode.NotFound, "This ticket already accepted by other user");
+
+                                return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
                             }
                         }
                         else
@@ -563,7 +575,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
             List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
             List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
-
+            List<ClsMyActionableShowAction> objTicketShowAction = new List<ClsMyActionableShowAction>();
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
 
@@ -604,8 +616,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Ticket_ActionStatus = p.Field<string>("Tkt_ActionStatus"),
                                               Ticket_Message = p.Field<string>("Tkt_Message"),
                                               Ticket_ImagePath = p.Field<string>("ImagePath"),
-                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level")),
-                                              ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
+                                              Level = Convert.ToString(p.Field<decimal>("Tkt_Level"))
+                                              //ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction"))
                                           }).ToList();
 
                             //return Request.CreateResponse(HttpStatusCode.OK, Objticket);
@@ -627,9 +639,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                }).ToList();
                         }
 
+                        if (DsDataSet.Tables[2].Rows.Count > 0)
+                        {
+                            objTicketShowAction = (from p in DsDataSet.Tables[2].AsEnumerable()
+                                                   select new ClsMyActionableShowAction
+                                                   {
+                                                       ShowAction = Convert.ToBoolean(p.Field<Int32>("ShowAction")),
+                                                       AcceptTicketMsg = Convert.ToString(p.Field<string>("AcceptTicketMsg"))
+                                                   }).ToList();
+                        }
+
 
                         ObjTicketDetailsMst.objTickets = objTickets;
                         ObjTicketDetailsMst.objTicketAction = objTicketAction;
+                        ObjTicketDetailsMst.objTicketShowAction = objTicketShowAction;
                         return Request.CreateResponse(HttpStatusCode.OK, ObjTicketDetailsMst);
                     }
                     else
@@ -1560,6 +1583,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                             Tkt_Is_Img_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Img_Close"]),
                                             Tkt_Is_Remark_Close = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Remark_Close"]),
                                             Tkt_Is_Expiry = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Tkt_Is_Expiry"]),
+                                            Chk_Is_QR_Compulsory = Convert.ToBoolean(DsDataSet.Tables[1].Rows[0]["Chk_Is_QR_Compulsory"]),
                                         });
                                     }
                                 }
@@ -1595,6 +1619,156 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             {
                 DsDataSet = null;
                 Objticket = null;
+            }
+
+        }
+
+        [Route("api/Ticketing/Fetch_Manager_Dashboard_Count")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Manager_Dashboard_Count(int CompanyID, int DepartmentID, string EmpCD, string RollCD, string FromDate, string ToDate)
+        {
+            List<ClsManagerDashboard> objDashboardCount = new List<ClsManagerDashboard>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@DepartmentID", DepartmentID);
+                ObjLocSqlParameter[2] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[3] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[4] = new SqlParameter("@FromDate", FromDate);
+                ObjLocSqlParameter[5] = new SqlParameter("@ToDate", ToDate);
+
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Manager_Dashboard_Count_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            objDashboardCount = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                                 select new ClsManagerDashboard
+                                                 {
+                                                     Ticket_Open = Convert.ToInt32(p.Field<int>("Ticket_Open")),
+                                                     Ticket_Assigned = Convert.ToInt32(p.Field<int>("Ticket_Assigned")),
+                                                     Ticket_Accepted = Convert.ToInt32(p.Field<int>("Ticket_Accepted")),
+                                                     Ticket_InProgress = Convert.ToInt32(p.Field<int>("Ticket_InProgress")),
+                                                     Ticket_Parked = Convert.ToInt32(p.Field<int>("Ticket_Parked")),
+                                                     Ticket_Expired = Convert.ToInt32(p.Field<int>("Ticket_Expired")),
+                                                     Ticket_Close = Convert.ToInt32(p.Field<int>("Ticket_Close")),
+                                                     Ticket_Total = Convert.ToInt32(p.Field<int>("Ticket_Total")),
+                                                     Ticket_Open_Percentage = Convert.ToDecimal(p.Field<decimal>("Ticket_Open_Percentage")),
+                                                     Checklist_Open = Convert.ToInt32(p.Field<int>("Checklist_Open")),
+                                                     Checklist_Configured = Convert.ToInt32(p.Field<int>("Checklist_Configured")),
+                                                     Checklist_Assigned = Convert.ToInt32(p.Field<int>("Checklist_Assigned")),
+                                                     Checklist_Pending = Convert.ToInt32(p.Field<int>("Checklist_Pending")),
+                                                     Checklist_Close = Convert.ToInt32(p.Field<int>("Checklist_Close")),
+                                                     Checklist_Total = Convert.ToInt32(p.Field<int>("Checklist_Total")),
+                                                     Checklist_Open_Percentage = Convert.ToDecimal(p.Field<decimal>("Checklist_Open_Percentage")),
+                                                     Workpermit_Open = Convert.ToInt32(p.Field<int>("Workpermit_Open")),
+                                                     Workpermit_InProgress = Convert.ToInt32(p.Field<int>("Workpermit_InProgress")),
+                                                     Workpermit_Hold = Convert.ToInt32(p.Field<int>("Workpermit_Hold")),
+                                                     Workpermit_Approved = Convert.ToInt32(p.Field<int>("Workpermit_Approved")),
+                                                     Workpermit_Rejected = Convert.ToInt32(p.Field<int>("Workpermit_Rejected")),
+                                                     Workpermit_Expired = Convert.ToInt32(p.Field<int>("Workpermit_Expired")),
+                                                     Workpermit_PendingApproval = Convert.ToInt32(p.Field<int>("Workpermit_PendingApproval")),
+                                                     Workpermit_Total = Convert.ToInt32(p.Field<int>("Workpermit_Total")),
+                                                     Workpermit_Open_Percentage = Convert.ToDecimal(p.Field<decimal>("Workpermit_Open_Percentage")),
+                                                     Gatepass_Open = Convert.ToInt32(p.Field<int>("Gatepass_Open")),
+                                                     Gatepass_InProgress = Convert.ToInt32(p.Field<int>("Gatepass_InProgress")),
+                                                     Gatepass_Hold = Convert.ToInt32(p.Field<int>("Gatepass_Hold")),
+                                                     Gatepass_Approved = Convert.ToInt32(p.Field<int>("Gatepass_Approved")),
+                                                     Gatepass_Rejected = Convert.ToInt32(p.Field<int>("Gatepass_Rejected")),
+                                                     Gatepass_Expired = Convert.ToInt32(p.Field<int>("Gatepass_Expired")),
+                                                     Gatepass_PendingApproval = Convert.ToInt32(p.Field<int>("Gatepass_PendingApproval")),
+                                                     Gatepass_Closed = Convert.ToInt32(p.Field<int>("Gatepass_Closed")),
+                                                     Gatepass_Total = Convert.ToInt32(p.Field<int>("Gatepass_Total")),
+                                                     Gatepass_Open_Percentage = Convert.ToDecimal(p.Field<decimal>("Gatepass_Open_Percentage"))
+
+                                                 }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, objDashboardCount);
+                        }
+
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                objDashboardCount = null;
+                //objTicketAction = null;
+            }
+
+        }
+
+        [Route("api/Ticketing/Fetch_ManagerDashboard_Department_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_ManagerDashboard_Department_List(string EmpCD, string RollCD)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_ManagerDashboard_Department_List", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //Objticket = null;
             }
 
         }

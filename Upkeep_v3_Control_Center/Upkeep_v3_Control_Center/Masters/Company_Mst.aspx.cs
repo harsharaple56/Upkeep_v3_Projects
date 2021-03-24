@@ -15,8 +15,10 @@ namespace Upkeep_v3_Control_Center.Masters
 {
     public partial class Company_Mst : System.Web.UI.Page
     {
+
         UpkeepControlCenter_Service.UpkeepControlCenter_Service objUpkeepCC = new UpkeepControlCenter_Service.UpkeepControlCenter_Service();
         string LoggedInUserID = string.Empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);

@@ -95,7 +95,7 @@
             width: 100%;
             height: 100%;
             position: fixed;
-            z-index: 9999;
+            z-index: 99999999;
             background: url("../assets/app/media/img/misc/load.gif") no-repeat center center rgba(0,0,0,0.25)
         }
     </style>
@@ -563,11 +563,35 @@
                                                                 </a>
                                                             </li>
                                                             <li class="m-nav__item">
+                                                                <a onserverclick="lnkUserManual_Click" runat="server" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-doc"></i>
+                                                                    <span class="m-nav__link-title">
+                                                                        <span class="m-nav__link-wrap">
+                                                                            <span class="m-nav__link-text">User Manual</span>
+                                                                            <%--<input type="button" id="btnsubmit" runat="server" class="m-nav__link-text" onserverclick="lnkProfile_Click" value="My Profile settings Ajay" />--%>
+                                                                            <span class="m-nav__link-badge"></span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a onserverclick="lnkManageAccount_Click" runat="server" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-squares-1"></i>
+                                                                    <span class="m-nav__link-title">
+                                                                        <span class="m-nav__link-wrap">
+                                                                            <span class="m-nav__link-text">Manage Account</span>
+                                                                            <%--<input type="button" id="btnsubmit" runat="server" class="m-nav__link-text" onserverclick="lnkProfile_Click" value="My Profile settings Ajay" />--%>
+                                                                            <span class="m-nav__link-badge"></span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
                                                                 <a href="header/profile.html" class="m-nav__link">
                                                                     <i class="m-nav__link-icon flaticon-share"></i>
                                                                     <span class="m-nav__link-text">Activity</span>
                                                                 </a>
-                                                            </li>
+                                                            </li>--%>
 
                                                             <li class="m-nav__separator m-nav__separator--fit"></li>
                                                             <li class="m-nav__item">

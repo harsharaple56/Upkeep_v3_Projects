@@ -82,6 +82,9 @@ namespace Upkeep_v3.WorkPermit
                     else
                         rdbRetailer.Checked = true;
 
+                    rdbEmployee.Enabled = false;
+                    rdbRetailer.Enabled = false;
+
                     ChkLinkDept.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["Link_Dept"]);
 
 
@@ -108,6 +111,9 @@ namespace Upkeep_v3.WorkPermit
                     var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("WP_Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace("<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
 
                     hdnWPTerms.Value = string.Join("~", TermsValues);
+
+                    chkShowApprovalMatrix_Initiator.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]);
+                    chkShowApprovalMatrix_Approver.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["ShowApprovalMatrix_Approvers"]);
 
                 }
 
@@ -156,13 +162,15 @@ namespace Upkeep_v3.WorkPermit
 
 
 
-                    foreach (string key in Request.Form.AllKeys)
-                    {
-                        if (key == "WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
-                        {
-                            WPHeaderMandatory = "1";
-                        }
-                    }
+                    //foreach (string key in Request.Form.AllKeys)
+                    //{
+                    //    //if (key == "WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
+                    //    //WorkPermitSection[0][WorkPermitHeader][0][ctl00$ContentPlaceHolder1$ChkMandatory][]
+                    //    if (key == "WorkPermitSection["+i+"][WorkPermitHeader][" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory][]")
+                    //    {
+                    //        WPHeaderMandatory = "1";
+                    //    }
+                    //}
 
                     //string[] WorkPermitType_Array = Request.Form.GetValues("WorkPermitType[" + i + "][ctl00$ContentPlaceHolder1$txtWorkPermitType]");
                     //if (WorkPermitType_Array != null)
@@ -187,7 +195,8 @@ namespace Upkeep_v3.WorkPermit
                         {
                             string[] WorkPermitHeaderArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$txtWorkPermitHeader]");
 
-                            string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory]");
+                            //string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkMandatory]");
+                            string[] WorkPermitHeader_MandatoryArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$ChkMandatory][]");
 
                             string[] WorkPermitHeaderIDArray = Request.Form.GetValues("WorkPermitSection[" + i + "][WorkPermitHeader][" + h + "][ctl00$ContentPlaceHolder1$hdnWorkPermitHeader]");
 
@@ -211,6 +220,21 @@ namespace Upkeep_v3.WorkPermit
                             if (WorkPermitHeader_AnsArray != null)
                             {
                                 WPHeaderAns = WorkPermitHeader_AnsArray[0];
+                            }
+                            if (WorkPermitHeader_MandatoryArray != null)
+                            {
+                                if (Convert.ToString(WorkPermitHeader_MandatoryArray[0]) == "on")
+                                {
+                                    WPHeaderMandatory = "1";
+                                }
+                                else
+                                {
+                                    WPHeaderMandatory = "0";
+                                }
+                            }
+                            else
+                            {
+                                WPHeaderMandatory = "0";
                             }
 
                             if (WorkPermitHeaderArray != null && WorkPermitHeader_AnsArray != null)
@@ -299,7 +323,11 @@ namespace Upkeep_v3.WorkPermit
                 bool LinkDepartment = false;
                 string strTransactionPrefix = string.Empty;
 
-                bool ShowApprovalMatrix = false;
+                bool ShowApprovalMatrix_Initiator = false;
+                bool ShowApprovalMatrix_Approver = false;
+
+                ShowApprovalMatrix_Initiator = chkShowApprovalMatrix_Initiator.Checked;
+                ShowApprovalMatrix_Approver = chkShowApprovalMatrix_Approver.Checked;
 
                 strConfigTitle = txtTitle.Text.Trim();
                 //CompanyID = Convert.ToInt32(ddlCompany.SelectedValue);
@@ -342,9 +370,9 @@ namespace Upkeep_v3.WorkPermit
                 CompanyID = Convert.ToInt32(Session["CompanyID"].ToString());
 
                 if (ViewState["ConfigID"].ToString() != "0")
-                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
                 else
-                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
 
                 if (dsWorkPermitConfig.Tables.Count > 0)
                 {

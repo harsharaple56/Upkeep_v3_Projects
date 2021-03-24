@@ -73,6 +73,7 @@ namespace Upkeep_v3_Control_Center
                 strClientID = txtClient_ID.Text.Trim();
                 Company_ID = Convert.ToInt32(ddlcompanyName.SelectedValue);
                 Subs_Pack_Id = Convert.ToInt32(ddlSubscription.SelectedValue);
+
                 strActivationDate = ActivationDate.Text.Trim();
 
                 DateTime Activationdt;
@@ -263,9 +264,13 @@ namespace Upkeep_v3_Control_Center
                         ddlSubscription.Attributes.Add("class", "form-control m-input disabled");
                         ddlSubscription.Attributes.Add("style", "pointer-events: none");
 
+
+
+
                         string Activation_Date = Convert.ToString(ds.Tables[0].Rows[0]["Activation_Date"]);
 
                         string Activation_Dt = Activation_Date.Substring(0, 10);
+
                         DateTime Activationdt;
 
                         if (DateTime.TryParseExact(Activation_Dt, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Activationdt))
@@ -278,6 +283,7 @@ namespace Upkeep_v3_Control_Center
 
                         string Expiry_Date = Convert.ToString(ds.Tables[0].Rows[0]["Expiry_Date"]);
                         string ExpiryDate = Expiry_Date.Substring(0, 10);
+
                         DateTime Expirydt;
 
                         if (DateTime.TryParseExact(ExpiryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out Expirydt))

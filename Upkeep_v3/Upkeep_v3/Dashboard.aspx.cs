@@ -36,6 +36,10 @@ namespace Upkeep_v3
                 //Fetch_Company();
                 hdn_IsPostBack.Value = "no";
                 BindDashboardCount();
+                if (Convert.ToString(Session["UserType"]) == "R")
+                {
+                    Fetch_Retailer_Latest_Punch();
+                }
             }
         }
 
@@ -271,7 +275,7 @@ namespace Upkeep_v3
         {
             List<object> chartData = new List<object>();
             string StrConn = string.Empty;
-            
+
             try
             {
 
@@ -463,7 +467,86 @@ namespace Upkeep_v3
 
         }
 
+        protected void Btn_Retailer_PunchIn_Click(object sender, EventArgs e)
+        {
+            string Punch_Type = "IN";
+            DataSet dspunch = new DataSet();
+            try
+            {
+                dspunch = ObjUpkeep.RetailerPunch_CR(LoggedInUserID, Punch_Type, CompanyID, "C");
 
+                if (dspunch.Tables.Count > 0)
+                {
+                    if (dspunch.Tables[0].Rows.Count > 0)
+                    {
+                        lblPunchInTime.Text = Convert.ToString(dspunch.Tables[0].Rows[0]["Punch_Datetime"]);
+                        btnPunchIn.Attributes.Add("style", "display:none;");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        protected void Btn_Retailer_PunchOut_Click(object sender, EventArgs e)
+        {
+            string Punch_Type = "OUT";
+            DataSet dspunch = new DataSet();
+
+            try
+            {
+                dspunch = ObjUpkeep.RetailerPunch_CR(LoggedInUserID, Punch_Type, CompanyID, "C");
+
+                if (dspunch.Tables.Count > 0)
+                {
+                    if (dspunch.Tables[0].Rows.Count > 0)
+                    {
+                        lblPunchOutTime.Text = Convert.ToString(dspunch.Tables[0].Rows[0]["Punch_Datetime"]);
+                        btnPunchOut.Attributes.Add("style", "display:none;");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Fetch_Retailer_Latest_Punch()
+        {
+
+            DataSet dspunch = new DataSet();
+
+            try
+            {
+                dspunch = ObjUpkeep.RetailerPunch_CR(LoggedInUserID, "", CompanyID, "R");
+
+                if (dspunch.Tables.Count > 0)
+                {
+                    if (dspunch.Tables[0].Rows.Count > 0)
+                    {
+                        lblPunchInTime.Text = Convert.ToString(dspunch.Tables[0].Rows[0]["PunchIn_Datetime"]);
+                        lblPunchOutTime.Text = Convert.ToString(dspunch.Tables[0].Rows[0]["PunchOut_Datetime"]);
+
+                        if (Convert.ToString(dspunch.Tables[0].Rows[0]["PunchIn_Datetime"]) != "")
+                        {
+                            btnPunchIn.Attributes.Add("style", "display:none;");
+                        }
+
+                        if (Convert.ToString(dspunch.Tables[0].Rows[0]["PunchOut_Datetime"]) != "")
+                        {
+                            btnPunchOut.Attributes.Add("style", "display:none;");
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

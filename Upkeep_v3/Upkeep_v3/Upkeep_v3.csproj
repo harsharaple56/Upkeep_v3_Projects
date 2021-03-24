@@ -61,6 +61,10 @@
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
@@ -327,6 +331,7 @@
     <Content Include="assets1\demo\default\custom\crud\metronic-datatable\scrolling\vertical.js" />
     <Content Include="assets1\demo\default\custom\crud\wizard\wizard.js" />
     <Content Include="assets1\demo\default\custom\header\actions.js" />
+    <Content Include="assets1\demo\default\media\img\logo\favicon-32x32.png" />
     <Content Include="assets1\demo\default\media\img\logo\favicon.ico" />
     <Content Include="assets1\demo\default\media\img\logo\favicon_old.ico" />
     <Content Include="assets1\demo\default\media\img\logo\logo.png" />
@@ -391,6 +396,7 @@
     <Content Include="assets\app\media\img\bg\bg-6.jpg" />
     <Content Include="assets\app\media\img\bg\bg-6.png" />
     <Content Include="assets\app\media\img\bg\bg-7.jpg" />
+    <Content Include="assets\app\media\img\bg\Feedback_Thankyou.gif" />
     <Content Include="assets\app\media\img\bg\coming-soon-9.gif" />
     <Content Include="assets\app\media\img\blog\blog1.jpg" />
     <Content Include="assets\app\media\img\blog\blog2.jpg" />
@@ -908,6 +914,7 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.min.js" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
+    <Content Include="Billing\Billing_Details.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
@@ -997,18 +1004,21 @@
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
+    <Content Include="Dashboard_v2.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
     <Content Include="Error_Pages\Error.html" />
     <Content Include="Feedback\AddEventQuestion.aspx" />
     <Content Include="Feedback\Customers.aspx" />
+    <Content Include="Feedback\Customer_Feedback.aspx" />
     <Content Include="Feedback\EditEvent.aspx" />
     <Content Include="Feedback\EventDetails.aspx" />
     <Content Include="Feedback\EventListing.aspx" />
     <Content Include="Feedback\EventQuestions.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
+    <Content Include="Feedback\ThankYou.aspx" />
     <Content Include="Forgot_Password.aspx" />
     <Content Include="GatePass\EditGP_Configuration.aspx" />
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
@@ -1070,10 +1080,10 @@
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
     <Content Include="Security\Role_Menu_Rights.aspx" />
-    <Content Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx" />
-    <Content Include="Store_Attendance\Store_Opening_Closing_Report.aspx" />
-    <Content Include="Store_Attendance\Store_Shifts_Listing.aspx" />
-    <Content Include="Store_Attendance\Store_Shift_Assign.aspx" />
+    <Content Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx" />
+    <Content Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx" />
+    <Content Include="Retailer_Attendance\Store_Shifts_Listing.aspx" />
+    <Content Include="Retailer_Attendance\Store_Shift_Assign.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
@@ -3969,20 +3979,25 @@
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="vendors\dropzone\dist\dropzone.js.map" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="obj\Debug\Tsc8ad6edcc.out" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
-    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
-    <None Include="Web References\CocktailWorld_Service\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <Content Include="CheckList\ChecklistReport.xsc">
+      <DependentUpon>ChecklistReport.xsd</DependentUpon>
+    </Content>
+    <Content Include="BlankMaster.Master" />
+    <None Include="CheckList\ChecklistReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChecklistReport.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="CheckList\ChecklistReport.xss">
+      <DependentUpon>ChecklistReport.xsd</DependentUpon>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
@@ -4072,6 +4087,20 @@
     <Compile Include="AssetManagement\Asset_Report.aspx.designer.cs">
       <DependentUpon>Asset_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.designer.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlankMaster.Master.cs">
+      <DependentUpon>BlankMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlankMaster.Master.designer.cs">
+      <DependentUpon>BlankMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="CheckList\Add_Checklist.aspx.cs">
       <DependentUpon>Add_Checklist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4085,6 +4114,11 @@
     </Compile>
     <Compile Include="CheckList\Checklist.aspx.designer.cs">
       <DependentUpon>Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\ChecklistReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Compile>
     <Compile Include="CheckList\Checklist_Action.aspx.cs">
       <DependentUpon>Checklist_Action.aspx</DependentUpon>
@@ -4373,6 +4407,13 @@
     <Compile Include="Dashboard1.aspx.designer.cs">
       <DependentUpon>Dashboard1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard_v2.aspx.cs">
+      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_v2.aspx.designer.cs">
+      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
       <DependentUpon>Electricity_Categories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4407,6 +4448,13 @@
     </Compile>
     <Compile Include="Feedback\Customers.aspx.designer.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback\Customer_Feedback.aspx.cs">
+      <DependentUpon>Customer_Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\Customer_Feedback.aspx.designer.cs">
+      <DependentUpon>Customer_Feedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="Feedback\EditEvent.aspx.cs">
       <DependentUpon>EditEvent.aspx</DependentUpon>
@@ -4449,6 +4497,13 @@
     </Compile>
     <Compile Include="Feedback\Feedback_Request.aspx.designer.cs">
       <DependentUpon>Feedback_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback\ThankYou.aspx.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\ThankYou.aspx.designer.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forgot_Password.aspx.cs">
       <DependentUpon>Forgot_Password.aspx</DependentUpon>
@@ -4841,32 +4896,32 @@
       <DependentUpon>Role_Menu_Rights.aspx</DependentUpon>
     </Compile>
     <Compile Include="SendSMS.cs" />
-    <Compile Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
+    <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\My_StoreOpeningClosing_Report.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.designer.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Opening_Closing_Report.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx.cs">
       <DependentUpon>Store_Opening_Closing_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Opening_Closing_Report.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx.designer.cs">
       <DependentUpon>Store_Opening_Closing_Report.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shifts_Listing.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Shifts_Listing.aspx.cs">
       <DependentUpon>Store_Shifts_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shifts_Listing.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Shifts_Listing.aspx.designer.cs">
       <DependentUpon>Store_Shifts_Listing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shift_Assign.aspx.cs">
+    <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Store_Attendance\Store_Shift_Assign.aspx.designer.cs">
+    <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.designer.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestMaster.Master.cs">
@@ -5029,11 +5084,6 @@
     </Compile>
     <Compile Include="VMS\VMSRequest_Listing.aspx.designer.cs">
       <DependentUpon>VMSRequest_Listing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\CocktailWorld_Service\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\Upkeep_V3_Services\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -5972,6 +6022,7 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
+    <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="UserImages\" />
@@ -5993,6 +6044,15 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Access.Dao">
       <Guid>{4AC9E1DA-5BAD-4AC7-86E3-24F4CDCECA28}</Guid>
       <VersionMajor>12</VersionMajor>
@@ -6002,19 +6062,26 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.MSProject">
+      <Guid>{A7107640-94DF-1068-855E-00DD01075445}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\CocktailWorld_Service\</RelPath>
-      <UpdateFromURL>http://localhost:60461/CocktailWorld_Service.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Upkeep_v3_CocktailWorld_Service_CocktailWorld_Service</CachedSettingsPropName>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="http://localhost:60461/Upkeep_V3_Services.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Upkeep_V3_Services\</RelPath>
@@ -6026,6 +6093,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

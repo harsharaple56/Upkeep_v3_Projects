@@ -1806,7 +1806,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                //ProPubStrProfilePhoto = p.Field<string>("Profile_Photo"),
                                                ProPubStrProfilePic = p.Field<string>("Profile_Photo"),
 
-                                               ProPubStrDepartmentID = p.Field<string>("Department_ID")
+                                               ProPubStrDepartmentID = p.Field<string>("Department_ID"),
+                                               Role_Name = p.Field<string>("Role_Name")
                                                //ProPubStrDeptID = Convert.ToInt32(p.Field<string>("Department_ID"))
                                                //ProPubStrPrtycd = p.Field<string>("Prtycd"),
                                                //ProPubStrGroupCompany = p.Field<string>("groupandcompany")
@@ -7526,7 +7527,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                  RequestDate = p.Field<string>("RequestDate"),
                                                  WP_Status = p.Field<string>("WP_Status"),
                                                  Created_By = p.Field<string>("Created_By"),
-                                                 Store = p.Field<string>("Store")
+                                                 Store = p.Field<string>("Store"),
+                                                 Is_Approved = Convert.ToBoolean(p.Field<Int32>("Is_Approved"))
                                              }).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
@@ -7561,6 +7563,92 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
+
+
+        // Function to Fetch All Status work permits.
+
+        [Route("api/UpKeep/Fetch_All_WorkPermit")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_All_WorkPermit(string EmpCD, string RollCD, string StartDate, string EndDate)
+        {
+            List<ClsAllWorkPermitRequestDetails> ObjWorkPermit = new List<ClsAllWorkPermitRequestDetails>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[4];
+                ObjLocSqlParameter[0] = new SqlParameter("@EmpCD", EmpCD);
+                ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+                ObjLocSqlParameter[2] = new SqlParameter("@StartDate", StartDate);
+                ObjLocSqlParameter[3] = new SqlParameter("@EndDate", EndDate);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Expired_WP_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjWorkPermit = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                             select new ClsAllWorkPermitRequestDetails
+                                             {
+                                                 WP_Trans_ID = Convert.ToString(p.Field<decimal>("WP_Trans_ID")),
+                                                 TicketNo = p.Field<string>("TicketNo"),
+                                                 Wp_Config_ID = Convert.ToString(p.Field<decimal>("Wp_Config_ID")),
+                                                 WP_Title = p.Field<string>("WP_Title"),
+                                                 DepartmentName = p.Field<string>("DepartmentName"),
+                                                 WorkPermitDate = p.Field<string>("WorkPermitDate"),
+                                                 RequestDate = p.Field<string>("RequestDate"),
+                                                 WP_Status = p.Field<string>("WP_Status"),
+                                                 Created_By = p.Field<string>("Created_By"),
+                                                 Store = p.Field<string>("Store"),
+                                                 Is_Approved = Convert.ToBoolean(p.Field<Int32>("Is_Approved"))
+                                             }).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjWorkPermit);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                ObjWorkPermit = null;
+            }
+
+        }
+
+
+
+
+
 
         [Route("api/UpKeep/Update_WorkPermit_Action")]
         [HttpPost]
@@ -7692,7 +7780,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                   Created_By = Convert.ToString(p.Field<string>("Created_By")),
                                                   Created_Date = Convert.ToString(p.Field<string>("Created_Date")),
                                                   Wp_date = Convert.ToString(p.Field<string>("Wp_date")),
-                                                  Wp_To_date = Convert.ToString(p.Field<string>("Wp_To_date"))
+                                                  Wp_To_date = Convert.ToString(p.Field<string>("Wp_To_date")),
+                                                  ShowApprovalMatrix_Initiators = Convert.ToBoolean(p.Field<bool>("ShowApprovalMatrix_Initiators")),
+                                                  ShowApprovalMatrix_Approvers = Convert.ToBoolean(p.Field<bool>("ShowApprovalMatrix_Approvers"))
                                               }).ToList();
 
                             ObjInitiator = (from p in DsDataSet.Tables[1].AsEnumerable()
@@ -7701,6 +7791,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                 UserType = Convert.ToString(p.Field<string>("UserType")),
                                                 Username = Convert.ToString(p.Field<string>("Username")),
                                                 Store_Name = Convert.ToString(p.Field<string>("Store_Name")),
+                                                EmpCD = Convert.ToString(p.Field<string>("Username")),
                                                 Name = Convert.ToString(p.Field<string>("Name")),
                                                 PhoneNo = Convert.ToString(p.Field<string>("PhoneNo")),
                                                 EmailID = Convert.ToString(p.Field<string>("EmailID")),

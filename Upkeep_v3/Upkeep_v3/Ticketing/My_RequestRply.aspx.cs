@@ -62,7 +62,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "", LoggedInUserID, "R");
+                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "","", LoggedInUserID, "R");
 
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -228,8 +228,8 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID);
-
+                //dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(TicketID, CompanyID, LoggedInUserID,"","");
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable_Details(TicketID, CompanyID, LoggedInUserID);
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
                 string Zone = string.Empty;
@@ -367,6 +367,8 @@ namespace Upkeep_v3.Ticketing
                             dvClose.Attributes.Add("style", "display:none");
                             dvAccept.Attributes.Add("style", "display:none");
                         }
+
+                        lblTicketErrorMsg.Text= Convert.ToString(dsTicket.Tables[1].Rows[0]["AcceptTicketMsg"]);
 
                     }
                     if (dsTicket.Tables.Count > 2)
@@ -807,7 +809,8 @@ namespace Upkeep_v3.Ticketing
                         }
                         else if (Status == 2)
                         {
-                            lblTicketErrorMsg.Text = "This ticket is already accepted by other user.";
+                            lblTicketErrorMsg.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["AcceptedMsg"]);
+                            //lblTicketErrorMsg.Text = "This ticket is already accepted by other user.";
                         }
                     }
                 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Globalization;
 
 namespace Upkeep_v3.Ticketing
 {
@@ -27,15 +28,42 @@ namespace Upkeep_v3.Ticketing
             {
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
+
+            hdn_IsPostBack.Value = "yes";
+            if (!IsPostBack)
+            {
+                hdn_IsPostBack.Value = "no";
+            }
         }
 
         public string bindgrid()
         {
             string data = "";
             DataSet dsTicket = new DataSet();
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
             try
             {
-                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(0,CompanyID, LoggedInUserID);
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(-6);
+                    From_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    To_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                dsTicket = ObjUpkeep.Fetch_Ticket_MyActionable(0,CompanyID, LoggedInUserID, From_Date, To_Date);
 
                 int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -92,5 +120,9 @@ namespace Upkeep_v3.Ticketing
             return data;
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

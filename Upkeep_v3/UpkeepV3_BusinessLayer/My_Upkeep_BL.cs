@@ -13,6 +13,31 @@ namespace UpkeepV3_BusinessLayer
     {
         DataSet ds = new DataSet();
 
+        public DataSet Fetch_Invoices(int Company_ID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Invoice_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
         public DataSet MenuMaster_CRUD(int Menu_ID, string Menu_Desc, string Parent_Menu_Id, string Toot_Tip, string Menu_Url, string Module_Menu_Id, string Is_Deleted, string Action, string StrConn)
         {
             try
@@ -600,6 +625,32 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+
+        public DataSet RetailerPunch_CR(string LoggedInUserID, string Punch_Type, int CompanyID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Retailer_Att_Punches_CR", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("Punch_Type", Punch_Type);
+                cmd.Parameters.AddWithValue("Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
         {
             try
@@ -686,7 +737,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string LoggedInUserID, string strAction, string StrConn)
+        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,string CustomFields_XML, string LoggedInUserID, string strAction, string StrConn)
         {
             try
             {
@@ -701,6 +752,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@SubCategoryID", SubCategoryID);
                 cmd.Parameters.AddWithValue("@TicketMessage", TicketMessage);
                 cmd.Parameters.AddWithValue("@TicketImages", list_Images);
+                cmd.Parameters.AddWithValue("@CustomFields_XML", CustomFields_XML);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", strAction);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -713,7 +765,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Ticket_MyActionable(int TicketID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {
             try
             {
@@ -723,6 +775,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@TicketID", TicketID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -733,6 +787,28 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_Ticket_MyActionable_Details(int TicketID, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Ticket_Fetch_MyActionable_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketID", TicketID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public DataSet Accept_Ticket(int TicketID, string LoggedInUserID, string StrConn)
         {
@@ -1528,7 +1604,7 @@ namespace UpkeepV3_BusinessLayer
 
         //Added by RC WorkPermitConfiguration Save
 
-        public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, string StrConn)
+        public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1546,7 +1622,8 @@ namespace UpkeepV3_BusinessLayer
                 //cmd.Parameters.AddWithValue("@XmlGatepass_Type", strXmlGatepass_Type);
                 cmd.Parameters.AddWithValue("@XmlWorkPermit_TermCondition", strXmlWorkPermit_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
-                cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Initiator", chkShowApprovalMatrix_Initiator);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Approver", chkShowApprovalMatrix_Approver);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -1813,7 +1890,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC WorkPermitConfiguration Update
-        public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string LoggedInUserID, string StrConn)
+        public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -1832,7 +1909,8 @@ namespace UpkeepV3_BusinessLayer
                 //cmd.Parameters.AddWithValue("@XmlGatepass_Type", strXmlGatepass_Type);
                 cmd.Parameters.AddWithValue("@XmlWorkPermit_TermCondition", strXmlWorkPermit_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
-                cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Initiator", chkShowApprovalMatrix_Initiator);
+                cmd.Parameters.AddWithValue("@chkShowApprovalMatrix_Approver", chkShowApprovalMatrix_Approver);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -3483,6 +3561,27 @@ namespace UpkeepV3_BusinessLayer
             
         }
 
+        public DataSet Fetch_Custom_Fields(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("spr_Sys_Settings_Tkt_Fields", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+              
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
 
         public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID, string StrConn)

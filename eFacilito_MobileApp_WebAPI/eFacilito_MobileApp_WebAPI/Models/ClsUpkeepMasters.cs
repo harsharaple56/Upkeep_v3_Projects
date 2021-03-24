@@ -19,7 +19,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string ProPubStrGroupCompany { get; set; }
         public string ProPubStrProfilePic { get; set; }
         public string ProPubStrDepartmentID { get; set; }
-
+        public string Role_Name { get; set; }
     }
 
 
@@ -680,7 +680,26 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string WP_Status { get; set; }
         public string Created_By { get; set; }
         public string Store { get; set; }
+        public bool Is_Approved { get; set; }
     }
+
+
+    public class ClsAllWorkPermitRequestDetails
+    {
+        public string WP_Trans_ID { get; set; }
+        public string TicketNo { get; set; }
+        public string Wp_Config_ID { get; set; }
+        public string WP_Title { get; set; }
+        public string DepartmentName { get; set; }
+        public string WorkPermitDate { get; set; }
+        public string RequestDate { get; set; }
+        public string WP_Status { get; set; }
+        public string Created_By { get; set; }
+        public string Store { get; set; }
+        public bool Is_Approved { get; set; }
+    }
+
+
 
     public class ClsWorkPermitAction
     {
@@ -727,6 +746,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Created_Date { get; set; }
         public string Wp_date { get; set; }
         public string Wp_To_date { get; set; }
+        public bool ShowApprovalMatrix_Initiators { get; set; }
+        public bool ShowApprovalMatrix_Approvers { get; set; }
     }
     public class ClsWorkPermitInitiator
     {
@@ -737,6 +758,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Name { get; set; }
         public string PhoneNo { get; set; }
         public string EmailID { get; set; }
+        public string EmpCD { get; set; }
+
 
     }
     public class ClsWorkPermitSection
@@ -923,7 +946,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
         public List<ClsMyActionableTicket> objTickets = new List<ClsMyActionableTicket>();
         public List<ClsTicketActionHistory> objTicketAction = new List<ClsTicketActionHistory>();
-
+        public List<ClsMyActionableShowAction> objTicketShowAction = new List<ClsMyActionableShowAction>();
     }
 
     public class ClsMyActionableTicket
@@ -943,7 +966,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_Message { get; set; }
         public string Ticket_ImagePath { get; set; }
         public string Level { get; set; }
-        public bool ShowAction { get; set; }
+        //public bool ShowAction { get; set; }
     }
 
     public class ClsTicketActionHistory
@@ -957,6 +980,11 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_ActionStatus { get; set; }
     }
 
+    public class ClsMyActionableShowAction
+    {
+        public bool ShowAction { get; set; }
+        public string AcceptTicketMsg { get; set; }
+    }
     public class ClsTicketRaise
     {
         //public string TicketPrefix { get; set; }
@@ -1054,6 +1082,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public bool Tkt_Is_Img_Close { get; set; }
         public bool Tkt_Is_Remark_Close { get; set; }
         public bool Tkt_Is_Expiry { get; set; }
+        public bool Chk_Is_QR_Compulsory { get; set; }
     }
 
 
@@ -1315,4 +1344,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public int Loc_id { get; set; }
 
     }
+
+    public class ClsTicketAccept
+    {
+        public int Status { get; set; }
+        public string AcceptMessage { get; set; }
+    }
+
+
 }

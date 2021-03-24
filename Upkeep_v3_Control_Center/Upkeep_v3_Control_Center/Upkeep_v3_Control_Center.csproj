@@ -772,6 +772,8 @@
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.min.js" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.rtl.min.css" />
+    <Content Include="Billing\Add_Bill.aspx" />
+    <Content Include="Billing\Billing_Details.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\AspNet.ScriptManager.bootstrap.dll" />
@@ -844,6 +846,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Images\CCPL1004.PNG" />
     <Content Include="Images\PhoenixLogo.png" />
+    <Content Include="Invoices\Add_Invoices.aspx" />
+    <Content Include="Invoices\Invoices_Listing.aspx" />
     <Content Include="License_Management.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MasterPage.Master" />
@@ -4738,6 +4742,20 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Billing\Add_Bill.aspx.cs">
+      <DependentUpon>Add_Bill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billing\Add_Bill.aspx.designer.cs">
+      <DependentUpon>Add_Bill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billing\Billing_Details.aspx.designer.cs">
+      <DependentUpon>Billing_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Company_Code.aspx.cs">
       <DependentUpon>Company_Code.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4754,6 +4772,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices\Add_Invoices.aspx.cs">
+      <DependentUpon>Add_Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices\Add_Invoices.aspx.designer.cs">
+      <DependentUpon>Add_Invoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices\Invoices_Listing.aspx.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices\Invoices_Listing.aspx.designer.cs">
+      <DependentUpon>Invoices_Listing.aspx</DependentUpon>
     </Compile>
     <Compile Include="License_Management.aspx.cs">
       <DependentUpon>License_Management.aspx</DependentUpon>
@@ -4889,6 +4921,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CompanyLogo\" />
+    <Folder Include="Invoices\Uploads\" />
     <Folder Include="vendors\dropzone\.idea\" />
     <Folder Include="vendors\handlebars\.idea\copyright\" />
     <Folder Include="vendors\handlebars\bin\" />

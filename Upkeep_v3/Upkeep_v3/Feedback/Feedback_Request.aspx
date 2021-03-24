@@ -284,6 +284,26 @@ background-color: blanchedalmond;
                 //alert("change");
                 $(this).siblings('.NPRValue').html("Value: " + $(this).val())
             });
+
+
+
+            //$("#ContentPlaceHolder1_m_sweetalert_demo_6").click(function () {
+            //    alert('show msg');
+            //    swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 2500 })
+            //});
+
+            $("#ContentPlaceHolder1_m_sweetalert_demo_6").on('click', function () {
+                alert('show msg2312');
+                swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 5500 })
+                alert('show msg23125654');
+            });
+
+            //$("#m_sweetalert_demo_61").click(function () {
+            //    //alert('show msg');
+            //    swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 5500 })
+            //    //alert('show msg2312987978');
+            //});
+
         });
 
 
@@ -350,7 +370,7 @@ background-color: blanchedalmond;
                 infox.innerHTML = infox.innerHTML + ',';
                 arrDataParent.push(arrDataChild);
             });
-             //alert(infox.innerHTML);
+            //alert(infox.innerHTML);
             // alert(JSON.stringify(arrDataParent));
             document.getElementById("hdnFeedbackHeader").value = infox.innerHTML;
             var myTab = document.getElementById('ContentPlaceHolder1_tblFeedbackHeader');
@@ -391,7 +411,23 @@ background-color: blanchedalmond;
         //}
 
 
+
+
     </script>
+    <script type="text/javascript">
+        function callSaveAlert() {
+            //alert('hiiiiii');
+            //$("#m_sweetalert_demo_61").click();
+             $("#m_sweetalert_demo_61").click(function () {
+                //alert('show msg');
+                swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 3000 })
+                //alert('show msg2312987978');
+                 event.preventDefault()
+            });
+        }
+    </script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -404,7 +440,7 @@ background-color: blanchedalmond;
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmFeedback" method="post">--%>
-                        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+                        <cc1:ToolkitScriptManager runat="server" ScriptMode="Release"></cc1:ToolkitScriptManager>
 
                         <asp:HiddenField ID="hdnFeedbackHeaderData" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnFeedbackHeader" runat="server" ClientIDMode="Static" />
@@ -427,23 +463,27 @@ background-color: blanchedalmond;
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                        <span>
-                                            <i class="la la-arrow-left"></i>
-                                            <span>Back</span>
-                                        </span>
-                                    </a>
+                                <div class="m-portlet__head-tools">
+                                    <div id="dvBackButton" runat="server">
+                                        <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back</span>
+                                            </span>
+                                        </a>
+                                    </div>
                                     <div class="btn-group">
-                                  
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Save" />
+
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
+
+                                        <asp:Button ID="m_sweetalert_demo_61" ClientIDMode="Static" Style="display: none;" runat="server" Text="Popup" OnClick="btntest1_Click" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeFeedbackRequestSaveSuccess" runat="server" PopupControlID="pnlFeedbackReqestSuccess" TargetControlID="btnTest"
                                             CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
                                         </cc1:ModalPopupExtender>
 
-
+                                        <%--<button type="button" class="btn btn-success m-btn m-btn--custom m_sweetalert_demo_6" id="m_sweetalert_demo_3" runat="server">Success</button>--%>
 
                                     </div>
                                 </div>
@@ -454,6 +494,13 @@ background-color: blanchedalmond;
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
+
+                               <%-- <div class="form-group m-form__group row" id="dvBanner" runat="server">
+
+                                    <img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />
+
+                                </div>--%>
+
                                 <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
                                     <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
                                     <div class="col-md-4">
@@ -462,11 +509,6 @@ background-color: blanchedalmond;
                                             ValidationGroup="validateFeedback" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Feedback Title"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-
-                                <br />
-
-
-
 
                                 <br />
 

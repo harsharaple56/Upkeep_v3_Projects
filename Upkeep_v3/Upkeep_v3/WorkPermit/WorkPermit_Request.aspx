@@ -47,12 +47,12 @@
                 startDate: moment().format('YYYY-MM-DD'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtWorkPermitDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                //var endDate   = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var endDate = moment($('#txtWorkPermitToDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
-                //if(endDate < startDate)
-                //{
-                //    $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
-                //}
+                if (endDate < startDate) {
+                    $('#error_endDate').html('Workpermit To datetime can not be less than From datetime.').parents('.form-group').addClass('has-error');
+                    $('#txtWorkPermitToDate').val('');
+                }
             });
 
             $('.FileUpload_ChecklistImage').on('change', function (event) {
@@ -85,6 +85,29 @@
                 });
                 //$('.carousel').carousel();
             })
+
+
+            $("#divNumberid").bind("keypress", function (e) {
+                //debugger;
+                 var keyCode = e.which ? e.which : e.keyCode
+
+                if (!(keyCode >= 48 && keyCode <= 57)) {
+                    //$(".error").css("display", "inline");
+                    return false;
+                } else {
+                    //$(".error").css("display", "none");
+                }
+                var maxlength = new Number(5); // Change number to your max length. 
+                var txtCardNumber = $('#divNumberid').val();
+                var txtCardNumber_length = $('#divNumberid').val().length;
+
+                if (txtCardNumber_length >= maxlength) {
+                    var txtCardNumber_value = txtCardNumber.substring(0, maxlength);
+                    $('#divNumberid').val(txtCardNumber_value);
+                }
+            });
+
+
         });
         function AddRow(tblName) {
             var contnt = tblName
@@ -148,6 +171,15 @@
             document.getElementById("hdnWpHeaderData").value = info.innerHTML;
         }
 
+        //function FormValidation() {
+        //    //alert('hiii');
+        //    $("[id*=rptSectionDetails]").find("[id*=divTextid]").attr('maxlength', 10);
+        //    var abc = $("[id*=rptSectionDetails]").find("[id*=divTextid]").value();
+
+        //    alert(abc);
+
+        //}
+
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -197,6 +229,14 @@
                                 <strong>Rejected!</strong> This Request is Rejected.
                             </div>
                         </div>
+                         <div class="alert alert-danger m-alert--icon" id="dvMandatoryMsg" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Mandatory Details Missing!</strong> Please provide all mandatory data marked with (*)
+                            </div>
+                        </div>
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
                             </div>
@@ -240,7 +280,7 @@
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                     <label class="col-xl-3 col-form-label font-weight-bold"><span style="color: red;" class="col-x-1">*</span>Work Permit Title :</label>
-                                    
+
                                     <div class="col-xl-4">
                                         <asp:DropDownList ID="ddlWorkPermitTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlWorkPermitTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlWorkPermitTitle" Visible="true" Display="Dynamic"
@@ -272,7 +312,7 @@
                                             <asp:Label ID="lblEmpName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
 
-                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold" style="text-align: right;">Employee Code :</label>
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Employee Code :</label>
                                         <div class="col-xl-3 col-lg-3 col-form-label">
                                             <asp:Label ID="lblEmpCode" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                         </div>
@@ -309,11 +349,11 @@
                                 </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">From Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span style="color: red;">*</span>From Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtWorkPermitDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtWorkPermitDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time" ClientIDMode="Static"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
@@ -323,19 +363,20 @@
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">To Date :</label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span style="color: red;">*</span>To Date :</label>
                                     <div class="col-xl-3 col-lg-3 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtWorkPermitToDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtWorkPermitToDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Work Permit date & time" ClientIDMode="Static"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtWorkPermitToDate" Visible="true" Display="Dynamic"
                                                 ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Work Permit Date"></asp:RequiredFieldValidator>
                                         </div>
-                                        <span id="error_startDate" class="text-danger small"></span>
+                                        <span id="error_ToDate" class="text-danger small"></span>
                                     </div>
+                                    <span id="error_endDate" class="text-danger"></span>
                                 </div>
 
 
@@ -363,7 +404,7 @@
                                 <asp:Label ID="lbTable" runat="server" />
 
 
-                                <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound">
+                                <asp:Repeater ID="rptSectionDetails" runat="server" OnItemDataBound="rptSectionDetails_ItemDataBound" ClientIDMode="Static" >
                                     <ItemTemplate>
                                         <asp:HiddenField ID="hfCustomerId" runat="server" Value='<%# Eval("WP_Section_ID") %>' />
                                         <div class="form-group row" style="background-color: #00c5dc;" id="DivSectionID">
@@ -382,7 +423,7 @@
                                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
                                                     <div class="col-xl-3 col-lg-3">
                                                         <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("WP_Header_ID") %>' />
-                                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("WP_Header_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;+ &nbsp;  <%#Eval("Header_Name") %>  :</label>
+                                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("WP_Header_ID") %> '><span style="color: red;"><%#Eval("Is_Mandatory") %></span> &nbsp;  <%#Eval("Header_Name") %>  :</label>
                                                         <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />
 
                                                         <asp:Label ID="lblIsMandatory" Text="*" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold; display: none;"></asp:Label>
@@ -391,13 +432,14 @@
                                                     </div>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <div id="divText" style="display: none" runat="server">
-                                                            <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
+                                                            <input name="divTextName" id="divTextid" type="text" onpaste="return false;" maxlength="100" class="form-control" runat="server" />
                                                         </div>
                                                         <div id="divNumber" style="display: none" runat="server">
-                                                            <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
+                                                            <%--<input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />--%>
+                                                            <asp:TextBox ID="divNumberid" runat="server" min="0" MaxLength="15" onpaste="return false;" TextMode="Number" onkeypress="return this.value.length<=15" class="form-control"></asp:TextBox>
                                                         </div>
                                                         <div id="divTextArea" style="display: none" runat="server">
-                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" onpaste="return false;" maxlength="500" class="form-control" runat="server"></textarea>
                                                         </div>
 
                                                         <div id="divRadioButton" style="display: none" runat="server">
@@ -469,12 +511,13 @@
                                 </asp:Repeater>
 
                                 <br />
-
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
-                                </div>
-                                <div>
-                                    <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                <div id="dvApprovalMatrix" runat="server">
+                                    <div class="form-group row" style="background-color: #00c5dc;">
+                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
+                                    </div>
+                                    <div>
+                                        <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                    </div>
                                 </div>
                                 <br />
 
@@ -520,16 +563,18 @@
                                     <div class="col-xl-6 col-lg-4">
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtRemarks" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateWP" ForeColor="Red" InitialValue="0" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateWP" ForeColor="Red" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
                                 <div id="divInsertButton" class="col-lg-9 ml-lg-auto" runat="server">
                                     <%--OnClientClick="SubmitHeader()" --%>
+                                    <%--<asp:Button ID="btnTestValidation" runat="server" ClientIDMode="Static" Text="Test Validation" OnClientClick="FormValidation()" />--%>
+
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateWorkPermit" />
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
                                 </div>
-                                    <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
 
                                 <div class="col-lg-9 ml-lg-auto" style="display: none" id="divUpdateButton" runat="server">

@@ -49,6 +49,15 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
+        /// dvBackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBackButton;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// m_sweetalert_demo_61 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_sweetalert_demo_61;
         
         /// <summary>
         /// btnTest control.

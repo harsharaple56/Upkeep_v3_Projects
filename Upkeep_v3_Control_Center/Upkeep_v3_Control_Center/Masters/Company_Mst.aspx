@@ -63,12 +63,7 @@
                             </tr>
 
                         </thead>
-                        <%-- <tbody>
-                            <tr>
-                                <td>compel</td>
-                                <td>hjsdhfsj</td>
-                            </tr>
-                        </tbody>--%>
+                       
                         <tbody>
                             <%=bindGrid()%>
                         </tbody>

@@ -1,311 +1,335 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Upkeep_v3_Control_Center.Dashboard" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style>
-        
         .m-widget6 .m-widget6__head .m-widget6__item .m-widget6__caption {
-    display: table-cell;
-    /* width: 33%; */
-    padding-left: 0;
-    padding-right: 0;
-}
-
+            display: table-cell;
+            /* width: 33%; */
+            padding-left: 0;
+            padding-right: 0;
+        }
     </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
-					<!-- BEGIN: Subheader -->
-					<div class="m-subheader ">
-						<div class="d-flex align-items-center">
-							<div class="mr-auto">
-								<h3 class="m-subheader__title m-subheader__title--separator">Chart Widgets</h3>
-								<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-									<li class="m-nav__item m-nav__item--home">
-										<a href="#" class="m-nav__link m-nav__link--icon">
-											<i class="m-nav__link-icon la la-home"></i>
-										</a>
-									</li>
-									<li class="m-nav__separator">-</li>
-									<li class="m-nav__item">
-										<a href="" class="m-nav__link">
-											<span class="m-nav__link-text">Widgets</span>
-										</a>
-									</li>
-									<li class="m-nav__separator">-</li>
-									<li class="m-nav__item">
-										<a href="" class="m-nav__link">
-											<span class="m-nav__link-text">Chart Widgets</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div>
-								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-										<i class="la la-plus m--hide"></i>
-										<i class="la la-ellipsis-h"></i>
-									</a>
-									<div class="m-dropdown__wrapper" style="z-index: 101;">
-										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 21.5px;"></span>
-										<div class="m-dropdown__inner">
-											<div class="m-dropdown__body">
-												<div class="m-dropdown__content">
-													<ul class="m-nav">
-														<li class="m-nav__section m-nav__section--first m--hide">
-															<span class="m-nav__section-text">Quick Actions</span>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-share"></i>
-																<span class="m-nav__link-text">Activity</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-chat-1"></i>
-																<span class="m-nav__link-text">Messages</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-info"></i>
-																<span class="m-nav__link-text">FAQ</span>
-															</a>
-														</li>
-														<li class="m-nav__item">
-															<a href="" class="m-nav__link">
-																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																<span class="m-nav__link-text">Support</span>
-															</a>
-														</li>
-														<li class="m-nav__separator m-nav__separator--fit">
-														</li>
-														<li class="m-nav__item">
-															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+        <!-- BEGIN: Subheader -->
+        <div class="m-subheader ">
+            <div class="d-flex align-items-center">
+                <div class="mr-auto">
+                    <h3 class="m-subheader__title m-subheader__title--separator">Chart Widgets</h3>
+                    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                        <li class="m-nav__item m-nav__item--home">
+                            <a href="#" class="m-nav__link m-nav__link--icon">
+                                <i class="m-nav__link-icon la la-home"></i>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">-</li>
+                        <li class="m-nav__item">
+                            <a href="" class="m-nav__link">
+                                <span class="m-nav__link-text">Widgets</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">-</li>
+                        <li class="m-nav__item">
+                            <a href="" class="m-nav__link">
+                                <span class="m-nav__link-text">Chart Widgets</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                        <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+                            <i class="la la-plus m--hide"></i>
+                            <i class="la la-ellipsis-h"></i>
+                        </a>
+                        <div class="m-dropdown__wrapper" style="z-index: 101;">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 21.5px;"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__body">
+                                    <div class="m-dropdown__content">
+                                        <ul class="m-nav">
+                                            <li class="m-nav__section m-nav__section--first m--hide">
+                                                <span class="m-nav__section-text">Quick Actions</span>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-share"></i>
+                                                    <span class="m-nav__link-text">Activity</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                    <span class="m-nav__link-text">Messages</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                                    <span class="m-nav__link-text">FAQ</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                    <span class="m-nav__link-text">Support</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator m-nav__separator--fit"></li>
+                                            <li class="m-nav__item">
+                                                <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-					<!-- END: Subheader -->
-					<div class="m-content">
+        <!-- END: Subheader -->
+        <div class="m-content">
 
-						<!--Begin::Section-->
-						<div class="m-portlet">
-							<div class="m-portlet__body  m-portlet__body--no-padding">
-								<div class="row m-row--no-padding m-row--col-separator-xl">
-									<div class="col-xl-6">
-
-										<!--begin:: Widgets/Daily Sales-->
-										<div class="m-widget14">
-											<div class="m-widget14__header m--margin-bottom-30">
-												<h3 class="m-widget14__title">
-													Monthly Transactions
-												</h3>
-												<span class="m-widget14__desc">
-													Check out each collumn for more details
-												</span>
-											</div>
-											<div class="m-widget14__chart" style="height:120px;"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-												<canvas id="m_chart_daily_sales" width="387" height="180" class="chartjs-render-monitor" style="display: block; height: 120px; width: 258px;"></canvas>
-											</div>
-										</div>
-
-										<!--end:: Widgets/Daily Sales-->
-									</div>
-
-                                    <div class="col-xl-6">
-
-										<!--begin:: Widgets/Daily Sales-->
-										<div class="m-widget1">
-											<div class="m-widget1__item">
-												<div class="row m-row--no-padding align-items-center">
-													<div class="col">
-														<h3 class="m-widget1__title">Member Profit</h3>
-														<span class="m-widget1__desc">Pending Invoices</span>
-													</div>
-													<div class="col m--align-right">
-														<span class="m-widget1__number m--font-brand">₹17,000,80</span>
-													</div>
-												</div>
-											</div>
-											<div class="m-widget1__item">
-												<div class="row m-row--no-padding align-items-center">
-													<div class="col">
-														<h3 class="m-widget1__title">Active Users</h3>
-														<span class="m-widget1__desc">Total No. of Active Users</span>
-													</div>
-													<div class="col m--align-right">
-														<span class="m-widget1__number m--font-danger">1,800</span>
-													</div>
-												</div>
-											</div>
-											<div class="m-widget1__item">
-												<div class="row m-row--no-padding align-items-center">
-													<div class="col">
-														<h3 class="m-widget1__title">Active Retailers</h3>
-														<span class="m-widget1__desc">Total No. of Active Retailers</span>
-													</div>
-													<div class="col m--align-right">
-														<span class="m-widget1__number m--font-success">2,500</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--end:: Widgets/Daily Sales-->
-									</div>
-
-								</div>
-							</div>
-						</div>
+            <!--Begin::Section-->
+            <div class="m-portlet">
+                <div class="m-portlet__body  m-portlet__body--no-padding">
 
 
+                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                        <div class="col-xl-6">
 
-                        <div class="row">
-							<div class="col-xl-12">
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget14">
+                                <div class="m-widget14__header m--margin-bottom-30">
+                                    <h3 class="m-widget14__title">Monthly Transactions
+                                    </h3>
+                                    <span class="m-widget14__desc">Check out each collumn for more details
+                                    </span>
+                                </div>
+                                <div class="m-widget14__chart" style="height: 120px;">
+                                    <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                        <div class="chartjs-size-monitor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                            <div style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                            <div style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
+                                        </div>
+                                    </div>
+                                    <canvas id="m_chart_daily_sales" width="387" height="180" class="chartjs-render-monitor" style="display: block; height: 120px; width: 258px;"></canvas>
+                                </div>
+                            </div>
 
-								<!--begin:: Widgets/Sales States-->
-								<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Sales Stats
-												</h3>
-											</div>
-										</div>
-										
-									</div>
-									<div class="m-portlet__body">
-										<div class="m-widget6">
-											<div class="m-widget6__head">
-												<div class="m-widget6__item">
-													<span class="m-widget6__caption" >
-														Company Name
-													</span>
-                                                    <span class="m-widget6__caption">
-														Active Users
-													</span>
-                                                    <span class="m-widget6__caption">
-														Active Retailers
-													</span>
-                                                    <span class="m-widget6__caption">
-														Last Transaction Date
-													</span>
-													<span class="m-widget6__caption">
-														Web Errors Generated
-													</span>
-													<span class="m-widget6__caption m--align-right">
-														Amount Pending
-													</span>
-												</div>
-											</div>
-											<div class="m-widget6__body">
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														16/13/17
-													</span>
-													<span class="m-widget6__text">
-														67
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$14,740
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														02/28/17
-													</span>
-													<span class="m-widget6__text">
-														120
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$11,002
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														03/06/17
-													</span>
-													<span class="m-widget6__text">
-														32
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$10,900
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														10/21/17
-													</span>
-													<span class="m-widget6__text">
-														130
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$14,740
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														01/02/17
-													</span>
-													<span class="m-widget6__text">
-														5
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$18,540
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														03/06/17
-													</span>
-													<span class="m-widget6__text">
-														32
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$10,900
-													</span>
-												</div>
-												<div class="m-widget6__item">
-													<span class="m-widget6__text">
-														12/31/17
-													</span>
-													<span class="m-widget6__text">
-														201
-													</span>
-													<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														$25,609
-													</span>
-												</div>
-											</div>
-											<div class="m-widget6__foot">
-												<div class="m-widget6__action m--align-right">
-													<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">Export</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
 
-								<!--end:: Widgets/Sales States-->
-							</div>
-							
-						</div>
+                        <div class="col-xl-6">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Overall Users</h3>
+                                            <span class="m-widget1__desc">Total No. of Users + Retailers</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-brand">
+                                                <asp:Label ID="lbl_Total_Users" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Active Users</h3>
+                                            <span class="m-widget1__desc">Total No. of Active Users</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_Employee_Users" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Active Retailers</h3>
+                                            <span class="m-widget1__desc">Total No. of Active Retailers</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-success">
+                                                <asp:Label ID="lbl_Total_Retailers" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                    </div>
+                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Tickets</h3>
+                                            <span class="m-widget1__desc">Total No. of Tickets raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_TKT_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Checklists</h3>
+                                            <span class="m-widget1__desc">Total No. of Checklists Attended</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-success">
+                                                <asp:Label ID="lbl_Total_CHK_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Work-Permits</h3>
+                                            <span class="m-widget1__desc">Total No. of Permits raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_WP_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Gate-Passes</h3>
+                                            <span class="m-widget1__desc">Total No. of Gate passes raised</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-success">
+                                                <asp:Label ID="lbl_Total_GP_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                        <div class="col-xl-4">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Feedbacks</h3>
+                                            <span class="m-widget1__desc">Total No. of Feedbacks Collected</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-brand">
+                                                <asp:Label ID="lbl_Total_Feedback_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Total Assets</h3>
+                                            <span class="m-widget1__desc">Total No. of Assets Created</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-danger">
+                                                <asp:Label ID="lbl_Total_Asset_Count" runat="server"></asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
 
-						<!--End::Section-->
+            <div class="row">
+                <div class="col-xl-12">
 
-<%--						<!--Begin::Section-->
+                    <!--begin:: Widgets/Sales States-->
+                    <div class="m-portlet m-portlet--full-height ">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Sales Stats
+                                    </h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="m-portlet__body">
+                            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+
+                                <thead>
+                                    <tr>
+                                        <th>Company Name</th>
+                                        <th>No. of Users</th>
+                                        <th>No. of Retailers</th>
+                                        
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <%=Fetch_CC_Dashboard_Company()%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--end:: Widgets/Sales States-->
+                </div>
+
+            </div>
+
+
+
+            <!--End::Section-->
+
+            <%--						<!--Begin::Section-->
 
 
 
@@ -2072,74 +2096,81 @@
 
 						<!--End::Section-->--%>
 
-						<!--Begin::Section-->
-						<div class="row">
-							<div class="col-xl-6">
+            <!--Begin::Section-->
+            <div class="row">
+                <div class="col-xl-6">
 
-								<!--begin:: Widgets/Finance Summary-->
-								<div class="m-portlet m-portlet--full-height m-portlet--fit ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Ticketing Usage Summary
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget4_tab1_content" role="tab" aria-selected="false">
-														Month
-													</a>
-												</li>
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_widget4_tab2_content" role="tab" aria-selected="true">
-														All Time
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div class="tab-content">
-											<div class="tab-pane active">
-												<div class="m-widget12 m-widget12--chart-bottom m--margin-top-10" style="min-height: 450px">
-													<div class="m-widget12__item">
-														<span class="m-widget12__text1">Total Tickets Generated<br><span>500,000</span></span>
-														<span class="m-widget12__text2">Last Ticket Date<br><span>July 24,2017</span></span>
-													</div>
-													<div class="m-widget12__item">
-														<span class="m-widget12__text1">Daily Average<br><span>$60,70</span></span>
-														<div class="m-widget12__text2">
-															<div class="m-widget12__desc">Percentage Open</div>
-															<br>
-															<div class="m-widget12__progress">
-																<div class="m-widget12__progress-sm progress m-progress--sm">
-																	<div class="m-widget12__progress-bar progress-bar bg-brand" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-																</div>
-																<span class="m-widget12__stats">
-																	63%
-																</span>
-															</div>
-														</div>
-													</div>
-													<div class="m-widget12__chart m-portlet-fit--sides" style="height:290px;"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-														<canvas id="m_chart_finance_summary" width="688" height="435" class="chartjs-render-monitor" style="display: block; height: 290px; width: 459px;"></canvas>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane">
-											</div>
-										</div>
-									</div>
-								</div>
+                    <!--begin:: Widgets/Finance Summary-->
+                    <div class="m-portlet m-portlet--full-height m-portlet--fit ">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Ticketing Usage Summary
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="m-portlet__head-tools">
+                                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget4_tab1_content" role="tab" aria-selected="false">Month
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_widget4_tab2_content" role="tab" aria-selected="true">All Time
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="tab-content">
+                                <div class="tab-pane active">
+                                    <div class="m-widget12 m-widget12--chart-bottom m--margin-top-10" style="min-height: 450px">
+                                        <div class="m-widget12__item">
+                                            <span class="m-widget12__text1">Total Tickets Generated<br>
+                                                <span>500,000</span></span>
+                                            <span class="m-widget12__text2">Last Ticket Date<br>
+                                                <span>July 24,2017</span></span>
+                                        </div>
+                                        <div class="m-widget12__item">
+                                            <span class="m-widget12__text1">Daily Average<br>
+                                                <span>$60,70</span></span>
+                                            <div class="m-widget12__text2">
+                                                <div class="m-widget12__desc">Percentage Open</div>
+                                                <br>
+                                                <div class="m-widget12__progress">
+                                                    <div class="m-widget12__progress-sm progress m-progress--sm">
+                                                        <div class="m-widget12__progress-bar progress-bar bg-brand" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span class="m-widget12__stats">63%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-widget12__chart m-portlet-fit--sides" style="height: 290px;">
+                                            <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                                <div class="chartjs-size-monitor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                                    <div style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+                                                </div>
+                                                <div class="chartjs-size-monitor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                                    <div style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
+                                                </div>
+                                            </div>
+                                            <canvas id="m_chart_finance_summary" width="688" height="435" class="chartjs-render-monitor" style="display: block; height: 290px; width: 459px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-								<!--end:: Widgets/Finance Summary-->
-							</div>
-						</div>
+                    <!--end:: Widgets/Finance Summary-->
+                </div>
+            </div>
 
-						<!--End::Section-->
-					</div>
-				</div>
+            <!--End::Section-->
+        </div>
+    </div>
 </asp:Content>

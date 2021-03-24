@@ -319,6 +319,24 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.WebControls.Label lblWorkflowErrorMsg1;
         
         /// <summary>
+        /// chkShowApprovalMatrix_Initiator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShowApprovalMatrix_Initiator;
+        
+        /// <summary>
+        /// chkShowApprovalMatrix_Approver control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShowApprovalMatrix_Approver;
+        
+        /// <summary>
         /// WorkPermitTermCondition control.
         /// </summary>
         /// <remarks>

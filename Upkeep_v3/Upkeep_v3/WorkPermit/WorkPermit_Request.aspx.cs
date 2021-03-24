@@ -49,6 +49,11 @@ namespace Upkeep_v3.WorkPermit
                 //LoggedInUserID = "zara";
             }
 
+            if (Convert.ToString(Session["CompanyID"]) == "")
+            {
+                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+            }
+
 
             if (!IsPostBack)
             {
@@ -102,7 +107,9 @@ namespace Upkeep_v3.WorkPermit
                     Initiator = Convert.ToString(Session["UserType"]);
                 }
 
-                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
+                //dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
+                dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Convert.ToString(Session["CompanyID"]));
+
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[0].Rows.Count > 0)
@@ -239,9 +246,9 @@ namespace Upkeep_v3.WorkPermit
                 string HeadMandatoryId = (e.Item.FindControl("hdnIs_Mandatory") as HiddenField).Value;
                 if (HeadMandatoryId == "*")
                 {
-
-                    Label sample = e.Item.FindControl("lblIsMandatory") as Label;
-                    sample.Attributes.Remove("style");
+                    // Commented by Ajay
+                    //Label sample = e.Item.FindControl("lblIsMandatory") as Label;
+                    //sample.Attributes.Remove("style");
                 }
 
                 if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
@@ -249,7 +256,7 @@ namespace Upkeep_v3.WorkPermit
                     HtmlGenericControl sample = e.Item.FindControl("divCheckBox") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
                 }
-                else if (AnswerType == "SSLCT" ) //Single Selection [Radio Button]
+                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divRadioButton") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
@@ -263,21 +270,33 @@ namespace Upkeep_v3.WorkPermit
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divNumber") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlInputText divNumberid = (HtmlInputText)e.Item.FindControl("divNumberid");
+                    //divNumberid.MaxLength = 20;
                 }
                 else if (AnswerType == "STEXT") //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][16/03/2021][Validation]
+                    //HtmlInputText divTextid = (HtmlInputText)e.Item.FindControl("divTextid");
+                    //divTextid.MaxLength = 100;
                 }
                 else if (AnswerType == "LTEXT") // Textarea Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divTextArea") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlTextArea divTextAreaid = (HtmlTextArea)e.Item.FindControl("divTextAreaid");
+                    //divTextAreaid.MaxLength = 500;
                 }
                 else  //Normal Text Field
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    //[+][Ajay][17/03/2021][Validation]
+                    //HtmlInputText divTextid = (HtmlInputText)e.Item.FindControl("divTextid");
+                    //divTextid.MaxLength = 100;
                 }
 
 
@@ -354,7 +373,9 @@ namespace Upkeep_v3.WorkPermit
 
             if (TransLoggedInUserID != "")
             {
-                dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID, Session["TransactionID"].ToString());
+                //dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID, Session["TransactionID"].ToString());
+                dsWorkPermitHeader = ObjUpkeep.Bind_WorkPermitSavedConfiguration(ConfigTitleID,Convert.ToString(Session["TransactionID"]));
+
             }
             else
             {
@@ -432,16 +453,16 @@ namespace Upkeep_v3.WorkPermit
 
                 foreach (RepeaterItem itemHeader in rptHeaderDetails.Items)
                 {
-                   // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
+                    // int AnswerType = Convert.ToInt32((itemHeader.FindControl("hdnlblAnswerType") as HiddenField).Value);
                     string AnswerType = (itemHeader.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
                     string HeadId = (itemHeader.FindControl("hfHeaderId") as HiddenField).Value;
 
                     string HeadMandatoryId = (itemHeader.FindControl("hdnIs_Mandatory") as HiddenField).Value;
                     if (HeadMandatoryId == "*")
                     {
-
-                        Label sample = itemHeader.FindControl("lblIsMandatory") as Label;
-                        sample.Attributes.Remove("style");
+                        // Commented by Ajay
+                        //Label sample = itemHeader.FindControl("lblIsMandatory") as Label;
+                        //sample.Attributes.Remove("style");
                     }
 
                     if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
@@ -459,7 +480,7 @@ namespace Upkeep_v3.WorkPermit
                         HtmlGenericControl sample = itemHeader.FindControl("divImage") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
                     }
-                    else if (AnswerType == "NUMBR" ) //Number Text Field
+                    else if (AnswerType == "NUMBR") //Number Text Field
                     {
                         HtmlGenericControl sample = itemHeader.FindControl("divNumber") as HtmlGenericControl;
                         sample.Attributes.Remove("style");
@@ -503,7 +524,8 @@ namespace Upkeep_v3.WorkPermit
             try
             {
                 #region UserData
-                int WP_ConfigID = Convert.ToInt32(ddlWorkPermitTitle.SelectedValue.ToString());
+                //int WP_ConfigID = Convert.ToInt32(ddlWorkPermitTitle.SelectedValue.ToString());
+                int WP_ConfigID = Convert.ToInt32(Convert.ToString(ddlWorkPermitTitle.SelectedValue));
                 string LoggedInUser = LoggedInUserID;
                 string strWpDate = txtWorkPermitDate.Text;
                 string strWpTpDate = txtWorkPermitToDate.Text;
@@ -574,7 +596,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -604,7 +631,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                             //String YrStr = String.Join(";", RadioStrList.ToArray());
@@ -694,7 +726,12 @@ namespace Upkeep_v3.WorkPermit
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -711,13 +748,23 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
 
@@ -733,15 +780,25 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["AnswerID"] = IAnswerType;
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
-
-
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //LabelERRORmsg.Text = "Please provide all valid data.";
+                                    //divUpdateButton.Attributes.Add("style", "display:block;");
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                         }
@@ -757,13 +814,23 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
                                 if (isField == "False")
                                 {
                                     Is_Not_Valid = "True";
-                                    lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    //lblHeaderErr.Text = "Please provide valid data.";
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
                                 }
                             }
                         }
@@ -779,6 +846,11 @@ namespace Upkeep_v3.WorkPermit
                             dtRow["Data"] = sVal;
                             dt.Rows.Add(dtRow);
 
+                            // Ajay 20/03/2021
+                            if (sVal != "")
+                            {
+                                isField = "True";
+                            }
 
                             if (Is_Mandatory == "*")
                             {
@@ -786,6 +858,12 @@ namespace Upkeep_v3.WorkPermit
                                 {
                                     Is_Not_Valid = "True";
                                     lblHeaderErr.Text = "Please provide valid data.";
+                                    // Ajay 20/03/2021
+                                    setWorkPermitData();
+                                    dvMandatoryMsg.Visible = true;
+                                    //Response.Write("<script>alert('Please provide all valid data.');</script>");
+                                    return;
+                                   
                                 }
                             }
                         }
@@ -813,7 +891,7 @@ namespace Upkeep_v3.WorkPermit
                 }
                 #endregion
 
-            
+
                 #region SaveDataToDB
                 DataSet dsWPHeaderData = new DataSet();
                 dsWPHeaderData = ObjUpkeep.Insert_WorkPermitRequest(WP_ConfigID, LoggedInUserID, strWpDate, strWpTpDate, strWpSectionHeaderData);
@@ -957,7 +1035,9 @@ namespace Upkeep_v3.WorkPermit
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("");
-                    lbTable.Text = sb.ToString();
+                    //lbTable.Text = sb.ToString();
+
+                    lbTable.Text = Convert.ToString(sb);
                 }
 
                 // GenerateTableHeader(ConfigTitleID);
@@ -976,6 +1056,12 @@ namespace Upkeep_v3.WorkPermit
                 {
                     gvApprovalMatrix.DataSource = dsConfig.Tables[5];
                     gvApprovalMatrix.DataBind();
+
+                    if (Convert.ToInt32(dsConfig.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
 
             }
@@ -1013,15 +1099,23 @@ namespace Upkeep_v3.WorkPermit
                         ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         setWorkPermitData();
 
-                        txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
-                        txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
+                        //txtWorkPermitDate.Text = dsData.Tables[0].Rows[0]["Wp_Date"].ToString();
+                        txtWorkPermitDate.Text = Convert.ToString(dsData.Tables[0].Rows[0]["Wp_Date"]);
+
+                        //txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
+                        txtWorkPermitToDate.Text = Convert.ToString(dsData.Tables[0].Rows[0]["Wp_To_Date"]);
+
 
                         lblTicketNo.Visible = true;
                         lblTicket.Visible = true;
-                        lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+                        //lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
+                        lblTicket.Text = Convert.ToString(dsData.Tables[0].Rows[0]["TicketNo"]);
+
+
                         divStatus.Visible = true;
 
-                        switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        //switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
+                        switch (Convert.ToString(dsData.Tables[0].Rows[0]["WP_Status"]))
                         {
                             case "Close":
                                 lblRequestStatus.Text = "Closed";
@@ -1072,6 +1166,8 @@ namespace Upkeep_v3.WorkPermit
                                             for (int j = 0; j < dta.Rows.Count; j++)
                                             {
                                                 string vals = divCheckBoxIDI.Items[i].Value;
+
+                                                //if (vals == dta.Rows[j]["Header_Data"].ToString())
                                                 if (vals == dta.Rows[j]["Header_Data"].ToString())
                                                 {
                                                     divCheckBoxIDI.Items[i].Selected = true;
@@ -1115,11 +1211,11 @@ namespace Upkeep_v3.WorkPermit
                                         {
                                             if (j == 0)
                                             {
-                                                vals = dtImg.Rows[j]["IMAGEPATH"].ToString();
+                                                vals = Convert.ToString(dtImg.Rows[j]["IMAGEPATH"]);
                                             }
                                             else
                                             {
-                                                vals = "," + dtImg.Rows[j]["IMAGEPATH"].ToString();
+                                                vals = "," + Convert.ToString(dtImg.Rows[j]["IMAGEPATH"]);
                                             }
                                         }
 
@@ -1145,7 +1241,7 @@ namespace Upkeep_v3.WorkPermit
 
 
                                         HtmlInputGenericControl tb = FindControl(txtNum) as HtmlInputGenericControl;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Value = Convert.ToString(dta.Rows[0]["Header_Data"]);
                                         tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
@@ -1156,7 +1252,9 @@ namespace Upkeep_v3.WorkPermit
                                         //string sVal = Request.Form.GetValues(txtNum)[0];
 
                                         HtmlInputText tb = FindControl(txtNum) as HtmlInputText;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        //tb.Value = dta.Rows[0]["Header_Data"].ToString();
+
+                                        tb.Value = Convert.ToString(dta.Rows[0]["Header_Data"]);
                                         tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
@@ -1167,7 +1265,9 @@ namespace Upkeep_v3.WorkPermit
                                         // string sVal = Request.Form.GetValues(txtNum)[0];
 
                                         HtmlTextArea tb = FindControl(txtNum) as HtmlTextArea;
-                                        tb.Value = dta.Rows[0]["Header_Data"].ToString();
+                                        tb.Value = Convert.ToString(dta.Rows[0]["Header_Data"]);
+
+                                        //tb.Value = dta.Rows[0]["Header_Data"].ToString();
                                         tb.Attributes.Add("Disabled", "true");
                                         //Request.Form.Set(txtNum, dta.Rows[0]["Header_Data"].ToString());
                                     }
@@ -1210,10 +1310,10 @@ namespace Upkeep_v3.WorkPermit
 
                                 if (strUserType == "E")
                                 {
-                                    lblEmpName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Name"]);
-                                    lblEmpCode.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Code"]);
-                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Mobile"]);
-                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["Email"]);
+                                    lblEmpName.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpName"]);
+                                    lblEmpCode.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpCode"]);
+                                    lblMobileNo.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpMobileNo"]);
+                                    LblEmailID.Text = Convert.ToString(dsData.Tables[1].Rows[0]["EmpEmail"]);
                                 }
                                 else
                                 {
@@ -1244,7 +1344,7 @@ namespace Upkeep_v3.WorkPermit
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-                        MyActionCompeletd = dsData.Tables[5].Rows[0]["IsComplete"].ToString();
+                        MyActionCompeletd = Convert.ToString(dsData.Tables[5].Rows[0]["IsComplete"]);
                     }
 
                 }
@@ -1274,6 +1374,11 @@ namespace Upkeep_v3.WorkPermit
                         divUpdateButton.Attributes.Add("style", "display:none;");
                     }
 
+                    if (Convert.ToInt32(dsData.Tables[0].Rows[0]["ShowApprovalMatrix_Approvers"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
                 else
                 {
@@ -1283,6 +1388,12 @@ namespace Upkeep_v3.WorkPermit
                     divUpdateButton.Attributes.Add("style", "display:none;");
                     //dvApprovalDetails.Attributes.Add("Style", "display:none;");
                     //dvSubmitSection.Attributes.Add("Style", "display:none;"); ;
+
+                    if (Convert.ToInt32(dsData.Tables[0].Rows[0]["ShowApprovalMatrix_Initiators"]) == 0)
+                    {
+                        dvApprovalMatrix.Attributes.Add("style", "display:none;");
+                    }
+
                 }
 
             }
@@ -1293,69 +1404,88 @@ namespace Upkeep_v3.WorkPermit
         }
         protected async void btnApprove_Click(object sender, EventArgs e)
         {
-            if (ddlAction.SelectedIndex < 1)
+            try
             {
-                LabelERRORmsg.Text = "Please enter Proper Action type";
-                return;
-            }
-            if (txtRemarks.Text.Trim() == "")
-            {
-                LabelERRORmsg.Text = "Please enter remarks";
-                return;
-            }
-            string ActionStatus = string.Empty;
-            ActionStatus = Convert.ToString(ddlAction.SelectedItem.Text);
-            DataSet dsWPAction = new DataSet();
-            dsWPAction = ObjUpkeep.Update_WorkPermitRequest(Convert.ToInt32(Session["TransactionID"].ToString()), LoggedInUserID, ActionStatus, txtRemarks.Text);
-
-            if (dsWPAction.Tables.Count > 0)
-            {
-                if (dsWPAction.Tables[0].Rows.Count > 0)
+                int TransactionID = 0;
+                if (Convert.ToString(Session["TransactionID"]) != "")
                 {
-                    int Status = Convert.ToInt32(dsWPAction.Tables[0].Rows[0]["Status"]);
-                    if (Status == 1)
+                    TransactionID = Convert.ToInt32(Session["TransactionID"]);
+                }
+                else
+                {
+                    Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                }
+
+                if (ddlAction.SelectedIndex < 1)
+                {
+                    LabelERRORmsg.Text = "Please enter Proper Action type";
+                    divUpdateButton.Attributes.Add("style", "display:block;");
+                    return;
+                }
+                if (txtRemarks.Text.Trim() == "")
+                {
+                    LabelERRORmsg.Text = "Please enter remarks";
+                    divUpdateButton.Attributes.Add("style", "display:block;");
+                    return;
+                }
+                string ActionStatus = string.Empty;
+                ActionStatus = Convert.ToString(ddlAction.SelectedItem.Text);
+                DataSet dsWPAction = new DataSet();
+                dsWPAction = ObjUpkeep.Update_WorkPermitRequest(TransactionID, LoggedInUserID, ActionStatus, txtRemarks.Text);
+
+                if (dsWPAction.Tables.Count > 0)
+                {
+                    if (dsWPAction.Tables[0].Rows.Count > 0)
                     {
-                        //[+][Ajay]
-                        if (dsWPAction.Tables.Count > 1)
+                        int Status = Convert.ToInt32(dsWPAction.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
                         {
-                            if (dsWPAction.Tables[1].Rows.Count > 0)
+                            //[+][Ajay]
+                            if (dsWPAction.Tables.Count > 1)
                             {
-                                string NotificationHeader = string.Empty;
-                                string NotificationMsg = string.Empty;
-                                string TicketNo = string.Empty;
-                                string CurrentLevel = string.Empty;
-
-                                TicketNo = Convert.ToString(dsWPAction.Tables[1].Rows[0]["TicketNo"]);
-                                CurrentLevel = Convert.ToString(dsWPAction.Tables[1].Rows[0]["CurrentLevel"]);
-
-                                NotificationHeader = "Work Permit ID " + TicketNo + ".";
-                                NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
-
-                                if (ActionStatus == "Approve")
+                                if (dsWPAction.Tables[1].Rows.Count > 0)
                                 {
-                                    foreach (DataRow dr in dsWPAction.Tables[1].Rows)
+                                    string NotificationHeader = string.Empty;
+                                    string NotificationMsg = string.Empty;
+                                    string TicketNo = string.Empty;
+                                    string CurrentLevel = string.Empty;
+
+                                    TicketNo = Convert.ToString(dsWPAction.Tables[1].Rows[0]["TicketNo"]);
+                                    CurrentLevel = Convert.ToString(dsWPAction.Tables[1].Rows[0]["CurrentLevel"]);
+
+                                    NotificationHeader = "Work Permit ID " + TicketNo + ".";
+                                    NotificationMsg = "A Work Permit approved at Level " + CurrentLevel + " is now pending in your Account. Tap to take Action.";
+
+                                    if (ActionStatus == "Approve")
                                     {
-                                        var TokenNO = Convert.ToString(dr["TokenNumber"]);
-                                        int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
-                                        //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
-                                        if (Is_App_Notification_Send > 0)
+                                        foreach (DataRow dr in dsWPAction.Tables[1].Rows)
                                         {
-                                            await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                            var TokenNO = Convert.ToString(dr["TokenNumber"]);
+                                            int Is_App_Notification_Send = Convert.ToInt32(dr["Is_App_Notification_Send"]);
+                                            //await SendNotification(TokenNO, Convert.ToString(lblTicket.Text), "New WorkPermit Request");
+                                            if (Is_App_Notification_Send > 0)
+                                            {
+                                                await SendNotification(TokenNO, Convert.ToInt32(Session["TransactionID"]), NotificationHeader, NotificationMsg);
+                                            }
                                         }
                                     }
                                 }
                             }
+                            //[-][Ajay]
+                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
+                            //lblWpRequestCode.Text = Convert.ToString(dsWPAction.Tables[1].Rows[0]["RequestID"]);
+                            //mpeWpRequestSaveSuccess.Show();
                         }
-                        //[-][Ajay]
-                        Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["PreviousURL"])), false);
-                        //lblWpRequestCode.Text = Convert.ToString(dsWPAction.Tables[1].Rows[0]["RequestID"]);
-                        //mpeWpRequestSaveSuccess.Show();
-                    }
-                    else if (Status == 2)
-                    {
-                        LabelERRORmsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        else if (Status == 2)
+                        {
+                            LabelERRORmsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
         }
