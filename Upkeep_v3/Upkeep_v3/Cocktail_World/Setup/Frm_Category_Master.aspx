@@ -1,17 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Brand_Sizes.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Setup.Brand_Sizes" %>
-
-
-
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Frm_Category_Master.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Setup.Frm_Category_Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
+    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 
+
+
+    
     
      <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript" ></script>
 
@@ -40,7 +38,7 @@
     <script type="text/javascript">
 
         function CheckForm() {
-            if ($('#<%=txtBrandDesc.ClientID %>').val() == "") {
+            if ($('#<%=txtcategoryDesc.ClientID %>').val() == "") {
                 alert('Please Enter Category Desc');
                 return false;
             }
@@ -92,7 +90,7 @@
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Size Master		
+                                <h3 class="m-portlet__head-text">Category Master		
                                 </h3>
                             </div>
                         </div>
@@ -100,7 +98,7 @@
                             <ul class="m-portlet__nav">
                                 <li class="m-portlet__nav-item">
 
-                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Size" />
+                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Brand" />
                            
 
                                      <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
@@ -130,8 +128,8 @@
                             <thead>
 
                                 <tr>
-                                    <th>Size Name</th>
-                                    <th>Size  Alias</th>
+                                    <th>Category Desc</th>
+                                    <th>category Alias</th>
                                    <%-- <th>Short Name</th>--%>
                                     <th>Action</th>
                                 </tr>
@@ -144,7 +142,7 @@
                             </tr>
                         </tbody>--%>
                             <tbody>
-                               <%-- <%=bindgrid()%>--%>
+                                <%=bindgrid()%>
                             </tbody>
                         </table>
                     </div>
@@ -202,7 +200,7 @@
                                 <ContentTemplate>
 
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Size Master</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Categroy Master</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader" runat="server" onserverclick="btnCloseHeader_ServerClick"  >
                                             <span aria-hidden="true">&times;</span>
                                        <%-- <asp:Button ID="btnCloseHeader" runat="server" class="Close"/>--%>
@@ -210,36 +208,23 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-
-
-
-                                             <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Description :</label>
-                                            <asp:TextBox ID="txtBrandDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                        
+                                       <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category_Desc :</label>
+                                           <asp:TextBox ID="txtcategoryDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtcategoryDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Description"></asp:RequiredFieldValidator>
 
                                         </div>
-
 
                                           <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Alias :</label>
-                                            <asp:TextBox ID="txtSizeAlias" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSizeAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category_Alias :</label>
+                                           <asp:TextBox ID="txtCatAlias" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCatAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Alias"></asp:RequiredFieldValidator>
 
                                         </div>
-                                        
-                                   <%--    <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size :</label>
-                                           <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%"  OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                                       
-                                           <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlcategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
 
-                                        </div>--%>
-
-                                       
                                       
-
-
+                                       
 
 
   <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
@@ -272,6 +257,7 @@
 
 
     </div>
+
 
 
 

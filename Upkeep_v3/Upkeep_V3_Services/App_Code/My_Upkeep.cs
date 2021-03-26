@@ -2626,6 +2626,41 @@ public class My_Upkeep
         return ds;
     }
 
+    public DataSet Fetch_states(int Country_ID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Fetch_states(Country_ID, StrConn);
+
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+
+    }
+
+    public DataSet Fetch_City(int State_ID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Fetch_City(State_ID, StrConn);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+
+    }
 
     #region Electricity Monitoring
 

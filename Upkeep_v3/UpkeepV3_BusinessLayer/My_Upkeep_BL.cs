@@ -3694,6 +3694,50 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+
+
+        public DataSet Fetch_states(int Country_Id,string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Fetch_States_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Country_Id", Country_Id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+
+            }
+             catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet Fetch_City(int State_Id,string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Fetch_City_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("State_ID", State_Id);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return (ds);
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         #region Electricity Monitoring
 
         public DataSet INSERT_Electricity_Category(string Electricity_CatXML, int CompanyID, string LoggedInUserID,int Electricity_Cat_ID,string strAction, string StrConn)

@@ -22,6 +22,7 @@ namespace Upkeep_v3.General_Masters
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        int State_ID = 0;
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepCC = new Upkeep_V3_Services.Upkeep_V3_Services();
 
@@ -29,8 +30,13 @@ namespace Upkeep_v3.General_Masters
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
+            BindState();
+            BindCity(State_ID);
 
             int Site_ID = Convert.ToInt32(Request.QueryString["Site_ID"]);
             int DelSite_ID = Convert.ToInt32(Request.QueryString["DelSite_ID"]);
@@ -46,6 +52,10 @@ namespace Upkeep_v3.General_Masters
             }
 
         }
+
+
+
+       
 
 
 
@@ -79,7 +89,6 @@ namespace Upkeep_v3.General_Masters
                 throw ex;
             }
         }
-
 
 
         public void DeleteSite_Master(int Site_ID)
@@ -168,12 +177,35 @@ namespace Upkeep_v3.General_Masters
 
             string Site_Code = string.Empty;
             string Site_Name = string.Empty;
-
+            int State = 0;
+            int city = 0;
+            string Address = string.Empty;
+            int cocktail = 0;
+            string LicenseNumber = string.Empty;
 
 
 
             Site_Code = txtSitecode.Text.Trim();
             Site_Name = txtSiteDesc.Text.Trim();
+            State = Convert.ToInt32(DDLState.SelectedValue);
+            city = Convert.ToInt32(ddlCity.SelectedValue);
+            Address = txtAddress.Text.Trim();
+            LicenseNumber = TxtLicenseNumber.Text.Trim();
+
+
+            if (chkcocktail.Checked == true)
+            {
+                cocktail = 1;
+
+            }
+            else
+            {
+                cocktail = 0;
+            }
+
+
+
+
 
 
             ds = ObjUpkeepCC.SiteMaster_CRUD(Site_ID, Site_Code, Site_Name, CompanyID, LoggedInUserID, Action);
@@ -253,5 +285,74 @@ namespace Upkeep_v3.General_Masters
         {
 
         }
+
+        protected void DDLState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindCity(State_ID);
+        }
+
+        protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void BindState()
+        {
+            try
+            {
+
+                DataSet ds = new DataSet();
+                ds = ObjUpkeepCC.Fetch_states(0); 
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DDLState.DataSource = ds.Tables[0];
+                        DDLState.DataTextField = "State_Desc";
+                        DDLState.DataValueField = "State_ID";
+                        DDLState.DataBind();
+                        DDLState.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void BindCity(int State_ID)
+        {
+            try
+            {
+
+                State_ID = Convert.ToInt32(DDLState.SelectedValue);
+                DataSet ds = new DataSet();
+
+                ds = ObjUpkeepCC.Fetch_City(State_ID); 
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlCity.DataSource = ds.Tables[0];
+                        ddlCity.DataTextField = "City_Desc";
+                        ddlCity.DataValueField = "City_ID";
+                        ddlCity.DataBind();
+                        ddlCity.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
     }
 }

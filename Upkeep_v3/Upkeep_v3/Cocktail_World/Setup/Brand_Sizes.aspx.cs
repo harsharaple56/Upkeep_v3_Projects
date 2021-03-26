@@ -13,5 +13,25 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
 
         }
+
+        protected void btnCategorySave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCloseCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCloseHeader_ServerClick(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAddcategory_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

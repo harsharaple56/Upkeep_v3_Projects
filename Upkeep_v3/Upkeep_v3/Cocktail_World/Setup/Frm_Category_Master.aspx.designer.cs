@@ -10,7 +10,7 @@
 namespace Upkeep_v3.Cocktail_World.Setup {
     
     
-    public partial class Brands {
+    public partial class Frm_Category_Master {
         
         /// <summary>
         /// btnAddcategory control.
@@ -58,49 +58,13 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnCloseHeader;
         
         /// <summary>
-        /// ddlcategory control.
+        /// txtcategoryDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcategory;
-        
-        /// <summary>
-        /// rfvDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDept;
-        
-        /// <summary>
-        /// ddlSubCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubCategory;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
-        /// <summary>
-        /// txtBrandDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBrandDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtcategoryDesc;
         
         /// <summary>
         /// rfvCategory control.
@@ -112,49 +76,22 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory;
         
         /// <summary>
-        /// txtShortname control.
+        /// txtCatAlias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtShortname;
+        protected global::System.Web.UI.WebControls.TextBox txtCatAlias;
         
         /// <summary>
-        /// txtPurchRatepeg control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPurchRatepeg;
-        
-        /// <summary>
-        /// txtSellingRatePeg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSellingRatePeg;
-        
-        /// <summary>
-        /// txtSellingRateBotle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSellingRateBotle;
-        
-        /// <summary>
-        /// chkBrndDisable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBrndDisable;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// lblCategoryErrorMsg control.

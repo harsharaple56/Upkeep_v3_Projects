@@ -23,7 +23,77 @@
         }
          </style>
 
+
+
     <script type="text/javascript">
+    
+        $(document).ready(function () {
+
+            function openModal() {
+                //alert('hgfhfghfg');
+                $('#Add_Site_New').modal('show');
+            }
+
+            function openModal() {
+                //alert('Hii');
+                $('#Add_Category').modal('show');
+            }
+        });
+       </script>
+
+<script type="text/javascript">
+
+ //$(document).ready(function () {
+
+ //     $(".customcontrolinput").click(function () {
+ //         //alert('FF');
+ //         //alert($(this).attr('id'));
+ //         //alert($(this).prop("checked"));
+ //         if ($(this).attr('id') == 'customCheck') {
+ //             //alert('FF0');
+ //             if ($(this).prop("checked") == false) {
+ //                 // alert('FF1');
+ //                 $("div#DivIsAssetCoveredInAmc").hide("slow");
+ //             }
+ //             else {
+ //                 //alert('FF2');
+ //                 $("div#DivIsAssetCoveredInAmc").show("slow");
+ //             }
+ //         }
+ //         //else {
+ //         //    if ($(this).prop("checked") == false) {
+ //         //        $("div#DivIsServiceSchedule").hide("slow");
+ //         //    }
+ //         //    else {
+ //         //        $("div#DivIsServiceSchedule").show("slow");
+ //         //    }
+ //         //}
+      
+
+
+
+          //function DivShowHide() {
+
+          //    if ($("#customCheck").prop("checked") == false) {
+          //        //alert('FF1');
+          //        $("div#DivIsAssetCoveredInAmc").hide("slow");
+          //    }
+          //    else {
+          //        //alert('FF2');
+          //        $("div#DivIsAssetCoveredInAmc").show("slow");
+          //    }
+
+          //    //if ($("#customCheck1").prop("checked") == false) {
+          //    //    $("div#DivIsServiceSchedule").hide("slow");
+          //    //}
+          //    //else {
+          //    //    $("div#DivIsServiceSchedule").show("slow");
+          //    //}
+          //}
+
+          //DivShowHide();
+
+     
 
         function CheckForm() {
             if ($('#<%=txtSitecode.ClientID %>').val() == "") {
@@ -36,15 +106,13 @@
             }
             return true;
         }
+       //     });
 
-        function openModal() {
-            //alert('hgfhfghfg');
-            $('#Add_Site_New').modal('show');
-        }
+       //});
 
     </script>
 
-    <script type="text/javascript">
+   <%-- <script type="text/javascript">
         $(document).ready(function () {
             //$('#btnedit').click(function () {
             $("#btnedit").click(function(){
@@ -53,16 +121,14 @@
                 
             });
             
-        });
+      
 
-        function openModal() {
-            //alert('Hii');
-            $('#Add_Category').modal('show');
-        }
 
-    </script>
+         });
 
-     <script type="text/javascript">
+    </script>--%>
+
+<%--     <script type="text/javascript">
             $(document).ready(function(){
                 $('#m_table_1').DataTable({
                     responsive: true,
@@ -71,8 +137,11 @@
                         init_plugins();
                     }
                 });
+
+
+
             });
-        </script>
+        </script>--%>
 
     <div runat="server">
          <cc1:toolkitscriptmanager runat="server"> </cc1:toolkitscriptmanager>
@@ -172,15 +241,90 @@
 
                                         </div>
 
-                                        
-                                        <div class="form-group m-form__group row">
+
+                                          <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Site Description :</label>
-                                            <asp:TextBox ID="txtSiteDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                           <asp:TextBox ID="txtSiteDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                          
+                                           
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
 
                                         </div>
+
+
+                                          <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">State :</label>
+                                           <asp:DropDownList ID="DDLState" class="form-control" Style="width: 60%"  OnSelectedIndexChanged="DDLState_SelectedIndexChanged"  runat="server"></asp:DropDownList>
+                                          
+                                           
+                                        <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
+
+                                        </div>
+
+
+                                          <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">City :</label>
+                                          <asp:DropDownList ID="ddlCity" class="form-control" Style="width: 60%"  OnSelectedIndexChanged="ddlCity_SelectedIndexChanged"  runat="server"></asp:DropDownList>
+                                          
+                                          <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
+
+                                        </div>
+
+
+                                        
+                                       
+                                            
+                                    <br />
+                                     <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Address :</label>
+                                           <asp:TextBox ID="txtAddress" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                          
+                                           
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtAddress" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+
+                                        </div>
+
+
+                                          <div class="form-group m-form__group row">
+
+                                              <asp:CheckBox ID="chkcocktail" runat="server" class="customcontrolinput col-xl-4 col-lg-3" style="padding-right: 13px;left: -10;left: 70px;top: 3px;" />
+
+                                        
+                                          <%--   <input type="checkbox" id="txtCockail" runat="server" class="customcontrolinput col-xl-4 col-lg-3" style="padding-right: 13px;left: -10;left: 70px;top: 3px;" name="example1" clientidmode="Static" />
+                                           --%>   
+                                              
+                                              <label for="message-text" class="form-control-label">Add this Site as License Under Cocktail World</label>
+                                           
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+
+                                        </div>
+
+
+                                          <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">License Number :</label>
+                                             <asp:TextBox ID="TxtLicenseNumber" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                          
+                                           
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtSiteDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+
+                                        </div>
+
+
+                                                
+                                      
+                                   
+
+                                 
+
+
+
+
+
+
+
+
                                         <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                    </div>
+                              
                                     <%--<div class="form-group m-form__group row">
                                         <div class="col-xl-9 col-lg-9">
                                             <asp:Label ID="Label1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
@@ -190,6 +334,9 @@
                                     <div class="modal-footer">
                                         <asp:Button ID="btnClose" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" />
                                         <asp:Button ID="btnSiteMst" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnSiteMst_Click" Text="Save" />
+
+                                        
+
 
                                     </div>
                                 </ContentTemplate>

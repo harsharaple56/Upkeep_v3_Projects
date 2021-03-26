@@ -2912,6 +2912,37 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    public DataSet Fetch_states(int Country_Id)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_states(Country_Id);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_City(int State_Id)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_City(State_Id);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
     #region Electricity Monitoring
 
     [WebMethod]
