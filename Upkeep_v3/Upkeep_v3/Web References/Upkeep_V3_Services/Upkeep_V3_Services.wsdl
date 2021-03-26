@@ -77,6 +77,48 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_states">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Country_Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_statesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_statesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_City">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="State_Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CityResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="INSERT_Electricity_Category">
         <s:complexType>
           <s:sequence>
@@ -4192,6 +4234,18 @@
   <wsdl:message name="SiteMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:SiteMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_statesSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_states" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_statesSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_statesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CitySoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_City" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CitySoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CityResponse" />
+  </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapIn">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_Category" />
   </wsdl:message>
@@ -5225,6 +5279,14 @@
       <wsdl:input message="tns:SiteMaster_CRUDSoapIn" />
       <wsdl:output message="tns:SiteMaster_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_states">
+      <wsdl:input message="tns:Fetch_statesSoapIn" />
+      <wsdl:output message="tns:Fetch_statesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_City">
+      <wsdl:input message="tns:Fetch_CitySoapIn" />
+      <wsdl:output message="tns:Fetch_CitySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
@@ -5929,6 +5991,24 @@
     </wsdl:operation>
     <wsdl:operation name="SiteMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_states">
+      <soap:operation soapAction="http://tempuri.org/Fetch_states" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_City">
+      <soap:operation soapAction="http://tempuri.org/Fetch_City" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7489,6 +7569,24 @@
     </wsdl:operation>
     <wsdl:operation name="SiteMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/SiteMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_states">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_states" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_City">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_City" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

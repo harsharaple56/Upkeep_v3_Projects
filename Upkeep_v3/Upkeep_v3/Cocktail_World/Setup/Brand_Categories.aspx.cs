@@ -49,6 +49,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         public void BindCategory()
+
         {
             try
             {
