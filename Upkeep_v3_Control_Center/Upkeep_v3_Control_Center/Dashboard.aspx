@@ -287,6 +287,83 @@
 
 
 
+
+
+               <div class="row">
+                <div class="col-xl-12">
+
+                    <!--begin:: Widgets/Sales States-->
+                    <div class="m-portlet m-portlet--full-height ">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">System Statistics
+                                    </h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="m-portlet__body">
+                            
+                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                        <div class="col-xl-6">
+                            
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Database Size</h3>
+                                            <span class="m-widget1__desc">Space consumed on server by the Database</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-brand">
+                                                <asp:Label ID="lblDatabase_Size" runat="server">340 MB</asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                        <div class="col-xl-6">
+
+                            <!--begin:: Widgets/Daily Sales-->
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col">
+                                            <h3 class="m-widget1__title">Application Size</h3>
+                                            <span class="m-widget1__desc">Space consumed on server by the Application</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <span class="m-widget1__number m--font-brand">
+                                                <asp:Label ID="lblApplication_Size" runat="server">1.2 GB</asp:Label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end:: Widgets/Daily Sales-->
+                        </div>
+
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                   </div>
+
+
+
+
+
+
+
+
+
+
+
             <div class="row">
                 <div class="col-xl-12">
 
