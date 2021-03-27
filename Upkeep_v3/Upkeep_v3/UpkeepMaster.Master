@@ -191,20 +191,20 @@
 
             //document.getElementsByName("secondsIdle").innerHTML = seconds;
             document.getElementsByName("seconds").innerHTML = seconds;
-           
+
             setInterval(function () {
                 seconds--;
                 document.getElementById("seconds").innerHTML = seconds;
                 //document.getElementById("secondsIdle").innerHTML = seconds;
-              
+
             }, 1000);
             setTimeout(function () {
                 //Show Popup before 20 seconds of timeout.
                 //$find("mpeTimeout").show();
-                
+
                 $("#MyPopup").modal({
-            backdrop: 'static',
-            keyboard: false
+                    backdrop: 'static',
+                    keyboard: false
                 });
                 $("#MyPopup").modal("show");
 
@@ -746,7 +746,7 @@
                         <div class="modal-content">
                             <div class="modal-header btn-danger" style="padding: 15px !important;">
                                 <h3 class="modal-title" style="color: white;">Session Expiring </h3>
-                                <button type="button" class="close" data-dismiss="modal" style="color: white; margin-top: -6px;"> &times;</button>
+                                <button type="button" class="close" data-dismiss="modal" style="color: white; margin-top: -6px;">&times;</button>
 
                             </div>
                             <div class="modal-body">
@@ -1336,7 +1336,29 @@
     <script src="<%= Page.ResolveClientUrl("~/assets/app/js/dashboard.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/custom/common.js") %>" type="text/javascript"></script>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCH8GmfqqV4RKGv4JXJ4RtBhFRGM4xE1AE",
+            authDomain: "efacilito-web.firebaseapp.com",
+            projectId: "efacilito-web",
+            storageBucket: "efacilito-web.appspot.com",
+            messagingSenderId: "841132081532",
+            appId: "1:841132081532:web:b347b2873f9b74086664f9",
+            measurementId: "G-8FQY95XS0J"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
 </body>
 </html>

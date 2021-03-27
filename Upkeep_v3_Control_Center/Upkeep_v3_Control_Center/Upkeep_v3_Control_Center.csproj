@@ -456,6 +456,7 @@
     <Content Include="assets\app\media\img\icons\logout.svg" />
     <Content Include="assets\app\media\img\icons\question.svg" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
+    <Content Include="assets\app\media\img\logos\compel_iso.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250_old.png" />
     <Content Include="assets\app\media\img\logos\logo-1.png" />
@@ -848,6 +849,7 @@
     <Content Include="Images\PhoenixLogo.png" />
     <Content Include="Invoices\Add_Invoices.aspx" />
     <Content Include="Invoices\Invoices_Listing.aspx" />
+    <Content Include="Invoices\View_Invoice.aspx" />
     <Content Include="License_Management.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MasterPage.Master" />
@@ -4786,6 +4788,13 @@
     </Compile>
     <Compile Include="Invoices\Invoices_Listing.aspx.designer.cs">
       <DependentUpon>Invoices_Listing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices\View_Invoice.aspx.cs">
+      <DependentUpon>View_Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices\View_Invoice.aspx.designer.cs">
+      <DependentUpon>View_Invoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="License_Management.aspx.cs">
       <DependentUpon>License_Management.aspx</DependentUpon>
