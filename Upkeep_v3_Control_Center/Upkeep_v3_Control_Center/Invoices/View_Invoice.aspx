@@ -165,7 +165,9 @@
                                                         Maharashtra,
                                                         India,
                                                                             <br>
-                                                        GSTIN 27AAACE5767F2ZJ                                                                                <br>
+                                                        GSTIN 27AAACE5767F2ZJ
+                                                                                <br>
+
                                                     </span>
                                                 </div>
                                             </div>

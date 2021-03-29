@@ -339,7 +339,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <span class="m-widget1__number m--font-brand">
-                                                <asp:Label ID="lblApplication_Size" runat="server">1.2 GB</asp:Label>
+                                                <asp:Label ID="lblApplication_Size" runat="server"></asp:Label>
                                             </span>
                                         </div>
                                     </div>

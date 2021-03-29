@@ -26,6 +26,7 @@ namespace Upkeep_v3_Control_Center
 
         UpkeepControlCenter_Service.UpkeepControlCenter_Service objUpkeepCC = new UpkeepControlCenter_Service.UpkeepControlCenter_Service();
         string LoggedInUserID = string.Empty;
+        string path = "~/Masters/";
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -36,11 +37,30 @@ namespace Upkeep_v3_Control_Center
             if (!IsPostBack)
             {
                 Fetch_CC_Dashboard();
+                lblApplication_Size.Text =Convert.ToString(FindFolderSize(new DirectoryInfo(Server.MapPath(path)), UnitType.MB, 2).ToString() + " MB");
+
+
+                //Response.Write(FindFolderSize(new DirectoryInfo(Server.MapPath("~/Masters")), UnitType.MB, 2).ToString() + " MB");
 
 
             }
 
         }
+
+        public enum UnitType { KB = 1, MB = 2, GB = 3 }
+
+        public double FindFolderSize(DirectoryInfo d, UnitType u, int r)
+        {
+            double divider = Math.Pow(1024, (int)u);
+            double size = 0;
+            foreach (FileInfo f in d.GetFiles())
+                size += Convert.ToDouble(f.Length) / divider;
+            foreach (DirectoryInfo c in d.GetDirectories())
+                size += this.FindFolderSize(c, u, r);
+            return Math.Round(size, r);
+        }
+
+        
 
         public void Fetch_CC_Dashboard()
         {

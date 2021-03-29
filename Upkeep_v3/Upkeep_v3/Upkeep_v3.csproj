@@ -404,6 +404,9 @@
     <Content Include="assets\app\media\img\client-logos\logo3.png" />
     <Content Include="assets\app\media\img\client-logos\logo4.png" />
     <Content Include="assets\app\media\img\client-logos\logo5.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\chk.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\tkt.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\user1.jpg" />
     <Content Include="assets\app\media\img\envato\screen1.jpg" />
     <Content Include="assets\app\media\img\envato\screen2.jpg" />
     <Content Include="assets\app\media\img\error\bg1.jpg" />
@@ -1001,7 +1004,9 @@
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard1.aspx" />
-    <Content Include="Dashboard_v2.aspx" />
+    <Content Include="Dashboard_Admin_Ticketing.aspx" />
+    <Content Include="Dashboard_Admin.aspx" />
+    <Content Include="Dashboard_Employee.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -1021,6 +1026,7 @@
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
     <Content Include="GatePass\GatePass_Configuration.aspx" />
+    <Content Include="GatePass\Gatepass_Details_PrintView.aspx" />
     <Content Include="GatePass\GatePass_Report.aspx" />
     <Content Include="GatePass\GatePass_Request.aspx" />
     <Content Include="GatePass\MyActionable_GatePass.aspx" />
@@ -4417,12 +4423,26 @@
     <Compile Include="Dashboard1.aspx.designer.cs">
       <DependentUpon>Dashboard1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard_v2.aspx.cs">
-      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
+    <Compile Include="Dashboard_Admin_Ticketing.aspx.cs">
+      <DependentUpon>Dashboard_Admin_Ticketing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dashboard_v2.aspx.designer.cs">
-      <DependentUpon>Dashboard_v2.aspx</DependentUpon>
+    <Compile Include="Dashboard_Admin_Ticketing.aspx.designer.cs">
+      <DependentUpon>Dashboard_Admin_Ticketing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Admin.aspx.cs">
+      <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_Admin.aspx.designer.cs">
+      <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_Employee.aspx.cs">
+      <DependentUpon>Dashboard_Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_Employee.aspx.designer.cs">
+      <DependentUpon>Dashboard_Employee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
       <DependentUpon>Electricity_Categories.aspx</DependentUpon>
@@ -4549,6 +4569,13 @@
     </Compile>
     <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.cs">
+      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.designer.cs">
+      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
     </Compile>
     <Compile Include="GatePass\GatePass_Report.aspx.cs">
       <DependentUpon>GatePass_Report.aspx</DependentUpon>

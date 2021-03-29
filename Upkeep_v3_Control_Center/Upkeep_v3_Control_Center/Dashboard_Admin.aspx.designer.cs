@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3
+namespace Upkeep_v3_Control_Center
 {
 
 
-    public partial class Dashboard_v2
+    public partial class Dashboard_Admin
     {
     }
 }
