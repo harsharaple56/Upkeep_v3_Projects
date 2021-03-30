@@ -404,7 +404,9 @@
     <Content Include="assets\app\media\img\client-logos\logo3.png" />
     <Content Include="assets\app\media\img\client-logos\logo4.png" />
     <Content Include="assets\app\media\img\client-logos\logo5.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\call.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\chk.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\email.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\tkt.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\user1.jpg" />
     <Content Include="assets\app\media\img\envato\screen1.jpg" />
