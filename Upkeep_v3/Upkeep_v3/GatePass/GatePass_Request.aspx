@@ -520,16 +520,17 @@
                                                 <%--<asp:Label ID="" runat="server" Text='<%#Eval("Doc_Config_Id") %>' Style="display: none;"></asp:Label>--%>
                                                 <asp:FileUpload AllowMultiple="false" ID="flDoc" runat="server" />
 
-                                                <asp:RegularExpressionValidator ID="rexp" runat="server" ControlToValidate="flDoc"
+                                                
+                                                <%--<asp:RegularExpressionValidator ID="rexp" runat="server" ControlToValidate="flDoc"
                                                     ErrorMessage=" Please upload jpg, jpeg, png, pdf file only." ForeColor="Red"
-                                                    ValidationExpression="(.*\.([Gg][Ii][Ff])|.*\.([Jj][Pp][Gg])|.*\.([Bb][Mm][Pp])|.*\.([pP][nN][gG])|.*\.([pP][dD][fF])$)"></asp:RegularExpressionValidator>
+                                                    ValidationExpression="(.*\.([Gg][Ii][Ff])|.*\.([Jj][Pp][Gg])|.*\.([Bb][Mm][Pp])|.*\.([pP][nN][gG])|.*\.([pP][dD][fF])$)"></asp:RegularExpressionValidator>--%>
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
-
+                                <span>Please upload jpg, jpeg, png, pdf file only.</span>
                                 
-                                <br />
+                                <br /><br />
 
                                 <%-- End Document Section --%>
 
