@@ -40,7 +40,7 @@
     <script type="text/javascript">
 
         function CheckForm() {
-            if ($('#<%=txtBrandDesc.ClientID %>').val() == "") {
+            if ($('#<%=txtSizedes.ClientID %>').val() == "") {
                 alert('Please Enter Category Desc');
                 return false;
             }
@@ -144,7 +144,7 @@
                             </tr>
                         </tbody>--%>
                             <tbody>
-                               <%-- <%=bindgrid()%>--%>
+                                <%=bindgrid()%>
                             </tbody>
                         </table>
                     </div>
@@ -215,8 +215,8 @@
 
                                              <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Description :</label>
-                                            <asp:TextBox ID="txtBrandDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txtSizedes" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSizedes" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
 
                                         </div>
 

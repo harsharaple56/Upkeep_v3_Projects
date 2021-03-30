@@ -83,6 +83,23 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
     }
 
+      [WebMethod]
+    public DataSet SizeMaster_CRUD(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID,string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.SizeMaster_CRUD( Size_ID,Size_Desc,Size_Alias ,LoggedInUserID, Company_ID, Action);
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+
+
+    }
+
 
 
 

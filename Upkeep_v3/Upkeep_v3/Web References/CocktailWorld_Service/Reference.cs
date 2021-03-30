@@ -38,6 +38,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback BrandMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SizeMaster_CRUDOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -87,6 +89,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event BrandMaster_CRUDCompletedEventHandler BrandMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event SizeMaster_CRUDCompletedEventHandler SizeMaster_CRUDCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -235,6 +240,45 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SizeMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SizeMaster_CRUD(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("SizeMaster_CRUD", new object[] {
+                        Size_ID,
+                        Size_Desc,
+                        Size_Alias,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SizeMaster_CRUDAsync(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID, string Action) {
+            this.SizeMaster_CRUDAsync(Size_ID, Size_Desc, Size_Alias, LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void SizeMaster_CRUDAsync(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.SizeMaster_CRUDOperationCompleted == null)) {
+                this.SizeMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSizeMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("SizeMaster_CRUD", new object[] {
+                        Size_ID,
+                        Size_Desc,
+                        Size_Alias,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.SizeMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnSizeMaster_CRUDOperationCompleted(object arg) {
+            if ((this.SizeMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SizeMaster_CRUDCompleted(this, new SizeMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -344,6 +388,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal BrandMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void SizeMaster_CRUDCompletedEventHandler(object sender, SizeMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SizeMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SizeMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
