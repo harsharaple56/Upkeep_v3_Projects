@@ -50,7 +50,7 @@
                                 <div class="m-widget19__header">
 
                                     <div class="m-widget19__user-img">
-                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/pending.jpg" alt="">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Closure
@@ -197,7 +197,7 @@
                             <div class="m-widget19__content ">
                                 <div class="m-widget19__header">
                                     <div class="m-widget19__user-img">
-                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/pending.jpg" alt="">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Incomplete Checklists
@@ -282,7 +282,7 @@
                             <div class="m-widget19__content ">
                                 <div class="m-widget19__header">
                                     <div class="m-widget19__user-img">
-                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/pending.jpg" alt="">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
@@ -399,7 +399,7 @@
                             <div class="m-widget19__content ">
                                 <div class="m-widget19__header">
                                     <div class="m-widget19__user-img">
-                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/pending.jpg" alt="">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
