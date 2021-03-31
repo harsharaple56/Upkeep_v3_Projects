@@ -176,7 +176,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnCloseCategory_Click(object sender, EventArgs e)
         {
-
+            txtcategoryDesc.Text = "";
+            txtCatAlias.Text = "";
+            lblCategoryErrorMsg.Text = "";
+            mpeCategoryMaster.Hide();
+            Session["Category_ID"] = "";
+            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Frm_Category_Master.aspx"), false);
         }
 
         protected void btnCloseHeader_ServerClick(object sender, EventArgs e)

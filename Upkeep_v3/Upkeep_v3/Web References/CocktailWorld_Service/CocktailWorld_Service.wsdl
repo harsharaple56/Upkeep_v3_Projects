@@ -91,6 +91,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SizeMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Size_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Size_Alias" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SizeMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SizeMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -117,6 +143,12 @@
   <wsdl:message name="BrandMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:BrandMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="SizeMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:SizeMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="SizeMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:SizeMaster_CRUDResponse" />
+  </wsdl:message>
   <wsdl:portType name="CocktailWorld_ServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -133,6 +165,10 @@
     <wsdl:operation name="BrandMaster_CRUD">
       <wsdl:input message="tns:BrandMaster_CRUDSoapIn" />
       <wsdl:output message="tns:BrandMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SizeMaster_CRUD">
+      <wsdl:input message="tns:SizeMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:SizeMaster_CRUDSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CocktailWorld_ServiceSoap" type="tns:CocktailWorld_ServiceSoap">
@@ -173,6 +209,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SizeMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/SizeMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CocktailWorld_ServiceSoap12" type="tns:CocktailWorld_ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -205,6 +250,15 @@
     </wsdl:operation>
     <wsdl:operation name="BrandMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/BrandMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SizeMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/SizeMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
