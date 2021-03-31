@@ -234,7 +234,8 @@ background-color: blanchedalmond;
             $('.ulStars li').on('click', function () {
                 var onStar = parseInt($(this).data('value'), 10); // The star currently selected
                 var stars = $(this).parent().children('li.star');
-
+                //alert('stars')
+                //alert(stars);
                 for (i = 0; i < stars.length; i++) {
                     $(stars[i]).removeClass('selected');
                 }
@@ -258,9 +259,11 @@ background-color: blanchedalmond;
 
             });
             $("span").click(function () {
+                //debugger;
                 var Rclass = $(this).attr('class').split(" ")[0];
                 var rating = Rclass.substring(6);
-
+                //alert('rating')
+                //alert(rating);
                 $(this).siblings('.hdnEmoji').val(rating);
 
                 var emoji = ["😶", "😠", "🙁", "😐", "😊", "😍"];
