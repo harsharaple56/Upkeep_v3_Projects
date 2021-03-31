@@ -3999,10 +3999,10 @@
       <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
-    <Content Include="Web References\CocktailWorld_Service\Reference.map">
+    <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
