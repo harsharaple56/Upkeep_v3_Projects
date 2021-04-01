@@ -40,6 +40,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback SizeMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SubCategoryMaster_CRUDOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -92,6 +94,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event SizeMaster_CRUDCompletedEventHandler SizeMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event SubCategoryMaster_CRUDCompletedEventHandler SubCategoryMaster_CRUDCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -279,6 +284,45 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SubCategoryMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SubCategoryMaster_CRUD(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("SubCategoryMaster_CRUD", new object[] {
+                        SubCategory_ID,
+                        Category_ID,
+                        SubCategory_Desc,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SubCategoryMaster_CRUDAsync(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action) {
+            this.SubCategoryMaster_CRUDAsync(SubCategory_ID, Category_ID, SubCategory_Desc, LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void SubCategoryMaster_CRUDAsync(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.SubCategoryMaster_CRUDOperationCompleted == null)) {
+                this.SubCategoryMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSubCategoryMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("SubCategoryMaster_CRUD", new object[] {
+                        SubCategory_ID,
+                        Category_ID,
+                        SubCategory_Desc,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.SubCategoryMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnSubCategoryMaster_CRUDOperationCompleted(object arg) {
+            if ((this.SubCategoryMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SubCategoryMaster_CRUDCompleted(this, new SubCategoryMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -414,6 +458,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal SizeMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void SubCategoryMaster_CRUDCompletedEventHandler(object sender, SubCategoryMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SubCategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SubCategoryMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
