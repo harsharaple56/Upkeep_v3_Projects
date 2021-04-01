@@ -97,4 +97,23 @@ public class My_CocktailWorld
     }
 
 
+
+
+
+    public DataSet SubCategoryMaster_CRUD(int SubCategory_ID , int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.SubCategory_CRUD(SubCategory_ID, Category_ID, SubCategory_Desc, LoggedInUserID, Company_ID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
 }

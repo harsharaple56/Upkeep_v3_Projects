@@ -101,6 +101,21 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    public DataSet SubCategoryMaster_CRUD(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID,int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.SubCategoryMaster_CRUD( SubCategory_ID, Category_ID, SubCategory_Desc, LoggedInUserID, Company_ID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
 

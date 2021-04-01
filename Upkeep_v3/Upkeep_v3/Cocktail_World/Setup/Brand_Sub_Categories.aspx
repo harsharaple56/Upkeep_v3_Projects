@@ -82,7 +82,7 @@
                             </thead>
                             
                             <tbody>
-                              <%--  <%=bindSubCategorygrid()%>--%>
+                                <%=bindSubCategorygrid()%>
                             </tbody>
                         </table>
                     </div>
