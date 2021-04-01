@@ -390,6 +390,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                               Role_Name = Convert.ToString(p.Field<string>("Role_Name")),
                                               Reporting_Manager = Convert.ToString(p.Field<string>("ReportingManager")),
                                               ProfilePhoto = Convert.ToString(p.Field<string>("Profile_Photo")),
+                                              Company_Name = Convert.ToString(p.Field<string>("Company_Desc")),
 
                                           }).ToList();
 

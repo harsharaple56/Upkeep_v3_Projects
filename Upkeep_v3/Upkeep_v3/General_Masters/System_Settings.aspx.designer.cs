@@ -13,6 +13,24 @@ namespace Upkeep_v3.General_Masters {
     public partial class System_Settings {
         
         /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// lblUserErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserErrorMsg;
+        
+        /// <summary>
         /// photoRaisingCheck control.
         /// </summary>
         /// <remarks>
@@ -58,21 +76,12 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox TicketExpiry;
         
         /// <summary>
-        /// btnSave control.
+        /// chk_QR_Compulspory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
-        /// lblUserErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserErrorMsg;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_QR_Compulspory;
     }
 }

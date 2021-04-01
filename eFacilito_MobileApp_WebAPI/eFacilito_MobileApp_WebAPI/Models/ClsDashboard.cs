@@ -72,6 +72,8 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Role_Name { get; set; }
         public string Reporting_Manager { get; set; }
         public string ProfilePhoto { get; set; }
+        public string Company_Name { get; set; }
+
     }
 
     public class ClsManagerDashboard

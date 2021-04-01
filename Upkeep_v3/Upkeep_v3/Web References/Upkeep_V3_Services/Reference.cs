@@ -3961,7 +3961,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRU_System_Setting", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CRU_System_Setting", new object[] {
                         Setting_ID,
                         Tkt_Is_Img_Open,
@@ -3969,6 +3969,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Open,
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
+                        Chk_Is_QR_Compulsory,
                         CompanyID,
                         LoggedInUserID,
                         Action});
@@ -3976,12 +3977,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action) {
-            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, CompanyID, LoggedInUserID, Action, null);
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
+            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action, object userState) {
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action, object userState) {
             if ((this.CRU_System_SettingOperationCompleted == null)) {
                 this.CRU_System_SettingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRU_System_SettingOperationCompleted);
             }
@@ -3992,6 +3993,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Open,
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
+                        Chk_Is_QR_Compulsory,
                         CompanyID,
                         LoggedInUserID,
                         Action}, this.CRU_System_SettingOperationCompleted, userState);
