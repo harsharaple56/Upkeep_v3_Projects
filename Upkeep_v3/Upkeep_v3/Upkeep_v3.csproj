@@ -407,6 +407,7 @@
     <Content Include="assets\app\media\img\Dashboard_Icons\call.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\chk.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\email.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\pending.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\tkt.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\user1.jpg" />
     <Content Include="assets\app\media\img\envato\screen1.jpg" />
@@ -1028,7 +1029,6 @@
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
     <Content Include="GatePass\GatePass_Configuration.aspx" />
-    <Content Include="GatePass\Gatepass_Details_PrintView.aspx" />
     <Content Include="GatePass\GatePass_Report.aspx" />
     <Content Include="GatePass\GatePass_Request.aspx" />
     <Content Include="GatePass\MyActionable_GatePass.aspx" />
@@ -1109,6 +1109,7 @@
     <Content Include="Ticketing\Sub_Category.aspx" />
     <Content Include="Ticketing\Ticket.aspx" />
     <Content Include="Ticketing\Ticket_CTT_Report.aspx" />
+    <Content Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx" />
     <Content Include="Ticketing\View_Ticket_Details.aspx" />
     <Content Include="Ticketing\Workflow_Details.aspx" />
     <Content Include="Ticketing\Workflow_Master.aspx" />
@@ -3998,6 +3999,17 @@
     <Content Include="CheckList\ChecklistReport.xss">
       <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Content>
+    <Content Include="GatePass\Gatepass_Details_Print.xsc">
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
+    </Content>
+    <None Include="GatePass\Gatepass_Details_Print.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Gatepass_Details_Print.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GatePass\Gatepass_Details_Print.xss">
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
+    </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -4572,12 +4584,10 @@
     <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.cs">
-      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.designer.cs">
-      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
+    <Compile Include="GatePass\Gatepass_Details_Print.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Compile>
     <Compile Include="GatePass\GatePass_Report.aspx.cs">
       <DependentUpon>GatePass_Report.aspx</DependentUpon>
@@ -5060,6 +5070,13 @@
     </Compile>
     <Compile Include="Ticketing\Ticket_CTT_Report.aspx.designer.cs">
       <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx.cs">
+      <DependentUpon>Ticket_CTT_Report_Custom_Feilds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx.designer.cs">
+      <DependentUpon>Ticket_CTT_Report_Custom_Feilds.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\View_Ticket_Details.aspx.cs">
       <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
@@ -6100,6 +6117,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
+    <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">
