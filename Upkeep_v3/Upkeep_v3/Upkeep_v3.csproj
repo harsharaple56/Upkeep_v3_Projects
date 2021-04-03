@@ -967,6 +967,7 @@
     <Content Include="CheckList\Checklist.aspx" />
     <Content Include="CheckList\Checklist_Action.aspx" />
     <Content Include="CheckList\CheckList_Configuration.aspx" />
+    <Content Include="CheckList\Checklist_Consolidated_Report.aspx" />
     <Content Include="CheckList\Checklist_Report.aspx" />
     <Content Include="CheckList\CheckList_Report_Details.aspx" />
     <Content Include="CheckList\CheckList_Report_Listing.aspx" />
@@ -4163,6 +4164,13 @@
     </Compile>
     <Compile Include="CheckList\CheckList_Configuration.aspx.designer.cs">
       <DependentUpon>CheckList_Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Consolidated_Report.aspx.cs">
+      <DependentUpon>Checklist_Consolidated_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Consolidated_Report.aspx.designer.cs">
+      <DependentUpon>Checklist_Consolidated_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="CheckList\Checklist_Report.aspx.cs">
       <DependentUpon>Checklist_Report.aspx</DependentUpon>
