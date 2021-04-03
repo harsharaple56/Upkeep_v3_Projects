@@ -209,7 +209,7 @@
                                         
                                        <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
-                                           <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%"  OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                           <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%" AutoPostBack="true"  OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                                        
                                            <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlcategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
 
@@ -235,7 +235,7 @@
                                          <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Strength :</label>
                                             <asp:TextBox ID="txtShortname" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                           <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>--%>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                         </div>
                                      
@@ -243,7 +243,7 @@
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Purchase Rate in Peg :</label>
                                             <asp:TextBox ID="txtPurchRatepeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                        <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPurchRatepeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>--%>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPurchRatepeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                         </div>
                                       
@@ -251,7 +251,7 @@
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Peg:</label>
                                             <asp:TextBox ID="txtSellingRatePeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                          <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSellingRatePeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>--%>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSellingRatePeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                         </div>
 
@@ -259,7 +259,7 @@
                                           <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Bottle:</label>
                                             <asp:TextBox ID="txtSellingRateBotle" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                         <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSellingRateBotle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>--%>
+                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSellingRateBotle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Value"></asp:RequiredFieldValidator>
 
                                         </div>
 
