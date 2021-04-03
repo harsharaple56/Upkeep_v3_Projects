@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_v3.GatePass.GatePass_Approval" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -43,6 +45,7 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools">
+                                    <asp:Button ID="Btn_GP_Print_PDF" runat="server" Text="Print PDF" onclick="btn_GP_Print_PDF" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
 
                                     <a class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" onclick="FunctionBack();">
                                         <span>
@@ -50,6 +53,7 @@
                                             <span>Back</span>
                                         </span>
                                     </a>
+
                                     <%--<div class="btn-group">
                                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />                                          
                                         </div>--%>
@@ -358,5 +362,9 @@
             </div>
         </div>
     </div>
+
+          <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" BorderWidth="0px" Visible="false" ShowFindControls="False" Height="100%" ShowBackButton="True"
+                        ProcessingMode="Remote" ShowPromptAreaButton="False">
+        </rsweb:ReportViewer>
 
 </asp:Content>

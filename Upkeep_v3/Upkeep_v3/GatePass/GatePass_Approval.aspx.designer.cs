@@ -31,6 +31,15 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.HiddenField hdnGpHeader;
         
         /// <summary>
+        /// Btn_GP_Print_PDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_GP_Print_PDF;
+        
+        /// <summary>
         /// lblTicketNo control.
         /// </summary>
         /// <remarks>
@@ -317,5 +326,14 @@ namespace Upkeep_v3.GatePass {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        
+        /// <summary>
+        /// ReportViewer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
     }
 }

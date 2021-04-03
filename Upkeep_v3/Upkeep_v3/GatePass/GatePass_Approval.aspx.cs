@@ -4,13 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using System.Xml;
 using System.Text;
-using System.Data;
+using System.Web.UI.HtmlControls;
+//using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Data.SqlClient;
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+//using System.Data.OleDb;
+//using System.Data.Common;
+//using iTextSharp.text;
+//using iTextSharp.text.html.simpleparser;
+//using iTextSharp.text.pdf;
+using System.Web.Script.Serialization;
+using Microsoft.Reporting.WebForms;
 
 namespace Upkeep_v3.GatePass
 {
@@ -249,6 +261,100 @@ namespace Upkeep_v3.GatePass
             }
         }
 
+        protected void btn_GP_Print_PDF(object sender, EventArgs e)
+        {
+
+            int TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
+            Session["TransactionID"] = Convert.ToString(TransactionID);
+
+            DataSet dsApproval = new DataSet();
+
+            try
+            {
+                
+                dsApproval = ObjUpkeep.Fetch_GatePassRequest_Approval_Details(TransactionID, LoggedInUserID);
+
+                if(dsApproval != null)
+                {
+                    if(dsApproval.Tables.Count > 0)
+                    {
+                        if(dsApproval.Tables[0].Rows.Count > 0)
+                        {
+
+                            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+                            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/GatePass/Gatepass_Details_Print.rdlc");
+
+                            ReportDataSource datasource0 = new ReportDataSource("ds_GP_0", dsApproval.Tables[0]);
+                            ReportDataSource datasource1 = new ReportDataSource("ds_GP1_Retailers", dsApproval.Tables[1]);
+                            ReportDataSource datasource1E = new ReportDataSource("ds_GP1_Employee", dsApproval.Tables[1]);
+                            ReportDataSource datasource3 = new ReportDataSource("ds_GP3_Terms", dsApproval.Tables[3]);
+                            ReportDataSource datasource6 = new ReportDataSource("ds_GP6", dsApproval.Tables[6]);
+                            ReportDataSource datasource7 = new ReportDataSource("ds_GP7", dsApproval.Tables[8]);
+                            ReportDataSource datasource2 = new ReportDataSource("ds_GP2", dsApproval.Tables[2]);
+                            ReportDataSource datasource9 = new ReportDataSource("ds_GP9", dsApproval.Tables[9]);
+                            ReportDataSource datasource10 = new ReportDataSource("ds_GP10", dsApproval.Tables[10]);
+
+
+
+
+                            ReportViewer1.LocalReport.DataSources.Clear();
+                            ReportViewer1.LocalReport.EnableHyperlinks = true;
+                            ReportViewer1.LocalReport.EnableExternalImages = true;
+
+                            ReportViewer1.LocalReport.DataSources.Add(datasource0);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource1E);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource3);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource6);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource7);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource2);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource9);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource10);
+
+
+
+
+                            ReportViewer1.LocalReport.Refresh();
+
+                            string filename = "Gatepass_Report_" + DateTime.Now;
+
+                            string deviceInfo = "<DeviceInfo>" +
+                                "  <OutputFormat>PDF</OutputFormat>" +
+                                "  <PageWidth>8.27in</PageWidth>" +
+                                //"  <PageHeight>11.69in</PageHeight>" +
+                                //"  <MarginTop>0.25in</MarginTop>" +
+                                "  <MarginLeft>0.4in</MarginLeft>" +
+                                "  <MarginRight>0in</MarginRight>" +
+                                //"  <MarginBottom>0.25in</MarginBottom>" +
+                                "  <EmbedFonts>None</EmbedFonts>" +
+                                "</DeviceInfo>";
+
+                            Warning[] warnings;
+                            string[] streamIds;
+                            string mimeType = string.Empty;
+                            string encoding = string.Empty;
+                            string extension = string.Empty;
+                            byte[] bytes = ReportViewer1.LocalReport.Render("PDF", deviceInfo, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+                            Response.Buffer = true;
+                            Response.Clear();
+                            Response.ContentType = mimeType;
+                            Response.AddHeader("content-disposition", "attachment; filename=" + filename + "." + extension);
+                            Response.BinaryWrite(bytes);
+                            Response.Flush();
+
+
+
+                        }
+                    }
+                }
+            }
+           catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
             string CurrentLevel =string.Empty;
@@ -348,5 +454,7 @@ namespace Upkeep_v3.GatePass
                 }
             }
         }
+
+        
     }
 }
