@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Upkeep_v3.GatePass
+namespace Upkeep_v3.Laundry_Management.Stock
 {
-    public partial class Gatepass_Details_PrintView : System.Web.UI.Page
+    public partial class Stock_Details : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

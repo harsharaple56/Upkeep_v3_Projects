@@ -7,81 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.General_Masters {
+namespace Upkeep_v3.Ticketing {
     
     
-    public partial class System_Settings {
+    public partial class Ticket_CTT_Report_Custom_Feilds {
         
         /// <summary>
-        /// btnSave control.
+        /// btnExport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnExport;
         
         /// <summary>
-        /// lblUserErrorMsg control.
+        /// m_form_status control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserErrorMsg;
+        protected global::System.Web.UI.WebControls.DropDownList m_form_status;
         
         /// <summary>
-        /// photoRaisingCheck control.
+        /// m_form_type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox photoRaisingCheck;
+        protected global::System.Web.UI.WebControls.DropDownList m_form_type;
         
         /// <summary>
-        /// PhotoClosingCheck control.
+        /// start_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox PhotoClosingCheck;
+        protected global::System.Web.UI.WebControls.HiddenField start_date;
         
         /// <summary>
-        /// RemarksCompRaising control.
+        /// end_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox RemarksCompRaising;
+        protected global::System.Web.UI.WebControls.HiddenField end_date;
         
         /// <summary>
-        /// RemarksCompclosing control.
+        /// hdn_IsPostBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox RemarksCompclosing;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
         
         /// <summary>
-        /// TicketExpiry control.
+        /// date_range_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox TicketExpiry;
+        protected global::System.Web.UI.WebControls.HiddenField date_range_title;
         
         /// <summary>
-        /// chk_QR_Compulspory control.
+        /// hdnTicketStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_QR_Compulspory;
+        protected global::System.Web.UI.WebControls.HiddenField hdnTicketStatus;
+        
+        /// <summary>
+        /// hdnActionStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnActionStatus;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// gvCTT_Report control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCTT_Report;
     }
 }

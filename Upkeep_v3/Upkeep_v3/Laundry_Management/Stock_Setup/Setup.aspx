@@ -1,9 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="General_Master.aspx.cs" Inherits="Upkeep_v3.Inventory.General_Master" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Setup.aspx.cs" Inherits="Upkeep_v3.Laundry_Management.Stock.Setup" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+        <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
     <style type="text/css">
         .modalBackground {
@@ -295,9 +293,11 @@
         }
 
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    
     <div runat="server" id="FrmMain">
         <cc1:ToolkitScriptManager runat="server">
         </cc1:ToolkitScriptManager>
@@ -746,5 +746,6 @@
         <!-- end::Scroll Top -->
 
     </div>
+
 
 </asp:Content>

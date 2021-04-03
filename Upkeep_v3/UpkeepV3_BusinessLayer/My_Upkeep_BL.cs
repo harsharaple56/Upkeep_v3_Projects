@@ -3531,7 +3531,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int CompanyID, string LoggedInUserID, string Action,string StrConn)
+        public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action,string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3546,6 +3546,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Open", Tkt_Is_Remark_Open);
                 cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Close", Tkt_Is_Remark_Close);
                 cmd.Parameters.AddWithValue("@Tkt_Is_Expiry", Tkt_Is_Expiry);
+                cmd.Parameters.AddWithValue("@Chk_Is_QR_Compulsory", Chk_Is_QR_Compulsory );
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@Action", Action);

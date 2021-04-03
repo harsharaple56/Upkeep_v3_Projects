@@ -12,7 +12,7 @@ using System.Globalization;
 
 namespace Upkeep_v3.Ticketing
 {
-    public partial class Ticket_CTT_Report : System.Web.UI.Page
+    public partial class Ticket_CTT_Report_Custom_Feilds : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;

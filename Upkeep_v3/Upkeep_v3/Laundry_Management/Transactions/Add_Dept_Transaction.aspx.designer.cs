@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.GatePass
+namespace Upkeep_v3.Laundry_Management.Transactions
 {
 
 
-    public partial class Gatepass_Details_PrintView
+    public partial class Add_Dept_Transaction
     {
     }
 }

@@ -407,6 +407,7 @@
     <Content Include="assets\app\media\img\Dashboard_Icons\call.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\chk.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\email.png" />
+    <Content Include="assets\app\media\img\Dashboard_Icons\pending.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\tkt.png" />
     <Content Include="assets\app\media\img\Dashboard_Icons\user1.jpg" />
     <Content Include="assets\app\media\img\envato\screen1.jpg" />
@@ -1029,7 +1030,6 @@
     <Content Include="GatePass\GatePassConfig_Listing.aspx" />
     <Content Include="GatePass\GatePass_Approval.aspx" />
     <Content Include="GatePass\GatePass_Configuration.aspx" />
-    <Content Include="GatePass\Gatepass_Details_PrintView.aspx" />
     <Content Include="GatePass\GatePass_Report.aspx" />
     <Content Include="GatePass\GatePass_Request.aspx" />
     <Content Include="GatePass\MyActionable_GatePass.aspx" />
@@ -1072,6 +1072,13 @@
     <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
+    <Content Include="Laundry_Management\Stock_Setup\Setup.aspx" />
+    <Content Include="Laundry_Management\Stock_Setup\Stock_Details.aspx" />
+    <Content Include="Laundry_Management\Stock_Setup\Vendor_Item_Cost.aspx" />
+    <Content Include="Laundry_Management\Transactions\Add_Dept_Transaction.aspx" />
+    <Content Include="Laundry_Management\Transactions\Add_Vendor_Transaction.aspx" />
+    <Content Include="Laundry_Management\Transactions\Department_Transactions.aspx" />
+    <Content Include="Laundry_Management\Transactions\Vendor_Transactions.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Manage_Account\Billing\Invoices_Listing.aspx" />
     <Content Include="Manage_Account\Billing\Invoice_Details.aspx" />
@@ -1110,6 +1117,7 @@
     <Content Include="Ticketing\Sub_Category.aspx" />
     <Content Include="Ticketing\Ticket.aspx" />
     <Content Include="Ticketing\Ticket_CTT_Report.aspx" />
+    <Content Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx" />
     <Content Include="Ticketing\View_Ticket_Details.aspx" />
     <Content Include="Ticketing\Workflow_Details.aspx" />
     <Content Include="Ticketing\Workflow_Master.aspx" />
@@ -3999,6 +4007,17 @@
     <Content Include="CheckList\ChecklistReport.xss">
       <DependentUpon>ChecklistReport.xsd</DependentUpon>
     </Content>
+    <Content Include="GatePass\Gatepass_Details_Print.xsc">
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
+    </Content>
+    <None Include="GatePass\Gatepass_Details_Print.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Gatepass_Details_Print.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GatePass\Gatepass_Details_Print.xss">
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
+    </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -4580,12 +4599,10 @@
     <Compile Include="GatePass\GatePass_Configuration.aspx.designer.cs">
       <DependentUpon>GatePass_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.cs">
-      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GatePass\Gatepass_Details_PrintView.aspx.designer.cs">
-      <DependentUpon>Gatepass_Details_PrintView.aspx</DependentUpon>
+    <Compile Include="GatePass\Gatepass_Details_Print.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Compile>
     <Compile Include="GatePass\GatePass_Report.aspx.cs">
       <DependentUpon>GatePass_Report.aspx</DependentUpon>
@@ -4856,6 +4873,55 @@
     <Compile Include="Knowledge_Base\User_Manual.aspx.designer.cs">
       <DependentUpon>User_Manual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Setup.aspx.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Setup.aspx.designer.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Stock_Details.aspx.cs">
+      <DependentUpon>Stock_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Stock_Details.aspx.designer.cs">
+      <DependentUpon>Stock_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Vendor_Item_Cost.aspx.cs">
+      <DependentUpon>Vendor_Item_Cost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Vendor_Item_Cost.aspx.designer.cs">
+      <DependentUpon>Vendor_Item_Cost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Add_Dept_Transaction.aspx.cs">
+      <DependentUpon>Add_Dept_Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Add_Dept_Transaction.aspx.designer.cs">
+      <DependentUpon>Add_Dept_Transaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Add_Vendor_Transaction.aspx.cs">
+      <DependentUpon>Add_Vendor_Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Add_Vendor_Transaction.aspx.designer.cs">
+      <DependentUpon>Add_Vendor_Transaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Department_Transactions.aspx.cs">
+      <DependentUpon>Department_Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Department_Transactions.aspx.designer.cs">
+      <DependentUpon>Department_Transactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Vendor_Transactions.aspx.cs">
+      <DependentUpon>Vendor_Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Vendor_Transactions.aspx.designer.cs">
+      <DependentUpon>Vendor_Transactions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5068,6 +5134,13 @@
     </Compile>
     <Compile Include="Ticketing\Ticket_CTT_Report.aspx.designer.cs">
       <DependentUpon>Ticket_CTT_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx.cs">
+      <DependentUpon>Ticket_CTT_Report_Custom_Feilds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Ticket_CTT_Report_Custom_Feilds.aspx.designer.cs">
+      <DependentUpon>Ticket_CTT_Report_Custom_Feilds.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\View_Ticket_Details.aspx.cs">
       <DependentUpon>View_Ticket_Details.aspx</DependentUpon>
@@ -6077,6 +6150,7 @@
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
+    <Folder Include="Laundry_Management\Reports\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
@@ -6107,7 +6181,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
+    <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">
