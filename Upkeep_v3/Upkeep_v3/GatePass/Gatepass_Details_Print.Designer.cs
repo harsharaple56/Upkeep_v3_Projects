@@ -2847,6 +2847,8 @@ namespace Upkeep_v3.GatePass {
             
             private global::System.Data.DataColumn columnHeader_Data;
             
+            private global::System.Data.DataColumn columnSrNo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dt_GP11_HeaderDataDataTable() {
@@ -2898,6 +2900,14 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SrNoColumn {
+                get {
+                    return this.columnSrNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2933,11 +2943,12 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dt_GP11_HeaderDataRow Adddt_GP11_HeaderDataRow(string Header_Name, string Header_Data) {
+            public dt_GP11_HeaderDataRow Adddt_GP11_HeaderDataRow(string Header_Name, string Header_Data, string SrNo) {
                 dt_GP11_HeaderDataRow rowdt_GP11_HeaderDataRow = ((dt_GP11_HeaderDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Header_Name,
-                        Header_Data};
+                        Header_Data,
+                        SrNo};
                 rowdt_GP11_HeaderDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdt_GP11_HeaderDataRow);
                 return rowdt_GP11_HeaderDataRow;
@@ -2962,6 +2973,7 @@ namespace Upkeep_v3.GatePass {
             internal void InitVars() {
                 this.columnHeader_Name = base.Columns["Header_Name"];
                 this.columnHeader_Data = base.Columns["Header_Data"];
+                this.columnSrNo = base.Columns["SrNo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2971,6 +2983,8 @@ namespace Upkeep_v3.GatePass {
                 base.Columns.Add(this.columnHeader_Name);
                 this.columnHeader_Data = new global::System.Data.DataColumn("Header_Data", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHeader_Data);
+                this.columnSrNo = new global::System.Data.DataColumn("SrNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSrNo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4105,6 +4119,22 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SrNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledt_GP11_HeaderData.SrNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SrNo\' in table \'dt_GP11_HeaderData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledt_GP11_HeaderData.SrNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsHeader_NameNull() {
                 return this.IsNull(this.tabledt_GP11_HeaderData.Header_NameColumn);
             }
@@ -4125,6 +4155,18 @@ namespace Upkeep_v3.GatePass {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetHeader_DataNull() {
                 this[this.tabledt_GP11_HeaderData.Header_DataColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSrNoNull() {
+                return this.IsNull(this.tabledt_GP11_HeaderData.SrNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSrNoNull() {
+                this[this.tabledt_GP11_HeaderData.SrNoColumn] = global::System.Convert.DBNull;
             }
         }
         
