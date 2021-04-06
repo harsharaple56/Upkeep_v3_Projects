@@ -45,7 +45,8 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools">
-                                    <asp:Button ID="Btn_GP_Print_PDF" runat="server" Text="Print PDF" onclick="btn_GP_Print_PDF" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
+                                    <asp:Button ID="Btn_GP_Print_PDF_Employee" runat="server" Text="Print PDF E" onclick="btn_GP_Print_PDF_Employee" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
+                                    <asp:Button ID="Btn_GP_Print_PDF_Retailer" runat="server" Text="Print PDF R" onclick="btn_GP_Print_PDF_Retailer" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
 
                                     <a class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" onclick="FunctionBack();">
                                         <span>
@@ -53,10 +54,6 @@
                                             <span>Back</span>
                                         </span>
                                     </a>
-
-                                    <%--<div class="btn-group">
-                                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save" />                                          
-                                        </div>--%>
                                 </div>
 
                             </div>

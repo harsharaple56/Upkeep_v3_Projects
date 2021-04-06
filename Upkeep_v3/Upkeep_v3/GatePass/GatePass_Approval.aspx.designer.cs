@@ -31,13 +31,22 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.HiddenField hdnGpHeader;
         
         /// <summary>
-        /// Btn_GP_Print_PDF control.
+        /// Btn_GP_Print_PDF_Employee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_GP_Print_PDF;
+        protected global::System.Web.UI.WebControls.Button Btn_GP_Print_PDF_Employee;
+        
+        /// <summary>
+        /// Btn_GP_Print_PDF_Retailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_GP_Print_PDF_Retailer;
         
         /// <summary>
         /// lblTicketNo control.

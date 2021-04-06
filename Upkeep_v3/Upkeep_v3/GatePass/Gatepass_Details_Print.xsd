@@ -20,6 +20,7 @@
               <xs:element name="GatePassDate" msprop:Generator_ColumnVarNameInTable="columnGatePassDate" msprop:Generator_ColumnPropNameInRow="GatePassDate" msprop:Generator_ColumnPropNameInTable="GatePassDateColumn" msprop:Generator_UserColumnName="GatePassDate" type="xs:string" minOccurs="0" />
               <xs:element name="Ticket_No" msprop:Generator_ColumnVarNameInTable="columnTicket_No" msprop:Generator_ColumnPropNameInRow="Ticket_No" msprop:Generator_ColumnPropNameInTable="Ticket_NoColumn" msprop:Generator_UserColumnName="Ticket_No" type="xs:string" minOccurs="0" />
               <xs:element name="GP_Status" msprop:Generator_ColumnVarNameInTable="columnGP_Status" msprop:Generator_ColumnPropNameInRow="GP_Status" msprop:Generator_ColumnPropNameInTable="GP_StatusColumn" msprop:Generator_UserColumnName="GP_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="UT" msprop:Generator_ColumnVarNameInTable="columnUT" msprop:Generator_ColumnPropNameInRow="UT" msprop:Generator_ColumnPropNameInTable="UTColumn" msprop:Generator_UserColumnName="UT" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -75,10 +76,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ds_GP2" msprop:Generator_TableClassName="ds_GP2DataTable" msprop:Generator_TableVarName="tableds_GP2" msprop:Generator_TablePropName="ds_GP2" msprop:Generator_RowDeletingName="ds_GP2RowDeleting" msprop:Generator_RowChangingName="ds_GP2RowChanging" msprop:Generator_RowEvHandlerName="ds_GP2RowChangeEventHandler" msprop:Generator_RowDeletedName="ds_GP2RowDeleted" msprop:Generator_UserTableName="ds_GP2" msprop:Generator_RowChangedName="ds_GP2RowChanged" msprop:Generator_RowEvArgName="ds_GP2RowChangeEvent" msprop:Generator_RowClassName="ds_GP2Row">
-          <xs:complexType>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="ds_GP9" msprop:Generator_TableClassName="ds_GP9DataTable" msprop:Generator_TableVarName="tableds_GP9" msprop:Generator_TablePropName="ds_GP9" msprop:Generator_RowDeletingName="ds_GP9RowDeleting" msprop:Generator_RowChangingName="ds_GP9RowChanging" msprop:Generator_RowEvHandlerName="ds_GP9RowChangeEventHandler" msprop:Generator_RowDeletedName="ds_GP9RowDeleted" msprop:Generator_UserTableName="ds_GP9" msprop:Generator_RowChangedName="ds_GP9RowChanged" msprop:Generator_RowEvArgName="ds_GP9RowChangeEvent" msprop:Generator_RowClassName="ds_GP9Row">
           <xs:complexType>
             <xs:sequence>
@@ -90,6 +87,14 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Company_Logo" msprop:Generator_ColumnVarNameInTable="columnCompany_Logo" msprop:Generator_ColumnPropNameInRow="Company_Logo" msprop:Generator_ColumnPropNameInTable="Company_LogoColumn" msprop:Generator_UserColumnName="Company_Logo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt_GP11_HeaderData" msprop:Generator_TableClassName="dt_GP11_HeaderDataDataTable" msprop:Generator_TableVarName="tabledt_GP11_HeaderData" msprop:Generator_TablePropName="dt_GP11_HeaderData" msprop:Generator_RowDeletingName="dt_GP11_HeaderDataRowDeleting" msprop:Generator_RowChangingName="dt_GP11_HeaderDataRowChanging" msprop:Generator_RowEvHandlerName="dt_GP11_HeaderDataRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_GP11_HeaderDataRowDeleted" msprop:Generator_UserTableName="dt_GP11_HeaderData" msprop:Generator_RowChangedName="dt_GP11_HeaderDataRowChanged" msprop:Generator_RowEvArgName="dt_GP11_HeaderDataRowChangeEvent" msprop:Generator_RowClassName="dt_GP11_HeaderDataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Header_Name" msprop:Generator_ColumnVarNameInTable="columnHeader_Name" msprop:Generator_ColumnPropNameInRow="Header_Name" msprop:Generator_ColumnPropNameInTable="Header_NameColumn" msprop:Generator_UserColumnName="Header_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Header_Data" msprop:Generator_ColumnVarNameInTable="columnHeader_Data" msprop:Generator_ColumnPropNameInRow="Header_Data" msprop:Generator_ColumnPropNameInTable="Header_DataColumn" msprop:Generator_UserColumnName="Header_Data" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
