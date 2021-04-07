@@ -118,6 +118,23 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
 
+    [WebMethod]
+    public DataSet PermitMaster_CRUD(int Permit_ID, string Permit_Desc, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Desc, LoggedInUserID, Company_ID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
 
 
 
