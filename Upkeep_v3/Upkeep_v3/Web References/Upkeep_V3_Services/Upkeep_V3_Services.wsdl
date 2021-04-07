@@ -3,6 +3,29 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="FetchUserEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchUserEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchUserEmailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ForgetPasswordSendOTP">
         <s:complexType>
           <s:sequence>
@@ -662,6 +685,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Checklist_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Checklist_Consolidated_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chk_Config_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Checklist_Consolidated_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Checklist_Consolidated_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2115,29 +2160,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Custom_FieldsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FetchUserEmail">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FetchUserEmailResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FetchUserEmailResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4217,6 +4239,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="FetchUserEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchUserEmail" />
+  </wsdl:message>
+  <wsdl:message name="FetchUserEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
+  </wsdl:message>
   <wsdl:message name="ForgetPasswordSendOTPSoapIn">
     <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTP" />
   </wsdl:message>
@@ -4390,6 +4418,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Checklist_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Checklist_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Checklist_Consolidated_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Checklist_Consolidated_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Checklist_Consolidated_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Checklist_Consolidated_ReportResponse" />
   </wsdl:message>
   <wsdl:message name="Save_Checklist_ScheduleSoapIn">
     <wsdl:part name="parameters" element="tns:Save_Checklist_Schedule" />
@@ -4756,12 +4790,6 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Custom_FieldsSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Custom_FieldsResponse" />
-  </wsdl:message>
-  <wsdl:message name="FetchUserEmailSoapIn">
-    <wsdl:part name="parameters" element="tns:FetchUserEmail" />
-  </wsdl:message>
-  <wsdl:message name="FetchUserEmailSoapOut">
-    <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -5268,6 +5296,10 @@
     <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfigurationResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="FetchUserEmail">
+      <wsdl:input message="tns:FetchUserEmailSoapIn" />
+      <wsdl:output message="tns:FetchUserEmailSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <wsdl:input message="tns:ForgetPasswordSendOTPSoapIn" />
       <wsdl:output message="tns:ForgetPasswordSendOTPSoapOut" />
@@ -5383,6 +5415,10 @@
     <wsdl:operation name="Fetch_Checklist_Report">
       <wsdl:input message="tns:Fetch_Checklist_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_Checklist_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Consolidated_Report">
+      <wsdl:input message="tns:Fetch_Checklist_Consolidated_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Checklist_Consolidated_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Save_Checklist_Schedule">
       <wsdl:input message="tns:Save_Checklist_ScheduleSoapIn" />
@@ -5627,10 +5663,6 @@
     <wsdl:operation name="Fetch_Custom_Fields">
       <wsdl:input message="tns:Fetch_Custom_FieldsSoapIn" />
       <wsdl:output message="tns:Fetch_Custom_FieldsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <wsdl:input message="tns:FetchUserEmailSoapIn" />
-      <wsdl:output message="tns:FetchUserEmailSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -5972,6 +6004,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FetchUserEmail">
+      <soap:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <soap:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
       <wsdl:input>
@@ -6226,6 +6267,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Consolidated_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Checklist_Consolidated_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6775,15 +6825,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Custom_Fields">
       <soap:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <soap:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7550,6 +7591,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FetchUserEmail">
+      <soap12:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <soap12:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
       <wsdl:input>
@@ -7804,6 +7854,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Checklist_Consolidated_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Checklist_Consolidated_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8353,15 +8412,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Custom_Fields">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <soap12:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
