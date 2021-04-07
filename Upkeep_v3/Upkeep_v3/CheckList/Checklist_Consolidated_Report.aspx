@@ -73,8 +73,8 @@
 
                                 <div class="row" style="padding-left: 2%;">
 
-                                    <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Checklist Description :</label>
-                                    <div class="col-xl-4 col-lg-4 col-form-label">
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Checklist Description :</label>
+                                    <div class="col-xl-5 col-lg-5 col-form-label">
                                         <asp:Label ID="lblChecklistDesc" runat="server" Text="" class="form-control-label"></asp:Label>
                                     </div>
                                     <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Generated Date :</label>
@@ -97,7 +97,7 @@
                                 <br />
 
                                 <div style="overflow-x:scroll;" >
-                                <asp:GridView ID="gvChecklistReport" runat="server" AutoGenerateColumns="true"></asp:GridView>
+                                <asp:GridView ID="gvChecklistReport" runat="server" AutoGenerateColumns="true" ></asp:GridView>
                                 </div>
 
 
