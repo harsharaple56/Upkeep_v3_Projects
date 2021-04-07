@@ -13,6 +13,143 @@ namespace UpkeepV3_BusinessLayer
     {
         DataSet ds = new DataSet();
 
+
+        public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Tbl_LMS_Items_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Item_ID", Item_ID);
+                cmd.Parameters.AddWithValue("@Item_Desc", Item_Desc);
+                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategory_ID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet INV_ItemStock_CRUD(int Stock_ID, int Item_ID, string Opening_Stock, string Optimum_Value, string ReOrder_Value, string Base_Value, int Department_ID, int Current_Stock, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_LMS_Items_Stock", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Stock_ID", Stock_ID);
+                cmd.Parameters.AddWithValue("@Item_ID", Item_ID);
+                cmd.Parameters.AddWithValue("@Opening_Stock", Opening_Stock);
+                cmd.Parameters.AddWithValue("@Optimum_Value", Optimum_Value);
+                cmd.Parameters.AddWithValue("@ReOrder_Value", ReOrder_Value);
+                cmd.Parameters.AddWithValue("@Base_Value", Base_Value);
+                cmd.Parameters.AddWithValue("@Department_ID", Department_ID);
+                cmd.Parameters.AddWithValue("@Current_Stock", Current_Stock);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet INV_Fetch_Items_List(int CompanyID, String StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_INV_Fetch_AddStock_Items", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
+        public DataSet LMS_Fetch_Department_Transactions(string Start_Date, string End_Date, int CompanyID, int Dept_ID, String StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Dept_Transactions", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Start_Date", Start_Date);
+                cmd.Parameters.AddWithValue("@End_Date", End_Date);
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("@Department_ID", Dept_ID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
+        public DataSet LMS_Fetch_Vendor_Transactions(string Start_Date, string End_Date, int CompanyID, int Vendor_ID, String StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Vendor_Transactions", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Start_Date", Start_Date);
+                cmd.Parameters.AddWithValue("@End_Date", End_Date);
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("@Vendor_ID", Vendor_ID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
+
         public DataSet Fetch_Invoices(int Company_ID, string StrConn)
         {
             try
@@ -363,6 +500,8 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
+
+
         public DataSet FetchUserType(int CompanyID, String StrConn) //Added CompanyId by sujata
         {
             try

@@ -119,11 +119,15 @@ namespace Upkeep_v3.GatePass
                     {
                         dvEmployee.Attributes.Add("style", "display:block;");
                         dvRetailer.Attributes.Add("style", "display:none;");
+
+                        Btn_GP_Print_PDF_Retailer.Visible = false;
+
                     }
                     else
                     {
                         dvEmployee.Attributes.Add("style", "display:none;");
                         dvRetailer.Attributes.Add("style", "display:block;");
+                        Btn_GP_Print_PDF_Employee.Visible = false;
                     }
 
                     if (dsApproval.Tables.Count > 0)
@@ -377,10 +381,11 @@ namespace Upkeep_v3.GatePass
                         if (dsApproval.Tables[0].Rows.Count > 0)
                         {
 
-                            ReportViewer1.ProcessingMode = ProcessingMode.Local;
-                            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/GatePass/Gatepass_Details_Print.rdlc");
 
-                            //ReportDataSource datasource0 = new ReportDataSource("ds_GP_0", dsApproval.Tables[0]);
+                            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+                            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/GatePass/Gatepass_Details_Print_Retailers.rdlc");
+
+                            ReportDataSource datasource0 = new ReportDataSource("ds_GP_0", dsApproval.Tables[0]);
                             ReportDataSource datasource1 = new ReportDataSource("ds_GP1_Retailers", dsApproval.Tables[1]);
                             ReportDataSource datasource1E = new ReportDataSource("ds_GP1_Employee", dsApproval.Tables[1]);
                             ReportDataSource datasource3 = new ReportDataSource("ds_GP3_Terms", dsApproval.Tables[3]);
@@ -389,13 +394,14 @@ namespace Upkeep_v3.GatePass
                             ReportDataSource datasource2 = new ReportDataSource("ds_GP2_Headerdata", dsApproval.Tables[2]);
                             ReportDataSource datasource9 = new ReportDataSource("ds_GP9", dsApproval.Tables[9]);
                             ReportDataSource datasource10 = new ReportDataSource("ds_GP10", dsApproval.Tables[10]);
+                            ReportDataSource datasource11 = new ReportDataSource("ds_GP11_HeaderData", dsApproval.Tables[11]);
 
 
                             ReportViewer1.LocalReport.DataSources.Clear();
                             ReportViewer1.LocalReport.EnableHyperlinks = true;
                             ReportViewer1.LocalReport.EnableExternalImages = true;
 
-                            //ReportViewer1.LocalReport.DataSources.Add(datasource0);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource0);
                             ReportViewer1.LocalReport.DataSources.Add(datasource1);
                             ReportViewer1.LocalReport.DataSources.Add(datasource1E);
                             ReportViewer1.LocalReport.DataSources.Add(datasource3);
@@ -404,6 +410,8 @@ namespace Upkeep_v3.GatePass
                             ReportViewer1.LocalReport.DataSources.Add(datasource2);
                             ReportViewer1.LocalReport.DataSources.Add(datasource9);
                             ReportViewer1.LocalReport.DataSources.Add(datasource10);
+                            ReportViewer1.LocalReport.DataSources.Add(datasource11);
+
 
 
 

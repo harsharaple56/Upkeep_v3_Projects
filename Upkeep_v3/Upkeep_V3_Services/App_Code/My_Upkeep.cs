@@ -24,6 +24,102 @@ public class My_Upkeep
         //
     }
 
+
+    public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.INV_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID,  Company_ID,  LoggedInUserID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet INV_ItemStock_CRUD(int Stock_ID, int Item_ID, string Opening_Stock, string Optimum_Value, string ReOrder_Value, string Base_Value, int Department_ID, int Current_Stock, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.INV_ItemStock_CRUD( Stock_ID,  Item_ID,  Opening_Stock,  Optimum_Value,  ReOrder_Value,  Base_Value,  Department_ID,  Current_Stock,  Company_ID,  LoggedInUserID,  Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet INV_Fetch_Items_List(int CompanyID)  //Added CompanyId by sujata
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.INV_Fetch_Items_List(CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
+
+    public DataSet LMS_Fetch_Department_Transactions(string Start_Date, string End_Date, int CompanyID, int Dept_ID)  
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.LMS_Fetch_Department_Transactions(Start_Date, End_Date, Dept_ID,CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
+
+    public DataSet LMS_Fetch_Vendor_Transactions(string Start_Date, string End_Date, int CompanyID, int Vendor_ID)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.LMS_Fetch_Vendor_Transactions(Start_Date, End_Date, Vendor_ID, CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
+
+
     public DataSet Fetch_Invoices(int Company_ID)
     {
         try

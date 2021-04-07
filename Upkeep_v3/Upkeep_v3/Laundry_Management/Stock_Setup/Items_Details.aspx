@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Stock_Details.aspx.cs" Inherits="Upkeep_v3.Laundry_Management.Stock_Setup.Stock_Details" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Items_Details.aspx.cs" Inherits="Upkeep_v3.Laundry_Management.Stock.Stock_Details" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -119,25 +118,18 @@
 
     </script>
 
-    <style type="text/css">
-        .auto-style1 {
-            height: 21px;
-        }
-    </style>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
 
-
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content" style="padding: 10px 10px;">
+        <div class="m-content" style="    padding: 10px 10px;">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Laundry Stock Details
+                            <h3 class="m-portlet__head-text">Laundry Item Details
                             </h3>
                         </div>
                     </div>
@@ -163,6 +155,10 @@
 
                 </div>
                 <div class="m-portlet__body">
+                    <!--begin: Search Form -->
+                    <%--  <asp:HiddenField ID="hdnDeleteID" runat="server" ClientIDMode="Static" />
+                    <asp:Button ID="btnDelete" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                        Style="display: none;" OnClick="btnDelete_Click" Text="Search" />--%>
 
                     <asp:HiddenField ID="hdnPrntD" runat="server" ClientIDMode="Static" />
                     <!--end: Search Form -->
@@ -171,24 +167,22 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
+<%--                                <th>Select</th>--%>
+                                <th style="display: none">Item ID</th>
                                 <th>Item Name</th>
-                                <th>Opening Stock</th>
-                                <th>Optimum Value</th>
-                                <th>Re-Order Value</th>
-                                <th>Base Value</th>
-                                <th>Department</th>
-                                <th>Current Stock</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Actions</th>
-
-
-                                <%--                                <asp:HiddenField ID="HiddenField1" runat="server" />--%>
+<%--                                <th>Available Stock</th>
+                                <th>Department</th>--%>
+                                <th>Category</th>
+                                <th>Sub Category</th>
+                                <th>Action</th>
+                                
+<%--                                <asp:HiddenField ID="HiddenField1" runat="server" />--%>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <%=Fetch_ItemStock_Details()%>
+
+                           <%=Fetch_Stock_Details()%>
+
                         </tbody>
                     </table>
 
@@ -202,7 +196,7 @@
     </div>
 
 
-    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+   <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <asp:UpdatePanel runat="server" style="width: 100%;">
         <%--<Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
@@ -222,68 +216,23 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                    <h4 class="modal-title">Add New Stock</h4>
+                    <h4 class="modal-title">Selected Items</h4>
                 </div>
                 <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-5 col-lg-3 form-control-label">Select Item:</label>
-                                <asp:DropDownList ID="ddlItems" class="form-control" Style="width: 50%" runat="server">
-                                </asp:DropDownList>
-                            </div>
-
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-5 col-lg-3 form-control-label">Assign Department:</label>
-                                <asp:DropDownList ID="ddlDept" class="form-control" Style="width: 50%" runat="server">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-6">
-
-
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Opening Stock:</label>
-                                <asp:TextBox ID="txtOpeningStock" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Optimum Value:</label>
-                                <asp:TextBox ID="txtOptimumValue" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-6">
-
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Re-Order Value:</label>
-                                <asp:TextBox ID="txtReOrderValue" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReOrderValue" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
-
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Base Value:</label>
-                                <asp:TextBox ID="txtBaseValue" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBaseValue" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <asp:Label ID="lblStockErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_2">
+                        <thead>
+                            <tr>
+                                <th>Sr no.</th>
+                                <th>Items</th>
+                                <th>Opening Stock</th>
+                                <th>Consumed</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <%-- <%=fetchInvItemSelectedListing()%>--%>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
@@ -296,6 +245,7 @@
 
         </div>
     </div>
+
 
 
 

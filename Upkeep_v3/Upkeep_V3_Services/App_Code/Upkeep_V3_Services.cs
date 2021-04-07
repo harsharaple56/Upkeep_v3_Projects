@@ -80,6 +80,71 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet INV_ItemStock_CRUD(int Stock_ID, int Item_ID, string Opening_Stock, string Optimum_Value, string ReOrder_Value, string Base_Value, int Department_ID, int Current_Stock, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.INV_ItemStock_CRUD(Stock_ID, Item_ID, Opening_Stock, Optimum_Value, ReOrder_Value, Base_Value, Department_ID, Current_Stock, Company_ID, LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet INV_Fetch_Items_List(int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.INV_Fetch_Items_List(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet LMS_Fetch_Department_Transactions(string Start_Date, string End_Date, int CompanyID, int Dept_ID)
+    {
+        try
+        {
+            ds = ObjUpkeep.LMS_Fetch_Department_Transactions(Start_Date, End_Date, Dept_ID, CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet LMS_Fetch_Vendor_Transactions(string Start_Date, string End_Date, int CompanyID, int Vendor_ID)
+    {
+        try
+        {
+            ds = ObjUpkeep.LMS_Fetch_Vendor_Transactions(Start_Date, End_Date, Vendor_ID, CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+
+
+    [WebMethod]
     public DataSet Fetch_Invoices(int Company_ID)
     {
         try
@@ -354,6 +419,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.INV_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID,  Company_ID,  LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet SubLocationMaster_CRUD(int SubLocID, string LocName, string Zone, string SubLocCode, string SubLocDesc, string LoggedInUserID, string Action)
     {
         try
@@ -367,6 +447,8 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+
 
 
     [WebMethod]

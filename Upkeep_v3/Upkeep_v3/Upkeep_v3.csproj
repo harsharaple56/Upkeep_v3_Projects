@@ -471,6 +471,9 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_department.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_department_50.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor.png" />
     <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
     <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
@@ -1073,11 +1076,13 @@
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
     <Content Include="Laundry_Management\Stock_Setup\Setup.aspx" />
+    <Content Include="Laundry_Management\Stock_Setup\Items_Details.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Stock_Details.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Vendor_Item_Cost.aspx" />
     <Content Include="Laundry_Management\Transactions\Add_Dept_Transaction.aspx" />
     <Content Include="Laundry_Management\Transactions\Add_Vendor_Transaction.aspx" />
     <Content Include="Laundry_Management\Transactions\Department_Transactions.aspx" />
+    <Content Include="Laundry_Management\Transactions\Select_Transactions.aspx" />
     <Content Include="Laundry_Management\Transactions\Vendor_Transactions.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Manage_Account\Billing\Invoices_Listing.aspx" />
@@ -4880,6 +4885,13 @@
     <Compile Include="Laundry_Management\Stock_Setup\Setup.aspx.designer.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Items_Details.aspx.cs">
+      <DependentUpon>Items_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Items_Details.aspx.designer.cs">
+      <DependentUpon>Items_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Laundry_Management\Stock_Setup\Stock_Details.aspx.cs">
       <DependentUpon>Stock_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4914,6 +4926,13 @@
     </Compile>
     <Compile Include="Laundry_Management\Transactions\Department_Transactions.aspx.designer.cs">
       <DependentUpon>Department_Transactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Select_Transactions.aspx.cs">
+      <DependentUpon>Select_Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Select_Transactions.aspx.designer.cs">
+      <DependentUpon>Select_Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Laundry_Management\Transactions\Vendor_Transactions.aspx.cs">
       <DependentUpon>Vendor_Transactions.aspx</DependentUpon>

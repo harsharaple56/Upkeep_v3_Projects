@@ -3,6 +3,126 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Schedule_Checklist_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Schedule_Checklist_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Schedule_Checklist_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklist_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Chk_Config_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklist_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklist_NEWResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRU_System_Setting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Setting_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Open" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Close" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Open" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Close" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Expiry" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Chk_Is_QR_Compulsory" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRU_System_SettingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CRU_System_SettingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Custom_Fields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Custom_FieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Custom_FieldsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchUserEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchUserEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchUserEmailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ForgetPasswordSendOTP">
         <s:complexType>
           <s:sequence>
@@ -134,6 +254,134 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePassRequest_Approval_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePassRequest_Approval_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePassRequest_Approval_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAction_GatePassRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strRemarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAction_GatePassRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAction_GatePassRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePass_MIS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GatePass_MISResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePass_MISResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassConfiguration_Document_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePassDocID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentHeader" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mandatory" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassConfiguration_Document_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassConfiguration_Document_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_WorkPermitConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_Header" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_TermCondition" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Initiator" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Approver" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_WorkPermitConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_WorkPermitConfigurationResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2028,126 +2276,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Schedule_Checklist_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Schedule_Checklist_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Schedule_Checklist_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyChecklist_NEW">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Chk_Config_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyChecklist_NEWResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklist_NEWResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CRU_System_Setting">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Setting_ID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Open" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Img_Close" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Open" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Close" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Expiry" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Chk_Is_QR_Compulsory" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CRU_System_SettingResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CRU_System_SettingResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Custom_Fields">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Custom_FieldsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Custom_FieldsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FetchUserEmail">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="EmailID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FetchUserEmailResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FetchUserEmailResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2155,6 +2283,106 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_ItemStock_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Stock_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Item_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Opening_Stock" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Optimum_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReOrder_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Base_Value" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Department_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Current_Stock" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_ItemStock_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INV_ItemStock_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_Fetch_Items_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_Fetch_Items_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INV_Fetch_Items_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Fetch_Department_Transactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dept_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Fetch_Department_TransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LMS_Fetch_Department_TransactionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Fetch_Vendor_Transactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Vendor_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Fetch_Vendor_TransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LMS_Fetch_Vendor_TransactionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2569,6 +2797,33 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LocationMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_ItemMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Item_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubCategory_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INV_ItemMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INV_ItemMaster_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4082,134 +4337,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_GatePassRequest_Approval_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_GatePassRequest_Approval_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePassRequest_Approval_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateAction_GatePassRequest">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strRemarks" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="UpdateAction_GatePassRequestResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateAction_GatePassRequestResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_GatePass_MIS">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_GatePass_MISResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GatePass_MISResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GatePassConfiguration_Document_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GP_ConfigID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="GatePassDocID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="DocumentHeader" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="Mandatory" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GatePassConfiguration_Document_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GatePassConfiguration_Document_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_WorkPermitConfiguration">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="strConfigTitle" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="strInitiator" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="LinkDepartment" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="strTransactionPrefix" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_Header" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlWorkPermit_TermCondition" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Initiator" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Approver" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_WorkPermitConfigurationResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_WorkPermitConfigurationResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4217,6 +4344,36 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Schedule_Checklist_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:Schedule_Checklist_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="Schedule_Checklist_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:Schedule_Checklist_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklist_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklist_NEW" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklist_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklist_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="CRU_System_SettingSoapIn">
+    <wsdl:part name="parameters" element="tns:CRU_System_Setting" />
+  </wsdl:message>
+  <wsdl:message name="CRU_System_SettingSoapOut">
+    <wsdl:part name="parameters" element="tns:CRU_System_SettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Custom_FieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Custom_Fields" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Custom_FieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Custom_FieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchUserEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchUserEmail" />
+  </wsdl:message>
+  <wsdl:message name="FetchUserEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
+  </wsdl:message>
   <wsdl:message name="ForgetPasswordSendOTPSoapIn">
     <wsdl:part name="parameters" element="tns:ForgetPasswordSendOTP" />
   </wsdl:message>
@@ -4252,6 +4409,36 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAction_GatePassRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAction_GatePassRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePass_MISSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MIS" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GatePass_MISSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MISResponse" />
+  </wsdl:message>
+  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_WorkPermitConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Insert_WorkPermitConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfigurationResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Answer" />
@@ -4733,41 +4920,35 @@
   <wsdl:message name="Import_Checklist_MasterSoapOut">
     <wsdl:part name="parameters" element="tns:Import_Checklist_MasterResponse" />
   </wsdl:message>
-  <wsdl:message name="Schedule_Checklist_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:Schedule_Checklist_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="Schedule_Checklist_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:Schedule_Checklist_CRUDResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyChecklist_NEWSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyChecklist_NEW" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyChecklist_NEWSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyChecklist_NEWResponse" />
-  </wsdl:message>
-  <wsdl:message name="CRU_System_SettingSoapIn">
-    <wsdl:part name="parameters" element="tns:CRU_System_Setting" />
-  </wsdl:message>
-  <wsdl:message name="CRU_System_SettingSoapOut">
-    <wsdl:part name="parameters" element="tns:CRU_System_SettingResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Custom_FieldsSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Custom_Fields" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Custom_FieldsSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Custom_FieldsResponse" />
-  </wsdl:message>
-  <wsdl:message name="FetchUserEmailSoapIn">
-    <wsdl:part name="parameters" element="tns:FetchUserEmail" />
-  </wsdl:message>
-  <wsdl:message name="FetchUserEmailSoapOut">
-    <wsdl:part name="parameters" element="tns:FetchUserEmailResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="INV_ItemStock_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:INV_ItemStock_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="INV_ItemStock_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:INV_ItemStock_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="INV_Fetch_Items_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:INV_Fetch_Items_List" />
+  </wsdl:message>
+  <wsdl:message name="INV_Fetch_Items_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:INV_Fetch_Items_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Fetch_Department_TransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:LMS_Fetch_Department_Transactions" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Fetch_Department_TransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:LMS_Fetch_Department_TransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Fetch_Vendor_TransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:LMS_Fetch_Vendor_Transactions" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Fetch_Vendor_TransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:LMS_Fetch_Vendor_TransactionsResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -4870,6 +5051,12 @@
   </wsdl:message>
   <wsdl:message name="LocationMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:LocationMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="INV_ItemMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:INV_ItemMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="INV_ItemMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:INV_ItemMaster_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="SubLocationMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:SubLocationMaster_CRUD" />
@@ -5237,37 +5424,27 @@
   <wsdl:message name="Fetch_MyActionableGatePassSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePassResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_Details" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="UpdateAction_GatePassRequestSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequest" />
-  </wsdl:message>
-  <wsdl:message name="UpdateAction_GatePassRequestSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateAction_GatePassRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_GatePass_MISSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MIS" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_GatePass_MISSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_GatePass_MISResponse" />
-  </wsdl:message>
-  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="GatePassConfiguration_Document_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:GatePassConfiguration_Document_CRUDResponse" />
-  </wsdl:message>
-  <wsdl:message name="Insert_WorkPermitConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfiguration" />
-  </wsdl:message>
-  <wsdl:message name="Insert_WorkPermitConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_WorkPermitConfigurationResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Schedule_Checklist_CRUD">
+      <wsdl:input message="tns:Schedule_Checklist_CRUDSoapIn" />
+      <wsdl:output message="tns:Schedule_Checklist_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist_NEW">
+      <wsdl:input message="tns:Fetch_MyChecklist_NEWSoapIn" />
+      <wsdl:output message="tns:Fetch_MyChecklist_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <wsdl:input message="tns:CRU_System_SettingSoapIn" />
+      <wsdl:output message="tns:CRU_System_SettingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Custom_Fields">
+      <wsdl:input message="tns:Fetch_Custom_FieldsSoapIn" />
+      <wsdl:output message="tns:Fetch_Custom_FieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <wsdl:input message="tns:FetchUserEmailSoapIn" />
+      <wsdl:output message="tns:FetchUserEmailSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <wsdl:input message="tns:ForgetPasswordSendOTPSoapIn" />
       <wsdl:output message="tns:ForgetPasswordSendOTPSoapOut" />
@@ -5291,6 +5468,26 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <wsdl:input message="tns:Fetch_GatePassRequest_Approval_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_GatePassRequest_Approval_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <wsdl:input message="tns:UpdateAction_GatePassRequestSoapIn" />
+      <wsdl:output message="tns:UpdateAction_GatePassRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <wsdl:input message="tns:Fetch_GatePass_MISSoapIn" />
+      <wsdl:output message="tns:Fetch_GatePass_MISSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <wsdl:input message="tns:GatePassConfiguration_Document_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassConfiguration_Document_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <wsdl:input message="tns:Insert_WorkPermitConfigurationSoapIn" />
+      <wsdl:output message="tns:Insert_WorkPermitConfigurationSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Answer">
       <wsdl:input message="tns:Fetch_AnswerSoapIn" />
@@ -5612,29 +5809,25 @@
       <wsdl:input message="tns:Import_Checklist_MasterSoapIn" />
       <wsdl:output message="tns:Import_Checklist_MasterSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Schedule_Checklist_CRUD">
-      <wsdl:input message="tns:Schedule_Checklist_CRUDSoapIn" />
-      <wsdl:output message="tns:Schedule_Checklist_CRUDSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyChecklist_NEW">
-      <wsdl:input message="tns:Fetch_MyChecklist_NEWSoapIn" />
-      <wsdl:output message="tns:Fetch_MyChecklist_NEWSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="CRU_System_Setting">
-      <wsdl:input message="tns:CRU_System_SettingSoapIn" />
-      <wsdl:output message="tns:CRU_System_SettingSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Custom_Fields">
-      <wsdl:input message="tns:Fetch_Custom_FieldsSoapIn" />
-      <wsdl:output message="tns:Fetch_Custom_FieldsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <wsdl:input message="tns:FetchUserEmailSoapIn" />
-      <wsdl:output message="tns:FetchUserEmailSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemStock_CRUD">
+      <wsdl:input message="tns:INV_ItemStock_CRUDSoapIn" />
+      <wsdl:output message="tns:INV_ItemStock_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INV_Fetch_Items_List">
+      <wsdl:input message="tns:INV_Fetch_Items_ListSoapIn" />
+      <wsdl:output message="tns:INV_Fetch_Items_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Department_Transactions">
+      <wsdl:input message="tns:LMS_Fetch_Department_TransactionsSoapIn" />
+      <wsdl:output message="tns:LMS_Fetch_Department_TransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
+      <wsdl:input message="tns:LMS_Fetch_Vendor_TransactionsSoapIn" />
+      <wsdl:output message="tns:LMS_Fetch_Vendor_TransactionsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -5703,6 +5896,10 @@
     <wsdl:operation name="LocationMaster_CRUD">
       <wsdl:input message="tns:LocationMaster_CRUDSoapIn" />
       <wsdl:output message="tns:LocationMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemMaster_CRUD">
+      <wsdl:input message="tns:INV_ItemMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:INV_ItemMaster_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SubLocationMaster_CRUD">
       <wsdl:input message="tns:SubLocationMaster_CRUDSoapIn" />
@@ -5949,29 +6146,54 @@
       <wsdl:input message="tns:Fetch_MyActionableGatePassSoapIn" />
       <wsdl:output message="tns:Fetch_MyActionableGatePassSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
-      <wsdl:input message="tns:Fetch_GatePassRequest_Approval_DetailsSoapIn" />
-      <wsdl:output message="tns:Fetch_GatePassRequest_Approval_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAction_GatePassRequest">
-      <wsdl:input message="tns:UpdateAction_GatePassRequestSoapIn" />
-      <wsdl:output message="tns:UpdateAction_GatePassRequestSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePass_MIS">
-      <wsdl:input message="tns:Fetch_GatePass_MISSoapIn" />
-      <wsdl:output message="tns:Fetch_GatePass_MISSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
-      <wsdl:input message="tns:GatePassConfiguration_Document_CRUDSoapIn" />
-      <wsdl:output message="tns:GatePassConfiguration_Document_CRUDSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Insert_WorkPermitConfiguration">
-      <wsdl:input message="tns:Insert_WorkPermitConfigurationSoapIn" />
-      <wsdl:output message="tns:Insert_WorkPermitConfigurationSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Schedule_Checklist_CRUD">
+      <soap:operation soapAction="http://tempuri.org/Schedule_Checklist_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist_NEW">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <soap:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Custom_Fields">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <soap:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <soap:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
       <wsdl:input>
@@ -6019,6 +6241,51 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <soap:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6746,53 +7013,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Schedule_Checklist_CRUD">
-      <soap:operation soapAction="http://tempuri.org/Schedule_Checklist_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyChecklist_NEW">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CRU_System_Setting">
-      <soap:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Custom_Fields">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <soap:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemStock_CRUD">
+      <soap:operation soapAction="http://tempuri.org/INV_ItemStock_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_Fetch_Items_List">
+      <soap:operation soapAction="http://tempuri.org/INV_Fetch_Items_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Department_Transactions">
+      <soap:operation soapAction="http://tempuri.org/LMS_Fetch_Department_Transactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
+      <soap:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -6946,6 +7204,15 @@
     </wsdl:operation>
     <wsdl:operation name="LocationMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/LocationMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/INV_ItemMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7502,54 +7769,54 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
-      <soap:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAction_GatePassRequest">
-      <soap:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePass_MIS">
-      <soap:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
-      <soap:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Insert_WorkPermitConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Schedule_Checklist_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/Schedule_Checklist_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklist_NEW">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CRU_System_Setting">
+      <soap12:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Custom_Fields">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchUserEmail">
+      <soap12:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ForgetPasswordSendOTP">
       <soap12:operation soapAction="http://tempuri.org/ForgetPasswordSendOTP" style="document" />
       <wsdl:input>
@@ -7597,6 +7864,51 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAction_GatePassRequest">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GatePass_MIS">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_WorkPermitConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8324,53 +8636,44 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Schedule_Checklist_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/Schedule_Checklist_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyChecklist_NEW">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklist_NEW" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CRU_System_Setting">
-      <soap12:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Custom_Fields">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FetchUserEmail">
-      <soap12:operation soapAction="http://tempuri.org/FetchUserEmail" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemStock_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/INV_ItemStock_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_Fetch_Items_List">
+      <soap12:operation soapAction="http://tempuri.org/INV_Fetch_Items_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Department_Transactions">
+      <soap12:operation soapAction="http://tempuri.org/LMS_Fetch_Department_Transactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
+      <soap12:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8524,6 +8827,15 @@
     </wsdl:operation>
     <wsdl:operation name="LocationMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/LocationMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INV_ItemMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/INV_ItemMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9073,51 +9385,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableGatePass">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePassRequest_Approval_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAction_GatePassRequest">
-      <soap12:operation soapAction="http://tempuri.org/UpdateAction_GatePassRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_GatePass_MIS">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_GatePass_MIS" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GatePassConfiguration_Document_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/GatePassConfiguration_Document_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Insert_WorkPermitConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Insert_WorkPermitConfiguration" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

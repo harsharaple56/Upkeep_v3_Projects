@@ -565,7 +565,7 @@ namespace Upkeep_v3.GatePass {
             
             private global::System.Data.DataColumn columnGatePassDate;
             
-            private global::System.Data.DataColumn columnTicket_No;
+            private global::System.Data.DataColumn columnTicketNo;
             
             private global::System.Data.DataColumn columnGP_Status;
             
@@ -630,9 +630,9 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Ticket_NoColumn {
+            public global::System.Data.DataColumn TicketNoColumn {
                 get {
-                    return this.columnTicket_No;
+                    return this.columnTicketNo;
                 }
             }
             
@@ -689,13 +689,13 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dt_GP0Row Adddt_GP0Row(string GP_Title, string GP_Type_Desc, string GatePassDate, string Ticket_No, string GP_Status, string UT) {
+            public dt_GP0Row Adddt_GP0Row(string GP_Title, string GP_Type_Desc, string GatePassDate, string TicketNo, string GP_Status, string UT) {
                 dt_GP0Row rowdt_GP0Row = ((dt_GP0Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         GP_Title,
                         GP_Type_Desc,
                         GatePassDate,
-                        Ticket_No,
+                        TicketNo,
                         GP_Status,
                         UT};
                 rowdt_GP0Row.ItemArray = columnValuesArray;
@@ -723,7 +723,7 @@ namespace Upkeep_v3.GatePass {
                 this.columnGP_Title = base.Columns["GP_Title"];
                 this.columnGP_Type_Desc = base.Columns["GP_Type_Desc"];
                 this.columnGatePassDate = base.Columns["GatePassDate"];
-                this.columnTicket_No = base.Columns["Ticket_No"];
+                this.columnTicketNo = base.Columns["TicketNo"];
                 this.columnGP_Status = base.Columns["GP_Status"];
                 this.columnUT = base.Columns["UT"];
             }
@@ -737,8 +737,8 @@ namespace Upkeep_v3.GatePass {
                 base.Columns.Add(this.columnGP_Type_Desc);
                 this.columnGatePassDate = new global::System.Data.DataColumn("GatePassDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGatePassDate);
-                this.columnTicket_No = new global::System.Data.DataColumn("Ticket_No", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTicket_No);
+                this.columnTicketNo = new global::System.Data.DataColumn("TicketNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTicketNo);
                 this.columnGP_Status = new global::System.Data.DataColumn("GP_Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGP_Status);
                 this.columnUT = new global::System.Data.DataColumn("UT", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3175,17 +3175,17 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Ticket_No {
+            public string TicketNo {
                 get {
                     try {
-                        return ((string)(this[this.tabledt_GP0.Ticket_NoColumn]));
+                        return ((string)(this[this.tabledt_GP0.TicketNoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Ticket_No\' in table \'dt_GP0\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TicketNo\' in table \'dt_GP0\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledt_GP0.Ticket_NoColumn] = value;
+                    this[this.tabledt_GP0.TicketNoColumn] = value;
                 }
             }
             
@@ -3259,14 +3259,14 @@ namespace Upkeep_v3.GatePass {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTicket_NoNull() {
-                return this.IsNull(this.tabledt_GP0.Ticket_NoColumn);
+            public bool IsTicketNoNull() {
+                return this.IsNull(this.tabledt_GP0.TicketNoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTicket_NoNull() {
-                this[this.tabledt_GP0.Ticket_NoColumn] = global::System.Convert.DBNull;
+            public void SetTicketNoNull() {
+                this[this.tabledt_GP0.TicketNoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
