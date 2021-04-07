@@ -2189,6 +2189,26 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Checklist_Consolidated_Report(int Chk_Config_ID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Checklist_Point_Report", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Chk_Config_ID", Chk_Config_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Save_Checklist_Schedule(int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();

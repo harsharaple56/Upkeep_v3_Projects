@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback FetchUserEmailOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ForgetPasswordSendOTPOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdatePasswordOperationCompleted;
@@ -87,6 +89,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_MyChecklistReportListOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Checklist_ReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Checklist_Consolidated_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Save_Checklist_ScheduleOperationCompleted;
         
@@ -209,8 +213,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback CRU_System_SettingOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Custom_FieldsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback FetchUserEmailOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -419,6 +421,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event FetchUserEmailCompletedEventHandler FetchUserEmailCompleted;
+        
+        /// <remarks/>
         public event ForgetPasswordSendOTPCompletedEventHandler ForgetPasswordSendOTPCompleted;
         
         /// <remarks/>
@@ -504,6 +509,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Checklist_ReportCompletedEventHandler Fetch_Checklist_ReportCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Checklist_Consolidated_ReportCompletedEventHandler Fetch_Checklist_Consolidated_ReportCompleted;
         
         /// <remarks/>
         public event Save_Checklist_ScheduleCompletedEventHandler Save_Checklist_ScheduleCompleted;
@@ -687,9 +695,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Custom_FieldsCompletedEventHandler Fetch_Custom_FieldsCompleted;
-        
-        /// <remarks/>
-        public event FetchUserEmailCompletedEventHandler FetchUserEmailCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -942,6 +947,39 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Insert_WorkPermitConfigurationCompletedEventHandler Insert_WorkPermitConfigurationCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchUserEmail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID) {
+            object[] results = this.Invoke("FetchUserEmail", new object[] {
+                        EmailID,
+                        UserType,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FetchUserEmailAsync(string EmailID, string UserType, int CompanyID) {
+            this.FetchUserEmailAsync(EmailID, UserType, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void FetchUserEmailAsync(string EmailID, string UserType, int CompanyID, object userState) {
+            if ((this.FetchUserEmailOperationCompleted == null)) {
+                this.FetchUserEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchUserEmailOperationCompleted);
+            }
+            this.InvokeAsync("FetchUserEmail", new object[] {
+                        EmailID,
+                        UserType,
+                        CompanyID}, this.FetchUserEmailOperationCompleted, userState);
+        }
+        
+        private void OnFetchUserEmailOperationCompleted(object arg) {
+            if ((this.FetchUserEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FetchUserEmailCompleted(this, new FetchUserEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ForgetPasswordSendOTP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1913,6 +1951,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Checklist_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Checklist_ReportCompleted(this, new Fetch_Checklist_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Checklist_Consolidated_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Checklist_Consolidated_Report(int Chk_Config_ID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Checklist_Consolidated_Report", new object[] {
+                        Chk_Config_ID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Checklist_Consolidated_ReportAsync(int Chk_Config_ID, string LoggedInUserID) {
+            this.Fetch_Checklist_Consolidated_ReportAsync(Chk_Config_ID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Checklist_Consolidated_ReportAsync(int Chk_Config_ID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_Checklist_Consolidated_ReportOperationCompleted == null)) {
+                this.Fetch_Checklist_Consolidated_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Checklist_Consolidated_ReportOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Checklist_Consolidated_Report", new object[] {
+                        Chk_Config_ID,
+                        LoggedInUserID}, this.Fetch_Checklist_Consolidated_ReportOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Checklist_Consolidated_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_Checklist_Consolidated_ReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Checklist_Consolidated_ReportCompleted(this, new Fetch_Checklist_Consolidated_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4032,39 +4101,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Custom_FieldsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Custom_FieldsCompleted(this, new Fetch_Custom_FieldsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchUserEmail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID) {
-            object[] results = this.Invoke("FetchUserEmail", new object[] {
-                        EmailID,
-                        UserType,
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void FetchUserEmailAsync(string EmailID, string UserType, int CompanyID) {
-            this.FetchUserEmailAsync(EmailID, UserType, CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void FetchUserEmailAsync(string EmailID, string UserType, int CompanyID, object userState) {
-            if ((this.FetchUserEmailOperationCompleted == null)) {
-                this.FetchUserEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchUserEmailOperationCompleted);
-            }
-            this.InvokeAsync("FetchUserEmail", new object[] {
-                        EmailID,
-                        UserType,
-                        CompanyID}, this.FetchUserEmailOperationCompleted, userState);
-        }
-        
-        private void OnFetchUserEmailOperationCompleted(object arg) {
-            if ((this.FetchUserEmailCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.FetchUserEmailCompleted(this, new FetchUserEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7321,6 +7357,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void FetchUserEmailCompletedEventHandler(object sender, FetchUserEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FetchUserEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FetchUserEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ForgetPasswordSendOTPCompletedEventHandler(object sender, ForgetPasswordSendOTPCompletedEventArgs e);
     
     /// <remarks/>
@@ -8060,6 +8122,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Checklist_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Checklist_Consolidated_ReportCompletedEventHandler(object sender, Fetch_Checklist_Consolidated_ReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Checklist_Consolidated_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Checklist_Consolidated_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -9646,32 +9734,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Custom_FieldsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void FetchUserEmailCompletedEventHandler(object sender, FetchUserEmailCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FetchUserEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FetchUserEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

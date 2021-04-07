@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Checklist_Consolidated_Report.aspx.cs" Inherits="Upkeep_v3.CheckList.Checklist_Consolidated_Report" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
             <div class="row">
                 <div class="col-lg-12">
@@ -23,7 +24,7 @@
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Checklist Report </h3>
+                                        <h3 class="m-portlet__head-text">Checklist Consolidated Report </h3>
                                     </div>
                                 </div>
 
@@ -42,8 +43,8 @@
                                         </span>
                                     </a>--%>
                                     <div class="btn-group">
-                                        <asp:Button ID="btnExportPDF" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Export to PDF"  />
-                                       
+                                        <asp:Button ID="btnExportExcel" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Export to Excel" OnClick="btnExportExcel_Click" />
+
                                     </div>
                                 </div>
 
@@ -56,116 +57,57 @@
                                 <div class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Checklist Details </label>
                                 </div>
-                                <div id="Div1" runat="server" style="display: block;">
-                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
 
-                                        <div class="col-md-4" style="padding-left: 1%; margin-bottom: 0;">
-                                            <div class="form-group">
-                                                <label class="col-form-label font-weight-bold">Checklist Name : </label>
-                                                <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                    <asp:Label ID="lblChecklistName" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                </div>
-                                            </div>
+                                <div class="row" style="padding-left: 2%;">
 
-                                            <div class="form-group">
-                                                <label class="col-form-label font-weight-bold">Checklist Description : </label>
-                                                <br />
-                                                <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                    <asp:Label ID="lblChecklistDesc" runat="server" Text="" CssClass="text-justify"></asp:Label>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Checklist Name :</label>
+                                    <div class="col-xl-5 col-lg-5 col-form-label">
+                                        <asp:Label ID="lblChecklistName" runat="server" Text="" class="form-control-label"></asp:Label>
+                                    </div>
 
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <%--    <div class="col-md-1" style="padding-left: 1%; margin-bottom: 0;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <div class="vl" style="border-left: 1px solid lightblue; height: 325px;"></div>
-                                            </div>
-                                        </div>--%>
-
-                                        <div class="col-md-8" style="padding-left: 1%; margin-bottom: 0;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-
-                                                <div class="col-md-6" style="padding-left: 1%; margin-bottom: 0;">
-
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Department : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblDepartment" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Start Time : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblstartTime" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Generated By : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblGeneratedBy" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Status : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblStatus" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-6" style="padding-left: 1%; margin-bottom: 0;">
-
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Location : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblLocation" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">End Time : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblEndTime" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Total Score : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblTotalScore" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-form-label font-weight-bold">Progress : </label>
-                                                        <br />
-                                                        <div class="form-control" style="word-wrap: break-word; height: auto;">
-                                                            <asp:Label ID="lblProgress" runat="server" Text="" CssClass="form-control-label"></asp:Label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Department :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:Label ID="lblDepartment" runat="server" Text="" class="form-control-label"></asp:Label>
                                     </div>
                                 </div>
+
+                                <div class="row" style="padding-left: 2%;">
+
+                                    <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Checklist Description :</label>
+                                    <div class="col-xl-4 col-lg-4 col-form-label">
+                                        <asp:Label ID="lblChecklistDesc" runat="server" Text="" class="form-control-label"></asp:Label>
+                                    </div>
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Generated Date :</label>
+                                    <div class="col-xl-3 col-lg-3 col-form-label">
+                                        <asp:Label ID="lblGeneratedDate" runat="server" Text="" class="form-control-label"></asp:Label>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="padding-left: 2%;">
+
+                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Generated By :</label>
+                                    <div class="col-xl-5 col-lg-5 col-form-label">
+                                        <asp:Label ID="lblGeneratedBy" runat="server" Text="" class="form-control-label"></asp:Label>
+                                    </div>
+                                </div>
+                                <br />
+                                 <div class="form-group row" style="background-color: #00c5dc;">
+                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Checklist Points Details </label>
+                                </div>
+                                <br />
+
+                                <div style="overflow-x:scroll;" >
+                                <asp:GridView ID="gvChecklistReport" runat="server" AutoGenerateColumns="true"></asp:GridView>
+                                </div>
+
+
+
                             </div>
 
-                            
+
                         </div>
 
-                        
+
 
                     </div>
                 </div>
