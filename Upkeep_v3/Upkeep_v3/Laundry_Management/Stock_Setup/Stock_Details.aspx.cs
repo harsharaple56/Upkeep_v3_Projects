@@ -34,7 +34,7 @@ namespace Upkeep_v3.Laundry_Management.Stock_Setup
             if (!IsPostBack)
             {
                 //Fetch_Stock_Details();
-                Fetch_ItemStock_Details();
+                //Fetch_ItemStock_Details();
 
                 bindDepartment();
                 bindItems();
@@ -92,31 +92,32 @@ namespace Upkeep_v3.Laundry_Management.Stock_Setup
 
         public string Fetch_ItemStock_Details()
         {
+            DataSet ds_ItemStock = new DataSet();
             string data = "";
 
             try
             {
                 //ds = ObjUpkeep.INV_ItemMaster_CRUD(0, "", 0, 0, CompanyID, "", "R");
-                ds = ObjUpkeep.INV_ItemStock_CRUD(0,0,"", "", "", "", 0, 0, CompanyID, "", "R");
+                ds_ItemStock = ObjUpkeep.INV_ItemStock_CRUD(0,0,"", "", "", "", 0, 0, CompanyID, "", "R");
 
-                if (ds.Tables.Count > 0)
+                if (ds_ItemStock.Tables.Count > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+                    if (ds_ItemStock.Tables[0].Rows.Count > 0)
                     {
-                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+                        int count = Convert.ToInt32(ds_ItemStock.Tables[0].Rows.Count);
 
                         for (int i = 0; i < count; i++)
                         {
-                            int Stock_ID =Convert.ToInt32(ds.Tables[0].Rows[0]["Stock_ID"]);
-                            string Item_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Item_Desc"]);
-                            int Opening_Stock = Convert.ToInt32(ds.Tables[0].Rows[0]["Opening_Stock"]);
-                            int Optimum_Value = Convert.ToInt32(ds.Tables[0].Rows[0]["Optimum_Value"]);
-                            int ReOrder_Value = Convert.ToInt32(ds.Tables[0].Rows[0]["ReOrder_Value"]);
-                            int Base_Value = Convert.ToInt32(ds.Tables[0].Rows[0]["Base_Value"]);
-                            string Dept_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Dept_Desc"]);
-                            int Current_Stock = Convert.ToInt32(ds.Tables[0].Rows[0]["Current_Stock"]);
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[0]["Created_By"]); ;
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[0]["Created_Date"]);
+                            int Stock_ID =Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["Stock_ID"]);
+                            string Item_Desc = Convert.ToString(ds_ItemStock.Tables[0].Rows[i]["Item_Desc"]);
+                            int Opening_Stock = Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["Opening_Stock"]);
+                            int Optimum_Value = Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["Optimum_Value"]);
+                            int ReOrder_Value = Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["ReOrder_Value"]);
+                            int Base_Value = Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["Base_Value"]);
+                            string Dept_Desc = Convert.ToString(ds_ItemStock.Tables[0].Rows[i]["Dept_Desc"]);
+                            int Current_Stock = Convert.ToInt32(ds_ItemStock.Tables[0].Rows[i]["Current_Stock"]);
+                            string Created_By = Convert.ToString(ds_ItemStock.Tables[0].Rows[i]["Created_By"]); ;
+                            string Created_Date = Convert.ToString(ds_ItemStock.Tables[0].Rows[i]["Created_Date"]);
 
 
                             data += "<tr><td>" + Item_Desc + "</td><td>" + Opening_Stock + "</td><td>" + Optimum_Value + "</td><td>" + ReOrder_Value + "</td><td>" + Base_Value + "</td><td>" + Dept_Desc + "</td><td>" + Current_Stock + "</td><td>" + Created_By + "</td><td>" + Created_Date + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + Stock_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + Stock_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";

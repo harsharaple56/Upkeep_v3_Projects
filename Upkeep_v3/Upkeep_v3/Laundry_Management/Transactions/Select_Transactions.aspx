@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-portlet__body">
+                <div class="m-portlet__body" style="text-align: center;">
                     Manage all your Transactions with different Laundry Vendors
                     </br>
                     To Add a Laundry Transaction with a Department Executive , click below
@@ -59,14 +59,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-portlet__body">
+                <div class="m-portlet__body" style="text-align: center;">
                     Manage all your Transactions with different Laundry Vendors
                     </br>
                     To Add a Laundry Transaction with a Vendor , click below
                     
                     
 
-                    <img src="/assets/app/media/img/LMS_Icons/laundry_department_50.png"  alt="" style="padding-top: 30px;">
+                    <img src="/assets/app/media/img/LMS_Icons/laundry_vendor_50.png"  alt="" style="padding-top: 30px;">
 
 
                 </div>

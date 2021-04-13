@@ -474,6 +474,7 @@
     <Content Include="assets\app\media\img\LMS_Icons\laundry_department.png" />
     <Content Include="assets\app\media\img\LMS_Icons\laundry_department_50.png" />
     <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor_50.png" />
     <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
     <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />

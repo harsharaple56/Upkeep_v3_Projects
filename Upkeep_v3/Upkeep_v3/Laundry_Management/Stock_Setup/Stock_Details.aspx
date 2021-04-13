@@ -152,10 +152,10 @@
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
                         <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
-                            onclick="SetTarget();">
+                            >
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>Submit</span>
+                                <span>Add New Stock</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
