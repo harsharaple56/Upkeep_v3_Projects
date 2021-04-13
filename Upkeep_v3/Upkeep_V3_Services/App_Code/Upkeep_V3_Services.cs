@@ -1944,6 +1944,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Fetch_Checklist_Consolidated_Report(int Chk_Config_ID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Checklist_Consolidated_Report(Chk_Config_ID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Save_Checklist_Schedule(int Checklist_ConfigID,int DepartmentID,string SelectedLocationID,string LoggedInUserID,int CompanyID)
     {
         DataSet dsChecklist = new DataSet();

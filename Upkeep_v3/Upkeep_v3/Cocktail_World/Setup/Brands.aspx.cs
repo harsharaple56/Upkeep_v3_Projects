@@ -38,7 +38,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelBrand_ID = Convert.ToInt32(Request.QueryString["DelBrand_ID"]);
                 if (DelBrand_ID > 0)
                 {
-                    // DeleteCategory(DelWorkflowID);
+                    DeleteBrand(DelBrand_ID);
                 }
 
             }
@@ -321,5 +321,37 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
             return data;
         }
+
+
+        public void DeleteBrand(int Brand_ID)
+
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brands.aspx"), false);
+                    }
+                }
+                else
+                {
+                    //invalid login
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
     }
 }

@@ -44,12 +44,41 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelSubCategory_ID = Convert.ToInt32(Request.QueryString["DelSubCategory_ID"]);
                 if (DelSubCategory_ID > 0)
                 {
-                    // DeleteCategory(DelWorkflowID);
+                    DeleteSubCategory(SubCategory_ID);
                 }
 
             }
         }
 
+
+        public void DeleteSubCategory(int SubCategory_ID)
+
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sub_Categories.aspx"), false);
+                    }
+                }
+                else
+                {
+                    //invalid login
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
 
         public void BindSubCategory(int SubCategory_ID)
         {

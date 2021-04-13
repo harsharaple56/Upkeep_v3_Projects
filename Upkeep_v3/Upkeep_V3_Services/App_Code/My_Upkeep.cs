@@ -1632,6 +1632,22 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_Checklist_Consolidated_Report(int Chk_Config_ID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Checklist_Consolidated_Report(Chk_Config_ID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet Save_Checklist_Schedule(int Checklist_ConfigID, int DepartmentID, string SelectedLocationID, string LoggedInUserID, int CompanyID)
     {
         DataSet ds = new DataSet();

@@ -31,22 +31,13 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.HiddenField hdnWpHeader;
         
         /// <summary>
-        /// btnExportPDF control.
+        /// btnExportExcel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportPDF;
-        
-        /// <summary>
-        /// Div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.WebControls.Button btnExportExcel;
         
         /// <summary>
         /// lblChecklistName control.
@@ -58,15 +49,6 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.Label lblChecklistName;
         
         /// <summary>
-        /// lblChecklistDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChecklistDesc;
-        
-        /// <summary>
         /// lblDepartment control.
         /// </summary>
         /// <remarks>
@@ -76,13 +58,22 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.Label lblDepartment;
         
         /// <summary>
-        /// lblstartTime control.
+        /// lblChecklistDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblstartTime;
+        protected global::System.Web.UI.WebControls.Label lblChecklistDesc;
+        
+        /// <summary>
+        /// lblGeneratedDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGeneratedDate;
         
         /// <summary>
         /// lblGeneratedBy control.
@@ -94,48 +85,12 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.Label lblGeneratedBy;
         
         /// <summary>
-        /// lblStatus control.
+        /// gvChecklistReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
-        
-        /// <summary>
-        /// lblLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLocation;
-        
-        /// <summary>
-        /// lblEndTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEndTime;
-        
-        /// <summary>
-        /// lblTotalScore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalScore;
-        
-        /// <summary>
-        /// lblProgress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProgress;
+        protected global::System.Web.UI.WebControls.GridView gvChecklistReport;
     }
 }

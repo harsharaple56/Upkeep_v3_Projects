@@ -44,7 +44,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelCategory_ID = Convert.ToInt32(Request.QueryString["DelCategory_ID"]);
                 if (DelCategory_ID > 0)
                 {
-                    // DeleteCategory(DelWorkflowID);
+                     DeleteCategory(DelCategory_ID);
                 }
 
             }
@@ -238,5 +238,39 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
             return data;
         }
+
+
+
+
+        public void DeleteCategory(int Category_ID)
+
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                ds = ds = ObjCocktailWorld.CategoryMaster_CRUD(24, Category_ID, "", "", LoggedInUserID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Frm_Category_Master.aspx"), false);
+                    }
+                }
+                else
+                {
+                    //invalid login
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
     }
 }
