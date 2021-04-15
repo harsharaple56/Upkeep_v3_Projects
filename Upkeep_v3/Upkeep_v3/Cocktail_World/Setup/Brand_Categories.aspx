@@ -344,6 +344,7 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtstockin" Width="40px" runat="server" MaxLength="1" onkeypress="return onlyAlphabets(event,this);"
                                                 Text='<%#(DataBinder.Eval(Container.DataItem,"Stock_In"))%>'></asp:TextBox>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="No Of Speg" ItemStyle-HorizontalAlign="Center">
