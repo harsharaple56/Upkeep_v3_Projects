@@ -8919,7 +8919,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                           Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
                                                           Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
                                                           Is_Enable_Score = Convert.ToBoolean(p.Field<bool>("Is_Enable_Score")),
-                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore"))
+                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore")),
+                                                          //Response_No_For_Folder= Convert.ToString(p.Field<string>("Chk_Title")),
                                                       }).ToList();
 
                             ObjChecklistConfigSection = (from p in DsDataSet.Tables[1].AsEnumerable()
@@ -9091,6 +9092,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK);
+                //return Request.CreateResponse(HttpStatusCode.OK,DsDataSet.Tables[0]);
+
             }
             catch (Exception ex)
             {
@@ -9207,7 +9210,9 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                           Chk_Title = Convert.ToString(p.Field<string>("Chk_Title")),
                                                           Chk_Desc = Convert.ToString(p.Field<string>("Chk_Desc")),
                                                           Is_Enable_Score = Convert.ToBoolean(p.Field<bool>("Is_Enable_Score")),
-                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore"))
+                                                          TotalScore = Convert.ToInt32(p.Field<decimal>("TotalScore")),
+                                                          Response_No_For_Folder = Convert.ToString(p.Field<string>("Response_No_For_Folder"))
+
                                                       }).ToList();
 
                             ObjChecklistConfigSection = (from p in DsDataSet.Tables[1].AsEnumerable()
@@ -9682,17 +9687,24 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         // Create Cheklist API to save data , Section Wise.
         [Route("api/UpKeep/Save_Checklist_Response_InSection")]
         [HttpPost]
-        public HttpResponseMessage Save_Checklist_Response_InSection() //[FromBody] ClsChecklist_Response objInsert
+        public HttpResponseMessage Save_Checklist_Response_InSection(string Response_No_For_Folder) //[FromBody] ClsChecklist_Response objInsert
         {
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
+            //string Response_No_For_Folder = string.Empty;
             try
             {
+                Random random = new Random();
+                if (Response_No_For_Folder == "0")
+                {
+                    Response_No_For_Folder = random.Next(0, 999999999).ToString("D9");
+                }
+               
                 StringBuilder strXml = new StringBuilder();
 
                 string StrLocConnection = null;
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
-                SqlParameter[] ObjLocSqlParameter = new SqlParameter[7];
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[8];
 
                 int isJsonPassed = 0;
                 ClsChecklist_Response objInsert = Newtonsoft.Json.JsonConvert.DeserializeObject<ClsChecklist_Response>("");
@@ -9710,6 +9722,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         ObjLocSqlParameter[3] = new SqlParameter("@CompanyID", objInsert.CompanyID);
                         ObjLocSqlParameter[4] = new SqlParameter("@LocationID", objInsert.LocationID);
                         ObjLocSqlParameter[5] = new SqlParameter("@DepartmentID", objInsert.DepartmentID);
+
 
                         isJsonPassed = 1;
                     }
@@ -9788,7 +9801,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                                                 int MaxContentLengthVideo = 3;
 
-                                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" ,".jpeg"};
                                                 IList<string> AllowedFileExtensionsVideo = new List<string> { ".3gp", ".mp4", ".MPEG-4", ".MKV" };
 
                                                 var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
@@ -9798,7 +9811,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                     var message = "";
                                                     if (!AllowedFileExtensions.Contains(extension))
                                                     {
-                                                        message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+                                                        message = string.Format("Please Upload image of type .jpg,.gif,.png ,.jpeg.");
                                                     }
                                                     else if (!AllowedFileExtensionsVideo.Contains(extension))
                                                     {
@@ -9822,15 +9835,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                 else
                                                 {
                                                     //string fileUploadPath = ImagePhysicalPath + CurrentDate;
-                                                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate);
+                                                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate + "/" + Response_No_For_Folder);
                                                     if (!Directory.Exists(fileUploadPath))
                                                     {
                                                         Directory.CreateDirectory(fileUploadPath);
                                                     }
                                                     var ImageName = objs.QuestionID.ToString() + "_" + objsValue.AnswerID.ToString() + "_" + file;
                                                     var fileName = ImageName + extension;
-                                                    string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate) + "/" + fileName;
-                                                    string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + fileName;
+                                                    string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate + "/"+ Response_No_For_Folder) +"/" + fileName;
+                                                    string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + Response_No_For_Folder + "/" + fileName;
                                                     //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
                                                     postedFile.SaveAs(SaveLocation);
                                                     path = FileLocation;
@@ -9864,6 +9877,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     strXml.Append(@"</DocumentElement>");
 
                     ObjLocSqlParameter[6] = new SqlParameter("@ChkResponseData", strXml.ToString());
+
+                    ObjLocSqlParameter[7] = new SqlParameter("@Response_No_For_Folder", Response_No_For_Folder);
                     //   }
                     // }
 
