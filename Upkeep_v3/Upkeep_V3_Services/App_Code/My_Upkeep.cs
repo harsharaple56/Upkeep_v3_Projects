@@ -24,6 +24,23 @@ public class My_Upkeep
         //
     }
 
+    public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.SUPPORT_Save_Request(Company_ID, Request_Type, Module_ID, Description, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
 
     public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
     {

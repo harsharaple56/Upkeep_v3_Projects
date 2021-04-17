@@ -13,6 +13,58 @@ namespace UpkeepV3_BusinessLayer
     {
         DataSet ds = new DataSet();
 
+        public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Save_Requests", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Request_Type", Request_Type);
+                cmd.Parameters.AddWithValue("@Module_ID", Module_ID);
+                cmd.Parameters.AddWithValue("@Description", Description);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Fetch_Requests", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@From_Date", Company_ID);
+                cmd.Parameters.AddWithValue("@To_Date", Request_Type);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
