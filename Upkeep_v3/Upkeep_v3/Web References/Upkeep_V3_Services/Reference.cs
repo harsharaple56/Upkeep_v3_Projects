@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback My_Profile_Email_VerificationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Import_User_MasterOperationCompleted;
         
         private System.Threading.SendOrPostCallback Import_Checklist_MasterOperationCompleted;
@@ -55,6 +57,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_CityOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_MyRequestGatePassOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_MyActionableGatePassOperationCompleted;
         
@@ -224,9 +228,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Retailer_Escalation_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback My_Profile_Email_VerificationOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SUPPORT_Save_RequestOperationCompleted;
         
         private System.Threading.SendOrPostCallback INV_ItemStock_CRUDOperationCompleted;
         
@@ -392,8 +396,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Insert_GatePassRequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_MyRequestGatePassOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -433,6 +435,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event My_Profile_Email_VerificationCompletedEventHandler My_Profile_Email_VerificationCompleted;
+        
+        /// <remarks/>
         public event Import_User_MasterCompletedEventHandler Import_User_MasterCompleted;
         
         /// <remarks/>
@@ -470,6 +475,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Fetch_MyRequestGatePassCompletedEventHandler Fetch_MyRequestGatePassCompleted;
         
         /// <remarks/>
         public event Fetch_MyActionableGatePassCompletedEventHandler Fetch_MyActionableGatePassCompleted;
@@ -724,10 +732,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Retailer_Escalation_CRUDCompletedEventHandler Retailer_Escalation_CRUDCompleted;
         
         /// <remarks/>
-        public event My_Profile_Email_VerificationCompletedEventHandler My_Profile_Email_VerificationCompleted;
+        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
-        public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        public event SUPPORT_Save_RequestCompletedEventHandler SUPPORT_Save_RequestCompleted;
         
         /// <remarks/>
         public event INV_ItemStock_CRUDCompletedEventHandler INV_ItemStock_CRUDCompleted;
@@ -976,7 +984,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Insert_GatePassRequestCompletedEventHandler Insert_GatePassRequestCompleted;
         
         /// <remarks/>
-        public event Fetch_MyRequestGatePassCompletedEventHandler Fetch_MyRequestGatePassCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/My_Profile_Email_Verification", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet My_Profile_Email_Verification(int Is_Email_Verified, string LoggedInUserID, int CompanyID) {
+            object[] results = this.Invoke("My_Profile_Email_Verification", new object[] {
+                        Is_Email_Verified,
+                        LoggedInUserID,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void My_Profile_Email_VerificationAsync(int Is_Email_Verified, string LoggedInUserID, int CompanyID) {
+            this.My_Profile_Email_VerificationAsync(Is_Email_Verified, LoggedInUserID, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void My_Profile_Email_VerificationAsync(int Is_Email_Verified, string LoggedInUserID, int CompanyID, object userState) {
+            if ((this.My_Profile_Email_VerificationOperationCompleted == null)) {
+                this.My_Profile_Email_VerificationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMy_Profile_Email_VerificationOperationCompleted);
+            }
+            this.InvokeAsync("My_Profile_Email_Verification", new object[] {
+                        Is_Email_Verified,
+                        LoggedInUserID,
+                        CompanyID}, this.My_Profile_Email_VerificationOperationCompleted, userState);
+        }
+        
+        private void OnMy_Profile_Email_VerificationOperationCompleted(object arg) {
+            if ((this.My_Profile_Email_VerificationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.My_Profile_Email_VerificationCompleted(this, new My_Profile_Email_VerificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_User_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1416,6 +1454,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyRequestGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyRequestGatePass", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyRequestGatePassAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyRequestGatePassOperationCompleted == null)) {
+                this.Fetch_MyRequestGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestGatePassOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyRequestGatePass", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyRequestGatePassOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyRequestGatePassOperationCompleted(object arg) {
+            if ((this.Fetch_MyRequestGatePassCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyRequestGatePassCompleted(this, new Fetch_MyRequestGatePassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4328,39 +4401,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/My_Profile_Email_Verification", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet My_Profile_Email_Verification(int Is_Email_Verified, string LoggedInUserID, int CompanyID) {
-            object[] results = this.Invoke("My_Profile_Email_Verification", new object[] {
-                        Is_Email_Verified,
-                        LoggedInUserID,
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void My_Profile_Email_VerificationAsync(int Is_Email_Verified, string LoggedInUserID, int CompanyID) {
-            this.My_Profile_Email_VerificationAsync(Is_Email_Verified, LoggedInUserID, CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void My_Profile_Email_VerificationAsync(int Is_Email_Verified, string LoggedInUserID, int CompanyID, object userState) {
-            if ((this.My_Profile_Email_VerificationOperationCompleted == null)) {
-                this.My_Profile_Email_VerificationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMy_Profile_Email_VerificationOperationCompleted);
-            }
-            this.InvokeAsync("My_Profile_Email_Verification", new object[] {
-                        Is_Email_Verified,
-                        LoggedInUserID,
-                        CompanyID}, this.My_Profile_Email_VerificationOperationCompleted, userState);
-        }
-        
-        private void OnMy_Profile_Email_VerificationOperationCompleted(object arg) {
-            if ((this.My_Profile_Email_VerificationCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.My_Profile_Email_VerificationCompleted(this, new My_Profile_Email_VerificationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -4384,6 +4424,43 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Save_Request", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID) {
+            object[] results = this.Invoke("SUPPORT_Save_Request", new object[] {
+                        Company_ID,
+                        Request_Type,
+                        Module_ID,
+                        Description,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Save_RequestAsync(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID) {
+            this.SUPPORT_Save_RequestAsync(Company_ID, Request_Type, Module_ID, Description, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Save_RequestAsync(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID, object userState) {
+            if ((this.SUPPORT_Save_RequestOperationCompleted == null)) {
+                this.SUPPORT_Save_RequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Save_RequestOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_Save_Request", new object[] {
+                        Company_ID,
+                        Request_Type,
+                        Module_ID,
+                        Description,
+                        LoggedInUserID}, this.SUPPORT_Save_RequestOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_Save_RequestOperationCompleted(object arg) {
+            if ((this.SUPPORT_Save_RequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_Save_RequestCompleted(this, new SUPPORT_Save_RequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7552,41 +7629,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestGatePass", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyRequestGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyRequestGatePass", new object[] {
-                        CompanyID,
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyRequestGatePassAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyRequestGatePassAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyRequestGatePassOperationCompleted == null)) {
-                this.Fetch_MyRequestGatePassOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestGatePassOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_MyRequestGatePass", new object[] {
-                        CompanyID,
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date}, this.Fetch_MyRequestGatePassOperationCompleted, userState);
-        }
-        
-        private void OnFetch_MyRequestGatePassOperationCompleted(object arg) {
-            if ((this.Fetch_MyRequestGatePassCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyRequestGatePassCompleted(this, new Fetch_MyRequestGatePassCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -7602,6 +7644,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void My_Profile_Email_VerificationCompletedEventHandler(object sender, My_Profile_Email_VerificationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class My_Profile_Email_VerificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal My_Profile_Email_VerificationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -7930,6 +7998,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_MyRequestGatePassCompletedEventHandler(object sender, Fetch_MyRequestGatePassCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyRequestGatePassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyRequestGatePassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -10129,32 +10223,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void My_Profile_Email_VerificationCompletedEventHandler(object sender, My_Profile_Email_VerificationCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class My_Profile_Email_VerificationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal My_Profile_Email_VerificationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -10175,6 +10243,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_Save_RequestCompletedEventHandler(object sender, SUPPORT_Save_RequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_Save_RequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_Save_RequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
@@ -12298,32 +12392,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_GatePassRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_MyRequestGatePassCompletedEventHandler(object sender, Fetch_MyRequestGatePassCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MyRequestGatePassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MyRequestGatePassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
