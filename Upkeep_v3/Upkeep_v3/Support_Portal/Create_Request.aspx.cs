@@ -36,11 +36,11 @@ namespace Upkeep_v3.Support_Portal
             DataSet ds = new DataSet();
             
             string Request_Type = string.Empty;
-            int Module_ID;
+            int Module_ID=5;
             string Request_Description = string.Empty;
 
             Request_Type = Convert.ToString(ddlRequestType.SelectedValue);
-            Module_ID = Convert.ToInt32(ddlModule.SelectedValue);
+            //Module_ID = Convert.ToInt32(ddlModule.SelectedValue);
             Request_Description = txtRequestDescription.InnerText.Trim();
 
             string Request_Photo = string.Empty;
