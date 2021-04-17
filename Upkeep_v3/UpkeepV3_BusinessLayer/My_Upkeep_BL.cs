@@ -41,7 +41,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, string StrConn)
+        public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name ,string StrConn)
         {
             try
             {
@@ -52,9 +52,12 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Fetch_Requests", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@From_Date", Company_ID);
-                cmd.Parameters.AddWithValue("@To_Date", Request_Type);
-
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Role_Name", Role_Name);
+                
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

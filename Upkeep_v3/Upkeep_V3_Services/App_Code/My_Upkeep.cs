@@ -40,6 +40,22 @@ public class My_Upkeep
         }
 
     }
+    public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.SUPPORT_Fetch_Requests(From_Date, To_Date, Company_ID, LoggedInUserID, Role_Name, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
 
 
     public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)

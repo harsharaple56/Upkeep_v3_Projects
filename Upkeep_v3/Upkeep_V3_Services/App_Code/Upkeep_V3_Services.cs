@@ -93,6 +93,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Fetch_Requests(From_Date, To_Date, Company_ID, LoggedInUserID, Role_Name);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
     [WebMethod]
     public DataSet INV_ItemStock_CRUD(int Stock_ID, int Item_ID, string Opening_Stock, string Optimum_Value, string ReOrder_Value, string Base_Value, int Department_ID, int Current_Stock, int Company_ID, string LoggedInUserID, string Action)

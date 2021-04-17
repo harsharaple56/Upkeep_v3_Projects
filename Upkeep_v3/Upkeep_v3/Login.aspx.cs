@@ -213,6 +213,10 @@ namespace Upkeep_v3
                                         Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
                                         Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
                                         Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
+                                        Session["Role_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Role_Name"]);
+                                        Session["User_Dept_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Department_ID"]);
+
+
 
                                     }
                                     else
