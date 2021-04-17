@@ -232,8 +232,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback SUPPORT_Save_RequestOperationCompleted;
         
-        private System.Threading.SendOrPostCallback SUPPORT_Fetch_RequestsOperationCompleted;
-        
         private System.Threading.SendOrPostCallback INV_ItemStock_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback INV_Fetch_Items_ListOperationCompleted;
@@ -241,6 +239,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback LMS_Fetch_Department_TransactionsOperationCompleted;
         
         private System.Threading.SendOrPostCallback LMS_Fetch_Vendor_TransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_LMS_ItemListOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_InvoicesOperationCompleted;
         
@@ -738,9 +738,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event SUPPORT_Save_RequestCompletedEventHandler SUPPORT_Save_RequestCompleted;
         
         /// <remarks/>
-        public event SUPPORT_Fetch_RequestsCompletedEventHandler SUPPORT_Fetch_RequestsCompleted;
-        
-        /// <remarks/>
         public event INV_ItemStock_CRUDCompletedEventHandler INV_ItemStock_CRUDCompleted;
         
         /// <remarks/>
@@ -751,6 +748,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event LMS_Fetch_Vendor_TransactionsCompletedEventHandler LMS_Fetch_Vendor_TransactionsCompleted;
+        
+        /// <remarks/>
+        public event Fetch_LMS_ItemListCompletedEventHandler Fetch_LMS_ItemListCompleted;
         
         /// <remarks/>
         public event Fetch_InvoicesCompletedEventHandler Fetch_InvoicesCompleted;
@@ -4465,43 +4465,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Fetch_Requests", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name) {
-            object[] results = this.Invoke("SUPPORT_Fetch_Requests", new object[] {
-                        From_Date,
-                        To_Date,
-                        Company_ID,
-                        LoggedInUserID,
-                        Role_Name});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void SUPPORT_Fetch_RequestsAsync(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name) {
-            this.SUPPORT_Fetch_RequestsAsync(From_Date, To_Date, Company_ID, LoggedInUserID, Role_Name, null);
-        }
-        
-        /// <remarks/>
-        public void SUPPORT_Fetch_RequestsAsync(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name, object userState) {
-            if ((this.SUPPORT_Fetch_RequestsOperationCompleted == null)) {
-                this.SUPPORT_Fetch_RequestsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Fetch_RequestsOperationCompleted);
-            }
-            this.InvokeAsync("SUPPORT_Fetch_Requests", new object[] {
-                        From_Date,
-                        To_Date,
-                        Company_ID,
-                        LoggedInUserID,
-                        Role_Name}, this.SUPPORT_Fetch_RequestsOperationCompleted, userState);
-        }
-        
-        private void OnSUPPORT_Fetch_RequestsOperationCompleted(object arg) {
-            if ((this.SUPPORT_Fetch_RequestsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SUPPORT_Fetch_RequestsCompleted(this, new SUPPORT_Fetch_RequestsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INV_ItemStock_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet INV_ItemStock_CRUD(int Stock_ID, int Item_ID, string Opening_Stock, string Optimum_Value, string ReOrder_Value, string Base_Value, int Department_ID, int Current_Stock, int Company_ID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("INV_ItemStock_CRUD", new object[] {
@@ -4646,6 +4609,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.LMS_Fetch_Vendor_TransactionsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.LMS_Fetch_Vendor_TransactionsCompleted(this, new LMS_Fetch_Vendor_TransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_LMS_ItemList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_LMS_ItemList(int DepartmentID, int CompanyID) {
+            object[] results = this.Invoke("Fetch_LMS_ItemList", new object[] {
+                        DepartmentID,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_LMS_ItemListAsync(int DepartmentID, int CompanyID) {
+            this.Fetch_LMS_ItemListAsync(DepartmentID, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_LMS_ItemListAsync(int DepartmentID, int CompanyID, object userState) {
+            if ((this.Fetch_LMS_ItemListOperationCompleted == null)) {
+                this.Fetch_LMS_ItemListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_LMS_ItemListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_LMS_ItemList", new object[] {
+                        DepartmentID,
+                        CompanyID}, this.Fetch_LMS_ItemListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_LMS_ItemListOperationCompleted(object arg) {
+            if ((this.Fetch_LMS_ItemListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_LMS_ItemListCompleted(this, new Fetch_LMS_ItemListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10281,32 +10275,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void SUPPORT_Fetch_RequestsCompletedEventHandler(object sender, SUPPORT_Fetch_RequestsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SUPPORT_Fetch_RequestsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal SUPPORT_Fetch_RequestsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void INV_ItemStock_CRUDCompletedEventHandler(object sender, INV_ItemStock_CRUDCompletedEventArgs e);
     
     /// <remarks/>
@@ -10396,6 +10364,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal LMS_Fetch_Vendor_TransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_LMS_ItemListCompletedEventHandler(object sender, Fetch_LMS_ItemListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_LMS_ItemListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_LMS_ItemListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

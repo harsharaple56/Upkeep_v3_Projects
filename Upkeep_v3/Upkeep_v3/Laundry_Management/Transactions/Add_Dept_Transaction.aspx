@@ -243,45 +243,25 @@
                         PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
                         PagerSettings-Position="Bottom" ClientIDMode="Static">
                         <Columns>
-                            <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
+                            
+                            <asp:BoundField DataField="Item_Desc" HeaderText="Item Name"/>
+                            <asp:BoundField DataField="Opening_Stock" HeaderText="Opening Stock" />
+                            
+                            <asp:TemplateField HeaderText="Soiled Collected" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-
-                                    <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
-
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
-                                Visible="false" />
-                            <asp:BoundField DataField="Size_ID" HeaderText="Size ID" SortExpression="Size_ID" />
-                            <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
-                            <asp:TemplateField HeaderText="Alias" ItemStyle-HorizontalAlign="Center">
-                                <ItemTemplate>
-                                    <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Size_ID"))%>' />
-                                    <asp:TextBox ID="txtalias" Width="80px" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
+                                    <asp:TextBox ID="txtSoiledCollected" Width="80px" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"SoiledCollected"))%>'></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Stock IN" ItemStyle-HorizontalAlign="Center">
+                            <asp:TemplateField HeaderText="Cleaned Given" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-
-                                    <asp:HiddenField ID="hdnStockIn" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_In"))%>' />
-                                    <asp:DropDownList ID="ddlStockIn" runat="server">
-                                        <asp:ListItem Text="Select" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="Bottle" Value="B"></asp:ListItem>
-                                        <asp:ListItem Text="Peg" Value="P"></asp:ListItem>
-                                        <asp:ListItem Text="ML" Value="M"></asp:ListItem>
-                                    </asp:DropDownList>
-
+                                    <asp:TextBox ID="txtCleanedGiven" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"CleanedGiven"))%>'></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="No Of Speg" ItemStyle-HorizontalAlign="Center">
+
+                            <asp:TemplateField HeaderText="Damaged" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtnoofspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Peg Size(ML)" ItemStyle-HorizontalAlign="Center">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtpegsize" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
+                                    <asp:TextBox ID="txtDamaged" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Damaged"))%>'></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">

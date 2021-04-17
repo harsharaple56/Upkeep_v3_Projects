@@ -2381,31 +2381,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SUPPORT_Fetch_Requests">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Role_Name" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="SUPPORT_Fetch_RequestsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="SUPPORT_Fetch_RequestsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="INV_ItemStock_CRUD">
         <s:complexType>
           <s:sequence>
@@ -2496,6 +2471,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LMS_Fetch_Vendor_TransactionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemListResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5022,12 +5019,6 @@
   <wsdl:message name="SUPPORT_Save_RequestSoapOut">
     <wsdl:part name="parameters" element="tns:SUPPORT_Save_RequestResponse" />
   </wsdl:message>
-  <wsdl:message name="SUPPORT_Fetch_RequestsSoapIn">
-    <wsdl:part name="parameters" element="tns:SUPPORT_Fetch_Requests" />
-  </wsdl:message>
-  <wsdl:message name="SUPPORT_Fetch_RequestsSoapOut">
-    <wsdl:part name="parameters" element="tns:SUPPORT_Fetch_RequestsResponse" />
-  </wsdl:message>
   <wsdl:message name="INV_ItemStock_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:INV_ItemStock_CRUD" />
   </wsdl:message>
@@ -5051,6 +5042,12 @@
   </wsdl:message>
   <wsdl:message name="LMS_Fetch_Vendor_TransactionsSoapOut">
     <wsdl:part name="parameters" element="tns:LMS_Fetch_Vendor_TransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemList" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemListResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -5919,10 +5916,6 @@
       <wsdl:input message="tns:SUPPORT_Save_RequestSoapIn" />
       <wsdl:output message="tns:SUPPORT_Save_RequestSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="SUPPORT_Fetch_Requests">
-      <wsdl:input message="tns:SUPPORT_Fetch_RequestsSoapIn" />
-      <wsdl:output message="tns:SUPPORT_Fetch_RequestsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="INV_ItemStock_CRUD">
       <wsdl:input message="tns:INV_ItemStock_CRUDSoapIn" />
       <wsdl:output message="tns:INV_ItemStock_CRUDSoapOut" />
@@ -5938,6 +5931,10 @@
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <wsdl:input message="tns:LMS_Fetch_Vendor_TransactionsSoapIn" />
       <wsdl:output message="tns:LMS_Fetch_Vendor_TransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <wsdl:input message="tns:Fetch_LMS_ItemListSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_ItemListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -7160,15 +7157,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SUPPORT_Fetch_Requests">
-      <soap:operation soapAction="http://tempuri.org/SUPPORT_Fetch_Requests" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="INV_ItemStock_CRUD">
       <soap:operation soapAction="http://tempuri.org/INV_ItemStock_CRUD" style="document" />
       <wsdl:input>
@@ -7198,6 +7186,15 @@
     </wsdl:operation>
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <soap:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8810,15 +8807,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SUPPORT_Fetch_Requests">
-      <soap12:operation soapAction="http://tempuri.org/SUPPORT_Fetch_Requests" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="INV_ItemStock_CRUD">
       <soap12:operation soapAction="http://tempuri.org/INV_ItemStock_CRUD" style="document" />
       <wsdl:input>
@@ -8848,6 +8836,15 @@
     </wsdl:operation>
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <soap12:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

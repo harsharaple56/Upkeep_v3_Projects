@@ -47,6 +47,7 @@ namespace Upkeep_v3.Support_Portal
             string RequestPhoto_FilePath = string.Empty;
 
             string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
             string Token_No_For_Folder = string.Empty;
             Random random = new Random();
             if (Token_No_For_Folder == "0")
@@ -54,29 +55,38 @@ namespace Upkeep_v3.Support_Portal
                 Token_No_For_Folder = random.Next(0, 999999999).ToString("D9");
             }
 
+            int i = 0;
+            string fileName = string.Empty;
+            List<string> Lst_Images = new List<string>();
 
             if (fileUpload_RequestImage.HasFile)
             {
-                string fileUploadPath_RequestImagePath = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/");
-
-
+                string fileUploadPath_RequestImagePath = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/"+ Token_No_For_Folder);
 
                 if (!Directory.Exists(fileUploadPath_RequestImagePath))
                 {
                     Directory.CreateDirectory(fileUploadPath_RequestImagePath);
                 }
 
-                string fileExtension = Path.GetExtension(fileUpload_RequestImage.FileName);
-                //Request_Photo = User_Code + fileExtension;
+                foreach (HttpPostedFile postfiles in fileUpload_RequestImage.PostedFiles)
+                {
+                    string fileExtension = Path.GetExtension(fileUpload_RequestImage.FileName);
+                    fileName = Convert.ToString(i) + "_" + fileExtension;
 
-                //string Profile_SaveLocation = Server.MapPath("~/Support_Portal/Images/") + "/" + ProfilePhoto;
-                //RequestPhoto_FilePath = imgPath + "~/Support_Portal/Images/" + ProfilePhoto;
+                    string SaveLocation = Server.MapPath("~/Support_Portal/Images/" + Token_No_For_Folder) + "/" + fileName;
+                    string FileLocation = imgPath + "/Support_Portal/Images/" + Token_No_For_Folder + "/" + fileName;
 
-                //fileUpload_UserImage.PostedFile.SaveAs(Profile_SaveLocation);
+                    postfiles.SaveAs(SaveLocation);
+                    Lst_Images.Add(FileLocation);
 
+                    i = i + 1;
+                   
+                }
             }
-            
-            ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID,  Request_Type,  Module_ID, Request_Description,  LoggedInUserID);
+
+            string list_Images = String.Join(",", Lst_Images);
+
+            //ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID,  Request_Type,  Module_ID, Request_Description,  LoggedInUserID);
 
             if (ds.Tables.Count > 0)
             {
