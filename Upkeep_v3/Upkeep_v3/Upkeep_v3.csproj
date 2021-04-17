@@ -471,6 +471,10 @@
     <Content Include="assets\app\media\img\icons\total.png" />
     <Content Include="assets\app\media\img\icons\warning.svg" />
     <Content Include="assets\app\media\img\icons\workflow.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_department.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_department_50.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor.png" />
+    <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor_50.png" />
     <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
     <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
@@ -874,6 +878,7 @@
     <Content Include="assets\demo\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\user_profile_bg.jpg" />
     <Content Include="assets\jquery-1.7.2.min.js" />
+    <Content Include="assets\pages\scripts\table-datatables-editable.min.js.js" />
     <Content Include="assets\snippets\apps\mail\mail.js" />
     <Content Include="assets\snippets\apps\mail\mail.min.js" />
     <Content Include="assets\snippets\custom\apps\mail\mail.js" />
@@ -968,6 +973,7 @@
     <Content Include="CheckList\Checklist_Action.aspx" />
     <Content Include="CheckList\CheckList_Configuration.aspx" />
     <Content Include="CheckList\Checklist_Consolidated_Report.aspx" />
+    <Content Include="CheckList\Checklist_Consolidated_Report_List.aspx" />
     <Content Include="CheckList\Checklist_Report.aspx" />
     <Content Include="CheckList\CheckList_Report_Details.aspx" />
     <Content Include="CheckList\CheckList_Report_Listing.aspx" />
@@ -1073,11 +1079,13 @@
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
     <Content Include="Laundry_Management\Stock_Setup\Setup.aspx" />
+    <Content Include="Laundry_Management\Stock_Setup\Items_Details.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Stock_Details.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Vendor_Item_Cost.aspx" />
     <Content Include="Laundry_Management\Transactions\Add_Dept_Transaction.aspx" />
     <Content Include="Laundry_Management\Transactions\Add_Vendor_Transaction.aspx" />
     <Content Include="Laundry_Management\Transactions\Department_Transactions.aspx" />
+    <Content Include="Laundry_Management\Transactions\Select_Transactions.aspx" />
     <Content Include="Laundry_Management\Transactions\Vendor_Transactions.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Manage_Account\Billing\Invoices_Listing.aspx" />
@@ -4172,6 +4180,13 @@
     <Compile Include="CheckList\Checklist_Consolidated_Report.aspx.designer.cs">
       <DependentUpon>Checklist_Consolidated_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CheckList\Checklist_Consolidated_Report_List.aspx.cs">
+      <DependentUpon>Checklist_Consolidated_Report_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckList\Checklist_Consolidated_Report_List.aspx.designer.cs">
+      <DependentUpon>Checklist_Consolidated_Report_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CheckList\Checklist_Report.aspx.cs">
       <DependentUpon>Checklist_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4880,6 +4895,13 @@
     <Compile Include="Laundry_Management\Stock_Setup\Setup.aspx.designer.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Items_Details.aspx.cs">
+      <DependentUpon>Items_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Stock_Setup\Items_Details.aspx.designer.cs">
+      <DependentUpon>Items_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Laundry_Management\Stock_Setup\Stock_Details.aspx.cs">
       <DependentUpon>Stock_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4914,6 +4936,13 @@
     </Compile>
     <Compile Include="Laundry_Management\Transactions\Department_Transactions.aspx.designer.cs">
       <DependentUpon>Department_Transactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Select_Transactions.aspx.cs">
+      <DependentUpon>Select_Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Transactions\Select_Transactions.aspx.designer.cs">
+      <DependentUpon>Select_Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Laundry_Management\Transactions\Vendor_Transactions.aspx.cs">
       <DependentUpon>Vendor_Transactions.aspx</DependentUpon>
@@ -6183,6 +6212,7 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
+    <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>

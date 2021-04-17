@@ -834,6 +834,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Chk_Desc { get; set; }
         public bool Is_Enable_Score { get; set; }
         public int TotalScore { get; set; }
+        public string Response_No_For_Folder { get; set; }
     }
     public class ClChecklistConfigSection
     {

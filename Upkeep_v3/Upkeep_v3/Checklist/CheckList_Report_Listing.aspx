@@ -132,6 +132,7 @@
 
                         <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
 
+
                             <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%; margin-left: 7%;">
                                 <img src="../assets/app/media/img/icons/database_export_35.png" />
                                 Export
@@ -181,11 +182,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-3">
-                                        <div class="m-form__group m-form__group--inline">
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
+                                    
 
                                     <div class="col-md-3">
                                         <div class="m-input-icon m-input-icon--left">
@@ -196,7 +193,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-9">
                                         <div class="m-form__group m-form__group--inline">
                                             <div class="m-form__label">
                                                 <label>Date:</label>
@@ -217,6 +214,13 @@
                                                 </span>
                                                 <div class="btn-group" style="margin-left: 50px;">
                                                     <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
+                                                </div>
+                                                
+                                                <div class="btn-group" style="margin-left: 50px;">
+                                                    <a href="<%= Page.ResolveClientUrl("~/CheckList/Checklist_Consolidated_Report_List.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
+                                                        <i class="flaticon-diagram"></i>
+                                                        View Consolidated Checklist Report
+                                                    </a> 
                                                 </div>
                                             </div>
                                         </div>

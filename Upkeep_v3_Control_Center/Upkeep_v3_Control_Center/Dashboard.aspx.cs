@@ -29,6 +29,8 @@ namespace Upkeep_v3_Control_Center
         string path = "~/Masters/";
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
