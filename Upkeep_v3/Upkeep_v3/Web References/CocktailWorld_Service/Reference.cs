@@ -44,6 +44,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback PermitMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Save_CategorySizeLinkupOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -102,6 +104,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event PermitMaster_CRUDCompletedEventHandler PermitMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Save_CategorySizeLinkupCompletedEventHandler Save_CategorySizeLinkupCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -365,6 +370,43 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_CategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_CategorySizeLinkup(int CategoryID, string CategoryDetails, int LicenseID, int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Save_CategorySizeLinkup", new object[] {
+                        CategoryID,
+                        CategoryDetails,
+                        LicenseID,
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_CategorySizeLinkupAsync(int CategoryID, string CategoryDetails, int LicenseID, int CompanyID, string LoggedInUserID) {
+            this.Save_CategorySizeLinkupAsync(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Save_CategorySizeLinkupAsync(int CategoryID, string CategoryDetails, int LicenseID, int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Save_CategorySizeLinkupOperationCompleted == null)) {
+                this.Save_CategorySizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_CategorySizeLinkupOperationCompleted);
+            }
+            this.InvokeAsync("Save_CategorySizeLinkup", new object[] {
+                        CategoryID,
+                        CategoryDetails,
+                        LicenseID,
+                        CompanyID,
+                        LoggedInUserID}, this.Save_CategorySizeLinkupOperationCompleted, userState);
+        }
+        
+        private void OnSave_CategorySizeLinkupOperationCompleted(object arg) {
+            if ((this.Save_CategorySizeLinkupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_CategorySizeLinkupCompleted(this, new Save_CategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -540,11 +582,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void PermitMaster_CRUDCompletedEventHandler(object sender, PermitMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PermitMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -552,6 +594,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal PermitMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Save_CategorySizeLinkupCompletedEventHandler(object sender, Save_CategorySizeLinkupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_CategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

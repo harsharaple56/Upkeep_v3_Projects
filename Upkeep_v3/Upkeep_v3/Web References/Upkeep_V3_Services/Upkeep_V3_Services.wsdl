@@ -3,6 +3,28 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Import_User_Master">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_User_MasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_User_MasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Import_Checklist_Master">
         <s:complexType>
           <s:sequence>
@@ -276,6 +298,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyActionableGatePass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyActionableGatePassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyActionableGatePassResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2276,28 +2322,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Import_User_Master">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Import_User_MasterResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Import_User_MasterResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2398,6 +2422,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LMS_Fetch_Vendor_TransactionsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemListResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4335,30 +4381,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MyActionableGatePass">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyActionableGatePassResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyActionableGatePassResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4366,6 +4388,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Import_User_MasterSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_User_Master" />
+  </wsdl:message>
+  <wsdl:message name="Import_User_MasterSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_User_MasterResponse" />
+  </wsdl:message>
   <wsdl:message name="Import_Checklist_MasterSoapIn">
     <wsdl:part name="parameters" element="tns:Import_Checklist_Master" />
   </wsdl:message>
@@ -4437,6 +4465,12 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyActionableGatePassSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePass" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyActionableGatePassSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePassResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_Details" />
@@ -4942,12 +4976,6 @@
   <wsdl:message name="My_Profile_Email_VerificationSoapOut">
     <wsdl:part name="parameters" element="tns:My_Profile_Email_VerificationResponse" />
   </wsdl:message>
-  <wsdl:message name="Import_User_MasterSoapIn">
-    <wsdl:part name="parameters" element="tns:Import_User_Master" />
-  </wsdl:message>
-  <wsdl:message name="Import_User_MasterSoapOut">
-    <wsdl:part name="parameters" element="tns:Import_User_MasterResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -4977,6 +5005,12 @@
   </wsdl:message>
   <wsdl:message name="LMS_Fetch_Vendor_TransactionsSoapOut">
     <wsdl:part name="parameters" element="tns:LMS_Fetch_Vendor_TransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemList" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemListResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -5446,13 +5480,11 @@
   <wsdl:message name="Fetch_MyRequestGatePassSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyRequestGatePassResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MyActionableGatePassSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePass" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyActionableGatePassSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePassResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Import_User_Master">
+      <wsdl:input message="tns:Import_User_MasterSoapIn" />
+      <wsdl:output message="tns:Import_User_MasterSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Import_Checklist_Master">
       <wsdl:input message="tns:Import_Checklist_MasterSoapIn" />
       <wsdl:output message="tns:Import_Checklist_MasterSoapOut" />
@@ -5500,6 +5532,10 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <wsdl:input message="tns:Fetch_MyActionableGatePassSoapIn" />
+      <wsdl:output message="tns:Fetch_MyActionableGatePassSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
       <wsdl:input message="tns:Fetch_GatePassRequest_Approval_DetailsSoapIn" />
@@ -5837,10 +5873,6 @@
       <wsdl:input message="tns:My_Profile_Email_VerificationSoapIn" />
       <wsdl:output message="tns:My_Profile_Email_VerificationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Import_User_Master">
-      <wsdl:input message="tns:Import_User_MasterSoapIn" />
-      <wsdl:output message="tns:Import_User_MasterSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -5860,6 +5892,10 @@
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <wsdl:input message="tns:LMS_Fetch_Vendor_TransactionsSoapIn" />
       <wsdl:output message="tns:LMS_Fetch_Vendor_TransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <wsdl:input message="tns:Fetch_LMS_ItemListSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_ItemListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -6174,13 +6210,18 @@
       <wsdl:input message="tns:Fetch_MyRequestGatePassSoapIn" />
       <wsdl:output message="tns:Fetch_MyRequestGatePassSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyActionableGatePass">
-      <wsdl:input message="tns:Fetch_MyActionableGatePassSoapIn" />
-      <wsdl:output message="tns:Fetch_MyActionableGatePassSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Import_User_Master">
+      <soap:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Import_Checklist_Master">
       <soap:operation soapAction="http://tempuri.org/Import_Checklist_Master" style="document" />
       <wsdl:input>
@@ -6282,6 +6323,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7045,15 +7095,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Import_User_Master">
-      <soap:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -7092,6 +7133,15 @@
     </wsdl:operation>
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <soap:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7801,18 +7851,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MyActionableGatePass">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Import_User_Master">
+      <soap12:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Import_Checklist_Master">
       <soap12:operation soapAction="http://tempuri.org/Import_Checklist_Master" style="document" />
       <wsdl:input>
@@ -7914,6 +7964,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyActionableGatePass">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8677,15 +8736,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Import_User_Master">
-      <soap12:operation soapAction="http://tempuri.org/Import_User_Master" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8724,6 +8774,15 @@
     </wsdl:operation>
     <wsdl:operation name="LMS_Fetch_Vendor_Transactions">
       <soap12:operation soapAction="http://tempuri.org/LMS_Fetch_Vendor_Transactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemList">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9426,15 +9485,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyRequestGatePass">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyRequestGatePass" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyActionableGatePass">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

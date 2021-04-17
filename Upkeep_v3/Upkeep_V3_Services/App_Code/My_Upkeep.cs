@@ -119,6 +119,25 @@ public class My_Upkeep
 
     }
 
+    public DataSet Fetch_LMS_ItemList(int DepartmentID, int CompanyID)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.Fetch_LMS_ItemList(DepartmentID,CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
 
     public DataSet Fetch_Invoices(int Company_ID)
     {

@@ -151,12 +151,12 @@
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-                        <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <%--<a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Save Transaction</span>
                             </span>
-                        </a>
+                        </a>--%>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
                     </div>
 
@@ -164,55 +164,68 @@
 
                 <div class="m-portlet__body" style="padding: 2.2rem 2.2rem;">
 
-                                        <div class="form-group m-form__group row">
-                                            <label for="example-text-input" class="col-3 col-form-label">Department Executive Name</label>
-                                            <div class="col-3">
-                                                <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
-                                            </div>
-                                            <label for="example-text-input" class="col-3 col-form-label">Department Executive Contact</label>
-                                            <div class="col-3">
-                                                <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
-                                            </div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            
-                                                <div class="dropdown bootstrap-select form-control m-bootstrap-select m_" style="width: 200px;">
-                                                    <select name="ctl00$ContentPlaceHolder1$ddlEventName" id="ddlEventName" class="form-control m-bootstrap-select m_selectpicker" title="Select Event" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="400px" tabindex="-98">
-                                                        <option class="bs-title-option" value="">Select Event</option>
-                                                        <option value="0">--Select--</option>
-                                                        <option value="67">Test Feedback Form 2</option>
-                                                        <option selected="selected" value="64">Feedback Form</option>
+                    <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">Department Executive Name</label>
+                        <div class="col-3">
+                            <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
+                        </div>
+                        <label for="example-text-input" class="col-3 col-form-label">Department Executive Contact</label>
+                        <div class="col-3">
+                            <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
 
-                                                    </select>
-                                                    <button type="button" class="dropdown-toggle btn m-btn--pill" data-toggle="dropdown" role="button" data-id="ddlEventName" title="Feedback Form" aria-expanded="false">
-                                                        <div class="filter-option">
-                                                            <div class="filter-option-inner">Feedback Form</div>
-                                                        </div>
-                                                        &nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
-                                                    <div class="dropdown-menu" role="combobox" x-placement="top-start" style="overflow: hidden; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -143px, 0px);">
-                                                        <div class="bs-searchbox">
-                                                            <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search">
-                                                        </div>
-                                                        <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="overflow-y: auto;">
-                                                            <ul class="dropdown-menu inner show">
-                                                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">--Select--</span></a></li>
-                                                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Test Feedback Form 2</span></a></li>
-                                                                <li class="selected active"><a role="option" class="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">Feedback Form</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-3">
-                                                <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                                    <span>
-                                                        <i class="la la-plus"></i>
-                                                        <span>Add Item</span>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
+                        <div class="col-3">
+                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control" ToolTip="Select Department" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>
 
-                                            
+                        </div>
+
+                        <div class="col-3">
+                            <asp:DropDownList ID="ddlItems" runat="server" CssClass="form-control" ToolTip="Select Item" ></asp:DropDownList>
+
+                        </div>
+
+                        <%--<div class="dropdown bootstrap-select form-control m-bootstrap-select m_" style="width: 200px;">
+                            <select name="ctl00$ContentPlaceHolder1$ddlEventName" id="ddlEventName" class="form-control m-bootstrap-select m_selectpicker" title="Select Event" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="400px" tabindex="-98">
+                                <option class="bs-title-option" value="">Select Event</option>
+                                <option value="0">--Select--</option>
+                                <option value="67">Test Feedback Form 2</option>
+                                <option selected="selected" value="64">Feedback Form</option>
+
+                            </select>
+                            <button type="button" class="dropdown-toggle btn m-btn--pill" data-toggle="dropdown" role="button" data-id="ddlEventName" title="Feedback Form" aria-expanded="false">
+                                <div class="filter-option">
+                                    <div class="filter-option-inner">Feedback Form</div>
+                                </div>
+                                &nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                            <div class="dropdown-menu" role="combobox" x-placement="top-start" style="overflow: hidden; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -143px, 0px);">
+                                <div class="bs-searchbox">
+                                    <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search">
+                                </div>
+                                <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="overflow-y: auto;">
+                                    <ul class="dropdown-menu inner show">
+                                        <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">--Select--</span></a></li>
+                                        <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">Test Feedback Form 2</span></a></li>
+                                        <li class="selected active"><a role="option" class="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">Feedback Form</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>--%>
+
+
+
+                        <div class="col-3">
+                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onserverclick="btnAddItem_Click" runat="server" >
+                                <span>
+                                    <i class="la la-plus"></i>
+                                    <span>Add Item</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+
 
                 </div>
 
@@ -223,7 +236,69 @@
                     <!--end: Search Form -->
 
                     <!--begin: Datatable -->
-                    <table class="table table-bordered table-hover" id="m_table_1" width="100%">
+
+                    <asp:GridView ID="gvItemDetails" runat="server" Width="100%" AllowPaging="true" OnRowDataBound="gvItemDetails_RowDataBound"
+                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
+                        HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
+                        PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
+                        PagerSettings-Position="Bottom" ClientIDMode="Static">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
+                                <ItemTemplate>
+
+                                    <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
+                                Visible="false" />
+                            <asp:BoundField DataField="Size_ID" HeaderText="Size ID" SortExpression="Size_ID" />
+                            <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
+                            <asp:TemplateField HeaderText="Alias" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Size_ID"))%>' />
+                                    <asp:TextBox ID="txtalias" Width="80px" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Stock IN" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+
+                                    <asp:HiddenField ID="hdnStockIn" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_In"))%>' />
+                                    <asp:DropDownList ID="ddlStockIn" runat="server">
+                                        <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="Bottle" Value="B"></asp:ListItem>
+                                        <asp:ListItem Text="Peg" Value="P"></asp:ListItem>
+                                        <asp:ListItem Text="ML" Value="M"></asp:ListItem>
+                                    </asp:DropDownList>
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="No Of Speg" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtnoofspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Peg Size(ML)" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtpegsize" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EmptyDataTemplate>
+                            No Records Found !!!
+                        </EmptyDataTemplate>
+                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                            HorizontalAlign="Center" />
+                    </asp:GridView>
+
+                    <%--<table class="table table-bordered table-hover" id="m_table_1" width="100%">
                         <thead>
                             <tr>
                                 <th>Item Name</th>
@@ -233,19 +308,25 @@
                                 <th>Damaged</th>
                                 <th>Actions</th>
 
-
-                                <%--                                <asp:HiddenField ID="HiddenField1" runat="server" />--%>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <%-- <%=Fetch_ItemStock_Details()%>--%>
+                            
                         </tbody>
-                    </table>
+                    </table>--%>
 
                     <!--end: Datatable -->
-
+                    <div style="text-align: center;">
+                        <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span>Save Transaction</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
             <!-- END EXAMPLE TABLE PORTLET-->

@@ -13,6 +13,24 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
     public partial class Add_Dept_Transaction {
         
         /// <summary>
+        /// ddlDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+        
+        /// <summary>
+        /// ddlItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlItems;
+        
+        /// <summary>
         /// hdnPrntD control.
         /// </summary>
         /// <remarks>
@@ -20,5 +38,14 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnPrntD;
+        
+        /// <summary>
+        /// gvItemDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvItemDetails;
     }
 }

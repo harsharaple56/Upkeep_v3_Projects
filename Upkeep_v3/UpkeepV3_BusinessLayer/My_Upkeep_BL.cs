@@ -149,6 +149,27 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet Fetch_LMS_ItemList(int DepartmentID, int CompanyID, String StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Items_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
 
         public DataSet Fetch_Invoices(int Company_ID, string StrConn)
         {
