@@ -168,6 +168,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Save_CategorySizeLinkup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryDetails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_CategorySizeLinkupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_CategorySizeLinkupResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -212,6 +237,12 @@
   <wsdl:message name="PermitMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:PermitMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Save_CategorySizeLinkupSoapIn">
+    <wsdl:part name="parameters" element="tns:Save_CategorySizeLinkup" />
+  </wsdl:message>
+  <wsdl:message name="Save_CategorySizeLinkupSoapOut">
+    <wsdl:part name="parameters" element="tns:Save_CategorySizeLinkupResponse" />
+  </wsdl:message>
   <wsdl:portType name="CocktailWorld_ServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -240,6 +271,10 @@
     <wsdl:operation name="PermitMaster_CRUD">
       <wsdl:input message="tns:PermitMaster_CRUDSoapIn" />
       <wsdl:output message="tns:PermitMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Save_CategorySizeLinkup">
+      <wsdl:input message="tns:Save_CategorySizeLinkupSoapIn" />
+      <wsdl:output message="tns:Save_CategorySizeLinkupSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CocktailWorld_ServiceSoap" type="tns:CocktailWorld_ServiceSoap">
@@ -307,6 +342,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Save_CategorySizeLinkup">
+      <soap:operation soapAction="http://tempuri.org/Save_CategorySizeLinkup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CocktailWorld_ServiceSoap12" type="tns:CocktailWorld_ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -366,6 +410,15 @@
     </wsdl:operation>
     <wsdl:operation name="PermitMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/PermitMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_CategorySizeLinkup">
+      <soap12:operation soapAction="http://tempuri.org/Save_CategorySizeLinkup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
