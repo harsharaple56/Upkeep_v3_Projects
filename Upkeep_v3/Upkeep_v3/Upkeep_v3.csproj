@@ -1105,6 +1105,9 @@
     <Content Include="Retailer_Attendance\Store_Opening_Closing_Report.aspx" />
     <Content Include="Retailer_Attendance\Store_Shifts_Listing.aspx" />
     <Content Include="Retailer_Attendance\Store_Shift_Assign.aspx" />
+    <Content Include="Support_Portal\Create_Request.aspx" />
+    <Content Include="Support_Portal\View_Request.aspx" />
+    <Content Include="Support_Portal\View_Request_List.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
@@ -5066,6 +5069,27 @@
     <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.designer.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Support_Portal\Create_Request.aspx.cs">
+      <DependentUpon>Create_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\Create_Request.aspx.designer.cs">
+      <DependentUpon>Create_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request.aspx.cs">
+      <DependentUpon>View_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request.aspx.designer.cs">
+      <DependentUpon>View_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request_List.aspx.cs">
+      <DependentUpon>View_Request_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request_List.aspx.designer.cs">
+      <DependentUpon>View_Request_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestMaster.Master.cs">
       <DependentUpon>TestMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6180,6 +6204,7 @@
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="Laundry_Management\Reports\" />
+    <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
