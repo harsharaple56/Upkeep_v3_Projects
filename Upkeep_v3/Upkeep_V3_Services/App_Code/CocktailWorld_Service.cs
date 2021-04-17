@@ -133,6 +133,20 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Save_CategorySizeLinkup(int CategoryID,string CategoryDetails,int LicenseID,int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
 

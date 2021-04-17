@@ -24,9 +24,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
 
-       
+
         private DataTable ObjDt;
-        
+
         private double shivaLicenseID;
         private ArrayList arrRowLicenses;
         private ArrayList arrRowIndex;
@@ -35,12 +35,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         DataSet Ds = new DataSet();
         string LoggedInUserID = string.Empty;
-        int CompanyID = 0;  
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
-            CompanyID = Convert.ToInt32(Session["CompanyID"]); 
-            if(!IsPostBack)
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            if (!IsPostBack)
             {
                 BindCategory();
 
@@ -49,13 +49,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         public void BindCategory()
-
         {
             try
             {
-
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.CategoryMaster_CRUD(24,0,"","", LoggedInUserID, "select"); 
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(24, 0, "", "", LoggedInUserID, "select");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -66,7 +64,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         ddlCategory.DataValueField = "Category_ID";
                         ddlCategory.DataBind();
                         ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
-                      
+
                     }
                 }
             }
@@ -152,68 +150,79 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
-
-            string SelectedUsers = string.Empty;
+            string CategoryDetails = string.Empty;
             var rows = grdCatagLinkUp.Rows;
             int count = grdCatagLinkUp.Rows.Count;
 
-            //string strGrdEmp = GrdEmp.Value;
-            //strGrdEmp = strGrdEmp.TrimEnd(',');
-
+            int CategoryID = 0;
+            int LicenseID = 0;
 
             try
             {
+                StringBuilder strXmlCategory = new StringBuilder();
+                strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
+                strXmlCategory.Append(@"<CategoryRoot>");
 
                 for (int i = 0; i < count; i++)
                 {
-                    bool isChecked = ((CheckBox)rows[i].FindControl("chkUserID")).Checked;
+                    bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
                     if (isChecked)
                     {
-                      
-                        string CategorySizeLinkID = grdCatagLinkUp.Rows[i].Cells[1].Text;
-                        string Size_ID = grdCatagLinkUp.Rows[i].Cells[2].Text;
-                        
+                        string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
+                        string txtalias = ((TextBox)rows[i].FindControl("txtalias")).Text;
 
+                        DropDownList ddlStockIn = (DropDownList)rows[i].FindControl("ddlStockIn");
+                        string StockIn = ddlStockIn.SelectedItem.Value;
 
-                        string UserID = ((HiddenField)rows[i].FindControl("hdnUserID")).Value;
-                       
+                        string txtnoofspeg = ((TextBox)rows[i].FindControl("txtnoofspeg")).Text;
+                        string txtpegsize = ((TextBox)rows[i].FindControl("txtpegsize")).Text;
+
+                        strXmlCategory.Append(@"<Category>");
+                        strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
+                        strXmlCategory.Append(@"<Alias>" + txtalias + "</Alias>");
+                        strXmlCategory.Append(@"<PegSizeML>" + txtpegsize + "</PegSizeML>");
+                        strXmlCategory.Append(@"<StockIn>" + StockIn + "</StockIn>");
+                        strXmlCategory.Append(@"<Size_Qty>" + txtnoofspeg + "</Size_Qty>");
+
+                        strXmlCategory.Append(@"</Category>");
                     }
                 }
 
-                SelectedUsers = SelectedUsers.TrimEnd(',');
-                if (SelectedUsers != "")
+                strXmlCategory.Append(@"</CategoryRoot>");
+
+                CategoryDetails = strXmlCategory.ToString();
+
+                CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+                //LicenseID = Convert.ToInt32(ddllicense.SelectedValue);
+                LicenseID = 3;
+
+                DataSet dsCatSave = new DataSet();
+
+                dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID,CompanyID,LoggedInUserID);
+
+                if (Ds.Tables.Count > 0)
                 {
-                    
-                  //  ds = ObjCocktailWorld.();
-
-                    if (Ds.Tables.Count > 0)
+                    if (Ds.Tables[0].Rows.Count > 0)
                     {
-                        if (Ds.Tables[0].Rows.Count > 0)
+                        int Status = Convert.ToInt32(Ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 0)
                         {
-                            int Status = Convert.ToInt32(Ds.Tables[0].Rows[0]["Status"]);
-                            if (Status == 0)
-                            {
 
-                            }
-                            else if (Status == 1)
-                            {
-                              
-                              //  Response.Redirect(Page.ResolveClientUrl(""), false);
-                            }
-                            else if (Status == 3)
-                            {
-                                //lblErrorMsg.Text = "";
-                            }
-                            else if (Status == 2)
-                            {
-                               // lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                            }
+                        }
+                        else if (Status == 1)
+                        {
+
+                            //  Response.Redirect(Page.ResolveClientUrl(""), false);
+                        }
+                        else if (Status == 3)
+                        {
+                            //lblErrorMsg.Text = "";
+                        }
+                        else if (Status == 2)
+                        {
+                            // lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
                     }
-                }
-                else
-                {
-                   // lblErrorMsg.Text = "Please Select atleast one Employee";
                 }
 
             }
@@ -222,6 +231,27 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 throw ex;
             }
 
+        }
+
+        protected void grdCatagLinkUp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                GridViewRow gvRow = (GridViewRow)e.Row;
+                HiddenField hdnStockIn = (HiddenField)gvRow.FindControl("hdnStockIn");
+                if (hdnStockIn != null)
+                {
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        DropDownList ddlStockIn = (DropDownList)gvRow.FindControl("ddlStockIn");
+                        ddlStockIn.SelectedValue = hdnStockIn.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -276,12 +306,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
         //        txtDetails.Text = "=$=";
         //        FetchCategorySizeLinkUp();
         //    }
-    //}
+        //}
 
 
 
-   // private XmlDocument GenerateXml()
-    //{
+        // private XmlDocument GenerateXml()
+        //{
         // Array arr = Split(txtDetails.Text, "=$=");
         //XmlDocument xmlDocProm = null/* TODO Change to default(_) if this is not a reference type */;
         //try
@@ -303,7 +333,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         //        //        XmlElt.SetAttribute("SizeID", grdCatagLinkUp.Rows(j).Cells(2).Text);
-                            
+
 
 
         //        //        XmlElt.SetAttribute("Alias", (TextBox)grdCatagLinkUp.Rows(j).Cells(4).FindControl("txtalias").Text);
@@ -326,7 +356,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         //finally
         //{
         //}
-   // }
+        // }
 
 
 

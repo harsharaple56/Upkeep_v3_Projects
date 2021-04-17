@@ -172,5 +172,37 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
+
+        public DataSet Save_CategorySizeLinkup(int CategoryID, string CategoryDetails, int LicenseID, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Save_Category_Size", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Category_ID", CategoryID);
+                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
+                cmd.Parameters.AddWithValue("@License_ID", LicenseID);
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+
+
     }
 }
