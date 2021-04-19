@@ -156,7 +156,7 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            
+
 
                                             <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Status :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
@@ -190,7 +190,7 @@
 
                                         </div>
 
-                                        <div class=" row" style="padding-left: 2%;padding-bottom: 2%;">
+                                        <div class=" row" style="padding-left: 2%; padding-bottom: 2%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Closing Remarks :</label>
                                             <div class="col-xl-8 col-lg-3 col-form-label" style="margin-left: -8%;">
                                                 <asp:Label ID="lblClosingRemarks" runat="server" Text="" class="form-control-label"></asp:Label>
@@ -198,74 +198,100 @@
 
                                         </div>
 
-                                        <div class="col-xl-12" style="padding-left: 2%;padding-bottom: 2%;">
-                                            
-                                        <div class="alert alert-primary" role="alert">
-												Below is <strong>Support Ticket</strong> Chat history & comments shared.
-									    </div>
+                                        <div class="col-xl-12" style="padding-left: 2%; padding-bottom: 2%;">
+
+                                            <div class="alert alert-primary" role="alert">
+                                                Below is <strong>Support Ticket</strong> Chat history & comments shared.
+                                            </div>
                                         </div>
 
 
                                         <div class="col-xl-12" style="padding-left: 2%;">
 
-                                                <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-                                                    <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y">
-                                                        <asp:UpdatePanel ID="comments" runat="server">
-                                                            <ContentTemplate>
+                                            <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
 
-                                                        <div id="div_msg_client" runat="server" class="m-messenger__wrapper">
-                                                            <div class="m-messenger__message m-messenger__message--in">
-                                                            
-                                                                <div class="m-messenger__message-body">
-                                                                    <div class="m-messenger__message-arrow"></div>
-                                                                    <div class="m-messenger__message-content">
-                                                                        <div class="m-messenger__message-username">
-                                                                            <label id="lblclient_name" runat="server"></label>
-                                                                        </div>
-                                                                        <div class="m-messenger__message-text">
-                                                                            <label id="lblclient_Comment" runat="server"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="div_msg_support" runat="server" class="m-messenger__wrapper">
-                                                            <div class="m-messenger__message m-messenger__message--out">
-                                                            
-                                                                <div class="m-messenger__message-body">
-                                                                    <div class="m-messenger__message-arrow"></div>
-                                                                    <div class="m-messenger__message-content">
-                                                                        <div class="m-messenger__message-username">
-                                                                            <label id="lblSupport_Name" runat="server"></label>
-                                                                        </div>
-                                                                        <div class="m-messenger__message-text">
-                                                                            <label id="lblSupport_Comment" runat="server"></label>
+                                                <%--Support chatting Layout START--%>
+
+<%--                                                <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y">
+
+                                                    <asp:UpdatePanel ID="comments" runat="server">
+                                                        <ContentTemplate>
+
+                                                            <div id="div_msg_client" runat="server" class="m-messenger__wrapper">
+                                                                <div class="m-messenger__message m-messenger__message--in">
+
+                                                                    <div class="m-messenger__message-body">
+                                                                        <div class="m-messenger__message-arrow"></div>
+                                                                        <div class="m-messenger__message-content">
+                                                                            <div class="m-messenger__message-username">
+                                                                                <label id="lblclient_name" runat="server"></label>
+                                                                            </div>
+                                                                            <div class="m-messenger__message-text">
+                                                                                <label id="lblclient_Comment" runat="server"></label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        
-                                                             </ContentTemplate>
-                                                        </asp:UpdatePanel>
+                                                            <div id="div_msg_support" runat="server" class="m-messenger__wrapper">
+                                                                <div class="m-messenger__message m-messenger__message--out">
+
+                                                                    <div class="m-messenger__message-body">
+                                                                        <div class="m-messenger__message-arrow"></div>
+                                                                        <div class="m-messenger__message-content">
+                                                                            <div class="m-messenger__message-username">
+                                                                                <label id="lblSupport_Name" runat="server"></label>
+                                                                            </div>
+                                                                            <div class="m-messenger__message-text">
+                                                                                <label id="lblSupport_Comment" runat="server"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </div>--%>
+
+
+                                                <%--Support chatting Layout END--%>
+
+
+                                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Support User Name</th>
+                                                            <th>Client User Name</th>
+                                                            <th>Comment Description</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <%=View_Request_Comments()%>
+                                                    </tbody>
+
+
+                                                </table>
+
+                                                <div class="m-messenger__form">
+                                                    <div class="m-messenger__form-controls">
+                                                        <asp:TextBox ID="txtcomment" runat="server" name="" placeholder="Enter your comment on the Ticket..." class="m-messenger__form-input"></asp:TextBox>
+
                                                     </div>
-                                                    <div class="m-messenger__form">
-                                                        <div class="m-messenger__form-controls">
-                                                            <asp:TextBox id="txtcomment" runat="server" name="" placeholder="Enter your comment on the Ticket..." class="m-messenger__form-input"></asp:TextBox>
-                                                            
-                                                        </div>
-                                                        <div class="m-messenger__form-tools">
-                                                            <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" id="btnSaveComment" onserverclick="btnSaveComment_Click">
+                                                    <div class="m-messenger__form-tools">
+                                                        <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" id="btnSaveComment" onserverclick="btnSaveComment_Click">
                                                             <span>
                                                                 <i class="la la-send"></i>
                                                                 <span>Send</span>
                                                             </span>
-                                                            </a>
+                                                        </a>
 
 
-                                                        </div>
                                                     </div>
                                                 </div>
+                                            </div>
+
                                         </div>
 
 

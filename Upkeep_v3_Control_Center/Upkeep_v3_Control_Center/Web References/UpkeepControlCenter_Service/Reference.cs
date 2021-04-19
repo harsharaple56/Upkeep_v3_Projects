@@ -32,6 +32,10 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SUPPORT_Fetch_CommentsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SUPPORT_Save_Comment_SupportOperationCompleted;
+        
         private System.Threading.SendOrPostCallback SUPPORT_View_Ticket_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback SUPPORT_Update_Ticket_DetailsOperationCompleted;
@@ -108,6 +112,12 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
+        
+        /// <remarks/>
+        public event SUPPORT_Fetch_CommentsCompletedEventHandler SUPPORT_Fetch_CommentsCompleted;
+        
+        /// <remarks/>
+        public event SUPPORT_Save_Comment_SupportCompletedEventHandler SUPPORT_Save_Comment_SupportCompleted;
         
         /// <remarks/>
         public event SUPPORT_View_Ticket_DetailsCompletedEventHandler SUPPORT_View_Ticket_DetailsCompleted;
@@ -187,6 +197,68 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Fetch_Comments", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_Fetch_Comments(int Request_ID) {
+            object[] results = this.Invoke("SUPPORT_Fetch_Comments", new object[] {
+                        Request_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Fetch_CommentsAsync(int Request_ID) {
+            this.SUPPORT_Fetch_CommentsAsync(Request_ID, null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Fetch_CommentsAsync(int Request_ID, object userState) {
+            if ((this.SUPPORT_Fetch_CommentsOperationCompleted == null)) {
+                this.SUPPORT_Fetch_CommentsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Fetch_CommentsOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_Fetch_Comments", new object[] {
+                        Request_ID}, this.SUPPORT_Fetch_CommentsOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_Fetch_CommentsOperationCompleted(object arg) {
+            if ((this.SUPPORT_Fetch_CommentsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_Fetch_CommentsCompleted(this, new SUPPORT_Fetch_CommentsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Save_Comment_Support", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_Save_Comment_Support(int Request_ID, string Comment, string LoggedInUserID) {
+            object[] results = this.Invoke("SUPPORT_Save_Comment_Support", new object[] {
+                        Request_ID,
+                        Comment,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Save_Comment_SupportAsync(int Request_ID, string Comment, string LoggedInUserID) {
+            this.SUPPORT_Save_Comment_SupportAsync(Request_ID, Comment, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Save_Comment_SupportAsync(int Request_ID, string Comment, string LoggedInUserID, object userState) {
+            if ((this.SUPPORT_Save_Comment_SupportOperationCompleted == null)) {
+                this.SUPPORT_Save_Comment_SupportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Save_Comment_SupportOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_Save_Comment_Support", new object[] {
+                        Request_ID,
+                        Comment,
+                        LoggedInUserID}, this.SUPPORT_Save_Comment_SupportOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_Save_Comment_SupportOperationCompleted(object arg) {
+            if ((this.SUPPORT_Save_Comment_SupportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_Save_Comment_SupportCompleted(this, new SUPPORT_Save_Comment_SupportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1024,6 +1096,58 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_Fetch_CommentsCompletedEventHandler(object sender, SUPPORT_Fetch_CommentsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_Fetch_CommentsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_Fetch_CommentsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_Save_Comment_SupportCompletedEventHandler(object sender, SUPPORT_Save_Comment_SupportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_Save_Comment_SupportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_Save_Comment_SupportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

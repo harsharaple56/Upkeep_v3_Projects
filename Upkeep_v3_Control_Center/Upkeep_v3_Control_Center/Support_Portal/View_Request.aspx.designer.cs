@@ -229,6 +229,24 @@ namespace Upkeep_v3_Control_Center.Support_Portal {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
+        /// txtcomment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcomment;
+        
+        /// <summary>
+        /// btnSaveComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnSaveComment;
+        
+        /// <summary>
         /// pnlWorkflow control.
         /// </summary>
         /// <remarks>

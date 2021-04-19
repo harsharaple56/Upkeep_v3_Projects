@@ -51,7 +51,6 @@ namespace Upkeep_v3.Support_Portal
             if (!IsPostBack)
             {
                 View_Request_Details();
-                View_Request_Comments();
             }
         }
 
@@ -97,8 +96,9 @@ namespace Upkeep_v3.Support_Portal
             }
         }
 
-        public void View_Request_Comments()
+        public string View_Request_Comments()
         {
+            string data = "";
             DataSet ds = new DataSet();
 
             try
@@ -109,20 +109,24 @@ namespace Upkeep_v3.Support_Portal
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        
-                            lblclient_Comment.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Comment_Desc"]);
-                            lblclient_name.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Client_User_ID"]);
-                            //lblclient_Comment.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Comment_Date"]);
-                            lblSupport_Name.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Support_User_ID"]);
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
 
-                            if (lblSupport_Name.InnerText=="")
-                            {
-                                div_msg_support.Visible = false;
-                            }
-                            if (lblSupport_Name.InnerText == "")
-                            {
-                                div_msg_support.Visible = false;
-                            }
+                        
+                        for (int i = 0; i < count; i++)
+                        {
+
+                           
+                            string Client_User_ID = Convert.ToString(ds.Tables[0].Rows[i]["Client_User_ID"]);
+                            string Comment_Date = Convert.ToString(ds.Tables[0].Rows[i]["Comment_Date"]);
+                            string Support_User_ID = Convert.ToString(ds.Tables[0].Rows[i]["Support_User_ID"]);
+                            string Comment_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Comment_Desc"]);
+
+                            data += "<tr><td>" + Client_User_ID + "</td><td>" + Support_User_ID + "</td><td>" + Comment_Desc + "</td></tr>";
+
+
+                        }
+
+
 
 
                     }
@@ -140,6 +144,8 @@ namespace Upkeep_v3.Support_Portal
             {
                 throw ex;
             }
+
+            return data;
         }
 
 
@@ -165,5 +171,7 @@ namespace Upkeep_v3.Support_Portal
             }
 
         }
+
+
     }
 }

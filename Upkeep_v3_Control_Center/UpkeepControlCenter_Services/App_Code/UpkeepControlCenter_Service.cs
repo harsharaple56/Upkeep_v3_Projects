@@ -56,6 +56,54 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         }
         return retVal;
     }
+    
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Fetch_Comments(int Request_ID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_Fetch_Comments(Request_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Save_Comment_Support(int Request_ID, string Comment, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_Save_Comment_Support(Request_ID, Comment, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
 
 
 

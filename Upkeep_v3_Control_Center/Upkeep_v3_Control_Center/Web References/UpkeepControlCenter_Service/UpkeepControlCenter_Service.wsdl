@@ -12,6 +12,50 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SUPPORT_Fetch_Comments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Request_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SUPPORT_Fetch_CommentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SUPPORT_Fetch_CommentsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SUPPORT_Save_Comment_Support">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Request_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SUPPORT_Save_Comment_SupportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SUPPORT_Save_Comment_SupportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="SUPPORT_View_Ticket_Details">
         <s:complexType>
           <s:sequence>
@@ -453,6 +497,18 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="SUPPORT_Fetch_CommentsSoapIn">
+    <wsdl:part name="parameters" element="tns:SUPPORT_Fetch_Comments" />
+  </wsdl:message>
+  <wsdl:message name="SUPPORT_Fetch_CommentsSoapOut">
+    <wsdl:part name="parameters" element="tns:SUPPORT_Fetch_CommentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SUPPORT_Save_Comment_SupportSoapIn">
+    <wsdl:part name="parameters" element="tns:SUPPORT_Save_Comment_Support" />
+  </wsdl:message>
+  <wsdl:message name="SUPPORT_Save_Comment_SupportSoapOut">
+    <wsdl:part name="parameters" element="tns:SUPPORT_Save_Comment_SupportResponse" />
+  </wsdl:message>
   <wsdl:message name="SUPPORT_View_Ticket_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:SUPPORT_View_Ticket_Details" />
   </wsdl:message>
@@ -566,6 +622,14 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Fetch_Comments">
+      <wsdl:input message="tns:SUPPORT_Fetch_CommentsSoapIn" />
+      <wsdl:output message="tns:SUPPORT_Fetch_CommentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Save_Comment_Support">
+      <wsdl:input message="tns:SUPPORT_Save_Comment_SupportSoapIn" />
+      <wsdl:output message="tns:SUPPORT_Save_Comment_SupportSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SUPPORT_View_Ticket_Details">
       <wsdl:input message="tns:SUPPORT_View_Ticket_DetailsSoapIn" />
       <wsdl:output message="tns:SUPPORT_View_Ticket_DetailsSoapOut" />
@@ -643,6 +707,24 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Fetch_Comments">
+      <soap:operation soapAction="http://tempuri.org/SUPPORT_Fetch_Comments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Save_Comment_Support">
+      <soap:operation soapAction="http://tempuri.org/SUPPORT_Save_Comment_Support" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -817,6 +899,24 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Fetch_Comments">
+      <soap12:operation soapAction="http://tempuri.org/SUPPORT_Fetch_Comments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SUPPORT_Save_Comment_Support">
+      <soap12:operation soapAction="http://tempuri.org/SUPPORT_Save_Comment_Support" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

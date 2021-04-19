@@ -151,5 +151,81 @@ namespace Upkeep_v3_Control_Center.Support_Portal
                 throw ex;
             }
         }
+
+        public string View_Request_Comments()
+        {
+            string data = "";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                ds = objUpkeepCC.SUPPORT_Fetch_Comments(Request_ID);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+
+
+                        for (int i = 0; i < count; i++)
+                        {
+
+
+                            string Client_User_ID = Convert.ToString(ds.Tables[0].Rows[i]["Client_User_ID"]);
+                            string Comment_Date = Convert.ToString(ds.Tables[0].Rows[i]["Comment_Date"]);
+                            string Support_User_ID = Convert.ToString(ds.Tables[0].Rows[i]["Support_User_ID"]);
+                            string Comment_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Comment_Desc"]);
+
+                            data += "<tr><td>" + Client_User_ID + "</td><td>" + Support_User_ID + "</td><td>" + Comment_Desc + "</td></tr>";
+
+
+                        }
+
+
+
+
+                    }
+                    else
+                    {
+                        //invalid login
+                    }
+                }
+                else
+                {
+                    //invalid login
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return data;
+        }
+
+
+        protected void btnSaveComment_Click(object sender, EventArgs e)
+        {
+            string Comment = Convert.ToString(txtcomment.Text);
+
+            DataSet ds = new DataSet();
+            
+            ds = objUpkeepCC.SUPPORT_Save_Comment_Support(Request_ID, Comment, Full_Name);
+
+            if (ds.Tables.Count > 0)
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                    if (Status == 1)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Support_Portal/View_Request.aspx?Request_ID=" + Request_ID), false);
+                    }
+                }
+            }
+
+        }
+
     }
 }
