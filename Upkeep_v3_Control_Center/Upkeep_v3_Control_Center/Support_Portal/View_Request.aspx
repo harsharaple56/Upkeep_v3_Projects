@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="View_Request.aspx.cs" Inherits="Upkeep_v3.Support_Portal.View_Request" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="View_Request.aspx.cs" Inherits="Upkeep_v3_Control_Center.Support_Portal.View_Request" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,7 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+
+       <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
     <style type="text/css">
         .modalBackground {
@@ -57,8 +59,9 @@
         });
     </script>
 
+    <form method="post" runat="server" id="frmMain" style="width: 100%;">
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 30px;">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content" style="padding: 2px 2px;">
             <div class="row">
                 <div class="col-lg-12">
@@ -90,6 +93,8 @@
                                                 <span>Back</span>
                                             </span>
                                         </a>
+
+                                        <asp:Button ID="btnSumit" OnClick="btnSumit_Click" runat="server" Text="Update Request" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +161,6 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            
 
                                             <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Status :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
@@ -174,14 +178,14 @@
 
                                         </div>
 
-                                        <div class=" row" style="padding-left: 2%;">
+                                        <div id="div1" runat="server" class=" row" style="padding-left: 2%;">
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Last Updated By :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblUpdtedby" runat="server" Text="" class="form-control-label"></asp:Label>
 
                                             </div>
 
-                                            <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Last Updated Date :</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Last Updated Date :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblUpdatedDate" runat="server" Text="" class="form-control-label"></asp:Label>
 
@@ -190,13 +194,44 @@
 
                                         </div>
 
-                                        <div class=" row" style="padding-left: 2%;padding-bottom: 2%;">
+                                        <div id="div2" runat="server" class=" row" style="padding-left: 2%;">
                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Closing Remarks :</label>
                                             <div class="col-xl-8 col-lg-3 col-form-label" style="margin-left: -8%;">
                                                 <asp:Label ID="lblClosingRemarks" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
 
                                         </div>
+
+
+                                       <div id="div3" runat="server" class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Update Status:</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:DropDownList ID="ddlStatus" class="form-control m-input" runat="server">
+                                                    <asp:ListItem Value="">-- Update Current Status --</asp:ListItem>
+                                                    <asp:ListItem>In-Progress</asp:ListItem>
+                                                    <asp:ListItem>Parked</asp:ListItem>
+                                                    <asp:ListItem>Closed</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div id="div4" runat="server" class=" row" style="padding-left: 2%;">
+                                        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Closing Remarks :</label>
+                                            <div class="col-xl-9 col-lg-5 col-form-label">
+                                                <textarea id="txtClosingRemarks" cols="20" rows="2" runat="server" class="form-control m-input" placeholder="Enter Detailed for closing the ticket">
+
+                                                </textarea>
+                                                <asp:RequiredFieldValidator ID="rfvtxtClosingRemarks" runat="server" ControlToValidate="txtClosingRemarks" ValidationGroup="ValidateUser"
+                                                    ErrorMessage="Please enter Closing description" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+
+                                            </div>
+                                            
+                                           <asp:Label ID="lblError" runat="server" Text="" class="form-control-label"></asp:Label>
+                                        </div>
+
+
+
+
+
 
                                         <div class="col-xl-12" style="padding-left: 2%;padding-bottom: 2%;">
                                             
@@ -207,65 +242,102 @@
 
 
                                         <div class="col-xl-12" style="padding-left: 2%;">
-
-                                                <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-                                                    <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y">
-                                                        <asp:UpdatePanel ID="comments" runat="server">
-                                                            <ContentTemplate>
-
-                                                        <div id="div_msg_client" runat="server" class="m-messenger__wrapper">
-                                                            <div class="m-messenger__message m-messenger__message--in">
-                                                            
-                                                                <div class="m-messenger__message-body">
-                                                                    <div class="m-messenger__message-arrow"></div>
-                                                                    <div class="m-messenger__message-content">
-                                                                        <div class="m-messenger__message-username">
-                                                                            <label id="lblclient_name" runat="server"></label>
-                                                                        </div>
-                                                                        <div class="m-messenger__message-text">
-                                                                            <label id="lblclient_Comment" runat="server"></label>
-                                                                        </div>
+                                            
+                                            <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
+                                                <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y" style="height: 109px; overflow: hidden;">
+                                                    <div class="m-messenger__wrapper">
+                                                        <div class="m-messenger__message m-messenger__message--in">
+                                                            <div class="m-messenger__message-pic">
+                                                                <img src="../assets/app/media/img//users/user3.jpg" alt="">
+                                                            </div>
+                                                            <div class="m-messenger__message-body">
+                                                                <div class="m-messenger__message-arrow"></div>
+                                                                <div class="m-messenger__message-content">
+                                                                    <div class="m-messenger__message-username">
+                                                                        Megan wrote
+                                                                    </div>
+                                                                    <div class="m-messenger__message-text">
+                                                                        Hi Bob. What time will be the meeting ?
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div id="div_msg_support" runat="server" class="m-messenger__wrapper">
-                                                            <div class="m-messenger__message m-messenger__message--out">
-                                                            
-                                                                <div class="m-messenger__message-body">
-                                                                    <div class="m-messenger__message-arrow"></div>
-                                                                    <div class="m-messenger__message-content">
-                                                                        <div class="m-messenger__message-username">
-                                                                            <label id="lblSupport_Name" runat="server"></label>
-                                                                        </div>
-                                                                        <div class="m-messenger__message-text">
-                                                                            <label id="lblSupport_Comment" runat="server"></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                             </ContentTemplate>
-                                                        </asp:UpdatePanel>
                                                     </div>
-                                                    <div class="m-messenger__form">
-                                                        <div class="m-messenger__form-controls">
-                                                            <asp:TextBox id="txtcomment" runat="server" name="" placeholder="Enter your comment on the Ticket..." class="m-messenger__form-input"></asp:TextBox>
-                                                            
+                                                    <div class="m-messenger__wrapper">
+                                                        <div class="m-messenger__message m-messenger__message--out">
+                                                            <div class="m-messenger__message-body">
+                                                                <div class="m-messenger__message-arrow"></div>
+                                                                <div class="m-messenger__message-content">
+                                                                    <div class="m-messenger__message-text">
+                                                                        Hi Megan. It's at 2.30PM
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="m-messenger__form-tools">
-                                                            <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" id="btnSaveComment" onserverclick="btnSaveComment_Click">
-                                                            <span>
-                                                                <i class="la la-send"></i>
-                                                                <span>Send</span>
-                                                            </span>
-                                                            </a>
-
-
+                                                    </div>
+                                                    <div class="m-messenger__wrapper">
+                                                        <div class="m-messenger__message m-messenger__message--in">
+                                                            <div class="m-messenger__message-pic">
+                                                                <img src="../assets/app/media/img//users/user3.jpg" alt="">
+                                                            </div>
+                                                            <div class="m-messenger__message-body">
+                                                                <div class="m-messenger__message-arrow"></div>
+                                                                <div class="m-messenger__message-content">
+                                                                    <div class="m-messenger__message-username">
+                                                                        Megan wrote
+                                                                    </div>
+                                                                    <div class="m-messenger__message-text">
+                                                                        Will the development team be joining ?
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-messenger__wrapper">
+                                                        <div class="m-messenger__message m-messenger__message--out">
+                                                            <div class="m-messenger__message-body">
+                                                                <div class="m-messenger__message-arrow"></div>
+                                                                <div class="m-messenger__message-content">
+                                                                    <div class="m-messenger__message-text">
+                                                                        Yes sure. I invited them as well
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-messenger__datetime">2:30PM</div>
+                                                    <div class="m-messenger__wrapper">
+                                                        <div class="m-messenger__message m-messenger__message--in">
+                                                            <div class="m-messenger__message-pic">
+                                                                <img src="../assets/app/media/img//users/user3.jpg" alt="">
+                                                            </div>
+                                                            <div class="m-messenger__message-body">
+                                                                <div class="m-messenger__message-arrow"></div>
+                                                                <div class="m-messenger__message-content">
+                                                                    <div class="m-messenger__message-username">
+                                                                        Megan wrote
+                                                                    </div>
+                                                                    <div class="m-messenger__message-text">
+                                                                        Noted. For the Coca-Cola Mobile App project as well ?
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="m-messenger__seperator"></div>
+                                                <div class="m-messenger__form">
+                                                    <div class="m-messenger__form-controls">
+                                                        <input type="text" name="" placeholder="Enter your comment on the Ticket..." class="m-messenger__form-input">
+                                                    </div>
+                                                    <div class="m-messenger__form-tools">
+                                                        <a href="#" class="m-messenger__form-attachment--primary">
+                                                            <i class="la la-send" style="font-size: 3.3rem;"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
 
@@ -372,6 +444,7 @@
         </div>
     </div>
 
+    </form>
 
 
 </asp:Content>

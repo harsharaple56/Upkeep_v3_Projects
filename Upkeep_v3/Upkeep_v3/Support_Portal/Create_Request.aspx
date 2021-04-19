@@ -109,7 +109,7 @@
                                 <div class="m-portlet__head-tools">
 
 
-                                    <a href="<%= Page.ResolveClientUrl("Dashboard.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                    <a href="<%= Page.ResolveClientUrl("~/Support_Portal/View_Request_List.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>

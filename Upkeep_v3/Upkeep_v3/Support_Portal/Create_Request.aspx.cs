@@ -86,7 +86,7 @@ namespace Upkeep_v3.Support_Portal
 
             string list_Images = String.Join(",", Lst_Images);
 
-            //ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID,  Request_Type,  Module_ID, Request_Description,  LoggedInUserID);
+            ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID,  Request_Type,  Module_ID, Request_Description,  LoggedInUserID);
 
             if (ds.Tables.Count > 0)
             {

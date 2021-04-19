@@ -79,6 +79,56 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet SUPPORT_Fetch_Comments(int Request_ID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Fetch_Comments(Request_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Save_Comment_Client(int Request_ID, string Comment, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Save_Comment_Client(Request_ID, Comment, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet SUPPORT_View_Request_Details(int Request_ID, int Company_ID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_View_Request_Details(Request_ID, Company_ID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+    [WebMethod]
     public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID)
     {
         try

@@ -32,6 +32,12 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback SUPPORT_View_Ticket_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SUPPORT_Update_Ticket_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SUPPORT_Fetch_Tickets_ListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GroupMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Invoices_CRUDOperationCompleted;
@@ -104,6 +110,15 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
+        public event SUPPORT_View_Ticket_DetailsCompletedEventHandler SUPPORT_View_Ticket_DetailsCompleted;
+        
+        /// <remarks/>
+        public event SUPPORT_Update_Ticket_DetailsCompletedEventHandler SUPPORT_Update_Ticket_DetailsCompleted;
+        
+        /// <remarks/>
+        public event SUPPORT_Fetch_Tickets_ListCompletedEventHandler SUPPORT_Fetch_Tickets_ListCompleted;
+        
+        /// <remarks/>
         public event GroupMaster_CRUDCompletedEventHandler GroupMaster_CRUDCompleted;
         
         /// <remarks/>
@@ -172,6 +187,97 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_View_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_View_Ticket_Details(int Request_ID) {
+            object[] results = this.Invoke("SUPPORT_View_Ticket_Details", new object[] {
+                        Request_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_View_Ticket_DetailsAsync(int Request_ID) {
+            this.SUPPORT_View_Ticket_DetailsAsync(Request_ID, null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_View_Ticket_DetailsAsync(int Request_ID, object userState) {
+            if ((this.SUPPORT_View_Ticket_DetailsOperationCompleted == null)) {
+                this.SUPPORT_View_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_View_Ticket_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_View_Ticket_Details", new object[] {
+                        Request_ID}, this.SUPPORT_View_Ticket_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_View_Ticket_DetailsOperationCompleted(object arg) {
+            if ((this.SUPPORT_View_Ticket_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_View_Ticket_DetailsCompleted(this, new SUPPORT_View_Ticket_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Update_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_Update_Ticket_Details(int Request_ID, string LoggedInUserID, string Status, string Closing_Remarks) {
+            object[] results = this.Invoke("SUPPORT_Update_Ticket_Details", new object[] {
+                        Request_ID,
+                        LoggedInUserID,
+                        Status,
+                        Closing_Remarks});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Update_Ticket_DetailsAsync(int Request_ID, string LoggedInUserID, string Status, string Closing_Remarks) {
+            this.SUPPORT_Update_Ticket_DetailsAsync(Request_ID, LoggedInUserID, Status, Closing_Remarks, null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Update_Ticket_DetailsAsync(int Request_ID, string LoggedInUserID, string Status, string Closing_Remarks, object userState) {
+            if ((this.SUPPORT_Update_Ticket_DetailsOperationCompleted == null)) {
+                this.SUPPORT_Update_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Update_Ticket_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_Update_Ticket_Details", new object[] {
+                        Request_ID,
+                        LoggedInUserID,
+                        Status,
+                        Closing_Remarks}, this.SUPPORT_Update_Ticket_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_Update_Ticket_DetailsOperationCompleted(object arg) {
+            if ((this.SUPPORT_Update_Ticket_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_Update_Ticket_DetailsCompleted(this, new SUPPORT_Update_Ticket_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SUPPORT_Fetch_Tickets_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SUPPORT_Fetch_Tickets_List() {
+            object[] results = this.Invoke("SUPPORT_Fetch_Tickets_List", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Fetch_Tickets_ListAsync() {
+            this.SUPPORT_Fetch_Tickets_ListAsync(null);
+        }
+        
+        /// <remarks/>
+        public void SUPPORT_Fetch_Tickets_ListAsync(object userState) {
+            if ((this.SUPPORT_Fetch_Tickets_ListOperationCompleted == null)) {
+                this.SUPPORT_Fetch_Tickets_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSUPPORT_Fetch_Tickets_ListOperationCompleted);
+            }
+            this.InvokeAsync("SUPPORT_Fetch_Tickets_List", new object[0], this.SUPPORT_Fetch_Tickets_ListOperationCompleted, userState);
+        }
+        
+        private void OnSUPPORT_Fetch_Tickets_ListOperationCompleted(object arg) {
+            if ((this.SUPPORT_Fetch_Tickets_ListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SUPPORT_Fetch_Tickets_ListCompleted(this, new SUPPORT_Fetch_Tickets_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -918,6 +1024,84 @@ namespace Upkeep_v3_Control_Center.UpkeepControlCenter_Service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_View_Ticket_DetailsCompletedEventHandler(object sender, SUPPORT_View_Ticket_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_View_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_View_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_Update_Ticket_DetailsCompletedEventHandler(object sender, SUPPORT_Update_Ticket_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_Update_Ticket_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_Update_Ticket_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SUPPORT_Fetch_Tickets_ListCompletedEventHandler(object sender, SUPPORT_Fetch_Tickets_ListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SUPPORT_Fetch_Tickets_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SUPPORT_Fetch_Tickets_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

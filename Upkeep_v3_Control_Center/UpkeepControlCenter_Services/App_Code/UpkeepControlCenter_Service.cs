@@ -57,6 +57,79 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         return retVal;
     }
 
+
+
+    [WebMethod]
+    public DataSet SUPPORT_View_Ticket_Details(int Request_ID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_View_Ticket_Details(Request_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Update_Ticket_Details(int Request_ID, string LoggedInUserID, string Status, string Closing_Remarks)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_Update_Ticket_Details(Request_ID, LoggedInUserID, Status, Closing_Remarks);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Fetch_Tickets_List()
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_Fetch_Tickets_List();
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
+
+
+
     [WebMethod]
     public DataSet GroupMaster_CRUD(int Group_ID, string Group_Desc, string Group_Code, string LoggedInUserID, string Is_Deleted, string Action)
     {
