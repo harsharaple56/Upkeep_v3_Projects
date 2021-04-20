@@ -211,7 +211,7 @@ background-color: blanchedalmond;
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
 //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeMeetingUsers.ClientID %>').hide();
-            //window.close();
+            indow.close();
 
         }
 
@@ -236,6 +236,7 @@ background-color: blanchedalmond;
             //alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
+            window.close();
         }
 
     </script>
@@ -355,11 +356,11 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <br />
-                                <div id="divDesc" runat="server" class="alert alert-primary alert-dismissible fade show   m-alert m-alert--air m-alert--outline" role="alert">
+                              <!--  <div id="divDesc" runat="server" class="alert alert-primary alert-dismissible fade show   m-alert m-alert--air m-alert--outline" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     </button>
                                     <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
-                                </div>
+                                </div>-->
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                     <label class="col-md-1 col-form-label font-weight-bold">Name :</label>
                                     <div class="col-md-5 col-form-label">
