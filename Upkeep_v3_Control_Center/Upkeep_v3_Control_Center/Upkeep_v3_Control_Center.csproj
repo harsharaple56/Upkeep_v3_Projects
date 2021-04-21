@@ -942,6 +942,8 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Support_Portal\View_Request.aspx" />
+    <Content Include="Support_Portal\View_Request_List.aspx" />
     <Content Include="vendors\animate.css\.editorconfig" />
     <Content Include="vendors\animate.css\.prettierignore" />
     <Content Include="vendors\animate.css\.travis.yml" />
@@ -4921,6 +4923,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request.aspx.cs">
+      <DependentUpon>View_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request.aspx.designer.cs">
+      <DependentUpon>View_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request_List.aspx.cs">
+      <DependentUpon>View_Request_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\View_Request_List.aspx.designer.cs">
+      <DependentUpon>View_Request_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

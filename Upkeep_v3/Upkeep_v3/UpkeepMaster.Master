@@ -816,7 +816,26 @@
                                                         <span class="m-topbar__userpic">
                                                             <a href="<%= Page.ResolveClientUrl("~/Support_Portal/Create_Request.aspx") %>" class="btn m-btn--pill btn-danger m-btn m-btn--custom " style="border: 7px solid transparent;">
                                                                 <i class="fa fa-user-tag" style="font-size: 2.3rem;"></i>
-                                                                Raise Support Ticket
+                                                                Raise NEW Support Ticket
+                                                            </a>
+                                                        </span>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                            <div class="m-stack__item m-stack__item--center">
+                                                <div class="m-stack__demo-item">
+
+                                                    <span class="m-widget19__username m--font-primary" style="font-size: 1rem; margin-bottom: 2.4rem;">
+
+                                                        <span class="m-topbar__userpic">
+                                                            <a href="<%= Page.ResolveClientUrl("~/Support_Portal/View_Request_List.aspx") %>" class="btn m-btn--pill btn-accent m-btn m-btn--custom " style="border: 7px solid transparent;">
+                                                                <i class="fa fa-user-tag" style="font-size: 2.3rem;"></i>
+                                                                Track Support Tickets
                                                             </a>
                                                         </span>
                                                     </span>

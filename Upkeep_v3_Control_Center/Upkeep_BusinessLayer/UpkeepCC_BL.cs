@@ -118,6 +118,133 @@ namespace Upkeep_BusinessLayer
         //}
 
 
+
+
+        public DataSet SUPPORT_Fetch_Comments(int Request_ID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Fetch_Comments", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Request_ID", Request_ID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public DataSet SUPPORT_Save_Comment_Support(int Request_ID, string Comment, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Save_Comment_Support", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Request_ID", Request_ID);
+                cmd.Parameters.AddWithValue("@Comment", Comment);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        
+
+        public DataSet SUPPORT_Fetch_Tickets_List(string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Fetch_Tickets_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet SUPPORT_View_Ticket_Details(int Request_ID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_View_Ticket_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Request_ID", Request_ID);
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet SUPPORT_Update_Ticket_Details(int Request_ID, string LoggedInUserID, string Status, string Closing_Remarks, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Update_Ticket_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Request_ID", Request_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Status", Status);
+                cmd.Parameters.AddWithValue("@Closing_Remarks", Closing_Remarks);
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Fetch_GroupDesc(string strConn)
         {
             DataSet ds = new DataSet();

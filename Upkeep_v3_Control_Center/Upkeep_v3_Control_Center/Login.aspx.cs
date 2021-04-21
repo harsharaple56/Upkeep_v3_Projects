@@ -35,7 +35,10 @@ namespace Upkeep_v3_Control_Center
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["ID"]);
-                    Session["UserName"] = Convert.ToString(txtUserName.Text.Trim());
+                    Session["UserName"] = Convert.ToString(ds.Tables[0].Rows[0]["UserName"]);
+                    Session["Full_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Full_Name"]);
+
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         Response.Redirect("~/Dashboard.aspx", false);

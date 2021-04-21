@@ -260,7 +260,7 @@ namespace Upkeep_v3.VMS
             ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", $"SelectUser();", true);
             //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>", true);
             //this.Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "xx", "<script>FunEditClick(" + SelectedUsersID + "," + SelectedUsersName + ");</script>");
-
+            mpeMeetingUsers.Hide();
         }
 
         protected void grdInfodetails_RowDataBound(object sender, GridViewRowEventArgs e)

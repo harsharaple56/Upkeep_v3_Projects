@@ -234,6 +234,8 @@
                                 <th title="Configuration Title" data-field="Config_Title">Configuration Title</th>
                                 <th title="Visit Date" data-field="VisitDate">Visit Date</th>
                                 <th title="Request Date" data-field="RequestDate">Request Date</th>
+                                 <th title="In Time" data-field="InTime">In Time</th>
+                                 <th title="Out Time" data-field="OutTime">Out Time</th>
                                 <th title="Status" data-field="Status">Status</th>
 
                             </tr>

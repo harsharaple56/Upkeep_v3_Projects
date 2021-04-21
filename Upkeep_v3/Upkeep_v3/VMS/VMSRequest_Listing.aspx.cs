@@ -81,11 +81,13 @@ namespace Upkeep_v3.VMS
                             //string GP_Type = Convert.ToString(ds.Tables[0].Rows[i]["GP_Type_Desc"]);
                             string MeetDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
                             string RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                            string InTime = Convert.ToString(ds.Tables[0].Rows[i]["CheckIn_Time"]);
+                            string OutTime = Convert.ToString(ds.Tables[0].Rows[i]["CheckOut_Time"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
                             //string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
 
                             data += "<tr><td> <a href='Visit_Request.aspx?RequestID=" + RequestID + "' style='text-decoration: underline;' > "
-                                + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + MeetDate + "</td><td>" + RequestDate + "</td><td>" + Status + "</td></tr>";
+                                + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + MeetDate + "</td><td>" + RequestDate + "</td><td>" + InTime + "</td><td>" + OutTime + "</td><td>" + Status + "</td></tr>";
 
                         }
 

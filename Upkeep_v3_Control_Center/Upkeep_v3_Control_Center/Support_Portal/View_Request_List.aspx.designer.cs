@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Support_Portal {
+namespace Upkeep_v3_Control_Center.Support_Portal {
     
     
-    public partial class View_Requests {
+    public partial class View_Request_List {
         
         /// <summary>
         /// frmMain control.
@@ -19,6 +19,6 @@ namespace Upkeep_v3.Support_Portal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmMain;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmMain;
     }
 }

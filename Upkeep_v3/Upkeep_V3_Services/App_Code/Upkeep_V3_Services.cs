@@ -79,11 +79,76 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet SUPPORT_Fetch_Comments(int Request_ID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Fetch_Comments(Request_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Save_Comment_Client(int Request_ID, string Comment, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Save_Comment_Client(Request_ID, Comment, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet SUPPORT_View_Request_Details(int Request_ID, int Company_ID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_View_Request_Details(Request_ID, Company_ID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+    [WebMethod]
     public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID)
     {
         try
         {
             ds = ObjUpkeep.SUPPORT_Save_Request(Company_ID, Request_Type, Module_ID, Description, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet SUPPORT_Fetch_Requests(string From_Date, string To_Date, int Company_ID, string LoggedInUserID, string Role_Name)
+    {
+        try
+        {
+            ds = ObjUpkeep.SUPPORT_Fetch_Requests(From_Date, To_Date, Company_ID, LoggedInUserID, Role_Name);
 
         }
         catch (Exception ex)
