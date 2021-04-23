@@ -274,7 +274,7 @@
             </div>
 
         </div>
-
+            
         <div class="row">
 
             <div class="col-xl-6">
@@ -568,7 +568,6 @@
                 </div>
 
             </div>
-            \
         </div>
 
 
@@ -587,7 +586,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="m-portlet__body  m-portlet__body--no-padding">
+                    <div class="m-portlet__body  m-portlet__body--no-padding" style="padding-top: 0rem;">
                         <div class="row m-row--no-padding m-row--col-separator-xl">
                             <div class="col-md-12 col-lg-6 col-xl-4">
 
@@ -904,8 +903,8 @@
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Department
-                                    -wise Analysis
+                                <h3 class="m-portlet__head-text">
+                                    Department-wise Analysis
                                 </h3>
                             </div>
                         </div>
@@ -919,7 +918,7 @@
                                     <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget11_tab2_content" role="tab">This Month
                                     </a>
                                 </li>
-                            </ul>s
+                            </ul>
                         </div>
                     </div>
                     <div class="m-portlet__body">

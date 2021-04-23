@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Dashboard_Employee.aspx.cs" Inherits="Upkeep_v3.Dashboard_Employee" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -26,6 +28,10 @@
                     <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
                         <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success" OnClick="btn_Employee_Dashboard_Click" />
                         <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Admin_Dashboard_Click" />
+                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
 
                     </div>
                 </div>
@@ -503,16 +509,48 @@
                             </div>
 
                         </div>
+
+                        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+
+
+                        <asp:Panel ID="pnlDashboardValidation" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+                            <div class="" id="DashboardValidation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                            <ContentTemplate>
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Ticket Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Dear @Username, you do not have access to view this page. Only Users with <b>Property Admin</b> or <b>Dashboard and MIS Admin</b> Role can access Admin Dashboard</label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="<%= Page.ResolveClientUrl("~/Dashboard_Employee.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">Close</a>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
                     </div>
                 </div>
 
                 <!--end:: Ticketing Section-->
             </div>
-
         </div>
 
 
-        
+
     </div>
 
 

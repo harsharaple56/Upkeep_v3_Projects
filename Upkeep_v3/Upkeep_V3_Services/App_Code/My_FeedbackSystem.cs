@@ -409,15 +409,15 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataTable Get_ChartData(string EventID, string fromDate, string toDate)
+    public DataSet Get_ChartData(string fromDate, string toDate, int CompanyID)
     {
         try
         {
             strConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            DataTable dt = new DataTable();
+            DataSet dt = new DataSet();
             //FeedbackSystemBusiness.Class1  obj = new //FeedbackSystemBusiness.Class1 ();
-            dt = ObjFeedback_BL.Get_ChartData(EventID, fromDate, toDate, strConn);
+            dt = ObjFeedback_BL.Get_ChartData( fromDate, toDate, CompanyID, strConn);
 
             return dt;
         }

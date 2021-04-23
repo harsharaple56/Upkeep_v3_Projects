@@ -220,55 +220,6 @@ namespace Upkeep_v3
         //}
 
 
-        [WebMethod]
-        public static List<object> GetFeedback_AreaChartData(string From_Date, string To_Date)
-        {
-            List<object> chartData = new List<object>();
-            string StrConn = string.Empty;
-
-            try
-            {
-
-                chartData.Add(new object[]
-                 {
-                    "Event_Name", "TotalPositve" ,"TotalNeutral", "TotalNegative"
-                 });
-
-                StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
-
-                using (SqlConnection con = new SqlConnection(StrConn))
-                {
-                    using (SqlCommand cmd = new SqlCommand("Feedback_Proc_GetChartData"))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@FromDate", From_Date);
-                        cmd.Parameters.AddWithValue("@ToDate", To_Date);
-                        cmd.Connection = con;
-                        con.Open();
-                        using (SqlDataReader sdr = cmd.ExecuteReader())
-                        {
-                            while (sdr.Read())
-                            {
-                                chartData.Add(new object[]
-                                {
-                                    sdr["Event_Name"], sdr["TotalPositve"] , sdr["TotalNeutral"], sdr["TotalNegative"]
-                                });
-                            }
-                        }
-                        con.Close();
-                        return chartData;
-                    }
-                }
-
-                //return chartData;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
 
         [WebMethod]
         public static List<object> GetChecklist_PieChartData(string Selected_Company, string From_Date, string To_Date)
