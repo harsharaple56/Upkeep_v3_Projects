@@ -85,6 +85,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Button btn_Admin_Dashboard;
         
         /// <summary>
+        /// div_Ticketing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Ticketing;
+        
+        /// <summary>
         /// lbl_Tkt_Total control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_Tkt_Expired;
         
         /// <summary>
+        /// div_Checklist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Checklist;
+        
+        /// <summary>
         /// lbl_Chk_Total_Attended control.
         /// </summary>
         /// <remarks>
@@ -155,6 +173,15 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_chk_Closed;
+        
+        /// <summary>
+        /// div_Gatepass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Gatepass;
         
         /// <summary>
         /// lbl_GP_Total control.
@@ -229,6 +256,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_GP_Expired;
         
         /// <summary>
+        /// div_Workpermit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Workpermit;
+        
+        /// <summary>
         /// lbl_WP_Total control.
         /// </summary>
         /// <remarks>
@@ -299,6 +335,15 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_WP_Expired;
+        
+        /// <summary>
+        /// div_Feedback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Feedback;
         
         /// <summary>
         /// lbl_Feedback_Total control.

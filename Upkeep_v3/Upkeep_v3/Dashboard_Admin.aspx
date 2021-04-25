@@ -3,6 +3,75 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+        <script>
+
+        $(document).ready(function () {
+
+            $('.m_selectpicker').selectpicker();
+            //alert('1111');
+            var picker = $('#daterangepicker');
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end, label) {
+                var title = '';
+                var range = '';
+
+                if ((end - start) < 100 || label == 'Today') {
+                    title = 'Today:';
+                    range = start.format('MMM D');
+                } else if (label == 'Yesterday') {
+                    title = 'Yesterday:';
+                    range = start.format('MMM D');
+                } else {
+                    range = start.format('MMM D') + ' - ' + end.format('MMM D');
+                }
+
+                picker.find('.m-subheader__daterange-date').html(range);
+                picker.find('.m-subheader__daterange-title').html(title);
+
+                $('#start_date').val(start.format('DD/MM/YYYY'));
+                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#date_range_title').val(title + range);
+            }
+
+            picker.daterangepicker({
+                direction: mUtil.isRTL(),
+                startDate: start,
+                endDate: end,
+                opens: 'left',
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            var IsPostBack2 = $('#hdn_IsPostBack').val();
+
+            if (IsPostBack2 == "no") {
+                cb(start, end, '');
+            }
+            else {
+
+                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
+            }
+
+
+
+        });
+
+    </script>
+
+
+
+
+
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
 
@@ -48,7 +117,7 @@
     <div class="m-porlet">
         <div class="row">
 
-            <div class="col-xl-6">
+            <div class="col-xl-6" id="div_Ticketing" runat="server">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -157,7 +226,7 @@
                                 </div>
                             </div>
                             <div class="m-widget19__action">
-                                <a href="<%= Page.ResolveClientUrl("~/Dashboard_Admin_Ticketing.aspx") %>"" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom ">
+                                <a href="<%= Page.ResolveClientUrl("~/Analytics/Ticketing.aspx") %>"" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom ">
                                     <i class="flaticon-diagram"></i>
                                     Analyze Tickets Data
                                 </a>
@@ -169,7 +238,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+            <div class="col-xl-6" id="div_Checklist" runat="server">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -265,7 +334,7 @@
 
         <div class="row">
 
-            <div class="col-xl-6">
+            <div class="col-xl-6" id="div_Gatepass" runat="server">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -443,7 +512,7 @@
             </div>
 
 
-            <div class="col-xl-6">
+            <div class="col-xl-6" id="div_Workpermit" runat="server">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -457,7 +526,7 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/wp.png" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username">Total Gatepasses
+                                        <span class="m-widget19__username">Total Work Permits
                                         </span>
                                         <br>
                                         <span class="m-widget19__time">Total No. of Work Permits raised
@@ -621,10 +690,8 @@
         </div>
 
 
-
-
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-xl-12" id="div_Feedback" runat="server">
                 <div class="m-portlet">
                     
                     <div class="m-portlet__body">

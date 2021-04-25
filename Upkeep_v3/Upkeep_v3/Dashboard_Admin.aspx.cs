@@ -22,22 +22,59 @@ namespace Upkeep_v3
         int CompanyID = 0;
 
         string Role_Name = string.Empty;
+        string Module_IDs = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            Module_IDs = Convert.ToString(Session["ModuleID"]);
+            
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 Response.Redirect("~/Login.aspx", false);
                 return;
             }
+            hdn_IsPostBack.Value = "yes";
 
             if (!IsPostBack)
             {
+                hdn_IsPostBack.Value = "no";
+
                 Dashboard_Details();
-                Bind_Feedback_Data();
+               // Bind_Feedback_Data();
+
+
+                //DataSet ds = new DataSet();
+                //try
+                //{
+                //    ds = ObjUpkeep.Fetch_License_Module_list(Module_IDs);
+
+                //    if (ds.Tables.Count > 0)
+                //    {
+                //        if (ds.Tables[0].Rows.Count > 0)
+                //        {
+                //            int Module_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Module_id"]);
+
+                //            if(Module_ID == 1)
+                //            {
+                //                div_Ticketing.Visible = false;
+                //            }
+                //            else if(Module_ID == 2)
+                //            {
+                //                div_Checklist.Visible = false;
+                //            }
+                //        }
+                //    }
+                    
+                //}
+                //catch
+                //{
+
+                //}
+
+
             }
 
         }
@@ -216,7 +253,7 @@ namespace Upkeep_v3
         protected void btnDashboard_Click(object sender, EventArgs e)
         {
             Dashboard_Details();
-            Bind_Feedback_Data();
+            //Bind_Feedback_Data();
         }
 
 

@@ -1,10 +1,105 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Dashboard_Admin_Ticketing.aspx.cs" Inherits="Upkeep_v3.Dashboard_Admin_Ticketing" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Ticketing.aspx.cs" Inherits="Upkeep_v3.Analytics.Ticketing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    --secondary m-badge--wide">Expired</span>
+    
+    <div class="m-porlet">
+        <div class="row">
+
+            <div class="col-xl-12">
+
+                <!--begin:: Ticketing Section-->
+                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
+
+                    <div class="m-portlet__body">
+                        <div class="m-widget19">
+                            <div class="m-widget19__content">
+                                <div class="m-widget19__header">
+                                    <div class="m-widget19__user-img">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/tkt.png" alt="">
+                                    </div>
+                                    <div class="m-widget19__info">
+                                        <span class="m-widget19__username">Total tickets
+                                        </span>
+                                        <br>
+                                        <span class="m-widget19__time">Total No. of Tickets raised
+                                        </span>
+                                    </div>
+                                    <div class="m-widget19__stats">
+                                        <span class="m-widget19__number m--font-brand" style="font-size: 3.5rem;">18
+                                        </span>
+                                        <span class="m-widget19__comment" style="line-height: 2;">Tickets
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-widget19__body">
+                                    Get in-depth insights & Analysis on all tickets data. 
+                                </div>
+                            </div>
+
+
+                            <div class="m-widget4 m-widget4--chart-bottom" style="min-height: auto;">
+                                <div class="m-widget4__item">
+                                    <div class="m-widget4__ext">
+                                        <a href="#" class="m-widget4__icon m--font-brand">
+                                            <i class="flaticon-interface-3"></i>
+                                        </a>
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__text">No. of tickets with Status
+                                            <span class="m-badge m-badge--danger m-badge--wide">Open</span>
+                                        </span>
+                                    </div>
+                                    <div class="m-widget4__ext">
+                                        <span class="m-widget4__number m--font-accent">500</span>
+                                    </div>
+                                </div>
+                                <div class="m-widget4__item">
+                                    <div class="m-widget4__ext">
+                                        <a href="#" class="m-widget4__icon m--font-brand">
+                                            <i class="flaticon-interface-3"></i>
+                                        </a>
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__text">No. of tickets with Status
+                                            <span class="m-badge  m-badge--success m-badge--wide">Closed</span>
+                                        </span>
+                                    </div>
+                                    <div class="m-widget4__ext">
+                                        <span class="m-widget4__stats m--font-info">
+                                            <span class="m-widget4__number m--font-accent">64</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="m-widget4__item">
+                                    <div class="m-widget4__ext">
+                                        <a href="#" class="m-widget4__icon m--font-brand">
+                                            <i class="flaticon-interface-3"></i>
+                                        </a>
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__text">No. of tickets with Status
+                                            <span class="m-badge m-badge--warning m-badge--wide">Parked</span>
+                                        </span>
+                                    </div>
+                                    <div class="m-widget4__ext">
+                                        <span class="m-widget4__stats m--font-info">
+                                            <span class="m-widget4__number m--font-accent">1080</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="m-widget4__item m-widget4__item--last">
+                                    <div class="m-widget4__ext">
+                                        <a href="#" class="m-widget4__icon m--font-brand">
+                                            <i class="flaticon-interface-3"></i>
+                                        </a>
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__text">No. of tickets with Status
+                                            <span class="m-badge m-badge--secondary m-badge--wide">Expired</span>
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
@@ -22,7 +117,111 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text" style="margin-right: 12px;">Bifurcation of Tickets with status
+                                </h3>
+                                <span class="m-badge m-badge--danger m-badge--wide">Open
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body  m-portlet__body--no-padding" style="padding-top: 0rem;">
+                        <div class="row m-row--no-padding m-row--col-separator-xl">
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+
+                                <!--begin::Total Profit-->
+                                <div class="m-widget24">
+                                    <div class="m-widget24__item">
+                                        <h4 class="m-widget24__title">Assigned
+                                        </h4>
+                                        <br>
+                                        <span class="m-widget24__desc">Tickets in Assigned state
+                                        </span>
+                                        <span class="m-widget24__stats m--font-info">1800
+                                        </span>
+                                        <div class="m--space-10"></div>
+                                        <div class="progress m-progress--sm">
+                                            <div class="progress-bar m--bg-info" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="m-widget24__change">From overall Open Tickets
+                                        </span>
+                                        <span class="m-widget24__number">78%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!--end::Total Profit-->
+                            </div>
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+
+                                <!--begin::New Feedbacks-->
+                                <div class="m-widget24">
+                                    <div class="m-widget24__item">
+                                        <h4 class="m-widget24__title">Accepted
+                                        </h4>
+                                        <br>
+                                        <span class="m-widget24__desc">Tickets accepted by Users
+                                        </span>
+                                        <span class="m-widget24__stats m--font-success">1349
+                                        </span>
+                                        <div class="m--space-10"></div>
+                                        <div class="progress m-progress--sm">
+                                            <div class="progress-bar m--bg-success" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="m-widget24__change">Change
+                                        </span>
+                                        <span class="m-widget24__number">84%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!--end::New Feedbacks-->
+                            </div>
+                            <div class="col-md-12 col-lg-6 col-xl-4">
+
+                                <!--begin::New Orders-->
+                                <div class="m-widget24">
+                                    <div class="m-widget24__item">
+                                        <h4 class="m-widget24__title">In Progress
+                                        </h4>
+                                        <br>
+                                        <span class="m-widget24__desc">Work in Progress on tickets
+                                        </span>
+                                        <span class="m-widget24__stats m--font-warning">567
+                                        </span>
+                                        <div class="m--space-10"></div>
+                                        <div class="progress m-progress--sm">
+                                            <div class="progress-bar m--bg-warning" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="m-widget24__change">Change
+                                        </span>
+                                        <span class="m-widget24__number">69%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!--end::New Orders-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class ="row">
+
+            <div class="col-xl-12">
 
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
                     <div class="m-portlet__head">
@@ -31,57 +230,6 @@
                                 <h3 class="m-portlet__head-text">Analysis on tickets for past 12 Months
                                 </h3>
                             </div>
-                        </div>
-                        <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                                <li class="m-portlet__nav-item m-portlet__nav-item--last m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
-                                    <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                        <i class="fa fa-genderless m--font-brand"></i>
-                                    </a>
-                                    <div class="m-dropdown__wrapper">
-                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                        <div class="m-dropdown__inner">
-                                            <div class="m-dropdown__body">
-                                                <div class="m-dropdown__content">
-                                                    <ul class="m-nav">
-                                                        <li class="m-nav__section m-nav__section--first">
-                                                            <span class="m-nav__section-text">Quick Actions</span>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-share"></i>
-                                                                <span class="m-nav__link-text">Activity</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                <span class="m-nav__link-text">Messages</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                <span class="m-nav__link-text">FAQ</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                <span class="m-nav__link-text">Support</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                        <li class="m-nav__item">
-                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -100,13 +248,15 @@
                                 <canvas id="m_chart_sales_stats" width="358" height="270" class="chartjs-render-monitor" style="display: block; height: 180px; width: 239px;"></canvas>
                             </div>
 
+
+
                             <div class="m-widget15__items">
                                 <div class="row">
                                     <div class="col">
                                         <div class="m-widget15__item">
                                             <span class="m-widget15__stats">63%
                                             </span>
-                                            <span class="m-widget15__text ">Percentage of Tickets
+                                            <span class="m-widget15__text ">Average Percent of Tickets every Month
                                             </span>
 
                                             <span class="m-badge m-badge--danger m-badge--wide">Open
@@ -122,7 +272,7 @@
                                         <div class="m-widget15__item">
                                             <span class="m-widget15__stats">54%
                                             </span>
-                                            <span class="m-widget15__text ">Percentage of Tickets
+                                            <span class="m-widget15__text ">Average Percent of Tickets every Month
                                             </span>
 
                                             <span class="m-badge m-badge--warning m-badge--wide">Parked
@@ -139,7 +289,7 @@
                                         <div class="m-widget15__item">
                                             <span class="m-widget15__stats">41%
                                             </span>
-                                            <span class="m-widget15__text ">Percentage of Tickets
+                                            <span class="m-widget15__text ">Average Percent of Tickets every Month
                                             </span>
 
                                             <span class="m-badge m-badge--success m-badge--wide">Closed
@@ -154,7 +304,7 @@
                                         <div class="m-widget15__item">
                                             <span class="m-widget15__stats">79%
                                             </span>
-                                            <span class="m-widget15__text ">Percentage of Tickets
+                                            <span class="m-widget15__text ">Average Percent of Tickets every Month
                                             </span>
 
                                             <span class="m-badge m-badge--secondary m-badge--wide">Expired
@@ -173,11 +323,15 @@
 
                         <!--end::Widget 6-->
                     </div>
+
                 </div>
+
 
             </div>
 
         </div>
+
+
             
         <div class="row">
 
@@ -475,105 +629,7 @@
         </div>
 
 
-        <div class="row">
-
-            <div class="col-xl-12">
-                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text" style="margin-right: 12px;">Bifurcation of Tickets with status
-                                </h3>
-                                <span class="m-badge m-badge--danger m-badge--wide">Open
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-portlet__body  m-portlet__body--no-padding" style="padding-top: 0rem;">
-                        <div class="row m-row--no-padding m-row--col-separator-xl">
-                            <div class="col-md-12 col-lg-6 col-xl-4">
-
-                                <!--begin::Total Profit-->
-                                <div class="m-widget24">
-                                    <div class="m-widget24__item">
-                                        <h4 class="m-widget24__title">Assigned
-                                        </h4>
-                                        <br>
-                                        <span class="m-widget24__desc">Tickets in Assigned state
-                                        </span>
-                                        <span class="m-widget24__stats m--font-info">1800
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-info" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget24__change">From overall Open Tickets
-                                        </span>
-                                        <span class="m-widget24__number">78%
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <!--end::Total Profit-->
-                            </div>
-                            <div class="col-md-12 col-lg-6 col-xl-4">
-
-                                <!--begin::New Feedbacks-->
-                                <div class="m-widget24">
-                                    <div class="m-widget24__item">
-                                        <h4 class="m-widget24__title">Accepted
-                                        </h4>
-                                        <br>
-                                        <span class="m-widget24__desc">Tickets accepted by Users
-                                        </span>
-                                        <span class="m-widget24__stats m--font-success">1349
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-success" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget24__change">Change
-                                        </span>
-                                        <span class="m-widget24__number">84%
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <!--end::New Feedbacks-->
-                            </div>
-                            <div class="col-md-12 col-lg-6 col-xl-4">
-
-                                <!--begin::New Orders-->
-                                <div class="m-widget24">
-                                    <div class="m-widget24__item">
-                                        <h4 class="m-widget24__title">In Progress
-                                        </h4>
-                                        <br>
-                                        <span class="m-widget24__desc">Work in Progress on tickets
-                                        </span>
-                                        <span class="m-widget24__stats m--font-warning">567
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-warning" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget24__change">Change
-                                        </span>
-                                        <span class="m-widget24__number">69%
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <!--end::New Orders-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+        
 
         <div class="row">
 
@@ -1030,4 +1086,6 @@
 
 
         </div>
+
+
 </asp:Content>

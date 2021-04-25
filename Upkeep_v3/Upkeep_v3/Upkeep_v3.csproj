@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Analytics\Ticketing.aspx" />
     <Content Include="Anjali.html" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
@@ -4066,6 +4067,13 @@
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\Ticketing.aspx.cs">
+      <DependentUpon>Ticketing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Analytics\Ticketing.aspx.designer.cs">
+      <DependentUpon>Ticketing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AssetManagement\AssetManagementAmcList.aspx.cs">
       <DependentUpon>AssetManagementAmcList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
