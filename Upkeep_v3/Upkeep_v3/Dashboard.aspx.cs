@@ -243,6 +243,7 @@ namespace Upkeep_v3
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@FromDate", From_Date);
                         cmd.Parameters.AddWithValue("@ToDate", To_Date);
+                        cmd.Parameters.AddWithValue("@CompanyID", 9);//Comment by Ajay, put variable here
                         cmd.Connection = con;
                         con.Open();
                         using (SqlDataReader sdr = cmd.ExecuteReader())

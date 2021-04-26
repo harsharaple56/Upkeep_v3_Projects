@@ -236,7 +236,42 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             throw ex;
 
         }
-        return ds;
+        return dsItem;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_LMS_ItemDetails_Dept_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_ItemDetails_Dept_Transaction(DepartmentID, CompanyID, ItemIDs);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+
+    [WebMethod]
+    public DataSet LMS_Save_Department_Transaction(string Dept_ExecutiveName, string Dept_ExecutiveContactNo,int DepartmentID, string TransactionData,int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.LMS_Save_Department_Transaction(Dept_ExecutiveName, Dept_ExecutiveContactNo, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
     }
 
 

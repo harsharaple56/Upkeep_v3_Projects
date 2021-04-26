@@ -117,7 +117,105 @@
             // document.forms[0].target = "_blank";
         };
 
+        function functionCalculation() {
+            //debugger;
+            var Opening = parseInt($("#txtOpening").val());
+            var soilded_collected = parseInt($("#txtSoiledCollected").val());
+            var cleaned_given = parseInt($("#txtCleanedGiven").val());
+            var damaged = parseInt($("#txtDamaged").val());
+            var closing = parseInt($("#txtClosing").val());
+
+            var closing_value = (soilded_collected - damaged) - cleaned_given + Opening;
+
+            //$("#txtClosing").val(closing_value);
+            //alert(soilded);
+
+            //$("[id*=gvItemDetails]").find("[id*=txtSoiledCollected]").keyup(function () {
+            //    //Reference the GridView Row.
+            //    var row = $(this).closest("tr");
+
+            //    //Determine the Row Index.
+            //    var message = "Row Index: " + (row[0].rowIndex - 1);
+
+            //    //Read values from Cells.
+            //    message += "\nCustomer Id: " + row.find("td").eq(0).html();
+            //    //message += "\nName: " + row.find("td").eq(1).html();
+
+            //    ////Reference the TextBox and read value.
+            //    //message += "\nCountry: " + row.find("td").eq(2).find("input").eq(0).val();
+
+            //    var Opening1 = parseInt(row.find("td").eq(2).find("input").eq(0).val());
+            //    alert(Opening1);
+            //    row.find("td").eq(6).find("input").eq(0).val(Opening1);
+
+            //    //Display the data using JavaScript Alert Message Box.
+            //    alert(message);
+            //    return false;
+            //});
+
+
+        }
+
     </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("[id*=gvItemDetails]").find("[id*=txtSoiledCollected]").keyup(function () {
+                //Reference the GridView Row.
+                var row = $(this).closest("tr");
+
+                var Opening = parseInt(row.find("td").eq(1).html());
+
+                var soilded_collected = parseInt(row.find("td").eq(2).find("input").eq(0).val());
+                var cleaned_given = parseInt(row.find("td").eq(3).find("input").eq(0).val());
+                var damaged = parseInt(row.find("td").eq(4).find("input").eq(0).val());
+
+                var closing_value = (soilded_collected - damaged) - cleaned_given + Opening;
+
+                row.find("td").eq(5).find("input").eq(0).val(closing_value);
+
+                return false;
+            });
+
+            $("[id*=gvItemDetails]").find("[id*=txtCleanedGiven]").keyup(function () {
+                //Reference the GridView Row.
+                var row = $(this).closest("tr");
+
+                var Opening = parseInt(row.find("td").eq(1).html());
+
+                var soilded_collected = parseInt(row.find("td").eq(2).find("input").eq(0).val());
+                var cleaned_given = parseInt(row.find("td").eq(3).find("input").eq(0).val());
+                var damaged = parseInt(row.find("td").eq(4).find("input").eq(0).val());
+
+                var closing_value = (soilded_collected - damaged) - cleaned_given + Opening;
+
+                row.find("td").eq(5).find("input").eq(0).val(closing_value);
+
+                return false;
+            });
+
+            $("[id*=gvItemDetails]").find("[id*=txtDamaged]").keyup(function () {
+                //Reference the GridView Row.
+                var row = $(this).closest("tr");
+
+                var Opening = parseInt(row.find("td").eq(1).html());
+
+                var soilded_collected = parseInt(row.find("td").eq(2).find("input").eq(0).val());
+                var cleaned_given = parseInt(row.find("td").eq(3).find("input").eq(0).val());
+                var damaged = parseInt(row.find("td").eq(4).find("input").eq(0).val());
+
+                var closing_value = (soilded_collected - damaged) - cleaned_given + Opening;
+
+                row.find("td").eq(5).find("input").eq(0).val(closing_value);
+
+                return false;
+            });
+
+        });
+    </script>
+
+
+
 
     <style type="text/css">
         .auto-style1 {
@@ -127,9 +225,6 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
-
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content" style="padding: 10px 10px;">
@@ -167,24 +262,24 @@
                     <div class="form-group m-form__group row">
                         <label for="example-text-input" class="col-3 col-form-label">Department Executive Name</label>
                         <div class="col-3">
-                            <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
+                            <asp:TextBox class="form-control m-input" id="txtDept_ExecutiveName" runat="server"></asp:TextBox>
                         </div>
                         <label for="example-text-input" class="col-3 col-form-label">Department Executive Contact</label>
                         <div class="col-3">
-                            <input class="form-control m-input" type="text" value="Artisanal kale" id="example-text-input">
+                            <asp:TextBox class="form-control m-input" id="txtDept_ExecutiveContactNo" TextMode="Number" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group m-form__group row">
 
                         <div class="col-3">
-                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control" ToolTip="Select Department" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control" ToolTip="Select Department" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
                         </div>
 
-                        <div class="col-3">
-                            <asp:DropDownList ID="ddlItems" runat="server" CssClass="form-control" ToolTip="Select Item" ></asp:DropDownList>
+                        <%--<div class="col-3">
+                            <asp:DropDownList ID="ddlItems" runat="server" CssClass="form-control" ToolTip="Select Item"></asp:DropDownList>
 
-                        </div>
+                        </div>--%>
 
                         <%--<div class="dropdown bootstrap-select form-control m-bootstrap-select m_" style="width: 200px;">
                             <select name="ctl00$ContentPlaceHolder1$ddlEventName" id="ddlEventName" class="form-control m-bootstrap-select m_selectpicker" title="Select Event" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="400px" tabindex="-98">
@@ -216,7 +311,7 @@
 
 
                         <div class="col-3">
-                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" onserverclick="btnAddItem_Click" runat="server" >
+                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_1">
                                 <span>
                                     <i class="la la-plus"></i>
                                     <span>Add Item</span>
@@ -238,33 +333,44 @@
                     <!--begin: Datatable -->
 
                     <asp:GridView ID="gvItemDetails" runat="server" Width="100%" AllowPaging="true" OnRowDataBound="gvItemDetails_RowDataBound"
-                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
+                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#5867dd"
                         HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
                         PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
                         PagerSettings-Position="Bottom" ClientIDMode="Static">
                         <Columns>
-                            
-                            <asp:BoundField DataField="Item_Desc" HeaderText="Item Name"/>
-                            <asp:BoundField DataField="Opening_Stock" HeaderText="Opening Stock" />
-                            
-                            <asp:TemplateField HeaderText="Soiled Collected" ItemStyle-HorizontalAlign="Center">
+
+                            <asp:BoundField DataField="Item_Desc" HeaderText="Item Name" HeaderStyle-Width="15%" />
+                            <asp:BoundField DataField="Opening_Stock" HeaderText="Opening Stock" HeaderStyle-Width="15%" />
+
+                            <asp:TemplateField HeaderText="Soiled Collected" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtSoiledCollected" Width="80px" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"SoiledCollected"))%>'></asp:TextBox>
+                                   
+                                    <%--<asp:TextBox ID="txtOpening" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' Style="display: none;"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtSoiledCollected" Width="90%" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"SoiledCollected"))%>' onkeyup="functionCalculation()"></asp:TextBox>
+                                <asp:HiddenField ID="hdnItem_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Item_ID"))%>' />
+                                    <asp:HiddenField ID="hdnOpening_Stock" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Cleaned Given" ItemStyle-HorizontalAlign="Center">
+                            <asp:TemplateField HeaderText="Cleaned Given" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtCleanedGiven" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"CleanedGiven"))%>'></asp:TextBox>
+                                    <asp:TextBox ID="txtCleanedGiven" Width="90%" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"CleanedGiven"))%>' onkeyup="functionCalculation()"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Damaged" ItemStyle-HorizontalAlign="Center">
+                            <asp:TemplateField HeaderText="Damaged" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtDamaged" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Damaged"))%>'></asp:TextBox>
+                                    <asp:TextBox ID="txtDamaged" Width="90%" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Damaged"))%>' onkeyup="functionCalculation()"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+
+                            <asp:TemplateField HeaderText="Closing" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtClosing" Width="90%" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Closing"))%>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
                                 <ItemTemplate>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
@@ -278,27 +384,9 @@
                             HorizontalAlign="Center" />
                     </asp:GridView>
 
-                    <%--<table class="table table-bordered table-hover" id="m_table_1" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Opening Balance</th>
-                                <th>Soiled Collected</th>
-                                <th>Cleaned Given</th>
-                                <th>Damaged</th>
-                                <th>Actions</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            
-                        </tbody>
-                    </table>--%>
-
                     <!--end: Datatable -->
                     <div style="text-align: center;">
-                        <a href="#myModal" data-toggle="modal" style="margin-top: 5%;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <a style="margin-top: 5%;" runat="server" onserverclick="btnSaveTransaction_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Save Transaction</span>
@@ -311,6 +399,61 @@
 
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
+
+
+        <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding: 16px;">
+                                <h3>Select Items</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;">
+
+
+                                <div class="m-widget19">
+
+                                    <div class="m-widget1" style="padding: 0.2rem;">
+
+
+                                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                            <div class="m-stack__item m-stack__item--center">
+                                                <div class="m-stack__demo-item">
+
+                                                     <asp:CheckBoxList ID="chkItems" runat="server" CssClass="normal" AutoPostBack="false" RepeatColumns="2"
+                                                        RepeatDirection="Vertical"
+                                                        RepeatLayout="Table"
+                                                        TextAlign="Right" CellPadding="5"
+                                                        CellSpacing="5">
+                                                    </asp:CheckBoxList>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                            <div class="m-stack__item m-stack__item--center">
+                                                <div class="m-stack__demo-item">
+
+                                                    <asp:Button ID="btnItemSelect" runat="server" Text="Submit" OnClick="btnItemSelect_Click" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+
+
+
     </div>
 
     <!-- Modal -->

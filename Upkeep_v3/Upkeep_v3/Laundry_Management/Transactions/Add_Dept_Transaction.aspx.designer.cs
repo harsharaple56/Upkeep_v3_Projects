@@ -13,6 +13,24 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
     public partial class Add_Dept_Transaction {
         
         /// <summary>
+        /// txtDept_ExecutiveName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDept_ExecutiveName;
+        
+        /// <summary>
+        /// txtDept_ExecutiveContactNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDept_ExecutiveContactNo;
+        
+        /// <summary>
         /// ddlDepartment control.
         /// </summary>
         /// <remarks>
@@ -20,15 +38,6 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
-        
-        /// <summary>
-        /// ddlItems control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlItems;
         
         /// <summary>
         /// hdnPrntD control.
@@ -47,5 +56,23 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvItemDetails;
+        
+        /// <summary>
+        /// chkItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkItems;
+        
+        /// <summary>
+        /// btnItemSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnItemSelect;
     }
 }

@@ -3,6 +3,65 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Crud_Inv_SubCategory_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubCategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_SubCategory_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_SubCategory_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_Item_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ItemID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Opening" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Optimum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Reorder" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Base" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CostRate" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Crud_Inv_Item_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_Item_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_My_Profile_Details">
         <s:complexType>
           <s:sequence>
@@ -428,6 +487,58 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassHeader_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GatePassHeaderID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderNumeric" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderUnit" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassHeader_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassType_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_TypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GP_TypeDesc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GatePassType_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GatePassType_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2393,65 +2504,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Crud_Inv_SubCategory_Mst">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="SubCategoryID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryDesc" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_SubCategory_MstResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_SubCategory_MstResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_Item_Mst">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CategoryID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="SubCategoryID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="ItemID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="ItemDesc" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="DeptID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Opening" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Optimum" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Reorder" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Base" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="CostRate" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_Item_MstResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_Item_MstResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2691,6 +2743,55 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Dept_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Dept_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemDetails_Dept_TransactionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Save_Department_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Dept_ExecutiveName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dept_ExecutiveContactNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionData" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Save_Department_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LMS_Save_Department_TransactionResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4446,58 +4547,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GatePassHeader_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GatePassHeaderID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderNumeric" type="s:boolean" />
-            <s:element minOccurs="1" maxOccurs="1" name="GPHeaderUnit" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GatePassHeader_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GatePassHeader_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GatePassType_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GP_TypeID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="GP_TypeDesc" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="GatePass_ConfigID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GatePassType_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GatePassType_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4505,6 +4554,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Crud_Inv_SubCategory_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_SubCategory_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_MstResponse" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_Item_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_Item_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_MstResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_My_Profile_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_My_Profile_Details" />
   </wsdl:message>
@@ -4612,6 +4673,18 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GatePassHeader_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="GatePassHeader_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GatePassType_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:GatePassType_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="GatePassType_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:GatePassType_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="GatePassTerm_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:GatePassTerm_CRUD" />
@@ -5111,18 +5184,6 @@
   <wsdl:message name="Crud_Inv_Category_MstSoapOut">
     <wsdl:part name="parameters" element="tns:Crud_Inv_Category_MstResponse" />
   </wsdl:message>
-  <wsdl:message name="Crud_Inv_SubCategory_MstSoapIn">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_Mst" />
-  </wsdl:message>
-  <wsdl:message name="Crud_Inv_SubCategory_MstSoapOut">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_SubCategory_MstResponse" />
-  </wsdl:message>
-  <wsdl:message name="Crud_Inv_Item_MstSoapIn">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_Mst" />
-  </wsdl:message>
-  <wsdl:message name="Crud_Inv_Item_MstSoapOut">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_Item_MstResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5188,6 +5249,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_LMS_ItemListSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Dept_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Dept_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Dept_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Dept_TransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Save_Department_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:LMS_Save_Department_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Save_Department_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:LMS_Save_Department_TransactionResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -5615,19 +5688,15 @@
   <wsdl:message name="Bind_GatePassConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Bind_GatePassConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="GatePassHeader_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="GatePassHeader_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:GatePassHeader_CRUDResponse" />
-  </wsdl:message>
-  <wsdl:message name="GatePassType_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:GatePassType_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="GatePassType_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:GatePassType_CRUDResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <wsdl:input message="tns:Crud_Inv_SubCategory_MstSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_SubCategory_MstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <wsdl:input message="tns:Crud_Inv_Item_MstSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_Item_MstSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_My_Profile_Details">
       <wsdl:input message="tns:Fetch_My_Profile_DetailsSoapIn" />
       <wsdl:output message="tns:Fetch_My_Profile_DetailsSoapOut" />
@@ -5699,6 +5768,14 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <wsdl:input message="tns:GatePassHeader_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassHeader_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GatePassType_CRUD">
+      <wsdl:input message="tns:GatePassType_CRUDSoapIn" />
+      <wsdl:output message="tns:GatePassType_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GatePassTerm_CRUD">
       <wsdl:input message="tns:GatePassTerm_CRUDSoapIn" />
@@ -6032,14 +6109,6 @@
       <wsdl:input message="tns:Crud_Inv_Category_MstSoapIn" />
       <wsdl:output message="tns:Crud_Inv_Category_MstSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
-      <wsdl:input message="tns:Crud_Inv_SubCategory_MstSoapIn" />
-      <wsdl:output message="tns:Crud_Inv_SubCategory_MstSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Item_Mst">
-      <wsdl:input message="tns:Crud_Inv_Item_MstSoapIn" />
-      <wsdl:output message="tns:Crud_Inv_Item_MstSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -6083,6 +6152,14 @@
     <wsdl:operation name="Fetch_LMS_ItemList">
       <wsdl:input message="tns:Fetch_LMS_ItemListSoapIn" />
       <wsdl:output message="tns:Fetch_LMS_ItemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Dept_Transaction">
+      <wsdl:input message="tns:Fetch_LMS_ItemDetails_Dept_TransactionSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_ItemDetails_Dept_TransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Department_Transaction">
+      <wsdl:input message="tns:LMS_Save_Department_TransactionSoapIn" />
+      <wsdl:output message="tns:LMS_Save_Department_TransactionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -6369,17 +6446,27 @@
       <wsdl:input message="tns:Bind_GatePassConfigurationSoapIn" />
       <wsdl:output message="tns:Bind_GatePassConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GatePassHeader_CRUD">
-      <wsdl:input message="tns:GatePassHeader_CRUDSoapIn" />
-      <wsdl:output message="tns:GatePassHeader_CRUDSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GatePassType_CRUD">
-      <wsdl:input message="tns:GatePassType_CRUDSoapIn" />
-      <wsdl:output message="tns:GatePassType_CRUDSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_My_Profile_Details">
       <soap:operation soapAction="http://tempuri.org/Fetch_My_Profile_Details" style="document" />
       <wsdl:input>
@@ -6535,6 +6622,24 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassType_CRUD">
+      <soap:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7289,24 +7394,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
-      <soap:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Item_Mst">
-      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -7399,6 +7486,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_ItemList">
       <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Dept_Transaction">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Dept_Transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Department_Transaction">
+      <soap:operation soapAction="http://tempuri.org/LMS_Save_Department_Transaction" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8045,27 +8150,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GatePassHeader_CRUD">
-      <soap:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GatePassType_CRUD">
-      <soap:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Item_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_My_Profile_Details">
       <soap12:operation soapAction="http://tempuri.org/Fetch_My_Profile_Details" style="document" />
       <wsdl:input>
@@ -8221,6 +8326,24 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassHeader_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GatePassType_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8975,24 +9098,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_SubCategory_Mst">
-      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_SubCategory_Mst" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Item_Mst">
-      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Item_Mst" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9085,6 +9190,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_ItemList">
       <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Dept_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Dept_Transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Department_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/LMS_Save_Department_Transaction" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9724,24 +9847,6 @@
     </wsdl:operation>
     <wsdl:operation name="Bind_GatePassConfiguration">
       <soap12:operation soapAction="http://tempuri.org/Bind_GatePassConfiguration" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GatePassHeader_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/GatePassHeader_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GatePassType_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/GatePassType_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

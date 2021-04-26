@@ -220,9 +220,46 @@ public class My_Upkeep
         {
             throw ex;
         }
-
-
     }
+
+    public DataSet Fetch_LMS_ItemDetails_Dept_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.Fetch_LMS_ItemDetails_Dept_Transaction(DepartmentID, CompanyID, ItemIDs, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet LMS_Save_Department_Transaction(string Dept_ExecutiveName, string Dept_ExecutiveContactNo, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsTransaction = new DataSet();
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+           
+            dsTransaction = ObjUpkeepCC_BL.LMS_Save_Department_Transaction(Dept_ExecutiveName, Dept_ExecutiveContactNo, DepartmentID, TransactionData, CompanyID, LoggedInUserID, StrConn);
+
+            return dsTransaction;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+
 
     public DataSet Fetch_Invoices(int Company_ID)
     {
