@@ -18,12 +18,25 @@ namespace Upkeep_v3.Support_Portal
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        string Module_ID_String = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            Module_ID_String = Convert.ToString(Session["ModuleID"]);
 
+
+            if (LoggedInUserID == "")
+            {
+                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+            }
+            if (!IsPostBack)
+            {
+
+                Fetch_ddlModule();
+            }
+            
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -108,6 +121,34 @@ namespace Upkeep_v3.Support_Portal
             }
 
 
+        }
+
+        public void Fetch_ddlModule()
+        {
+            Module_ID_String = Convert.ToString(Session["ModuleID"]);
+
+
+            DataSet dsDept = new DataSet();
+            try
+            {
+                dsDept = ObjUpkeepCC.Fetch_License_Module_list(Module_ID_String);
+
+                if (dsDept.Tables.Count > 0)
+                {
+                    if (dsDept.Tables[0].Rows.Count > 0)
+                    {
+                        ddlModule.DataSource = dsDept.Tables[0];
+                        ddlModule.DataTextField = "Module_Desc";
+                        ddlModule.DataValueField = "Module_ID";
+                        ddlModule.DataBind();
+                        ddlModule.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 

@@ -85,7 +85,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 30px;">
         <div class="">
             <div class="row">
                 <div class="col-lg-12">
@@ -162,8 +162,6 @@
                                             <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Select Module :</label>
                                             <div class="col-xl-3 col-lg-4">
                                                 <asp:DropDownList ID="ddlModule" class="form-control m-input" runat="server">
-                                                    <asp:ListItem Value="">-- Select Request Type --</asp:ListItem>
-                                                    <asp:ListItem>Ticketing</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlModule" ValidationGroup="ValidateRequest"
                                                     ErrorMessage="Please select Module where Issue is occuring" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
