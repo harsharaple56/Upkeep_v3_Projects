@@ -927,6 +927,10 @@
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\QRCoder.dll" />
     <Content Include="bin\roslyn\csc.exe" />

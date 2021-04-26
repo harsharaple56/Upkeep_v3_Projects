@@ -20,16 +20,23 @@ namespace eFacilito_CompanyGroup_Portal.eFacilito_CompanyGroup_Portal_Service {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="eFacilito_CompanyGroup_Portal_ServiceSoap", Namespace="http://tempuri.org/")]
     public partial class eFacilito_CompanyGroup_Portal_Service : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Group_Dashboard_Company_ListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoginUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Group_DashboardOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -73,6 +80,15 @@ namespace eFacilito_CompanyGroup_Portal.eFacilito_CompanyGroup_Portal_Service {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
+        public event Fetch_Group_Dashboard_Company_ListCompletedEventHandler Fetch_Group_Dashboard_Company_ListCompleted;
+        
+        /// <remarks/>
+        public event LoginUserCompletedEventHandler LoginUserCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Group_DashboardCompletedEventHandler Fetch_Group_DashboardCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -100,6 +116,101 @@ namespace eFacilito_CompanyGroup_Portal.eFacilito_CompanyGroup_Portal_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Group_Dashboard_Company_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Group_Dashboard_Company_List(int Group_ID) {
+            object[] results = this.Invoke("Fetch_Group_Dashboard_Company_List", new object[] {
+                        Group_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Group_Dashboard_Company_ListAsync(int Group_ID) {
+            this.Fetch_Group_Dashboard_Company_ListAsync(Group_ID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Group_Dashboard_Company_ListAsync(int Group_ID, object userState) {
+            if ((this.Fetch_Group_Dashboard_Company_ListOperationCompleted == null)) {
+                this.Fetch_Group_Dashboard_Company_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Group_Dashboard_Company_ListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Group_Dashboard_Company_List", new object[] {
+                        Group_ID}, this.Fetch_Group_Dashboard_Company_ListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Group_Dashboard_Company_ListOperationCompleted(object arg) {
+            if ((this.Fetch_Group_Dashboard_Company_ListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Group_Dashboard_Company_ListCompleted(this, new Fetch_Group_Dashboard_Company_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet LoginUser(string UserName, string Password) {
+            object[] results = this.Invoke("LoginUser", new object[] {
+                        UserName,
+                        Password});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginUserAsync(string UserName, string Password) {
+            this.LoginUserAsync(UserName, Password, null);
+        }
+        
+        /// <remarks/>
+        public void LoginUserAsync(string UserName, string Password, object userState) {
+            if ((this.LoginUserOperationCompleted == null)) {
+                this.LoginUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUserOperationCompleted);
+            }
+            this.InvokeAsync("LoginUser", new object[] {
+                        UserName,
+                        Password}, this.LoginUserOperationCompleted, userState);
+        }
+        
+        private void OnLoginUserOperationCompleted(object arg) {
+            if ((this.LoginUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginUserCompleted(this, new LoginUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Group_Dashboard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Group_Dashboard(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
+            object[] results = this.Invoke("Fetch_Group_Dashboard", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        Fromdate,
+                        ToDate});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Group_DashboardAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
+            this.Fetch_Group_DashboardAsync(CompanyID, LoggedInUserID, Fromdate, ToDate, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Group_DashboardAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, object userState) {
+            if ((this.Fetch_Group_DashboardOperationCompleted == null)) {
+                this.Fetch_Group_DashboardOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Group_DashboardOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Group_Dashboard", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        Fromdate,
+                        ToDate}, this.Fetch_Group_DashboardOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Group_DashboardOperationCompleted(object arg) {
+            if ((this.Fetch_Group_DashboardCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Group_DashboardCompleted(this, new Fetch_Group_DashboardCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -119,11 +230,11 @@ namespace eFacilito_CompanyGroup_Portal.eFacilito_CompanyGroup_Portal_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -140,6 +251,84 @@ namespace eFacilito_CompanyGroup_Portal.eFacilito_CompanyGroup_Portal_Service {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Group_Dashboard_Company_ListCompletedEventHandler(object sender, Fetch_Group_Dashboard_Company_ListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Group_Dashboard_Company_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Group_Dashboard_Company_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void LoginUserCompletedEventHandler(object sender, LoginUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Group_DashboardCompletedEventHandler(object sender, Fetch_Group_DashboardCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Group_DashboardCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Group_DashboardCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }
