@@ -13,6 +13,51 @@ namespace Upkeep_v3 {
     public partial class Dashboard_Employee {
         
         /// <summary>
+        /// start_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField start_date;
+        
+        /// <summary>
+        /// end_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField end_date;
+        
+        /// <summary>
+        /// hdn_IsPostBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
+        
+        /// <summary>
+        /// date_range_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField date_range_title;
+        
+        /// <summary>
+        /// hdnCompanyID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCompanyID;
+        
+        /// <summary>
         /// btn_Employee_Dashboard control.
         /// </summary>
         /// <remarks>
@@ -112,15 +157,6 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_Tkt_Expired_User;
         
         /// <summary>
-        /// lbl_Chk_Total control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Chk_Total;
-        
-        /// <summary>
         /// lbl_Chk_Open_User control.
         /// </summary>
         /// <remarks>
@@ -128,6 +164,15 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Chk_Open_User;
+        
+        /// <summary>
+        /// lbl_Chk_Total control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Chk_Total;
         
         /// <summary>
         /// lbl_Chk_Closed_User control.

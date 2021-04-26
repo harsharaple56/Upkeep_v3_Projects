@@ -6,18 +6,90 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+        <script>
+
+        $(document).ready(function () {
+
+            $('.m_selectpicker').selectpicker();
+            //alert('1111');
+            var picker = $('#daterangepicker');
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end, label) {
+                var title = '';
+                var range = '';
+
+                if ((end - start) < 100 || label == 'Today') {
+                    title = 'Today:';
+                    range = start.format('MMM D');
+                } else if (label == 'Yesterday') {
+                    title = 'Yesterday:';
+                    range = start.format('MMM D');
+                } else {
+                    range = start.format('MMM D') + ' - ' + end.format('MMM D');
+                }
+
+                picker.find('.m-subheader__daterange-date').html(range);
+                picker.find('.m-subheader__daterange-title').html(title);
+
+                $('#start_date').val(start.format('DD/MM/YYYY'));
+                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#date_range_title').val(title + range);
+            }
+
+            picker.daterangepicker({
+                direction: mUtil.isRTL(),
+                startDate: start,
+                endDate: end,
+                opens: 'left',
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            var IsPostBack2 = $('#hdn_IsPostBack').val();
+
+            if (IsPostBack2 == "no") {
+                cb(start, end, '');
+            }
+            else {
+
+                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
+            }
+
+
+
+        });
+
+    </script>
+
+
+
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
 
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title ">Dashboard</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 250px 7px 0;">Dashboard</h3>
 
                     <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
                         <span class="m-subheader__daterange-label">
-                            <span class="m-subheader__daterange-title">Today:</span>
-                            <span class="m-subheader__daterange-date m--font-brand">Mar 29</span>
+                            <span class="m-subheader__daterange-title"></span>
+                            <span class="m-subheader__daterange-date m--font-brand"></span>
+                            <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="hdnCompanyID" ClientIDMode="Static" runat="server" />
                         </span>
                         <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
                             <i class="la la-angle-down"></i>
@@ -80,7 +152,7 @@
                             <div class="m-widget1">
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-7">
                                             <h3 class="m-widget1__title">Tickets
                                                 <span style="width: 110px;">
                                                     <span class="m-badge m-badge--info m-badge--dot"></span>
@@ -100,7 +172,7 @@
                                 </div>
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-7">
                                             <h3 class="m-widget1__title">Tickets
                                                 <span style="width: 110px;">
                                                     <span class="m-badge m-badge--success m-badge--dot"></span>
@@ -119,7 +191,7 @@
                                 </div>
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-7">
                                             <h3 class="m-widget1__title">Tickets
                                                 <span style="width: 110px;">
                                                     <span class="m-badge m-badge--warning m-badge--dot"></span>
@@ -213,7 +285,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
-                                        <asp:Label ID="lbl_Chk_Total" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
+                                        <asp:Label ID="lbl_Chk_Open_User" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
                                             18
                                         </asp:Label>
                                         <span class="m-widget19__comment">Checklists
@@ -228,28 +300,22 @@
                             <div class="m-widget1">
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
-                                            <h3 class="m-widget1__title">Checklists
-                                                
-                                                <span style="width: 110px;">
-                                                    <span class="m-badge m-badge--info m-badge--dot"></span>
-                                                    <span class="m--font-bold m--font-info">Draft</span>
-                                                </span>
-                                                <span class="m-badge m-badge--danger m-badge--wide">Open</span>
+                                        <div class="col-xl-9">
+                                            <h3 class="m-widget1__title">Total Checklists
                                             </h3>
 
-                                            <span class="m-widget1__desc">No. of Checklists partially done</span>
+                                            <span class="m-widget1__desc">Total No. of Checklists generated by You.</span>
 
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_Chk_Open_User" runat="server" class="m-widget1__number m--font-info">17,800</asp:Label>
+                                            <asp:Label ID="lbl_Chk_Total" runat="server" class="m-widget1__number m--font-secondary"></asp:Label>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-7">
                                             <h3 class="m-widget1__title">Checklists
                                                 
                                             <span class="m-badge m-badge--success m-badge--wide">Closed</span>
@@ -324,7 +390,7 @@
                             <div class="m-widget1">
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Work Permits
                                                 <span class="m-badge m-badge--danger m-badge--wide">Open</span>
                                             </h3>
@@ -339,7 +405,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Work Permits
                                                 
                                             <span class="m-badge m-badge--success m-badge--wide">In Progress</span>
@@ -355,7 +421,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Work Permits
                                                 
                                             <span class="m-badge m-badge--warning m-badge--wide">On Hold</span>
@@ -371,7 +437,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Work Permits
                                                 
                                             <span class="m-badge m-badge--info m-badge--wide">Approved</span>
@@ -440,7 +506,7 @@
                             <div class="m-widget1">
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Gatepass
                                                 <span class="m-badge m-badge--danger m-badge--wide">Open</span>
                                             </h3>
@@ -456,7 +522,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Gatepass
                                                 
                                             <span class="m-badge m-badge--success m-badge--wide">In Progress</span>
@@ -473,7 +539,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Gatepass
                                                 
                                             <span class="m-badge m-badge--warning m-badge--wide">On Hold</span>
@@ -490,7 +556,7 @@
 
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
-                                        <div class="col">
+                                        <div class="col-xl-9">
                                             <h3 class="m-widget1__title">Gatepass
                                                 
                                             <span class="m-badge m-badge--info m-badge--wide">Approved</span>
