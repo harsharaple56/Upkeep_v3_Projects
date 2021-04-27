@@ -74,6 +74,10 @@
         <div class="m-subheader " style="padding: 0px 5px 0 5px;">
             <div class="d-flex align-items-center">
 
+                        
+                        <div id="dvCompanyLogo" style="display:block; text-align: center; margin-right:160px;">
+                            <asp:Image ID="imgCompany_Logo" runat="server" Style=" min-height: 130px; min-width:310px; max-height: 130px; max-width:310px;" />
+                        </div>
                                 
 					    <div class="dropdown bootstrap-select">
                             
@@ -83,13 +87,15 @@
                             </asp:DropDownList>
                         </div>
 
-                        <div class="input-group-append">
+                        <div class="input-group-append"  style="margin-right:160px;">
 						    <button class="btn btn-success" type="button" runat="server" onserverclick="btn_LoadDashboard_Click">Go!</button>
 						</div>
 
-                <div class="mr-auto">
+                        
+
+                        <div class="date range">
                     
-                    <h3 class="m-subheader__title " style="padding: 8px 230px 8px 230px;">Admin Dashboard</h3>
+                    
 
                     <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
                         <span class="m-subheader__daterange-label">
@@ -121,7 +127,7 @@
     </div>
 
 
-
+    
 
     <div class="m-porlet">
         <div class="row">
