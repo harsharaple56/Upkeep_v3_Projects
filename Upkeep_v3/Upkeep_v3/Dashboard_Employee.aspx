@@ -81,7 +81,7 @@
                 <div class="mr-auto">
                     <h3 class="m-subheader__title " style="padding: 7px 250px 7px 0;">Dashboard</h3>
 
-                    <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+                    <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
                             <span class="m-subheader__daterange-title"></span>
                             <span class="m-subheader__daterange-date m--font-brand"></span>
