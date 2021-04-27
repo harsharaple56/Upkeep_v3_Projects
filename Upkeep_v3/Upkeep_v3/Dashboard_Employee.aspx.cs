@@ -32,9 +32,10 @@ namespace Upkeep_v3
                 Response.Redirect("~/Login.aspx", false);
                 return;
             }
-
+            hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
             {
+                hdn_IsPostBack.Value = "no";
                 Dashboard_Details();
             }
 
