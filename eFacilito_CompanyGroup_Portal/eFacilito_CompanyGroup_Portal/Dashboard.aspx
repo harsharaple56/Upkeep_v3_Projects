@@ -77,7 +77,8 @@
                                 
 					    <div class="dropdown bootstrap-select">
                             
-                            <asp:DropDownList ID="ddl_CompanyList" class="form-control m-bootstrap-select m_selectpicker" name="param" tabindex="-98" runat="server">
+                            <asp:DropDownList ID="ddl_CompanyList" class="form-control m-bootstrap-select m_selectpicker" name="param" tabindex="-98"
+                               OnSelectedIndexChanged="ddl_CompanyList_SelectedIndexChanged" AutoPostBack="true" runat="server">
 
                             </asp:DropDownList>
                         </div>
