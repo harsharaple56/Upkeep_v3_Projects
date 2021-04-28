@@ -75,29 +75,24 @@
             <div class="d-flex align-items-center">
 
                         
-                        <div id="dvCompanyLogo" style="display:block; text-align: center; margin-right:160px;">
+                        <div id="dvCompanyLogo" style="display:block; text-align: center; margin-right:130px;">
                             <asp:Image ID="imgCompany_Logo" runat="server" Style=" min-height: 130px; min-width:310px; max-height: 130px; max-width:310px;" />
                         </div>
                                 
-					    <div class="dropdown bootstrap-select">
+					    <div class="dropdown bootstrap-select" style="margin-right:36px;width: 300px;">
                             
                             <asp:DropDownList ID="ddl_CompanyList" class="form-control m-bootstrap-select m_selectpicker" name="param" tabindex="-98"
                                OnSelectedIndexChanged="ddl_CompanyList_SelectedIndexChanged" AutoPostBack="true" runat="server">
 
                             </asp:DropDownList>
                         </div>
-
-                        <div class="input-group-append"  style="margin-right:160px;">
-						    <button class="btn btn-success" type="button" runat="server" onserverclick="btn_LoadDashboard_Click">Go!</button>
-						</div>
-
                         
 
                         <div class="date range">
                     
                     
 
-                    <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+                    <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
                             <span class="m-subheader__daterange-title"></span>
                             <span class="m-subheader__daterange-date m--font-brand"></span>
@@ -117,7 +112,9 @@
                     <%--<asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" CssClass="btn btn-sm btn-brand" />
                     --%>
                 </div>
-
+                <div class="input-group-append"  >
+						    <button class="btn btn-success" type="button" runat="server" onserverclick="btn_LoadDashboard_Click">Go</button>
+						</div>
 
 
 
