@@ -347,7 +347,7 @@
                                    
                                     <%--<asp:TextBox ID="txtOpening" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' Style="display: none;"></asp:TextBox>--%>
                                     <asp:TextBox ID="txtSoiledCollected" Width="90%" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"SoiledCollected"))%>' onkeyup="functionCalculation()"></asp:TextBox>
-                                <asp:HiddenField ID="hdnItem_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Item_ID"))%>' />
+                                <asp:HiddenField ID="hdnStock_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_ID"))%>' />
                                     <asp:HiddenField ID="hdnOpening_Stock" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
