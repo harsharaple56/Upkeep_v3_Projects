@@ -215,9 +215,8 @@ namespace Upkeep_v3
                                         Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
                                         Session["Role_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Role_Name"]);
                                         Session["User_Dept_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Department_ID"]);
-
-
-
+                                        Session["Company_Logo"] = Convert.ToString(ds.Tables[0].Rows[0]["Company_Logo"]);
+                                        
                                     }
                                     else
                                     {
@@ -233,7 +232,7 @@ namespace Upkeep_v3
 
                                     if (ds.Tables[0].Rows.Count > 0)
                                     {
-                                        Response.Redirect("~/Dashboard.aspx", false);
+                                        Response.Redirect("~/Dashboard_Employee.aspx", false);
                                     }
                                     else
                                     {

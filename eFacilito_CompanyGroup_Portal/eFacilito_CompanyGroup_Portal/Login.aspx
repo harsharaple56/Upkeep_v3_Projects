@@ -4,10 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
-     <meta charset="utf-8" />
-		<title>Login | eFacilito</title>
-		<meta name="description" content="Latest updates and statistic charts">
+    <meta charset="utf-8" />
+		<title>Login | eFacilito Group Dashboard</title>
+		<meta name="description" content="Get Latest Statistics & Data on different Companies within your Group">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
 		<!--begin::Web font -->
@@ -67,24 +66,22 @@
 
 		<!--end::Global Theme Styles -->
 		<link rel="shortcut icon" href="assets/demo/media/img/logo/favicon.ico" />
-
 </head>
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-<div class="m-grid m-grid--hor m-grid--root m-page">
+		<!-- begin:: Page -->
+		<div class="m-grid m-grid--hor m-grid--root m-page">
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(assets/app/media/img//bg/bg-3.jpg);">
-				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper" style="padding: 2% 0rem 0rem 0rem;">
 					<div class="m-login__container">
 						<div class="m-login__logo">
 							<a href="#">
-								<img src="assets/app/media/img/logos/efacilito_Banner_logo.png" class="img-fluid" />
+								<img src="assets/app/media/img/logos/efacilito_250.png" class="img-fluid" />
 							</a>
 						</div>
 						<div class="m-login__signin">
 							<div class="m-login__head">
-                                <h2 class="m-login__title">Monitor all your Companies through a single Portal </h2>
-                                <br />
-								<h3 class="m-login__title">Login to your Account</h3>
+								<h3 class="m-login__title">Login & Get Access to all your Companies Data, registered with us.</h3>
 							</div>
 							<%--<form class="m-login__form m-form" action="">
 								<div class="form-group m-form__group">
@@ -132,7 +129,7 @@
 
 										<div class="m-login__form-action">
 										
-                                        <asp:Button ID="m_login_signin_submit1" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" OnClick="btnLogin_Click" Text="Submit" />
+                                        <asp:Button ID="btn_Validate_Login" runat="server" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" OnClick="btnLogin_Click" Text="Submit" />
                                         </div>
 									</form>
 
@@ -220,5 +217,7 @@
 
 		<!--end::Global Theme Bundle -->
 
-</body>
+	</body>
+
+
 </html>

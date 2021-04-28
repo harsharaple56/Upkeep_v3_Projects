@@ -79,6 +79,53 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet Fetch_License_Module_list(string Module_ID_String)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_License_Module_list(Module_ID_String);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
     public DataSet SUPPORT_Fetch_Comments(int Request_ID)
     {
         try
@@ -236,7 +283,42 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             throw ex;
 
         }
-        return ds;
+        return dsItem;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_LMS_ItemDetails_Dept_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_ItemDetails_Dept_Transaction(DepartmentID, CompanyID, ItemIDs);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+
+    [WebMethod]
+    public DataSet LMS_Save_Department_Transaction(string Dept_ExecutiveName, string Dept_ExecutiveContactNo,int DepartmentID, string TransactionData,int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.LMS_Save_Department_Transaction(Dept_ExecutiveName, Dept_ExecutiveContactNo, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
     }
 
 
@@ -804,6 +886,30 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //[+][Feedback System Methods]
     #region Feedback System Methods
+
+
+    [WebMethod]
+    public DataSet Get_ChartData(string fromDate, string toDate, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        
+
+        try
+        {
+            My_FeedbackSystem obj = new My_FeedbackSystem();
+
+            ds = obj.Get_ChartData(fromDate, toDate, CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+
+        return ds;
+    }
+
 
 
     [WebMethod]

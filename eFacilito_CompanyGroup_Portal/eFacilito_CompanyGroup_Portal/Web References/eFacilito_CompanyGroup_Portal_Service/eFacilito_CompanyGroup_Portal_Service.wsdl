@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Group_Dashboard_Company_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Group_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Group_Dashboard_Company_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Group_Dashboard_Company_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUserResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Group_Dashboard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fromdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Group_DashboardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Group_DashboardResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Group_Dashboard_Company_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Group_Dashboard_Company_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Group_Dashboard_Company_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Group_Dashboard_Company_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Group_DashboardSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Group_Dashboard" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Group_DashboardSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Group_DashboardResponse" />
+  </wsdl:message>
+  <wsdl:portType name="eFacilito_CompanyGroup_Portal_ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard_Company_List">
+      <wsdl:input message="tns:Fetch_Group_Dashboard_Company_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Group_Dashboard_Company_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input message="tns:LoginUserSoapIn" />
+      <wsdl:output message="tns:LoginUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard">
+      <wsdl:input message="tns:Fetch_Group_DashboardSoapIn" />
+      <wsdl:output message="tns:Fetch_Group_DashboardSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="eFacilito_CompanyGroup_Portal_ServiceSoap" type="tns:eFacilito_CompanyGroup_Portal_ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard_Company_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Group_Dashboard_Company_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/LoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Group_Dashboard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="eFacilito_CompanyGroup_Portal_ServiceSoap12" type="tns:eFacilito_CompanyGroup_Portal_ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard_Company_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Group_Dashboard_Company_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap12:operation soapAction="http://tempuri.org/LoginUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Group_Dashboard">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Group_Dashboard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="eFacilito_CompanyGroup_Portal_Service">
+    <wsdl:port name="eFacilito_CompanyGroup_Portal_ServiceSoap" binding="tns:eFacilito_CompanyGroup_Portal_ServiceSoap">
+      <soap:address location="http://localhost:51171/eFacilito_CompanyGroup_Portal_Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="eFacilito_CompanyGroup_Portal_ServiceSoap12" binding="tns:eFacilito_CompanyGroup_Portal_ServiceSoap12">
+      <soap12:address location="http://localhost:51171/eFacilito_CompanyGroup_Portal_Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

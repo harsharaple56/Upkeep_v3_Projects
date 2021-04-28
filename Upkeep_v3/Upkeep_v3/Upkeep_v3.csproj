@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Analytics\Ticketing.aspx" />
     <Content Include="Anjali.html" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
@@ -926,6 +927,10 @@
     <Content Include="bin\Interop.Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\itextsharp.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\QRCoder.dll" />
     <Content Include="bin\roslyn\csc.exe" />
@@ -4066,6 +4071,13 @@
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\Ticketing.aspx.cs">
+      <DependentUpon>Ticketing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Analytics\Ticketing.aspx.designer.cs">
+      <DependentUpon>Ticketing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AssetManagement\AssetManagementAmcList.aspx.cs">
       <DependentUpon>AssetManagementAmcList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

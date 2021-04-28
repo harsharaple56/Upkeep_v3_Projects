@@ -58,13 +58,13 @@ namespace Upkeep_v3.Laundry_Management.Transactions
 
                         for (int i = 0; i < count; i++)
                         {
-                            int Dept_Trans_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Dept_Trans_ID"]);
-                            string Dept_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Dept_Desc"]);
-                            string Dept_Exec_Name = Convert.ToString(ds.Tables[0].Rows[0]["Dept_Exec_Name"]);
-                            string Dept_Exec_Contact = Convert.ToString(ds.Tables[0].Rows[0]["Dept_Exec_Contact"]);
+                            int Dept_Trans_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Dept_Trans_ID"]);
+                            string Dept_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Desc"]);
+                            string Dept_Exec_Name = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Exec_Name"]);
+                            string Dept_Exec_Contact = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Exec_Contact"]);
 
-                            string Created_By = Convert.ToString(ds.Tables[0].Rows[0]["Created_By"]); ;
-                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[0]["Created_Date"]);
+                            string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]); ;
+                            string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
 
                             data += "<tr><td>" + Dept_Trans_ID + "</td><td>" + Dept_Desc + "</td><td>" + Dept_Exec_Name + "</td><td>" + Dept_Exec_Contact + "</td><td>" + Created_By + "</td><td>" + Created_Date + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + Dept_Trans_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + Dept_Trans_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";

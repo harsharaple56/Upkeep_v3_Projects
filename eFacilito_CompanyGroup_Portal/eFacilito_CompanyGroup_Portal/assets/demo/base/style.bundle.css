@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /*
 $table-inverse-bg:              $gray-900 !default;
 $table-inverse-accent-bg:       rgba($white, .05) !default;
@@ -19580,7 +19580,6 @@ button:active, button:focus {
       -ms-flex-line-pack: end;
       align-content: flex-end; }
       .m-portlet .m-portlet__head .m-portlet__head-tools .btn {
-        margin-top: 5px;
         margin-bottom: 5px; }
       .m-portlet .m-portlet__head .m-portlet__head-tools .m-portlet__nav {
         display: -webkit-box;
@@ -19782,7 +19781,7 @@ button:active, button:focus {
     padding-top: 1.7rem;
     padding-bottom: 1.7rem; }
   .m-portlet.m-portlet--head-lg .m-portlet__head {
-    height: 5rem; }
+    height: 7rem; }
   .m-portlet.m-portlet--unair {
     -webkit-box-shadow: none ;
     box-shadow: none ; }

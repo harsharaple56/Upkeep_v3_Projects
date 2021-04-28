@@ -572,18 +572,18 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataTable Get_ChartData(string EventID, string fromDate, string toDate, string strConn)
+        public DataSet Get_ChartData( string fromDate, string toDate, int CompanyID, string strConn)
         {
             SqlConnection con = new SqlConnection(strConn);
-            DataTable dt = new DataTable();
+            DataSet dt = new DataSet();
             try
             {
                 SqlCommand cmd = new SqlCommand("Feedback_Proc_GetChartData", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@EventID", EventID);
                 cmd.Parameters.AddWithValue("@FromDate", fromDate);
                 cmd.Parameters.AddWithValue("@ToDate", toDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
                 con.Open();
 

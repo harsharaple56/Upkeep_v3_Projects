@@ -4,103 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-    <div class="m-porlet">
-        <div class="row">
-
-            <div class="col-xl-6">
-
-                <!--begin:: Ticketing Section-->
-                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
-
-                    <div class="m-portlet__body">
-                        <div class="m-widget19">
-                            <div class="m-widget19__content">
-                                <div class="m-widget19__header">
-                                    <div class="m-widget19__user-img">
-                                        <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/tkt.png" alt="">
-                                    </div>
-                                    <div class="m-widget19__info">
-                                        <span class="m-widget19__username">Total tickets
-                                        </span>
-                                        <br>
-                                        <span class="m-widget19__time">Total No. of Tickets raised
-                                        </span>
-                                    </div>
-                                    <div class="m-widget19__stats">
-                                        <span class="m-widget19__number m--font-brand">18
-                                        </span>
-                                        <span class="m-widget19__comment">Tickets
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                                <div class="m-widget19__body">
-                                    Get in-depth insights & Analysis on all tickets data. 
-                                </div>
-                            </div>
-
-
-                            <div class="m-widget4 m-widget4--chart-bottom" style="min-height: auto;">
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__ext">
-                                        <a href="#" class="m-widget4__icon m--font-brand">
-                                            <i class="flaticon-interface-3"></i>
-                                        </a>
-                                    </div>
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__text">No. of tickets with Status
-                                            <span class="m-badge m-badge--danger m-badge--wide">Open</span>
-                                        </span>
-                                    </div>
-                                    <div class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-accent">500</span>
-                                    </div>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__ext">
-                                        <a href="#" class="m-widget4__icon m--font-brand">
-                                            <i class="flaticon-interface-3"></i>
-                                        </a>
-                                    </div>
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__text">No. of tickets with Status
-                                            <span class="m-badge  m-badge--success m-badge--wide">Closed</span>
-                                        </span>
-                                    </div>
-                                    <div class="m-widget4__ext">
-                                        <span class="m-widget4__stats m--font-info">
-                                            <span class="m-widget4__number m--font-accent">64</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__ext">
-                                        <a href="#" class="m-widget4__icon m--font-brand">
-                                            <i class="flaticon-interface-3"></i>
-                                        </a>
-                                    </div>
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__text">No. of tickets with Status
-                                            <span class="m-badge m-badge--warning m-badge--wide">Parked</span>
-                                        </span>
-                                    </div>
-                                    <div class="m-widget4__ext">
-                                        <span class="m-widget4__stats m--font-info">
-                                            <span class="m-widget4__number m--font-accent">1080</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="m-widget4__item m-widget4__item--last">
-                                    <div class="m-widget4__ext">
-                                        <a href="#" class="m-widget4__icon m--font-brand">
-                                            <i class="flaticon-interface-3"></i>
-                                        </a>
-                                    </div>
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__text">No. of tickets with Status
-                                            <span class="m-badge m-badge--secondary m-badge--wide">Expired</span>
+    --secondary m-badge--wide">Expired</span>
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
@@ -274,7 +178,7 @@
             </div>
 
         </div>
-
+            
         <div class="row">
 
             <div class="col-xl-6">
@@ -568,7 +472,6 @@
                 </div>
 
             </div>
-            \
         </div>
 
 
@@ -587,7 +490,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="m-portlet__body  m-portlet__body--no-padding">
+                    <div class="m-portlet__body  m-portlet__body--no-padding" style="padding-top: 0rem;">
                         <div class="row m-row--no-padding m-row--col-separator-xl">
                             <div class="col-md-12 col-lg-6 col-xl-4">
 
@@ -904,8 +807,8 @@
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Department
-                                    -wise Analysis
+                                <h3 class="m-portlet__head-text">
+                                    Department-wise Analysis
                                 </h3>
                             </div>
                         </div>
@@ -919,7 +822,7 @@
                                     <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget11_tab2_content" role="tab">This Month
                                     </a>
                                 </li>
-                            </ul>s
+                            </ul>
                         </div>
                     </div>
                     <div class="m-portlet__body">

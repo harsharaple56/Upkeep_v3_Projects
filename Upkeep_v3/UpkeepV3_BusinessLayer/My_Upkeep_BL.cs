@@ -14,6 +14,88 @@ namespace UpkeepV3_BusinessLayer
         DataSet ds = new DataSet();
 
 
+        public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Dashboard_Admin", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Fromdate", Fromdate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Dashboard_Employee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Fromdate", Fromdate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+        public DataSet Fetch_License_Module_list(string Module_ID_String, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_License_Module_list", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Module_ID_String", Module_ID_String);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
         public DataSet SUPPORT_Fetch_Comments(int Request_ID, string StrConn)
         {
             try
@@ -283,8 +365,9 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_LMS_ItemList(int DepartmentID, int CompanyID, String StrConn)
+        public DataSet Fetch_LMS_ItemList(int DepartmentID, int CompanyID, string StrConn)
         {
+            DataSet dsItem = new DataSet();
             try
             {
                 string strOutput = string.Empty;
@@ -294,16 +377,69 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
+                da.Fill(dsItem);
+                return dsItem;
             }
             catch (Exception ex)
             {
                 throw ex;
 
             }
-
         }
+
+        public DataSet Fetch_LMS_ItemDetails_Dept_Transaction(int DepartmentID, int CompanyID, string ItemIDs, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Dept_Transaction_Item_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@ItemIDs", ItemIDs);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+        public DataSet LMS_Save_Department_Transaction(string Dept_ExecutiveName, string Dept_ExecutiveContactNo, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Save_LMS_Dept_Transaction_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Dept_ExecutiveName", Dept_ExecutiveName);
+                cmd.Parameters.AddWithValue("@Dept_ExecutiveContactNo", Dept_ExecutiveContactNo);
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@TransactionData", TransactionData);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+
+
 
         public DataSet Fetch_Invoices(int Company_ID, string StrConn)
         {
