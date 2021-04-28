@@ -22,13 +22,22 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// imgeFacilito_Logo control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgeFacilito_Logo;
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
+        /// Img_CompanyLogo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Img_CompanyLogo;
         
         /// <summary>
         /// imgProfilePic control.

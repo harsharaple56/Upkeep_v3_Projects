@@ -37,6 +37,8 @@ namespace Upkeep_v3
                 CompanyID = Convert.ToInt32(Session["CompanyID"]);
             }
 
+            
+
             ModuleIDs = Convert.ToString(Session["ModuleID"]);
 
             DataTable dtMenuDetails = new DataTable();
@@ -72,7 +74,10 @@ namespace Upkeep_v3
 
                 string VD_Path = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
 
-                imgeFacilito_Logo.ImageUrl = VD_Path + "/assets/demo/media/img/logo/efacilito_White.png";
+                Image1.ImageUrl = VD_Path + "/assets/demo/media/img/logo/efacilito_White.png";
+                Img_CompanyLogo.ImageUrl = Convert.ToString(Session["Company_Logo"]);
+                //Image1.ImageUrl = Convert.ToString(Session["Company_Logo"]);
+
 
                 if (Convert.ToString(Session["Profile_Photo"]) != "")
                 {

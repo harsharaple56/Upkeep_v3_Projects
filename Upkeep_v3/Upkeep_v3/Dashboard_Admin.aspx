@@ -701,7 +701,7 @@
                         <div class="m-widget19__content">
                             <div class="m-widget19__header" style="margin-top: 0rem; margin-bottom: 1rem;">
                                 <div class="m-widget19__user-img">
-                                    <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/wp.png" alt="">
+                                    <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/fbk.png" alt="">
                                 </div>
                                 <div class="m-widget19__info">
                                     <span class="m-widget19__username">Total Feedbacks
