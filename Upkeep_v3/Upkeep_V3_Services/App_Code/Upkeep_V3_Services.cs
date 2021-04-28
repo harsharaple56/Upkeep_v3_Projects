@@ -237,6 +237,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    [WebMethod]
+    public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.LMS_Vendor_Cost(Cost_ID, Vendor_ID, Item_ID, Cost, Valid_From, Valid_To, LoggedInUserID, Action, CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+
     [WebMethod]
     public DataSet LMS_Fetch_Department_Transactions(string Start_Date, string End_Date, int CompanyID, int Dept_ID)
     {
