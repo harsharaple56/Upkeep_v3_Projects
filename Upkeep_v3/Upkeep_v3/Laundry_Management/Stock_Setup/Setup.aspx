@@ -40,7 +40,7 @@
                 <div class="m-portlet__foot" style="padding: 1.1rem 1.1rem;">
                     <div class="row align-items-center">
                         <div class="col-lg-4">
-                            <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Stock_Setup/Item_Categories.aspx") %>" class="btn btn-success">Click Here</a>
+                            <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Stock_Setup/Item_Categorization.aspx") %>" class="btn btn-success">Click Here</a>
                         </div>
                     </div>
                 </div>
