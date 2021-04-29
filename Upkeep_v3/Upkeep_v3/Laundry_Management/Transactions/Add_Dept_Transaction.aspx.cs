@@ -60,10 +60,10 @@ namespace Upkeep_v3.Laundry_Management.Transactions
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
-            int DepartmentID = 27;
-            string ItemIDs = "3,4,5";
+            //int DepartmentID = 27;
+            //string ItemIDs = "3,4,5";
 
-            bindItemDetails(DepartmentID, ItemIDs);
+            //bindItemDetails(DepartmentID, ItemIDs);
 
         }
 
@@ -165,6 +165,8 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                 DataSet dsItems = new DataSet();
 
                 dsItems = ObjUpkeep.Fetch_LMS_ItemList(DepartmentID, CompanyID);
+
+                chkItems.Items.Clear();
 
                 if (dsItems.Tables.Count > 0)
                 {
