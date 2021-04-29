@@ -41,6 +41,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         }
 
+
+
+
         protected void btnClosePermit_Click(object sender, EventArgs e)
         {
 
@@ -105,11 +108,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                             //mpeZone.Hide();
                             //bindgrid();
-                            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Frm_Category_Master.aspx"), false);
+                            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
                         }
                         else if (Status == 3)
                         {
-                            lblCategoryErrorMsg.Text = "Brand already exists";
+                            lblCategoryErrorMsg.Text = "Permit already exists";
                         }
                         else if (Status == 2)
                         {
@@ -136,6 +139,51 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void btnCloseHeader_ServerClick(object sender, EventArgs e)
         {
 
+        }
+
+
+
+
+        public string bindgrid()
+        {
+            string data = "";
+            try
+            {
+                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(0, "", LoggedInUserID, CompanyID, "R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            int Permit_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Permit_ID"]);
+                            string Permit_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Desc"]);
+                           
+
+
+
+                            data += "<tr><td>" + Permit_ID + "</td><td>" + Permit_Desc + "</td><td><a href='Permit_holders.aspx?Permit_ID=" + Permit_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Permit_holders.aspx?DelPermit_ID=" + Permit_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
         }
     }
 }

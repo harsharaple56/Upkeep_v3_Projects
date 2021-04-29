@@ -89,7 +89,7 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                 for (int i = 0; i < count; i++)
                 {
                     
-                    string hdnItem_ID = ((HiddenField)rows[i].FindControl("hdnItem_ID")).Value;
+                    string hdnStock_ID = ((HiddenField)rows[i].FindControl("hdnStock_ID")).Value;
                     string hdnOpening_Stock = ((HiddenField)rows[i].FindControl("hdnOpening_Stock")).Value;
 
                     string txtSoiledCollected = ((TextBox)rows[i].FindControl("txtSoiledCollected")).Text;
@@ -98,7 +98,7 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                     string txtClosing = ((TextBox)rows[i].FindControl("txtClosing")).Text;
 
                     strXmlTransaction.Append(@"<Transaction>");
-                    strXmlTransaction.Append(@"<Item_ID>" + hdnItem_ID + "</Item_ID>");
+                    strXmlTransaction.Append(@"<Stock_ID>" + hdnStock_ID + "</Stock_ID>");
                     strXmlTransaction.Append(@"<Opening_Stock>" + hdnOpening_Stock + "</Opening_Stock>");
                     strXmlTransaction.Append(@"<SoiledCollected>" + txtSoiledCollected + "</SoiledCollected>");
                     strXmlTransaction.Append(@"<CleanedGiven>" + txtCleanedGiven + "</CleanedGiven>");
