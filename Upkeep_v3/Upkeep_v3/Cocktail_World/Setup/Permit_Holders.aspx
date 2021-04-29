@@ -130,7 +130,9 @@
                             <thead>
 
                                 <tr>
-                                    <th>Permit Desc</th>
+                                    
+                                    <th>Permit ID</th>
+                                     <th>Permit Desc</th>
                                     <%--<th>category Alias</th>--%>
                                    <%-- <th>Short Name</th>--%>
                                     <th>Action</th>
@@ -144,7 +146,7 @@
                             </tr>
                         </tbody>--%>
                             <tbody>
-                              <%--  <%=bindgrid()%>--%>
+                                <%=bindgrid()%>
                             </tbody>
                         </table>
                     </div>

@@ -439,6 +439,36 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
+        public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_LMS_Vendor_Cost", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Cost_ID", Cost_ID);
+                cmd.Parameters.AddWithValue("@Vendor_ID", Vendor_ID);
+                cmd.Parameters.AddWithValue("@Item_ID", Item_ID);
+                cmd.Parameters.AddWithValue("@Cost", Cost);
+                cmd.Parameters.AddWithValue("@Valid_From", Valid_From);
+                cmd.Parameters.AddWithValue("@Valid_To", Valid_To);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
 
 
         public DataSet Fetch_Invoices(int Company_ID, string StrConn)
