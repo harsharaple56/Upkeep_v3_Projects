@@ -311,7 +311,7 @@
 
 
                         <div class="col-3">
-                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_1">
+                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_select_item">
                                 <span>
                                     <i class="la la-plus"></i>
                                     <span>Add Item</span>
@@ -320,7 +320,23 @@
                         </div>
                     </div>
 
-
+                    <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction No :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionNo" runat="server"></asp:Label>
+                        </div>
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction By :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionBy" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction Date :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionDate" runat="server"></asp:Label>
+                        </div>
+                        
+                    </div>
 
                 </div>
 
@@ -401,7 +417,7 @@
         </div>
 
 
-        <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="m_modal_select_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="padding: 16px;">

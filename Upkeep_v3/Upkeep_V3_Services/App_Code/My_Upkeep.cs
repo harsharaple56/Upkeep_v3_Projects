@@ -236,6 +236,26 @@ public class My_Upkeep
 
     }
 
+    public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.LMS_Vendor_Cost(Cost_ID, Vendor_ID, Item_ID, Cost, Valid_From, Valid_To, LoggedInUserID, Action, CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
+    }
+
     public DataSet LMS_Fetch_Vendor_Transactions(string Start_Date, string End_Date, int CompanyID, int Vendor_ID)
     {
         try
@@ -310,6 +330,22 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+
+            dsItem = ObjUpkeepCC_BL.Fetch_LMS_Dept_Transaction_Details(Dept_TransID, StrConn);
+
+            return dsItem;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
 
