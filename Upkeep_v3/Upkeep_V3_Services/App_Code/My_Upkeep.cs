@@ -330,6 +330,22 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+
+            dsItem = ObjUpkeepCC_BL.Fetch_LMS_Dept_Transaction_Details(Dept_TransID, StrConn);
+
+            return dsItem;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
 

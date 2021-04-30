@@ -22,7 +22,16 @@ namespace Upkeep_v3.Laundry_Management.Transactions
 
             if (!IsPostBack)
             {
+                int Dept_Trans_ID = Convert.ToInt32(Request.QueryString["Dept_Trans_ID"]);
                 bindDepartment();
+
+                if (Dept_Trans_ID > 0)
+                {
+                    Session["Dept_Trans_ID"] = Convert.ToString(Dept_Trans_ID);
+
+                    bind_Department_Transaction_Details(Dept_Trans_ID);
+                }
+
             }
         }
 
@@ -242,6 +251,38 @@ namespace Upkeep_v3.Laundry_Management.Transactions
             }
         }
 
-        //Spr_Fetch_LMS_Dept_Transaction_Item_Details
+        public void bind_Department_Transaction_Details(int Dept_TransID)
+        {
+            DataSet dsItems = new DataSet();
+            try
+            {
+                dsItems = ObjUpkeep.Fetch_LMS_Dept_Transaction_Details(Dept_TransID);
+
+                if (dsItems.Tables.Count > 0)
+                {
+                    if (dsItems.Tables[0].Rows.Count > 0)
+                    {
+                        txtDept_ExecutiveName.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["Dept_Exec_Name"]);
+                        txtDept_ExecutiveContactNo.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["Dept_Exec_Contact"]);
+
+                        ddlDepartment.SelectedValue = Convert.ToString(dsItems.Tables[0].Rows[0]["Dept_ID"]);
+                        lblTransactionNo.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["Dept_Trans_ID"]);
+                        lblTransactionDate.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionDate"]);
+                        lblTransactionBy.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionByUser"]);
+                    }
+                    if (dsItems.Tables[1].Rows.Count > 0)
+                    {
+                        gvItemDetails.DataSource = dsItems.Tables[1];
+                        gvItemDetails.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

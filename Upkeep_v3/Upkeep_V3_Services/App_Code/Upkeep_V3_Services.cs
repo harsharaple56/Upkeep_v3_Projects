@@ -339,6 +339,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return dsItem;
     }
 
+    [WebMethod]
+    public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_Dept_Transaction_Details(Dept_TransID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
 
 
     [WebMethod]
