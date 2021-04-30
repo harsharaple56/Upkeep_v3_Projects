@@ -72,7 +72,7 @@
                             <thead>
 
                                 <tr>
-                                    <th>Sub Catgeory ID</th>
+                                   <%-- <th>Sub Catgeory ID</th>--%>
                                     <th>Sub Catgeory Description </th>
                                     <th>Category </th>
                                     

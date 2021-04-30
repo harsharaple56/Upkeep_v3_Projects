@@ -366,7 +366,9 @@ background-color: blanchedalmond;
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
-
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Name"></asp:RequiredFieldValidator>
+                              
                                     </div>
                                 </div>
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
@@ -374,7 +376,9 @@ background-color: blanchedalmond;
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
-
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Email"></asp:RequiredFieldValidator>
+                              
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
@@ -382,7 +386,9 @@ background-color: blanchedalmond;
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Phone no. to receive visit confirmation on yor phone.."></asp:TextBox>
-
+                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
+                              
                                     </div>
                                 </div>
 
@@ -398,7 +404,9 @@ background-color: blanchedalmond;
                                         </div>
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
-
+                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
+                              
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
                                     <label class="col-md-1 col-form-label font-weight-bold">Meeting with :</label>
                                     <div class="col-md-5 col-form-label">
@@ -409,6 +417,10 @@ background-color: blanchedalmond;
 ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
                                     </div>
                                     <%-- </div>--%>
+
+                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                              
                                 </div>
 
 
