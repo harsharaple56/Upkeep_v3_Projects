@@ -24,8 +24,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
             if (!IsPostBack)
             {
                 BindCategory();
+                BindSubCategory();
 
-           
+
+
 
                 int Brand_ID = Convert.ToInt32(Request.QueryString["Brand_ID"]);
                 if (Brand_ID > 0)
@@ -61,6 +63,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                             Session["Brand_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]);
                         ddlcategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
+                        //int CategorySub_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]);
+                        //BindSubCategory(CategorySub_ID);
+
                         ddlSubCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtBrandDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Brand_Desc"]);
                         txtShortname.Text = Convert.ToString(ds.Tables[0].Rows[0]["Strength"]);
@@ -95,7 +100,33 @@ namespace Upkeep_v3.Cocktail_World.Setup
         }
 
   
+        public void BindSubCategory()
+        {
+            try
+            {
+                int Category_Id = Convert.ToInt32(ddlcategory.SelectedValue);
+                DataSet ds = new DataSet();
+                // ds = ObjCocktailWorld.SubCategoryMaster_CRUD(24, 0, "", "", LoggedInUserID, "select");
 
+                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(0, 0, "", LoggedInUserID, CompanyID, "R");
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlSubCategory.DataSource = ds.Tables[0];
+                        ddlSubCategory.DataTextField = "SubCategory_Desc";
+                        ddlSubCategory.DataValueField = "SubCategory_ID";
+                        ddlSubCategory.DataBind();
+                        ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void BindCategory()
         {

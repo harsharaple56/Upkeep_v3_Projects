@@ -325,6 +325,23 @@
                         </div>
                     </div>
 
+                    <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction No :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionNo" runat="server"></asp:Label>
+                        </div>
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction By :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionBy" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">Transaction Date :</label>
+                        <div class="col-3">
+                            <asp:Label class="form-control" id="lblTransactionDate" runat="server"></asp:Label>
+                        </div>
+                        
+                    </div>
                     <div class="form-group m-form__group row" style="margin-bottom: 0rem;">
 
                         <div class="col-12">
@@ -415,15 +432,15 @@
 
 
         <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" style="padding: 16px;">
-                        <h3>Select Items</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="padding: 0px;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding: 16px;">
+                                <h3>Select Items</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="padding: 0px;">
 
 
                         <div class="m-widget19">
