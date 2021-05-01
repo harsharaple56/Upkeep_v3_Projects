@@ -32,20 +32,54 @@ namespace Upkeep_v3.Laundry_Management.Stock
             if (!IsPostBack)
             {
                 //Fetch_Stock_Details();
+                bindCategory();
+                bind_SubCategory();
             }
 
 
 
         }
+
+        protected void btnModalsubmit_Click(object sender, EventArgs e)
+        {
+
+            int Category_ID = Convert.ToInt32(ddl_Category.SelectedValue);
+            int SubCategory_ID = Convert.ToInt32(ddl_SubCategory.SelectedValue);
+            string Item_Desc = Convert.ToString(txtItem_Desc.Text);
+            
+
+            ds = ObjUpkeep.INV_ItemMaster_CRUD(0, Item_Desc, Category_ID, SubCategory_ID, CompanyID, LoggedInUserID, "C");
+
+            if (ds.Tables.Count > 0)
+            {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                    if (Status == 1)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Laundry_Management/Stock_Setup/Item_Details.aspx"), false);
+                    }
+                    else if (Status == 3)
+                    {
+                        lblStockErrorMsg.Text = "Cost already exists against this Item & Vendor";
+                    }
+                    else if (Status == 2)
+                    {
+                        lblStockErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                    }
+                }
+            }
+
+
+        }
+
+
+
         protected void btnPopup_Click(object sender, EventArgs e)
         {
             //fetchInvItemSelectedListing();
         }
-        protected void btnModalsubmit_Click(object sender, EventArgs e)
-        {
-            //fetchInvItemSelectedListing();
-        }
-
+        
 
         public string Fetch_Stock_Details()
         {
@@ -64,12 +98,12 @@ namespace Upkeep_v3.Laundry_Management.Stock
 
                         for (int i = 0; i < count; i++)
                         {
-                            int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Item_ID"]);
-                            string Item_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Item_Desc"]);
-                            string Category_Desc = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
-                            string SubCategory_Desc = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
+                            int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Item_ID"]);
+                            string Item_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Item_Desc"]);
+                            string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
+                            string SubCategory_Desc = Convert.ToString(ds.Tables[0].Rows[i]["SubCategory_Desc"]);
 
-                            
+
                             data += "<tr><td>" + Item_ID + "</td><td>" + Item_Desc + "</td><td>" + Category_Desc + "</td><td>" + SubCategory_Desc + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + Item_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + Item_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
@@ -91,6 +125,68 @@ namespace Upkeep_v3.Laundry_Management.Stock
             }
         }
 
+        public void bindCategory()
+        {
+            try
+            {
+                CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                DataSet ds = new DataSet();
+
+                ds = ObjUpkeep.LMS_Category_Mst(0,"",CompanyID,LoggedInUserID,"R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddl_Category.DataSource = ds.Tables[0];
+                        ddl_Category.DataTextField = "Category_Desc";
+                        ddl_Category.DataValueField = "Category_ID";
+                        ddl_Category.DataBind();
+                        ddl_Category.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+                else
+                {
+                    Response.Redirect(Page.ResolveClientUrl("~/Laundry_Management/Stock_Setup/Setup.aspx"), false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void bind_SubCategory()
+        {
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            int CategoryID = Convert.ToInt32(ddl_Category.SelectedValue);
+
+            try
+
+            {
+                DataSet ds = new DataSet();
+
+                ds = ObjUpkeep.LMS_SubCategory_Mst(0,"",CategoryID, CompanyID, LoggedInUserID, "R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddl_SubCategory.DataSource = ds.Tables[0];
+                        ddl_SubCategory.DataTextField = "SubCategory_Desc";
+                        ddl_SubCategory.DataValueField = "SubCategory_ID";
+                        ddl_SubCategory.DataBind();
+                        ddl_SubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
 
     }

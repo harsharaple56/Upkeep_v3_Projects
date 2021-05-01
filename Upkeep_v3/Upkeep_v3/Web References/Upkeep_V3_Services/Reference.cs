@@ -30,6 +30,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Delete_Inv_PurchaseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Crud_Inv_PurchaseOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Inv_Crud_ItemOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Tran_DetailOperationCompleted;
@@ -79,6 +83,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_CityOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FETCH_Saved_Role_MENU_RightsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_RoleMenuRightsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Insert_Assigned_RoleOperationCompleted;
         
@@ -246,10 +254,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Inv_Item_Purchase_ListOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Delete_Inv_PurchaseOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Crud_Inv_PurchaseOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_AdminOperationCompleted;
@@ -275,6 +279,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback LMS_Vendor_CostOperationCompleted;
         
         private System.Threading.SendOrPostCallback LMS_Fetch_Department_TransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LMS_Category_MstOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LMS_SubCategory_MstOperationCompleted;
         
         private System.Threading.SendOrPostCallback LMS_Fetch_Vendor_TransactionsOperationCompleted;
         
@@ -414,10 +422,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Role_MenuOperationCompleted;
         
-        private System.Threading.SendOrPostCallback FETCH_Saved_Role_MENU_RightsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Insert_RoleMenuRightsOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -455,6 +459,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Delete_Inv_PurchaseCompletedEventHandler Delete_Inv_PurchaseCompleted;
+        
+        /// <remarks/>
+        public event Crud_Inv_PurchaseCompletedEventHandler Crud_Inv_PurchaseCompleted;
         
         /// <remarks/>
         public event Fetch_Inv_Crud_ItemCompletedEventHandler Fetch_Inv_Crud_ItemCompleted;
@@ -530,6 +540,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event FETCH_Saved_Role_MENU_RightsCompletedEventHandler FETCH_Saved_Role_MENU_RightsCompleted;
+        
+        /// <remarks/>
+        public event Insert_RoleMenuRightsCompletedEventHandler Insert_RoleMenuRightsCompleted;
         
         /// <remarks/>
         public event Insert_Assigned_RoleCompletedEventHandler Insert_Assigned_RoleCompleted;
@@ -781,12 +797,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_Inv_Item_Purchase_ListCompletedEventHandler Fetch_Inv_Item_Purchase_ListCompleted;
         
         /// <remarks/>
-        public event Delete_Inv_PurchaseCompletedEventHandler Delete_Inv_PurchaseCompleted;
-        
-        /// <remarks/>
-        public event Crud_Inv_PurchaseCompletedEventHandler Crud_Inv_PurchaseCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -824,6 +834,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event LMS_Fetch_Department_TransactionsCompletedEventHandler LMS_Fetch_Department_TransactionsCompleted;
+        
+        /// <remarks/>
+        public event LMS_Category_MstCompletedEventHandler LMS_Category_MstCompleted;
+        
+        /// <remarks/>
+        public event LMS_SubCategory_MstCompletedEventHandler LMS_SubCategory_MstCompleted;
         
         /// <remarks/>
         public event LMS_Fetch_Vendor_TransactionsCompletedEventHandler LMS_Fetch_Vendor_TransactionsCompleted;
@@ -1033,10 +1049,70 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_Role_MenuCompletedEventHandler Fetch_Role_MenuCompleted;
         
         /// <remarks/>
-        public event FETCH_Saved_Role_MENU_RightsCompletedEventHandler FETCH_Saved_Role_MENU_RightsCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_Inv_Purchase", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_Inv_Purchase(int ItemId, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_Inv_Purchase", new object[] {
+                        ItemId,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
         
         /// <remarks/>
-        public event Insert_RoleMenuRightsCompletedEventHandler Insert_RoleMenuRightsCompleted;
+        public void Delete_Inv_PurchaseAsync(int ItemId, string LoggedInUserID) {
+            this.Delete_Inv_PurchaseAsync(ItemId, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_Inv_PurchaseAsync(int ItemId, string LoggedInUserID, object userState) {
+            if ((this.Delete_Inv_PurchaseOperationCompleted == null)) {
+                this.Delete_Inv_PurchaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_Inv_PurchaseOperationCompleted);
+            }
+            this.InvokeAsync("Delete_Inv_Purchase", new object[] {
+                        ItemId,
+                        LoggedInUserID}, this.Delete_Inv_PurchaseOperationCompleted, userState);
+        }
+        
+        private void OnDelete_Inv_PurchaseOperationCompleted(object arg) {
+            if ((this.Delete_Inv_PurchaseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_Inv_PurchaseCompleted(this, new Delete_Inv_PurchaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Crud_Inv_Purchase", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Crud_Inv_Purchase(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem) {
+            object[] results = this.Invoke("Crud_Inv_Purchase", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        PurchaseID,
+                        XmlItem});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Crud_Inv_PurchaseAsync(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem) {
+            this.Crud_Inv_PurchaseAsync(LoggedInUserID, CompanyID, PurchaseID, XmlItem, null);
+        }
+        
+        /// <remarks/>
+        public void Crud_Inv_PurchaseAsync(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem, object userState) {
+            if ((this.Crud_Inv_PurchaseOperationCompleted == null)) {
+                this.Crud_Inv_PurchaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCrud_Inv_PurchaseOperationCompleted);
+            }
+            this.InvokeAsync("Crud_Inv_Purchase", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        PurchaseID,
+                        XmlItem}, this.Crud_Inv_PurchaseOperationCompleted, userState);
+        }
+        
+        private void OnCrud_Inv_PurchaseOperationCompleted(object arg) {
+            if ((this.Crud_Inv_PurchaseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Crud_Inv_PurchaseCompleted(this, new Crud_Inv_PurchaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Crud_Item", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1940,6 +2016,72 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FETCH_Saved_Role_MENU_Rights", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet FETCH_Saved_Role_MENU_Rights(int RoleID, int ParentMenuId) {
+            object[] results = this.Invoke("FETCH_Saved_Role_MENU_Rights", new object[] {
+                        RoleID,
+                        ParentMenuId});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FETCH_Saved_Role_MENU_RightsAsync(int RoleID, int ParentMenuId) {
+            this.FETCH_Saved_Role_MENU_RightsAsync(RoleID, ParentMenuId, null);
+        }
+        
+        /// <remarks/>
+        public void FETCH_Saved_Role_MENU_RightsAsync(int RoleID, int ParentMenuId, object userState) {
+            if ((this.FETCH_Saved_Role_MENU_RightsOperationCompleted == null)) {
+                this.FETCH_Saved_Role_MENU_RightsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFETCH_Saved_Role_MENU_RightsOperationCompleted);
+            }
+            this.InvokeAsync("FETCH_Saved_Role_MENU_Rights", new object[] {
+                        RoleID,
+                        ParentMenuId}, this.FETCH_Saved_Role_MENU_RightsOperationCompleted, userState);
+        }
+        
+        private void OnFETCH_Saved_Role_MENU_RightsOperationCompleted(object arg) {
+            if ((this.FETCH_Saved_Role_MENU_RightsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FETCH_Saved_Role_MENU_RightsCompleted(this, new FETCH_Saved_Role_MENU_RightsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_RoleMenuRights", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_RoleMenuRights(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData) {
+            object[] results = this.Invoke("Insert_RoleMenuRights", new object[] {
+                        RoleId,
+                        ParentMenuId,
+                        LoggedInUserID,
+                        strWpSectionHeaderData});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_RoleMenuRightsAsync(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData) {
+            this.Insert_RoleMenuRightsAsync(RoleId, ParentMenuId, LoggedInUserID, strWpSectionHeaderData, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_RoleMenuRightsAsync(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData, object userState) {
+            if ((this.Insert_RoleMenuRightsOperationCompleted == null)) {
+                this.Insert_RoleMenuRightsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_RoleMenuRightsOperationCompleted);
+            }
+            this.InvokeAsync("Insert_RoleMenuRights", new object[] {
+                        RoleId,
+                        ParentMenuId,
+                        LoggedInUserID,
+                        strWpSectionHeaderData}, this.Insert_RoleMenuRightsOperationCompleted, userState);
+        }
+        
+        private void OnInsert_RoleMenuRightsOperationCompleted(object arg) {
+            if ((this.Insert_RoleMenuRightsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_RoleMenuRightsCompleted(this, new Insert_RoleMenuRightsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4803,72 +4945,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_Inv_Purchase", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Delete_Inv_Purchase(int ItemId, string LoggedInUserID) {
-            object[] results = this.Invoke("Delete_Inv_Purchase", new object[] {
-                        ItemId,
-                        LoggedInUserID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Delete_Inv_PurchaseAsync(int ItemId, string LoggedInUserID) {
-            this.Delete_Inv_PurchaseAsync(ItemId, LoggedInUserID, null);
-        }
-        
-        /// <remarks/>
-        public void Delete_Inv_PurchaseAsync(int ItemId, string LoggedInUserID, object userState) {
-            if ((this.Delete_Inv_PurchaseOperationCompleted == null)) {
-                this.Delete_Inv_PurchaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_Inv_PurchaseOperationCompleted);
-            }
-            this.InvokeAsync("Delete_Inv_Purchase", new object[] {
-                        ItemId,
-                        LoggedInUserID}, this.Delete_Inv_PurchaseOperationCompleted, userState);
-        }
-        
-        private void OnDelete_Inv_PurchaseOperationCompleted(object arg) {
-            if ((this.Delete_Inv_PurchaseCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Delete_Inv_PurchaseCompleted(this, new Delete_Inv_PurchaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Crud_Inv_Purchase", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Crud_Inv_Purchase(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem) {
-            object[] results = this.Invoke("Crud_Inv_Purchase", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        PurchaseID,
-                        XmlItem});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Crud_Inv_PurchaseAsync(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem) {
-            this.Crud_Inv_PurchaseAsync(LoggedInUserID, CompanyID, PurchaseID, XmlItem, null);
-        }
-        
-        /// <remarks/>
-        public void Crud_Inv_PurchaseAsync(string LoggedInUserID, string CompanyID, string PurchaseID, string XmlItem, object userState) {
-            if ((this.Crud_Inv_PurchaseOperationCompleted == null)) {
-                this.Crud_Inv_PurchaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCrud_Inv_PurchaseOperationCompleted);
-            }
-            this.InvokeAsync("Crud_Inv_Purchase", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        PurchaseID,
-                        XmlItem}, this.Crud_Inv_PurchaseOperationCompleted, userState);
-        }
-        
-        private void OnCrud_Inv_PurchaseOperationCompleted(object arg) {
-            if ((this.Crud_Inv_PurchaseCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Crud_Inv_PurchaseCompleted(this, new Crud_Inv_PurchaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -5318,6 +5394,82 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.LMS_Fetch_Department_TransactionsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.LMS_Fetch_Department_TransactionsCompleted(this, new LMS_Fetch_Department_TransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LMS_Category_Mst", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet LMS_Category_Mst(int Category_ID, string Category_Desc, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("LMS_Category_Mst", new object[] {
+                        Category_ID,
+                        Category_Desc,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LMS_Category_MstAsync(int Category_ID, string Category_Desc, int Company_ID, string LoggedInUserID, string Action) {
+            this.LMS_Category_MstAsync(Category_ID, Category_Desc, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void LMS_Category_MstAsync(int Category_ID, string Category_Desc, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.LMS_Category_MstOperationCompleted == null)) {
+                this.LMS_Category_MstOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLMS_Category_MstOperationCompleted);
+            }
+            this.InvokeAsync("LMS_Category_Mst", new object[] {
+                        Category_ID,
+                        Category_Desc,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.LMS_Category_MstOperationCompleted, userState);
+        }
+        
+        private void OnLMS_Category_MstOperationCompleted(object arg) {
+            if ((this.LMS_Category_MstCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LMS_Category_MstCompleted(this, new LMS_Category_MstCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LMS_SubCategory_Mst", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("LMS_SubCategory_Mst", new object[] {
+                        SubCategory_ID,
+                        SubCategory_Desc,
+                        Category_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LMS_SubCategory_MstAsync(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action) {
+            this.LMS_SubCategory_MstAsync(SubCategory_ID, SubCategory_Desc, Category_ID, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void LMS_SubCategory_MstAsync(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.LMS_SubCategory_MstOperationCompleted == null)) {
+                this.LMS_SubCategory_MstOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLMS_SubCategory_MstOperationCompleted);
+            }
+            this.InvokeAsync("LMS_SubCategory_Mst", new object[] {
+                        SubCategory_ID,
+                        SubCategory_Desc,
+                        Category_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.LMS_SubCategory_MstOperationCompleted, userState);
+        }
+        
+        private void OnLMS_SubCategory_MstOperationCompleted(object arg) {
+            if ((this.LMS_SubCategory_MstCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LMS_SubCategory_MstCompleted(this, new LMS_SubCategory_MstCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7999,72 +8151,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FETCH_Saved_Role_MENU_Rights", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FETCH_Saved_Role_MENU_Rights(int RoleID, int ParentMenuId) {
-            object[] results = this.Invoke("FETCH_Saved_Role_MENU_Rights", new object[] {
-                        RoleID,
-                        ParentMenuId});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void FETCH_Saved_Role_MENU_RightsAsync(int RoleID, int ParentMenuId) {
-            this.FETCH_Saved_Role_MENU_RightsAsync(RoleID, ParentMenuId, null);
-        }
-        
-        /// <remarks/>
-        public void FETCH_Saved_Role_MENU_RightsAsync(int RoleID, int ParentMenuId, object userState) {
-            if ((this.FETCH_Saved_Role_MENU_RightsOperationCompleted == null)) {
-                this.FETCH_Saved_Role_MENU_RightsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFETCH_Saved_Role_MENU_RightsOperationCompleted);
-            }
-            this.InvokeAsync("FETCH_Saved_Role_MENU_Rights", new object[] {
-                        RoleID,
-                        ParentMenuId}, this.FETCH_Saved_Role_MENU_RightsOperationCompleted, userState);
-        }
-        
-        private void OnFETCH_Saved_Role_MENU_RightsOperationCompleted(object arg) {
-            if ((this.FETCH_Saved_Role_MENU_RightsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.FETCH_Saved_Role_MENU_RightsCompleted(this, new FETCH_Saved_Role_MENU_RightsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_RoleMenuRights", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_RoleMenuRights(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData) {
-            object[] results = this.Invoke("Insert_RoleMenuRights", new object[] {
-                        RoleId,
-                        ParentMenuId,
-                        LoggedInUserID,
-                        strWpSectionHeaderData});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Insert_RoleMenuRightsAsync(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData) {
-            this.Insert_RoleMenuRightsAsync(RoleId, ParentMenuId, LoggedInUserID, strWpSectionHeaderData, null);
-        }
-        
-        /// <remarks/>
-        public void Insert_RoleMenuRightsAsync(int RoleId, int ParentMenuId, string LoggedInUserID, string strWpSectionHeaderData, object userState) {
-            if ((this.Insert_RoleMenuRightsOperationCompleted == null)) {
-                this.Insert_RoleMenuRightsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_RoleMenuRightsOperationCompleted);
-            }
-            this.InvokeAsync("Insert_RoleMenuRights", new object[] {
-                        RoleId,
-                        ParentMenuId,
-                        LoggedInUserID,
-                        strWpSectionHeaderData}, this.Insert_RoleMenuRightsOperationCompleted, userState);
-        }
-        
-        private void OnInsert_RoleMenuRightsOperationCompleted(object arg) {
-            if ((this.Insert_RoleMenuRightsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Insert_RoleMenuRightsCompleted(this, new Insert_RoleMenuRightsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -8080,6 +8166,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Delete_Inv_PurchaseCompletedEventHandler(object sender, Delete_Inv_PurchaseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Delete_Inv_PurchaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Delete_Inv_PurchaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Crud_Inv_PurchaseCompletedEventHandler(object sender, Crud_Inv_PurchaseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Crud_Inv_PurchaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Crud_Inv_PurchaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -8720,6 +8858,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void FETCH_Saved_Role_MENU_RightsCompletedEventHandler(object sender, FETCH_Saved_Role_MENU_RightsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FETCH_Saved_Role_MENU_RightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FETCH_Saved_Role_MENU_RightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Insert_RoleMenuRightsCompletedEventHandler(object sender, Insert_RoleMenuRightsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_RoleMenuRightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_RoleMenuRightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -10893,58 +11083,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Delete_Inv_PurchaseCompletedEventHandler(object sender, Delete_Inv_PurchaseCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Delete_Inv_PurchaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Delete_Inv_PurchaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Crud_Inv_PurchaseCompletedEventHandler(object sender, Crud_Inv_PurchaseCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Crud_Inv_PurchaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Crud_Inv_PurchaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -11268,6 +11406,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal LMS_Fetch_Department_TransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void LMS_Category_MstCompletedEventHandler(object sender, LMS_Category_MstCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LMS_Category_MstCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LMS_Category_MstCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void LMS_SubCategory_MstCompletedEventHandler(object sender, LMS_SubCategory_MstCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LMS_SubCategory_MstCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LMS_SubCategory_MstCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13062,58 +13252,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Role_MenuCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void FETCH_Saved_Role_MENU_RightsCompletedEventHandler(object sender, FETCH_Saved_Role_MENU_RightsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FETCH_Saved_Role_MENU_RightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal FETCH_Saved_Role_MENU_RightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Insert_RoleMenuRightsCompletedEventHandler(object sender, Insert_RoleMenuRightsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Insert_RoleMenuRightsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Insert_RoleMenuRightsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

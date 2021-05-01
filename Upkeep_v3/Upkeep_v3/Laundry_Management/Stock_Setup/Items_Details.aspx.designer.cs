@@ -31,6 +31,42 @@ namespace Upkeep_v3.Laundry_Management.Stock {
         protected global::System.Web.UI.WebControls.Button btnPopup;
         
         /// <summary>
+        /// ddl_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Category;
+        
+        /// <summary>
+        /// ddl_SubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_SubCategory;
+        
+        /// <summary>
+        /// txtItem_Desc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtItem_Desc;
+        
+        /// <summary>
+        /// lblStockErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStockErrorMsg;
+        
+        /// <summary>
         /// txtHdn control.
         /// </summary>
         /// <remarks>
@@ -47,14 +83,5 @@ namespace Upkeep_v3.Laundry_Management.Stock {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnModalSave;
-        
-        /// <summary>
-        /// btnModalsubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnModalsubmit;
     }
 }
