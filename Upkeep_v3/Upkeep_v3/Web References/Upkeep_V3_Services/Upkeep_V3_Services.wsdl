@@ -3,6 +3,28 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_Inv_Item_Purchase_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Item_Purchase_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Item_Purchase_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Delete_Inv_Purchase">
         <s:complexType>
           <s:sequence>
@@ -15,30 +37,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_PurchaseResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_Purchase">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="PurchaseID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_PurchaseResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_PurchaseResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -688,6 +686,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Role_Menu">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_Role_MenuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Role_MenuResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FETCH_Saved_Role_MENU_Rights">
         <s:complexType>
           <s:sequence>
@@ -700,30 +715,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="FETCH_Saved_Role_MENU_RightsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_RoleMenuRights">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="ParentMenuId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strWpSectionHeaderData" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_RoleMenuRightsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_RoleMenuRightsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2683,74 +2674,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Item_Stock_DataResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Item_Purchase_List">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Item_Purchase_ListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Item_Purchase_ListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_Purchase">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_PurchaseResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_PurchaseResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_Purchase">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="PurchaseID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Crud_Inv_PurchaseResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Crud_Inv_PurchaseResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4817,69 +4740,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Role_Menu">
-        <s:complexType />
-      </s:element>
-      <s:element name="Fetch_Role_MenuResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Role_MenuResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FETCH_Saved_Role_MENU_Rights">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="ParentMenuId" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FETCH_Saved_Role_MENU_RightsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FETCH_Saved_Role_MENU_RightsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_RoleMenuRights">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="ParentMenuId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strWpSectionHeaderData" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Insert_RoleMenuRightsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_RoleMenuRightsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4887,6 +4747,24 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_Inv_Item_Purchase_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Purchase_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Item_Purchase_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Purchase_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_PurchaseSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_Purchase" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_PurchaseSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_PurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_PurchaseSoapIn">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_Purchase" />
+  </wsdl:message>
+  <wsdl:message name="Crud_Inv_PurchaseSoapOut">
+    <wsdl:part name="parameters" element="tns:Crud_Inv_PurchaseResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Inv_Crud_ItemSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item" />
   </wsdl:message>
@@ -5036,6 +4914,24 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Role_MenuSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Role_Menu" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Role_MenuSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Role_MenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="FETCH_Saved_Role_MENU_RightsSoapIn">
+    <wsdl:part name="parameters" element="tns:FETCH_Saved_Role_MENU_Rights" />
+  </wsdl:message>
+  <wsdl:message name="FETCH_Saved_Role_MENU_RightsSoapOut">
+    <wsdl:part name="parameters" element="tns:FETCH_Saved_Role_MENU_RightsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_RoleMenuRightsSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_RoleMenuRights" />
+  </wsdl:message>
+  <wsdl:message name="Insert_RoleMenuRightsSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_RoleMenuRightsResponse" />
   </wsdl:message>
   <wsdl:message name="Insert_Assigned_RoleSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_Assigned_Role" />
@@ -5528,24 +5424,6 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Inv_Item_Stock_DataSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_DataResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Item_Purchase_ListSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Purchase_List" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Item_Purchase_ListSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Purchase_ListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_PurchaseSoapIn">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_Purchase" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_PurchaseSoapOut">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_PurchaseResponse" />
-  </wsdl:message>
-  <wsdl:message name="Crud_Inv_PurchaseSoapIn">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_Purchase" />
-  </wsdl:message>
-  <wsdl:message name="Crud_Inv_PurchaseSoapOut">
-    <wsdl:part name="parameters" element="tns:Crud_Inv_PurchaseResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -6051,25 +5929,19 @@
   <wsdl:message name="Fetch_Assigned_RoleSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Assigned_RoleResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Role_MenuSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Role_Menu" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Role_MenuSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Role_MenuResponse" />
-  </wsdl:message>
-  <wsdl:message name="FETCH_Saved_Role_MENU_RightsSoapIn">
-    <wsdl:part name="parameters" element="tns:FETCH_Saved_Role_MENU_Rights" />
-  </wsdl:message>
-  <wsdl:message name="FETCH_Saved_Role_MENU_RightsSoapOut">
-    <wsdl:part name="parameters" element="tns:FETCH_Saved_Role_MENU_RightsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Insert_RoleMenuRightsSoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_RoleMenuRights" />
-  </wsdl:message>
-  <wsdl:message name="Insert_RoleMenuRightsSoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_RoleMenuRightsResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
+      <wsdl:input message="tns:Fetch_Inv_Item_Purchase_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Inv_Item_Purchase_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Purchase">
+      <wsdl:input message="tns:Delete_Inv_PurchaseSoapIn" />
+      <wsdl:output message="tns:Delete_Inv_PurchaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Purchase">
+      <wsdl:input message="tns:Crud_Inv_PurchaseSoapIn" />
+      <wsdl:output message="tns:Crud_Inv_PurchaseSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Crud_Item">
       <wsdl:input message="tns:Fetch_Inv_Crud_ItemSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Crud_ItemSoapOut" />
@@ -6169,6 +6041,18 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Role_Menu">
+      <wsdl:input message="tns:Fetch_Role_MenuSoapIn" />
+      <wsdl:output message="tns:Fetch_Role_MenuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FETCH_Saved_Role_MENU_Rights">
+      <wsdl:input message="tns:FETCH_Saved_Role_MENU_RightsSoapIn" />
+      <wsdl:output message="tns:FETCH_Saved_Role_MENU_RightsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_RoleMenuRights">
+      <wsdl:input message="tns:Insert_RoleMenuRightsSoapIn" />
+      <wsdl:output message="tns:Insert_RoleMenuRightsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Insert_Assigned_Role">
       <wsdl:input message="tns:Insert_Assigned_RoleSoapIn" />
@@ -6497,18 +6381,6 @@
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <wsdl:input message="tns:Fetch_Inv_Item_Stock_DataSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Item_Stock_DataSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
-      <wsdl:input message="tns:Fetch_Inv_Item_Purchase_ListSoapIn" />
-      <wsdl:output message="tns:Fetch_Inv_Item_Purchase_ListSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Purchase">
-      <wsdl:input message="tns:Delete_Inv_PurchaseSoapIn" />
-      <wsdl:output message="tns:Delete_Inv_PurchaseSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Purchase">
-      <wsdl:input message="tns:Crud_Inv_PurchaseSoapIn" />
-      <wsdl:output message="tns:Crud_Inv_PurchaseSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6847,21 +6719,36 @@
       <wsdl:input message="tns:Fetch_Assigned_RoleSoapIn" />
       <wsdl:output message="tns:Fetch_Assigned_RoleSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Role_Menu">
-      <wsdl:input message="tns:Fetch_Role_MenuSoapIn" />
-      <wsdl:output message="tns:Fetch_Role_MenuSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="FETCH_Saved_Role_MENU_Rights">
-      <wsdl:input message="tns:FETCH_Saved_Role_MENU_RightsSoapIn" />
-      <wsdl:output message="tns:FETCH_Saved_Role_MENU_RightsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Insert_RoleMenuRights">
-      <wsdl:input message="tns:Insert_RoleMenuRightsSoapIn" />
-      <wsdl:output message="tns:Insert_RoleMenuRightsSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Purchase_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Purchase">
+      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Purchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crud_Inv_Purchase">
+      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Purchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Crud_Item">
       <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item" style="document" />
       <wsdl:input>
@@ -7080,6 +6967,33 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Role_Menu">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Role_Menu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FETCH_Saved_Role_MENU_Rights">
+      <soap:operation soapAction="http://tempuri.org/FETCH_Saved_Role_MENU_Rights" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_RoleMenuRights">
+      <soap:operation soapAction="http://tempuri.org/Insert_RoleMenuRights" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7818,33 +7732,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Purchase_List" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Purchase">
-      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Purchase" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Purchase">
-      <soap:operation soapAction="http://tempuri.org/Crud_Inv_Purchase" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8608,18 +8495,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Role_Menu">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Role_Menu" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Purchase_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Delete_Inv_Purchase">
       <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Purchase" style="document" />
       <wsdl:input>
@@ -8629,8 +8516,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_RoleMenuRights">
-      <soap:operation soapAction="http://tempuri.org/Insert_RoleMenuRights" style="document" />
+    <wsdl:operation name="Crud_Inv_Purchase">
+      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Purchase" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -8856,6 +8743,33 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Role_Menu">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Role_Menu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FETCH_Saved_Role_MENU_Rights">
+      <soap12:operation soapAction="http://tempuri.org/FETCH_Saved_Role_MENU_Rights" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_RoleMenuRights">
+      <soap12:operation soapAction="http://tempuri.org/Insert_RoleMenuRights" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9594,33 +9508,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Purchase_List">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Purchase_List" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Purchase">
-      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Purchase" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Crud_Inv_Purchase">
-      <soap12:operation soapAction="http://tempuri.org/Crud_Inv_Purchase" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10377,33 +10264,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Assigned_Role">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Assigned_Role" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Role_Menu">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Role_Menu" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FETCH_Saved_Role_MENU_Rights">
-      <soap12:operation soapAction="http://tempuri.org/FETCH_Saved_Role_MENU_Rights" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Insert_RoleMenuRights">
-      <soap12:operation soapAction="http://tempuri.org/Insert_RoleMenuRights" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
