@@ -58,7 +58,7 @@
                 }
             }, cb);
 
-            var IsPostBack2 = $('#hdn_IsPostBack').val();
+            var IsPostBack2 = $('#hdn_IsPostBack').val(); 
 
             if (IsPostBack2 == "no") {
                 cb(start, end, '');
