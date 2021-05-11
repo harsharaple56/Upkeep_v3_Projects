@@ -38,6 +38,9 @@
                 $('#start_date').val(start.format('DD/MM/YYYY'));
                 $('#end_date').val(end.format('DD/MM/YYYY'));
                 $('#date_range_title').val(title + range);
+
+                //call button click here
+                $("#btnSearchDashboard").click();
             }
 
             picker.daterangepicker({
@@ -95,6 +98,9 @@
                             <i class="la la-angle-down"></i>
                         </a>
                     </span>
+
+                    <asp:Button ID="btnSearchDashboard" runat="server" OnClick="btnSearchDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
+
                 </div>
                 <div>
                     <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">

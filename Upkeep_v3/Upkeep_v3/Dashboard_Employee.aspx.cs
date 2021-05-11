@@ -93,7 +93,6 @@ namespace Upkeep_v3
             }
 
 
-
             DataSet ds = new DataSet();
             try
             {
@@ -128,7 +127,6 @@ namespace Upkeep_v3
                         lbl_GP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]);
                         
                     }
-
                 }
 
             }
@@ -138,6 +136,9 @@ namespace Upkeep_v3
             }
         }
 
-
+        protected void btnSearchDashboard_Click(object sender, EventArgs e)
+        {
+            Dashboard_Details();
+        }
     }
 }

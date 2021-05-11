@@ -114,7 +114,6 @@ namespace Upkeep_v3
                         {
                             btnPunchOut.Attributes.Add("style", "display:none;");
                         }
-
                     }
                 }
             }
@@ -123,5 +122,13 @@ namespace Upkeep_v3
                 throw ex;
             }
         }
+
+        protected void btnSearchDashboard_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+
     }
 }

@@ -58,6 +58,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.HiddenField hdnCompanyID;
         
         /// <summary>
+        /// btnSearchDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchDashboard;
+        
+        /// <summary>
         /// btn_Employee_Dashboard control.
         /// </summary>
         /// <remarks>
