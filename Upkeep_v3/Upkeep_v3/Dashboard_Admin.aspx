@@ -7,64 +7,67 @@
 
         <script>
 
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $('.m_selectpicker').selectpicker();
-            //alert('1111');
-            var picker = $('#daterangepicker');
-            var start = moment().subtract(29, 'days');
-            var end = moment();
+                $('.m_selectpicker').selectpicker();
+                //alert('1111');
+                var picker = $('#daterangepicker');
+                var start = moment().subtract(29, 'days');
+                var end = moment();
 
-            function cb(start, end, label) {
-                var title = '';
-                var range = '';
+                function cb(start, end, label) {
+                    var title = '';
+                    var range = '';
 
-                if ((end - start) < 100 || label == 'Today') {
-                    title = 'Today:';
-                    range = start.format('MMM D');
-                } else if (label == 'Yesterday') {
-                    title = 'Yesterday:';
-                    range = start.format('MMM D');
-                } else {
-                    range = start.format('MMM D') + ' - ' + end.format('MMM D');
+                    if ((end - start) < 100 || label == 'Today') {
+                        title = 'Today:';
+                        range = start.format('MMM D');
+                    } else if (label == 'Yesterday') {
+                        title = 'Yesterday:';
+                        range = start.format('MMM D');
+                    } else {
+                        range = start.format('MMM D') + ' - ' + end.format('MMM D');
+                    }
+
+                    picker.find('.m-subheader__daterange-date').html(range);
+                    picker.find('.m-subheader__daterange-title').html(title);
+
+                    $('#start_date').val(start.format('DD/MM/YYYY'));
+                    $('#end_date').val(end.format('DD/MM/YYYY'));
+                    $('#date_range_title').val(title + range);
+
+                    //call button click here
+                    $("#btnDashboard").click();
                 }
 
-                picker.find('.m-subheader__daterange-date').html(range);
-                picker.find('.m-subheader__daterange-title').html(title);
+                picker.daterangepicker({
+                    direction: mUtil.isRTL(),
+                    startDate: start,
+                    endDate: end,
+                    opens: 'left',
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, cb);
 
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
-                $('#date_range_title').val(title + range);
-            }
+                var IsPostBack2 = $('#hdn_IsPostBack').val();
 
-            picker.daterangepicker({
-                direction: mUtil.isRTL(),
-                startDate: start,
-                endDate: end,
-                opens: 'left',
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                if (IsPostBack2 == "no") {
+                    cb(start, end, '');
                 }
-            }, cb);
+                else {
 
-            var IsPostBack2 = $('#hdn_IsPostBack').val();
-
-            if (IsPostBack2 == "no") {
-                cb(start, end, '');
-            }
-            else {
-
-                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
-            }
+                    picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
+                }
 
 
 
-        });
+            });
 
     </script>
 
@@ -95,7 +98,7 @@
                             <i class="la la-angle-down"></i>
                         </a>
                     </span>
-                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" CssClass="btn btn-sm btn-brand" />
+                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
                     
                 </div>
                 <div>
@@ -747,30 +750,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                         <asp:Repeater ID="rptFeedbackDetails" runat="server">
+                                            <ItemTemplate>
                                         <tr>
-                                            <th>Mall Experience Feedback</th>
-                                            <td style="font-weight: 450;">34
+                                            <th><%#Eval("Event_Name")%></th>
+                                            <td style="font-weight: 450;"><%#Eval("TotalFeedbacks")%>
                                                 <div class="progress">
                                                     <div class="progress-bar bg-focus" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-                                            <td style="font-weight: 450;">31 (41%)
+                                            <td style="font-weight: 450;"><%#Eval("TotalPositve")%> (<%#Eval("PositivePercent")%>%)
                                                 <div class="progress">
                                                     <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td >
-                                            <td style="font-weight: 450;">34 (30%)
+                                            <td style="font-weight: 450;"><%#Eval("TotalNegative")%> (<%#Eval("NegativePercent")%>%)
                                                 <div class="progress">
                                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-                                            <td style="font-weight: 450;">34 (30%)
+                                            <td style="font-weight: 450;"><%#Eval("TotalNeutral")%> (<%#Eval("NeutralPercent")%>%)
                                                 <div class="progress">
                                                     <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
+ </ItemTemplate>
+                                        </asp:Repeater>
+
+                                        <%--<tr>
                                             <th>Mall Experience Feedback FeedbackFeedback</th>
                                             <td>34
                                                 <div class="progress">
@@ -815,7 +824,11 @@
                                                     <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr>--%>
+
+
+
+
                                     </tbody>
                                 </table>
                             </div>

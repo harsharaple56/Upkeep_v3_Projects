@@ -43,8 +43,8 @@ namespace Upkeep_v3
                 hdn_IsPostBack.Value = "no";
 
                 Dashboard_Details();
-               // Bind_Feedback_Data();
-
+                // Bind_Feedback_Data();
+                Bind_Feedback_GraphData();
 
                 //DataSet ds = new DataSet();
                 //try
@@ -67,7 +67,7 @@ namespace Upkeep_v3
                 //            }
                 //        }
                 //    }
-                    
+
                 //}
                 //catch
                 //{
@@ -250,10 +250,88 @@ namespace Upkeep_v3
             }
         }
 
+        public void Bind_Feedback_GraphData()
+        {
+            DataSet ds_Feedback = new DataSet();
+            string data = "";
+            string Fromdate = string.Empty;
+            string Todate = string.Empty;
+
+            if (start_date.Value != "")
+            {
+                Fromdate = Convert.ToString(start_date.Value);
+            }
+            else
+            {
+                DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
+                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+
+                //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            if (end_date.Value != "")
+            {
+                Todate = Convert.ToString(end_date.Value);
+            }
+            else
+            {
+                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                Todate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+
+
+            try
+            {
+                ds_Feedback = ObjUpkeep.Get_ChartData(Fromdate, Todate, CompanyID);
+
+                if (ds_Feedback.Tables.Count > 0)
+                {
+                    if (ds_Feedback.Tables[0].Rows.Count > 0)
+                    {
+                        rptFeedbackDetails.DataSource = ds_Feedback.Tables[0];
+                        rptFeedbackDetails.DataBind();
+
+                        //int count = Convert.ToInt32(ds_Feedback.Tables[0].Rows.Count);
+
+                        //for (int i = 0; i < count; i++)
+                        //{
+                        //    int Event_ID = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["Event_ID"]);
+                        //    string Event_Name = Convert.ToString(ds_Feedback.Tables[0].Rows[i]["Event_Name"]);
+                        //    int TotalFeedbacks = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["TotalFeedbacks"]);
+                        //    int TotalPositive = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["TotalPositve"]);
+                        //    decimal PositivePercent = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["PositivePercent"]);
+                        //    int TotalNeutral = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["TotalNeutral"]);
+                        //    decimal NeutralPercent = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["NeutralPercent"]);
+                        //    int TotalNegative = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["TotalNegative"]);
+                        //    decimal NegativePercent = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["NegativePercent"]);
+
+                        //}
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         protected void btnDashboard_Click(object sender, EventArgs e)
         {
             Dashboard_Details();
             //Bind_Feedback_Data();
+            Bind_Feedback_GraphData();
         }
 
 
