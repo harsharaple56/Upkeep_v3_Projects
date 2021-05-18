@@ -69,6 +69,33 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet Fetch_Dashboard_Retailer(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Dashboard_Employee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Fromdate", Fromdate);
+                cmd.Parameters.AddWithValue("@ToDate", ToDate);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
 
         public DataSet Fetch_License_Module_list(string Module_ID_String, string StrConn)

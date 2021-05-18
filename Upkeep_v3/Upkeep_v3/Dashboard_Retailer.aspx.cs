@@ -38,6 +38,7 @@ namespace Upkeep_v3
                 if (Convert.ToString(Session["UserType"]) == "R")
                 {
                     Fetch_Retailer_Latest_Punch();
+                    Dashboard_Details();
                 }
             }
         }
@@ -122,6 +123,74 @@ namespace Upkeep_v3
                 throw ex;
             }
         }
+
+        public void Dashboard_Details()
+        {
+            string Fromdate = string.Empty;
+            string ToDate = string.Empty;
+
+
+            if (start_date.Value != "")
+            {
+                Fromdate = Convert.ToString(start_date.Value);
+            }
+            else
+            {
+                DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
+                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+
+                //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            if (end_date.Value != "")
+            {
+                ToDate = Convert.ToString(end_date.Value);
+            }
+            else
+            {
+                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = ObjUpkeep.Fetch_Dashboard_Retailer(CompanyID, LoggedInUserID, Fromdate, ToDate);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        lbl_tkt_Pending_Close.Text = Convert.ToString(ds.Tables[0].Rows[0]["Pending_Closure_Tickets_Total"]);
+                        lbl_Tkt_Total_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Total_Raised"]);
+                        lbl_Tkt_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Open_Tickets"]);
+                        lbl_tkt_Open_Accepted_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Open_Accepted_Tickets"]);
+                        lbl_tkt_Closed_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Closed_Tickets"]);
+
+                        lbl_WP_Pending_Approvals.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Pending_Approvals"]);
+                        lbl_WP_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Open"]);
+                        lbl_WP_InProgress_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_InProgress"]);
+                        lbl_WP_OnHold_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Hold"]);
+                        lbl_WP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Approved"]);
+
+                        lbl_GP_Pending_Approval.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Pending_Approvals"]);
+                        lbl_GP_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Open"]);
+                        lbl_GP_InProgress.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]);
+                        lbl_GP_OnHold.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]);
+                        lbl_GP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         protected void btnSearchDashboard_Click(object sender, EventArgs e)
         {

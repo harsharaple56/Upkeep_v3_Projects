@@ -205,7 +205,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title " style="padding: 7px 740px 7px 0;">Dashboard</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 735px 7px 0;">Dashboard</h3>
 
                     <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
@@ -260,8 +260,8 @@
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
 
-                                        <asp:Label ID="Label2" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
-                                            18
+                                        <asp:Label ID="lbl_tkt_Pending_Close" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
+                                            0
                                         </asp:Label>
                                         <span class="m-widget19__comment">Tickets
                                         </span>
@@ -293,7 +293,7 @@
 
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="Label3" runat="server" class="m-widget1__number m--font-danger">17,800</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Total_User" runat="server" class="m-widget1__number m--font-danger">0</asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@
                                             <span class="m-widget1__desc">No. of tickets raised but no Action is taken yet</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="Label4" runat="server" class="m-widget1__number m--font-success">1,800</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Open_User" runat="server" class="m-widget1__number m--font-success">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -330,7 +330,7 @@
                                             <span class="m-widget1__desc">No. of tickets where Users accepted your ticket for Closure</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="Label5" runat="server" class="m-widget1__number m--font-warning">1,800</asp:Label>
+                                            <asp:Label ID="lbl_tkt_Open_Accepted_User" runat="server" class="m-widget1__number m--font-warning">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -346,7 +346,7 @@
                                             <span class="m-widget1__desc">No. of Tickets Closed which are raised by You</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="Label6" runat="server" class="m-widget1__number m--font-info">1,800</asp:Label>
+                                            <asp:Label ID="lbl_tkt_Closed_User" runat="server" class="m-widget1__number m--font-info">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -385,7 +385,7 @@
                                     <div class="m-widget19__stats" style="line-height: 1;">
 
                                         <asp:Label ID="lbl_WP_Pending_Approvals" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
-                                            18
+                                            0
                                         </asp:Label>
                                         <span class="m-widget19__comment">Work Permits
                                         </span>
@@ -417,7 +417,7 @@
 
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_WP_Open_User" runat="server" class="m-widget1__number m--font-danger">17,800</asp:Label>
+                                            <asp:Label ID="lbl_WP_Open_User" runat="server" class="m-widget1__number m--font-danger">0</asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -432,7 +432,7 @@
                                             <span class="m-widget1__desc">Your Permit requests, under approval</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_WP_InProgress_User" runat="server" class="m-widget1__number m--font-success">1,800</asp:Label>
+                                            <asp:Label ID="lbl_WP_InProgress_User" runat="server" class="m-widget1__number m--font-success">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -448,7 +448,7 @@
                                             <span class="m-widget1__desc">Your Permit requests, under Hold</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_WP_OnHold_User" runat="server" class="m-widget1__number m--font-warning">1,800</asp:Label>
+                                            <asp:Label ID="lbl_WP_OnHold_User" runat="server" class="m-widget1__number m--font-warning">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -464,7 +464,7 @@
                                             <span class="m-widget1__desc">Your Permit requests, Approved</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_WP_Approved_User" runat="server" class="m-widget1__number m--font-info">1,800</asp:Label>
+                                            <asp:Label ID="lbl_WP_Approved_User" runat="server" class="m-widget1__number m--font-info">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -501,7 +501,7 @@
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
                                         <asp:Label ID="lbl_GP_Pending_Approval" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
-                                            18
+                                            0
                                         </asp:Label>
                                         <span class="m-widget19__comment">Gate Passes
                                         </span>
@@ -533,7 +533,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <asp:Label ID="lbl_GP_Open_User" runat="server" class="m-widget1__number m--font-danger">
-                                                17,800
+                                                0
                                             </asp:Label>
                                         </div>
                                     </div>
@@ -550,7 +550,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <asp:Label ID="lbl_GP_InProgress" runat="server" class="m-widget1__number m--font-success">
-                                                1,800
+                                                0
                                             </asp:Label>
                                         </div>
                                     </div>
@@ -567,7 +567,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <asp:Label ID="lbl_GP_OnHold" runat="server" class="m-widget1__number m--font-warning">
-                                                1,800
+                                                0
                                             </asp:Label>
                                         </div>
                                     </div>
@@ -584,7 +584,7 @@
                                         </div>
                                         <div class="col m--align-right">
                                             <asp:Label ID="lbl_GP_Approved_User" runat="server" class="m-widget1__number m--font-info">
-                                                1,800
+                                                0
                                             </asp:Label>
                                         </div>
                                     </div>

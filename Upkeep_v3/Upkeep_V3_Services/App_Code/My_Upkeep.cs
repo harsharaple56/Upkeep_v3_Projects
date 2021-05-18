@@ -60,6 +60,23 @@ public class My_Upkeep
     }
 
 
+    public DataSet Fetch_Dashboard_Retailer(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.Fetch_Dashboard_Retailer(CompanyID, LoggedInUserID, Fromdate, ToDate, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
     public DataSet Fetch_License_Module_list(string Module_ID_String)
     {
         try

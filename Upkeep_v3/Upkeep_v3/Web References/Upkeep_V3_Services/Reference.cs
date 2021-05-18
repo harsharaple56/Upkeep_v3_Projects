@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_Inv_Item_Stock_DataOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Inv_Item_Purchase_ListOperationCompleted;
         
         private System.Threading.SendOrPostCallback Delete_Inv_PurchaseOperationCompleted;
@@ -85,6 +87,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_CityOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Assigned_RoleOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Role_MenuOperationCompleted;
         
@@ -254,13 +258,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Inv_Crud_Item_StockOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_Inv_Item_Stock_DataOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_AdminOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_EmployeeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Dashboard_RetailerOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_License_Module_listOperationCompleted;
         
@@ -422,8 +426,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback RoleMaster_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_Assigned_RoleOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -461,6 +463,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_Inv_Item_Stock_DataCompletedEventHandler Fetch_Inv_Item_Stock_DataCompleted;
         
         /// <remarks/>
         public event Fetch_Inv_Item_Purchase_ListCompletedEventHandler Fetch_Inv_Item_Purchase_ListCompleted;
@@ -545,6 +550,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Assigned_RoleCompletedEventHandler Fetch_Assigned_RoleCompleted;
         
         /// <remarks/>
         public event Fetch_Role_MenuCompletedEventHandler Fetch_Role_MenuCompleted;
@@ -799,9 +807,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_Inv_Crud_Item_StockCompletedEventHandler Fetch_Inv_Crud_Item_StockCompleted;
         
         /// <remarks/>
-        public event Fetch_Inv_Item_Stock_DataCompletedEventHandler Fetch_Inv_Item_Stock_DataCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -809,6 +814,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Dashboard_EmployeeCompletedEventHandler Fetch_Dashboard_EmployeeCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Dashboard_RetailerCompletedEventHandler Fetch_Dashboard_RetailerCompleted;
         
         /// <remarks/>
         public event Fetch_License_Module_listCompletedEventHandler Fetch_License_Module_listCompleted;
@@ -1051,7 +1059,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event RoleMaster_CRUDCompletedEventHandler RoleMaster_CRUDCompleted;
         
         /// <remarks/>
-        public event Fetch_Assigned_RoleCompletedEventHandler Fetch_Assigned_RoleCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Stock_Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Inv_Item_Stock_Data(string LoggedInUserID, string CompanyID, string StockID) {
+            object[] results = this.Invoke("Fetch_Inv_Item_Stock_Data", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Item_Stock_DataAsync(string LoggedInUserID, string CompanyID, string StockID) {
+            this.Fetch_Inv_Item_Stock_DataAsync(LoggedInUserID, CompanyID, StockID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Item_Stock_DataAsync(string LoggedInUserID, string CompanyID, string StockID, object userState) {
+            if ((this.Fetch_Inv_Item_Stock_DataOperationCompleted == null)) {
+                this.Fetch_Inv_Item_Stock_DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Item_Stock_DataOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Inv_Item_Stock_Data", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID}, this.Fetch_Inv_Item_Stock_DataOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Inv_Item_Stock_DataOperationCompleted(object arg) {
+            if ((this.Fetch_Inv_Item_Stock_DataCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Inv_Item_Stock_DataCompleted(this, new Fetch_Inv_Item_Stock_DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Purchase_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2052,6 +2090,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Assigned_Role", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Assigned_Role(int RoleID) {
+            object[] results = this.Invoke("Fetch_Assigned_Role", new object[] {
+                        RoleID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Assigned_RoleAsync(int RoleID) {
+            this.Fetch_Assigned_RoleAsync(RoleID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Assigned_RoleAsync(int RoleID, object userState) {
+            if ((this.Fetch_Assigned_RoleOperationCompleted == null)) {
+                this.Fetch_Assigned_RoleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Assigned_RoleOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Assigned_Role", new object[] {
+                        RoleID}, this.Fetch_Assigned_RoleOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Assigned_RoleOperationCompleted(object arg) {
+            if ((this.Fetch_Assigned_RoleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Assigned_RoleCompleted(this, new Fetch_Assigned_RoleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4944,39 +5011,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Stock_Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Inv_Item_Stock_Data(string LoggedInUserID, string CompanyID, string StockID) {
-            object[] results = this.Invoke("Fetch_Inv_Item_Stock_Data", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Item_Stock_DataAsync(string LoggedInUserID, string CompanyID, string StockID) {
-            this.Fetch_Inv_Item_Stock_DataAsync(LoggedInUserID, CompanyID, StockID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Item_Stock_DataAsync(string LoggedInUserID, string CompanyID, string StockID, object userState) {
-            if ((this.Fetch_Inv_Item_Stock_DataOperationCompleted == null)) {
-                this.Fetch_Inv_Item_Stock_DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Item_Stock_DataOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Inv_Item_Stock_Data", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID}, this.Fetch_Inv_Item_Stock_DataOperationCompleted, userState);
-        }
-        
-        private void OnFetch_Inv_Item_Stock_DataOperationCompleted(object arg) {
-            if ((this.Fetch_Inv_Item_Stock_DataCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Inv_Item_Stock_DataCompleted(this, new Fetch_Inv_Item_Stock_DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -5070,6 +5104,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Dashboard_EmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Dashboard_EmployeeCompleted(this, new Fetch_Dashboard_EmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Dashboard_Retailer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Dashboard_Retailer(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
+            object[] results = this.Invoke("Fetch_Dashboard_Retailer", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        Fromdate,
+                        ToDate});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Dashboard_RetailerAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
+            this.Fetch_Dashboard_RetailerAsync(CompanyID, LoggedInUserID, Fromdate, ToDate, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Dashboard_RetailerAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, object userState) {
+            if ((this.Fetch_Dashboard_RetailerOperationCompleted == null)) {
+                this.Fetch_Dashboard_RetailerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Dashboard_RetailerOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Dashboard_Retailer", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        Fromdate,
+                        ToDate}, this.Fetch_Dashboard_RetailerOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Dashboard_RetailerOperationCompleted(object arg) {
+            if ((this.Fetch_Dashboard_RetailerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Dashboard_RetailerCompleted(this, new Fetch_Dashboard_RetailerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8156,35 +8225,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Assigned_Role", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Assigned_Role(int RoleID) {
-            object[] results = this.Invoke("Fetch_Assigned_Role", new object[] {
-                        RoleID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_Assigned_RoleAsync(int RoleID) {
-            this.Fetch_Assigned_RoleAsync(RoleID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_Assigned_RoleAsync(int RoleID, object userState) {
-            if ((this.Fetch_Assigned_RoleOperationCompleted == null)) {
-                this.Fetch_Assigned_RoleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Assigned_RoleOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Assigned_Role", new object[] {
-                        RoleID}, this.Fetch_Assigned_RoleOperationCompleted, userState);
-        }
-        
-        private void OnFetch_Assigned_RoleOperationCompleted(object arg) {
-            if ((this.Fetch_Assigned_RoleCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Assigned_RoleCompleted(this, new Fetch_Assigned_RoleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -8200,6 +8240,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Inv_Item_Stock_DataCompletedEventHandler(object sender, Fetch_Inv_Item_Stock_DataCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Inv_Item_Stock_DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Inv_Item_Stock_DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -8918,6 +8984,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Assigned_RoleCompletedEventHandler(object sender, Fetch_Assigned_RoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -11117,32 +11209,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_Inv_Item_Stock_DataCompletedEventHandler(object sender, Fetch_Inv_Item_Stock_DataCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Inv_Item_Stock_DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Inv_Item_Stock_DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -11206,6 +11272,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Dashboard_EmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Dashboard_RetailerCompletedEventHandler(object sender, Fetch_Dashboard_RetailerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Dashboard_RetailerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Dashboard_RetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13286,32 +13378,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal RoleMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_Assigned_RoleCompletedEventHandler(object sender, Fetch_Assigned_RoleCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Assigned_RoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Assigned_RoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

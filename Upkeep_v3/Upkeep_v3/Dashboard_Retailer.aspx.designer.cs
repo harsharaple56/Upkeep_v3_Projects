@@ -112,49 +112,49 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Button btnSearchDashboard;
         
         /// <summary>
-        /// Label2 control.
+        /// lbl_tkt_Pending_Close control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbl_tkt_Pending_Close;
         
         /// <summary>
-        /// Label3 control.
+        /// lbl_Tkt_Total_User control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Total_User;
         
         /// <summary>
-        /// Label4 control.
+        /// lbl_Tkt_Open_User control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Open_User;
         
         /// <summary>
-        /// Label5 control.
+        /// lbl_tkt_Open_Accepted_User control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lbl_tkt_Open_Accepted_User;
         
         /// <summary>
-        /// Label6 control.
+        /// lbl_tkt_Closed_User control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lbl_tkt_Closed_User;
         
         /// <summary>
         /// lbl_WP_Pending_Approvals control.
