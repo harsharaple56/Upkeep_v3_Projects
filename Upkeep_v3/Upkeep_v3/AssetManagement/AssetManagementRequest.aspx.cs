@@ -30,6 +30,7 @@ namespace Upkeep_v3.AssetManagement
             {
                 TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                 ViewState["TransactionID"] = TransactionID;
+                
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -869,7 +870,7 @@ namespace Upkeep_v3.AssetManagement
                             ddlAssetType.DataTextField = "Asset_Type_Desc";
                             ddlAssetType.DataValueField = "Asset_Type_ID";
                             ddlAssetType.DataBind();
-                            ddlAssetType.Items.Insert(0, new ListItem("--Select--", "0"));
+                            ddlAssetType.Items.Insert(0, new ListItem("--Select Asset Type--", "0"));
 
 
                             ddlModalAssetType.DataSource = dsTitle.Tables[0];
@@ -885,6 +886,7 @@ namespace Upkeep_v3.AssetManagement
                     {
                         if (dsTitle.Tables[1].Rows.Count > 0)
                         {
+
                             ddlAssetCategory.DataSource = dsTitle.Tables[1];
                             ddlAssetCategory.DataTextField = "Category_Desc";
                             ddlAssetCategory.DataValueField = "Asset_Category_ID";
@@ -1072,6 +1074,7 @@ namespace Upkeep_v3.AssetManagement
                         txtAlertDays.Attributes.Add("style", "width: 150px");
                         txtAlertDays.Attributes.Add("ID", "" + sCellId + "3" + "");
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[3].Controls.Add(txtAlertDays);
+
 
 
                         this.TblLevels.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());

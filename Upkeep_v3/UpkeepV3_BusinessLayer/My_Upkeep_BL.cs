@@ -77,7 +77,7 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlConnection con = new SqlConnection(StrConn);
 
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Dashboard_Employee", con);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Dashboard_Retailer", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);

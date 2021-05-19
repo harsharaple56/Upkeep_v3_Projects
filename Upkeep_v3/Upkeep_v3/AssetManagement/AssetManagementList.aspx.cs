@@ -106,8 +106,7 @@ namespace Upkeep_v3.AssetManagement
                                 //"<td>" + Asset_Make + "</td>" +
                                 "<td>" + Asset_Serial_No + "</td>" +
                                 "<td>" + Asset_Type + "</td>" +
-                                "<td>" + Asset_Category + "</td>" +
-                                "<td>" + Vendor + "</td>" +
+                                "<td>" + Asset_Category + "</td>"+ 
                                 "<td>" + Department + "</td>" +
                                 "<td>" + Location + "</td>" +
                                 //"<td>" + Asset_Cost + "</td>" +
