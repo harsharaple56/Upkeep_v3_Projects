@@ -128,7 +128,7 @@ namespace Upkeep_v3.Feedback
                             if (UserType == "R")
                             {
 
-                                data = "<tr> <th>Store Name</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr> <th>Store Name</th><th>Store No.</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
                             }
                             else
                             {
@@ -225,6 +225,7 @@ namespace Upkeep_v3.Feedback
                 string Gender = string.Empty;
                 string Answer = string.Empty;
                 string StoreName = string.Empty;
+                string StoreNo = string.Empty;
                 string UserName = string.Empty;
                 string FeedbackTakenDate = string.Empty;
                 DateTime FeedbackDate;
@@ -252,6 +253,7 @@ namespace Upkeep_v3.Feedback
                                 {
 
                                     StoreName = Convert.ToString(ds.Tables[0].Rows[i]["Store_name"]);
+                                    StoreNo = Convert.ToString(ds.Tables[0].Rows[i]["Store_no"]);
                                     Name = Convert.ToString(ds.Tables[0].Rows[i]["Manager_Name"]);
                                     EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
                                     MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["PhoneNo"]);
@@ -259,7 +261,7 @@ namespace Upkeep_v3.Feedback
                                     //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td>" + StoreName + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 

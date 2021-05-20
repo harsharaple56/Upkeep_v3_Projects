@@ -38,6 +38,7 @@ namespace Upkeep_v3.General_Masters
                 {
                     Session["RetailerID"] = Convert.ToString(RetailerID);
                     bindRetailer(RetailerID);
+                    this.Bind_Retailer_Escalation_Grid();
                 }
 
                 if (RetailerID_Delete>0)
@@ -216,6 +217,192 @@ namespace Upkeep_v3.General_Masters
             }
         }
 
-       
+
+        private void Bind_Retailer_Escalation_Grid()
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                dsProfile = ObjUpkeepFeedback.Retailer_Escalation_CRUD(0, "", "", "", "", "", LoggedInUserID, CompanyID, "R");
+
+                if (dsProfile.Tables.Count > 0)
+                {
+                    if (dsProfile.Tables[0].Rows.Count > 0)
+                    {
+                        gvEscalation.DataSource = dsProfile.Tables[0];
+                        gvEscalation.DataBind();
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        protected void gvEscalation_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != gvEscalation.EditIndex)
+            {
+                (e.Row.Cells[6].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
+            }
+        }
+
+        protected void gvEscalation_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvEscalation.EditIndex = e.NewEditIndex;
+            this.Bind_Retailer_Escalation_Grid();
+        }
+
+        protected void gvEscalation_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvEscalation.EditIndex = -1;
+            this.Bind_Retailer_Escalation_Grid();
+        }
+
+        protected void gvEscalation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvEscalation.PageIndex = e.NewPageIndex;
+            this.Bind_Retailer_Escalation_Grid();
+        }
+
+        protected void gvEscalation_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            DataSet dsEscalation = new DataSet();
+            try
+            {
+                string Name = string.Empty;
+                string Designation = string.Empty;
+                string Department = string.Empty;
+                string ContactNo = string.Empty;
+                string EmailID = string.Empty;
+                int EscalationID = 0;
+
+                GridViewRow row = gvEscalation.Rows[e.RowIndex];
+                EscalationID = Convert.ToInt32(gvEscalation.DataKeys[e.RowIndex].Values[0]);
+
+                Name = Convert.ToString((row.FindControl("txtName") as TextBox).Text);
+                Designation = Convert.ToString((row.FindControl("txtDesignation") as TextBox).Text);
+                Department = Convert.ToString((row.FindControl("txtDepartment") as TextBox).Text);
+                ContactNo = Convert.ToString((row.FindControl("txtContactNo_Esc") as TextBox).Text);
+                EmailID = Convert.ToString((row.FindControl("txtEmailID_Esc") as TextBox).Text);
+
+
+                dsEscalation = ObjUpkeepFeedback.Retailer_Escalation_CRUD(EscalationID, Name, Designation, Department, ContactNo, EmailID, LoggedInUserID, CompanyID, "U");
+                if (dsEscalation.Tables.Count > 0)
+                {
+                    if (dsEscalation.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsEscalation.Tables[0].Rows[0]["Status"]);
+
+                        if (Status == 1)
+                        {
+                            gvEscalation.EditIndex = -1;
+                            this.Bind_Retailer_Escalation_Grid();
+                        }
+                        else if (Status == 2)
+                        {
+                            lblEscalationError.Text = "User already exists";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void gvEscalation_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DataSet dsEscalation = new DataSet();
+            try
+            {
+                int EscalationID = 0;
+
+                GridViewRow row = gvEscalation.Rows[e.RowIndex];
+                EscalationID = Convert.ToInt32(gvEscalation.DataKeys[e.RowIndex].Values[0]);
+
+                dsEscalation = ObjUpkeepFeedback.Retailer_Escalation_CRUD(EscalationID, "", "", "", "", "", LoggedInUserID, CompanyID, "D");
+                if (dsEscalation.Tables.Count > 0)
+                {
+                    if (dsEscalation.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsEscalation.Tables[0].Rows[0]["Status"]);
+
+                        if (Status == 1)
+                        {
+                            this.Bind_Retailer_Escalation_Grid();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnAddEscalation_Click(object sender, EventArgs e)
+        {
+
+            DataSet dsEscalation = new DataSet();
+            try
+            {
+                string Name = string.Empty;
+                string Designation = string.Empty;
+                string Department = string.Empty;
+                string ContactNo = string.Empty;
+                string EmailID = string.Empty;
+                int EscalationID = 0;
+
+                Name = Convert.ToString(txtAddName.Text.Trim());
+                Designation = Convert.ToString(txtAddDesignation.Text.Trim());
+                Department = Convert.ToString(txtAddDepartment.Text.Trim());
+                ContactNo = Convert.ToString(txtAddContactNo.Text.Trim());
+                EmailID = Convert.ToString(txtAddEmailID.Text.Trim());
+
+
+                dsEscalation = ObjUpkeepFeedback.Retailer_Escalation_CRUD(EscalationID, Name, Designation, Department, ContactNo, EmailID, LoggedInUserID, CompanyID, "C");
+                if (dsEscalation.Tables.Count > 0)
+                {
+                    if (dsEscalation.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsEscalation.Tables[0].Rows[0]["Status"]);
+
+                        if (Status == 1)
+                        {
+                            this.Bind_Retailer_Escalation_Grid();
+                            //lblChangePasswordSuccess.Text = "Data saved successfully.";
+                            //mpeChangePassword.Hide();
+                        }
+                        else if (Status == 2)
+                        {
+                            lblEscalationError.Text = "User already exists";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+
     }
 }

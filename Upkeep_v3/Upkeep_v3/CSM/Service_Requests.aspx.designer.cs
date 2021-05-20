@@ -11,7 +11,7 @@ namespace Upkeep_v3.CSM
 {
 
 
-    public partial class Service_Reports
+    public partial class Service_Requests
     {
     }
 }

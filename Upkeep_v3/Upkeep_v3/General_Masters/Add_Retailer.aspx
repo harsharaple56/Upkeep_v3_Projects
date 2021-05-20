@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Add_Retailer.aspx.cs" Inherits="Upkeep_v3.General_Masters.Add_Retailer" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,6 +45,8 @@
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+
         <div class="row">
             <div class="col-lg-12">
 
@@ -82,7 +86,7 @@
                     <!--begin: Form Body -->
                     <div class="m-portlet__body">
                         <div class="row">
-                            <div class="col-xl-8 offset-xl-2">
+                            <div class="col-xl-10 offset-xl-2">
                                 <div class="m-form__section m-form__section--first">
 
                                     <div class="form-group m-form__group row">
@@ -154,7 +158,7 @@
                                         <div class="col-xl-8 col-lg-9">
                                             <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
 
-                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation" 
+                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
                                                 class="form-control" runat="server" clientidmode="Static" />
                                             <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
@@ -192,6 +196,140 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="m-form__section">
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-4">
+                                                <h3 class="m-form__section">Escalation Levels</h3>
+                                            </div>
+                                        </div>
+                                        <div class="question_repeater">
+                                            <div class="form-group  m-form__group row">
+
+                                                <%--Editable grid start--%>
+
+                                                <div id="m_table_1" style="padding: 10px; width: 750px; overflow-x: auto;">
+                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:GridView ID="gvEscalation" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvEscalation_RowDataBound"
+                                                                DataKeyNames="Escalation_ID" OnRowEditing="gvEscalation_RowEditing" OnRowCancelingEdit="gvEscalation_RowCancelingEdit"
+                                                                PageSize="3" AllowPaging="true" OnPageIndexChanging="gvEscalation_PageIndexChanging"
+                                                                OnRowUpdating="gvEscalation_RowUpdating" OnRowDeleting="gvEscalation_RowDeleting" EmptyDataText="No records has been added."
+                                                                HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black" CssClass="">
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Level" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <%--<asp:HiddenField ID="hdnEscalationID" runat="server" Value='<%# Eval("Escalation_ID") %>' />--%>
+                                                                            <asp:Label ID="lblLevel" runat="server" Text='<%# Eval("Escalation_Level") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Name") %>' Width="130"></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Designation" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblDesignation" runat="server" Text='<%# Eval("Designation") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtDesignation" runat="server" Text='<%# Eval("Designation") %>' Width="110"></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField HeaderText="Department" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("R_Dept_Name") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtDepartment" runat="server" Text='<%# Eval("R_Dept_Name") %>' Width="120"></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField HeaderText="Contact No" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblContactNo" runat="server" Text='<%# Eval("Contact") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtContactNo_Esc" runat="server" Text='<%# Eval("Contact") %>' Width="100"></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField HeaderText="EmailID" ItemStyle-Width="150">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblEmailID" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtEmailID_Esc" runat="server" Text='<%# Eval("Email") %>' Width="120"></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" HeaderText="Action"
+                                                                        ItemStyle-Width="150" />
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                            <br />
+                                                            <br />
+
+                                                            <div id="dvGrid1" style="width: 750px">
+                                                                <table border="1" cellpadding="1" cellspacing="1" style="border-collapse: collapse;">
+                                                                    <thead>
+                                                                        <tr style="color: Black; background-color: #F4F3F8;">
+                                                                            <th>Name</th>
+                                                                            <th>Designation</th>
+                                                                            <th>Department</th>
+                                                                            <th>ContactNo</th>
+                                                                            <th>EmailID</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tr>
+                                                                        <td style="width: 140px">
+                                                                            <asp:TextBox ID="txtAddName" runat="server" Width="140" />
+                                                                        </td>
+                                                                        <td style="width: 100px">
+                                                                            <asp:TextBox ID="txtAddDesignation" runat="server" Width="120" />
+                                                                        </td>
+                                                                        <td style="width: 100px">
+                                                                            <asp:TextBox ID="txtAddDepartment" runat="server" Width="120" />
+                                                                        </td>
+                                                                        <td style="width: 100px">
+                                                                            <asp:TextBox ID="txtAddContactNo" runat="server" Width="120" />
+                                                                        </td>
+                                                                        <td style="width: 100px">
+                                                                            <asp:TextBox ID="txtAddEmailID" runat="server" Width="120" />
+                                                                        </td>
+                                                                        <td style="width: 90px; text-align: center;">
+                                                                            <asp:Button ID="btnAddEscalation" runat="server" Text="Add" OnClick="btnAddEscalation_Click" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                </div>
+
+
+                                                <%--Editable grid end--%>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                    <div class="m-form__actions">
+                                        <div class="row">
+                                            <div class="col-2">
+                                            </div>
+                                            <div class="col-7">
+                                                <asp:Label ID="lblEscalationError" runat="server" Text="" Font-Bold="true" ForeColor="Red"></asp:Label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -199,6 +337,7 @@
                 </div>
 
                 <!--end::Portlet-->
+
             </div>
         </div>
     </div>

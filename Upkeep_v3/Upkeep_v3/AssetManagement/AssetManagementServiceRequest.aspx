@@ -134,7 +134,7 @@
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Asset Management Service</h3>
+                                        <h3 class="m-portlet__head-text">Asset Service Schedule</h3>
                                     </div>
                                 </div>
 
@@ -173,11 +173,6 @@
 
                             </div>
                         </div>
-
-
-                        <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
-
-                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
                                 <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
                                     <br />
@@ -342,8 +337,8 @@
                                                 <br />
                                                 <div id="Div16" runat="server" style="display: block;">
                                                     <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> No. of Services :</label>
-                                                        <div class="col-xl-3 col-lg-3">
+                                                        <label class="col-xl-4 col-lg-2 form-control-label"><span style="color: red;">*</span> Enter No. of Service Requests to Schedule :</label>
+                                                        <div class="col-xl-2 col-lg-3">
                                                             <%--<asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>--%>
                                                             <input type="number" min="1" id="txtNoOfService" class="form-control" runat="server" clientidmode="Static" />
                                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ControlToValidate="txtNoOfService" Visible="true"
@@ -352,7 +347,7 @@
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3">
                                                             <asp:Button ID="btnNoOfService" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
-                                                                Text="Submit" OnClick="btnNoOfService_Click" />
+                                                                text="Click here to Schedule" OnClick="btnNoOfService_Click" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -360,13 +355,13 @@
                                                 <br />
                                                 <div id="Div23" runat="server" style="display: block;">
                                                     <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span>Services :</label>
+                                                        <label class="col-xl-12 col-lg-2 form-control-label">Fill in the below Details for each Service Schedule Request :</label>
                                                     </div>
                                                 </div>
 
                                                 <div id="Div19" runat="server" style="display: block;">
                                                     <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <div class="col-xl-10 col-lg-10">
+                                                        <div class="col-xl-12 col-lg-10">
                                                             <%-- class="table table-nomargin"--%>
                                                             <table id="TblLevels" runat="server" border="1" visible="true" clientidmode="Static" width="100%">
                                                                 <thead>
@@ -395,10 +390,8 @@
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                    </div>
+                            </div>
 
                     <!-- SUCCESS PANEL -->
                     <asp:Panel ID="pnlWpReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
