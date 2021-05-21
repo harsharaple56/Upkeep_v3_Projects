@@ -5,7 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="row" style="margin-top: 25px;">
-        <div class="col-lg-12">
+        <div class="col-lg-12
+            ">
 
             <!--begin::Portlet-->
             <div class="m-portlet m-portlet--creative m-portlet--first m-portlet--bordered-semi" style="margin-top: 0rem;">
@@ -18,7 +19,7 @@
                             <h3 class="m-portlet__head-text" style="padding-right: 2.2rem;">Portlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes herePortlet sub title goes here
                             </h3>
                             <h2 class="m-portlet__head-label m-portlet__head-label--danger">
-                                <span>Baggage Parking Service</span>
+                                <span><label id="lbl_Service_Title" runat="server">Baggage Parking Service</label></span>
                             </h2>
                         </div>
                     </div>

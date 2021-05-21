@@ -323,7 +323,7 @@
                                             <h3 class="m-widget1__title">Tickets
                                                 <span style="width: 110px;">
                                                     <span class="m-badge m-badge--info m-badge--dot"></span>
-                                                    <span class="m--font-bold m--font-success">Assigned</span>
+                                                    <span class="m--font-bold m--font-success">Accepted</span>
                                                 </span>
                                                 <span class="m-badge m-badge--danger m-badge--wide">Open</span>
                                             </h3>
