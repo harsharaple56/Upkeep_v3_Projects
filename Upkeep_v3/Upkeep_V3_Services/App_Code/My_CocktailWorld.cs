@@ -152,5 +152,38 @@ public class My_CocktailWorld
     }
 
 
+    public DataSet License(string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.License( LoggedInUserID, Company_ID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact,string City, string Email, string LoggedInUserID, int Company_ID,  string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjcocktailWorld_Master_BL.SupplierMaster_CRUD(Supplier_ID, SupplierName, Code, pincode, Address,Contact,City,Email ,LoggedInUserID, Company_ID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
 }
