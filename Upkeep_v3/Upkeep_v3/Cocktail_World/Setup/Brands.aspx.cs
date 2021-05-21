@@ -208,7 +208,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
 
 
-            int BrandID = 0;
+            int Brand_ID = 0;
             int CategoryID = 0;
             int SubCategoryID = 0;
             int Disable = 0;
@@ -221,13 +221,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
 
-                if (Convert.ToString(Session["BrandID"]) != "")
+                if (Convert.ToString(Session["Brand_ID"]) != "")
                 {
-                    BrandID = Convert.ToInt32(Session["BrandID"]);
+                    Brand_ID = Convert.ToInt32(Session["Brand_ID"]);
                 }
                 string Action = "";
 
-                if (BrandID > 0)
+                if (Brand_ID > 0)
                 {
                     Action = "U";
                 }
@@ -237,7 +237,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 }
 
                 // DepartmentID = Convert.ToInt32(ddlDept.SelectedValue);
+
                 CategoryID = Convert.ToInt32(ddlcategory.SelectedValue);
+                SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
                 PurchaseRatePeg = Convert.ToInt32(txtPurchRatepeg.Text.Trim());
                 SellRatePeg = Convert.ToInt32(txtSellingRatePeg.Text.Trim());
                 SellRateBottle = Convert.ToInt32(txtSellingRateBotle.Text.Trim());
@@ -257,7 +259,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
               //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
 
-               ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, BrandID, CategoryID, 1, brandDesc, Strenght, PurchaseRatePeg ,SellRatePeg,SellRateBottle, Disable, LoggedInUserID, Action);
+               ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg ,SellRatePeg,SellRateBottle, Disable, LoggedInUserID, Action);
 
 
                 //ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, txtCategoryDesc.Text.Trim(), DepartmentID, LoggedInUserID, Action);

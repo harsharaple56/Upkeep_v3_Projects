@@ -201,7 +201,64 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
+        public DataSet License(string LoggedInUserID,int Company_ID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
 
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_License", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+               
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public DataSet SupplierMaster_CRUD(int Supplier_ID,  string SupplierName, string Code, int pincode, string Address, int Contact,string City ,string Email , string LoggedInUserID, int Company_ID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Supplier", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+               
+                cmd.Parameters.AddWithValue("@Supplier_ID", Supplier_ID);
+                cmd.Parameters.AddWithValue("@Supplier_Name", SupplierName);
+                cmd.Parameters.AddWithValue("@Supplier_Code", Code);
+                cmd.Parameters.AddWithValue("@Supplier_PINCODE", pincode);
+                cmd.Parameters.AddWithValue("@Supplier_Address", Address);
+                cmd.Parameters.AddWithValue("@Supplier_Contact", Contact);
+                cmd.Parameters.AddWithValue("@Supplier_City", City);
+                cmd.Parameters.AddWithValue("@Supplier_Email", Email);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
 
     }

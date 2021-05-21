@@ -333,9 +333,13 @@ namespace Upkeep_v3.VMS
                     txtVMSDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
                     if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
-                    { rdbCustomer.Checked = true; }
+                    { rdbCustomer.Checked = true;
+                        rdbVisitor.Checked = false;
+                    }
                     else if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
-                    { rdbVisitor.Checked = true; }
+                    { rdbVisitor.Checked = true;
+                        rdbCustomer.Checked = false;
+                    }
                     ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
                     ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
                     ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();

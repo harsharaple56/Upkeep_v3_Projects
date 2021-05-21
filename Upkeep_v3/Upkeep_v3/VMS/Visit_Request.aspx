@@ -385,7 +385,7 @@ background-color: blanchedalmond;
                                     <label class="col-md-1 col-form-label font-weight-bold">Phone :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Phone no. to receive visit confirmation on yor phone.."></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
                               
