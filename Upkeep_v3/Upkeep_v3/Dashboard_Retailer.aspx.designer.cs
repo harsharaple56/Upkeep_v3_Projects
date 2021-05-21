@@ -10,7 +10,52 @@
 namespace Upkeep_v3 {
     
     
-    public partial class Dashboard_Employee {
+    public partial class Dashboard_Retailer {
+        
+        /// <summary>
+        /// time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel time;
+        
+        /// <summary>
+        /// btnPunchIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnPunchIn;
+        
+        /// <summary>
+        /// lblPunchInTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPunchInTime;
+        
+        /// <summary>
+        /// btnPunchOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnPunchOut;
+        
+        /// <summary>
+        /// lblPunchOutTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPunchOutTime;
         
         /// <summary>
         /// start_date control.
@@ -67,42 +112,6 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Button btnSearchDashboard;
         
         /// <summary>
-        /// btn_Employee_Dashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Employee_Dashboard;
-        
-        /// <summary>
-        /// btn_Admin_Dashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Admin_Dashboard;
-        
-        /// <summary>
-        /// btnTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
-        
-        /// <summary>
-        /// mpeTicketSaveSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeTicketSaveSuccess;
-        
-        /// <summary>
         /// lbl_tkt_Pending_Close control.
         /// </summary>
         /// <remarks>
@@ -112,31 +121,13 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_tkt_Pending_Close;
         
         /// <summary>
-        /// lbl_Tkt_Open_Assigned control.
+        /// lbl_Tkt_Total_User control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Open_Assigned;
-        
-        /// <summary>
-        /// lbl_tkt_Open_Accepted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_tkt_Open_Accepted;
-        
-        /// <summary>
-        /// lbl_Tkt_Parked_Hold control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Parked_Hold;
+        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Total_User;
         
         /// <summary>
         /// lbl_Tkt_Open_User control.
@@ -148,6 +139,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_Tkt_Open_User;
         
         /// <summary>
+        /// lbl_tkt_Open_Accepted_User control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tkt_Open_Accepted_User;
+        
+        /// <summary>
         /// lbl_tkt_Closed_User control.
         /// </summary>
         /// <remarks>
@@ -155,42 +155,6 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_tkt_Closed_User;
-        
-        /// <summary>
-        /// lbl_Tkt_Expired_User control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Tkt_Expired_User;
-        
-        /// <summary>
-        /// lbl_Chk_Open_User control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Chk_Open_User;
-        
-        /// <summary>
-        /// lbl_Chk_Total control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Chk_Total;
-        
-        /// <summary>
-        /// lbl_Chk_Closed_User control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Chk_Closed_User;
         
         /// <summary>
         /// lbl_WP_Pending_Approvals control.
@@ -281,23 +245,5 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_GP_Approved_User;
-        
-        /// <summary>
-        /// pnlDashboardValidation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDashboardValidation;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
     }
 }

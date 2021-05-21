@@ -206,33 +206,39 @@ namespace Upkeep_v3
 
                                 if (AssignedRoleCount > 0)
                                 {
-                                    Session["UserType"] = Convert.ToString(UserType);
-                                    if (UserType == "E")
-                                    {
-                                        Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
-                                        Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
-                                        Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
-                                        Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
-                                        Session["Role_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Role_Name"]);
-                                        Session["User_Dept_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Department_ID"]);
-                                        Session["Company_Logo"] = Convert.ToString(ds.Tables[0].Rows[0]["Company_Logo"]);
-                                        
-                                    }
-                                    else
-                                    {
-                                        Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
-                                        Session["Retailer_Location"] = Convert.ToString(ds.Tables[0].Rows[0]["Loc_ID"]);
-                                        Session["StoreManager_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
-                                        Session["StoreName"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_Name"]);
-                                        Session["StoreNo"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_No"]);
-                                    }
-
-                                    Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
-                                    Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
-
                                     if (ds.Tables[0].Rows.Count > 0)
                                     {
-                                        Response.Redirect("~/Dashboard_Employee.aspx", false);
+
+                                        Session["UserType"] = Convert.ToString(UserType);
+                                        if (UserType == "E")
+                                        {
+                                            Session["EmpCD"] = Convert.ToString(ds.Tables[0].Rows[0]["empcd"]);
+                                            Session["RollCD"] = Convert.ToString(ds.Tables[0].Rows[0]["rollcd"]);
+                                            Session["LoggedInUserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
+                                            Session["Profile_Photo"] = Convert.ToString(ds.Tables[0].Rows[0]["Profile_Photo"]);
+                                            Session["Role_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Role_Name"]);
+                                            Session["User_Dept_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Department_ID"]);
+                                            Session["Company_Logo"] = Convert.ToString(ds.Tables[0].Rows[0]["Company_Logo"]);
+
+                                            Response.Redirect("~/Dashboard_Employee.aspx", false);
+
+                                        }
+                                        else
+                                        {
+                                            Session["LoggedInUserID"] = Convert.ToString(txtUsername.Text.Trim());
+                                            Session["Retailer_Location"] = Convert.ToString(ds.Tables[0].Rows[0]["Loc_ID"]);
+                                            Session["StoreManager_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
+                                            Session["StoreName"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_Name"]);
+                                            Session["StoreNo"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_No"]);
+
+                                            Response.Redirect("~/Dashboard_Retailer.aspx", false);
+
+                                        }
+
+                                        Session["UserName"] = Convert.ToString(txtUsername.Text.Trim());
+                                        Session["LoggedInProfileName"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
+
+
                                     }
                                     else
                                     {

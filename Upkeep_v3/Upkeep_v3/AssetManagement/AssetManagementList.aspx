@@ -116,7 +116,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">My Asset Management		
+                            <h3 class="m-portlet__head-text">List of Assets	
                             </h3>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementRequest.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>New Asset</span>
+                                <span>Add New Asset</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
@@ -198,7 +198,6 @@
                                 <th title="Serial No" data-field="Asset_Serial_No">Serial No</th>
                                 <th title="Type" data-field="Asset_Type">Type</th>
                                 <th title="Category" data-field="Asset_Category">Category</th>
-                                <th title="Vendor" data-field="Vendor">Vendor</th>
                                 <th title="Department" data-field="Department">Department</th>
                                 <th title="Location" data-field="Location">Location</th>
                                 <%--<th title="Asset Cost" data-field="Asset_Cost">Asset Cost</th> 
@@ -207,7 +206,7 @@
                                     <th title="Is AMC Active" data-field="Asset_Is_AMC_Active">Is AMC Active</th>
                                     <th title="Created By" data-field="Created_By">Created By</th>
                                     <th title="Created Date" data-field="Created_Date">Created Date</th>--%>
-                                <th title="AMC_Status" data-field="AMC_Status">AMC_Status</th>
+                                <th title="AMC_Status" data-field="AMC_Status">AMC Status</th>
 
                             </tr>
                         </thead>

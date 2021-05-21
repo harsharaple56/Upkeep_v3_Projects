@@ -108,6 +108,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Dashboard_Retailer(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Dashboard_Retailer(CompanyID, LoggedInUserID, Fromdate, ToDate);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
 
     [WebMethod]
     public DataSet Fetch_License_Module_list(string Module_ID_String)
@@ -270,6 +287,42 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+
+    [WebMethod]
+    public DataSet LMS_Category_Mst(int Category_ID, string Category_Desc, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.LMS_Category_Mst(Category_ID, Category_Desc, Company_ID, LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.LMS_SubCategory_Mst(SubCategory_ID, SubCategory_Desc, Category_ID, Company_ID, LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+
+
 
     [WebMethod]
     public DataSet LMS_Fetch_Vendor_Transactions(string Start_Date, string End_Date, int CompanyID, int Vendor_ID)

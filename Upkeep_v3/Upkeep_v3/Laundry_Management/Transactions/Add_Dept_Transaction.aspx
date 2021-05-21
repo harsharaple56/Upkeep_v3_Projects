@@ -257,19 +257,19 @@
 
                 </div>
 
-                <div class="m-portlet__body" style="padding: 2.2rem 2.2rem;">
+                <div class="m-portlet__body" style="padding: 2.2rem 2.2rem 0rem 2.2rem;">
 
                     <div class="form-group m-form__group row">
                         <label for="example-text-input" class="col-3 col-form-label">Department Executive Name</label>
                         <div class="col-3">
-                            <asp:TextBox class="form-control m-input" id="txtDept_ExecutiveName" runat="server"></asp:TextBox>
+                            <asp:TextBox class="form-control m-input" ID="txtDept_ExecutiveName" runat="server"></asp:TextBox>
                         </div>
                         <label for="example-text-input" class="col-3 col-form-label">Department Executive Contact</label>
                         <div class="col-3">
-                            <asp:TextBox class="form-control m-input" id="txtDept_ExecutiveContactNo" TextMode="Number" runat="server"></asp:TextBox>
+                            <asp:TextBox class="form-control m-input" ID="txtDept_ExecutiveContactNo" TextMode="Number" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="form-group m-form__group row">
+                    <div class="form-group m-form__group row" style="margin-bottom: 0rem;">
 
                         <div class="col-3">
                             <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control" ToolTip="Select Department" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -310,13 +310,18 @@
 
 
 
-                        <div class="col-3">
-                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_select_item">
+                        <div class="col-2">
+                            <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_1">
                                 <span>
                                     <i class="la la-plus"></i>
                                     <span>Add Item</span>
                                 </span>
                             </a>
+                        </div>
+                        <div class="col-7">
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                <b>NOTE : </b>If Closing Stock for an Item is <b><span class="m--font-danger">NEGATIVE</span></b> It means that many <b><i>SOILED</i></b> Clothes needs to be collected from the Department.
+                            </div>
                         </div>
                     </div>
 
@@ -337,11 +342,20 @@
                         </div>
                         
                     </div>
+                    <div class="form-group m-form__group row" style="margin-bottom: 0rem;">
+
+                        <div class="col-12">
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                <b>NOTE : </b>If Closing Stock for an Item is <b><span class="m--font-success">POSITIVE</span></b> It means that many <b><i>CLEAN</i></b> Clothes needs to be given from the Department.
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
 
 
-                <div class="m-portlet__body">
+                <div class="m-portlet__body" style="    padding: 0rem 2.2rem 2.2rem 2.2rem;">
 
                     <asp:HiddenField ID="hdnPrntD" runat="server" ClientIDMode="Static" />
                     <!--end: Search Form -->
@@ -360,10 +374,10 @@
 
                             <asp:TemplateField HeaderText="Soiled Collected" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="15%">
                                 <ItemTemplate>
-                                   
+
                                     <%--<asp:TextBox ID="txtOpening" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' Style="display: none;"></asp:TextBox>--%>
                                     <asp:TextBox ID="txtSoiledCollected" Width="90%" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"SoiledCollected"))%>' onkeyup="functionCalculation()"></asp:TextBox>
-                                <asp:HiddenField ID="hdnStock_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_ID"))%>' />
+                                    <asp:HiddenField ID="hdnStock_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_ID"))%>' />
                                     <asp:HiddenField ID="hdnOpening_Stock" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Opening_Stock"))%>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -417,7 +431,7 @@
         </div>
 
 
-        <div class="modal fade" id="m_modal_select_item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header" style="padding: 16px;">
@@ -429,43 +443,43 @@
                             <div class="modal-body" style="padding: 0px;">
 
 
-                                <div class="m-widget19">
+                        <div class="m-widget19">
 
-                                    <div class="m-widget1" style="padding: 0.2rem;">
+                            <div class="m-widget1" style="padding: 0.2rem;">
 
 
-                                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
-                                            <div class="m-stack__item m-stack__item--center">
-                                                <div class="m-stack__demo-item">
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                    <div class="m-stack__item m-stack__item--center">
+                                        <div class="m-stack__demo-item">
 
-                                                     <asp:CheckBoxList ID="chkItems" runat="server" CssClass="normal" AutoPostBack="false" RepeatColumns="2"
-                                                        RepeatDirection="Vertical"
-                                                        RepeatLayout="Table"
-                                                        TextAlign="Right" CellPadding="5"
-                                                        CellSpacing="5">
-                                                    </asp:CheckBoxList>
+                                            <asp:CheckBoxList ID="chkItems" runat="server" CssClass="normal" AutoPostBack="false" RepeatColumns="2"
+                                                RepeatDirection="Vertical"
+                                                RepeatLayout="Table"
+                                                TextAlign="Right" CellPadding="5"
+                                                CellSpacing="5">
+                                            </asp:CheckBoxList>
 
-                                                </div>
-                                            </div>
                                         </div>
-
-                                         <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
-                                            <div class="m-stack__item m-stack__item--center">
-                                                <div class="m-stack__demo-item">
-
-                                                    <asp:Button ID="btnItemSelect" runat="server" Text="Submit" OnClick="btnItemSelect_Click" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"/>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
+
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                    <div class="m-stack__item m-stack__item--center">
+                                        <div class="m-stack__demo-item">
+
+                                            <asp:Button ID="btnItemSelect" runat="server" Text="Submit" OnClick="btnItemSelect_Click" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                           
                         </div>
                     </div>
+
                 </div>
+            </div>
+        </div>
 
 
 

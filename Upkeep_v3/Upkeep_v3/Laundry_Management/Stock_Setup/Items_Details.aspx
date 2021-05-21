@@ -147,7 +147,7 @@
                             onclick="SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>Submit</span>
+                                <span>Add New Item</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
@@ -216,29 +216,53 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                    <h4 class="modal-title">Selected Items</h4>
+                    <h4 class="modal-title">Add New Item</h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_2">
-                        <thead>
-                            <tr>
-                                <th>Sr no.</th>
-                                <th>Items</th>
-                                <th>Opening Stock</th>
-                                <th>Consumed</th>
-                                <th>Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           <%-- <%=fetchInvItemSelectedListing()%>--%>
-                        </tbody>
-                    </table>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group m-form__group row">
+                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Select Item:</label>
+                                <asp:DropDownList ID="ddl_Category" class="form-control" Style="width: 70%" runat="server">
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        
+                        <div class="col-xl-12">
+                            <div class="form-group m-form__group row">
+                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Select Vendor:</label>
+                                <asp:DropDownList ID="ddl_SubCategory" class="form-control" Style="width: 70%" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-xl-12">
+
+
+                            <div class="form-group m-form__group row">
+                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Cost:</label>
+                                <asp:TextBox ID="txtItem_Desc" runat="server" class="form-control" Style="width: 70%;"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+
+                    <asp:Label ID="lblStockErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                 </div>
                 <div class="modal-footer">
                     <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
 
-                    <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" clientidmode="Static">Save</button>
-                    <button type="submit" runat="server" id="btnModalsubmit" onserverclick="btnModalsubmit_Click" class="btn btn-accent mr-auto" style="display: none" clientidmode="Static">Save</button>
+                    <button type="button" runat="server" id="btnModalSave" class="btn btn-accent mr-auto" onserverclick="btnModalsubmit_Click" clientidmode="Static">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
