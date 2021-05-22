@@ -63,18 +63,26 @@
                                                     ErrorMessage="Please enter Vendor Name" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </div>
                                             
-                                            <label class="col-xl-2 col-lg-2 col-form-label"> Vendor Description:</label>
+                                            
+                                            <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Vendor Code:</label>
                                             <div class="col-xl-4 col-lg-4">
-                                                <asp:TextBox ID="txtVendorDesc" runat="server" class="form-control m-input" placeholder="Enter Details of Vendor Specialization"></asp:TextBox>
-                                                
+                                                <asp:TextBox ID="txtVendor_Reg_ID" runat="server" class="form-control m-input" placeholder="Enter a Unique Vendor Registration Code "></asp:TextBox>
                                             </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            
+                                            <label class="col-xl-2 col-lg-2 col-form-label"> Vendor Description:</label>
+                                            <div class="col-xl-10 col-lg-4">
+                                                <textarea ID="txtVendorDesc" runat="server" class="form-control m-input" placeholder="Enter Details of Vendor Specialization" cols="20" rows="4"></textarea>
+                                            </div>
+
                                         </div>
                                         <div class="form-group m-form__group row">
                                             
                                             <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span>Contact No.:</label>
                                             <div class="col-xl-4 col-lg-4">
 
-                                                <asp:TextBox ID="txtPrimaryContact" runat="server" class="form-control m-input" placeholder="Enter Vendor Primary Contact No."></asp:TextBox>
+                                                <asp:TextBox ID="txtPrimaryContact" runat="server" type="number" class="form-control m-input" placeholder="Enter Vendor Primary Contact No."></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPrimaryContact" ValidationGroup="ValidateUser"
                                                     ErrorMessage="Please enter Vendor Contact No." ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 
@@ -82,7 +90,7 @@
                                             
                                             <label class="col-xl-2 col-lg-2 col-form-label">Alternative Contact:</label>
                                             <div class="col-xl-4 col-lg-4">
-                                                <asp:TextBox ID="txtAlternateContact" runat="server" class="form-control m-input" placeholder="Enter Vendor Alternative Contact No."></asp:TextBox>
+                                                <asp:TextBox ID="txtAlternateContact" runat="server" type="number" class="form-control m-input" placeholder="Enter Vendor Alternative Contact No."></asp:TextBox>
                                                 
                                             </div>
                                         </div>
@@ -99,8 +107,8 @@
                                             
                                             <label class="col-xl-2 col-lg-2 col-form-label">Vendor Address:</label>
                                             <div class="col-xl-4 col-lg-4">
-                                                <asp:TextBox ID="txtAddress" runat="server" class="form-control m-input" placeholder="Enter Vendor Address."></asp:TextBox>
-                                                
+                                                <textarea ID="txtAddress" runat="server" class="form-control m-input" placeholder="Enter Vendor Address" cols="20" rows="4"></textarea>
+                                            
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
@@ -118,8 +126,8 @@
                                         <div class="form-group m-form__group row">
                                             
                                             <label class="col-xl-2 col-lg-2 col-form-label">Vendor Bank Details:</label>
-                                            <div class="col-xl-4 col-lg-4">
-                                                <asp:TextBox ID="txtBankDetails" runat="server" class="form-control m-input" placeholder="Enter Vendor Bank Details."></asp:TextBox>
+                                            <div class="col-xl-10 col-lg-4">
+                                                <textarea ID="txtBankDetails" runat="server" class="form-control m-input" placeholder="Enter Vendor Bank Details"  cols="20" rows="4" ></textarea>
                                             </div>
                                         </div>
 

@@ -40,16 +40,22 @@
                     <!--begin: Datatable -->
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead>
+
                             <tr>
                                 <th>Vendor Name</th>
+                                <th>Vendor Code</th>
+                                <th>Description</th>
                                 <th>Contact</th>
-                                <th>Alternate Contact</th>
                                 <th>Email</th>
                                 <th>GSTIN</th>
+                                <th>Created By</th>
                                 <th>Created On</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>   
+                        <tbody>
+                            <%=fetchVendorDetails()%>
+                        </tbody>
                     </table>
                 </div>
             </div>
