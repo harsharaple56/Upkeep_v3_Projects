@@ -120,7 +120,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Your Attended by Your Department Users
+                            <h3 class="m-portlet__head-text">Checklists Attended by Your Department Users
                             </h3>
                         </div>
                     </div>

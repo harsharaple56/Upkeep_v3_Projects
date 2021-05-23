@@ -70,8 +70,8 @@
                                 <tr>
                                     <th>Sub Catgeory ID</th>
                                     <th>Sub Catgeory Description </th>
+                                    <th>Priority </th>
                                     <th>Category </th>
-                                    
                                     <th>Action </th>
                                 </tr>
 

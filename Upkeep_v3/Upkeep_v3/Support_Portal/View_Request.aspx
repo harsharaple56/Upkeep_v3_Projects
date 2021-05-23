@@ -261,8 +261,8 @@
                                                 <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                                                     <thead>
                                                         <tr>
-                                                            <th>Support User Name</th>
                                                             <th>Client User Name</th>
+                                                            <th>Support User Name</th>
                                                             <th>Comment Description</th>
                                                         </tr>
                                                     </thead>

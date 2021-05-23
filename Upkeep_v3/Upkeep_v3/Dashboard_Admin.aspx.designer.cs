@@ -13,6 +13,33 @@ namespace Upkeep_v3 {
     public partial class Dashboard_v2 {
         
         /// <summary>
+        /// btnDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDashboard;
+        
+        /// <summary>
+        /// btn_Employee_Dashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Employee_Dashboard;
+        
+        /// <summary>
+        /// btn_Admin_Dashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Admin_Dashboard;
+        
+        /// <summary>
         /// start_date control.
         /// </summary>
         /// <remarks>
@@ -56,33 +83,6 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnCompanyID;
-        
-        /// <summary>
-        /// btnDashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDashboard;
-        
-        /// <summary>
-        /// btn_Employee_Dashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Employee_Dashboard;
-        
-        /// <summary>
-        /// btn_Admin_Dashboard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Admin_Dashboard;
         
         /// <summary>
         /// div_Ticketing control.

@@ -27,7 +27,7 @@ namespace Upkeep_v3.Ticketing
             {
                 bindSubCategorygrid();
                 Fetch_CategorySubCategory(0);
-                Fetch_Priority();
+                Fetch_Priority(0);
 
                 int SubCategory_ID = Convert.ToInt32(Request.QueryString["SubCategory_ID"]);
                 if (SubCategory_ID > 0)
@@ -209,7 +209,7 @@ namespace Upkeep_v3.Ticketing
             }
         }
 
-        public void Fetch_Priority()
+        public void Fetch_Priority(int Priority_ID)
         {
             DataSet dsCat = new DataSet();
             try
@@ -244,10 +244,13 @@ namespace Upkeep_v3.Ticketing
                         Session["SubCategory_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtSubCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
                         ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
-
+                        
                         Fetch_CategorySubCategory(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]));
 
-                       
+                        ddlPriority.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Priority_ID"]);
+
+                        Fetch_Priority(Convert.ToInt32(ds.Tables[0].Rows[0]["Priority_ID"]));
+
                         mpeSubCategory.Show();
                     }
                     else
