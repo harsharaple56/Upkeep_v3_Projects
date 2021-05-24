@@ -79,10 +79,25 @@
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
 
-        <div class="m-subheader ">
+        <div class="m-subheader " padding: 0px 30px 0 30px;>
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title " style="padding: 7px 250px 7px 0;">Dashboard</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Dashboard</h3>
+
+                    
+                    <asp:Button ID="btnSearchDashboard" runat="server" OnClick="btnSearchDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
+
+                </div>
+                <div>
+                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
+                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success" OnClick="btn_Employee_Dashboard_Click" />
+                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Admin_Dashboard_Click" />
+                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
+
+                    </div>
 
                     <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
@@ -99,19 +114,6 @@
                         </a>
                     </span>
 
-                    <asp:Button ID="btnSearchDashboard" runat="server" OnClick="btnSearchDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
-
-                </div>
-                <div>
-                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
-                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success" OnClick="btn_Employee_Dashboard_Click" />
-                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Admin_Dashboard_Click" />
-                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
-                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                        </cc1:ModalPopupExtender>
-
-                    </div>
                 </div>
 
             </div>
@@ -121,7 +123,7 @@
 
     <div class="m-porlet">
 
-        <div class="row">
+        <div class="row" style="width: fit-content;">
 
             <div class="col-xl-6">
 
@@ -137,15 +139,15 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Closure
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;     line-height: initial;">Pending Closure
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of Tickets accepted by You which requires closure
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Tickets accepted by You which requires closure
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
                                         <asp:Label ID="lbl_tkt_Pending_Close" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
-                                            17
+                                            0
                                         </asp:Label>
 
                                         <span class="m-widget19__comment">Tickets
@@ -171,7 +173,7 @@
 
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_Tkt_Open_Assigned" runat="server" class="m-widget1__number m--font-info">17,801</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Open_Assigned" runat="server" class="m-widget1__number m--font-info">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -190,7 +192,7 @@
                                             <span class="m-widget1__desc">No. of Tickets Accepted by You</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_tkt_Open_Accepted" runat="server" class="m-widget1__number m--font-success">1,800</asp:Label>
+                                            <asp:Label ID="lbl_tkt_Open_Accepted" runat="server" class="m-widget1__number m--font-success">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -209,7 +211,7 @@
                                             <span class="m-widget1__desc">No. of Tickets Parked by you</span>
                                         </div>
                                         <div class="col m--align-right">
-                                            <asp:Label ID="lbl_Tkt_Parked_Hold" runat="server" class="m-widget1__number m--font-warning">27</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Parked_Hold" runat="server" class="m-widget1__number m--font-warning">0</asp:Label>
 
                                         </div>
                                     </div>
@@ -284,10 +286,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Incomplete Checklists
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;"    line-height: initial;>Incomplete Checklists
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of Checklists pending for closure
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Checklists pending for closure
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -346,10 +348,6 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-        </div>
-
-        <div class="row">
-
             <div class="col-xl-6">
 
                 <!--begin:: Ticketing Section-->
@@ -363,10 +361,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of Work Permits pending for your approval
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Work Permits pending for your approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -480,10 +478,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of Gatepass pending for your approval
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Gatepass pending for your approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">

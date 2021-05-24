@@ -1215,7 +1215,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
+        public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Priority_ID, int Approval_Required, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -1227,6 +1227,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("SubCategory_ID", SubcategoryID);
                 cmd.Parameters.AddWithValue("SubCategory_Desc", SubCategoryDesc);
                 cmd.Parameters.AddWithValue("Category_ID", CategoryID);
+                cmd.Parameters.AddWithValue("Priority_ID", CategoryID);
                 cmd.Parameters.AddWithValue("Approval_Required", Approval_Required);
                 cmd.Parameters.AddWithValue("LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("Action", Action);
@@ -2711,6 +2712,51 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_My_Department_Checklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_MY_DEPARTMENT_CHK_LIST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_MyChecklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_MY_CHK_LIST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
         {
             DataSet ds = new DataSet();
@@ -3131,6 +3177,41 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_CRUD_Vendor_Mst(int Vendor_ID, string Vendor_Name, string Vendor_Desc, string Vendor_Address, string Vendor_Contact1, string Vendor_Contact2, string Vendor_Email, string Vendor_Reg_ID, string Vendor_GSTIN, string Vendor_PAN, string Vendor_Bank_Details, string LoggedInUserID, int CompanyID ,string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_CRUD_Vendor_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Vendor_ID", Vendor_ID); //Added by sujata 
+                cmd.Parameters.AddWithValue("@Vendor_Name", Vendor_Name);
+                cmd.Parameters.AddWithValue("@Vendor_Desc", Vendor_Desc);
+                cmd.Parameters.AddWithValue("@Vendor_Address", Vendor_Address);
+                cmd.Parameters.AddWithValue("@Vendor_Contact1", Vendor_Contact1);
+                cmd.Parameters.AddWithValue("@Vendor_Contact2", Vendor_Contact2);
+                cmd.Parameters.AddWithValue("@Vendor_Email", Vendor_Email);
+                cmd.Parameters.AddWithValue("@Vendor_Reg_ID", Vendor_Reg_ID);
+                cmd.Parameters.AddWithValue("@Vendor_GSTIN", Vendor_GSTIN);
+                cmd.Parameters.AddWithValue("@Vendor_PAN", Vendor_PAN);
+                cmd.Parameters.AddWithValue("@Vendor_Bank_Details", Vendor_Bank_Details);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public DataSet Fetch_User_UserGroupListGPWP(string Initiator, string StrConn)
         {

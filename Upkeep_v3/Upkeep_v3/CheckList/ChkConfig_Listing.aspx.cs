@@ -94,7 +94,6 @@ namespace Upkeep_v3.CheckList
                                 "<td>" + Updated_date + "</td>" +
                                 "<td><a href='CheckList_Configuration.aspx?ChkConfigID=" + Chk_Config_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  " +
                                 "<a href='#' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation removeItem' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record' data-config-id='" + Chk_Config_ID + "'><i class='la la-trash'></i> </a> " +
-                                "<a href='Checklist_Consolidated_Report.aspx?Chk_Config_ID=" + Chk_Config_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Consolidated Report'> <i class='la la-view'></i> </a>" +
                                 "</tr>";
 
 

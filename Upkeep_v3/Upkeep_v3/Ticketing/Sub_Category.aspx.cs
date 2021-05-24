@@ -27,6 +27,8 @@ namespace Upkeep_v3.Ticketing
             {
                 bindSubCategorygrid();
                 Fetch_CategorySubCategory(0);
+                Fetch_Priority(0);
+
                 int SubCategory_ID = Convert.ToInt32(Request.QueryString["SubCategory_ID"]);
                 if (SubCategory_ID > 0)
                 {
@@ -47,7 +49,7 @@ namespace Upkeep_v3.Ticketing
             string data = "";
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, 0, "", 0,0, LoggedInUserID, "R");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, 0, "", 0,0,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -60,9 +62,10 @@ namespace Upkeep_v3.Ticketing
                             int SubCategory_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["SubCategory_Id"]);
                             string SubCategory_Desc = Convert.ToString(ds.Tables[0].Rows[i]["SubCategory_Desc"]);
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
+                            string Priority_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Priority_Desc"]);
                             
                             ////data += "<tr><td>" + Frquency_Id + "</td><td>" + Frquency_Desc + "</td><td><a href='General_Masters/Add_Frequency.aspx?Frquency_Id=" + Frquency_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='General_Masters/Add_Frequency.aspx?DelFreq_ID=" + Frquency_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
-                            data += "<tr><td>" + SubCategory_Id + "</td><td>" + SubCategory_Desc + "</td><td>" + Category_Desc + "</td><td><a href='Sub_Category.aspx?SubCategory_Id=" + SubCategory_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Sub_Category.aspx?DelSubCategory_Id=" + SubCategory_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + SubCategory_Id + "</td><td>" + SubCategory_Desc + "</td><td>" + Priority_Desc + "</td><td>" + Category_Desc + "</td><td><a href='Sub_Category.aspx?SubCategory_Id=" + SubCategory_Id + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Sub_Category.aspx?DelSubCategory_Id=" + SubCategory_Id + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
@@ -105,7 +108,9 @@ namespace Upkeep_v3.Ticketing
         {
             int SubCategory_ID = 0;
             int CategoryID = 0;
-            
+            int PriorityID = 0;
+
+
             try
             {
                 if (Convert.ToString(Session["SubCategory_ID"]) != "")
@@ -124,6 +129,9 @@ namespace Upkeep_v3.Ticketing
                 }
 
                 CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+
+                PriorityID = Convert.ToInt32(ddlPriority.SelectedValue);
+
                 int Approval_Required = 0;
 
                 if (chk_Approval.Checked == true)
@@ -138,7 +146,7 @@ namespace Upkeep_v3.Ticketing
                 }
 
 
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, txtSubCategoryDesc.Text.Trim(), CategoryID, Approval_Required, LoggedInUserID, Action);
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, txtSubCategoryDesc.Text.Trim(), CategoryID, PriorityID, Approval_Required, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -201,12 +209,33 @@ namespace Upkeep_v3.Ticketing
             }
         }
 
+        public void Fetch_Priority(int Priority_ID)
+        {
+            DataSet dsCat = new DataSet();
+            try
+            {
+                dsCat = ObjUpkeep.PriorityMaster_CRUD(0, "", CompanyID, LoggedInUserID, "R"); ;
+                
+                    ddlPriority.DataSource = dsCat.Tables[0];
+                    ddlPriority.DataTextField = "Priority_Desc";
+                    ddlPriority.DataValueField = "Priority_ID";
+                    ddlPriority.DataBind();
+                    ddlPriority.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public void BindSubCategory(int SubCategory_ID)
         {
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, "", 0,0, LoggedInUserID, "R");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,SubCategory_ID, "", 0,0,0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -215,10 +244,13 @@ namespace Upkeep_v3.Ticketing
                         Session["SubCategory_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtSubCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
                         ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
-
+                        
                         Fetch_CategorySubCategory(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]));
 
-                       
+                        ddlPriority.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Priority_ID"]);
+
+                        Fetch_Priority(Convert.ToInt32(ds.Tables[0].Rows[0]["Priority_ID"]));
+
                         mpeSubCategory.Show();
                     }
                     else
@@ -242,7 +274,7 @@ namespace Upkeep_v3.Ticketing
         {
             try
             {
-                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,DelSubCategory_ID, "", 0,0, LoggedInUserID, "D");
+                ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID,DelSubCategory_ID, "", 0,0,0, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
