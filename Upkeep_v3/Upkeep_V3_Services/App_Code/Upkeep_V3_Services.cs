@@ -2478,6 +2478,54 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    //Added by RC This function is used to save CSM Request
+    [WebMethod]
+    public DataSet Insert_CSMRequest(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Insert_CSMRequest(CompanyID, Action, RequestID, ConfigID, strCSMData, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to Fetch VMS Request list
+    [WebMethod]
+    public DataSet Fetch_CSMRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_CSMRequestList(CompanyID, LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to bind VMS request details
+    [WebMethod]
+    public DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Bind_CSMRequestDetails(RequestID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     #region General Functions

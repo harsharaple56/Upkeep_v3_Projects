@@ -2179,6 +2179,58 @@ public class My_Upkeep
         }
     }
 
+    //Added by RC This function is used to fetch VMS requests 
+    public DataSet Fetch_CSMRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_CSMRequestList(CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to bind CSM request details
+    public DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Bind_CSMRequestDetails(RequestID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //Added by RC This function is used to save CSM request 
+    public DataSet Insert_CSMRequest(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Insert_CSMRequest(CompanyID, Action, RequestID, ConfigID, strCSMData, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     #endregion
 
     #region General Functions

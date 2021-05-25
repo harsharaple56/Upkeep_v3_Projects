@@ -30,6 +30,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_Inv_Items_ListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Inv_Item_Stock_DdlOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Inv_Crud_Item_StockOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Inv_Item_Stock_DataOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Inv_Item_Purchase_ListOperationCompleted;
@@ -208,6 +214,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Delete_CSMConfigurationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Insert_CSMRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_CSMRequestListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Bind_CSMRequestDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
@@ -251,12 +263,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Delete_Inv_ItemOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Stock_DetailOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_Inv_Items_ListOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_Inv_Item_Stock_DdlOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_Inv_Crud_Item_StockOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -463,6 +469,15 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_Inv_Items_ListCompletedEventHandler Fetch_Inv_Items_ListCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Inv_Item_Stock_DdlCompletedEventHandler Fetch_Inv_Item_Stock_DdlCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Inv_Crud_Item_StockCompletedEventHandler Fetch_Inv_Crud_Item_StockCompleted;
         
         /// <remarks/>
         public event Fetch_Inv_Item_Stock_DataCompletedEventHandler Fetch_Inv_Item_Stock_DataCompleted;
@@ -732,6 +747,15 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Delete_CSMConfigurationCompletedEventHandler Delete_CSMConfigurationCompleted;
         
         /// <remarks/>
+        public event Insert_CSMRequestCompletedEventHandler Insert_CSMRequestCompleted;
+        
+        /// <remarks/>
+        public event Fetch_CSMRequestListCompletedEventHandler Fetch_CSMRequestListCompleted;
+        
+        /// <remarks/>
+        public event Bind_CSMRequestDetailsCompletedEventHandler Bind_CSMRequestDetailsCompleted;
+        
+        /// <remarks/>
         public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
         
         /// <remarks/>
@@ -796,15 +820,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Stock_DetailCompletedEventHandler Fetch_Stock_DetailCompleted;
-        
-        /// <remarks/>
-        public event Fetch_Inv_Items_ListCompletedEventHandler Fetch_Inv_Items_ListCompleted;
-        
-        /// <remarks/>
-        public event Fetch_Inv_Item_Stock_DdlCompletedEventHandler Fetch_Inv_Item_Stock_DdlCompleted;
-        
-        /// <remarks/>
-        public event Fetch_Inv_Crud_Item_StockCompletedEventHandler Fetch_Inv_Crud_Item_StockCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -1057,6 +1072,107 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event RoleMaster_CRUDCompletedEventHandler RoleMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Items_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Inv_Items_List(string LoggedInUserID, string CompanyID, string XmlItem) {
+            object[] results = this.Invoke("Fetch_Inv_Items_List", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        XmlItem});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Items_ListAsync(string LoggedInUserID, string CompanyID, string XmlItem) {
+            this.Fetch_Inv_Items_ListAsync(LoggedInUserID, CompanyID, XmlItem, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Items_ListAsync(string LoggedInUserID, string CompanyID, string XmlItem, object userState) {
+            if ((this.Fetch_Inv_Items_ListOperationCompleted == null)) {
+                this.Fetch_Inv_Items_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Items_ListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Inv_Items_List", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        XmlItem}, this.Fetch_Inv_Items_ListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Inv_Items_ListOperationCompleted(object arg) {
+            if ((this.Fetch_Inv_Items_ListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Inv_Items_ListCompleted(this, new Fetch_Inv_Items_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Stock_Ddl", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Inv_Item_Stock_Ddl(string LoggedInUserID, string CompanyID, string StockID) {
+            object[] results = this.Invoke("Fetch_Inv_Item_Stock_Ddl", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Item_Stock_DdlAsync(string LoggedInUserID, string CompanyID, string StockID) {
+            this.Fetch_Inv_Item_Stock_DdlAsync(LoggedInUserID, CompanyID, StockID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Item_Stock_DdlAsync(string LoggedInUserID, string CompanyID, string StockID, object userState) {
+            if ((this.Fetch_Inv_Item_Stock_DdlOperationCompleted == null)) {
+                this.Fetch_Inv_Item_Stock_DdlOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Item_Stock_DdlOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Inv_Item_Stock_Ddl", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID}, this.Fetch_Inv_Item_Stock_DdlOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Inv_Item_Stock_DdlOperationCompleted(object arg) {
+            if ((this.Fetch_Inv_Item_Stock_DdlCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Inv_Item_Stock_DdlCompleted(this, new Fetch_Inv_Item_Stock_DdlCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Crud_Item_Stock", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Inv_Crud_Item_Stock(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) {
+            object[] results = this.Invoke("Fetch_Inv_Crud_Item_Stock", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID,
+                        XmlItem});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Crud_Item_StockAsync(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) {
+            this.Fetch_Inv_Crud_Item_StockAsync(LoggedInUserID, CompanyID, StockID, XmlItem, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Inv_Crud_Item_StockAsync(string LoggedInUserID, string CompanyID, string StockID, string XmlItem, object userState) {
+            if ((this.Fetch_Inv_Crud_Item_StockOperationCompleted == null)) {
+                this.Fetch_Inv_Crud_Item_StockOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Crud_Item_StockOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Inv_Crud_Item_Stock", new object[] {
+                        LoggedInUserID,
+                        CompanyID,
+                        StockID,
+                        XmlItem}, this.Fetch_Inv_Crud_Item_StockOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Inv_Crud_Item_StockOperationCompleted(object arg) {
+            if ((this.Fetch_Inv_Crud_Item_StockCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Inv_Crud_Item_StockCompleted(this, new Fetch_Inv_Crud_Item_StockCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Stock_Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -4192,6 +4308,111 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_CSMRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_CSMRequest(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_CSMRequest", new object[] {
+                        CompanyID,
+                        Action,
+                        RequestID,
+                        ConfigID,
+                        strCSMData,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_CSMRequestAsync(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID) {
+            this.Insert_CSMRequestAsync(CompanyID, Action, RequestID, ConfigID, strCSMData, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_CSMRequestAsync(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID, object userState) {
+            if ((this.Insert_CSMRequestOperationCompleted == null)) {
+                this.Insert_CSMRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_CSMRequestOperationCompleted);
+            }
+            this.InvokeAsync("Insert_CSMRequest", new object[] {
+                        CompanyID,
+                        Action,
+                        RequestID,
+                        ConfigID,
+                        strCSMData,
+                        LoggedInUserID}, this.Insert_CSMRequestOperationCompleted, userState);
+        }
+        
+        private void OnInsert_CSMRequestOperationCompleted(object arg) {
+            if ((this.Insert_CSMRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_CSMRequestCompleted(this, new Insert_CSMRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CSMRequestList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CSMRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_CSMRequestList", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CSMRequestListAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_CSMRequestListAsync(CompanyID, LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CSMRequestListAsync(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_CSMRequestListOperationCompleted == null)) {
+                this.Fetch_CSMRequestListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CSMRequestListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_CSMRequestList", new object[] {
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_CSMRequestListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CSMRequestListOperationCompleted(object arg) {
+            if ((this.Fetch_CSMRequestListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CSMRequestListCompleted(this, new Fetch_CSMRequestListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_CSMRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID) {
+            this.Bind_CSMRequestDetailsAsync(RequestID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID, object userState) {
+            if ((this.Bind_CSMRequestDetailsOperationCompleted == null)) {
+                this.Bind_CSMRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMRequestDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Bind_CSMRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID}, this.Bind_CSMRequestDetailsOperationCompleted, userState);
+        }
+        
+        private void OnBind_CSMRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_CSMRequestDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_CSMRequestDetailsCompleted(this, new Bind_CSMRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AnswerForAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Fetch_AnswerForAll(char Key) {
             object[] results = this.Invoke("Fetch_AnswerForAll", new object[] {
@@ -4906,107 +5127,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Stock_DetailCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Stock_DetailCompleted(this, new Fetch_Stock_DetailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Items_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Inv_Items_List(string LoggedInUserID, string CompanyID, string XmlItem) {
-            object[] results = this.Invoke("Fetch_Inv_Items_List", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        XmlItem});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Items_ListAsync(string LoggedInUserID, string CompanyID, string XmlItem) {
-            this.Fetch_Inv_Items_ListAsync(LoggedInUserID, CompanyID, XmlItem, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Items_ListAsync(string LoggedInUserID, string CompanyID, string XmlItem, object userState) {
-            if ((this.Fetch_Inv_Items_ListOperationCompleted == null)) {
-                this.Fetch_Inv_Items_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Items_ListOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Inv_Items_List", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        XmlItem}, this.Fetch_Inv_Items_ListOperationCompleted, userState);
-        }
-        
-        private void OnFetch_Inv_Items_ListOperationCompleted(object arg) {
-            if ((this.Fetch_Inv_Items_ListCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Inv_Items_ListCompleted(this, new Fetch_Inv_Items_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Item_Stock_Ddl", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Inv_Item_Stock_Ddl(string LoggedInUserID, string CompanyID, string StockID) {
-            object[] results = this.Invoke("Fetch_Inv_Item_Stock_Ddl", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Item_Stock_DdlAsync(string LoggedInUserID, string CompanyID, string StockID) {
-            this.Fetch_Inv_Item_Stock_DdlAsync(LoggedInUserID, CompanyID, StockID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Item_Stock_DdlAsync(string LoggedInUserID, string CompanyID, string StockID, object userState) {
-            if ((this.Fetch_Inv_Item_Stock_DdlOperationCompleted == null)) {
-                this.Fetch_Inv_Item_Stock_DdlOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Item_Stock_DdlOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Inv_Item_Stock_Ddl", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID}, this.Fetch_Inv_Item_Stock_DdlOperationCompleted, userState);
-        }
-        
-        private void OnFetch_Inv_Item_Stock_DdlOperationCompleted(object arg) {
-            if ((this.Fetch_Inv_Item_Stock_DdlCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Inv_Item_Stock_DdlCompleted(this, new Fetch_Inv_Item_Stock_DdlCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Inv_Crud_Item_Stock", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Inv_Crud_Item_Stock(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) {
-            object[] results = this.Invoke("Fetch_Inv_Crud_Item_Stock", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID,
-                        XmlItem});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Crud_Item_StockAsync(string LoggedInUserID, string CompanyID, string StockID, string XmlItem) {
-            this.Fetch_Inv_Crud_Item_StockAsync(LoggedInUserID, CompanyID, StockID, XmlItem, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_Inv_Crud_Item_StockAsync(string LoggedInUserID, string CompanyID, string StockID, string XmlItem, object userState) {
-            if ((this.Fetch_Inv_Crud_Item_StockOperationCompleted == null)) {
-                this.Fetch_Inv_Crud_Item_StockOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Inv_Crud_Item_StockOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_Inv_Crud_Item_Stock", new object[] {
-                        LoggedInUserID,
-                        CompanyID,
-                        StockID,
-                        XmlItem}, this.Fetch_Inv_Crud_Item_StockOperationCompleted, userState);
-        }
-        
-        private void OnFetch_Inv_Crud_Item_StockOperationCompleted(object arg) {
-            if ((this.Fetch_Inv_Crud_Item_StockCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_Inv_Crud_Item_StockCompleted(this, new Fetch_Inv_Crud_Item_StockCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8245,6 +8365,84 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Inv_Items_ListCompletedEventHandler(object sender, Fetch_Inv_Items_ListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Inv_Items_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Inv_Items_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Inv_Item_Stock_DdlCompletedEventHandler(object sender, Fetch_Inv_Item_Stock_DdlCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Inv_Item_Stock_DdlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Inv_Item_Stock_DdlCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Inv_Crud_Item_StockCompletedEventHandler(object sender, Fetch_Inv_Crud_Item_StockCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Inv_Crud_Item_StockCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Inv_Crud_Item_StockCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_Inv_Item_Stock_DataCompletedEventHandler(object sender, Fetch_Inv_Item_Stock_DataCompletedEventArgs e);
     
     /// <remarks/>
@@ -10559,6 +10757,84 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Insert_CSMRequestCompletedEventHandler(object sender, Insert_CSMRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_CSMRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_CSMRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_CSMRequestListCompletedEventHandler(object sender, Fetch_CSMRequestListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_CSMRequestListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_CSMRequestListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Bind_CSMRequestDetailsCompletedEventHandler(object sender, Bind_CSMRequestDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_CSMRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_CSMRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_AnswerForAllCompletedEventHandler(object sender, Fetch_AnswerForAllCompletedEventArgs e);
     
     /// <remarks/>
@@ -11116,84 +11392,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Stock_DetailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_Inv_Items_ListCompletedEventHandler(object sender, Fetch_Inv_Items_ListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Inv_Items_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Inv_Items_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_Inv_Item_Stock_DdlCompletedEventHandler(object sender, Fetch_Inv_Item_Stock_DdlCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Inv_Item_Stock_DdlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Inv_Item_Stock_DdlCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_Inv_Crud_Item_StockCompletedEventHandler(object sender, Fetch_Inv_Crud_Item_StockCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Inv_Crud_Item_StockCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_Inv_Crud_Item_StockCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

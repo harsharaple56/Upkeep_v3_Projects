@@ -3,6 +3,76 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_Inv_Items_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Items_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Items_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Item_Stock_Ddl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Item_Stock_DdlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Item_Stock_DdlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Crud_Item_Stock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Crud_Item_StockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Crud_Item_StockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Inv_Item_Stock_Data">
         <s:complexType>
           <s:sequence>
@@ -2136,6 +2206,78 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Insert_CSMRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Action" type="s1:char" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCSMData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_CSMRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_CSMRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CSMRequestList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CSMRequestListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CSMRequestListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_AnswerForAll">
         <s:complexType>
           <s:sequence>
@@ -2625,76 +2767,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Stock_DetailResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Items_List">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Items_ListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Items_ListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Item_Stock_Ddl">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Item_Stock_DdlResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Item_Stock_DdlResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Crud_Item_Stock">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Crud_Item_StockResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Crud_Item_StockResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4771,6 +4843,24 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_Inv_Items_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Items_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Items_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Items_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Item_Stock_DdlSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_Ddl" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Item_Stock_DdlSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_DdlResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_Stock" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_StockResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Inv_Item_Stock_DataSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_Data" />
   </wsdl:message>
@@ -5305,6 +5395,24 @@
   <wsdl:message name="Delete_CSMConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Delete_CSMConfigurationResponse" />
   </wsdl:message>
+  <wsdl:message name="Insert_CSMRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_CSMRequest" />
+  </wsdl:message>
+  <wsdl:message name="Insert_CSMRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_CSMRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CSMRequestListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CSMRequestList" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CSMRequestListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CSMRequestListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_AnswerForAllSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
   </wsdl:message>
@@ -5436,24 +5544,6 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Stock_DetailSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Stock_DetailResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Items_ListSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Items_List" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Items_ListSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Items_ListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Item_Stock_DdlSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_Ddl" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Item_Stock_DdlSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_DdlResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_Stock" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_StockResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -5960,6 +6050,18 @@
     <wsdl:part name="parameters" element="tns:RoleMaster_CRUDResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_Inv_Items_List">
+      <wsdl:input message="tns:Fetch_Inv_Items_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Inv_Items_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
+      <wsdl:input message="tns:Fetch_Inv_Item_Stock_DdlSoapIn" />
+      <wsdl:output message="tns:Fetch_Inv_Item_Stock_DdlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <wsdl:input message="tns:Fetch_Inv_Crud_Item_StockSoapIn" />
+      <wsdl:output message="tns:Fetch_Inv_Crud_Item_StockSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <wsdl:input message="tns:Fetch_Inv_Item_Stock_DataSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Item_Stock_DataSoapOut" />
@@ -6316,6 +6418,18 @@
       <wsdl:input message="tns:Delete_CSMConfigurationSoapIn" />
       <wsdl:output message="tns:Delete_CSMConfigurationSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Insert_CSMRequest">
+      <wsdl:input message="tns:Insert_CSMRequestSoapIn" />
+      <wsdl:output message="tns:Insert_CSMRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMRequestList">
+      <wsdl:input message="tns:Fetch_CSMRequestListSoapIn" />
+      <wsdl:output message="tns:Fetch_CSMRequestListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <wsdl:input message="tns:Bind_CSMRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_CSMRequestDetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
@@ -6403,18 +6517,6 @@
     <wsdl:operation name="Fetch_Stock_Detail">
       <wsdl:input message="tns:Fetch_Stock_DetailSoapIn" />
       <wsdl:output message="tns:Fetch_Stock_DetailSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Items_List">
-      <wsdl:input message="tns:Fetch_Inv_Items_ListSoapIn" />
-      <wsdl:output message="tns:Fetch_Inv_Items_ListSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
-      <wsdl:input message="tns:Fetch_Inv_Item_Stock_DdlSoapIn" />
-      <wsdl:output message="tns:Fetch_Inv_Item_Stock_DdlSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <wsdl:input message="tns:Fetch_Inv_Crud_Item_StockSoapIn" />
-      <wsdl:output message="tns:Fetch_Inv_Crud_Item_StockSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -6756,6 +6858,33 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Items_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Ddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
       <wsdl:input>
@@ -7557,6 +7686,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Insert_CSMRequest">
+      <soap:operation soapAction="http://tempuri.org/Insert_CSMRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMRequestList">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CSMRequestList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <soap:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
@@ -7748,33 +7904,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Stock_Detail">
       <soap:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Items_List">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Ddl" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8541,6 +8670,33 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Items_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Ddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
       <wsdl:input>
@@ -9342,6 +9498,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Insert_CSMRequest">
+      <soap12:operation soapAction="http://tempuri.org/Insert_CSMRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CSMRequestList">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CSMRequestList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <soap12:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
@@ -9533,33 +9716,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Stock_Detail">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Items_List">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Item_Stock_Ddl">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Ddl" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

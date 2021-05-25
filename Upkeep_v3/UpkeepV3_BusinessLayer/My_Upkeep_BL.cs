@@ -3108,6 +3108,76 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        //Added by RC This function is used to Fetch CSM Request list
+        public DataSet Fetch_CSMRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_CSM_REQUEST_LIST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to bind CSM request details
+        public DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_CSM_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RequestID", RequestID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to save CSM Request
+        public DataSet Insert_CSMRequest(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_INSERT_CSM_REQUEST", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@RequestID", RequestID);
+                cmd.Parameters.AddWithValue("@ConfigID", ConfigID);
+                cmd.Parameters.AddWithValue("@CSMData", strCSMData);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region General Functions
