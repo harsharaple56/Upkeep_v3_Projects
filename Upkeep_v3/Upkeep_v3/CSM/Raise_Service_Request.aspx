@@ -181,12 +181,12 @@
 									</FooterTemplate>
 
 								</asp:Repeater>
-
+								<div id="divClosing" runat="server">
 								<div class="form-group row" style="background-color: #00c5dc;">
 									<label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Service Request Closing Questions</label>
 								</div>
 
-
+								</div>
 								<asp:Repeater ID="rptCloseQuestionDetails" runat="server" OnItemDataBound="rptCloseQuestionDetails_ItemDataBound">
 									<ItemTemplate>
 
