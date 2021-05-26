@@ -3,6 +3,30 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_Inv_Crud_Item_Stock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Inv_Crud_Item_StockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Crud_Item_StockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Inv_Item_Stock_Data">
         <s:complexType>
           <s:sequence>
@@ -699,6 +723,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RoleMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RoleMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RoleMaster_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2681,30 +2729,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Inv_Crud_Item_Stock">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="StockID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="XmlItem" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Inv_Crud_Item_StockResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Inv_Crud_Item_StockResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3187,6 +3211,29 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_Dept_Transaction_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Vendor_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemDetails_Vendor_TransactionResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4740,30 +4787,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="RoleMaster_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RoleMaster_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="RoleMaster_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4771,6 +4794,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_Stock" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_StockResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Inv_Item_Stock_DataSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_Data" />
   </wsdl:message>
@@ -4944,6 +4973,12 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="RoleMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:RoleMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="RoleMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:RoleMaster_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Assigned_RoleSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Assigned_Role" />
@@ -5449,12 +5484,6 @@
   <wsdl:message name="Fetch_Inv_Item_Stock_DdlSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Item_Stock_DdlResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_Stock" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Inv_Crud_Item_StockSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Inv_Crud_Item_StockResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5580,6 +5609,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_LMS_Dept_Transaction_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_LMS_Dept_Transaction_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Vendor_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Vendor_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Vendor_TransactionResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -5953,13 +5988,11 @@
   <wsdl:message name="FetchMenuSoapOut">
     <wsdl:part name="parameters" element="tns:FetchMenuResponse" />
   </wsdl:message>
-  <wsdl:message name="RoleMaster_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:RoleMaster_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="RoleMaster_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:RoleMaster_CRUDResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <wsdl:input message="tns:Fetch_Inv_Crud_Item_StockSoapIn" />
+      <wsdl:output message="tns:Fetch_Inv_Crud_Item_StockSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <wsdl:input message="tns:Fetch_Inv_Item_Stock_DataSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Item_Stock_DataSoapOut" />
@@ -6075,6 +6108,10 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <wsdl:input message="tns:RoleMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:RoleMaster_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Assigned_Role">
       <wsdl:input message="tns:Fetch_Assigned_RoleSoapIn" />
@@ -6412,10 +6449,6 @@
       <wsdl:input message="tns:Fetch_Inv_Item_Stock_DdlSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Item_Stock_DdlSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <wsdl:input message="tns:Fetch_Inv_Crud_Item_StockSoapIn" />
-      <wsdl:output message="tns:Fetch_Inv_Crud_Item_StockSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -6499,6 +6532,10 @@
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <wsdl:input message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapIn" />
       <wsdl:output message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <wsdl:input message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -6749,13 +6786,18 @@
       <wsdl:input message="tns:FetchMenuSoapIn" />
       <wsdl:output message="tns:FetchMenuSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <wsdl:input message="tns:RoleMaster_CRUDSoapIn" />
-      <wsdl:output message="tns:RoleMaster_CRUDSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
       <wsdl:input>
@@ -7010,6 +7052,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7773,15 +7824,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -7964,6 +8006,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8529,18 +8580,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <soap:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Item_Stock_Data">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Item_Stock_Data" style="document" />
       <wsdl:input>
@@ -8795,6 +8846,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9558,15 +9618,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Inv_Crud_Item_Stock">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Crud_Item_Stock" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9749,6 +9800,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10307,15 +10367,6 @@
     </wsdl:operation>
     <wsdl:operation name="FetchMenu">
       <soap12:operation soapAction="http://tempuri.org/FetchMenu" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -543,6 +543,35 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+
+        public DataSet Fetch_LMS_ItemDetails_Vendor_Transaction(int DepartmentID, int CompanyID, string ItemIDs, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Vendor_Transaction_Item_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@ItemIDs", ItemIDs);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+
+
+
+
         public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID, string StrConn)
         {
             DataSet dsItem = new DataSet();

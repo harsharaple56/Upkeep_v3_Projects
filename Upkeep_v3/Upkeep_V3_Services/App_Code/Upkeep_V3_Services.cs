@@ -411,6 +411,24 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet Fetch_LMS_ItemDetails_Vendor_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_ItemDetails_Vendor_Transaction(DepartmentID, CompanyID, ItemIDs);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+
+    [WebMethod]
     public DataSet Fetch_Invoices(int Company_ID)
     {
         try
