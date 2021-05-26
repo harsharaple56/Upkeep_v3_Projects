@@ -190,6 +190,8 @@
                                     <th title="Asset_Name" data-field="Asset_Name">Service ID</th>
                                     <th title="Asset_Name" data-field="Asset_Name">Asset Name</th>
                                     <th title="Asset_Type" data-field="Asset_Type">Asset Type</th>
+                                    <th title="Asset_Category" data-field="Asset_Type">Asset Categeory</th>
+
 
                                     <th title="Service_Date" data-field="Service_Date">Service Date</th>
                                     <th title="Assigned_To" data-field="Assigned_To">Assigned To</th>

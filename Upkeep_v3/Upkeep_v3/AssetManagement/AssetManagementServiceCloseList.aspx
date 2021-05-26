@@ -190,8 +190,10 @@
                                     <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
                                     <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
                                     
-                                    <th title="Asset_Name" data-field="Asset_Name">Service ID</th>
-                                    <th title="Asset_Name" data-field="Asset_Name">Asset Name</th>
+                                    <th title="Asset_Name">Service ID</th>
+                                    
+                                <th title="Asset_Name" data-field="Asset_Name">Asset Name</th>
+
                                     <th title="Asset_Type" data-field="Asset_Type">Asset Type</th>
 
                                     <th title="Service_Date" data-field="Service_Date">Service Date</th>

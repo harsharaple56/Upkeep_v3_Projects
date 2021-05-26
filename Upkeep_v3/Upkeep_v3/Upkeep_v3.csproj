@@ -107,6 +107,7 @@
     <Content Include="AssetManagement\AssetManagementServiceList.aspx" />
     <Content Include="AssetManagement\AssetManagementServiceRequest.aspx" />
     <Content Include="AssetManagement\Asset_Report.aspx" />
+    <Content Include="AssetManagement\Asset_Service_Request_Details.aspx" />
     <Content Include="assets1\app\js\dashboard.js" />
     <Content Include="assets1\app\js\layout-builder.js" />
     <Content Include="assets1\app\js\my-script.js" />
@@ -4146,6 +4147,13 @@
     </Compile>
     <Compile Include="AssetManagement\Asset_Report.aspx.designer.cs">
       <DependentUpon>Asset_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement\Asset_Service_Request_Details.aspx.cs">
+      <DependentUpon>Asset_Service_Request_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagement\Asset_Service_Request_Details.aspx.designer.cs">
+      <DependentUpon>Asset_Service_Request_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Billing\Billing_Details.aspx.cs">
       <DependentUpon>Billing_Details.aspx</DependentUpon>

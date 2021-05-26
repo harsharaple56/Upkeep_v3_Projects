@@ -12,9 +12,13 @@ namespace Upkeep_v3.CSM
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
+
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -30,7 +34,7 @@ namespace Upkeep_v3.CSM
             {
                 strInitiator = Convert.ToString(Session["UserType"]);
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_CSMConfiguration(0);
+                ds = ObjUpkeep.Fetch_CSMConfiguration(CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {
