@@ -895,7 +895,7 @@
                                                 <div id="div22" runat="server">
                                                     <button id='btnAssetVid' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
                                                         data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
-                                                        title='View Uploaded Video' data-title='View Uploaded Videos'>
+                                                        title='View Uploaded Video' data-title='View Uploaded Videos'> 
                                                         <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
                                                     </button>
                                                     <asp:HiddenField ID="hdnAssetVid" runat="server" ClientIDMode="Static" />
@@ -941,7 +941,7 @@
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             
                                             <div class="col-xl-1 col-lg-3" style="text-align:center; max-width: 3%;">
-                                                <input type="checkbox" id="customCheck" runat="server" class="customcontrolinput" checked="checked" name="example1" clientidmode="Static" />
+                                                <input type="checkbox" id="customCheck" runat="server" class="customcontrolinput" name="example1" clientidmode="Static" />
 
                                             </div>
                                             <label class="col-xl-5 col-lg-2 form-control-label">Check this box if Asset is covered by AMC :</label>

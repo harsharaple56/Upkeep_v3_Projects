@@ -1256,7 +1256,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("SubCategory_ID", SubcategoryID);
                 cmd.Parameters.AddWithValue("SubCategory_Desc", SubCategoryDesc);
                 cmd.Parameters.AddWithValue("Category_ID", CategoryID);
-                cmd.Parameters.AddWithValue("Priority_ID", CategoryID);
+                cmd.Parameters.AddWithValue("Priority_ID", Priority_ID);
                 cmd.Parameters.AddWithValue("Approval_Required", Approval_Required);
                 cmd.Parameters.AddWithValue("LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("Action", Action);
@@ -3307,7 +3307,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region Asset Management 
 
-        public DataSet Fetch_Asset_DropDown(int UserID, string StrConn)
+        public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3315,6 +3315,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_DROPDOWN_LIST", con);
                 cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

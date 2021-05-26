@@ -749,22 +749,22 @@
                                             <th><%#Eval("Event_Name")%></th>
                                             <td style="font-weight: 450;"><%#Eval("TotalFeedbacks")%>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-focus" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-focus" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td style="font-weight: 450;"><%#Eval("TotalPositve")%> (<%#Eval("PositivePercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%#Eval("PositivePercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td >
                                             <td style="font-weight: 450;"><%#Eval("TotalNegative")%> (<%#Eval("NegativePercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%#Eval("NegativePercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td style="font-weight: 450;"><%#Eval("TotalNeutral")%> (<%#Eval("NeutralPercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%#Eval("NeutralPercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>

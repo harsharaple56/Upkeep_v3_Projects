@@ -2321,13 +2321,13 @@ public class My_Upkeep
 
 
     #region Asset Management 
-    public DataSet Fetch_Asset_DropDown(int UserID)
+    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
-            ds = ObjUpkeepCC_BL.Fetch_Asset_DropDown(UserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Asset_DropDown(UserID, CompanyID, StrConn);
         }
         catch (Exception ex)
         {

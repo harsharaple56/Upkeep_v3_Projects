@@ -23,6 +23,7 @@ namespace Upkeep_v3.AssetManagement
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             int TransactionID = 0;
@@ -34,6 +35,7 @@ namespace Upkeep_v3.AssetManagement
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
             //LoggedInUserID = "3";
             if (LoggedInUserID == "")
@@ -80,7 +82,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID));
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
                 //SPR_ASSET_FETCH_DROPDOWN_LIST
                 if (dsTitle.Tables.Count > 0)

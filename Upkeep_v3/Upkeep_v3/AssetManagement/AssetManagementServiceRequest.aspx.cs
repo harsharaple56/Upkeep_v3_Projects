@@ -23,6 +23,7 @@ namespace Upkeep_v3.AssetManagement
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,6 +33,7 @@ namespace Upkeep_v3.AssetManagement
             ViewState["TransactionID"] = 0;
             ViewState["AssetID"] = 0;
             ViewState["ActionType"] = 0;
+
             if (Request.QueryString["TransactionID"] != null)
             {
                 TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
@@ -49,8 +51,9 @@ namespace Upkeep_v3.AssetManagement
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
-           // LoggedInUserID = "3";
+            // LoggedInUserID = "3";
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -118,7 +121,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID));
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID),CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables[0].Rows.Count > 0)
