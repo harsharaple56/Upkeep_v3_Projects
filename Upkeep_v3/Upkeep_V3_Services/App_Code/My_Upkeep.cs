@@ -407,6 +407,24 @@ public class My_Upkeep
     }
 
 
+    public DataSet Fetch_LMS_ItemDetails_Vendor_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+
+            ds = ObjUpkeepCC_BL.Fetch_LMS_ItemDetails_Vendor_Transaction(DepartmentID, CompanyID, ItemIDs, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
     public DataSet Fetch_Invoices(int Company_ID)
     {
@@ -806,16 +824,32 @@ public class My_Upkeep
     }
 
 
-
-
-
-    public DataSet SubCategoryMaster_CRUD(int ComapnyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
+    public DataSet Fetch_CRUD_Vendor_Mst(int Vendor_ID, string Vendor_Name, string Vendor_Desc, string Vendor_Address, string Vendor_Contact1, string Vendor_Contact2, string Vendor_Email, string Vendor_Reg_ID, string Vendor_GSTIN, string Vendor_PAN, string Vendor_Bank_Details, string LoggedInUserID, int CompanyID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.SubCategoryMaster_CRUD(ComapnyID, SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_CRUD_Vendor_Mst(Vendor_ID, Vendor_Name, Vendor_Desc, Vendor_Address, Vendor_Contact1, Vendor_Contact2, Vendor_Email, Vendor_Reg_ID, Vendor_GSTIN, Vendor_PAN, Vendor_Bank_Details, LoggedInUserID, CompanyID, Action, StrConn);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+    public DataSet SubCategoryMaster_CRUD(int ComapnyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Priority_ID, int Approval_Required, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.SubCategoryMaster_CRUD(ComapnyID, SubcategoryID, SubCategoryDesc, CategoryID, Priority_ID, Approval_Required, LoggedInUserID, Action, StrConn);
 
         }
         catch (Exception ex)
@@ -1904,6 +1938,38 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_My_Department_Checklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_My_Department_Checklists(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_MyChecklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_MyChecklists(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet Fetch_Checklist_Report(string Response_ID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
@@ -2307,13 +2373,13 @@ public class My_Upkeep
 
 
     #region Asset Management 
-    public DataSet Fetch_Asset_DropDown(int UserID)
+    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
-            ds = ObjUpkeepCC_BL.Fetch_Asset_DropDown(UserID, StrConn);
+            ds = ObjUpkeepCC_BL.Fetch_Asset_DropDown(UserID, CompanyID, StrConn);
         }
         catch (Exception ex)
         {

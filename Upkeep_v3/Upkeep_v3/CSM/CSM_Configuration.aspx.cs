@@ -262,7 +262,7 @@ namespace Upkeep_v3.CSM
                 strFlowUsers = hdnSelectedUserID.Value;
                 strConfigTitle = txtTitle.Text.Trim();
 
-                if (txtCost.Text.All(char.IsDigit))
+                if (txtCost.Text.All(char.IsDigit) && !string.IsNullOrEmpty(txtCost.Text))
                     intCost = Convert.ToInt32(txtCost.Text);
 
                 CostUnit = intCost.ToString() + "/" + txtUnit.Text;

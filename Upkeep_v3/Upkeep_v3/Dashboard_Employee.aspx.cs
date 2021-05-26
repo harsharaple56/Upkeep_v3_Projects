@@ -21,11 +21,14 @@ namespace Upkeep_v3
         int CompanyID = 0;
 
         string Role_Name = string.Empty;
-
+        string UserType = string.Empty;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            UserType = Convert.ToString(Session["UserType"]);
+
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -35,8 +38,16 @@ namespace Upkeep_v3
             hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
             {
-                hdn_IsPostBack.Value = "no";
-                Dashboard_Details();
+                if(UserType=="E")
+                {
+                    hdn_IsPostBack.Value = "no";
+                    Dashboard_Details();
+                }
+                else
+                {
+                    Response.Redirect("~/Dashboard_Retailer.aspx");
+                }
+                
             }
 
         }

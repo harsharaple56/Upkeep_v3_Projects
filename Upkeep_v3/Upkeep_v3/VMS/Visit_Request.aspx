@@ -328,7 +328,11 @@ background-color: blanchedalmond;
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                        <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
+
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"  ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+
+
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -365,7 +369,7 @@ background-color: blanchedalmond;
                                     <label class="col-md-1 col-form-label font-weight-bold">Name :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
+                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Name"></asp:RequiredFieldValidator>
                               
@@ -375,7 +379,7 @@ background-color: blanchedalmond;
                                     <label class="col-md-1 col-form-label font-weight-bold">Email :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Email"></asp:RequiredFieldValidator>
                               
@@ -385,9 +389,10 @@ background-color: blanchedalmond;
                                     <label class="col-md-1 col-form-label font-weight-bold">Phone :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
+
                               
                                     </div>
                                 </div>
@@ -397,7 +402,7 @@ background-color: blanchedalmond;
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" AutoPostBack="true" placeholder="Select Visit date & time"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
@@ -410,7 +415,7 @@ background-color: blanchedalmond;
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
                                     <label class="col-md-1 col-form-label font-weight-bold">Meeting with :</label>
                                     <div class="col-md-5 col-form-label">
-                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" AutoPostBack="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"

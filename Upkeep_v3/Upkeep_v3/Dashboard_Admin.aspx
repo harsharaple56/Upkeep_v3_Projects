@@ -81,8 +81,18 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title " style="padding: 8px 49px 7px 0;">Admin Dashboard</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Admin Dashboard</h3>
 
+                    
+                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
+                    
+                </div>
+                <div>
+                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
+                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Switch to Your Account Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Employee_Dashboard_Click" />
+                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Admin Dashboard" class="m-btn btn btn-success" OnClick="btn_Admin_Dashboard_Click" />
+
+                    </div>
                     <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
                             <span class="m-subheader__daterange-title"></span>
@@ -98,15 +108,6 @@
                             <i class="la la-angle-down"></i>
                         </a>
                     </span>
-                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
-                    
-                </div>
-                <div>
-                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
-                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Switch to Your Account Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Employee_Dashboard_Click" />
-                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Admin Dashboard" class="m-btn btn btn-success" OnClick="btn_Admin_Dashboard_Click" />
-
-                    </div>
                 </div>
 
             </div>
@@ -118,7 +119,7 @@
 
 
     <div class="m-porlet">
-        <div class="row">
+        <div class="row" style="width: fit-content;">
 
             <div class="col-xl-6" id="div_Ticketing" runat="server">
 
@@ -333,10 +334,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-        </div>
-
-        <div class="row">
-
+        
             <div class="col-xl-6" id="div_Gatepass" runat="server">
 
                 <!--begin:: Ticketing Section-->
@@ -688,12 +686,6 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-
-
-        </div>
-
-
-        <div class="row">
             <div class="col-xl-12" id="div_Feedback" runat="server">
                 <div class="m-portlet">
                     
@@ -757,22 +749,22 @@
                                             <th><%#Eval("Event_Name")%></th>
                                             <td style="font-weight: 450;"><%#Eval("TotalFeedbacks")%>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-focus" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-focus" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td style="font-weight: 450;"><%#Eval("TotalPositve")%> (<%#Eval("PositivePercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%#Eval("PositivePercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td >
                                             <td style="font-weight: 450;"><%#Eval("TotalNegative")%> (<%#Eval("NegativePercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%#Eval("NegativePercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td style="font-weight: 450;"><%#Eval("TotalNeutral")%> (<%#Eval("NeutralPercent")%>%)
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%#Eval("NeutralPercent")%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -840,10 +832,8 @@
 
                 </div>
             </div>
+
         </div>
-
-
-
 
 
     </div>
