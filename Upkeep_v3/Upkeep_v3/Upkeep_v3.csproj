@@ -1014,7 +1014,11 @@
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
-    <Content Include="CSM\Service_Reports.aspx" />
+    <Content Include="CSM\List_Service_Requests_Type.aspx" />
+    <Content Include="CSM\Raise_Service_Request.aspx" />
+    <Content Include="CSM\Service_Requests.aspx" />
+    <Content Include="CSM\Service_Requests_Report.aspx" />
+    <Content Include="CSM\View_Service_Request.aspx" />
     <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -4449,12 +4453,40 @@
     <Compile Include="CSM\CSM_Configuration.aspx.designer.cs">
       <DependentUpon>CSM_Configuration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CSM\Service_Reports.aspx.cs">
-      <DependentUpon>Service_Reports.aspx</DependentUpon>
+    <Compile Include="CSM\List_Service_Requests_Type.aspx.cs">
+      <DependentUpon>List_Service_Requests_Type.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CSM\Service_Reports.aspx.designer.cs">
-      <DependentUpon>Service_Reports.aspx</DependentUpon>
+    <Compile Include="CSM\List_Service_Requests_Type.aspx.designer.cs">
+      <DependentUpon>List_Service_Requests_Type.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\Raise_Service_Request.aspx.cs">
+      <DependentUpon>Raise_Service_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\Raise_Service_Request.aspx.designer.cs">
+      <DependentUpon>Raise_Service_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\Service_Requests.aspx.cs">
+      <DependentUpon>Service_Requests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\Service_Requests.aspx.designer.cs">
+      <DependentUpon>Service_Requests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\Service_Requests_Report.aspx.cs">
+      <DependentUpon>Service_Requests_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\Service_Requests_Report.aspx.designer.cs">
+      <DependentUpon>Service_Requests_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CSM\View_Service_Request.aspx.cs">
+      <DependentUpon>View_Service_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CSM\View_Service_Request.aspx.designer.cs">
+      <DependentUpon>View_Service_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Custom_Reports\Custom_Reports_Listing.aspx.cs">
       <DependentUpon>Custom_Reports_Listing.aspx</DependentUpon>

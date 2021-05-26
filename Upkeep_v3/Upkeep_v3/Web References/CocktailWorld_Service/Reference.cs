@@ -46,6 +46,10 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Save_CategorySizeLinkupOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LicenseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SupplierMaster_CRUDOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -107,6 +111,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Save_CategorySizeLinkupCompletedEventHandler Save_CategorySizeLinkupCompleted;
+        
+        /// <remarks/>
+        public event LicenseCompletedEventHandler LicenseCompleted;
+        
+        /// <remarks/>
+        public event SupplierMaster_CRUDCompletedEventHandler SupplierMaster_CRUDCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -407,6 +417,88 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/License", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet License(string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("License", new object[] {
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LicenseAsync(string LoggedInUserID, int Company_ID, string Action) {
+            this.LicenseAsync(LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void LicenseAsync(string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.LicenseOperationCompleted == null)) {
+                this.LicenseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLicenseOperationCompleted);
+            }
+            this.InvokeAsync("License", new object[] {
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.LicenseOperationCompleted, userState);
+        }
+        
+        private void OnLicenseOperationCompleted(object arg) {
+            if ((this.LicenseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LicenseCompleted(this, new LicenseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SupplierMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact, string City, string Email, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("SupplierMaster_CRUD", new object[] {
+                        Supplier_ID,
+                        SupplierName,
+                        Code,
+                        pincode,
+                        Address,
+                        Contact,
+                        City,
+                        Email,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SupplierMaster_CRUDAsync(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact, string City, string Email, string LoggedInUserID, int Company_ID, string Action) {
+            this.SupplierMaster_CRUDAsync(Supplier_ID, SupplierName, Code, pincode, Address, Contact, City, Email, LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void SupplierMaster_CRUDAsync(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact, string City, string Email, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.SupplierMaster_CRUDOperationCompleted == null)) {
+                this.SupplierMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSupplierMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("SupplierMaster_CRUD", new object[] {
+                        Supplier_ID,
+                        SupplierName,
+                        Code,
+                        pincode,
+                        Address,
+                        Contact,
+                        City,
+                        Email,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.SupplierMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnSupplierMaster_CRUDOperationCompleted(object arg) {
+            if ((this.SupplierMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SupplierMaster_CRUDCompleted(this, new SupplierMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -620,6 +712,58 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Save_CategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void LicenseCompletedEventHandler(object sender, LicenseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LicenseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LicenseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void SupplierMaster_CRUDCompletedEventHandler(object sender, SupplierMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SupplierMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SupplierMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

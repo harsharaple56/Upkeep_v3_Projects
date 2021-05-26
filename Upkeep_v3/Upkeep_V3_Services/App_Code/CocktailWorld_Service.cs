@@ -150,6 +150,37 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
 
+    [WebMethod]
+    public DataSet License(string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.License(LoggedInUserID, Company_ID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
+    public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact,string City, string Email, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID,  SupplierName,  Code,  pincode,  Address,  Contact, City, Email, LoggedInUserID, Company_ID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
 }

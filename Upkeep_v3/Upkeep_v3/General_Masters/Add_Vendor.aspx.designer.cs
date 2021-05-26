@@ -40,13 +40,22 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfVendorName;
         
         /// <summary>
+        /// txtVendor_Reg_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVendor_Reg_ID;
+        
+        /// <summary>
         /// txtVendorDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVendorDesc;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtVendorDesc;
         
         /// <summary>
         /// txtPrimaryContact control.
@@ -100,7 +109,7 @@ namespace Upkeep_v3.General_Masters {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtAddress;
         
         /// <summary>
         /// txtGSTIN control.
@@ -127,7 +136,7 @@ namespace Upkeep_v3.General_Masters {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBankDetails;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtBankDetails;
         
         /// <summary>
         /// lblUserErrorMsg control.

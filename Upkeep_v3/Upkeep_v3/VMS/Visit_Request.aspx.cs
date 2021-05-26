@@ -1089,5 +1089,14 @@ namespace Upkeep_v3.VMS
 
         #endregion
 
+        protected void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
+            {
+                lblErrorMsg.Text = "Please enter only number";
+               // MessageBox.Show("Please enter only numbers.");
+                txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
+            }
+        }
     }
 }

@@ -70,8 +70,8 @@
                                 <tr>
                                     <th>Sub Catgeory ID</th>
                                     <th>Sub Catgeory Description </th>
+                                    <th>Priority </th>
                                     <th>Category </th>
-                                    
                                     <th>Action </th>
                                 </tr>
 
@@ -110,6 +110,11 @@
                                            <asp:DropDownList ID="ddlCategory" class="form-control m-input" Style="width: 60%;" runat="server" ></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" 
                                                 ValidationGroup="validationSubCategory" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Priority :</label>
+                                           <asp:DropDownList ID="ddlPriority" class="form-control m-input" Style="width: 60%;" runat="server" ></asp:DropDownList>
                                         </div>
                                         
                                         

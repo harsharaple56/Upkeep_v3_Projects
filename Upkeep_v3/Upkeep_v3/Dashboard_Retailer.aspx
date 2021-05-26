@@ -84,7 +84,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title " style="padding: 7px 740px 7px 0;">Utilities & Widgets</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Utilities & Widgets</h3>
 
                 </div>
 
@@ -125,14 +125,14 @@
                                                         </h4>
                                                         <br>
                                                         <span class="m-widget24__desc">Click to log the time when your store Opens
-                                                        </span>
-                                                        <span class="m-widget24__stats m--font-info">
+
                                                             <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" id="btnPunchIn" onserverclick="Btn_Retailer_PunchIn_Click">
                                                                 <span>
                                                                     <i class="la la-hand-pointer-o"></i>
                                                                     <span>Punch IN</span>
                                                                 </span>
                                                             </a>
+
                                                         </span>
                                                         <div class="m--space-10"></div>
                                                         <div class="progress m-progress--sm">
@@ -205,7 +205,7 @@
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
-                    <h3 class="m-subheader__title " style="padding: 7px 735px 7px 0;">Dashboard</h3>
+                    <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Dashboard</h3>
 
                     <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
@@ -252,10 +252,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/tkt.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Closure
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem; line-height: initial;">Pending Closure
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of Tickets Pending for Closure
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Tickets Pending for Closure
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -323,7 +323,7 @@
                                             <h3 class="m-widget1__title">Tickets
                                                 <span style="width: 110px;">
                                                     <span class="m-badge m-badge--info m-badge--dot"></span>
-                                                    <span class="m--font-bold m--font-success">Assigned</span>
+                                                    <span class="m--font-bold m--font-success">Accepted</span>
                                                 </span>
                                                 <span class="m-badge m-badge--danger m-badge--wide">Open</span>
                                             </h3>
@@ -376,10 +376,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/wp.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of your Work Permits pending for approval
+                                        <span class="m-widget19__time" style="line-height: initial;" >Total No. of your Work Permits pending for approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -493,10 +493,10 @@
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/gp.png") %>" alt="">
                                     </div>
                                     <div class="m-widget19__info">
-                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Pending Approvals
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time">Total No. of your Gate Passes pending for approval
+                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of your Gate Passes pending for approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">

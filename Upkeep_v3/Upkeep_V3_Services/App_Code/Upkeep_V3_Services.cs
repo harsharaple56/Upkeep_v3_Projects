@@ -839,13 +839,29 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
 
-
     [WebMethod]
-    public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Approval_Required, string LoggedInUserID, string Action)
+    public DataSet Fetch_CRUD_Vendor_Mst(int Vendor_ID, string Vendor_Name, string Vendor_Desc, string Vendor_Address, string Vendor_Contact1, string Vendor_Contact2, string Vendor_Email, string Vendor_Reg_ID, string Vendor_GSTIN, string Vendor_PAN, string Vendor_Bank_Details, string LoggedInUserID, int CompanyID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, SubcategoryID, SubCategoryDesc, CategoryID, Approval_Required, LoggedInUserID, Action);
+            ds = ObjUpkeep.Fetch_CRUD_Vendor_Mst(Vendor_ID, Vendor_Name, Vendor_Desc, Vendor_Address, Vendor_Contact1, Vendor_Contact2, Vendor_Email, Vendor_Reg_ID, Vendor_GSTIN, Vendor_PAN, Vendor_Bank_Details, LoggedInUserID, CompanyID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+    [WebMethod]
+    public DataSet SubCategoryMaster_CRUD(int CompanyID, int SubcategoryID, string SubCategoryDesc, int CategoryID, int Priority_ID, int Approval_Required, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjUpkeep.SubCategoryMaster_CRUD(CompanyID, SubcategoryID, SubCategoryDesc, CategoryID, Priority_ID,Approval_Required, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -2228,6 +2244,36 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_My_Department_Checklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_My_Department_Checklists(LoggedInUserID, CompanyID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_MyChecklists(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyChecklists(LoggedInUserID, CompanyID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
