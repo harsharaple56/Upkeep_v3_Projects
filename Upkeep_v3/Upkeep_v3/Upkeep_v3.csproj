@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Analytics\Ticketing.aspx" />
-    <Content Include="Anjali.html" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
     <Content Include="AssetManagement\AssetManagementList.aspx" />
@@ -1006,6 +1005,7 @@
     <Content Include="Cocktail_World\Setup\Frm_Category_Master.aspx" />
     <Content Include="Cocktail_World\Setup\Licenses.aspx" />
     <Content Include="Cocktail_World\Setup\Permit_Holders.aspx" />
+    <Content Include="Cocktail_World\Setup\Setup.aspx" />
     <Content Include="Cocktail_World\Setup\Suppliers.aspx" />
     <Content Include="Cocktail_World\Transactions\Auto_Billing.aspx" />
     <Content Include="Cocktail_World\Transactions\Purchases.aspx" />
@@ -4396,6 +4396,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Setup\Permit_Holders.aspx.designer.cs">
       <DependentUpon>Permit_Holders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Setup.aspx.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Setup.aspx.designer.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Suppliers.aspx.cs">
       <DependentUpon>Suppliers.aspx</DependentUpon>

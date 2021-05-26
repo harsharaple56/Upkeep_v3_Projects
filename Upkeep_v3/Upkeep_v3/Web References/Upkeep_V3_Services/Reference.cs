@@ -4538,24 +4538,26 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Asset_DropDown(int UserID) {
+        public System.Data.DataSet Fetch_Asset_DropDown(int UserID, int CompanyID) {
             object[] results = this.Invoke("Fetch_Asset_DropDown", new object[] {
-                        UserID});
+                        UserID,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID) {
-            this.Fetch_Asset_DropDownAsync(UserID, null);
+        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID) {
+            this.Fetch_Asset_DropDownAsync(UserID, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID, object userState) {
+        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID, object userState) {
             if ((this.Fetch_Asset_DropDownOperationCompleted == null)) {
                 this.Fetch_Asset_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_DropDownOperationCompleted);
             }
             this.InvokeAsync("Fetch_Asset_DropDown", new object[] {
-                        UserID}, this.Fetch_Asset_DropDownOperationCompleted, userState);
+                        UserID,
+                        CompanyID}, this.Fetch_Asset_DropDownOperationCompleted, userState);
         }
         
         private void OnFetch_Asset_DropDownOperationCompleted(object arg) {
