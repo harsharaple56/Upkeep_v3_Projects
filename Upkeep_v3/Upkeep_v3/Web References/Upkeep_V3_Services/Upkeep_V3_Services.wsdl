@@ -3,6 +3,95 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_Stock_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Stock_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Stock_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_Stock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_StockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_StockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_Item">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_ItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_ItemResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Stock_Detail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StockId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Stock_DetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Stock_DetailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Inv_Items_List">
         <s:complexType>
           <s:sequence>
@@ -769,6 +858,54 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchMenu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="parentMenuId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ModuleIDs" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchMenuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchMenuResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RoleMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RoleMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RoleMaster_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1820,6 +1957,54 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_My_Department_Checklists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_My_Department_ChecklistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_My_Department_ChecklistsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyChecklistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyChecklistsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Checklist_Report">
         <s:complexType>
           <s:sequence>
@@ -2367,6 +2552,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2678,95 +2864,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_TransactionResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Stock_List">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Stock_ListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Stock_ListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_Stock">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_StockResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_StockResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_Item">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_ItemResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_ItemResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Stock_Detail">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="StockId" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Stock_DetailResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Stock_DetailResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3259,6 +3356,29 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_Dept_Transaction_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemIDs" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_ItemDetails_Vendor_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemDetails_Vendor_TransactionResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3914,6 +4034,40 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_CRUD_Vendor_Mst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Vendor_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Contact1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Contact2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Reg_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_GSTIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_PAN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Vendor_Bank_Details" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CRUD_Vendor_MstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CRUD_Vendor_MstResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="SubCategoryMaster_CRUD">
         <s:complexType>
           <s:sequence>
@@ -3921,6 +4075,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="SubcategoryID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="SubCategoryDesc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Priority_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Approval_Required" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
@@ -4788,54 +4943,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="FetchMenu">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="parentMenuId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ModuleIDs" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="FetchMenuResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FetchMenuResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RoleMaster_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RoleMaster_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="RoleMaster_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4843,6 +4950,30 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_Stock_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Stock_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Stock_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Stock_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_StockSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_Stock" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_StockSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_StockResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_ItemSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_Item" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_ItemSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_ItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Stock_DetailSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Stock_Detail" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Stock_DetailSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Stock_DetailResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Inv_Items_ListSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Inv_Items_List" />
   </wsdl:message>
@@ -5034,6 +5165,18 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchMenuSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchMenu" />
+  </wsdl:message>
+  <wsdl:message name="FetchMenuSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="RoleMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:RoleMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="RoleMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:RoleMaster_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Assigned_RoleSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Assigned_Role" />
@@ -5299,6 +5442,18 @@
   <wsdl:message name="Fetch_MyChecklistReportListSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyChecklistReportListResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_My_Department_ChecklistsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_My_Department_Checklists" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_My_Department_ChecklistsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_My_Department_ChecklistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklistsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklists" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyChecklistsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyChecklistsResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Checklist_ReportSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Checklist_Report" />
   </wsdl:message>
@@ -5521,30 +5676,6 @@
   <wsdl:message name="Delete_Inv_TransactionSoapOut">
     <wsdl:part name="parameters" element="tns:Delete_Inv_TransactionResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Stock_ListSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Stock_List" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Stock_ListSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Stock_ListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_StockSoapIn">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_Stock" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_StockSoapOut">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_StockResponse" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_ItemSoapIn">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_Item" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_ItemSoapOut">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_ItemResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Stock_DetailSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Stock_Detail" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Stock_DetailSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Stock_DetailResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5670,6 +5801,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_LMS_Dept_Transaction_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_LMS_Dept_Transaction_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Vendor_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Vendor_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Vendor_TransactionResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -5826,6 +5963,12 @@
   </wsdl:message>
   <wsdl:message name="RetailerPunch_CRSoapOut">
     <wsdl:part name="parameters" element="tns:RetailerPunch_CRResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CRUD_Vendor_MstSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CRUD_Vendor_Mst" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CRUD_Vendor_MstSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CRUD_Vendor_MstResponse" />
   </wsdl:message>
   <wsdl:message name="SubCategoryMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:SubCategoryMaster_CRUD" />
@@ -6037,19 +6180,23 @@
   <wsdl:message name="Add_Update_Location_NodeSoapOut">
     <wsdl:part name="parameters" element="tns:Add_Update_Location_NodeResponse" />
   </wsdl:message>
-  <wsdl:message name="FetchMenuSoapIn">
-    <wsdl:part name="parameters" element="tns:FetchMenu" />
-  </wsdl:message>
-  <wsdl:message name="FetchMenuSoapOut">
-    <wsdl:part name="parameters" element="tns:FetchMenuResponse" />
-  </wsdl:message>
-  <wsdl:message name="RoleMaster_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:RoleMaster_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="RoleMaster_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:RoleMaster_CRUDResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_Stock_List">
+      <wsdl:input message="tns:Fetch_Stock_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Stock_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Stock">
+      <wsdl:input message="tns:Delete_Inv_StockSoapIn" />
+      <wsdl:output message="tns:Delete_Inv_StockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Item">
+      <wsdl:input message="tns:Delete_Inv_ItemSoapIn" />
+      <wsdl:output message="tns:Delete_Inv_ItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Stock_Detail">
+      <wsdl:input message="tns:Fetch_Stock_DetailSoapIn" />
+      <wsdl:output message="tns:Fetch_Stock_DetailSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Items_List">
       <wsdl:input message="tns:Fetch_Inv_Items_ListSoapIn" />
       <wsdl:output message="tns:Fetch_Inv_Items_ListSoapOut" />
@@ -6177,6 +6324,14 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchMenu">
+      <wsdl:input message="tns:FetchMenuSoapIn" />
+      <wsdl:output message="tns:FetchMenuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <wsdl:input message="tns:RoleMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:RoleMaster_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Assigned_Role">
       <wsdl:input message="tns:Fetch_Assigned_RoleSoapIn" />
@@ -6354,6 +6509,14 @@
       <wsdl:input message="tns:Fetch_MyChecklistReportListSoapIn" />
       <wsdl:output message="tns:Fetch_MyChecklistReportListSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Department_Checklists">
+      <wsdl:input message="tns:Fetch_My_Department_ChecklistsSoapIn" />
+      <wsdl:output message="tns:Fetch_My_Department_ChecklistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklists">
+      <wsdl:input message="tns:Fetch_MyChecklistsSoapIn" />
+      <wsdl:output message="tns:Fetch_MyChecklistsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <wsdl:input message="tns:Fetch_Checklist_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_Checklist_ReportSoapOut" />
@@ -6502,22 +6665,6 @@
       <wsdl:input message="tns:Delete_Inv_TransactionSoapIn" />
       <wsdl:output message="tns:Delete_Inv_TransactionSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_List">
-      <wsdl:input message="tns:Fetch_Stock_ListSoapIn" />
-      <wsdl:output message="tns:Fetch_Stock_ListSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Stock">
-      <wsdl:input message="tns:Delete_Inv_StockSoapIn" />
-      <wsdl:output message="tns:Delete_Inv_StockSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Item">
-      <wsdl:input message="tns:Delete_Inv_ItemSoapIn" />
-      <wsdl:output message="tns:Delete_Inv_ItemSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_Detail">
-      <wsdl:input message="tns:Fetch_Stock_DetailSoapIn" />
-      <wsdl:output message="tns:Fetch_Stock_DetailSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -6601,6 +6748,10 @@
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <wsdl:input message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapIn" />
       <wsdl:output message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <wsdl:input message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -6705,6 +6856,10 @@
     <wsdl:operation name="RetailerPunch_CR">
       <wsdl:input message="tns:RetailerPunch_CRSoapIn" />
       <wsdl:output message="tns:RetailerPunch_CRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CRUD_Vendor_Mst">
+      <wsdl:input message="tns:Fetch_CRUD_Vendor_MstSoapIn" />
+      <wsdl:output message="tns:Fetch_CRUD_Vendor_MstSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SubCategoryMaster_CRUD">
       <wsdl:input message="tns:SubCategoryMaster_CRUDSoapIn" />
@@ -6847,17 +7002,45 @@
       <wsdl:input message="tns:Add_Update_Location_NodeSoapIn" />
       <wsdl:output message="tns:Add_Update_Location_NodeSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="FetchMenu">
-      <wsdl:input message="tns:FetchMenuSoapIn" />
-      <wsdl:output message="tns:FetchMenuSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <wsdl:input message="tns:RoleMaster_CRUDSoapIn" />
-      <wsdl:output message="tns:RoleMaster_CRUDSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Stock_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Stock">
+      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Stock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Item">
+      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Item" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Stock_Detail">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Items_List">
       <soap:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
       <wsdl:input>
@@ -7139,6 +7322,24 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchMenu">
+      <soap:operation soapAction="http://tempuri.org/FetchMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -7542,6 +7743,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Department_Checklists">
+      <soap:operation soapAction="http://tempuri.org/Fetch_My_Department_Checklists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklists">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyChecklists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
       <wsdl:input>
@@ -7875,42 +8094,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_List">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Stock">
-      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Stock" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Item">
-      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Item" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_Detail">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8093,6 +8276,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8327,6 +8519,15 @@
     </wsdl:operation>
     <wsdl:operation name="RetailerPunch_CR">
       <soap:operation soapAction="http://tempuri.org/RetailerPunch_CR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CRUD_Vendor_Mst">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CRUD_Vendor_Mst" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8649,27 +8850,45 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FetchMenu">
-      <soap:operation soapAction="http://tempuri.org/FetchMenu" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <soap:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Stock_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Stock">
+      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Stock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Item">
+      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Item" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Stock_Detail">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Inv_Items_List">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Inv_Items_List" style="document" />
       <wsdl:input>
@@ -8951,6 +9170,24 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchMenu">
+      <soap12:operation soapAction="http://tempuri.org/FetchMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9354,6 +9591,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_My_Department_Checklists">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_My_Department_Checklists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MyChecklists">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyChecklists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Checklist_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Checklist_Report" style="document" />
       <wsdl:input>
@@ -9687,42 +9942,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_List">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Stock">
-      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Stock" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Item">
-      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Item" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Stock_Detail">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_Detail" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9905,6 +10124,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10139,6 +10367,15 @@
     </wsdl:operation>
     <wsdl:operation name="RetailerPunch_CR">
       <soap12:operation soapAction="http://tempuri.org/RetailerPunch_CR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CRUD_Vendor_Mst">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CRUD_Vendor_Mst" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10454,24 +10691,6 @@
     </wsdl:operation>
     <wsdl:operation name="Add_Update_Location_Node">
       <soap12:operation soapAction="http://tempuri.org/Add_Update_Location_Node" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FetchMenu">
-      <soap12:operation soapAction="http://tempuri.org/FetchMenu" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RoleMaster_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/RoleMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
