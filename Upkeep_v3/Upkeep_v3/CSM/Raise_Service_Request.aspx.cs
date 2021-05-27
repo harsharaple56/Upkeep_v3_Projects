@@ -311,7 +311,7 @@ namespace Upkeep_v3.CSM
 					ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
 					dsConfig = ObjUpkeep.Bind_CSMConfiguration(ConfigID);
 
-					if (!Convert.ToString(dsConfig.Tables[0].Rows[0]["Company_ID"] ?? "").Contains(LoggedInUserID))
+					if (!Convert.ToString(dsConfig.Tables[0].Rows[0]["Request_Flow_ID"] ?? "").Contains(LoggedInUserID))
 					{
 						Response.Write(@"<script>alert('You are not authorized to raise this request.');
 							window.location = '" + Page.ResolveClientUrl("~/CSM/List_Service_Requests_Type.aspx") + @"';</script>");
