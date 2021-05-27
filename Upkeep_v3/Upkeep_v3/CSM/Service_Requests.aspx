@@ -22,7 +22,7 @@
 								var t =
 								{
 									"Open": { title: "Open", class: "m-badge--warning" },
-									"OUT": { title: "OUT", class: " m-badge--success" },
+									"Close": { title: "Close", class: " m-badge--success" },
 									"Approve": { title: "Approved", class: " m-badge--success" },
 									"Apply": { title: "Apply", class: " m-badge--brand" },
 									"Reject": { title: "Rejected", class: " m-badge--danger" },
@@ -144,7 +144,7 @@
 					</div>
 
 					<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-						<a href="<%= Page.ResolveClientUrl("~/CSM/Raise_Service_Request.aspx?ConfigID=34") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+						<a href="<%= Page.ResolveClientUrl("~/CSM/List_Service_Requests_Type.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
 							<span>
 								<i class="la la-plus"></i>
 								<span>New Request</span>

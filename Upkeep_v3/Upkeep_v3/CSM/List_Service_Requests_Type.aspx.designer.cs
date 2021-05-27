@@ -7,18 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.CSM {
-    
-    
-    public partial class List_Service_Requests_Type {
-        
-        /// <summary>
-        /// lbl_Service_Title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_Service_Title;
-    }
+namespace Upkeep_v3.CSM
+{
+
+
+	public partial class List_Service_Requests_Type
+	{
+
+		/// <summary>
+		/// rptCSMConfig control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Repeater rptCSMConfig;
+	}
 }
