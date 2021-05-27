@@ -472,10 +472,11 @@
                 //Terms
                 var terms = $('#hdnTerms').val();
                 var arrTerms = terms.split("~");
+                debugger;
                 for (var i = 0; i < arrTerms.length; i++) {
-                    if (i !== 0) {
+                    //if (i !== 0) {
                         $("#divTermAdd").click();//TermCondition[0][hdnRepeaterTermID]
-                    }
+                    //}
                 }
                 for (var i = 0; i < arrTerms.length; i++) {
                     var QuestionID = $("input[name='TermCondition[" + i + "][hdnRepeaterTermID]']");

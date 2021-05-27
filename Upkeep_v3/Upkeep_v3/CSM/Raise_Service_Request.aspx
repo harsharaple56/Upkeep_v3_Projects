@@ -35,7 +35,7 @@
 								<i class="la la-warning"></i>
 							</div>
 							<div class="m-alert__text">
-								<strong>IN!</strong> This Request is Open.
+								<strong>Open!</strong> This Request is Open.
 							</div>
 						</div>
 						<div class="alert alert-success m-alert--icon" id="divAlertClosed" visible="false" runat="server" role="alert">
@@ -93,7 +93,7 @@
 										<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
 										<asp:Button ID="btnTest" Style="display: none;" runat="server" />
-										<cc1:modalpopupextender id="mpeVMSRequestSaveSuccess" runat="server" popupcontrolid="pnlVMSReqestSuccess" targetcontrolid="btnTest"
+										<cc1:modalpopupextender id="mpeVMSRequestSaveSuccess" runat="server" popupcontrolid="pnlReqestSuccess" targetcontrolid="btnTest"
 											cancelcontrolid="btnCloseQuestion2" backgroundcssclass="modalBackground">
 										</cc1:modalpopupextender>
 									</div>
