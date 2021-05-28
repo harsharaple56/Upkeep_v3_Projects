@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <div class="m-content">
 	<div class="row" style="margin-top: 25px;">
 		<div class="col-lg-12">
 			<asp:Repeater ID="rptCSMConfig" runat="server">
@@ -40,4 +40,5 @@
 			</asp:Repeater>
 		</div>
 	</div>
+        </div>
 </asp:Content>

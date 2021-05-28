@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <div class="m-content">
 	<div class="m-grid__item m-grid__item--fluid m-wrapper">
 		<div class="">
 			<div class="row">
@@ -110,7 +110,7 @@
 							<div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 								
 								<div class="form-group row" style="background-color: #00c5dc;">
-									<label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Service Request Opening Questions</label>
+									<label class="col-md-6" style="color: #ffffff; margin-top: 1%;">Service Request Opening Questions</label>
 								</div>
 
 
@@ -183,7 +183,7 @@
 								</asp:Repeater>
 								<div id="divClosing" runat="server">
 								<div class="form-group row" style="background-color: #00c5dc;">
-									<label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Service Request Closing Questions</label>
+									<label class="col-md-6" style="color: #ffffff; margin-top: 1%;">Service Request Closing Questions</label>
 								</div>
 
 								</div>
@@ -256,7 +256,7 @@
 								</asp:Repeater>
 
 								<div class="form-group row" style="background-color: #00c5dc;">
-									<label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Service Request Terms & Conditions</label>
+									<label class="col-xl-6 col-lg-3" style="color: #ffffff; margin-top: 1%;">Service Request Terms & Conditions</label>
 								</div>
 								<asp:Repeater ID="rptTermsCondition" runat="server" ClientIDMode="Static">
 									<ItemTemplate>
@@ -325,4 +325,5 @@
 			</div>
 		</div>
 	</div>
+        </div>
 </asp:Content>
