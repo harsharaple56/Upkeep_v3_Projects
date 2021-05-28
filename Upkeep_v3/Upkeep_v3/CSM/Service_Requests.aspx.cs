@@ -79,15 +79,15 @@ namespace Upkeep_v3.CSM
                             string RequestID = Convert.ToString(ds.Tables[0].Rows[i]["Request_ID"]);
                             //string TicketNo = Convert.ToString(ds.Tables[0].Rows[i]["TicketNo"]);
                             string Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Desc"]);
-                            //string Department = Convert.ToString(ds.Tables[0].Rows[i]["DepartmentName"]);
-                            //string GP_Type = Convert.ToString(ds.Tables[0].Rows[i]["GP_Type_Desc"]);
+                            string Requested_By = Convert.ToString(ds.Tables[0].Rows[i]["Requested_By"]);
                             string RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Request_Date"]);
+                            string Closed_By = Convert.ToString(ds.Tables[0].Rows[i]["Closed_By"]);
                             string ClosedDate = Convert.ToString(ds.Tables[0].Rows[i]["Closed_Date"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
-                            //string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
 
                             data += "<tr><td> <a href='Raise_Service_Request.aspx?RequestID=" + RequestID + "' style='text-decoration: underline;' > "
-                                + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + RequestDate + "</td><td>" + ClosedDate + "</td><td>" + Status + "</td></tr>";
+                                + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + Requested_By + "</td><td>" + RequestDate + "</td><td>"
+                                + Closed_By + "</td><td>" + ClosedDate + "</td><td>" + Status + "</td></tr>";
 
                         }
 

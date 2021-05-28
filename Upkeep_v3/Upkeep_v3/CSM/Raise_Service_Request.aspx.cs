@@ -969,10 +969,19 @@ namespace Upkeep_v3.CSM
 								divAlertOpen.Visible = true;
 								btnReject.Visible = true;
 								ViewState["Action"] = 'C';
+								lblRequestedBy.Text = dsData.Tables[1].Rows[0]["Requested_By"].ToString();
+								lblRequestedDate.Text = dsData.Tables[1].Rows[0]["Request_Date"].ToString();
+								divRequest.Visible = true;
 								break;
 							case "Close":
 								divAlertClosed.Visible = true;
 								btnSave.Visible = false;
+								lblRequestedBy.Text = dsData.Tables[1].Rows[0]["Requested_By"].ToString();
+								lblRequestedDate.Text = dsData.Tables[1].Rows[0]["Request_Date"].ToString();
+								divRequest.Visible = true;
+								lblClosedBy.Text = dsData.Tables[1].Rows[0]["Closed_By"].ToString();
+								lblClosedDate.Text = dsData.Tables[1].Rows[0]["Closed_Date"].ToString();
+								divClosed.Visible = true;
 								break;
 							case "Expired":
 								divAlertExpired.Visible = true;

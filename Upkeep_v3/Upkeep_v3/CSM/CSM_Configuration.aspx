@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+	<script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
 
     <style type="text/css">
@@ -570,13 +570,20 @@
                                         <asp:TextBox ID="txtUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75">
                                         </asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                                        <input type="hidden" name="hdnUsersID" id="hdnUsersID" tabindex="0" value="" />
+                                        <input type="hidden" name="hdnUsersID" id="hdnUsersID" runat="server" ClientIDMode="Static" tabindex="0" value="" />
                                         <span id="error_question_for" class="text-danger small"></span>
                                     </div>
                                     <div class="col-md-4" id="divFreeService">
                                         <label class="col-form-label font-weight-bold">Cost of Service:</label>
                                         <asp:TextBox ID="txtCost" Columns="1" CssClass="m-input" runat="server"></asp:TextBox>/
                                         <asp:TextBox ID="txtUnit" Columns="1" CssClass="m-inpt" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Description:</label>
+                                    <div class="col-9">
+                                        <asp:TextBox ID="txtDesc" runat="server" TextMode="multiline" class="form-control" ClientIDMode="Static" >
+                                        </asp:TextBox>
                                     </div>
                                 </div>
                                 <br />

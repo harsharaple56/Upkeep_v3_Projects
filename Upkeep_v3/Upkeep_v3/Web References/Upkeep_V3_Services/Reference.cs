@@ -4461,11 +4461,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID) {
+        public System.Data.DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string Description, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_CSMConfiguration", new object[] {
                         ConfigID,
                         strConfigTitle,
                         CompanyID,
+                        Description,
                         strXmlIn_Question,
                         strXmlOut_Question,
                         strXmlCSM_Terms,
@@ -4477,12 +4478,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID) {
-            this.Insert_Update_CSMConfigurationAsync(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, CostUnit, RequestFlowID, LoggedInUserID, null);
+        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string Description, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID) {
+            this.Insert_Update_CSMConfigurationAsync(ConfigID, strConfigTitle, CompanyID, Description, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, CostUnit, RequestFlowID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID, object userState) {
+        public void Insert_Update_CSMConfigurationAsync(int ConfigID, string strConfigTitle, int CompanyID, string Description, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID, object userState) {
             if ((this.Insert_Update_CSMConfigurationOperationCompleted == null)) {
                 this.Insert_Update_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Update_CSMConfigurationOperationCompleted);
             }
@@ -4490,6 +4491,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         ConfigID,
                         strConfigTitle,
                         CompanyID,
+                        Description,
                         strXmlIn_Question,
                         strXmlOut_Question,
                         strXmlCSM_Terms,

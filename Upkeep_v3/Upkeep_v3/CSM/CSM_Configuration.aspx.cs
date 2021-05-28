@@ -64,7 +64,26 @@ namespace Upkeep_v3.CSM
                     if (strConfigID.All(char.IsDigit))
                         ConfigID = Convert.ToInt32(strConfigID);
 
-                    ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
+                    DataSet ds = new DataSet();
+                    ds = ObjUpkeep.Delete_CSMConfiguration(ConfigID, LoggedInUserID);
+                    if (ds.Tables.Count > 0)
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl("~/CSM/CSMConfig_Listing.aspx"), false);
+                            }
+                            else if (Status == 2)
+                            {
+                                divError.Visible = true;
+                                lblErrorMsg.Text = "Active requests found can't delete you can edit instead.";
+                                btnSave.Text = "Update";
+                                BindCSMConfig();
+                            }
+                        }
+                    }
                 }
                 Fetch_User_UserGroupList();
                 Fetch_Department();
@@ -258,7 +277,7 @@ namespace Upkeep_v3.CSM
                 int intCost = 0;
                 string CostUnit = string.Empty;
                 string strFlowUsers = string.Empty;
-
+                string Description = txtDesc.Text;
                 strFlowUsers = hdnSelectedUserID.Value;
                 strConfigTitle = txtTitle.Text.Trim();
 
@@ -267,10 +286,10 @@ namespace Upkeep_v3.CSM
 
                 CostUnit = intCost.ToString() + "/" + txtUnit.Text;
 
-                blFreeService = Convert.ToBoolean(ChkFreeService.Checked);
+                blFreeService = !ChkFreeService.Checked;
 
                 DataSet dsCSMConfig = new DataSet();
-                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_Terms.ToString(), blFreeService, CostUnit, strFlowUsers, LoggedInUserID);
+                dsCSMConfig = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, Description, strXmlCSM_InQuestion.ToString(), strXmlCSM_OutQuestion.ToString(), strXmlCSM_Terms.ToString(), blFreeService, CostUnit, strFlowUsers, LoggedInUserID);
 
                 if (dsCSMConfig.Tables.Count > 0)
                 {
@@ -445,7 +464,10 @@ namespace Upkeep_v3.CSM
                     //divDesc.Visible = true;
                     hdnCSMConfigID.Value = ConfigTitleID.ToString();
                     txtTitle.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
-                    ChkFreeService.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Cost_Enable"]);
+                    txtDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Detailed_Desc"].ToString();
+                    ChkFreeService.Checked = !Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Cost_Enable"]);
+                    hdnUsersID.Value = dsConfig.Tables[0].Rows[0]["Request_Flow_ID"].ToString();
+                    hdnSelectedUserID.Value = dsConfig.Tables[0].Rows[0]["Request_Flow_ID"].ToString();
                     string UnitCost = dsConfig.Tables[0].Rows[0]["Cost"].ToString();
                     if(UnitCost.Contains("/"))
                     {
