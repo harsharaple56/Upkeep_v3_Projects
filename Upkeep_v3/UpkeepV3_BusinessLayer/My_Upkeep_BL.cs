@@ -521,7 +521,34 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
-		public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID, String StrConn)
+        public DataSet LMS_Save_Vendor_Transaction(int VendorID, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Save_LMS_Vendor_Transaction_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@VendorID", VendorID);
+                cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                cmd.Parameters.AddWithValue("@TransactionData", TransactionData);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+
+        public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID, String StrConn)
 		{
 			try
 			{
@@ -568,11 +595,50 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
+        public DataSet Fetch_LMS_Vendor_List(int CompanyID, string StrConn)
+        {
+            DataSet dsItem = new DataSet();
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Vendor_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsItem);
+                return dsItem;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
 
+            }
+        }
 
+        public DataSet Fetch_LMS_Vendor_Transaction_Details(int Vendor_TransID, String StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_LMS_Vendor_Transaction_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Vendor_Trans_ID", Vendor_TransID);
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
 
-		public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID, string StrConn)
+            }
+
+        }
+
+        public DataSet LMS_Vendor_Cost(int Cost_ID, int Vendor_ID, int Item_ID, decimal Cost, string Valid_From, string Valid_To, string LoggedInUserID, string Action, int CompanyID, string StrConn)
 		{
 			DataSet dsItem = new DataSet();
 			try

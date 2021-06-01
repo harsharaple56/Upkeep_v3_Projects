@@ -22,16 +22,44 @@ namespace Upkeep_v3.Laundry_Management.Transactions
 
             if (!IsPostBack)
             {
-                int Dept_Trans_ID = Convert.ToInt32(Request.QueryString["Dept_Trans_ID"]);
+                int Vendor_Trans_ID = Convert.ToInt32(Request.QueryString["Vendor_Trans_ID"]);
+                bindVendor();
                 bindDepartment();
 
-                if (Dept_Trans_ID > 0)
+                if (Vendor_Trans_ID > 0)
                 {
-                    Session["Dept_Trans_ID"] = Convert.ToString(Dept_Trans_ID);
+                    Session["Vendor_Trans_ID"] = Convert.ToString(Vendor_Trans_ID);
 
-                    //bind_Department_Transaction_Details(Dept_Trans_ID);
+                    bind_Vendor_Transaction_Details(Vendor_Trans_ID);
                 }
 
+            }
+        }
+
+        public void bindVendor()
+        {
+            try
+            {
+                CompanyID = Convert.ToInt32(Session["CompanyID"]);
+                DataSet ds = new DataSet();
+
+                ds = ObjUpkeep.Fetch_LMS_Vendor_List(CompanyID);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlVendor.DataSource = ds.Tables[0];
+                        ddlVendor.DataTextField = "Vendor_Name";
+                        ddlVendor.DataValueField = "Vendor_ID";
+                        ddlVendor.DataBind();
+                        ddlVendor.Items.Insert(0, new ListItem("--Select Department--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -164,17 +192,18 @@ namespace Upkeep_v3.Laundry_Management.Transactions
             }
         }
 
-
         protected void btnSaveTransaction_Click(object sender, EventArgs e)
         {
-            string Dept_ExecutiveName = string.Empty;
-            string Dept_ExecutiveContactNo = string.Empty;
+            //string Dept_ExecutiveName = string.Empty;
+            //string Dept_ExecutiveContactNo = string.Empty;
+            int VendorID = 0;
             int DepartmentID = 0;
             string TransactionData = string.Empty;
             try
             {
-                Dept_ExecutiveName = Convert.ToString(txtDept_ExecutiveName.Text.Trim());
-                Dept_ExecutiveContactNo = Convert.ToString(txtDept_ExecutiveContactNo.Text.Trim());
+                //Dept_ExecutiveName = Convert.ToString(txtDept_ExecutiveName.Text.Trim());
+                //Dept_ExecutiveContactNo = Convert.ToString(txtDept_ExecutiveContactNo.Text.Trim());
+                VendorID = Convert.ToInt32(ddlVendor.SelectedValue);
                 DepartmentID = Convert.ToInt32(ddlDepartment.SelectedValue);
 
                 var rows = gvItemDetails.Rows;
@@ -215,7 +244,7 @@ namespace Upkeep_v3.Laundry_Management.Transactions
 
                 DataSet dsTransactionSave = new DataSet();
 
-                dsTransactionSave = ObjUpkeep.LMS_Save_Department_Transaction(Dept_ExecutiveName, Dept_ExecutiveContactNo, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
+                dsTransactionSave = ObjUpkeep.LMS_Save_Vendor_Transaction(VendorID, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
 
                 if (dsTransactionSave.Tables.Count > 0)
                 {
@@ -224,7 +253,7 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                         int Status = Convert.ToInt32(dsTransactionSave.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
-                            Response.Redirect(Page.ResolveClientUrl("~/Laundry_Management/Transactions/Department_Transactions.aspx"), false);
+                            Response.Redirect(Page.ResolveClientUrl("~/Laundry_Management/Transactions/Vendor_Transactions.aspx"), false);
                         }
                         else if (Status == 3)
                         {
@@ -242,6 +271,40 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                 throw ex;
             }
         }
+
+        public void bind_Vendor_Transaction_Details(int Vendor_Trans_ID)
+        {
+            DataSet dsItems = new DataSet();
+            try
+            {
+                dsItems = ObjUpkeep.Fetch_LMS_Vendor_Transaction_Details(Vendor_Trans_ID);
+
+                if (dsItems.Tables.Count > 0)
+                {
+                    if (dsItems.Tables[0].Rows.Count > 0)
+                    {
+                        ddlVendor.SelectedValue = Convert.ToString(dsItems.Tables[0].Rows[0]["Vendor_ID"]);
+                        ddlDepartment.SelectedValue = Convert.ToString(dsItems.Tables[0].Rows[0]["DepartmentID"]);
+                        lblTransactionNo.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["Vdr_Trans_ID"]);
+                        lblTransactionDate.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionDate"]);
+                        lblTransactionBy.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionByUser"]);
+
+                        dvTransDetails.Attributes.Add("style", "display:block;");
+                        dvSave.Attributes.Add("style", "display:none;");
+                    }
+                    if (dsItems.Tables[1].Rows.Count > 0)
+                    {
+                        gvItemDetails.DataSource = dsItems.Tables[1];
+                        gvItemDetails.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
     }

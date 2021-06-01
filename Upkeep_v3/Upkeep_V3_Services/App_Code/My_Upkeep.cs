@@ -389,7 +389,26 @@ public class My_Upkeep
 		}
 	}
 
-	public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
+    public DataSet LMS_Save_Vendor_Transaction(int VendorID, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsTransaction = new DataSet();
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            dsTransaction = ObjUpkeepCC_BL.LMS_Save_Vendor_Transaction(VendorID, DepartmentID, TransactionData, CompanyID, LoggedInUserID, StrConn);
+
+            return dsTransaction;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+    public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
 	{
 		DataSet dsItem = new DataSet();
 		try
@@ -425,8 +444,42 @@ public class My_Upkeep
 		}
 	}
 
+    public DataSet Fetch_LMS_Vendor_List(int CompanyID)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
 
-	public DataSet Fetch_Invoices(int Company_ID)
+            ds = ObjUpkeepCC_BL.Fetch_LMS_Vendor_List(CompanyID, StrConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_LMS_Vendor_Transaction_Details(int Vendor_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+
+            dsItem = ObjUpkeepCC_BL.Fetch_LMS_Vendor_Transaction_Details(Vendor_TransID, StrConn);
+
+            return dsItem;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_Invoices(int Company_ID)
 	{
 		try
 		{

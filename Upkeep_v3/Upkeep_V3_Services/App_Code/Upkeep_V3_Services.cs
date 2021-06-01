@@ -393,6 +393,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet LMS_Save_Vendor_Transaction(int VendorID, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.LMS_Save_Vendor_Transaction(VendorID, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+    [WebMethod]
     public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
     {
         DataSet dsItem = new DataSet();
@@ -427,6 +444,39 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return dsItem;
     }
 
+    [WebMethod]
+    public DataSet Fetch_LMS_Vendor_List(int CompanyID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_Vendor_List(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_LMS_Vendor_Transaction_Details(int Vendor_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_Vendor_Transaction_Details(Vendor_TransID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
 
     [WebMethod]
     public DataSet Fetch_Invoices(int Company_ID)

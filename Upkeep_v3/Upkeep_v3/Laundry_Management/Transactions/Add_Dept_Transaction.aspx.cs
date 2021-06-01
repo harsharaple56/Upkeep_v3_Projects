@@ -269,6 +269,9 @@ namespace Upkeep_v3.Laundry_Management.Transactions
                         lblTransactionNo.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["Dept_Trans_ID"]);
                         lblTransactionDate.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionDate"]);
                         lblTransactionBy.Text = Convert.ToString(dsItems.Tables[0].Rows[0]["TransactionByUser"]);
+
+                        dvTransDetails.Attributes.Add("style", "display:block;");
+                        dvSave.Attributes.Add("style", "display:none;");
                     }
                     if (dsItems.Tables[1].Rows.Count > 0)
                     {

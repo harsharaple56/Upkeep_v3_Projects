@@ -3,6 +3,75 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceScheduleID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CRUD_ASSET_SERVICE_REQUEST_DATAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Transaction_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Transaction_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Transaction_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_Inv_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_TransactionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Stock_List">
         <s:complexType>
           <s:sequence>
@@ -858,6 +927,73 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Location_PopulateRootLevel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Location_PopulateRootLevelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Location_PopulateRootLevelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Location_PopulateSubLevel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Location_PopulateSubLevelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Location_PopulateSubLevelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_Update_Location_Node">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Location_Node" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_Update_Location_NodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Add_Update_Location_NodeResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2807,75 +2943,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ServiceScheduleID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATAResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CRUD_ASSET_SERVICE_REQUEST_DATAResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Transaction_List">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Transaction_ListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Transaction_ListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_Transaction">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_Inv_TransactionResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Delete_Inv_TransactionResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3347,6 +3414,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="LMS_Save_Vendor_Transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VendorID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionData" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LMS_Save_Vendor_TransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LMS_Save_Vendor_TransactionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_LMS_Dept_Transaction_Details">
         <s:complexType>
           <s:sequence>
@@ -3381,6 +3473,48 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_ItemDetails_Vendor_TransactionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_Vendor_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_Vendor_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_Vendor_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_Vendor_Transaction_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Vendor_TransID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_LMS_Vendor_Transaction_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_LMS_Vendor_Transaction_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4878,73 +5012,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Location_PopulateRootLevel">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Location_PopulateRootLevelResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Location_PopulateRootLevelResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Location_PopulateSubLevel">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Location_PopulateSubLevelResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Location_PopulateSubLevelResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Add_Update_Location_Node">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Location_Node" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Add_Update_Location_NodeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Add_Update_Location_NodeResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4952,6 +5019,24 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
+  </wsdl:message>
+  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapOut">
+    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATAResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Transaction_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Transaction_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Transaction_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Transaction_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="Delete_Inv_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_Inv_TransactionResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Stock_ListSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Stock_List" />
   </wsdl:message>
@@ -5167,6 +5252,24 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Location_PopulateRootLevelSoapIn">
+    <wsdl:part name="parameters" element="tns:Location_PopulateRootLevel" />
+  </wsdl:message>
+  <wsdl:message name="Location_PopulateRootLevelSoapOut">
+    <wsdl:part name="parameters" element="tns:Location_PopulateRootLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="Location_PopulateSubLevelSoapIn">
+    <wsdl:part name="parameters" element="tns:Location_PopulateSubLevel" />
+  </wsdl:message>
+  <wsdl:message name="Location_PopulateSubLevelSoapOut">
+    <wsdl:part name="parameters" element="tns:Location_PopulateSubLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="Add_Update_Location_NodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Add_Update_Location_Node" />
+  </wsdl:message>
+  <wsdl:message name="Add_Update_Location_NodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Add_Update_Location_NodeResponse" />
   </wsdl:message>
   <wsdl:message name="FetchMenuSoapIn">
     <wsdl:part name="parameters" element="tns:FetchMenu" />
@@ -5660,24 +5763,6 @@
   <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
   </wsdl:message>
-  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
-    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
-  </wsdl:message>
-  <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapOut">
-    <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATAResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Transaction_ListSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Transaction_List" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Transaction_ListSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Transaction_ListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_TransactionSoapIn">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_Transaction" />
-  </wsdl:message>
-  <wsdl:message name="Delete_Inv_TransactionSoapOut">
-    <wsdl:part name="parameters" element="tns:Delete_Inv_TransactionResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5798,6 +5883,12 @@
   <wsdl:message name="LMS_Save_Department_TransactionSoapOut">
     <wsdl:part name="parameters" element="tns:LMS_Save_Department_TransactionResponse" />
   </wsdl:message>
+  <wsdl:message name="LMS_Save_Vendor_TransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:LMS_Save_Vendor_Transaction" />
+  </wsdl:message>
+  <wsdl:message name="LMS_Save_Vendor_TransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:LMS_Save_Vendor_TransactionResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_LMS_Dept_Transaction_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_LMS_Dept_Transaction_Details" />
   </wsdl:message>
@@ -5809,6 +5900,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_LMS_ItemDetails_Vendor_TransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_Vendor_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_Vendor_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_Vendor_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_Vendor_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_Vendor_Transaction_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_Vendor_Transaction_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_LMS_Vendor_Transaction_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_LMS_Vendor_Transaction_DetailsResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_InvoicesSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Invoices" />
@@ -6164,25 +6267,19 @@
   <wsdl:message name="Close_Ticket_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Close_Ticket_DetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="Location_PopulateRootLevelSoapIn">
-    <wsdl:part name="parameters" element="tns:Location_PopulateRootLevel" />
-  </wsdl:message>
-  <wsdl:message name="Location_PopulateRootLevelSoapOut">
-    <wsdl:part name="parameters" element="tns:Location_PopulateRootLevelResponse" />
-  </wsdl:message>
-  <wsdl:message name="Location_PopulateSubLevelSoapIn">
-    <wsdl:part name="parameters" element="tns:Location_PopulateSubLevel" />
-  </wsdl:message>
-  <wsdl:message name="Location_PopulateSubLevelSoapOut">
-    <wsdl:part name="parameters" element="tns:Location_PopulateSubLevelResponse" />
-  </wsdl:message>
-  <wsdl:message name="Add_Update_Location_NodeSoapIn">
-    <wsdl:part name="parameters" element="tns:Add_Update_Location_Node" />
-  </wsdl:message>
-  <wsdl:message name="Add_Update_Location_NodeSoapOut">
-    <wsdl:part name="parameters" element="tns:Add_Update_Location_NodeResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
+      <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transaction_List">
+      <wsdl:input message="tns:Fetch_Transaction_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Transaction_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Transaction">
+      <wsdl:input message="tns:Delete_Inv_TransactionSoapIn" />
+      <wsdl:output message="tns:Delete_Inv_TransactionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Stock_List">
       <wsdl:input message="tns:Fetch_Stock_ListSoapIn" />
       <wsdl:output message="tns:Fetch_Stock_ListSoapOut" />
@@ -6326,6 +6423,18 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateRootLevel">
+      <wsdl:input message="tns:Location_PopulateRootLevelSoapIn" />
+      <wsdl:output message="tns:Location_PopulateRootLevelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateSubLevel">
+      <wsdl:input message="tns:Location_PopulateSubLevelSoapIn" />
+      <wsdl:output message="tns:Location_PopulateSubLevelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Add_Update_Location_Node">
+      <wsdl:input message="tns:Add_Update_Location_NodeSoapIn" />
+      <wsdl:output message="tns:Add_Update_Location_NodeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FetchMenu">
       <wsdl:input message="tns:FetchMenuSoapIn" />
@@ -6655,18 +6764,6 @@
       <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
       <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
-      <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Transaction_List">
-      <wsdl:input message="tns:Fetch_Transaction_ListSoapIn" />
-      <wsdl:output message="tns:Fetch_Transaction_ListSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Transaction">
-      <wsdl:input message="tns:Delete_Inv_TransactionSoapIn" />
-      <wsdl:output message="tns:Delete_Inv_TransactionSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -6747,6 +6844,10 @@
       <wsdl:input message="tns:LMS_Save_Department_TransactionSoapIn" />
       <wsdl:output message="tns:LMS_Save_Department_TransactionSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Vendor_Transaction">
+      <wsdl:input message="tns:LMS_Save_Vendor_TransactionSoapIn" />
+      <wsdl:output message="tns:LMS_Save_Vendor_TransactionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <wsdl:input message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapIn" />
       <wsdl:output message="tns:Fetch_LMS_Dept_Transaction_DetailsSoapOut" />
@@ -6754,6 +6855,14 @@
     <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
       <wsdl:input message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapIn" />
       <wsdl:output message="tns:Fetch_LMS_ItemDetails_Vendor_TransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_List">
+      <wsdl:input message="tns:Fetch_LMS_Vendor_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_Vendor_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_Transaction_Details">
+      <wsdl:input message="tns:Fetch_LMS_Vendor_Transaction_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_LMS_Vendor_Transaction_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Invoices">
       <wsdl:input message="tns:Fetch_InvoicesSoapIn" />
@@ -6992,21 +7101,36 @@
       <wsdl:input message="tns:Close_Ticket_DetailsSoapIn" />
       <wsdl:output message="tns:Close_Ticket_DetailsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Location_PopulateRootLevel">
-      <wsdl:input message="tns:Location_PopulateRootLevelSoapIn" />
-      <wsdl:output message="tns:Location_PopulateRootLevelSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Location_PopulateSubLevel">
-      <wsdl:input message="tns:Location_PopulateSubLevelSoapIn" />
-      <wsdl:output message="tns:Location_PopulateSubLevelSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Add_Update_Location_Node">
-      <wsdl:input message="tns:Add_Update_Location_NodeSoapIn" />
-      <wsdl:output message="tns:Add_Update_Location_NodeSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transaction_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Transaction_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Transaction">
+      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Stock_List">
       <soap:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
       <wsdl:input>
@@ -7324,6 +7448,33 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateRootLevel">
+      <soap:operation soapAction="http://tempuri.org/Location_PopulateRootLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateSubLevel">
+      <soap:operation soapAction="http://tempuri.org/Location_PopulateSubLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_Update_Location_Node">
+      <soap:operation soapAction="http://tempuri.org/Add_Update_Location_Node" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8069,33 +8220,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Transaction_List">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Transaction_List" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Transaction">
-      <soap:operation soapAction="http://tempuri.org/Delete_Inv_Transaction" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8276,6 +8400,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Vendor_Transaction">
+      <soap:operation soapAction="http://tempuri.org/LMS_Save_Vendor_Transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
       <wsdl:input>
@@ -8287,6 +8420,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
       <soap:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_Vendor_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_Transaction_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_LMS_Vendor_Transaction_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8825,36 +8976,36 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Location_PopulateRootLevel">
-      <soap:operation soapAction="http://tempuri.org/Location_PopulateRootLevel" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Location_PopulateSubLevel">
-      <soap:operation soapAction="http://tempuri.org/Location_PopulateSubLevel" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Add_Update_Location_Node">
-      <soap:operation soapAction="http://tempuri.org/Add_Update_Location_Node" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
+      <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transaction_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Transaction_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_Inv_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Stock_List">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Stock_List" style="document" />
       <wsdl:input>
@@ -9172,6 +9323,33 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateRootLevel">
+      <soap12:operation soapAction="http://tempuri.org/Location_PopulateRootLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Location_PopulateSubLevel">
+      <soap12:operation soapAction="http://tempuri.org/Location_PopulateSubLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_Update_Location_Node">
+      <soap12:operation soapAction="http://tempuri.org/Add_Update_Location_Node" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9917,33 +10095,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
-      <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Transaction_List">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Transaction_List" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_Inv_Transaction">
-      <soap12:operation soapAction="http://tempuri.org/Delete_Inv_Transaction" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10124,6 +10275,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LMS_Save_Vendor_Transaction">
+      <soap12:operation soapAction="http://tempuri.org/LMS_Save_Vendor_Transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_Dept_Transaction_Details">
       <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_Dept_Transaction_Details" style="document" />
       <wsdl:input>
@@ -10135,6 +10295,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_LMS_ItemDetails_Vendor_Transaction">
       <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_ItemDetails_Vendor_Transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_Vendor_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_LMS_Vendor_Transaction_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_LMS_Vendor_Transaction_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10666,33 +10844,6 @@
     </wsdl:operation>
     <wsdl:operation name="Close_Ticket_Details">
       <soap12:operation soapAction="http://tempuri.org/Close_Ticket_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Location_PopulateRootLevel">
-      <soap12:operation soapAction="http://tempuri.org/Location_PopulateRootLevel" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Location_PopulateSubLevel">
-      <soap12:operation soapAction="http://tempuri.org/Location_PopulateSubLevel" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Add_Update_Location_Node">
-      <soap12:operation soapAction="http://tempuri.org/Add_Update_Location_Node" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

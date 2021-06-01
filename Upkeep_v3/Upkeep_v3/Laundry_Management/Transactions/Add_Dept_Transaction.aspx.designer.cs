@@ -40,6 +40,15 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
         
         /// <summary>
+        /// dvTransDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTransDetails;
+        
+        /// <summary>
         /// lblTransactionNo control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace Upkeep_v3.Laundry_Management.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvItemDetails;
+        
+        /// <summary>
+        /// dvSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSave;
         
         /// <summary>
         /// chkItems control.
