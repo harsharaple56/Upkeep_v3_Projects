@@ -861,6 +861,7 @@ namespace Upkeep_v3.VMS
 
                         if (ChecklistImage.HasFile)
                         {
+                            isField = "True";
                             List<int> Lst_ValidImage = new List<int>();
                             List<int> Lst_ImageSaved = new List<int>();
                             List<string> Lst_Images = new List<string>();
@@ -942,9 +943,19 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "NUMBR") //Number Text Field
                     {
+                       // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+
+                        if (sVal == "")
+                        {
+                            isField = "False";
+                        }
+                        else
+                        {
+                            isField = "True";
+                        }
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
@@ -963,9 +974,19 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "STEXT") //Normal Text Field
                     {
+                       // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+                        if (sVal == "")
+                        {
+                            isField = "False";
+                        }
+                        else
+                        {
+                            isField = "True";
+                        }
+
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
@@ -985,9 +1006,18 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "LTEXT") // Textarea Field
                     {
+                        isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+                        if (sVal == "")
+                        {
+                            isField = "False";
+                        }
+                        else
+                        {
+                            isField = "True";
+                        }
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
@@ -1006,9 +1036,18 @@ namespace Upkeep_v3.VMS
                     }
                     else  //Normal Text Field
                     {
+                        isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+                        if (sVal == "")
+                        {
+                            isField = "False";
+                        }
+                        else
+                        {
+                            isField = "True";
+                        }
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
@@ -1031,6 +1070,8 @@ namespace Upkeep_v3.VMS
 
                 if (Is_Not_Valid == "True")
                 {
+                    //call repeater
+                    BindVMSConfig();
                     return;
                 }
 
