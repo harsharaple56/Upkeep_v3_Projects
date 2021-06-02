@@ -20,6 +20,7 @@ namespace Upkeep_v3.General_Masters
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
+
             //frmFrequency.Action = @"General_Masters/Add_Frequency.aspx";
             //retailer_form.Action = @"Add_Retailer.aspx";
             if (LoggedInUserID == "")
@@ -220,10 +221,12 @@ namespace Upkeep_v3.General_Masters
 
         private void Bind_Retailer_Escalation_Grid()
         {
+            string Retailer_Usermame = Convert.ToString(txtUsername.Text);
+
             DataSet dsProfile = new DataSet();
             try
             {
-                dsProfile = ObjUpkeepFeedback.Retailer_Escalation_CRUD(0, "", "", "", "", "", LoggedInUserID, CompanyID, "R");
+                dsProfile = ObjUpkeepFeedback.Retailer_Escalation_CRUD(0, "", "", "", "", "", Retailer_Usermame, CompanyID, "R");
 
                 if (dsProfile.Tables.Count > 0)
                 {
@@ -372,9 +375,10 @@ namespace Upkeep_v3.General_Masters
                 Department = Convert.ToString(txtAddDepartment.Text.Trim());
                 ContactNo = Convert.ToString(txtAddContactNo.Text.Trim());
                 EmailID = Convert.ToString(txtAddEmailID.Text.Trim());
+                string Retailer_Usermame = Convert.ToString(txtUsername.Text);
 
 
-                dsEscalation = ObjUpkeepFeedback.Retailer_Escalation_CRUD(EscalationID, Name, Designation, Department, ContactNo, EmailID, LoggedInUserID, CompanyID, "C");
+                dsEscalation = ObjUpkeepFeedback.Retailer_Escalation_CRUD(EscalationID, Name, Designation, Department, ContactNo, EmailID, Retailer_Usermame, CompanyID, "C");
                 if (dsEscalation.Tables.Count > 0)
                 {
                     if (dsEscalation.Tables[0].Rows.Count > 0)

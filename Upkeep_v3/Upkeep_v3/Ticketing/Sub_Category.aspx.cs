@@ -249,7 +249,7 @@ namespace Upkeep_v3.Ticketing
 
                         ddlPriority.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Priority_ID"]);
 
-                        Fetch_Priority(Convert.ToInt32(ds.Tables[0].Rows[0]["Priority_ID"]));
+                        //Fetch_Priority(Convert.ToInt32(ds.Tables[0].Rows[0]["Priority_ID"]));
 
                         mpeSubCategory.Show();
                     }

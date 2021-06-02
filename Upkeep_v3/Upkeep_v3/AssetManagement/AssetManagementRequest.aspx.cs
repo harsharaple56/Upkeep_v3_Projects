@@ -22,6 +22,8 @@ namespace Upkeep_v3.AssetManagement
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
 
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int TransactionID = 0;
@@ -34,6 +36,8 @@ namespace Upkeep_v3.AssetManagement
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
 
             //LoggedInUserID = "3";
             if (LoggedInUserID == "")
@@ -67,7 +71,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID));
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID),CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)
@@ -89,14 +93,14 @@ namespace Upkeep_v3.AssetManagement
 
                     }
 
-                    if (dsTitle.Tables[1].Rows.Count > 0)
-                    {
-                        ddlAssetCategory.DataSource = dsTitle.Tables[1];
-                        ddlAssetCategory.DataTextField = "Category_Desc";
-                        ddlAssetCategory.DataValueField = "Asset_Category_ID";
-                        ddlAssetCategory.DataBind();
-                        ddlAssetCategory.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
+                    //if (dsTitle.Tables[1].Rows.Count > 0)
+                    //{
+                    //    ddlAssetCategory.DataSource = dsTitle.Tables[1];
+                    //    ddlAssetCategory.DataTextField = "Category_Desc";
+                    //    ddlAssetCategory.DataValueField = "Asset_Category_ID";
+                    //    ddlAssetCategory.DataBind();
+                    //    ddlAssetCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    //}
 
                     if (dsTitle.Tables[2].Rows.Count > 0)
                     {
@@ -115,6 +119,7 @@ namespace Upkeep_v3.AssetManagement
                             builder.Append(String.Format("<option value='{0}' text='{1}'>", dsTitle.Tables[2].Rows[i]["Vendor_Name"], dsTitle.Tables[2].Rows[i]["Vendor_ID"]));
                         }
                         dlamcassigVendor.InnerHtml = builder.ToString();
+                        dlamcassigVendor.DataBind();
                         dlamcassigVendor.DataBind();
 
 
@@ -193,6 +198,27 @@ namespace Upkeep_v3.AssetManagement
                     if (dsAssestData.Tables[0].Rows.Count > 0)
                     {
                         ddlAssetType.SelectedValue = dsAssestData.Tables[0].Rows[0]["Asset_Type_ID"].ToString();
+
+                        //comment
+                        DataTable dt = new DataTable();
+                        DataTable dtCopy = new DataTable();
+                        DataSet dsGlobalDropDownData = new DataSet();
+                        dsGlobalDropDownData = (DataSet)ViewState["dsGlobalDropDownData"];
+                        dt = dsGlobalDropDownData.Tables[1].Copy();
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            dtCopy = dt.Copy();
+                            dtCopy.DefaultView.RowFilter = "Asset_Type_ID = '" + ddlAssetType.SelectedValue.ToString() + "'";
+                            dtCopy.DefaultView.ToTable();
+
+                            ddlAssetCategory.DataSource = dtCopy;
+                            ddlAssetCategory.DataTextField = "Category_Desc";
+                            ddlAssetCategory.DataValueField = "Asset_Category_ID";
+                            ddlAssetCategory.DataBind();
+                            ddlAssetCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                        }
+
                         ddlAssetCategory.SelectedValue = dsAssestData.Tables[0].Rows[0]["Asset_Category_ID"].ToString();
                         txtAssetName.Text = dsAssestData.Tables[0].Rows[0]["Asset_Name"].ToString();
                         txtAssetDescription.Text = dsAssestData.Tables[0].Rows[0]["Asset_Desc"].ToString();
@@ -857,7 +883,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID));
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID),CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)

@@ -393,6 +393,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet LMS_Save_Vendor_Transaction(int VendorID, int DepartmentID, string TransactionData, int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.LMS_Save_Vendor_Transaction(VendorID, DepartmentID, TransactionData, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+    [WebMethod]
     public DataSet Fetch_LMS_Dept_Transaction_Details(int Dept_TransID)
     {
         DataSet dsItem = new DataSet();
@@ -409,6 +426,57 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return dsItem;
     }
 
+
+    [WebMethod]
+    public DataSet Fetch_LMS_ItemDetails_Vendor_Transaction(int DepartmentID, int CompanyID, string ItemIDs)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_ItemDetails_Vendor_Transaction(DepartmentID, CompanyID, ItemIDs);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_LMS_Vendor_List(int CompanyID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_Vendor_List(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_LMS_Vendor_Transaction_Details(int Vendor_TransID)
+    {
+        DataSet dsItem = new DataSet();
+        try
+        {
+            dsItem = ObjUpkeep.Fetch_LMS_Vendor_Transaction_Details(Vendor_TransID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return dsItem;
+    }
 
     [WebMethod]
     public DataSet Fetch_Invoices(int Company_ID)
@@ -2463,12 +2531,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region CSM
     //Added by RC This function is used to save CSM Configuration 
     [WebMethod]
-    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string LoggedInUserID)
+    public DataSet Insert_Update_CSMConfiguration(int ConfigID, string strConfigTitle, int CompanyID, string Description, string strXmlIn_Question, string strXmlOut_Question, string strXmlCSM_Terms, bool blFreeService, string CostUnit, string RequestFlowID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, CostUnit, LoggedInUserID);
+            ds = ObjUpkeep.Insert_Update_CSMConfiguration(ConfigID, strConfigTitle, CompanyID, Description, strXmlIn_Question, strXmlOut_Question, strXmlCSM_Terms, blFreeService, CostUnit,RequestFlowID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -2517,6 +2585,54 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.Delete_CSMConfiguration(ConfigID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to save CSM Request
+    [WebMethod]
+    public DataSet Insert_CSMRequest(int CompanyID, char Action, int RequestID, int ConfigID, string strCSMData, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Insert_CSMRequest(CompanyID, Action, RequestID, ConfigID, strCSMData, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to Fetch VMS Request list
+    [WebMethod]
+    public DataSet Fetch_CSMRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_CSMRequestList(CompanyID, LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    //Added by RC This function is used to bind VMS request details
+    [WebMethod]
+    public DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Bind_CSMRequestDetails(RequestID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -2596,12 +2712,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #region Asset Management
     [WebMethod]
-    public DataSet Fetch_Asset_DropDown(int UserID)
+    public DataSet Fetch_Asset_DropDown(int UserID,int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID);
+            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID, CompanyID);
         }
         catch (Exception ex)
         {
