@@ -211,8 +211,8 @@ background-color: blanchedalmond;
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
 //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeMeetingUsers.ClientID %>').hide();
-            indow.close();
-
+           // window.close();
+            pnlMeetingUsers.close();
         }
 
         function SelectUser() {
@@ -236,7 +236,9 @@ background-color: blanchedalmond;
             //alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
-            window.close();
+           // window.close();
+
+            pnlMeetingUsers.close();
         }
 
     </script>
@@ -366,43 +368,43 @@ background-color: blanchedalmond;
                                     <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
                                 </div>-->
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold">Name :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Name :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
+                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Name"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Name"></asp:RequiredFieldValidator>
                               
                                     </div>
                                 </div>
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold">Email :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Email :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Email"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Email"></asp:RequiredFieldValidator>
                               
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-1 col-form-label font-weight-bold">Phone :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Phone :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" AutoPostBack="true" placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
 
                               
                                     </div>
                                 </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold">Visit Date :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Visit Date :</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
-                                            <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" AutoPostBack="true" placeholder="Select Visit date & time"></asp:TextBox>
+                                            <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker"  placeholder="Select Visit date & time"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                             </div>
@@ -410,12 +412,12 @@ background-color: blanchedalmond;
                                         <span id="error_startDate" class="text-danger small"></span>
                                     </div>
                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
                               
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-1 col-form-label font-weight-bold">Meeting with :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Meeting with :</label>
                                     <div class="col-md-5 col-form-label">
-                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" AutoPostBack="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true"  CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                                         <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
@@ -424,7 +426,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                     <%-- </div>--%>
 
                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
                               
                                 </div>
 
