@@ -405,6 +405,8 @@ namespace Upkeep_v3.VMS
                     //Bind inserted covid data
                     if (dsData.Tables[2].Rows.Count > 0)
                     {
+
+
                         bool isCovidEnable = Convert.ToBoolean(dsData.Tables[0].Rows[0]["isCovidEnable"]);
                         if (isCovidEnable)
                         {
@@ -576,6 +578,18 @@ namespace Upkeep_v3.VMS
 
                     }
 
+
+                    if (dsData.Tables[5].Rows.Count > 0)
+                    {
+                        txtMeetUsers.ReadOnly = true;
+
+
+                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
+
+                        
+
+
+                    }
                 }
 
             }
