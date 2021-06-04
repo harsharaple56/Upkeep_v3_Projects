@@ -16,9 +16,11 @@ namespace Upkeep_v3.WorkPermit
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -66,7 +68,7 @@ namespace Upkeep_v3.WorkPermit
                 }
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_MyRequestWorkPermit(LoggedInUserID, From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyRequestWorkPermit(LoggedInUserID, From_Date, To_Date, CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {

@@ -2070,12 +2070,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyRequestWorkPermit(LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_MyRequestWorkPermit(LoggedInUserID, From_Date, To_Date, CompanyID);
         }
         catch (Exception ex)
         {

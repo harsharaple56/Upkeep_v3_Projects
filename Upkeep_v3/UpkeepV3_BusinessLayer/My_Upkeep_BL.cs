@@ -2464,7 +2464,7 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
-		public DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+		public DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date,int CompanyID, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try
@@ -2475,7 +2475,8 @@ namespace UpkeepV3_BusinessLayer
 				cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 				cmd.Parameters.AddWithValue("@From_Date", From_Date);
 				cmd.Parameters.AddWithValue("@To_Date", To_Date);
-				SqlDataAdapter da = new SqlDataAdapter(cmd);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 				da.Fill(ds);
 				return ds;
 			}

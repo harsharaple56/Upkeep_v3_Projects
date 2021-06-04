@@ -3655,28 +3655,30 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyRequestWorkPermit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date) {
+        public System.Data.DataSet Fetch_MyRequestWorkPermit(string LoggedInUserID, string From_Date, string To_Date, int CompanyID) {
             object[] results = this.Invoke("Fetch_MyRequestWorkPermit", new object[] {
                         LoggedInUserID,
                         From_Date,
-                        To_Date});
+                        To_Date,
+                        CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyRequestWorkPermitAsync(LoggedInUserID, From_Date, To_Date, null);
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, int CompanyID) {
+            this.Fetch_MyRequestWorkPermitAsync(LoggedInUserID, From_Date, To_Date, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+        public void Fetch_MyRequestWorkPermitAsync(string LoggedInUserID, string From_Date, string To_Date, int CompanyID, object userState) {
             if ((this.Fetch_MyRequestWorkPermitOperationCompleted == null)) {
                 this.Fetch_MyRequestWorkPermitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyRequestWorkPermitOperationCompleted);
             }
             this.InvokeAsync("Fetch_MyRequestWorkPermit", new object[] {
                         LoggedInUserID,
                         From_Date,
-                        To_Date}, this.Fetch_MyRequestWorkPermitOperationCompleted, userState);
+                        To_Date,
+                        CompanyID}, this.Fetch_MyRequestWorkPermitOperationCompleted, userState);
         }
         
         private void OnFetch_MyRequestWorkPermitOperationCompleted(object arg) {
