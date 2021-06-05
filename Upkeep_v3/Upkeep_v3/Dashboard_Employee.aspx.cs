@@ -41,7 +41,7 @@ namespace Upkeep_v3
                 if(UserType=="E")
                 {
                     hdn_IsPostBack.Value = "no";
-                    Dashboard_Details();
+                    //Dashboard_Details();
                 }
                 else
                 {

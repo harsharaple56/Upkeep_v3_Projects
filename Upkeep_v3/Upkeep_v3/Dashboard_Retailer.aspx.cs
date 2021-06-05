@@ -38,7 +38,7 @@ namespace Upkeep_v3
                 if (Convert.ToString(Session["UserType"]) == "R")
                 {
                     Fetch_Retailer_Latest_Punch();
-                    Dashboard_Details();
+                    //Dashboard_Details();
                 }
             }
         }
@@ -194,8 +194,7 @@ namespace Upkeep_v3
 
         protected void btnSearchDashboard_Click(object sender, EventArgs e)
         {
-
-
+            Dashboard_Details();
         }
 
 

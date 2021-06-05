@@ -42,9 +42,9 @@ namespace Upkeep_v3
             {
                 hdn_IsPostBack.Value = "no";
 
-                Dashboard_Details();
+                //Dashboard_Details();
                 // Bind_Feedback_Data();
-                Bind_Feedback_GraphData();
+               // Bind_Feedback_GraphData();
 
                 //DataSet ds = new DataSet();
                 //try
