@@ -325,23 +325,27 @@
                         </div>
                     </div>
 
-                    <div class="form-group m-form__group row">
-                        <label for="example-text-input" class="col-3 col-form-label">Transaction No :</label>
-                        <div class="col-3">
-                            <asp:Label class="form-control" id="lblTransactionNo" runat="server"></asp:Label>
+                    <div id="dvTransDetails" runat="server" style="display: none;">
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-3 col-form-label">Transaction No :</label>
+                            <div class="col-3">
+                                <asp:Label class="form-control" ID="lblTransactionNo" runat="server"></asp:Label>
+                            </div>
+                            <label for="example-text-input" class="col-3 col-form-label">Transaction By :</label>
+                            <div class="col-3">
+                                <asp:Label class="form-control" ID="lblTransactionBy" runat="server"></asp:Label>
+                            </div>
                         </div>
-                        <label for="example-text-input" class="col-3 col-form-label">Transaction By :</label>
-                        <div class="col-3">
-                            <asp:Label class="form-control" id="lblTransactionBy" runat="server"></asp:Label>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-3 col-form-label">Transaction Date :</label>
+                            <div class="col-3">
+                                <asp:Label class="form-control" ID="lblTransactionDate" runat="server"></asp:Label>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="form-group m-form__group row">
-                        <label for="example-text-input" class="col-3 col-form-label">Transaction Date :</label>
-                        <div class="col-3">
-                            <asp:Label class="form-control" id="lblTransactionDate" runat="server"></asp:Label>
-                        </div>
-                        
-                    </div>
+
+
                     <div class="form-group m-form__group row" style="margin-bottom: 0rem;">
 
                         <div class="col-12">
@@ -355,7 +359,7 @@
                 </div>
 
 
-                <div class="m-portlet__body" style="    padding: 0rem 2.2rem 2.2rem 2.2rem;">
+                <div class="m-portlet__body" style="padding: 0rem 2.2rem 2.2rem 2.2rem;">
 
                     <asp:HiddenField ID="hdnPrntD" runat="server" ClientIDMode="Static" />
                     <!--end: Search Form -->
@@ -415,7 +419,7 @@
                     </asp:GridView>
 
                     <!--end: Datatable -->
-                    <div style="text-align: center;">
+                    <div style="text-align: center;" id="dvSave" runat="server">
                         <a style="margin-top: 5%;" runat="server" onserverclick="btnSaveTransaction_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
@@ -432,15 +436,15 @@
 
 
         <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header" style="padding: 16px;">
-                                <h3>Select Items</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" style="padding: 0px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 16px;">
+                        <h3>Select Items</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 0px;">
 
 
                         <div class="m-widget19">

@@ -132,6 +132,60 @@ namespace Upkeep_v3.CSM
 		protected global::System.Web.UI.WebControls.Button btnReject;
 
 		/// <summary>
+		/// divRequest control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRequest;
+
+		/// <summary>
+		/// lblRequestedBy control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblRequestedBy;
+
+		/// <summary>
+		/// lblRequestedDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblRequestedDate;
+
+		/// <summary>
+		/// divClosed control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClosed;
+
+		/// <summary>
+		/// lblClosedBy control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblClosedBy;
+
+		/// <summary>
+		/// lblClosedDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblClosedDate;
+
+		/// <summary>
 		/// rptQuestionDetails control.
 		/// </summary>
 		/// <remarks>

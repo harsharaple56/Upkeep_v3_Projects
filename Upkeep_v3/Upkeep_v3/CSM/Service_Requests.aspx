@@ -138,7 +138,7 @@
 				<div class="m-portlet__head">
 					<div class="m-portlet__head-caption">
 						<div class="m-portlet__head-title">
-							<h3 class="m-portlet__head-text">My Request Work Permit		
+							<h3 class="m-portlet__head-text">Service Requests	
 							</h3>
 						</div>
 					</div>
@@ -229,8 +229,10 @@
 								<%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
 								<th title="Request ID" data-field="RequestID">Request ID</th>
 								<th title="Configuration Title" data-field="Config_Title">Configuration Title</th>
+								<th title="Requested By" data-field="RequestBy">Request By</th>
 								<th title="Request Date" data-field="RequestDate">Request Date</th>
-								<th title="Closed Date" data-field="ClosedDate">In Time</th>
+								<th title="Closed By" data-field="ClosedBy">Closed By</th>
+								<th title="Closed Date" data-field="ClosedDate">Closed Date</th>
 								<th title="Status" data-field="Status">Status</th>
 
 							</tr>
