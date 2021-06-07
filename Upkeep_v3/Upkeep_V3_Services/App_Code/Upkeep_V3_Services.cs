@@ -2040,7 +2040,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID)
+    public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, string Transaction_ID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try

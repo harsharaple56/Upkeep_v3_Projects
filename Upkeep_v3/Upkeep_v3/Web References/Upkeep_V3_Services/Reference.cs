@@ -3587,7 +3587,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestSavedData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+        public System.Data.DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, string Transaction_ID, string LoggedInUserID) {
             object[] results = this.Invoke("Fetch_WorkPermitRequestSavedData", new object[] {
                         WP_ConfigID,
                         Transaction_ID,
@@ -3596,12 +3596,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID) {
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, string Transaction_ID, string LoggedInUserID) {
             this.Fetch_WorkPermitRequestSavedDataAsync(WP_ConfigID, Transaction_ID, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, int Transaction_ID, string LoggedInUserID, object userState) {
+        public void Fetch_WorkPermitRequestSavedDataAsync(int WP_ConfigID, string Transaction_ID, string LoggedInUserID, object userState) {
             if ((this.Fetch_WorkPermitRequestSavedDataOperationCompleted == null)) {
                 this.Fetch_WorkPermitRequestSavedDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitRequestSavedDataOperationCompleted);
             }

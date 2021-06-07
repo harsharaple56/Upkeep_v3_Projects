@@ -32,10 +32,12 @@ namespace Upkeep_v3.WorkPermit
         string MyActionCompeletd = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            int TransactionID = 0;
+            //int TransactionID = 0;
+            string TransactionID = "0";
             if (Request.QueryString["TransactionID"] != null)
             {
-                TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
+                //TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
+                TransactionID = Convert.ToString(Request.QueryString["TransactionID"]);
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -64,7 +66,8 @@ namespace Upkeep_v3.WorkPermit
                 }
 
 
-                if (TransactionID > 0)
+                //if (TransactionID > 0)
+                if (TransactionID != "0")
                 {
                     Session["TransactionID"] = Convert.ToString(TransactionID);
                     FetchSectionHeaderData(TransactionID);
@@ -78,7 +81,8 @@ namespace Upkeep_v3.WorkPermit
 
                 if (MyActionFlag != "1")
                 {
-                    if (TransactionID <= 0)
+                    //if (TransactionID <= 0)
+                    if (TransactionID == "0")
                     {
                         dvApprovalHistory.Attributes.Add("style", "display:none;");
                     }
@@ -1071,7 +1075,7 @@ namespace Upkeep_v3.WorkPermit
             }
         }
 
-        private void FetchSectionHeaderData(int TransID)
+        private void FetchSectionHeaderData(string TransID)
         {
             try
             {
