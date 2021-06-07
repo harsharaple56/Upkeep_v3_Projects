@@ -76,12 +76,15 @@
 
                         <div id="" style="overflow-x: auto;">
                             <!--begin: Datatable -->
+
+
                             <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                                 <thead>
                                     <tr>
                                         <th>Request ID</th>
                                         <th>Company Name</th>
                                         <th>Raised By</th>
+                                        <th>Description</th>
                                         <th>Request Type</th>
                                         <th>Module</th>
                                         <th>Status</th>

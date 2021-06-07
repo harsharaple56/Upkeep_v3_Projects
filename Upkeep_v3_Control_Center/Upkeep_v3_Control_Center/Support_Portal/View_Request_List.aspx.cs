@@ -69,8 +69,10 @@ namespace Upkeep_v3_Control_Center.Support_Portal
                             string Module_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Module_Desc"]);
                             string Status = Convert.ToString(ds.Tables[0].Rows[i]["Status"]);
                             string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                            string Desc = Convert.ToString(ds.Tables[0].Rows[i]["Description"]);
 
-                            data += "<tr><td>" + Request_ID + "</td><td>" + Company_Desc + "</td><td>" + Raised_By + "</td><td>" + Request_Type + "</td><td>" + Module_Desc + "</td><td>" + Status + "</td><td>" + Created_Date + "</td> <td style='width: 10%;'><a href='View_Request.aspx?Request_ID=" + Request_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Request'> <i class='la la-eye'></i> </a> </td></tr>";
+
+                            data += "<tr><td>" + Request_ID + "</td><td>" + Company_Desc + "</td><td>" + Raised_By + "</td><td>" + Desc + "</td><td>" + Request_Type + "</td><td>" + Module_Desc + "</td><td>" + Status + "</td><td>" + Created_Date + "</td> <td style='width: 10%;'><a href='View_Request.aspx?Request_ID=" + Request_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Request'> <i class='la la-eye'></i> </a> </td></tr>";
 
                         }
 
