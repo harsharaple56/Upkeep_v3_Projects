@@ -2420,7 +2420,7 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
-		public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID, string StrConn)
+		public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, string Transaction_ID, string LoggedInUserID, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try

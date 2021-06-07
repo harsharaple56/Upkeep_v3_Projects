@@ -1690,7 +1690,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, int Transaction_ID, string LoggedInUserID)
+	public DataSet Fetch_WorkPermitRequestSavedData(int WP_ConfigID, string Transaction_ID, string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try
