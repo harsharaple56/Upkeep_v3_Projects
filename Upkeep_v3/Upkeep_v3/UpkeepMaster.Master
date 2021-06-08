@@ -850,6 +850,7 @@
 
                                                 </div>
                                             </div>
+
                                         </div>
 
 
@@ -877,7 +878,8 @@
 
 
                                         <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
-                                            <div class="m-stack__item m-stack__item--center">
+                                            <div class="m-col-6 m-stack__item m-stack__item--center">
+                                               
                                                 <div class="m-stack__demo-item">
 
                                                     <span class="m-widget19__username m--font-primary" style="font-size: 1rem; margin-bottom: 2.4rem;">
@@ -895,6 +897,26 @@
 
                                                 </div>
                                             </div>
+                                            <div class="m-col-6 m-stack__item m-stack__item--center">
+                                               
+                                                <div class="m-stack__demo-item">
+
+                                                    <span class="m-widget19__username m--font-primary" style="font-size: 1rem; margin-bottom: 2.4rem;">
+                                                        <div class="m-widget19__user-img">
+                                                            <img onclick="window.open('https://meet.google.com/fsf-cdss-axw', '_blank');" class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/google_meet.png") %>" alt="">
+                                                        </div>
+                                                        <div class="m-widget19__info">
+                                                            <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;">Video Call on
+                                                            </span>
+                                                            <br>
+                                                            <span class="m-widget19__time" style="font-size: 1.5rem;">Google Meet
+                                                            </span>
+                                                        </div>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">

@@ -63,7 +63,7 @@
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav" style="margin-right: 2%;">
                                 <li class="m-portlet__nav-item">
-                                    <a href="<%= Page.ResolveClientUrl("~/Support_Portal/Create_Request.aspx") %>" class="btn m-btn--pill btn-danger m-btn m-btn--custom " style="border: 7px solid transparent;">
+                                    <a href="<%= Page.ResolveClientUrl("~/Support_Portal/Raise_New_Request.aspx") %>" class="btn m-btn--pill btn-danger m-btn m-btn--custom " style="border: 7px solid transparent;">
                                         <i class="fa fa-user-tag" style="font-size: 2.3rem;"></i>
                                         Raise NEW Support Ticket
                                     </a>

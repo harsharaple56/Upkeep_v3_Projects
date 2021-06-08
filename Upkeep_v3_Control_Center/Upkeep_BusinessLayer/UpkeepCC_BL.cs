@@ -55,6 +55,67 @@ namespace Upkeep_BusinessLayer
             }
         }
 
+
+
+        public DataSet Fetch_License_Module_list(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Company_Module_list", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Save_Requests", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Request_Type", Request_Type);
+                cmd.Parameters.AddWithValue("@Module_ID", Module_ID);
+                cmd.Parameters.AddWithValue("@Description", Description);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
         public DataSet CC_Dashboard(string strConn)
         {
             DataSet ds = new DataSet();
@@ -418,6 +479,29 @@ namespace Upkeep_BusinessLayer
             }
         }
 
+        public DataSet Fetch_User_List(int CompanyID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_SUPPORT_Fetch_User_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataSet FetchLicenseExpiryDate(int SubscriptionID, string ActivationDate, string strConn)
         {
             DataSet ds = new DataSet();

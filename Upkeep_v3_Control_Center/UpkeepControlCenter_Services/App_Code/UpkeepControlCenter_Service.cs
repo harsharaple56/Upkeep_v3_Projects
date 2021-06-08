@@ -80,6 +80,66 @@ public class UpkeepControlCenter_Service : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_License_Module_list(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.Fetch_License_Module_list(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+
+
+    [WebMethod]
+    public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.SUPPORT_Save_Request(Company_ID, Request_Type, Module_ID, Description, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_User_List(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+
+        try
+        {
+            My_UpkeepCC obj = new My_UpkeepCC();
+
+            ds = obj.Fetch_User_List(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
 

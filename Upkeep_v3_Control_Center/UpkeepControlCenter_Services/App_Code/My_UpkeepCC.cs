@@ -56,6 +56,61 @@ public class My_UpkeepCC
         }
     }
 
+    public DataSet Fetch_License_Module_list(int CompanyID)
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["UpkeepCC_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+            ds = objUpkeepCC_BL.Fetch_License_Module_list(CompanyID, strConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet Fetch_User_List(int CompanyID)
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["eFacilito_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+            ds = objUpkeepCC_BL.Fetch_User_List(CompanyID, strConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet SUPPORT_Save_Request(int Company_ID, string Request_Type, int Module_ID, string Description, string LoggedInUserID)
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["eFacilito_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            Upkeep_BusinessLayer.UpkeepCC_BL objUpkeepCC_BL = new Upkeep_BusinessLayer.UpkeepCC_BL();
+
+            ds = objUpkeepCC_BL.SUPPORT_Save_Request(Company_ID, Request_Type, Module_ID, Description, LoggedInUserID, strConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
 
     public DataSet SUPPORT_View_Ticket_Details(int Request_ID)
     {

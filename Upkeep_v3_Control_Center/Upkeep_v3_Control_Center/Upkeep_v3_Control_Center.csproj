@@ -942,6 +942,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Support_Portal\Raise_New_Request.aspx" />
     <Content Include="Support_Portal\View_Request.aspx" />
     <Content Include="Support_Portal\View_Request_List.aspx" />
     <Content Include="vendors\animate.css\.editorconfig" />
@@ -4923,6 +4924,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Support_Portal\Raise_New_Request.aspx.cs">
+      <DependentUpon>Raise_New_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Support_Portal\Raise_New_Request.aspx.designer.cs">
+      <DependentUpon>Raise_New_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Support_Portal\View_Request.aspx.cs">
       <DependentUpon>View_Request.aspx</DependentUpon>
