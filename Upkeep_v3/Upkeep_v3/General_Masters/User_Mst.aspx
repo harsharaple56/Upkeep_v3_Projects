@@ -57,7 +57,7 @@
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-        <div class="">
+        <div class="m-content">
             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-progress">

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="">
+        <div class="m-content">
             <div class="row">
                 <div class="col-lg-12">
 

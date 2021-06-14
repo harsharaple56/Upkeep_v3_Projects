@@ -395,7 +395,7 @@
     </script>
 
 
-
+<div class="m-content">
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content" style="padding: 7px 4px;">
             <div class="row">
@@ -720,6 +720,6 @@
             </div>
         </div>
     </div>
-
+    </div>
 
 </asp:Content>

@@ -80,6 +80,7 @@
 
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
+        <div class="m-content">
 
         <div class="m-subheader ">
             <div class="d-flex align-items-center">
@@ -90,8 +91,7 @@
 
             </div>
         </div>
-
-    </div>
+        
 
     
     <div class="m-porlet">
@@ -608,7 +608,8 @@
 
     </div>
 
-
+    </div>
+    </div>
    
 
 

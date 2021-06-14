@@ -3190,8 +3190,27 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
-		//Added by RC This function is used to Fetch CSM Configuration
-		public DataSet Fetch_CSMConfiguration(int CompanyID, string StrConn)
+        public DataSet Fetch_Store_Attendance(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Store_Attendance", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Added by RC This function is used to Fetch CSM Configuration
+        public DataSet Fetch_CSMConfiguration(int CompanyID, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try

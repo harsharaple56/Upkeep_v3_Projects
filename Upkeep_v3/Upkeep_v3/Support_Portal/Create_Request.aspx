@@ -84,7 +84,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <div class="m-content">
     <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 30px;">
         <div class="">
             <div class="row">
@@ -239,7 +239,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
     <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
         <div class="modal-dialog" role="document">

@@ -40,7 +40,7 @@
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="">
+        <div class="m-content">
             <div class="row">
 
                 <div class="col-lg-12">

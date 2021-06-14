@@ -144,7 +144,7 @@
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
-
+    </div>
         <!-- Start Modal -->
      <%--   <div class="modal fade" id="Add_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">

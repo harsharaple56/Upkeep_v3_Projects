@@ -91,7 +91,7 @@
 
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content" style="padding: 7px 4px;">
+        <div class="m-content">
 
             <!--begin::Portlet-->
             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" runat="server" id="frmMain1">

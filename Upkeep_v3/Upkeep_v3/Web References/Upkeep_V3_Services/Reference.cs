@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_MyAsset_ServiceOperationCompleted;
+        
         private System.Threading.SendOrPostCallback CRUD_ASSET_SERVICE_REQUEST_DATAOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Transaction_ListOperationCompleted;
@@ -107,6 +109,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_CityOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Store_AttendanceOperationCompleted;
         
         private System.Threading.SendOrPostCallback Location_PopulateRootLevelOperationCompleted;
         
@@ -275,8 +279,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback UPDATE_ASSET_REQUEST_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_MyAsset_ServiceOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -485,6 +487,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event Fetch_MyAsset_ServiceCompletedEventHandler Fetch_MyAsset_ServiceCompleted;
+        
+        /// <remarks/>
         public event CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventHandler CRUD_ASSET_SERVICE_REQUEST_DATACompleted;
         
         /// <remarks/>
@@ -600,6 +605,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Store_AttendanceCompletedEventHandler Fetch_Store_AttendanceCompleted;
         
         /// <remarks/>
         public event Location_PopulateRootLevelCompletedEventHandler Location_PopulateRootLevelCompleted;
@@ -854,9 +862,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventHandler INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted;
         
         /// <remarks/>
-        public event Fetch_MyAsset_ServiceCompletedEventHandler Fetch_MyAsset_ServiceCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -1107,6 +1112,39 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Close_Ticket_DetailsCompletedEventHandler Close_Ticket_DetailsCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset_Service", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_MyAsset_Service", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_MyAsset_ServiceAsync(LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_MyAsset_ServiceOperationCompleted == null)) {
+                this.Fetch_MyAsset_ServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAsset_ServiceOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_MyAsset_Service", new object[] {
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_MyAsset_ServiceOperationCompleted, userState);
+        }
+        
+        private void OnFetch_MyAsset_ServiceOperationCompleted(object arg) {
+            if ((this.Fetch_MyAsset_ServiceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_MyAsset_ServiceCompleted(this, new Fetch_MyAsset_ServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2466,6 +2504,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Store_Attendance", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Store_Attendance(int CompanyID) {
+            object[] results = this.Invoke("Fetch_Store_Attendance", new object[] {
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Store_AttendanceAsync(int CompanyID) {
+            this.Fetch_Store_AttendanceAsync(CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Store_AttendanceAsync(int CompanyID, object userState) {
+            if ((this.Fetch_Store_AttendanceOperationCompleted == null)) {
+                this.Fetch_Store_AttendanceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Store_AttendanceOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Store_Attendance", new object[] {
+                        CompanyID}, this.Fetch_Store_AttendanceOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Store_AttendanceOperationCompleted(object arg) {
+            if ((this.Fetch_Store_AttendanceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Store_AttendanceCompleted(this, new Fetch_Store_AttendanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5372,39 +5439,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted(this, new INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset_Service", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_MyAsset_Service(string LoggedInUserID, string From_Date, string To_Date) {
-            object[] results = this.Invoke("Fetch_MyAsset_Service", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date) {
-            this.Fetch_MyAsset_ServiceAsync(LoggedInUserID, From_Date, To_Date, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_MyAsset_ServiceAsync(string LoggedInUserID, string From_Date, string To_Date, object userState) {
-            if ((this.Fetch_MyAsset_ServiceOperationCompleted == null)) {
-                this.Fetch_MyAsset_ServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_MyAsset_ServiceOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_MyAsset_Service", new object[] {
-                        LoggedInUserID,
-                        From_Date,
-                        To_Date}, this.Fetch_MyAsset_ServiceOperationCompleted, userState);
-        }
-        
-        private void OnFetch_MyAsset_ServiceOperationCompleted(object arg) {
-            if ((this.Fetch_MyAsset_ServiceCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_MyAsset_ServiceCompleted(this, new Fetch_MyAsset_ServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8663,6 +8697,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_MyAsset_ServiceCompletedEventHandler(object sender, Fetch_MyAsset_ServiceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_MyAsset_ServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_MyAsset_ServiceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventHandler(object sender, CRUD_ASSET_SERVICE_REQUEST_DATACompletedEventArgs e);
     
     /// <remarks/>
@@ -9662,6 +9722,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Store_AttendanceCompletedEventHandler(object sender, Fetch_Store_AttendanceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Store_AttendanceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Store_AttendanceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -11846,32 +11932,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_MyAsset_ServiceCompletedEventHandler(object sender, Fetch_MyAsset_ServiceCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_MyAsset_ServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_MyAsset_ServiceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

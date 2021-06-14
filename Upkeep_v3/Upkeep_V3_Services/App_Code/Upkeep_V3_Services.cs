@@ -1518,6 +1518,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    
+    [WebMethod]
+    public DataSet Fetch_Store_Attendance(int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Store_Attendance(CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
     #region Location Tree View
 

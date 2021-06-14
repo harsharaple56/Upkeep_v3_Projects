@@ -29,14 +29,14 @@
         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
         <!-- BEGIN: Subheader -->
-        <div class="">
+        <div class="m-content">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <h3 class="m-subheader__title ">My Profile</h3>
                 </div>
 
             </div>
-        </div>
+        
 
         <!-- END: Subheader -->
         <div class="">
@@ -502,7 +502,7 @@
         </asp:Panel>
 
 
-
+        </div>
 
 
 

@@ -62,17 +62,22 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="QRCoder">
-      <HintPath>..\..\..\..\QRCoder.dll</HintPath>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Upkeep_v3\Upkeep_v3\bin\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="Sharpbrake.Client, Version=5.1.0.0, Culture=neutral, PublicKeyToken=c5537f4669e4dbaa, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharpbrake.Client.5.1.0\lib\net452\Sharpbrake.Client.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -86,10 +91,17 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -1020,10 +1032,10 @@
     <Content Include="CSM\Service_Requests.aspx" />
     <Content Include="CSM\Service_Requests_Report.aspx" />
     <Content Include="CSM\View_Service_Request.aspx" />
+    <Content Include="Custom_Integration\PAZO\Raise_Feedback_Issue.aspx" />
     <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Dashboard.aspx" />
-    <Content Include="Dashboard1.aspx" />
     <Content Include="Dashboard_Admin_Ticketing.aspx" />
     <Content Include="Dashboard_Admin.aspx" />
     <Content Include="Dashboard_Employee.aspx" />
@@ -1075,8 +1087,6 @@
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="HtmlPage2.html" />
     <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Purchase_Details.aspx" />
@@ -1102,7 +1112,6 @@
     <Content Include="Login.aspx" />
     <Content Include="Manage_Account\Billing\Invoices_Listing.aspx" />
     <Content Include="Manage_Account\Billing\Invoice_Details.aspx" />
-    <Content Include="mohammed_File.aspx" />
     <Content Include="My_Profile.aspx" />
     <Content Include="obj\Debug\TempPE\Web References.Upkeep_V3_Services.Reference.cs.dll" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.FileListAbsolute.txt" />
@@ -1120,7 +1129,6 @@
     <Content Include="Support_Portal\Create_Request.aspx" />
     <Content Include="Support_Portal\View_Request.aspx" />
     <Content Include="Support_Portal\View_Request_List.aspx" />
-    <Content Include="TestPage.aspx" />
     <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_1.png" />
@@ -4454,6 +4462,7 @@
     <Compile Include="Coming_Soon.aspx.designer.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\eFacilito_Controller.cs" />
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
       <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4503,6 +4512,13 @@
     <Compile Include="CSM\View_Service_Request.aspx.designer.cs">
       <DependentUpon>View_Service_Request.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Custom_Integration\PAZO\Raise_Feedback_Issue.aspx.cs">
+      <DependentUpon>Raise_Feedback_Issue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom_Integration\PAZO\Raise_Feedback_Issue.aspx.designer.cs">
+      <DependentUpon>Raise_Feedback_Issue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Custom_Reports\Custom_Reports_Listing.aspx.cs">
       <DependentUpon>Custom_Reports_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4523,13 +4539,6 @@
     </Compile>
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard1.aspx.cs">
-      <DependentUpon>Dashboard1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard1.aspx.designer.cs">
-      <DependentUpon>Dashboard1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard_Admin_Ticketing.aspx.cs">
       <DependentUpon>Dashboard_Admin_Ticketing.aspx</DependentUpon>
@@ -5057,13 +5066,7 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="mohammed_File.aspx.cs">
-      <DependentUpon>mohammed_File.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="mohammed_File.aspx.designer.cs">
-      <DependentUpon>mohammed_File.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\eFacilito.cs" />
     <Compile Include="My_Profile.aspx.cs">
       <DependentUpon>My_Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5171,13 +5174,6 @@
     </Compile>
     <Compile Include="TestMaster.Master.designer.cs">
       <DependentUpon>TestMaster.Master</DependentUpon>
-    </Compile>
-    <Compile Include="TestPage.aspx.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestPage.aspx.designer.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test_SMS.aspx.cs">
       <DependentUpon>Test_SMS.aspx</DependentUpon>
@@ -6271,6 +6267,7 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Authentication\" />
     <Folder Include="CheckList\ImportFile\" />
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />

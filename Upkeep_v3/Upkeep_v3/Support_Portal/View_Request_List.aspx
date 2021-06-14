@@ -49,6 +49,7 @@
     <div runat="server" id="frmMain">
         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
+        <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="">
                 <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
@@ -102,6 +103,8 @@
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
+        </div>
+
     </div>
 
 

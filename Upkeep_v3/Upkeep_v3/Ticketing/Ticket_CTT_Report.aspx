@@ -137,7 +137,7 @@
             padding: 0.25rem;
         }
     </style>
-
+    <div class="m-content">
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
             <div class="row">
@@ -375,7 +375,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
 
 </asp:Content>

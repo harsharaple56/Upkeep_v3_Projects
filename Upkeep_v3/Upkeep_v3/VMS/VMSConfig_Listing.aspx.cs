@@ -88,6 +88,8 @@ namespace Upkeep_v3.VMS
             string code = URL;
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            //QRCodeGenerator.GenerateQrCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+
             System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
             imgBarCode.Height = 300;
             imgBarCode.Width = 300;

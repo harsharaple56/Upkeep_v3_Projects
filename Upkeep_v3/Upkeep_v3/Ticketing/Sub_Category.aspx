@@ -41,9 +41,8 @@
 
     <div runat="server" >
         <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
-
+        <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -84,8 +83,6 @@
                     </div>
                 </div>
 
-                <!-- END EXAMPLE TABLE PORTLET-->
-            </div>
         </div>
 
         
@@ -176,6 +173,7 @@
             });
         </script>--%>
 
+    </div>
     </div>
 
 

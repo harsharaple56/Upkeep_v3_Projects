@@ -13,7 +13,7 @@
      <div>
         <h4>TIP : <b>Press Ctrl + F</b> to search anything within the User Manual </h4>
     </div>--%>
-
+    <div class="m-content">
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="">
 
@@ -1764,5 +1764,5 @@
         </div>
     </div>
     </div>
-       
+      </div>
 </asp:Content>

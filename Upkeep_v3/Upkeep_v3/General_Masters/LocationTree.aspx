@@ -74,6 +74,7 @@
     </style>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-content">
         <div class="" runat="server">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
@@ -86,12 +87,7 @@
                             </div>
                         </div>
                     </div>--%>
-
-                    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-
-
-
-                        <div class="">
+                    
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="m-portlet">
@@ -212,8 +208,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
 
                     <%--<div class="m-portlet__body">

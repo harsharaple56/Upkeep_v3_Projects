@@ -16,17 +16,24 @@ namespace Upkeep_v3
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            //Session Count is intialized with 0.      
+            Application["SessionCount"] = 0;
         }
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            Application.Lock();
 
+            int countSession = (int)Application["SessionCount"];
+
+            Application["SessionCount"] = countSession + 1;
+
+            Application.UnLock();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -104,7 +111,12 @@ namespace Upkeep_v3
 
         protected void Session_End(object sender, EventArgs e)
         {
+            Application.Lock();
 
+            int countSession = (int)Application["SessionCount"];
+            Application["SessionCount"] = countSession - 1;
+
+            Application.UnLock();
         }
 
         protected void Application_End(object sender, EventArgs e)

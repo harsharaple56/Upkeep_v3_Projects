@@ -29,6 +29,8 @@ namespace Upkeep_v3
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             UserType = Convert.ToString(Session["UserType"]);
 
+            
+            //lblSession.Text = Convert.ToString(Application["SessionCount"]);
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {

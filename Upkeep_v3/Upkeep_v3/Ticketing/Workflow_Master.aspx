@@ -39,9 +39,8 @@
 
     <div runat="server" id="frmMain4">
         <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
-
+        <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -86,7 +85,7 @@
                 <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
-
+        </div>
         
         <asp:Panel ID="pnlWorkflowMaster" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
                 <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

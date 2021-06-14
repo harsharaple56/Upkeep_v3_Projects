@@ -3,6 +3,29 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_MyAsset_Service">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MyAsset_ServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAsset_ServiceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CRUD_ASSET_SERVICE_REQUEST_DATA">
         <s:complexType>
           <s:sequence>
@@ -927,6 +950,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Store_Attendance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Store_AttendanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Store_AttendanceResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2911,29 +2955,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyAsset_Service">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MyAsset_ServiceResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyAsset_ServiceResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5020,6 +5041,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
+  </wsdl:message>
   <wsdl:message name="CRUD_ASSET_SERVICE_REQUEST_DATASoapIn">
     <wsdl:part name="parameters" element="tns:CRUD_ASSET_SERVICE_REQUEST_DATA" />
   </wsdl:message>
@@ -5253,6 +5280,12 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Store_AttendanceSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Store_Attendance" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Store_AttendanceSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Store_AttendanceResponse" />
   </wsdl:message>
   <wsdl:message name="Location_PopulateRootLevelSoapIn">
     <wsdl:part name="parameters" element="tns:Location_PopulateRootLevel" />
@@ -5757,12 +5790,6 @@
   </wsdl:message>
   <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MyAsset_ServiceSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MyAsset_ServiceResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -6269,6 +6296,10 @@
     <wsdl:part name="parameters" element="tns:Close_Ticket_DetailsResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
+      <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
       <wsdl:input message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapIn" />
       <wsdl:output message="tns:CRUD_ASSET_SERVICE_REQUEST_DATASoapOut" />
@@ -6424,6 +6455,10 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Store_Attendance">
+      <wsdl:input message="tns:Fetch_Store_AttendanceSoapIn" />
+      <wsdl:output message="tns:Fetch_Store_AttendanceSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Location_PopulateRootLevel">
       <wsdl:input message="tns:Location_PopulateRootLevelSoapIn" />
@@ -6760,10 +6795,6 @@
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
-      <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -7105,6 +7136,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
       <soap:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
       <wsdl:input>
@@ -7449,6 +7489,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Store_Attendance">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Store_Attendance" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8205,15 +8254,6 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8980,6 +9020,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_MyAsset_Service">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CRUD_ASSET_SERVICE_REQUEST_DATA">
       <soap12:operation soapAction="http://tempuri.org/CRUD_ASSET_SERVICE_REQUEST_DATA" style="document" />
       <wsdl:input>
@@ -9324,6 +9373,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Store_Attendance">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Store_Attendance" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10080,15 +10138,6 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MyAsset_Service">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
