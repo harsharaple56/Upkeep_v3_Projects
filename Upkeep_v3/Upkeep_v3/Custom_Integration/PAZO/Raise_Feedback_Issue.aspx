@@ -126,7 +126,7 @@
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Customer Name :</label>
 
                                             <div class="col-xl-4 col-lg-4">
-                                                <asp:Label ID="Label1" cols="20" rows="2" runat="server" class="form-control m-input" placeholder="Enter Detailed Description about your Request" runat="server">
+                                                <asp:Label ID="lblCustomerName" cols="20" rows="2" runat="server" class="form-control m-input" placeholder="Enter Detailed Description about your Request" runat="server">
                                                     Lokesh Devasani (8898084488)
                                                 </asp:Label>
                                             </div>
@@ -144,7 +144,7 @@
                                                     ErrorMessage="Please enter detailed description" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </div>
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Due Date :</label>
-                                            <div class="col-xl-4 col-lg-3 col-form-label">
+                                            <div class="col-xl-4 col-lg-3">
                                                 <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                                 <div class="input-group date">
                                                     <asp:TextBox ID="txtDueDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Due date for Issue" ClientIDMode="Static"></asp:TextBox>
@@ -171,6 +171,10 @@
                                             <label id="lblError" runat="server"></label>
                                         </div>
 
+                                        <br />
+                                        <asp:Label ID="lblSuccessMsg" runat="server" ForeColor="Green" Font-Bold="true" ></asp:Label>
+                                        <br />
+                                        <br />
                                     </div>
 
                                 </div>

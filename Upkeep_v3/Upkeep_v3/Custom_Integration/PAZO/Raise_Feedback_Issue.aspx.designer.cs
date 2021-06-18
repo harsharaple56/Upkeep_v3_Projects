@@ -31,13 +31,13 @@ namespace Upkeep_v3.Custom_Integration.PAZO {
         protected global::System.Web.UI.WebControls.Label lblFeedbackID;
         
         /// <summary>
-        /// Label1 control.
+        /// lblCustomerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblCustomerName;
         
         /// <summary>
         /// txtIssueName control.
@@ -101,5 +101,14 @@ namespace Upkeep_v3.Custom_Integration.PAZO {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblError;
+        
+        /// <summary>
+        /// lblSuccessMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuccessMsg;
     }
 }
