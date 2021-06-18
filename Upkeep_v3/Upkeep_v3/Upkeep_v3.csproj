@@ -101,6 +101,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WhatsAppApi, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Whatsapp.NET.1.2.2\lib\WhatsAppApi.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -1033,6 +1036,7 @@
     <Content Include="CSM\Service_Requests.aspx" />
     <Content Include="CSM\Service_Requests_Report.aspx" />
     <Content Include="CSM\View_Service_Request.aspx" />
+    <Content Include="Custom_Integration\PAZO\Images\pazo.png" />
     <Content Include="Custom_Integration\PAZO\Raise_Feedback_Issue.aspx" />
     <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
@@ -1052,6 +1056,7 @@
     <Content Include="Feedback\EventDetails.aspx" />
     <Content Include="Feedback\EventListing.aspx" />
     <Content Include="Feedback\EventQuestions.aspx" />
+    <Content Include="Feedback\Feedback_Details.aspx" />
     <Content Include="Feedback\Feedback_MIS_Report.aspx" />
     <Content Include="Feedback\Feedback_Request.aspx" />
     <Content Include="Feedback\ThankYou.aspx" />
@@ -4646,6 +4651,13 @@
     <Compile Include="Feedback\EventQuestions.aspx.designer.cs">
       <DependentUpon>EventQuestions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Feedback\Feedback_Details.aspx.cs">
+      <DependentUpon>Feedback_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback\Feedback_Details.aspx.designer.cs">
+      <DependentUpon>Feedback_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Feedback\Feedback_MIS_Report.aspx.cs">
       <DependentUpon>Feedback_MIS_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5155,6 +5167,7 @@
     <Compile Include="Retailer_Attendance\Store_Shift_Assign.aspx.designer.cs">
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SMS\Send_eFacilito_SMS.cs" />
     <Compile Include="Support_Portal\Create_Request.aspx.cs">
       <DependentUpon>Create_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
