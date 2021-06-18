@@ -141,18 +141,44 @@ namespace Upkeep_v3.Feedback
                             ColumnCount = (ds.Tables[1].Rows.Count);
 
                             int QuestionRowCount = 0;
+                            string indicator = string.Empty;
+                            string ans_type = string.Empty;
+                            //indicator = "<span class='fa-smile-beam'></span>";
+
                             for (int j = 1; j <= ColumnCount; j++)
                             {
                                 QuestionRowCount = j - 1;
                                 Question = Convert.ToString(ds.Tables[1].Rows[QuestionRowCount]["Question"]);
+                                indicator = Convert.ToString(ds.Tables[1].Rows[QuestionRowCount]["Indicator"]);
+                                //ans_type = Convert.ToString(ds.Tables[1].Rows[QuestionRowCount]["Answer_Type"]);
+                                //if (ans_type == "Emoji")
+                                //{
+                                //    indicator = "<span class='fa fa-smile-beam'></span>";
+                                //}
+                                //else if (ans_type == "Star")
+                                //{
+                                //    indicator = "<span class='fa fa-star'></span>";
+                                //}
+                                //else if (ans_type == "Text")
+                                //{
+                                //    indicator = "<span class='fa fa-text-height'></span>";
+                                //}
+                                //else if (ans_type == "NPS")
+                                //{
+                                //    indicator = "<span class='fa a-tachometer-alt'></span>";
+                                //}
+                                //else if (ans_type == "Options")
+                                //{
+                                //    indicator = "<span class='fa fa-align-left'></span>";
+                                //}
 
                                 //data += "<th data-container='body' data-toggle='m-tooltip' data-placement='top' title='Nostrud esse officia adipisicing dolore est in eiusmod dolor tempor adipisicing ut non non.'>Q" + j + "</th> ";
-                                data += "<th data-container='body' data-toggle='m-tooltip' data-placement='top' title='" + Question + "'>Q" + j + "</th> ";
+                                data += "<th data-container='body' data-toggle='m-tooltip' data-placement='top' title='" + Question + "'>Q" + j +" "+ indicator+ "</th> ";
 
                             }
                             //}
 
-                            data += " <th>Total</th><th>Average</th><th>Percentage</th> </tr>";
+                            data += " <th data-container='body' data-toggle='m-tooltip' data-placement='top' title='It is SUM of Emoji and Star '>Total</th><th>Average</th><th>Percentage</th> </tr>";
 
                             //data += "<tr><td>" + EventName + "</td><td>" + Location + "</td><td>" + EventFor + "</td><td>" + CreatedOn + "</td><td>" + StartDate + "</td> <td>" + EndDate + "</td> <td><a href='EventDetails.aspx?EventID=" + EventID + "'
                             //class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='EventQuestions.aspx?EventID=" + EventID + "'
