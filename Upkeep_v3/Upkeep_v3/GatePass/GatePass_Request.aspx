@@ -273,7 +273,7 @@
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="">
+        <div class="m-content">
             <div class="row">
                 <div class="col-lg-12">
 
@@ -301,7 +301,7 @@
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
+                                <div class="m-portlet__head-tools">
                                     <%--<asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
                                     <a href="<%= Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
