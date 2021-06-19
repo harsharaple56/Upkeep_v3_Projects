@@ -83,13 +83,13 @@
                                     </div>
                                 </div>
                                 <div class="m-portlet__head-caption float-right">
-                                    <div class="m-form__group m--margin-right-15" style="margin-top: 12px;">                                       
+                                    <div class="m-form__group m--margin-right-15">                                       
 
-                                        <asp:DropDownList class="form-control m-bootstrap-select m_selectpicker" ID="ddlEventName" ClientIDMode="Static" runat="server" title="Select Event" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="200px">
+                                        <asp:DropDownList class="btn btn-accent dropdown-toggle" ID="ddlEventName" ClientIDMode="Static" runat="server" title="Select Event" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="200px">
                                         </asp:DropDownList>
 
                                     </div>
-                                    <span class="m-subheader__daterange btn btn-sm btn-accent" style="padding: 0.15rem 0.8rem;" id="daterangepicker" >
+                                    <span class="m-subheader__daterange btn btn-sm btn-accent"  id="daterangepicker"  style="padding: 0.15rem 0.8rem;">
                                         <span class="m-subheader__daterange-label">
                                             <span class="m-subheader__daterange-title"></span>
                                             <span class="m-subheader__daterange-date"></span>
@@ -100,11 +100,11 @@
                                             <asp:HiddenField id="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
                                             <asp:HiddenField id="date_range_title" ClientIDMode="Static" runat="server" />
                                         </span>
-                                        <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
+                                        <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light" style="width: 37px; height: 37px;">
                                             <i class="la la-angle-down"></i>
                                         </button>
                                     </span>
-                                    <div class="btn-group" style="margin-left: 50px;">
+                                    <div class="btn-group" style="margin-left: 15px;">
                                         <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
                                     </div>
                                 </div>

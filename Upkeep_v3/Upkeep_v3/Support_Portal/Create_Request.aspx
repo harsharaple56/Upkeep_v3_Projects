@@ -141,8 +141,11 @@
                                                     <asp:ListItem>Issue / Bug</asp:ListItem>
                                                     <asp:ListItem>Feature Request</asp:ListItem>
                                                     <asp:ListItem>Import Data</asp:ListItem>
+                                                    <asp:ListItem>Update Data</asp:ListItem>
                                                     <asp:ListItem>Re-Configuration</asp:ListItem>
                                                     <asp:ListItem>Training</asp:ListItem>
+													<asp:ListItem>Onsite Training</asp:ListItem>
+													<asp:ListItem>Onsite Visit</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="rfvddlRequestType" runat="server" ControlToValidate="ddlRequestType" ValidationGroup="ValidateRequest"
                                                     ErrorMessage="Please select Request Type" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
