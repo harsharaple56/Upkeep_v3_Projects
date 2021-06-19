@@ -172,9 +172,41 @@
                                         </div>
 
                                         <br />
-                                        <asp:Label ID="lblSuccessMsg" runat="server" ForeColor="Green" Font-Bold="true" ></asp:Label>
-                                        <br />
-                                        <br />
+                                        <%--<asp:Label ID="lblSuccessMsg" runat="server" ForeColor="Green" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lblFalureMsg" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
+                                        
+                                        <div class="m-portlet__body col-lg-7" id="dvSuccess" runat="server" style="display:none;" >
+                                            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-success alert-dismissible fade show" role="alert">
+                                                <div class="m-alert__icon">
+                                                    <i class="la la-warning"></i>
+                                                </div>
+                                                <div class="m-alert__text">
+                                                    <strong>Success!</strong> Ticket has been raised successfully in PAZO.
+                                                </div>
+                                                <div class="m-alert__close">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="m-portlet__body col-lg-7" id="dvFailure" runat="server" style="display:none;">
+                                            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
+                                                <div class="m-alert__icon">
+                                                    <i class="la la-warning"></i>
+                                                </div>
+                                                <div class="m-alert__text">
+                                                    <strong>Error!</strong> Something went wrong, please try again later.
+                                                </div>
+                                                <div class="m-alert__close">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
 
                                 </div>

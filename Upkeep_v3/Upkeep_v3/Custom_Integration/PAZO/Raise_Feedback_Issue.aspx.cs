@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using RestSharp;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace Upkeep_v3.Custom_Integration.PAZO
 {
@@ -218,8 +219,18 @@ namespace Upkeep_v3.Custom_Integration.PAZO
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
 
-                lblSuccessMsg.Text = "Ticket has been raised successfully in PAZO.";
+                PAZO_API_Response pazo = JsonConvert.DeserializeObject<PAZO_API_Response>(response.Content);
 
+                if (pazo.status == "1")
+                {
+                    //lblSuccessMsg.Text = "Ticket has been raised successfully in PAZO.";
+                    dvSuccess.Attributes.Add("style", "display:block;");
+                }
+                else
+                {
+                    //lblFalureMsg.Text = "Something went wrong, please try again later";
+                    dvFailure.Attributes.Add("style", "display:block;");
+                }
 
             }
             catch (Exception ex)
@@ -265,5 +276,14 @@ namespace Upkeep_v3.Custom_Integration.PAZO
             }
         }
 
+    }
+
+    public class PAZO_API_Response
+    {
+        public string status { get; set; }
+        public string message { get; set; }
+        public string uid { get; set; }
+        public string _id { get; set; }
+        public string refId { get; set; }
     }
 }

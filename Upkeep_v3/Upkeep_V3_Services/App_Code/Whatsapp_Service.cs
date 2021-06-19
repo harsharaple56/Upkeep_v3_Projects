@@ -9,7 +9,7 @@ using System.Text;
 using System.Xml;
 using System.Data;
 using System.IO;
-using WhatsAppApi;
+//using WhatsAppApi;
 using System.Net;
 using System.Web.Script.Serialization; // requires the reference 'System.Web.Extensions'
 
