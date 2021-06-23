@@ -48,6 +48,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string EventID { get; set; }
         public string QuestionID { get; set; }
         public string Answer { get; set; }
+        public string RandomNo { get; set; }
     }
 
     public class ClsCustomer
