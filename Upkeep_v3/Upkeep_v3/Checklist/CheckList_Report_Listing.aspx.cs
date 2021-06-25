@@ -14,6 +14,7 @@ using System.Data.Common;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using ListItem = System.Web.UI.WebControls.ListItem;
 
 namespace Upkeep_v3.CheckList
 {
@@ -22,9 +23,12 @@ namespace Upkeep_v3.CheckList
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(Session["CompanyID"]);
+
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -35,6 +39,9 @@ namespace Upkeep_v3.CheckList
             {
                 hdn_IsPostBack.Value = "no";
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
+
+                Fetch_Checklist();
+                Fetch_Department();
             }
         }
 
@@ -47,7 +54,15 @@ namespace Upkeep_v3.CheckList
         {
             string data = "";
             string From_Date = string.Empty;
-            string To_Date = string.Empty; 
+            string To_Date = string.Empty;
+            int Checklist_ID = Convert.ToInt32(ddlCheckist_Name.SelectedValue);
+            int Department_ID = Convert.ToInt32(ddlCheckist_Department.SelectedValue);
+            string Checklist_Status = Convert.ToString(ddlCheckist_Status.SelectedItem);
+
+            //int Checklist_ID = 0;
+            //int Department_ID = 0;
+            //string Checklist_Status = " ";
+
 
             try
             {
@@ -72,7 +87,7 @@ namespace Upkeep_v3.CheckList
                 }
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date);
+                ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date,Department_ID,Checklist_ID, Checklist_Status);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -116,7 +131,7 @@ namespace Upkeep_v3.CheckList
                     //invalid login
                 }
             }
-            catch (Exception ex)
+            catch  (Exception ex)
             {
                 throw ex;
             }
@@ -128,6 +143,10 @@ namespace Upkeep_v3.CheckList
             GridView dgGrid = new GridView();
             string From_Date = string.Empty;
             string To_Date = string.Empty;
+            int Checklist_ID = 0;
+            int Department_ID = 0;
+            string Checklist_Status = " ";
+
             try
             {
                 if (start_date.Value != "")
@@ -151,7 +170,7 @@ namespace Upkeep_v3.CheckList
                 }
 
                 DataSet dsReport = new DataSet();
-                dsReport = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date);
+                dsReport = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date, Department_ID, Checklist_ID, Checklist_Status);
 
                 System.Data.DataTable dtChkReport = new System.Data.DataTable();
                 dtChkReport = dsReport.Tables[0];
@@ -227,6 +246,10 @@ namespace Upkeep_v3.CheckList
             GridView dgGrid = new GridView();
             string From_Date = string.Empty;
             string To_Date = string.Empty;
+            int Checklist_ID = 0;
+            int Department_ID = 0;
+            string Checklist_Status = " ";
+
             Document doc = new Document();
             try
             {
@@ -250,7 +273,7 @@ namespace Upkeep_v3.CheckList
                 }
 
                 DataSet dsReport = new DataSet();
-                dsReport = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date);
+                dsReport = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, Session["CompanyID"].ToString(), From_Date, To_Date, Department_ID, Checklist_ID, Checklist_Status);
 
 
                 System.Data.DataTable dtReport = new System.Data.DataTable();
@@ -352,6 +375,56 @@ namespace Upkeep_v3.CheckList
             // Indicate that the data to send to the client has ended
             Response.End();
         }
+
+        public void Fetch_Checklist()
+        {
+            DataSet dsChecklist = new DataSet();
+            try
+            {
+                dsChecklist = ObjUpkeep.Fetch_MyChecklist(LoggedInUserID, Convert.ToString(CompanyID), "", "");
+
+                if (dsChecklist.Tables.Count > 0)
+                {
+                    if (dsChecklist.Tables[0].Rows.Count > 0)
+                    {
+                        ddlCheckist_Name.DataSource = dsChecklist.Tables[0];
+                        ddlCheckist_Name.DataTextField = "Chk_Title";
+                        ddlCheckist_Name.DataValueField = "Chk_Config_ID";
+                        ddlCheckist_Name.DataBind();
+                        ddlCheckist_Name.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void Fetch_Department()
+        {
+            DataSet dsDept = new DataSet();
+            try
+            {
+                dsDept = ObjUpkeep.Fetch_Department(CompanyID);
+
+                if (dsDept.Tables.Count > 0)
+                {
+                    if (dsDept.Tables[0].Rows.Count > 0)
+                    {
+                        ddlCheckist_Department.DataSource = dsDept.Tables[0];
+                        ddlCheckist_Department.DataTextField = "Department";
+                        ddlCheckist_Department.DataValueField = "Department_ID";
+                        ddlCheckist_Department.DataBind();
+                        ddlCheckist_Department.Items.Insert(0, new ListItem("--Select--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }
