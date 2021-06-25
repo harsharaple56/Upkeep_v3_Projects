@@ -95,7 +95,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_Feedback_Details(int Company_ID, int Feedback_No, int Event_ID, int User_ID)
+    public DataSet Fetch_Feedback_Details(int Company_ID, string Feedback_No, int Event_ID, int User_ID)
     {
         try
         {

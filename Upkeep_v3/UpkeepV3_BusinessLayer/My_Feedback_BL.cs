@@ -103,7 +103,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Fetch_Feedback_Details(int Company_ID, int Feedback_No, int Event_ID, int User_ID, string strConn)
+        public DataSet Fetch_Feedback_Details(int Company_ID, string Feedback_No, int Event_ID, int User_ID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;

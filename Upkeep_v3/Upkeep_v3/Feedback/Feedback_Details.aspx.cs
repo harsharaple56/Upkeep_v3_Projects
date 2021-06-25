@@ -27,7 +27,7 @@ namespace Upkeep_v3.Feedback
         int CompanyID = 0;
         string CompanyCode = string.Empty;
         string UserType = string.Empty;
-        int Feedback_No = 0;
+        string Feedback_No = string.Empty;
         int Event_ID = 0;
         int User_ID = 0;
 
@@ -37,11 +37,10 @@ namespace Upkeep_v3.Feedback
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             CompanyCode = Convert.ToString(Session["CompanyCode"]);
             UserType = Convert.ToString(Session["UserType"]);
-            Feedback_No = Convert.ToInt32(Request.QueryString["FeedbackNo"]);
+            Feedback_No = Convert.ToString(Request.QueryString["fno"]);
             Event_ID = Convert.ToInt32(Request.QueryString["EventID"]);
-            User_ID = Convert.ToInt32(Request.QueryString["UserID"]);
+            User_ID = Convert.ToInt32(Request.QueryString["uid"]);
             
-
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -50,18 +49,25 @@ namespace Upkeep_v3.Feedback
             //Bind_GatePassConfiguration(GP_ConfigID);
             if (!IsPostBack)
             {
-
-                Fetch_Feedback_Details();
-                BindEvent();
-                //Oberoi Mall Integration with PAZO
-                if (CompanyCode == "OBRC")
+                if(Feedback_No == "NA")
                 {
-                    div_Integration_PAZO.Visible = true;
+                    Response.Redirect(Page.ResolveClientUrl("~/Feedback/Feedback_MIS_Report.aspx"), false);
                 }
                 else
                 {
-                    div_Integration_PAZO.Visible = false;
+                    Fetch_Feedback_Details();
+                    BindEvent();
+                    //Oberoi Mall Integration with PAZO
+                    if (CompanyCode == "OBRC")
+                    {
+                        div_Integration_PAZO.Visible = true;
+                    }
+                    else
+                    {
+                        div_Integration_PAZO.Visible = false;
+                    }
                 }
+                
             }
 
         }

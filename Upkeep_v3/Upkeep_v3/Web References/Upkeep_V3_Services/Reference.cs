@@ -5556,7 +5556,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Feedback_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Feedback_Details(int Company_ID, int Feedback_No, int Event_ID, int User_ID) {
+        public System.Data.DataSet Fetch_Feedback_Details(int Company_ID, string Feedback_No, int Event_ID, int User_ID) {
             object[] results = this.Invoke("Fetch_Feedback_Details", new object[] {
                         Company_ID,
                         Feedback_No,
@@ -5566,12 +5566,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Fetch_Feedback_DetailsAsync(int Company_ID, int Feedback_No, int Event_ID, int User_ID) {
+        public void Fetch_Feedback_DetailsAsync(int Company_ID, string Feedback_No, int Event_ID, int User_ID) {
             this.Fetch_Feedback_DetailsAsync(Company_ID, Feedback_No, Event_ID, User_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Feedback_DetailsAsync(int Company_ID, int Feedback_No, int Event_ID, int User_ID, object userState) {
+        public void Fetch_Feedback_DetailsAsync(int Company_ID, string Feedback_No, int Event_ID, int User_ID, object userState) {
             if ((this.Fetch_Feedback_DetailsOperationCompleted == null)) {
                 this.Fetch_Feedback_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Feedback_DetailsOperationCompleted);
             }
