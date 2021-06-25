@@ -129,7 +129,7 @@
 
                     <div class="m-portlet__head-tools">
 
-
+                        
                         <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
 
 
@@ -184,16 +184,16 @@
                                 <div class="form-group m-form__group row align-items-center">
                                     
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">
                                         <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                                            <input type="text" class="form-control m-input" placeholder="Search Anything in below Data..." id="generalSearch" />
                                             <span class="m-input-icon__icon m-input-icon__icon--left">
                                                 <span><i class="la la-search"></i></span>
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-9">
+                                    <div class="col-md-3">
                                         <div class="m-form__group m-form__group--inline">
                                             <div class="m-form__label">
                                                 <label>Date:</label>
@@ -212,20 +212,89 @@
                                                         <i class="la la-angle-down"></i>
                                                     </button>
                                                 </span>
-                                                <div class="btn-group" style="margin-left: 50px;">
-                                                    <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
-                                                </div>
                                                 
-                                                <div class="btn-group" style="margin-left: 50px;">
-                                                    <a href="<%= Page.ResolveClientUrl("~/CheckList/Checklist_Consolidated_Report_List.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
-                                                        <i class="flaticon-diagram"></i>
-                                                        View Consolidated Checklist Report
-                                                    </a> 
-                                                </div>
+                                                
+
                                             </div>
                                         </div>
                                     </div>
 
+                                     <div class="col-md-4">
+                                         <a href="<%= Page.ResolveClientUrl("~/CheckList/Checklist_Consolidated_Report_List.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
+                                                        <i class="flaticon-diagram"></i>
+                                                        View Consolidated Checklist Report
+                                                    </a>
+
+                                         </div>
+
+
+                                </div>
+                                <div class="form-group m-form__group row align-items-center">
+                                    
+
+                                    <div class="col-md-5">
+                                        <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label>Checklist:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+                                                        <asp:DropDownList ID="ddlCheckist_Name" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                            <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                      <div class="d-md-none m--margin-bottom-10"></div>
+                                    </div>
+                                    
+                                    <div class="col-md-2">
+                                                <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label>Status:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+                                                        <asp:DropDownList ID="ddlCheckist_Status" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                            <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="d-md-none m--margin-bottom-10"></div>
+                                            </div>
+
+                                    <div class="col-md-3">
+                                                <div class="m-form__group m-form__group--inline">
+                                                    <div class="m-form__label">
+                                                        <label class="m-label m-label--single">Department:</label>
+                                                    </div>
+                                                    <div class="m-form__control">
+                                                        <asp:DropDownList ID="ddlCheckist_Department" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                            <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
+                                                            <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
+                                                            <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
+                                                            <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
+                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="d-md-none m--margin-bottom-10"></div>
+                                            </div>
+
+                                    <div class="col-md-1">
+                                        
+                                    <div class="btn-group">
+                                                    <asp:Button ID="Button1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
+                                                </div>
+                                                
+
+                                    </div>
 
 
                                 </div>

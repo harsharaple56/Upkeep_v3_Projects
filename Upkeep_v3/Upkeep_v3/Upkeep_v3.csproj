@@ -1138,6 +1138,12 @@
     <Content Include="Support_Portal\Create_Request.aspx" />
     <Content Include="Support_Portal\View_Request.aspx" />
     <Content Include="Support_Portal\View_Request_List.aspx" />
+    <Content Include="Test_Folder\jquery.webcam.js" />
+    <Content Include="Test_Folder\jquery.webcam.min.js" />
+    <Content Include="Test_Folder\jscam.swf" />
+    <Content Include="Test_Folder\jscam_canvas_only.swf" />
+    <Content Include="Test_Folder\src\jscam.xml" />
+    <Content Include="Test_Folder\Webcam.aspx" />
     <Content Include="Test_SMS.aspx" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_0.jpg" />
     <Content Include="TicketImages\22-01-2020\CKT10_11_1.png" />
@@ -4058,6 +4064,13 @@
     <Content Include="GatePass\Gatepass_Details_Print.xss">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
+    <Content Include="Test_Folder\bower.json" />
+    <Content Include="Test_Folder\Makefile" />
+    <Content Include="Test_Folder\README.md" />
+    <Content Include="Test_Folder\src\BitString.as" />
+    <Content Include="Test_Folder\src\JPGEncoder.as" />
+    <Content Include="Test_Folder\src\jscam.as" />
+    <Content Include="Test_Folder\webcam.jquery.json" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -5199,6 +5212,12 @@
     <Compile Include="TestMaster.Master.designer.cs">
       <DependentUpon>TestMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Test_Folder\Webcam.aspx.cs">
+      <DependentUpon>Webcam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Folder\Webcam.aspx.designer.cs">
+      <DependentUpon>Webcam.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test_SMS.aspx.cs">
       <DependentUpon>Test_SMS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6299,6 +6318,7 @@
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="Laundry_Management\Reports\" />
+    <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />

@@ -2853,7 +2853,7 @@ namespace UpkeepV3_BusinessLayer
 		}
 
 
-		public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, string StrConn)
+		public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, int Department_ID, int Checklist_ID ,string Status, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try
@@ -2865,7 +2865,12 @@ namespace UpkeepV3_BusinessLayer
 				cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 				cmd.Parameters.AddWithValue("@From_Date", From_Date);
 				cmd.Parameters.AddWithValue("@To_Date", To_Date);
-				SqlDataAdapter da = new SqlDataAdapter(cmd);
+                cmd.Parameters.AddWithValue("@Department_ID", Department_ID);
+                cmd.Parameters.AddWithValue("@Checklist_ID", Checklist_ID);
+                cmd.Parameters.AddWithValue("@Status", Status);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 				da.Fill(ds);
 				return ds;
 			}

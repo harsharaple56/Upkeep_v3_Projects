@@ -98,6 +98,7 @@
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
                             </div>
+
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
@@ -130,6 +131,20 @@
                         <!--begin: Form Body -->
                         <div class="m-form m-form--fit m-form--group-seperator-dashed">
                             <div class="row">
+                                <div class="col-xl-12">
+                                     <div class="m-alert m-alert--icon alert alert-primary" role="alert">
+											<div class="m-alert__icon">
+												<i class="la la-warning"></i>
+											</div>
+											<div class="m-alert__text">
+												<strong>ARE YOU A RETAILER ?</strong> If Yes , this form is not for You. Please click here >>>>>
+											</div>
+											<div class="m-alert__actions" style="width: 160px;">
+												<button type="button" class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide">Contact <b>Retailer</b> Technical Support
+												</button>
+											</div>
+										</div>
+                                </div>
                                 <div class="col-xl-12">
                                     <div class="m-form__section m-form__section--first">
 

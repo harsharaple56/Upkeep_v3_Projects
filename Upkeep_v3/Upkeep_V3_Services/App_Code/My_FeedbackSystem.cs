@@ -99,6 +99,23 @@ public class My_FeedbackSystem
         }
     }
 
+    public DataSet Fetch_Feedback_Details(int Company_ID, int Feedback_No, int Event_ID, int User_ID)
+    {
+        try
+        {
+            strConn = System.Configuration.ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            ds = ObjFeedback_BL.Fetch_Feedback_Details(Company_ID, Feedback_No, Event_ID, User_ID,  strConn);
+
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet ChangePassword(string UserName, string strPassword)
     {
         try
@@ -336,7 +353,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Get_CustomerDetails()
+    public DataSet Get_CustomerDetails(int Company_ID)
     {
         try
         {
@@ -344,7 +361,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Get_CustomerDetails(strConn);
+            ds = ObjFeedback_BL.Get_CustomerDetails( Company_ID , strConn);
 
             return ds;
         }

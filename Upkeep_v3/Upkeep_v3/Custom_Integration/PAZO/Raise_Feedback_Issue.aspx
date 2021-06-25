@@ -152,7 +152,7 @@
                                                         <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                                     </div>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDueDate" Visible="true" Display="Dynamic"
-                                                        ValidationGroup="validateDueDate" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select Due date for Issue"></asp:RequiredFieldValidator>
+                                                        ValidationGroup="ValidateUser" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select Due date for Issue"></asp:RequiredFieldValidator>
                                                 </div>
                                                 <span id="error_startDate" class="text-danger small"></span>
                                             </div>
@@ -175,13 +175,13 @@
                                         <%--<asp:Label ID="lblSuccessMsg" runat="server" ForeColor="Green" Font-Bold="true"></asp:Label>
                                         <asp:Label ID="lblFalureMsg" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>--%>
                                         
-                                        <div class="m-portlet__body col-lg-7" id="dvSuccess" runat="server" style="display:none;" >
+                                        <div class="m-portlet__body col-lg-12" id="dvSuccess" runat="server" style="display:none;" >
                                             <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-success alert-dismissible fade show" role="alert">
                                                 <div class="m-alert__icon">
-                                                    <i class="la la-warning"></i>
+                                                    <i class="fa fa-check"></i>
                                                 </div>
                                                 <div class="m-alert__text">
-                                                    <strong>Success!</strong> Ticket has been raised successfully in PAZO.
+                                                    <strong>Success!</strong> Your issue has been submitted successfully in PAZO.
                                                 </div>
                                                 <div class="m-alert__close">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -190,13 +190,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="m-portlet__body col-lg-7" id="dvFailure" runat="server" style="display:none;">
+                                        <div class="m-portlet__body col-lg-12" id="dvFailure" runat="server" style="display:none;">
                                             <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
                                                 <div class="m-alert__icon">
                                                     <i class="la la-warning"></i>
                                                 </div>
                                                 <div class="m-alert__text">
-                                                    <strong>Error!</strong> Something went wrong, please try again later.
+                                                    <strong>Error!</strong> Something went wrong, please try again later or contact us at <b>support@efacilito.com</b>.
                                                 </div>
                                                 <div class="m-alert__close">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

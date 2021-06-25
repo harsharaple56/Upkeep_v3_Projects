@@ -24,6 +24,7 @@ namespace Upkeep_v3
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             hdnCompanyID.Value = Convert.ToString(Session["CompanyID"]);
+
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout

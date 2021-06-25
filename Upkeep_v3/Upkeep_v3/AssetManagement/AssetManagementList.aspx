@@ -192,6 +192,7 @@
 
                                 <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
                                 <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
+                                <th title="Asset_ID" data-field="Asset_ID">Asset ID</th>
                                 <th title="Name" data-field="Asset_Name">Asset Name</th>
                                 <%--<th title="Desc" data-field="Asset_Desc">Desc</th>
                                     <th title="Maker" data-field="Asset_Make">Maker</th>--%>

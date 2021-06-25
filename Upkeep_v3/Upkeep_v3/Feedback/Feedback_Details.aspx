@@ -36,14 +36,16 @@
 
                         <div class="m-portlet__body">
                             <div class="m-widget15">
-
+                                <asp:Repeater ID="rptFeedbackDetails" runat="server">
+                                            <ItemTemplate>
                                 <div class="m-widget15__items m--margin-top-20">
                                     <div class="row">
                                         <div class="col">
 
                                             <!--begin::widget item-->
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">14% ( 4 )
+                                                <span class="m-widget15__stats">
+                                                    <label id="lbl_Postive_Points_Percent" runat="server"><%#Eval("Positive_Points_Percent")%></label>%
                                                 </span>
                                                 <span class="m-widget24__stats m--font-success">
                                                     <b>
@@ -51,12 +53,12 @@
                                                             <i class="fa fa-check-circle "></i>
                                                             <b>Positive</b>
                                                         </span>
-                                                        Responses
+                                                        <label id="lbl_Postive_Points_Count" runat="server"><%#Eval("Positive_Points_Count")%></label> Responses
                                                     </b>
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%#Eval("Positive_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
 
@@ -66,7 +68,8 @@
 
                                             <!--begin::widget item-->
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">14% ( 3 )
+                                                <span class="m-widget15__stats">
+                                                    <label id="lbl_Negative_Points_Percent" runat="server"><%#Eval("Negative_Points_Percent")%></label>%
                                                 </span>
 
                                                 <span class="m-widget24__stats m--font-danger">
@@ -75,12 +78,12 @@
                                                             <i class="fa fa-times-circle"></i>
                                                             <b>Negative</b>
                                                         </span>
-                                                        Responses
+                                                        <label id="lbl_Negative_Points_Count" runat="server"><%#Eval("Negative_Points_Percent")%></label> Responses
                                                     </b>
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%#Eval("Negative_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
 
@@ -90,21 +93,22 @@
 
                                             <!--begin::widget item-->
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">14% ( 5 )
+                                               <span class="m-widget15__stats">
+                                                    <label id="lbl_Neutral_Points_Percent" runat="server"><%#Eval("Neutral_Points_Percent")%></label>%
                                                 </span>
 
                                                 <span class="m-widget24__stats m--font-warning">
                                                     <b>
                                                         <span class="m-badge m-badge--warning m-badge--wide">
-                                                            <i class="fa fa-exclamation-circle"></i>
+                                                            <i class="fa fa-times-circle"></i>
                                                             <b>Neutral</b>
                                                         </span>
-                                                        Responses
+                                                        <label id="lbl_Neutral_Points_Count" runat="server"><%#Eval("Neutral_Points_Count")%></label> Responses
                                                     </b>
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%#Eval("Neutral_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
 
@@ -114,6 +118,10 @@
                                     </div>
 
                                 </div>
+                               
+                              </ItemTemplate> 
+                            </asp:Repeater>
+
                             </div>
                         </div>
 
@@ -135,62 +143,62 @@
                         </div>
 
                         <div class="m-portlet__body">
-                            <div class="m-widget6">
+                            <div class="m-widget6" id="div_Customer_Details" runat="server">
                                 <div id="div_Employee" class="m-widget6__head">
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Name
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">Lokesh Devasani </label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Customer_Name" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Email
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">ldevasani08@gmail.com</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Customer_Email" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Contact
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">8898084488</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Customer_Contact" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Gender
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">Male</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Customer_Gender" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Photo
                                         </span>
                                         <div class="m-widget3__user-img">
-                                            <img class="m-widget3__img" src="../../assets/app/media/img/users/user1.jpg" alt="">
+                                            <img id="imp_Customer_Image" runat="server" class="m-widget3__img" style="width:auto; max-height: 70px; max-width: 100%;">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="div_Retailer" class="m-widget6__head">
+                                <div class="m-widget6__head" id="div_Retailer_Details" runat="server">
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Store Name
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">Lokesh Devasani </label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Retailer_StoreName" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Store No.
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">Lokesh Devasani </label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Retailer_StoreNo" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Store Manager Name
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">ldevasani08@gmail.com</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Retailer_StoreMgrName" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Store Email
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">8898084488</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Retailer_Email" runat="server"></label>
                                     </div>
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Store Contact
                                         </span>
-                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand">Male</label>
+                                        <label class="m-widget6__text m--align-right m--font-boldest m--font-brand" id="lbl_Retailer_Contact" runat="server"></label>
                                     </div>
                                 </div>
 
@@ -218,7 +226,7 @@
                                 <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
                                         <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">Total Points
-                                                        <label>23</label>
+                                                        <label id="lbl_Feedback_Total_Points" runat="server">0</label>
                                         </span>
                                     </li>
                                 </ul>
@@ -314,7 +322,7 @@
 
                         <div class="m-portlet__body">
 
-                            <div class="m-section__content">
+                            <div id="div_Integration_PAZO" runat="server" class="m-section__content">
                                 <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                     <div class="m-demo__preview m-demo__preview--btn">
                                         <a id="btn_SubmitIssuePAZO" href="<%= Page.ResolveClientUrl("~/Custom_Integration/PAZO/Raise_Feedback_Issue.aspx") %>" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
