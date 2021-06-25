@@ -325,14 +325,20 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
+                Random random = new Random();
+                string strRandomNo = string.Empty;
+                strRandomNo = random.Next(0, 999999999).ToString("D9");
+               
                 foreach (ClsInsertFeedback item in objInsert)
                 {
-                    SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                    item.RandomNo = strRandomNo;
+                    SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
                     ObjLocSqlParameter[0] = new SqlParameter("@UserID", item.UserID);
                     ObjLocSqlParameter[1] = new SqlParameter("@LoggedInUserID", item.LoggedInUserID);
                     ObjLocSqlParameter[2] = new SqlParameter("@EventID", item.EventID);
                     ObjLocSqlParameter[3] = new SqlParameter("@QuestionID", item.QuestionID);
                     ObjLocSqlParameter[4] = new SqlParameter("@Answer", item.Answer);
+                    ObjLocSqlParameter[5] = new SqlParameter("@FeedbackNo", item.RandomNo);
 
                     ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Feedback_Proc_Feedback_Insert", ObjLocSqlParameter);
 

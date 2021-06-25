@@ -254,6 +254,9 @@ namespace Upkeep_v3.Feedback
                 string StoreNo = string.Empty;
                 string UserName = string.Empty;
                 string FeedbackTakenDate = string.Empty;
+                int UserID = 0;
+                string FeedbackNo = string.Empty;
+
                 DateTime FeedbackDate;
                 int x = 0;
 
@@ -303,15 +306,15 @@ namespace Upkeep_v3.Feedback
                                 else
                                 {
 
-                                    //int EventID = Convert.ToInt32(ds.Tables[0].Rows[i]["Event_ID"]);
+                                    UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["User_ID"]);
                                     Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
                                     EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
                                     MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["MobileNo"]);
                                     Gender = Convert.ToString(ds.Tables[0].Rows[i]["Gender"]);
-                                    //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
+                                    FeedbackNo = Convert.ToString(ds.Tables[0].Rows[i]["Feedback_No"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td> <a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID+ "&fno=" + FeedbackNo + "' style='text-decoration: underline;' > " +  Name + " </ a ></td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
