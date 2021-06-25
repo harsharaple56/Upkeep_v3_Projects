@@ -234,71 +234,87 @@
                         </div>
                         <div class="m-portlet__body">
                             <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
-                                <input type="hidden" name="ctl00$ContentPlaceHolder1$rptHeaderDetails$ctl00$hfHeaderId" id="ContentPlaceHolder1_rptHeaderDetails_hfHeaderId_0" value="1">
-                                <label class="form-control-label font-weight-bold" id=" 1 ">
-                                    How was your Experience ?
-                                    <span class="m-badge m-badge--success m-badge--wide">
-                                        <i class="fa fa-check-circle "></i>
-                                        <b>POSITIVE</b>
-                                    </span>
-                                </label>
-                                <span id="ContentPlaceHolder1_rptHeaderDetails_lblHeaderErr_0" class="col-md-8 col-form-label" style="color: Red; font-size: large; font-weight: bold;"></span>
+                                
+                                <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
+                                    <ItemTemplate>
 
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divStar_0" style="display: none">
-                                    <section class="rating-widget">
-                                        <input name="ctl00$ContentPlaceHolder1$rptHeaderDetails$ctl00$hdnStar" type="hidden" id="hdnStar" class="hdnStar">
-                                        <!-- Rating Stars Box -->
-                                        <div class="rating-stars text-center">
-                                            <ul id="stars" class="ulStars">
-                                                <li class="star" title="Poor" data-value="1">
-                                                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
-                                                </li>
-                                                <li class="star" title="Fair" data-value="2">
-                                                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
-                                                </li>
-                                                <li class="star" title="Good" data-value="3">
-                                                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
-                                                </li>
-                                                <li class="star" title="Excellent" data-value="4">
-                                                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
-                                                </li>
-                                                <li class="star" title="WOW!!!" data-value="5">
-                                                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
-                                                </li>
-                                            </ul>
+                                        <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
+                                        <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
+
+                                        <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
+                                            <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
+                                            <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
+                                            <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
+                                            <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+
+                                            <div id="divStar" style="display: none" runat="server">
+                                                <section class='rating-widget'>
+                                                    <input type="hidden" clientidmode="Static"  runat="server" class="hdnStar" id="hdnStar" />
+                                                    <!-- Rating Stars Box -->
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars' class="ulStars">
+                                                            <li class='star' title='Poor' data-value='1'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Fair' data-value='2'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Good' data-value='3'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Excellent' data-value='4'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                    </div>
+
+                                                    <div class='success-box' style="display: none;">
+                                                        <div class='clearfix'></div>
+                                                        <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
+                                                        <div class='text-message'></div>
+                                                        <div class='clearfix'></div>
+                                                    </div>
+                                                </section>
+
+                                            </div>
+                                            <div id="divNPS" style="display: none" runat="server">
+                                                <div class="slidecontainer">
+                                                    <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
+                                                    <p class="NPRValue">Value: 5</p>
+                                                </div>
+                                            </div>
+                                            <div id="divTextArea" style="display: none" runat="server">
+                                                <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                            </div>
+                                            <div id="divOptions" class="text-center" style="display: none" runat="server">
+                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
+                                            </div>
+                                            <div id="divOptions1" style="display: none" runat="server">
+                                                <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                                            </div>
+                                            <div id="divEmoji" style="display: none" runat="server">
+                                                <div class="ratingSmiley text-center">
+                                                    <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
+                                                    <span class="rating1">😶‍</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                        </div>
 
-                                        <div class="success-box" style="display: none;">
-                                            <div class="clearfix"></div>
-                                            <img alt="tick image" width="32" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
-                                            <div class="text-message"></div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </section>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                                            Style="display: none;"></asp:Label>
+                                    </FooterTemplate>
 
-                                </div>
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divNPS_0" style="display: none">
-                                    <div class="slidecontainer">
-                                        <input name="ctl00$ContentPlaceHolder1$rptHeaderDetails$ctl00$myRange" type="range" id="myRange" min="1" max="10" value="5" class="slider NPRSlider">
-                                        <p class="NPRValue">Value: 5</p>
-                                    </div>
-                                </div>
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divTextArea_0" style="display: none">
-                                    <textarea name="ctl00$ContentPlaceHolder1$rptHeaderDetails$ctl00$divTextAreaid" id="ContentPlaceHolder1_rptHeaderDetails_divTextAreaid_0" rows="4" cols="50" class="form-control"></textarea>
-                                </div>
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divOptions_0" class="text-center" style="display: none">
-                                </div>
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divOptions1_0" style="display: none">
-                                </div>
-                                <div id="ContentPlaceHolder1_rptHeaderDetails_divEmoji_0">
-                                    <div class="ratingSmiley text-center">
-                                        <input name="ctl00$ContentPlaceHolder1$rptHeaderDetails$ctl00$hdnEmoji" type="Hidden" id="hdnEmoji" class="hdnEmoji" value="4">
-                                        <span class="rating1 selectedSmiley">😊</span><span class="rating2 selectedSmiley">😊</span><span class="rating3 selectedSmiley">😊</span><span class="rating4 selectedSmiley">😊</span><span class="rating5">😶</span>
+                                </asp:Repeater>
 
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>

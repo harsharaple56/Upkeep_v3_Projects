@@ -14,6 +14,7 @@ using System.Xml;
 using System.Web.Services;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI.HtmlControls;
 
 namespace Upkeep_v3.Feedback
 {
@@ -51,7 +52,7 @@ namespace Upkeep_v3.Feedback
             {
 
                 Fetch_Feedback_Details();
-
+                BindEvent();
                 //Oberoi Mall Integration with PAZO
                 if (CompanyCode == "OBRC")
                 {
@@ -71,6 +72,7 @@ namespace Upkeep_v3.Feedback
             DataSet ds = new DataSet();
             try
             {
+
                 ds = ObjUpkeep.Fetch_Feedback_Details(CompanyID, Feedback_No, Event_ID, User_ID);
 
                 if (ds.Tables.Count > 0)
@@ -108,6 +110,7 @@ namespace Upkeep_v3.Feedback
                             lbl_Retailer_Contact.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Store_Contact"]);
 
                         }
+                        
                     }
 
                    
@@ -119,5 +122,170 @@ namespace Upkeep_v3.Feedback
                 throw ex;
             }
         }
+
+
+        private void BindEvent()
+        {
+            try
+            {
+
+                ds = ObjUpkeep.Fetch_Feedback_Details(CompanyID, Feedback_No, Event_ID, User_ID);
+
+               // ds = ObjUpkeep.bindEventDetails(CompanyID, Event_ID);
+
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        rptHeaderDetails.DataSource = ds.Tables[2];
+                        //rptHeaderDetails.DataSource = ds.Tables[0];
+
+                        rptHeaderDetails.DataBind();
+
+                    }
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        private void SetRepeater()
+        {
+            foreach (RepeaterItem itemQuestion in rptHeaderDetails.Items)
+            {
+                String AnswerType = (itemQuestion.FindControl("hdnlblAnswerType") as HiddenField).Value;
+                string HeadId = (itemQuestion.FindControl("hfHeaderId") as HiddenField).Value;
+
+                if (AnswerType == "Options") //Single Selection [Radio Button]
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divOptions") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                   
+                }
+                else if (AnswerType == "Star") //Star Rating
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divStar") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "NPS") //NPS Scoring
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divNPS") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "Emoji") //emoji 
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divEmoji") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "Text") // Textarea Field
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else  //Normal Text Field
+                {
+                    HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+
+            }
+
+        }
+
+        protected void rptHeaderDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                //Reference the Repeater Item.
+                RepeaterItem item = e.Item;
+
+                String AnswerType = (e.Item.FindControl("hdnlblAnswerType") as HiddenField).Value;
+                string HeadId = (e.Item.FindControl("hfHeaderId") as HiddenField).Value;
+
+                if (AnswerType == "Options") //Single Selection [Radio Button]
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divOptions") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "Star") //Star Rating
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divStar") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "NPS") //NPS Scoring
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divNPS") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "Emoji") //emoji 
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divEmoji") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else if (AnswerType == "Text") // Textarea Field
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divTextArea") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+                else  //Normal Text Field
+                {
+                    HtmlGenericControl sample = e.Item.FindControl("divText") as HtmlGenericControl;
+                    sample.Attributes.Remove("style");
+                }
+
+
+                //Repeater rptRadio = e.Item.FindControl("rptRadio") as Repeater;
+
+                DataSet dsFeedbackHeader = new DataSet();
+                dsFeedbackHeader = ds.Copy(); //ObjUpkeep.Bind_FeedbackConfiguration(sPublicEventID);
+
+                DataTable dt = new DataTable();
+                dt = dsFeedbackHeader.Tables[2].Copy();
+                dt.DefaultView.RowFilter = "Question_ID = " + Convert.ToString(HeadId) + "";
+                dt = dt.DefaultView.ToTable();
+
+                if (AnswerType == "Options")
+                {
+                    RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option1"].ToString(), "1"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option2"].ToString(), "2"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option3"].ToString(), "3"));
+                        divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option4"].ToString(), "4"));
+                        //rptRadio.DataSource = dt;
+                        //rptRadio.DataBind(); 
+                        //divRadioButtonrdbYes.DataTextField = "Ans_Type_Data"; // "Ans_Type_Desc";
+                        //divRadioButtonrdbYes.DataValueField = "Ans_Type_Data_ID";  // "Ans_Type_ID";// 
+                        //divRadioButtonrdbYes.DataSource = dt;
+                        //divRadioButtonrdbYes.DataBind();
+                    }
+                    else
+                    {
+                        DataTable dt1 = new DataTable();
+                        //rptRadio.DataSource = dt1;
+                        //rptRadio.DataBind();
+                        divRadioButtonrdbYes.DataSource = dt;
+                        divRadioButtonrdbYes.DataBind();
+                    }
+
+                }
+
+            }
+        }
+
+
+
+
     }
 }
