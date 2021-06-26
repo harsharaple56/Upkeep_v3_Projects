@@ -768,7 +768,7 @@
                                                 </div>
                                             </td>
                                         </tr>
- </ItemTemplate>
+                                            </ItemTemplate>
                                         </asp:Repeater>
 
                                         <%--<tr>

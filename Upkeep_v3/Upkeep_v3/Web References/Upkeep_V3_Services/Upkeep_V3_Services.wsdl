@@ -3,6 +3,30 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_MyAsset_Service">
         <s:complexType>
           <s:sequence>
@@ -950,6 +974,32 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="INSERT_Electricity_CategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Close_Ticket_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TicketID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CloseTicketDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="list_Images" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTicketAction" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Close_Ticket_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Close_Ticket_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -2121,6 +2171,9 @@
             <s:element minOccurs="0" maxOccurs="1" name="CompanyID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Department_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Checklist_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2941,30 +2994,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -2989,6 +3018,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Dashboard_AdminResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Feedback_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Feedback_No" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Event_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="User_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Feedback_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Feedback_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4705,7 +4758,11 @@
         </s:complexType>
       </s:element>
       <s:element name="Get_CustomerDetails">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="Get_CustomerDetailsResponse">
         <s:complexType>
@@ -5009,32 +5066,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Close_Ticket_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="TicketID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CloseTicketDesc" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="list_Images" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strTicketAction" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CurrentLevel" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Close_Ticket_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Close_Ticket_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5042,6 +5073,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_MyAsset_ServiceSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_MyAsset_Service" />
   </wsdl:message>
@@ -5281,6 +5318,12 @@
   </wsdl:message>
   <wsdl:message name="INSERT_Electricity_CategorySoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_Electricity_CategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Close_Ticket_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Close_Ticket_Details" />
+  </wsdl:message>
+  <wsdl:message name="Close_Ticket_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Close_Ticket_DetailsResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Store_AttendanceSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Store_Attendance" />
@@ -5786,12 +5829,6 @@
   <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -5803,6 +5840,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_AdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Feedback_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Feedback_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Feedback_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Feedback_DetailsResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_EmployeeSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_Employee" />
@@ -6290,13 +6333,11 @@
   <wsdl:message name="Update_ChecklistPointsSoapOut">
     <wsdl:part name="parameters" element="tns:Update_ChecklistPointsResponse" />
   </wsdl:message>
-  <wsdl:message name="Close_Ticket_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Close_Ticket_Details" />
-  </wsdl:message>
-  <wsdl:message name="Close_Ticket_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Close_Ticket_DetailsResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset_Service">
       <wsdl:input message="tns:Fetch_MyAsset_ServiceSoapIn" />
       <wsdl:output message="tns:Fetch_MyAsset_ServiceSoapOut" />
@@ -6456,6 +6497,10 @@
     <wsdl:operation name="INSERT_Electricity_Category">
       <wsdl:input message="tns:INSERT_Electricity_CategorySoapIn" />
       <wsdl:output message="tns:INSERT_Electricity_CategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Close_Ticket_Details">
+      <wsdl:input message="tns:Close_Ticket_DetailsSoapIn" />
+      <wsdl:output message="tns:Close_Ticket_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Store_Attendance">
       <wsdl:input message="tns:Fetch_Store_AttendanceSoapIn" />
@@ -6793,10 +6838,6 @@
       <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -6804,6 +6845,10 @@
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
       <wsdl:output message="tns:Fetch_Dashboard_AdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Feedback_Details">
+      <wsdl:input message="tns:Fetch_Feedback_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_Feedback_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Employee">
       <wsdl:input message="tns:Fetch_Dashboard_EmployeeSoapIn" />
@@ -7130,13 +7175,18 @@
       <wsdl:input message="tns:Update_ChecklistPointsSoapIn" />
       <wsdl:output message="tns:Update_ChecklistPointsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Close_Ticket_Details">
-      <wsdl:input message="tns:Close_Ticket_DetailsSoapIn" />
-      <wsdl:output message="tns:Close_Ticket_DetailsSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset_Service">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
       <wsdl:input>
@@ -7490,6 +7540,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Close_Ticket_Details">
+      <soap:operation soapAction="http://tempuri.org/Close_Ticket_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8253,15 +8312,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8273,6 +8323,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Feedback_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Feedback_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9009,18 +9068,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Close_Ticket_Details">
-      <soap:operation soapAction="http://tempuri.org/Close_Ticket_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset_Service">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset_Service" style="document" />
       <wsdl:input>
@@ -9374,6 +9433,15 @@
     </wsdl:operation>
     <wsdl:operation name="INSERT_Electricity_Category">
       <soap12:operation soapAction="http://tempuri.org/INSERT_Electricity_Category" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Close_Ticket_Details">
+      <soap12:operation soapAction="http://tempuri.org/Close_Ticket_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10137,15 +10205,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10157,6 +10216,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Feedback_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Feedback_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10886,15 +10954,6 @@
     </wsdl:operation>
     <wsdl:operation name="Update_ChecklistPoints">
       <soap12:operation soapAction="http://tempuri.org/Update_ChecklistPoints" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Close_Ticket_Details">
-      <soap12:operation soapAction="http://tempuri.org/Close_Ticket_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

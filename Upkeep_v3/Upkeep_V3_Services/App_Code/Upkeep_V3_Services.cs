@@ -95,6 +95,25 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet Fetch_Feedback_Details(int Company_ID, string Feedback_No, int Event_ID, int User_ID)
+    {
+        try
+        {
+
+            My_FeedbackSystem obj = new My_FeedbackSystem();
+
+            ds = obj.Fetch_Feedback_Details(Company_ID, Feedback_No, Event_ID, User_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
     public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
     {
         try
@@ -1263,7 +1282,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Get_CustomerDetails()
+    public DataSet Get_CustomerDetails(int Company_ID)
     {
         DataSet ds = new DataSet();
 
@@ -1271,7 +1290,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Get_CustomerDetails();
+            ds = obj.Get_CustomerDetails(Company_ID);
 
         }
         catch (Exception ex)
@@ -2304,12 +2323,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+    public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, int Department_ID, int Checklist_ID, string Status)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date, Department_ID, Checklist_ID, Status);
         }
         catch (Exception ex)
         {

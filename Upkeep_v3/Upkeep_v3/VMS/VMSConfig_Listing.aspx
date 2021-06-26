@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="VMSConfig_Listing.aspx.cs" Inherits="Upkeep_v3.VMS.VMSConfig_Listing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
+
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -31,6 +31,21 @@
             });
         });
     </script>
+    <script>
+
+        function PrintDiv() {  
+            var divContents = document.getElementById("printdivcontent").innerHTML;  
+            var printWindow = window.open('', '', 'height=400,width=400');  
+            printWindow.document.write('<html><head><title>Print DIV Content</title>');  
+            printWindow.document.write('</head><body >');  
+            printWindow.document.write(divContents);  
+            printWindow.document.write('</body></html>');  
+            printWindow.document.close();  
+            printWindow.print();  
+        }  
+
+    </script>
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -85,23 +100,34 @@
 
     <!-- Modal -->
     <div class="modal fade" id="modalLink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="width:fit-content;">
+        <div class="modal-dialog" role="document" style="width: fit-content;">
             <div class="modal-content">
-               <%-- <div class="modal-header">
+                <%-- <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Scan QR</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>--%>
-                <div class="modal-body">
-                    <figure class="figure">
+                <div class="modal-body" >
+                    <figure class="figure" id="printdivcontent">
                         <div id="plBarCode" runat="server" class="text-center"></div>
-                      
+
                         <h5 class="text-center text-primary" id="hLink"></h5>
                     </figure>
 
+                    <h5 class="text-center text-primary">
+                            <button onclick="PrintDiv();" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m-btn--align-center">
+                                <span>
+                                    <i class="la la-qrcode "></i>
+                                    <i class="la la-download "></i>
+                                    <span>Download QR Code</span>
+                                </span>
+                            </button>
+
+                        </h5>
+
                 </div>
-               
+
             </div>
         </div>
     </div>

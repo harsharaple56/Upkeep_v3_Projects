@@ -92,8 +92,7 @@
                     <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
                         <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success" OnClick="btn_Employee_Dashboard_Click" />
                         <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Admin_Dashboard_Click" />
-                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btn_Admin_Dashboard"
                             CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
                         </cc1:ModalPopupExtender>
 
@@ -605,7 +604,7 @@
                                                 </div>
                                             </ContentTemplate>
                                             <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                                <asp:AsyncPostBackTrigger ControlID="btn_Admin_Dashboard" EventName="Click" />
                                             </Triggers>
                                         </asp:UpdatePanel>
                                     </div>

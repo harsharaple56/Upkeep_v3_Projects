@@ -187,6 +187,7 @@
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="">
                 <div class="m-portlet m-portlet--mobile">
+
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
@@ -401,50 +402,9 @@
                         </table>--%>
                     </div>
                 </div>
-
-                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
         </div>
 
-        <!-- Start Modal -->
-        <%--   <div class="modal fade" id="Add_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content" id="dvpopup" runat="server">
-
-                
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <label for="recipient-name" class="form-control-label">Category Desc:</label>
-
-                            <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control"></asp:TextBox>
-                            <%--<asp:RequiredFieldValidator ID="rfvDeptDesc" runat="server" ControlToValidate="txtDeptDesc" Visible="true" ValidationGroup="validationZone" ForeColor="Red" ErrorMessage="Please enter Department Desc"></asp:RequiredFieldValidator>--%>
-        <%-- </div>
-
-                    </div>
-
-                    
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:Label ID="lblZoneErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                        </div>
-                                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationZone" OnClick="btnCategorySave_Click" OnClientClick="return CheckForm()" Text="Save" />
-                    </div>
-
-                </div>
-
-            </div>
-        </div>--%>
-        <!-- End Modal -->
 
         <asp:Panel ID="pnlCategoryMaster" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -493,24 +453,6 @@
             <!-- End Modal -->
         </asp:Panel>
 
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </asp:Content>

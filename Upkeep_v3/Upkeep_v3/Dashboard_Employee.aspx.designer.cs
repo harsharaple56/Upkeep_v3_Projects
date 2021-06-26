@@ -40,15 +40,6 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Button btn_Admin_Dashboard;
         
         /// <summary>
-        /// btnTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
-        
-        /// <summary>
         /// mpeTicketSaveSuccess control.
         /// </summary>
         /// <remarks>

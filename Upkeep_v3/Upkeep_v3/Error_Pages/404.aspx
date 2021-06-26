@@ -62,6 +62,14 @@ License: You must have a valid license purchased only from themeforest(the above
 					<span class="m-error_desc m--font-light">
 						Something went wrong here
 					</span>
+                    <a href="#" class="m-nav__link m-dropdown__toggle">
+                                            <span class="m-topbar__userpic">
+                                                <button type="button" class="btn m-btn--pill btn-primary m-btn m-btn--custom " data-toggle="modal" data-target="#m_modal_1">
+                                                    <i class="flaticon-support"></i>
+                                                    Contact Support
+                                                </button>
+                                            </span>
+                                        </a>
 				</div>
 			</div>
 		</div>

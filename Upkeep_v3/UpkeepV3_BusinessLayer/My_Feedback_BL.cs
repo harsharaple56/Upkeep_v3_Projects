@@ -103,6 +103,32 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
+        public DataSet Fetch_Feedback_Details(int Company_ID, string Feedback_No, int Event_ID, int User_ID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            string strOutput = string.Empty;
+
+            SqlConnection con = new SqlConnection(strConn);
+
+            SqlCommand cmd = new SqlCommand("Spr_Fetch_Feedback_Details", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+            cmd.Parameters.AddWithValue("@Feedback_No", Feedback_No);
+            cmd.Parameters.AddWithValue("@Event_ID", Event_ID);
+            cmd.Parameters.AddWithValue("@User_ID", User_ID);
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            return ds;
+        }
+
+
+
+
         public DataSet ChangePassword(string UserName, string strPassword, string strConn)
         {
             DataSet ds = new DataSet();
@@ -463,7 +489,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Get_CustomerDetails(string strConn)
+        public DataSet Get_CustomerDetails(int Company_ID, string strConn)
         {
             DataSet ds = new DataSet();
             SqlConnection con = new SqlConnection(strConn);
@@ -474,6 +500,8 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Feedback_Proc_Get_Customer", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+
 
                 con.Open();
 

@@ -6299,6 +6299,7 @@
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="Laundry_Management\Reports\" />
+    <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />

@@ -19,23 +19,33 @@ namespace Upkeep_v3.Support_Portal
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
         string Module_ID_String = string.Empty;
+        string UserType = string.Empty;
+        string UserName = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             Module_ID_String = Convert.ToString(Session["ModuleID"]);
+            UserType = Convert.ToString(Session["UserType"]);
+            UserName = Convert.ToString(Session["UserName"]);
 
-
-            if (LoggedInUserID == "")
+            if (UserType == "R")
             {
-                Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                Response.Redirect("https://forms.gle/iSWkUzaLREQTAhGs5");
             }
-            if (!IsPostBack)
+            else
             {
-
-                Fetch_ddlModule();
+                if (LoggedInUserID == "")
+                {
+                    Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
+                }
+                if (!IsPostBack)
+                {
+                    Fetch_ddlModule();
+                }
             }
+            
             
         }
 
@@ -99,26 +109,32 @@ namespace Upkeep_v3.Support_Portal
 
             string list_Images = String.Join(",", Lst_Images);
 
-            ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID,  Request_Type,  Module_ID, Request_Description,  LoggedInUserID);
 
-            if (ds.Tables.Count > 0)
+            if(UserType == "E")
             {
-                if (ds.Tables[0].Rows.Count > 0)
+                ds = ObjUpkeepCC.SUPPORT_Save_Request(CompanyID, Request_Type, Module_ID, Request_Description, LoggedInUserID);
+
+                if (ds.Tables.Count > 0)
                 {
-                    int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                    if (Status == 1)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        Session["User_ID"] = "";
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            Session["User_ID"] = "";
 
-                        Response.Redirect(Page.ResolveClientUrl("~/Support_Portal/View_Request_List.aspx"), false);
-                    }
-                    else if (Status == 2)
-                    {
+                            Response.Redirect(Page.ResolveClientUrl("~/Support_Portal/View_Request_List.aspx"), false);
+                        }
+                        else if (Status == 2)
+                        {
 
-                        lblError.InnerText = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            lblError.InnerText = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
                     }
                 }
+                
             }
+
 
 
         }

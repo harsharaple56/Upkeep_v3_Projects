@@ -1991,14 +1991,14 @@ public class My_Upkeep
 
 
 
-	public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date)
+	public DataSet Fetch_MyChecklistReportList(string LoggedInUserID, string CompanyID, string From_Date, string To_Date, int Department_ID, int Checklist_ID, string Status)
 	{
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_MyChecklistReportList(LoggedInUserID, CompanyID, From_Date, To_Date, Department_ID, Checklist_ID,Status, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
