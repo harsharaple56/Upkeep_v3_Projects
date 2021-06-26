@@ -328,38 +328,36 @@ background-color: blanchedalmond;
                                             <span>Back</span>
                                         </span>
                                     </a>
-                                    <div class="btn-group">
-
                                         <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"  ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
-
-
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"  ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                                         <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                         <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
                                             CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
                                         </cc1:ModalPopupExtender>
-                                    </div>
-
-                                    <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-danger m-btn m-btn--icon m-btn--wide m-btn--md" Text="Reject" />
+                                        <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" Text="Reject" />
 
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
-
-                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
+                        
+                            <div class="m-portlet__body" style="padding: 2rem 3rem 0rem 3rem;">
                                 <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
-                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span> Form Title :</label>
-                                    <div class="col-md-4">
+                                    <label class="col-md-2 col-form-label font-weight-bold"><span style="color: red;">*</span> Select Visitor form</label>
+                                    <div class="col-md-10">
                                         <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
+
+                                <div class="m-form__heading" style="text-align:center; ">
+										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Visitor Information</h3>
+									    </div>
+
 
                                 <br />
                               <!--  <div id="divDesc" runat="server" class="alert alert-primary alert-dismissible fade show   m-alert m-alert--air m-alert--outline" role="alert">
@@ -368,40 +366,40 @@ background-color: blanchedalmond;
                                     <strong>Read Me! </strong><span id="spnDesc" runat="server">Please fill in the deatils</span>
                                 </div>-->
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Name :</label>
-                                    <div class="col-md-5 col-form-label">
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span class="fa fa-user"></span> Name</label>
+                                    <div class="col-md-11 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Name to receive visit confirmation on yor Name.."></asp:TextBox>
+                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Name to receive visit confirmation on yor Name"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Name"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
                               
                                     </div>
                                 </div>
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Email :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span class="socicon-mail"></span> Email</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter EmailID to receive visit confirmation on yor mail.."></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter EmailID to receive visit confirmation on yor mail"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Email"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
                               
                                     </div>
 
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Phone :</label>
+                                    <label class="col-md-1 col-form-label font-weight-bold"><span class="fa fa-phone"></span> Contact</label>
                                     <div class="col-md-5 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Phone no. to receive visit confirmation on yor phone.." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Phone no. to receive visit confirmation on yor phone" OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Phone"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
                               
                                     </div>
                                 </div>
 
                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Visit Date :</label>
-                                    <div class="col-md-5 col-form-label">
+                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span> Date of Visit</label>
+                                    <div class="col-md-4 col-form-label">
                                         <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                         <div class="input-group date">
                                             <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker"  placeholder="Select Visit date & time"></asp:TextBox>
@@ -415,8 +413,8 @@ background-color: blanchedalmond;
                                             ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
                               
                                     <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-1 col-form-label font-weight-bold"><span style="color: red;">*</span>Meeting with :</label>
-                                    <div class="col-md-5 col-form-label">
+                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span> Meeting with</label>
+                                    <div class="col-md-4 col-form-label">
                                         <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true"  CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                         <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                         <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
@@ -433,9 +431,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                 <br />
 
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Visit Details</label>
-                                </div>
+                                <div class="m-form__heading" style="text-align:center; ">
+										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
+									    </div>
 
 
                                 <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
@@ -508,10 +506,11 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                 <br />
                                 <%-- Covid19 assessment --%>
-                                <div id="divCovid" runat="server" visible="false">
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Covid-19 Assessment Test</label>
+                                <div id="divCovid" runat="server" visible="false" >
+                                    <div class="m-form__heading" style="text-align:center; ">
+                                        <h3 class="m-form__heading-title" style="line-height: 2.0;background: #ffb9b9; font-size: 1.2rem; margin-bottom: 2.5rem;">Covid-19 Assessment Test</h3>
                                     </div>
+
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <img src="../assets/app/media/img/misc/AarogyaQR.png" class="img-fluid" alt="qr code" />
@@ -568,8 +567,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 <br />
                                 <br />
                             </div>
-                        </div>
-
+                    
 
 
                         <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">

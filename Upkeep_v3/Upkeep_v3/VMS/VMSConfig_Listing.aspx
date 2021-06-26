@@ -5,44 +5,66 @@
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            $('#m_table_1').DataTable({
-                responsive: true,
-                pagingType: 'full_numbers',
-                'fnDrawCallback': function () {
-                    init_plugins();
-                }
+        $(document).ready(
+            function () {
+                $('#m_table_1').DataTable({
+                    responsive: true,
+                    pagingType: 'full_numbers',
+                    'fnDrawCallback': function () {
+                        init_plugins();
+                    }
+                });
+                $(document).on("click", ".btnModalLink", function () {
+                    var newUrl = $(this).data('url');
+                    $(".modal-body #hLink").html(newUrl);
+                    $(".modal-body #hLink").attr("href", newUrl)
+                    $("#ContentPlaceHolder1_plBarCode img").hide();
+                    $("#" + newUrl.substr(newUrl.length - 5)).show();
+
+                    // As pointed out in comments, 
+                    // it is unnecessary to have to manually call the modal.
+                    // $('#addBookDialog').modal('show');
+                    //jQuery("#demo").qrcode("url or text");
+
+                    // or
+                    //$('#demo').qrcode(newUrl);
+
+                });
             });
-            $(document).on("click", ".btnModalLink", function () {
-                var newUrl = $(this).data('url');
-                $(".modal-body #hLink").html(newUrl);
-                $(".modal-body #hLink").attr("href", newUrl)
-                $("#ContentPlaceHolder1_plBarCode img").hide();
-                $("#" + newUrl.substr(newUrl.length - 5)).show();
-
-                // As pointed out in comments, 
-                // it is unnecessary to have to manually call the modal.
-                // $('#addBookDialog').modal('show');
-                //jQuery("#demo").qrcode("url or text");
-
-                // or
-                //$('#demo').qrcode(newUrl);
-
-            });
-        });
     </script>
+
+    <script>
+        //Copy Element Function
+
+        function copyFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("hLink");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Link Copied");
+        }
+
+    </script>
+
     <script>
 
-        function PrintDiv() {  
-            var divContents = document.getElementById("printdivcontent").innerHTML;  
-            var printWindow = window.open('', '', 'height=400,width=400');  
-            printWindow.document.write('<html><head><title>Print DIV Content</title>');  
-            printWindow.document.write('</head><body >');  
-            printWindow.document.write(divContents);  
-            printWindow.document.write('</body></html>');  
-            printWindow.document.close();  
-            printWindow.print();  
-        }  
+        function PrintDiv() {
+            var divContents = document.getElementById("printdivcontent").innerHTML;
+            var printWindow = window.open('', '', 'height=400,width=400');
+            printWindow.document.write('<html><head><title>Print DIV Content</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
 
     </script>
 
@@ -108,23 +130,25 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>--%>
-                <div class="modal-body" >
+                <div class="modal-body">
                     <figure class="figure" id="printdivcontent">
                         <div id="plBarCode" runat="server" class="text-center"></div>
-
                         <h5 class="text-center text-primary" id="hLink"></h5>
+                                
                     </figure>
 
                     <h5 class="text-center text-primary">
-                            <button onclick="PrintDiv();" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m-btn--align-center">
-                                <span>
-                                    <i class="la la-qrcode "></i>
-                                    <i class="la la-download "></i>
-                                    <span>Download QR Code</span>
-                                </span>
-                            </button>
-
-                        </h5>
+                        <button onclick="PrintDiv();" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m-btn--align-center">
+                            <span>
+                                <i class="la la-qrcode "></i>
+                                <i class="la la-download "></i>
+                                <span>Download QR Code</span>
+                            </span>
+                        </button>
+                        <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" data-toggle="m-popover" title="" data-content="Click to Copy Link to QR Code">
+                                    <i class="fa fa-copy"></i>
+                         </a>
+                    </h5>
 
                 </div>
 
