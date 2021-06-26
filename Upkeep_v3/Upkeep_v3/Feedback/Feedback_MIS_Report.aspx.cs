@@ -128,11 +128,11 @@ namespace Upkeep_v3.Feedback
                             if (UserType == "R")
                             {
 
-                                data = "<tr> <th>Store Name</th><th>Store No.</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Store Name</th><th>Store No.</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
                             }
                             else
                             {
-                                data = "<tr> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th> ";
                             }
                             //for (int k = 1; k <= ds.Tables[0].Columns.Count; k++)
                             //{
@@ -280,32 +280,28 @@ namespace Upkeep_v3.Feedback
 
                                 if (UserType == "R")
                                 {
-
+                                    UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["User_ID"]);
                                     StoreName = Convert.ToString(ds.Tables[0].Rows[i]["Store_name"]);
                                     StoreNo = Convert.ToString(ds.Tables[0].Rows[i]["Store_no"]);
                                     Name = Convert.ToString(ds.Tables[0].Rows[i]["Manager_Name"]);
                                     EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
                                     MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["PhoneNo"]);
-
+                                    FeedbackNo = Convert.ToString(ds.Tables[0].Rows[i]["Feedback_No"]);
                                     //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" + FeedbackNo + "</td><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 9; j < ColumnCount - 1; j++)
+                                    for (int j = 11; j < ColumnCount - 1; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";
-
-
                                     }
-
                                 }
                                 else
                                 {
-
                                     UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["User_ID"]);
                                     Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
                                     EmailID = Convert.ToString(ds.Tables[0].Rows[i]["EmailID"]);
@@ -314,11 +310,11 @@ namespace Upkeep_v3.Feedback
                                     FeedbackNo = Convert.ToString(ds.Tables[0].Rows[i]["Feedback_No"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td> <a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID+ "&fno=" + FeedbackNo + "' style='text-decoration: underline;' > " +  Name + " </ a ></td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" +  FeedbackNo + " </td> <td>" + Name + " </td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 9; j < ColumnCount; j++)
+                                    for (int j = 10; j < ColumnCount; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";

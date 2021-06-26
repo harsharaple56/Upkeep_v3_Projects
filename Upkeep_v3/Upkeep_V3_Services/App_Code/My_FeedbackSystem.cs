@@ -317,7 +317,7 @@ public class My_FeedbackSystem
     }
 
     //Added by Sujata This function is used to save Feedback form
-    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID)  //CompanyID Added by sujata 
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string FeedbackNo, string LoggedInUserID)  //CompanyID Added by sujata 
     {
         try
         {
@@ -325,7 +325,7 @@ public class My_FeedbackSystem
             string strOutput = string.Empty;
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
-            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID ,strConn);
+            ds = ObjFeedback_BL.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, FeedbackNo, LoggedInUserID ,strConn);
 
             return ds;
         }

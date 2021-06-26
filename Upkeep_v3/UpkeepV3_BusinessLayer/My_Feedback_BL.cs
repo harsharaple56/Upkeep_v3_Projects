@@ -429,7 +429,7 @@ namespace UpkeepV3_BusinessLayer
 
 
         //Added by Sujata This function is used to save Feedback form  
-        public DataSet Insert_FeedbackForm(int CompanyID, int EventID,string strFname,string strLname,string strPhoneno,string strGender,string strEmailID,  string FeedbackData,string LoggedInUserID, string strConn) // companyID Added by sujata
+        public DataSet Insert_FeedbackForm(int CompanyID, int EventID,string strFname,string strLname,string strPhoneno,string strGender,string strEmailID,  string FeedbackData,string FeedbackNo, string LoggedInUserID, string strConn) // companyID Added by sujata
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -447,6 +447,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@EmailID", strEmailID);
             cmd.Parameters.AddWithValue("@Gender", strGender);
             cmd.Parameters.AddWithValue("@FeedbackData", FeedbackData);
+            cmd.Parameters.AddWithValue("@FeedbackNo", FeedbackNo);
             cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
             
             con.Open();

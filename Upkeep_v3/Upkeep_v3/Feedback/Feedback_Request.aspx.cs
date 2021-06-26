@@ -451,7 +451,12 @@ namespace Upkeep_v3.Feedback
                 {
 
                 }
-                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhone, strGender, strEmailID, strFeedbackData, LoggedInUserID);
+
+                Random random = new Random();
+                string FeedbackNo = string.Empty;
+                FeedbackNo = random.Next(0, 999999999).ToString("D9");
+
+                dsFeedbackQuestionData = ObjUpkeep.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhone, strGender, strEmailID, strFeedbackData, FeedbackNo, LoggedInUserID);
 
                 if (dsFeedbackQuestionData.Tables.Count > 0)
                 {
