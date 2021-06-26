@@ -1240,7 +1240,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     //Added by Sujata This function is used to save Feedback form
 
     [WebMethod]
-    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID) //CompanyID added by sujata
+    public DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData,string FeedbackNo, string LoggedInUserID) //CompanyID added by sujata
     {
         DataSet ds = new DataSet();
 
@@ -1248,7 +1248,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
-            ds = obj.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID);
+            ds = obj.Insert_FeedbackForm(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, FeedbackNo, LoggedInUserID);
 
         }
         catch (Exception ex)

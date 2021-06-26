@@ -8079,7 +8079,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_FeedbackForm", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID) {
+        public System.Data.DataSet Insert_FeedbackForm(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string FeedbackNo, string LoggedInUserID) {
             object[] results = this.Invoke("Insert_FeedbackForm", new object[] {
                         CompanyID,
                         EventID,
@@ -8089,17 +8089,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strGender,
                         strEmailID,
                         FeedbackData,
+                        FeedbackNo,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_FeedbackFormAsync(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID) {
-            this.Insert_FeedbackFormAsync(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, LoggedInUserID, null);
+        public void Insert_FeedbackFormAsync(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string FeedbackNo, string LoggedInUserID) {
+            this.Insert_FeedbackFormAsync(CompanyID, EventID, strFname, strLname, strPhoneno, strGender, strEmailID, FeedbackData, FeedbackNo, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_FeedbackFormAsync(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string LoggedInUserID, object userState) {
+        public void Insert_FeedbackFormAsync(int CompanyID, int EventID, string strFname, string strLname, string strPhoneno, string strGender, string strEmailID, string FeedbackData, string FeedbackNo, string LoggedInUserID, object userState) {
             if ((this.Insert_FeedbackFormOperationCompleted == null)) {
                 this.Insert_FeedbackFormOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_FeedbackFormOperationCompleted);
             }
@@ -8112,6 +8113,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strGender,
                         strEmailID,
                         FeedbackData,
+                        FeedbackNo,
                         LoggedInUserID}, this.Insert_FeedbackFormOperationCompleted, userState);
         }
         
