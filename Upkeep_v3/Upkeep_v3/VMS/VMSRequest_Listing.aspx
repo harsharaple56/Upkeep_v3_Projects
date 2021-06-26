@@ -138,7 +138,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">My Request Work Permit		
+                            <h3 class="m-portlet__head-text">List of Visit Requests	
                             </h3>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <a href="<%= Page.ResolveClientUrl("~/VMS/Visit_Request.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
-                                <span>New Request</span>
+                                <span>New Visit Request</span>
                             </span>
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>

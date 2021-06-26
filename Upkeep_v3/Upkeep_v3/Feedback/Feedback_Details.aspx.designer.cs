@@ -13,6 +13,15 @@ namespace Upkeep_v3.Feedback {
     public partial class Feedback_Details {
         
         /// <summary>
+        /// btn_Raise_Feedback_Issue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Raise_Feedback_Issue;
+        
+        /// <summary>
         /// rptFeedbackDetails control.
         /// </summary>
         /// <remarks>

@@ -290,8 +290,10 @@ namespace Upkeep_v3.Feedback
             }
         }
 
-
-
+        protected void btn_Raise_Feedback_Issue_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Add_MyRequest.aspx?Feedback_No="+Feedback_No), false);
+        }
 
     }
 }
