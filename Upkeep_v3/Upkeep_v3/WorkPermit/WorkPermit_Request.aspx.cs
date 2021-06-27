@@ -114,17 +114,32 @@ namespace Upkeep_v3.WorkPermit
                 //dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Session["CompanyID"].ToString());
                 dsTitle = ObjUpkeep.Fetch_WorkPermitConfiguration(Initiator, Convert.ToString(Session["CompanyID"]));
 
-                if (dsTitle.Tables.Count > 0)
-                {
+                
+                
                     if (dsTitle.Tables[0].Rows.Count > 0)
                     {
-                        ddlWorkPermitTitle.DataSource = dsTitle.Tables[0];
-                        ddlWorkPermitTitle.DataTextField = "WP_Title";
-                        ddlWorkPermitTitle.DataValueField = "WP_Config_ID";
-                        ddlWorkPermitTitle.DataBind();
-                        ddlWorkPermitTitle.Items.Insert(0, new ListItem("--Select--", "0"));
+                        if (dsTitle.Tables[0].Rows.Count > 0)
+                        {
+                            ddlWorkPermitTitle.DataSource = dsTitle.Tables[0];
+                            ddlWorkPermitTitle.DataTextField = "WP_Title";
+                            ddlWorkPermitTitle.DataValueField = "WP_Config_ID";
+                            ddlWorkPermitTitle.DataBind();
+                            ddlWorkPermitTitle.Items.Insert(0, new ListItem("--Select--", "0"));
+                        }
                     }
-                }
+                    else
+                    {
+                        mpeNo_Work_Permits.Show();
+                        if (Initiator == "R")
+                        {
+                            lbl_Retailer_NoForm.InnerText = "Retailers";
+                        }
+                        else
+                        {
+                            lbl_Employee_NoForm.InnerText = "Employees";
+                        }
+                    }
+                
 
 
             }
@@ -950,8 +965,8 @@ namespace Upkeep_v3.WorkPermit
                             }
                             //[-][Ajay Prajapati]
                             SetRepeater();
-                            divInsertButton.Visible = false;
-                            lblWpRequestCode.Text = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["TicketNo"]);
+                            btnSubmit.Visible = false;
+                            lblWpRequestCode.InnerText = Convert.ToString(dsWPHeaderData.Tables[1].Rows[0]["TicketNo"]);
                             mpeWpRequestSaveSuccess.Show();
                         }
                         else
@@ -1035,14 +1050,6 @@ namespace Upkeep_v3.WorkPermit
                         BindSectionHeaderData(ConfigTitleID);
                     }
                 }
-                else
-                {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("");
-                    //lbTable.Text = sb.ToString();
-
-                    lbTable.Text = Convert.ToString(sb);
-                }
 
                 // GenerateTableHeader(ConfigTitleID);
 
@@ -1110,36 +1117,35 @@ namespace Upkeep_v3.WorkPermit
                         txtWorkPermitToDate.Text = Convert.ToString(dsData.Tables[0].Rows[0]["Wp_To_Date"]);
 
 
-                        lblTicketNo.Visible = true;
-                        lblTicket.Visible = true;
+                        //lblTicketNo.Visible = true;
+                        div_WorkPermit_Details_top.Visible = true;
                         //lblTicket.Text = dsData.Tables[0].Rows[0]["TicketNo"].ToString();
-                        lblTicket.Text = Convert.ToString(dsData.Tables[0].Rows[0]["TicketNo"]);
-
-
-                        divStatus.Visible = true;
-
+                        lblTicketNo.InnerText = Convert.ToString(dsData.Tables[0].Rows[0]["TicketNo"]);
+                        
                         //switch (dsData.Tables[0].Rows[0]["WP_Status"].ToString())
                         switch (Convert.ToString(dsData.Tables[0].Rows[0]["WP_Status"]))
                         {
                             case "Close":
-                                lblRequestStatus.Text = "Closed";
-                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                                lblRequestStatus1.InnerText = "Closed";
+                                lblRequestStatus1.Attributes.Add("class", "m-badge m-badge--info m-badge--wide");
                                 break;
                             case "Expired":
-                                lblRequestStatus.Text = "Open";
-                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--metal m-badge--wide");
+                                lblRequestStatus1.InnerText = "Expired";
+                                lblRequestStatus1.Attributes.Add("class", "m-badge m-badge--metal m-badge--wide");
+                                lblRequestStatus1.Attributes.Add("style", "color:blank");
+
                                 break;
                             case "Open":
-                                lblRequestStatus.Text = "Open";
-                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
+                                lblRequestStatus1.InnerText = "Open";
+                                lblRequestStatus1.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
                                 break;
                             case "Reject":
-                                lblRequestStatus.Text = "Rejected";
-                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                                lblRequestStatus1.InnerText = "Rejected";
+                                lblRequestStatus1.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
                                 break;
                             case "Approve":
-                                lblRequestStatus.Text = "Approved";
-                                lblRequestStatus.Attributes.Add("class", "m-badge m-badge--info m-badge--wide");
+                                lblRequestStatus1.InnerText = "Approved";
+                                lblRequestStatus1.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
                                 break;
                         }
 
@@ -1499,7 +1505,7 @@ namespace Upkeep_v3.WorkPermit
             btnSubmit.Attributes.Add("style", "display:none;");
             divUpdateButton.Attributes.Remove("style");
             //dvApprovalDetails.Attributes.Add("style", "display:Block;");
-            divInsertButton.Attributes.Add("style", "display:none;");
+            btnSubmit.Attributes.Add("style", "display:none;");
             //ddlWorkPermitTitle.Attributes.Add("Enabled", "False");
             //txtWorkPermitDate.Attributes.Add("Enabled", "False");
             ddlWorkPermitTitle.Attributes.Add("disabled", "disabled");

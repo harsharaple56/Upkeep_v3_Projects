@@ -1680,7 +1680,7 @@ textarea.form-control {
   height: auto; }
 
 .form-group {
-  margin-bottom: 1rem; }
+  /*margin-bottom: 1rem;*/ }
 
 .form-text {
   display: block;
@@ -15879,7 +15879,9 @@ code {
 
 [class^="fa-"],
 [class*=" fa-"] {
-  font-size: 1.1rem; }
+  font-size: 1.1rem; 
+  padding:5px;
+}
 
 [class^="flaticon-"],
 [class*=" flaticon-"] {

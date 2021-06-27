@@ -133,11 +133,13 @@
                             <div class="form-group m-form__group" style="display: none;" id="dvLogin" runat="server">
 
                                 <div class="m-radio-inline" style="text-align: center;">
-                                    <label class="m-radio font-weight-bold">
+                                    <span class="fa fa-user" style="font-size: 2rem;"></span>
+                                    <label class="m-radio font-weight-bold" style="margin-right: 60px;">
                                         <asp:RadioButton ID="rdbEmployee" runat="server" GroupName="LoggingAs" Checked="true" />
                                         Employee<span></span>
                                     </label>
-                                    <label class="m-radio font-weight-bold">
+                                    <span class="fa fa-store" style="font-size: 2rem;"></span>
+                                    <label class="m-radio font-weight-bold " >
                                         <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="LoggingAs" />
                                         Retailers<span></span>
                                     </label>

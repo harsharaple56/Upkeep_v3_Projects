@@ -1048,6 +1048,7 @@
     <Content Include="Dashboard_Admin.aspx" />
     <Content Include="Dashboard_Employee.aspx" />
     <Content Include="Dashboard_Retailer.aspx" />
+    <Content Include="Developer_Code_Snippets\Useful Snippets.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -4584,6 +4585,13 @@
     </Compile>
     <Compile Include="Dashboard_Retailer.aspx.designer.cs">
       <DependentUpon>Dashboard_Retailer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Developer_Code_Snippets\Useful Snippets.aspx.cs">
+      <DependentUpon>Useful Snippets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Developer_Code_Snippets\Useful Snippets.aspx.designer.cs">
+      <DependentUpon>Useful Snippets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
       <DependentUpon>Electricity_Categories.aspx</DependentUpon>

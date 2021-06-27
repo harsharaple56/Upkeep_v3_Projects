@@ -178,7 +178,7 @@ namespace Upkeep_v3.Feedback
                             }
                             //}
 
-                            data += " <th data-container='body' data-toggle='m-tooltip' data-placement='top' title='It is SUM of Emoji and Star '>Total</th><th>Average</th><th>Percentage</th> </tr>";
+                            data += " <th data-container='body' data-toggle='m-tooltip' data-placement='top' title='It is SUM of Emoji and Star '>Total</th><th data-toggle='m-tooltip' data-placement='top' title='Average for EMOJI Feedbacks'>Average</th><th data-toggle='m-tooltip' data-placement='top' title='Percentage of Emoji Feedbacks out of Total Count'>Percentage</th> </tr>";
 
                             //data += "<tr><td>" + EventName + "</td><td>" + Location + "</td><td>" + EventFor + "</td><td>" + CreatedOn + "</td><td>" + StartDate + "</td> <td>" + EndDate + "</td> <td><a href='EventDetails.aspx?EventID=" + EventID + "'
                             //class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a> <a href='EventQuestions.aspx?EventID=" + EventID + "'

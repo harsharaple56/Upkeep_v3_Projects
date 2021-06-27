@@ -76,22 +76,22 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvMandatoryMsg;
         
         /// <summary>
-        /// lblErrorMsg control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// btnSave control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// btnTest control.
@@ -112,6 +112,15 @@ namespace Upkeep_v3.WorkPermit {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeWpRequestSaveSuccess;
         
         /// <summary>
+        /// mpeNo_Work_Permits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeNo_Work_Permits;
+        
+        /// <summary>
         /// ddlWorkPermitTitle control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
+        /// div_WorkPermit_Details_top control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_WorkPermit_Details_top;
+        
+        /// <summary>
         /// lblTicketNo control.
         /// </summary>
         /// <remarks>
@@ -139,31 +157,13 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTicketNo;
         
         /// <summary>
-        /// lblTicket control.
+        /// lblRequestStatus1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTicket;
-        
-        /// <summary>
-        /// divStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
-        
-        /// <summary>
-        /// lblRequestStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRequestStatus;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblRequestStatus1;
         
         /// <summary>
         /// dvEmployee control.
@@ -274,15 +274,6 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// lbTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTable;
-        
-        /// <summary>
         /// rptSectionDetails control.
         /// </summary>
         /// <remarks>
@@ -326,6 +317,15 @@ namespace Upkeep_v3.WorkPermit {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvApprovalHistory;
+        
+        /// <summary>
+        /// panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panel1;
         
         /// <summary>
         /// gvApprovalHistory control.
@@ -391,42 +391,6 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// divInsertButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInsertButton;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
-        
-        /// <summary>
-        /// lblErrorMsg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg1;
-        
-        /// <summary>
         /// divUpdateButton control.
         /// </summary>
         /// <remarks>
@@ -443,6 +407,15 @@ namespace Upkeep_v3.WorkPermit {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnApprove;
+        
+        /// <summary>
+        /// lblErrorMsg1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg1;
         
         /// <summary>
         /// LabelERRORmsg control.
@@ -478,7 +451,7 @@ namespace Upkeep_v3.WorkPermit {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWpRequestCode;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblWpRequestCode;
         
         /// <summary>
         /// btnSuccessOk control.
@@ -488,5 +461,41 @@ namespace Upkeep_v3.WorkPermit {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSuccessOk;
+        
+        /// <summary>
+        /// pnl_NoWorkPermits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_NoWorkPermits;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// lbl_Retailer_NoForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_Retailer_NoForm;
+        
+        /// <summary>
+        /// lbl_Employee_NoForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_Employee_NoForm;
     }
 }
