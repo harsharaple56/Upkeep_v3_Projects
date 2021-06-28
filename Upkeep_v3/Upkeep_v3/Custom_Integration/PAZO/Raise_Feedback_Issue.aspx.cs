@@ -35,10 +35,12 @@ namespace Upkeep_v3.Custom_Integration.PAZO
                 IssueName = Convert.ToString(txtIssueName.Text.Trim());
                 IssueDesc = Convert.ToString(txtIssueDesc.Text.Trim());
 
-                DateTime dtDue = Convert.ToDateTime(txtDueDate.Text.Trim());
+                //DateTime dtDue = Convert.ToDateTime(txtDueDate.Text.Trim());
+                DateTime dt = DateTime.Now;
 
-                DueDate =  DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", DateTimeFormatInfo.InvariantInfo);
+                //DueDate =  DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", DateTimeFormatInfo.InvariantInfo);
                 //DueDate = dtDue.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000+0530'", DateTimeFormatInfo.InvariantInfo);
+                DueDate = dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000+0530'", DateTimeFormatInfo.InvariantInfo);
 
                 //document.write(dt.toISOString());
 
