@@ -312,7 +312,7 @@
 
         <form runat="server">
             <!-- begin::Body -->
-            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: 20px !important;padding-top: 0px !important;">
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: inherit;padding-top: 0px !important;">
                 <%--<cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></cc1:ToolkitScriptManager>--%>
                 <!-- BEGIN: Left Aside -->
                 

@@ -10,11 +10,11 @@ using System.IO;
 using System.Configuration;
 using System.Linq;
 
+
 namespace Upkeep_v3.VMS
 {
-    public partial class Visit_Request : System.Web.UI.Page
+    public partial class Visit_Request_Public : System.Web.UI.Page
     {
-
         #region Global variables
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
@@ -55,7 +55,7 @@ namespace Upkeep_v3.VMS
                             ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
                         }
                         BindVMSConfig();
-                        
+
                     }
                 }
                 else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
@@ -586,7 +586,7 @@ namespace Upkeep_v3.VMS
 
                         txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
 
-                        
+
 
 
                     }
@@ -957,7 +957,7 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "NUMBR") //Number Text Field
                     {
-                       // isField = "True";
+                        // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
@@ -988,7 +988,7 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "STEXT") //Normal Text Field
                     {
-                       // isField = "True";
+                        // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
@@ -1102,10 +1102,10 @@ namespace Upkeep_v3.VMS
                     xmlstr = sr.ReadToEnd();
                     strVMSData = xmlstr;
                 }
-                #endregion
+            #endregion
 
-                #region SaveDataToDB
-                Save:
+            #region SaveDataToDB
+            Save:
                 DataSet dsVMSQuestionData = new DataSet();
                 dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
@@ -1149,7 +1149,7 @@ namespace Upkeep_v3.VMS
             if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
             {
                 lblErrorMsg.Text = "Please enter only number";
-               // MessageBox.Show("Please enter only numbers.");
+                // MessageBox.Show("Please enter only numbers.");
                 txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
             }
         }
