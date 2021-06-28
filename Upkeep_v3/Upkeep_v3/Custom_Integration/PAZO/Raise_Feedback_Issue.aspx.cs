@@ -37,8 +37,8 @@ namespace Upkeep_v3.Custom_Integration.PAZO
 
                 DateTime dtDue = Convert.ToDateTime(txtDueDate.Text.Trim());
 
-                //DueDate =  DateTime.UtcNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", DateTimeFormatInfo.InvariantInfo);
-                DueDate = dtDue.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000+0530'", DateTimeFormatInfo.InvariantInfo);
+                DueDate =  DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", DateTimeFormatInfo.InvariantInfo);
+                //DueDate = dtDue.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000+0530'", DateTimeFormatInfo.InvariantInfo);
 
                 //document.write(dt.toISOString());
 
