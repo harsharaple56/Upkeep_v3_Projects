@@ -61,6 +61,18 @@ namespace Upkeep_v3.GatePass
                         ddlGatePassTitle.DataBind();
                         ddlGatePassTitle.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
+                    else
+                    {
+                        mpe_No_Gatepass.Show();
+                        if (Initiator == "R")
+                        {
+                            lbl_Retailer_NoForm.InnerText = "Retailers";
+                        }
+                        else
+                        {
+                            lbl_Employee_NoForm.InnerText = "Employees";
+                        }
+                    }
                 }
 
 
@@ -232,7 +244,7 @@ namespace Upkeep_v3.GatePass
                     // Set a unique ID for each TextBox added
                     lbl.ID = "lbl_" + SequenceID;
                     lbl.Text = GPHeader;
-                    lbl.Attributes.Add("class", "form-control-label");
+                    lbl.Attributes.Add("class", "form-control-label font-weight-bold");
                     // Add the control to the TableCell
                     cell.Controls.Add(lbl);
                     // Add the TableCell to the TableRow
@@ -244,6 +256,7 @@ namespace Upkeep_v3.GatePass
                 Label lblAction = new Label();
                 lblAction.ID = "lblAction";
                 lblAction.Text = "Action";
+                lblAction.Attributes.Add("class", "form-control-label font-weight-bold");
                 cell2.Controls.Add(lblAction);
                 row.Cells.Add(cell2);
 
@@ -263,7 +276,7 @@ namespace Upkeep_v3.GatePass
                     // Set a unique ID for each TextBox added
                     lbl.ID = "lbl_ID_" + SequenceID;
                     lbl.Text = GPHeader;
-                    lbl.Attributes.Add("class", "form-control-label");
+                    lbl.Attributes.Add("class", "form-control-label font-weight-bold");
                     // Add the control to the TableCell
                     cell.Controls.Add(lbl);
                     // Add the TableCell to the TableRow
@@ -478,7 +491,7 @@ namespace Upkeep_v3.GatePass
                                     }
                                 }
 
-                                lblGPRequestCode.Text = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
+                                lblGPRequestCode.InnerText = Convert.ToString(dsGpHeaderData.Tables[1].Rows[0]["RequestID"]);
 
                                 mpeGpRequestSaveSuccess.Show();
 

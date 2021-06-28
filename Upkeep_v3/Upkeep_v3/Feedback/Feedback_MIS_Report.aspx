@@ -114,7 +114,7 @@
                             <div class="m-portlet__body">
 
                                 <!--begin: Datatable -->
-                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                                <table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
                                     <thead>
                                      
                                         <%=bindHeader()%>

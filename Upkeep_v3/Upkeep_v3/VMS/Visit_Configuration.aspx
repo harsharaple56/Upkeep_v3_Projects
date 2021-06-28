@@ -376,7 +376,7 @@
                     hdnAnswer.val(arrQnData[5]);
                     hdnAnswer.change();
                     //alert($("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]']").find(':selected'));
-                    var isMulti = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]'] option[value='"+arrQnData[4]+"']").attr("data-ismulti");
+                    var isMulti = $("select[name~='VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]'] option[value='" + arrQnData[4] + "']").attr("data-ismulti");
                     if (isMulti === 'True') {
 
                         //document.getElementsByName($(this).attr("name").replace("ctl00$ContentPlaceHolder1$ddlAns", "hdnRepeaterAnswer"))[0].setAttribute('type', 'hidden');
@@ -425,6 +425,8 @@
         });
     </script>
 
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -452,14 +454,14 @@
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">VMS Configuration
+                                        <h3 class="m-portlet__head-text">Configure Visitor Form
                                         </h3>
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
+                                <div class="m-portlet__head-tools">
                                     <%--<asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
-                                    <a href="<%= Page.ResolveClientUrl("~/VMS/VMSConfig_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                    <a href="<%= Page.ResolveClientUrl("~/VMS/VMSConfig_Listing.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
@@ -467,7 +469,8 @@
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateVMS" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" CausesValidation="true" ValidationGroup="validateVMS" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
+
 
                                     </div>
                                 </div>
@@ -475,312 +478,303 @@
                             </div>
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
-
-                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3  col-form-label font-weight-bold"><span style="color: red;">*</span>Title :</label>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <asp:HiddenField ID="hdnVMSConfigID" ClientIDMode="Static" Value="0" runat="server" />
-                                        <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
-                                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>
-                                        <span class="error_title text-danger medium"></span>
-                                    </div>
-
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                                <label class="col-md-1  col-form-label font-weight-bold">Title</label>
+                                <div class="col-xl-11 col-lg-4">
+                                    <asp:HiddenField ID="hdnVMSConfigID" ClientIDMode="Static" Value="0" runat="server" />
+                                    <asp:TextBox ID="txtTitle" runat="server" class="form-control" ClientIDMode="Static" placeholder="Enter Title of your Visior Form"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>
+                                    <span class="error_title text-danger medium"></span>
                                 </div>
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-md-3 col-form-label font-weight-bold"><span style="color: red;">*</span>Description :</label>
-                                    <div class="col-md-6">
-                                        <asp:TextBox ID="txtVMSDesc" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>
-                                    </div>
 
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-md-1 col-form-label font-weight-bold">
+                                    Description</label>
+                                <div class="col-md-11">
+                                    <asp:TextBox ID="txtVMSDesc" TextMode="MultiLine" runat="server" class="form-control" placeholder="Enter Description about how this Visitor Form will be used OR define its purpose"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTitle" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>
                                 </div>
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <label class="col-3  col-form-label font-weight-bold"><span style="color: red;">*</span> Form For:</label>
-                                    <div class="col-3">
-                                        <div class="m-radio-inline">
-                                            <label class="m-radio" for="rdbCustomer">
-                                                <asp:RadioButton ID="rdbCustomer" runat="server" ClientIDMode="Static" GroupName="Initiator" />
-                                                Customer
+
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-2  col-form-label font-weight-bold">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Relevant Feedback Forms will be displayed in dropdown, as created for Visitors / Customer">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    Form For</label>
+                                <div class="col-4">
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio" for="rdbCustomer">
+                                            <asp:RadioButton ID="rdbCustomer" runat="server" ClientIDMode="Static" GroupName="Initiator" />
+                                            Customer
 													<span></span>
-                                            </label>
-                                            <label class="m-radio" for="rdbVisitor">
-                                                <asp:RadioButton ID="rdbVisitor" runat="server" ClientIDMode="Static" GroupName="Initiator" Checked="true" />
-                                                Visitor
+                                        </label>
+                                        <label class="m-radio" for="rdbVisitor">
+                                            <asp:RadioButton ID="rdbVisitor" runat="server" ClientIDMode="Static" GroupName="Initiator" Checked="true" />
+                                            Visitor
 													<span></span>
-                                            </label>
-                                        </div>
-                                        <span id="error_question_for" class="text-danger small"></span>
+                                        </label>
                                     </div>
+                                    <span id="error_question_for" class="text-danger small"></span>
+                                </div>
 
-                                    <div class="col-md-3">
-                                        <div class="btn-group btn-group-toggle" id="divChkFeedback" data-toggle="buttons">
-                                            <label class="btn btn-light" id="lblChkFeedback">
-                                                <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
-                                        </div>
+                                <div class="col-md-3">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled you can select a Feedback Form which will be sent to Visitors once they are Marked Out">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <div class="btn-group btn-group-toggle" id="divChkFeedback" data-toggle="buttons">
+
+                                        <label class="btn btn-light" id="lblChkFeedback">
+                                            <asp:CheckBox ID="ChkFeedback" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Feedback</label>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group btn-group-toggle" id="divChkCovid" data-toggle="buttons">
-                                            <label class="btn btn-light" id="lblChkCovid">
-                                                <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled the visitors need to go through Covid Assesment Test as per Govt. of India issued AROGYA SETU App, before their visit request is registered">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <div class="btn-group btn-group-toggle" id="divChkCovid" data-toggle="buttons">
+                                        <label class="btn btn-light" id="lblChkCovid">
+                                            <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-md-6" id="divFeedback">
+                                    <div class="row">
+                                        <label class="col-5  col-form-label font-weight-bold">
+                                            <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select a Feedback form to be sent to Visitor post completion of their Visit">
+                                                <i class="fa fa-info-circle"></i>
+                                            </a>
+                                            Select Feedback Form
+                                        </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                    <div class="col-md-7" id="divFeedback">
-                                        <div class="row">
-                                            <label class="col-6  col-form-label font-weight-bold"><span style="color: red;">*</span> Select Feedback Form:</label>
-                                            <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" AutoPostBack="False"></asp:DropDownList>
-                                            </div>
+                                <div class="col-md-6" id="divCount">
+                                    <div class="row">
+                                        <label class="col-4 col-form-label font-weight-bold">
+                                            <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Enter the limit No. of People to be allowed as Marked IN , depending on total Number of ACTIVE occupancy you need in your premises. Post this Count , visit requests will be blocked until someone is marked out">
+                                                <i class="fa fa-info-circle"></i>
+                                            </a>
+                                            Entry Count
+
+                                        </label>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txtCount" TextMode="Number" Text="0" runat="server" class="form-control" AutoPostBack="False"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="col-md-5" id="divCount">
-                                        <div class="row">
-                                            <label class="col-6 col-form-label font-weight-bold"><span style="color: red;">*</span> Entry Count:</label>
-                                            <div class="col-md-6">
-                                                <asp:TextBox ID="txtCount" TextMode="Number" Text="0" runat="server" class="form-control" AutoPostBack="False"></asp:TextBox>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-xl-6">
+                                    <label class="col-form-label font-weight-bold">
+                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select Which Visitor Information Fields are mandatory for raising a Visit Request">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        Select Mandatory Fields</label>
+                                    <div class="m-checkbox-inline">
+                                        <label class="m-checkbox">
+                                            <input type="checkbox" checked="true">
+                                            Name
+									    <span></span>
+                                        </label>
+                                        <label class="m-checkbox">
+                                            <input type="checkbox">
+                                            Email
+										<span></span>
+                                        </label>
+                                        <label class="m-checkbox">
+                                            <input type="checkbox">
+                                            Contact
+										<span></span>
+                                        </label>
+                                        <label class="m-checkbox">
+                                            <input type="checkbox">
+                                            Meeting With
+										<span></span>
+                                        </label>
                                     </div>
-
-
-                                </div>
-                                <div class="form-group m-form__group row" style="padding-left: 1%;">
                                 </div>
 
-                                <br />
-
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">VMS Questions</label>
+                                <div class="col-xl-6">
+                                    <label class="col-form-label font-weight-bold">
+                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Make OTP Verification for Email / Contact Number Compulsory for raising Visit Request">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        Email and Contact Verification</label>
+                                    <div class="m-checkbox-inline">
+                                        <label class="m-checkbox">
+                                            <input type="checkbox" checked="true">
+                                            Contact OTP Compulsory
+									    <span></span>
+                                        </label>
+                                        <label class="m-checkbox">
+                                            <input type="checkbox">
+                                            Email OTP Compulsory 
+										<span></span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <br />
-                                <div class="col-xl-12">
-                                    <div class="m-form__section">
-                                        <div class="VMSQuestion_repeater">
-                                            <div class="form-group  m-form__group row">
 
-                                                <div data-repeater-list="VMSQuestion" class="col-lg-12" runat="server" id="VMSQuestion">
+                            </div>
 
-                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvVMSQuestion">
-                                                        <div class="col-md-5">
-                                                            <div class="m-form__group">
-                                                                <div class="m-form__control">
-                                                                    <asp:HiddenField ID="hdnQnID" ClientIDMode="Static" Value="0" runat="server" />
-                                                                    <asp:TextBox ID="txtVMSQuestion" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter VMS Question" Rows="1"></asp:TextBox>
-                                                                    <span class="error_question text-danger medium"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
+                            <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Configure Additional Fields For your Visitor Form</h3>
+                            </div>
+                            <br />
+                            <div class="col-xl-12">
+                                <div class="m-form__section">
+                                    <div class="VMSQuestion_repeater">
+                                        <div class="form-group  m-form__group row">
 
-                                                        <div class="col-md-3">
-                                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                                <label class="btn btn-light btn-sm">
-                                                                    <asp:CheckBox ID="ChkVisible" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Visible</label>
-                                                            </div>
-                                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                                <label class="btn btn-light btn-sm">
-                                                                    <asp:CheckBox ID="ChkMandatory" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Mandatory</label>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
+                                            <div data-repeater-list="VMSQuestion" class="col-lg-12" runat="server" id="VMSQuestion">
 
-                                                        <div class="col-md-3">
-                                                            <div class="m-form__group">
-                                                                <div class="m-form__control">
-                                                                    <asp:DropDownList ID="ddlAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
-                                                                    <input type="hidden" name="hdnRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnRepeaterAnswer" />
-                                                                    <i class="fa fa-edit lblAnswerCnt"></i>
-                                                                    <label id="lblAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
-
-                                                                    <span class="error_type text-danger medium"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
-                                                        <div class="col-md-1">
-                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divQnDel">
-                                                                <i class="la la-trash"></i>
+                                                <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvVMSQuestion">
+                                                    <div class="col-md-5">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:HiddenField ID="hdnQnID" ClientIDMode="Static" Value="0" runat="server" />
+                                                                <asp:TextBox ID="txtVMSQuestion" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Question" Rows="1"></asp:TextBox>
+                                                                <span class="error_question text-danger medium"></span>
                                                             </div>
                                                         </div>
-
-
-
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="m-form__group form-group row">
-                                                <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divQnAdd">
-                                                        <span>
-                                                            <i class="la la-plus"></i>
-                                                            <span>Add Question</span>
-                                                        </span>
+
+                                                    <div class="col-md-3">
+                                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                            <label class="btn btn-light btn-sm">
+                                                                <asp:CheckBox ID="ChkVisible" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Visible</label>
+                                                        </div>
+                                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                            <label class="btn btn-light btn-sm">
+                                                                <asp:CheckBox ID="ChkMandatory" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Mandatory</label>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-8">
 
-                                                    <input type="hidden" id="txtQuestionCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
-                                                    <label id="lblQuestionCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
+                                                    <div class="col-md-3">
+
+                                                        <div class="m-form__group row">
+                                                            <div class="col-md-2">
+                                                                <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type , depending upon the type of responses you require from the Visitor against the questions\">
+                                                                    <i class="fa fa-info-circle"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                
+                                                                <asp:DropDownList ID="ddlAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
+                                                                <input type="hidden" name="hdnRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnRepeaterAnswer" />
+                                                                <i class="fa fa-edit lblAnswerCnt"></i>
+                                                                <label id="lblAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
+
+                                                                <span class="error_type text-danger medium"></span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only divQnDel" id="divQnDel">
+                                                            <i class="la la-trash"></i>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <span id="error_question_repeater" class="text-danger medium"></span>
                                             </div>
-
                                         </div>
+                                        <div class="m-form__group form-group row">
+                                            <div class="col-lg-4">
+                                                <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divQnAdd">
+                                                    <span>
+                                                        <i class="la la-plus"></i>
+                                                        <span>Add Question</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+
+                                                <input type="hidden" id="txtQuestionCount" clientidmode="Static" data-count="1" value="1" class="txtquestion_count" runat="server" />
+                                                <label id="lblQuestionCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
+                                            </div>
+                                            <span id="error_question_repeater" class="text-danger medium"></span>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <br />
-
-                                <%-- <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">VMS Feedback</label>
-                                </div>
-                                <br />
-                                <div class="col-xl-12">
-                                    <div class="m-form__section">
-                                        <div class="VMSFeedback_repeater">
-                                            <div class="form-group  m-form__group row">
-
-                                                <div data-repeater-list="VMSFeedback" class="col-lg-12" runat="server" id="VMSFeedback">
-
-                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvVMSFeedback">
-                                                        <div class="col-md-5">
-                                                            <div class="m-form__group">
-                                                                <div class="m-form__control">
-                                                                    <asp:TextBox ID="txtVMSFeedback" runat="server" class="form-control m-input autosize_textarea VMSFeedback_textarea" placeholder="Enter VMS Feedback" Rows="1"></asp:TextBox>
-                                                                    <span class="error_VMSFeedback text-danger medium"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                                <label class="btn btn-light btn-sm">
-                                                                    <asp:CheckBox ID="ChkFVisible" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Visible</label>
-                                                            </div>
-                                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                                <label class="btn btn-light btn-sm">
-                                                                    <asp:CheckBox ID="ChkFMandatory" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Mandatory</label>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="m-form__group">
-                                                                <div class="m-form__control">
-                                                                    <asp:DropDownList ID="ddlFAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
-                                                                    <input type="hidden" name="hdnFRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnFRepeaterAnswer" />
-                                                                    <i class="fa fa-edit lblAnswerCnt"></i>
-                                                                    <label id="lblFAnswerCnt" runat="server" class="col-form-label font-weight-bold lblAnswerCnt mt-3">0 Answer(s) added !</label>
-
-                                                                    <span class="error_type text-danger medium"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-md-none m--margin-bottom-10"></div>
-                                                        </div>
-
-                                                        <div class="col-md-1">
-                                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-                                                                <i class="la la-trash"></i>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="m-form__group form-group row">
-                                                <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
-                                                        <span>
-                                                            <i class="la la-plus"></i>
-                                                            <span>Add VMS Feedback</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8">
-
-                                                    <input type="hidden" clientidmode="Static" id="txtFeedbackCount" data-count="1" value="1" class="txtVMSFeedback_count" runat="server" />
-                                                    <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold VMSFeedback_count" data-count="1">1 VMS Feedback(s)</label>
-                                                </div>
-                                                <span id="error_VMSFeedback" class="text-danger medium"></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>--%>
-
-                                <br />
                             </div>
                         </div>
+                    </div>
 
 
-                        <button type="button" style="display: none" id="btnModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AnsModal">Open Modal</button>
+                    <button type="button" style="display: none" id="btnModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#AnsModal">Open Modal</button>
 
-                        <div class="modal fade" id="AnsModal" role="dialog">
-                            <div class="modal-dialog">
+                    <div class="modal fade" id="AnsModal" role="dialog">
+                        <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add Answer Data</h4>
-                                        <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-                                    </div>
-                                    <div class="modal-body">
-                                        <%--<input type="text" id="hdnAns" />--%>
-                                        <div class="AnswerType_repeater answer divTxtAnswer">
-                                            <div data-repeater-list="AnswerType">
-                                                <div data-repeater-item="">
-                                                    <asp:HiddenField ID="hdnAnswerDataID" ClientIDMode="Static" Value="0" runat="server" />
-                                                    <input type="text" class="txtAnswer txtvalidate" name="txtAnswer" placeholder="Enter Value" id="txtAnswer" />
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Answer Data</h4>
+                                    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                                </div>
+                                <div class="modal-body">
+                                    <%--<input type="text" id="hdnAns" />--%>
+                                    <div class="AnswerType_repeater answer divTxtAnswer">
+                                        <div data-repeater-list="AnswerType">
+                                            <div data-repeater-item="">
+                                                <asp:HiddenField ID="hdnAnswerDataID" ClientIDMode="Static" Value="0" runat="server" />
+                                                <input type="text" class="txtAnswer txtvalidate" name="txtAnswer" placeholder="Enter Value" id="txtAnswer" />
 
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-sm btn-light">
-                                                            <%--<input id="ChkAnsFlag" type="checkbox" />--%>
-                                                            <asp:CheckBox ID="ChkAnsFlag" CssClass="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
-                                                    </div>
-                                                    <%--<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                    <label class="btn btn-sm btn-light">
+                                                        <%--<input id="ChkAnsFlag" type="checkbox" />--%>
+                                                        <asp:CheckBox ID="ChkAnsFlag" CssClass="ChkAnsFlag" autocomplete="off" runat="server" ClientIDMode="Static" />Flag</label>
+                                                </div>
+                                                <%--<div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                         <label class="btn btn-light">
                                                             <asp:CheckBox ID="ChkAnsDef" autocomplete="off" runat="server" ClientIDMode="Static" />Default</label>
                                                     </div>--%>
-                                                    <div data-repeater-delete="" class="dltrptanswer answer btn">
-                                                        <i class="la la-remove"></i>
-                                                    </div>
+                                                <div data-repeater-delete="" class="dltrptanswer answer btn">
+                                                    <i class="la la-remove"></i>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div data-repeater-create="AnswerType_repeater" class="btn" id="divAnswerAdd">
-                                                <span>
-                                                    <i class="la la-plus"></i>
-                                                    <span>Add Answer</span>
-                                                </span>
-                                            </div>
+                                        <div data-repeater-create="AnswerType_repeater" class="btn" id="divAnswerAdd">
+                                            <span>
+                                                <i class="la la-plus"></i>
+                                                <span>Add Answer</span>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="modal-footer" style="display: none;">
-                                        <button type="button" id="btnModalAdd" data-dismiss="modal" class="btn btn-info">Add</button>
-                                    </div>
                                 </div>
-
+                                <div class="modal-footer" style="display: none;">
+                                    <button type="button" id="btnModalAdd" data-dismiss="modal" class="btn btn-info">Add</button>
+                                </div>
                             </div>
+
                         </div>
-
-
-                        <asp:Button Text="text" Style="display: none;" ID="pop2" runat="server" />
-
-                        <input type="hidden" id="HdnID" runat="server" />
-                        <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
-                        <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
-
-                        <%--</form>--%>
                     </div>
+
+
+                    <asp:Button Text="text" Style="display: none;" ID="pop2" runat="server" />
+
+                    <input type="hidden" id="HdnID" runat="server" />
+                    <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                    <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
+
+                    <%--</form>--%>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </asp:Content>

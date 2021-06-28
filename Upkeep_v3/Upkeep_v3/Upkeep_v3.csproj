@@ -1048,6 +1048,7 @@
     <Content Include="Dashboard_Admin.aspx" />
     <Content Include="Dashboard_Employee.aspx" />
     <Content Include="Dashboard_Retailer.aspx" />
+    <Content Include="Developer_Code_Snippets\Useful Snippets.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Categories.aspx" />
     <Content Include="Electricity_Monitoring\Electricity_Consumption.aspx" />
     <Content Include="Error_Pages\404.aspx" />
@@ -4069,6 +4070,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visit_Request_Link.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
@@ -4583,6 +4585,13 @@
     </Compile>
     <Compile Include="Dashboard_Retailer.aspx.designer.cs">
       <DependentUpon>Dashboard_Retailer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Developer_Code_Snippets\Useful Snippets.aspx.cs">
+      <DependentUpon>Useful Snippets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Developer_Code_Snippets\Useful Snippets.aspx.designer.cs">
+      <DependentUpon>Useful Snippets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Electricity_Monitoring\Electricity_Categories.aspx.cs">
       <DependentUpon>Electricity_Categories.aspx</DependentUpon>
@@ -5338,6 +5347,13 @@
     </Compile>
     <Compile Include="VMS\Visit_Request.aspx.designer.cs">
       <DependentUpon>Visit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Link.aspx.cs">
+      <DependentUpon>Visit_Request_Link.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Link.aspx.designer.cs">
+      <DependentUpon>Visit_Request_Link.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\VMSConfig_Listing.aspx.cs">
       <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
