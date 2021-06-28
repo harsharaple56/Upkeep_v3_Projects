@@ -1043,6 +1043,7 @@
     <Content Include="Custom_Integration\PAZO\Raise_Feedback_Issue.aspx" />
     <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
+    <Content Include="Custom_Reports\OBRC\eFacilito_PAZO_Feedback_Issues_Report.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard_Admin_Ticketing.aspx" />
     <Content Include="Dashboard_Admin.aspx" />
@@ -4550,6 +4551,13 @@
     </Compile>
     <Compile Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx.designer.cs">
       <DependentUpon>Daily_versus_CurrentMonth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_Reports\OBRC\eFacilito_PAZO_Feedback_Issues_Report.aspx.cs">
+      <DependentUpon>eFacilito_PAZO_Feedback_Issues_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom_Reports\OBRC\eFacilito_PAZO_Feedback_Issues_Report.aspx.designer.cs">
+      <DependentUpon>eFacilito_PAZO_Feedback_Issues_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
