@@ -17,7 +17,8 @@ namespace Upkeep_v3.Custom_Integration.PAZO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblFeedbackID.Text = Convert.ToString(Session["Feedback_No"]);
+            lblCustomerName.Text = Convert.ToString(Session["CustomerName"]);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

@@ -40,7 +40,9 @@ namespace Upkeep_v3.Feedback
             Feedback_No = Convert.ToString(Request.QueryString["fno"]);
             Event_ID = Convert.ToInt32(Request.QueryString["EventID"]);
             User_ID = Convert.ToInt32(Request.QueryString["uid"]);
-            
+
+            Session["Feedback_No"] = Feedback_No;
+
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -103,6 +105,20 @@ namespace Upkeep_v3.Feedback
                             lbl_Customer_Gender.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Gender"]);
                             imp_Customer_Image.Src= Convert.ToString(ds.Tables[1].Rows[0]["Customer_Photo"]);
 
+                            Session["CustomerName"]=Convert.ToString(ds.Tables[1].Rows[0]["Customer_Name"]);
+                        }
+                        else if (User_Type == "C")
+                        {
+                            div_Customer_Details.Visible = true;
+                            div_Retailer_Details.Visible = false;
+
+                            lbl_Customer_Name.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Name"]);
+                            lbl_Customer_Email.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Email"]);
+                            lbl_Customer_Contact.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Contact"]);
+                            lbl_Customer_Gender.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Gender"]);
+                            imp_Customer_Image.Src = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Photo"]);
+
+                            Session["CustomerName"] = Convert.ToString(ds.Tables[1].Rows[0]["Customer_Name"]);
                         }
                         else if(User_Type=="R")
                         {
@@ -115,6 +131,7 @@ namespace Upkeep_v3.Feedback
                             lbl_Retailer_Email.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Store_Email"]);
                             lbl_Retailer_Contact.InnerText = Convert.ToString(ds.Tables[1].Rows[0]["Store_Contact"]);
 
+                            Session["CustomerName"] = Convert.ToString(ds.Tables[1].Rows[0]["Store_Manager_Name"]);
                         }
                         
                     }
