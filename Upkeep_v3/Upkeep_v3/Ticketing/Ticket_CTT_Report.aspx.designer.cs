@@ -13,15 +13,6 @@ namespace Upkeep_v3.Ticketing {
     public partial class Ticket_CTT_Report {
         
         /// <summary>
-        /// btnExport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExport;
-        
-        /// <summary>
         /// m_form_status control.
         /// </summary>
         /// <remarks>
@@ -100,7 +91,7 @@ namespace Upkeep_v3.Ticketing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
         
         /// <summary>
         /// gvCTT_Report control.
