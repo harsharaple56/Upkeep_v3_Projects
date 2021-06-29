@@ -46,7 +46,7 @@ namespace Upkeep_v3.Error_Pages
                     FormType = Convert.ToChar(dsURL.Tables[0].Rows[0]["FormType"]);
                     if (FormType == 'V')
                     {
-                        VisitFormURL = "~/VMS/Visit_Request.aspx?ConfigID=";
+                        VisitFormURL = "~/VMS/Visit_Request_Public.aspx?ConfigID=";
                     }
                     else if (FormType == 'F')
                     {

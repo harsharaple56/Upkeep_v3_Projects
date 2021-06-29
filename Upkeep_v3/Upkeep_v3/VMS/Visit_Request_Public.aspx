@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request_Public.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request_Public" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -95,7 +96,7 @@ border: 3px solid #ccc;*/
                 pickerPosition: 'bottom-right',
                 format: 'dd-MM-yyyy HH:ii P',
                 showMeridian: true,
-                startDate:moment().format('dd-MM-yyyy'),
+                startDate: moment().format('dd-MM-yyyy'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtVMSDate').val(), 'dd-MM-yyyy hh:mm A').valueOf();
                 //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
@@ -238,11 +239,11 @@ border: 3px solid #ccc;*/
         }
 
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content">
+    
             <div class="row">
                 <div class="col-md-12">
 
@@ -766,6 +767,6 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        
+
 </asp:Content>

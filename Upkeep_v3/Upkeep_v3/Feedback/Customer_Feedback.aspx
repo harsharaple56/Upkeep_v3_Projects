@@ -14,6 +14,15 @@
             width: 100%;
         }
 
+        [class^="fa-"], [class*=" fa-"] {
+            font-size: 2rem;
+            padding: 10px;
+        }
+
+        .m-portlet .m-portlet__body {
+            padding: 1rem 1rem;
+        }
+
         .slider {
             -webkit-appearance: none;
             width: 100%;
@@ -455,12 +464,12 @@ background-color: blanchedalmond;
 
         function successalert() {
             swal({
-                    position: "center",
-                    type: "success",
-                    title: "Thanks for your valuable time, Your feedback helps us to serve you better.",
-                    showConfirmButton: !1,
-                    timer: 3000
-                })
+                position: "center",
+                type: "success",
+                title: "Thanks for your valuable time, Your feedback helps us to serve you better.",
+                showConfirmButton: !1,
+                timer: 3000
+            })
 
         }
 
@@ -470,297 +479,300 @@ background-color: blanchedalmond;
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="">
-            <div class="row">
-                <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
-                    <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+            <!--begin::Portlet-->
+            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                        <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmFeedback" method="post">--%>
-                        <cc1:ToolkitScriptManager runat="server" ScriptMode="Release"></cc1:ToolkitScriptManager>
+                <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmFeedback" method="post">--%>
+                <cc1:ToolkitScriptManager runat="server" ScriptMode="Release"></cc1:ToolkitScriptManager>
 
-                        <asp:HiddenField ID="hdnFeedbackHeaderData" runat="server" ClientIDMode="Static" />
-                        <asp:HiddenField ID="hdnFeedbackHeader" runat="server" ClientIDMode="Static" />
-                        <p id="info" style="display: none;"></p>
-                        <p id="infox" style="display: none;"></p>
-                        <div class="alert alert-danger" id="divStatus" visible="False" runat="server" role="alert">
-                            <asp:Label ID="lblStatus" Text="" runat="server"></asp:Label>
+                <asp:HiddenField ID="hdnFeedbackHeaderData" runat="server" ClientIDMode="Static" />
+                <asp:HiddenField ID="hdnFeedbackHeader" runat="server" ClientIDMode="Static" />
+                <p id="info" style="display: none;"></p>
+                <p id="infox" style="display: none;"></p>
+                <div class="alert alert-danger" id="divStatus" visible="False" runat="server" role="alert">
+                    <asp:Label ID="lblStatus" Text="" runat="server"></asp:Label>
 
-                        </div>
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-progress">
+                </div>
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-progress">
 
-                                <!-- here can place a progress bar-->
-                            </div>
-                            <div class="m-portlet__head-wrapper">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            <%--Feedback Request--%>
-                                            <asp:Label ID="lblEventName" Style="font-size: large; margin-top: 0.5rem;" runat="server"></asp:Label>
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                <div class="m-portlet__head-tools">
-                                    <div id="dvBackButton" runat="server">
-                                        <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                            <span>
-                                                <i class="la la-arrow-left"></i>
-                                                <span>Back</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="btn-group">
-
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
-
-                                        <asp:Button ID="m_sweetalert_demo_61" ClientIDMode="Static" Style="display: none;" runat="server" Text="Popup" OnClick="btntest1_Click" />
-
-                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeFeedbackRequestSaveSuccess" runat="server" PopupControlID="pnlFeedbackReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
-
-                                        <%--<button type="button" class="btn btn-success m-btn m-btn--custom m_sweetalert_demo_6" id="m_sweetalert_demo_3" runat="server">Success</button>--%>
-                                    </div>
-                                </div>
-
+                        <!-- here can place a progress bar-->
+                    </div>
+                    <div class="m-portlet__head-wrapper">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <%--Feedback Request--%>
+                                    <asp:Label ID="lblEventName" Style="font-size: large; margin-top: 0.5rem;" runat="server"></asp:Label>
+                                </h3>
                             </div>
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
+                        <div class="m-portlet__head-tools">
+                            <div id="dvBackButton" runat="server">
+                                <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                    <span>
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="btn-group">
 
-                            <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
+                                <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
 
-                                <div class="form-group m-form__group row" id="dvBanner" runat="server">
+                                <asp:Button ID="m_sweetalert_demo_61" ClientIDMode="Static" Style="display: none;" runat="server" Text="Popup" OnClick="btntest1_Click" />
 
-                                    <%--<img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />--%>
-                                    <asp:Image ID="imgBanner" runat="server" Style="width: 100%; height: 225px;" />
-                                </div>
+                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                <cc1:ModalPopupExtender ID="mpeFeedbackRequestSaveSuccess" runat="server" PopupControlID="pnlFeedbackReqestSuccess" TargetControlID="btnTest"
+                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                </cc1:ModalPopupExtender>
 
-                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlFeedbackTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlFeedbackTitle" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateFeedback" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Feedback Title"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-
-                                <br />
-
-                                <div id="divCustomer" runat="server">
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-md-6" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Customer Details</label>
-                                    </div>
-
-
-                                    <div class="m-form__section m-form__section--first">
-                                        <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">First Name::</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
-                                                <span id="error_First_name" class="text-danger small"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Last Name:</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
-                                                <span id="error_Last_Name" class="text-danger small"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Phone No:</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="Phoneno" TextMode="Phone" runat="server" class="form-control m-input" placeholder="Enter your Phone No."></asp:TextBox>
-                                                <span id="error_Phone_No" class="text-danger small"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Email ID:</label>
-                                            <div class="col-xl-9 col-lg-9">
-                                                <asp:TextBox ID="EmailID" TextMode="Email" runat="server" class="form-control m-input" placeholder="Enter your Email ID"></asp:TextBox>
-                                                <span id="error_EmailID" class="text-danger small"></span>
-                                            </div>
-                                        </div>
-                                        <div class="m-form__group form-group row">
-                                            <label class="col-3 col-form-label">Select your Gender:</label>
-                                            <div class="col-9">
-                                                <div class="m-radio-inline">
-                                                    <label class="m-radio">
-                                                        <asp:RadioButton ID="rdbMale" runat="server" GroupName="Gender" Checked="true" />
-                                                        Male
-																			<span></span>
-                                                    </label>
-                                                    <label class="m-radio">
-                                                        <asp:RadioButton ID="rdbFemale" runat="server" GroupName="Gender" />
-                                                        Female
-																			<span></span>
-                                                    </label>
-
-                                                    <label class="m-radio">
-                                                        <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
-                                                        Trans
-																			<span></span>
-                                                    </label>
-                                                </div>
-                                                <span id="error_Gender" class="text-danger small"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row" style="background-color: #00c5dc;">
-                                    <label class="col-md-6" style="color: #ffffff; font-size: large; margin-top: 0.5rem;">Feedback Details</label>
-                                </div>
-
-                                <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
-                                <br />
-                                <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
-                                    <ItemTemplate>
-
-                                        <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
-                                        <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
-
-                                        <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
-                                            <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
-                                            <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
-                                            <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
-                                            <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
-                                            <div id="divStar" style="display: none" runat="server">
-                                                <section class='rating-widget'>
-                                                    <input type="hidden" clientidmode="Static" runat="server" class="hdnStar" id="hdnStar" />
-                                                    <!-- Rating Stars Box -->
-                                                    <div class='rating-stars text-center'>
-                                                        <ul id='stars' class="ulStars">
-                                                            <li class='star' title='Poor' data-value='1'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                            <li class='star' title='Fair' data-value='2'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                            <li class='star' title='Good' data-value='3'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                            <li class='star' title='Excellent' data-value='4'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                            <li class='star' title='WOW!!!' data-value='5'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div>
-                                                    </div>
-
-                                                    <div class='success-box' style="display: none;">
-                                                        <div class='clearfix'></div>
-                                                        <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
-                                                        <div class='text-message'></div>
-                                                        <div class='clearfix'></div>
-                                                    </div>
-                                                </section>
-
-                                            </div>
-                                            <div id="divNPS" style="display: none" runat="server">
-                                                <div class="slidecontainer">
-                                                    <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
-                                                    <p class="NPRValue">Value: 5</p>
-                                                </div>
-                                            </div>
-                                            <div id="divTextArea" style="display: none" runat="server">
-                                                <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
-                                            </div>
-                                            <div id="divOptions" class="text-center" style="display: none" runat="server">
-                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
-                                            </div>
-                                            <div id="divOptions1" style="display: none" runat="server">
-                                                <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
-                                            </div>
-                                            <div id="divEmoji" style="display: none" runat="server">
-                                                <div class="ratingSmiley text-center">
-                                                    <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
-                                                    <span class="rating1">😶</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
-                                            Style="display: none;"></asp:Label>
-                                    </FooterTemplate>
-
-                                </asp:Repeater>
-
-                                <br />
-
-                                <br />
-                                <br />
-                                <div style="text-align: center;">
-                                    <asp:Button ID="Button1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
-                                </div>
-                                <br />
-                                <br />
+                                <%--<button type="button" class="btn btn-success m-btn m-btn--custom m_sweetalert_demo_6" id="m_sweetalert_demo_3" runat="server">Success</button>--%>
                             </div>
                         </div>
 
+                    </div>
+                </div>
 
-                        <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
+                <div class="m-portlet__body">
 
-                        <input type="hidden" id="HdnID" runat="server" />
-                        <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                    <div class="form-group m-form__group row" id="dvBanner" runat="server">
 
-                        <asp:Panel ID="pnlFeedbackReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-                            <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 590px;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                            <ContentTemplate>
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel2">Feedback Request Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
-                                                    </div>
-                                                    <%-- <div class="form-group m-form__group row">
+                        <%--<img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />--%>
+                        <asp:Image ID="imgBanner" runat="server" Style="width: 100%; height: 225px;" />
+                    </div>
+
+                    <div class="form-group m-form__group row" id="divTitle" runat="server">
+                        <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
+                        <div class="col-md-4">
+                            <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlFeedbackTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlFeedbackTitle" Visible="true" Display="Dynamic"
+                                ValidationGroup="validateFeedback" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Feedback Title"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+
+
+                    <div id="divCustomer" runat="server">
+
+                        <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: gold; font-size: 1.2rem;">Customer Details</h3>
+                        </div>
+
+
+                        <div class="m-form__section m-form__section--first">
+
+                            <div class="m--form-group row m--align-center">
+                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>First Name</label>
+                                <div class="col-xl-4 col-lg-3 col-form-label">
+                                    <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
+                                    <span id="error_First_name" class="text-danger small"></span>
+                                </div>
+
+                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>Last Name</label>
+                                <div class="col-xl-4 col-lg-3 col-form-label">
+                                    <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
+                                    <span id="error_Last_Name" class="text-danger small"></span>
+                                </div>
+
+                            </div>
+                            <div class="m--form-group row m--align-center">
+                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-phone" aria-hidden="true"></span>Contact</label>
+                                <div class="col-xl-4 col-lg-3 col-form-label">
+                                    <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
+                                    <span id="error_Phone_No" class="text-danger small"></span>
+                                </div>
+
+                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-envelope" aria-hidden="true"></span>Email</label>
+                                <div class="col-xl-4 col-lg-3 col-form-label">
+                                    <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
+                                    <span id="error_EmailID" class="text-danger small"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="m--form-group row m--align-center">
+                                <label class="col-xl-12 col-lg-2 col-form-label font-weight-bold">
+                                    <span class="fa fa-user" aria-hidden="true"></span>Select your Gender
+                                    <div class="col-form-label">
+                                        <div class="m-radio-inline" style="padding: inherit;">
+                                            <label class="m-radio">
+                                                <asp:RadioButton ID="rdbMale" runat="server" GroupName="Gender" Checked="true" />
+                                                Male
+																			<span></span>
+                                            </label>
+                                            <label class="m-radio">
+                                                <asp:RadioButton ID="rdbFemale" runat="server" GroupName="Gender" />
+                                                Female
+																			<span></span>
+                                            </label>
+
+                                            <label class="m-radio">
+                                                <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
+                                                Trans
+																			<span></span>
+                                            </label>
+                                        </div>
+                                        <span id="error_Gender" class="text-danger small"></span>
+                                    </div>
+                                </label>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: gold; font-size: 1.2rem;">Feedback Details</h3>
+                    </div>
+
+                    <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
+                    <br />
+                    <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
+                        <ItemTemplate>
+
+                            <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
+                            <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
+
+                            <div class="form-group" style="text-align: center;">
+                                <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
+                                <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
+                                <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
+                                <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+
+                                <div id="divStar" style="display: none" runat="server">
+                                    <section class='rating-widget'>
+                                        <input type="hidden" clientidmode="Static" runat="server" class="hdnStar" id="hdnStar" />
+                                        <!-- Rating Stars Box -->
+                                        <div class='rating-stars text-center'>
+                                            <ul id='stars' class="ulStars">
+                                                <li class='star' title='Poor' data-value='1'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Fair' data-value='2'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Good' data-value='3'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='Excellent' data-value='4'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                                <li class='star' title='WOW!!!' data-value='5'>
+                                                    <i class='fa fa-star fa-fw'></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class='success-box' style="display: none;">
+                                            <div class='clearfix'></div>
+                                            <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
+                                            <div class='text-message'></div>
+                                            <div class='clearfix'></div>
+                                        </div>
+                                    </section>
+
+                                </div>
+                                <div id="divNPS" style="display: none" runat="server">
+                                    <div class="slidecontainer">
+                                        <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
+                                        <p class="NPRValue">Value: 5</p>
+                                    </div>
+                                </div>
+                                <div id="divTextArea" style="display: none" runat="server">
+                                    <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                </div>
+                                <div id="divOptions" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
+                                    
+
+                                    <div class="m-radio-inline" style="padding-left: 0px;">
+                                        <label class="m-radio">
+                                            <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                            </asp:RadioButtonList>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <div id="divOptions1" style="display: none" runat="server">
+                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                                </div>
+                                <div id="divEmoji" style="display: none" runat="server">
+                                    <div class="ratingSmiley text-center">
+                                        <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
+                                        <span class="rating1">😶</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                                Style="display: none;"></asp:Label>
+                        </FooterTemplate>
+
+                    </asp:Repeater>
+
+                    <div style="text-align: center;">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
+                    </div>
+                    <br />
+                    <br />
+                </div>
+
+
+
+                <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
+
+                <input type="hidden" id="HdnID" runat="server" />
+                <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+
+                <asp:Panel ID="pnlFeedbackReqestSuccess" runat="server" CssClass="modalPopup" align="center">
+                    <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="max-width: 590px;">
+                            <div class="modal-content">
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                    <ContentTemplate>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel2">Feedback Request Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group m-form__group row">
+                                                <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
+                                            </div>
+                                            <%-- <div class="form-group m-form__group row">
                                                         <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
                                                         <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
                                                         <br />
                                                         <strong>Please note down your Request ID.</strong>
                                                     </div>--%>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" />
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" />
+                                        </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
 
 
-                                    </div>
-                                </div>
                             </div>
-
-                        </asp:Panel>
-                        <%--</form>--%>
+                        </div>
                     </div>
-                </div>
+
+                </asp:Panel>
+                <%--</form>--%>
             </div>
         </div>
     </div>
+
 
 </asp:Content>

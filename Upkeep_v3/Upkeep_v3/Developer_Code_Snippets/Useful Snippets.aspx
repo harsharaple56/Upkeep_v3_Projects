@@ -16,6 +16,21 @@
         <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Details</h3>
     </div>
 
+    <%--For Creating Forms--%>
+
+    <div class="m--form-group row">
+        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-phone" aria-hidden="true"></span>Mobile No</label>
+        <div class="col-xl-4 col-lg-3 col-form-label">
+            <span id="ContentPlaceHolder1_lblMobileNo" class="form-control-label">8652050860</span>
+        </div>
+
+        <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-envelope" aria-hidden="true"></span>Email ID</label>
+        <div class="col-xl-4 col-lg-3 col-form-label">
+            <span id="ContentPlaceHolder1_LblEmailID" class="form-control-label">sales@efacilito.com</span>
+        </div>
+
+    </div>
+
     <%--Pill style Button--%>
 
     <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
