@@ -58,12 +58,18 @@
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -77,6 +83,10 @@
     <Reference Include="Sharpbrake.Client, Version=5.1.0.0, Culture=neutral, PublicKeyToken=c5537f4669e4dbaa, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharpbrake.Client.5.1.0\lib\net452\Sharpbrake.Client.dll</HintPath>
     </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -104,6 +114,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Twilio, Version=5.62.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.62.0\lib\net451\Twilio.dll</HintPath>
+    </Reference>
     <Reference Include="WhatsAppApi, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Whatsapp.NET.1.2.2\lib\WhatsAppApi.dll</HintPath>
     </Reference>
@@ -4066,12 +4080,13 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="VMS\Visit_Request_Link.aspx" />
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="VMS\Visit_Request_Link.aspx" />
+    <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
@@ -5188,6 +5203,7 @@
       <DependentUpon>Store_Shift_Assign.aspx</DependentUpon>
     </Compile>
     <Compile Include="SMS\Send_eFacilito_SMS.cs" />
+    <Compile Include="SMS\WhatsAppAlert.cs" />
     <Compile Include="Support_Portal\Create_Request.aspx.cs">
       <DependentUpon>Create_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5386,6 +5402,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkPermit\MyActionable_WorkPermit.aspx.cs">
       <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>
