@@ -81,8 +81,6 @@ border: 3px solid #ccc;*/
             background-color: red;
             color: white;
         }
-
-
     </style>
 
 
@@ -207,7 +205,7 @@ border: 3px solid #ccc;*/
             document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
 //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
             $find('<%= mpeMeetingUsers.ClientID %>').hide();
-           // window.close();
+            // window.close();
             pnlMeetingUsers.close();
         }
 
@@ -225,14 +223,14 @@ border: 3px solid #ccc;*/
             SelectedUsersID = document.getElementById('<%= hdnSelectedUserID.ClientID%>').value + "#0";
             SelectedUsersName = document.getElementById('<%= hdnSelectedUserName.ClientID%>').value;
 
-<%--//SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
-//SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';--%>
+            <%--//SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
+            //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';--%>
 
             //alert(SelectedUsersID);
             //alert(SelectedUsersName);
 
             FunEditClick(SelectedUsersID, SelectedUsersName);
-           // window.close();
+            // window.close();
 
             pnlMeetingUsers.close();
         }
@@ -324,146 +322,147 @@ border: 3px solid #ccc;*/
                                             <span>Back</span>
                                         </span>
                                     </a>
-                                        <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
+                                    <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
 
-                                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"  ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
-                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
-                                        <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" Text="Reject" />
+                                    <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                    <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
+                                        CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
+                                    </cc1:ModalPopupExtender>
+                                    <asp:Button ID="btnReject" Visible="false" OnClick="btnReject_Click" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" Text="Reject" />
 
                                 </div>
 
                             </div>
                         </div>
 
-                        
-                            <div class="m-portlet__body">
-                                <div class="form-group m-form__group row" id="divTitle" runat="server">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Select Visitor form</label>
-                                    <div class="col-md-10">
-                                        <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
-                                    </div>
+
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row" id="divTitle" runat="server">
+                                <label class="col-md-2 col-form-label font-weight-bold">Select Visitor form</label>
+                                <div class="col-md-10">
+                                    <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
                                 </div>
-                                <div id="divDesc" class="form-group row" runat="server">
+                            </div>
+                            <div id="divDesc" class="form-group row" runat="server">
                                 <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Description</label>
-                                    <div class="col-xl-9 col-lg-9 col-form-label">
-                                        <span id="spnDesc" runat="server" class="form-control-label"></span>
-                                    </div>
+                                <div class="col-xl-9 col-lg-9 col-form-label">
+                                    <span id="spnDesc" runat="server" class="form-control-label"></span>
                                 </div>
-                                <div class="m-form__heading" style="text-align:center; padding-top: 10px; padding-bottom: 10px;">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Visitor Information</h3>
-									    </div>
+                            </div>
+                            <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visitor Information</h3>
+                            </div>
 
-                                
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-user"></span> Name</label>
-                                    <div class="col-md-3 col-form-label">
-                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Visitor Name"></asp:TextBox>
-                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
-                              
-                                    </div>
-                                    <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span> Email</label>
-                                    <div class="col-md-3 col-form-label">
-                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Visitor Email ID"></asp:TextBox>
-                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
-                              
-                                    </div>
 
-                                    <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;     padding-left: 7px;"><span class="fa fa-phone"></span> Contact</label>
-                                    <div class="col-md-3 col-form-label">
-                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input"  placeholder="Enter Visitor Contact No." OnTextChanged ="txtPhone_TextChanged"></asp:TextBox>
-                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                            <div class="form-group row">
+                                <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-user"></span>Name</label>
+                                <div class="col-md-3 col-form-label">
+                                    <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                    <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
 
-                              
-                                    </div>
+                                </div>
+                                <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
+                                <div class="col-md-3 col-form-label">
+                                    <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                    <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
+
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span> Date of Visit</label>
-                                    <div class="col-md-4 col-form-label">
-                                        <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                        <div class="input-group date">
-                                            <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker"  placeholder="Select Visit date & time"></asp:TextBox>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                            </div>
+                                <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
+                                <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
+                                <div class="col-md-3 col-form-label">
+                                    <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                    <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Date of Visit</label>
+                                <div class="col-md-4 col-form-label">
+                                    <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
+                                    
+                                    <div class="input-group date">
+                                        <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                         </div>
-                                        <span id="error_startDate" class="text-danger small"></span>
                                     </div>
-                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
-                              
-                                    <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span> Meeting with</label>
-                                    <div class="col-md-4 col-form-label">
-                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true"  CssClass="form-control m-input d-inline w-75"></asp:TextBox>
-                                        <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                                        <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
-                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
-ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
-                                    </div>
-                                    <%-- </div>--%>
-
-                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red"  ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
-                              
+                                    <span id="error_startDate" class="text-danger small"></span>
                                 </div>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
+
+                                <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
+                                <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                                <div class="col-md-4 col-form-label">
+                                    <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                                    <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
+                                    <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
+                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
+ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
+                                </div>
+                                <%-- </div>--%>
+
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+
+                            </div>
 
 
-                                <br />
+                            <br />
 
-                                <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
-									    </div>
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
+                            </div>
 
 
-                                <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
-                                    <ItemTemplate>
+                            <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
+                                <ItemTemplate>
 
-                                        <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
-                                        <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
-                                        <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
+                                    <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                    <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
+                                    <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
-                                        <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                            <div class="col-md-3">
-                                                <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                                <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
-                                                <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
-                                                <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                    <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                        <div class="col-md-3">
+                                            <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
+                                            <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                            <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
+                                            <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            <div id="divText" style="display: none" runat="server">
+                                                <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                             </div>
-                                            <div class="col-md-9">
 
-                                                <div id="divText" style="display: none" runat="server">
-                                                    <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
-                                                </div>
+                                            <div id="divNumber" style="display: none" runat="server">
+                                                <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
+                                            </div>
 
-                                                <div id="divNumber" style="display: none" runat="server">
-                                                    <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
-                                                </div>
+                                            <div id="divTextArea" style="display: none" runat="server">
+                                                <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                            </div>
 
-                                                <div id="divTextArea" style="display: none" runat="server">
-                                                    <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
-                                                </div>
+                                            <div id="divRadioButton" style="display: none" runat="server">
+                                                <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
+                                            </div>
 
-                                                <div id="divRadioButton" style="display: none" runat="server">
-                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
-                                                </div>
-
-                                                <div id="divImage" style="display: none" runat="server">
-                                                    <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: 36%;" AllowMultiple="true" />
-                                                    &nbsp;
+                                            <div id="divImage" style="display: none" runat="server">
+                                                <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: 36%;" AllowMultiple="true" />
+                                                &nbsp;
                                                     <div id="divImgBtns" style="display: none" runat="server">
                                                         <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
                                                             data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
@@ -472,95 +471,95 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                         </button>
                                                         <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
                                                     </div>
-                                                </div>
-
-                                                <div id="divDate" style="display: none" runat="server">
-                                                    <div class="input-group date">
-                                                        <asp:TextBox ID="divDateID" runat="server" autocomplete="off" class="form-control m-input datetimepicker"
-                                                            placeholder="Select date & time"></asp:TextBox>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="divCheckBox" style="display: none" runat="server">
-                                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
-                                                </div>
                                             </div>
-                                        </div>
 
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
-                                            Style="display: none;"></asp:Label>
-                                    </FooterTemplate>
-
-                                </asp:Repeater>
-
-                                <br />
-                                <%-- Covid19 assessment --%>
-                                <div id="divCovid" runat="server" visible="false" >
-                                    <div class="m-form__heading" style="text-align:center; ">
-                                        <h3 class="m-form__heading-title" style="line-height: 2.0;background: #ffb9b9; font-size: 1.2rem; margin-bottom: 2.5rem;">Covid-19 Assessment Test</h3>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <img src="../assets/app/media/img/misc/AarogyaQR.png" class="img-fluid" alt="qr code" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h5>Color Code:</h5>
-                                            <div class="row">
-                                                <div class="col-md-7">
-
-                                                    <div class="form-check">
-                                                        <input type="radio" id="rdbGreen" class="form-check-input CovidColorCheckGreen" name="Color" runat="server" clientidmode="Static" />
-                                                        <label for="rdbGreen" class="form-check-label CovidColorBoxGreen">Green</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="radio" id="rdbOrange" class="form-check-input CovidColorCheckOrange" name="Color" runat="server" clientidmode="Static" />
-                                                        <label for="rdbOrange" class="form-check-label CovidColorBoxOrange">Orange</label>
-
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input type="radio" id="rdbRed" class="form-check-input CovidColorCheckRed" name="Color" runat="server" clientidmode="Static" />
-                                                        <label for="rdbRed" class="form-check-label CovidColorBoxRed">Red</label>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <p class="form-text text-muted">Check your phone and select the color code displayed in your Aarogya Setu app.</p>
-                                                </div>
-                                            </div>
-                                            <h5 class="mt-5">Assessment Date:</h5>
-                                            <div class="row">
+                                            <div id="divDate" style="display: none" runat="server">
                                                 <div class="input-group date">
-                                                    <asp:TextBox ID="txtAsmmtDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="click here to select or enter..."></asp:TextBox>
+                                                    <asp:TextBox ID="divDateID" runat="server" autocomplete="off" class="form-control m-input datetimepicker"
+                                                        placeholder="Select date & time"></asp:TextBox>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                                     </div>
                                                 </div>
-                                                <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
-
                                             </div>
-                                            <h5 class="mt-5">Temperature:</h5>
-                                            <div class="row">
-                                                <div class="input-group date">
-                                                    <asp:TextBox ID="txtTemperature" TextMode="Number" step=".01" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
-                                                    </div>
-                                                </div>
-                                                <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
+                                            <div id="divCheckBox" style="display: none" runat="server">
+                                                <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
                                             </div>
                                         </div>
                                     </div>
+
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                                        Style="display: none;"></asp:Label>
+                                </FooterTemplate>
+
+                            </asp:Repeater>
+
+                            <br />
+                            <%-- Covid19 assessment --%>
+                            <div id="divCovid" runat="server" visible="false">
+                                <div class="m-form__heading" style="text-align: center;">
+                                    <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffb9b9; font-size: 1.2rem; margin-bottom: 2.5rem;">Covid-19 Assessment Test</h3>
                                 </div>
 
-                                <br />
-                                <br />
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <img src="../assets/app/media/img/misc/AarogyaQR.png" class="img-fluid" alt="qr code" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>Color Code:</h5>
+                                        <div class="row">
+                                            <div class="col-md-7">
+
+                                                <div class="form-check">
+                                                    <input type="radio" id="rdbGreen" class="form-check-input CovidColorCheckGreen" name="Color" runat="server" clientidmode="Static" />
+                                                    <label for="rdbGreen" class="form-check-label CovidColorBoxGreen">Green</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="rdbOrange" class="form-check-input CovidColorCheckOrange" name="Color" runat="server" clientidmode="Static" />
+                                                    <label for="rdbOrange" class="form-check-label CovidColorBoxOrange">Orange</label>
+
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="rdbRed" class="form-check-input CovidColorCheckRed" name="Color" runat="server" clientidmode="Static" />
+                                                    <label for="rdbRed" class="form-check-label CovidColorBoxRed">Red</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p class="form-text text-muted">Check your phone and select the color code displayed in your Aarogya Setu app.</p>
+                                            </div>
+                                        </div>
+                                        <h5 class="mt-5">Assessment Date:</h5>
+                                        <div class="row">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="txtAsmmtDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="click here to select or enter..."></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                </div>
+                                            </div>
+                                            <p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>
+
+                                        </div>
+                                        <h5 class="mt-5">Temperature:</h5>
+                                        <div class="row">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="txtTemperature" TextMode="Number" step=".01" runat="server" autocomplete="off" class="form-control m-input" placeholder="enter body temperature in °C..."></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-thermometer-half"></i></span>
+                                                </div>
+                                            </div>
+                                            <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                    
+
+                            <br />
+                            <br />
+                        </div>
+
 
 
                         <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">

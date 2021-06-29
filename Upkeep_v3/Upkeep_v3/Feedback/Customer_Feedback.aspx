@@ -686,16 +686,12 @@ background-color: blanchedalmond;
                                     <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                 </div>
                                 <div id="divOptions" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
-                                    
-
                                     <div class="m-radio-inline" style="padding-left: 0px;">
                                         <label class="m-radio">
                                             <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
                                             </asp:RadioButtonList>
                                         </label>
                                     </div>
-
-
                                 </div>
                                 <div id="divOptions1" style="display: none" runat="server">
                                     <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
