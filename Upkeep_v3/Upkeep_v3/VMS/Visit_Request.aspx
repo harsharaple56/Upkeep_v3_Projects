@@ -93,7 +93,7 @@ border: 3px solid #ccc;*/
                 pickerPosition: 'bottom-right',
                 format: 'dd-MM-yyyy HH:ii P',
                 showMeridian: true,
-                startDate: .moment().format('dd-MM-yyyy'),
+                startDate:moment().format('dd-MM-yyyy'),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtVMSDate').val(), 'dd-MM-yyyy hh:mm A').valueOf();
                 //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
