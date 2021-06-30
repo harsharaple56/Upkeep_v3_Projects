@@ -44,18 +44,25 @@
             }
         };
 
+        //$('#m_table_1').DataTable({
+        //    pagingType: 'full_numbers',
+        //    scrollX: true,
+        //    //'fnDrawCallback': function () {
+        //    //    init_plugins();
+        //    //}
+        //});
 
     </script>
 
-    <script>
+    <%--<script>
         $(document).ready(function () {
-            $('#m_table_1').DataTable({
-                pagingType: 'full_numbers',
-                scrollX: true,
-                //'fnDrawCallback': function () {
-                //    init_plugins();
-                //}
-            });
+            //$('#m_table_1').DataTable({
+            //    pagingType: 'full_numbers',
+            //    scrollX: true,
+            //    //'fnDrawCallback': function () {
+            //    //    init_plugins();
+            //    //}
+            //});
 
             //$('.m_selectpicker').selectpicker();
             ////alert('1111');
@@ -94,18 +101,18 @@
             //    }
             //}, cb);
 
-            var IsPostBack2 = $('#hdn_IsPostBack').val();
+            //var IsPostBack2 = $('#hdn_IsPostBack').val();
 
-            if (IsPostBack2 == "no") {
-                cb(start, end, '');
-            }
-            else {
+            //if (IsPostBack2 == "no") {
+            //    cb(start, end, '');
+            //}
+            //else {
 
-                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
-            }
+            //    //picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
+            //}
 
         });
-    </script>
+    </script>--%>
 
     <%--<form method="post" runat="server" id="frmMain">--%>
 
@@ -186,21 +193,21 @@
                     <!--end: Search Form -->
 
                     <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
+                    <table class="table table-striped- table-bordered table-hover table-checkable m-datatable" id="m_table_1">
                         <thead>
                             <tr>
 
                                 <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
                                 <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
-                                <th title="Asset_ID" data-field="Asset_ID">Asset ID</th>
-                                <th title="Name" data-field="Asset_Name">Asset Name</th>
+                                <th>Asset ID</th>
+                                <th>Asset Name</th>
                                 <%--<th title="Desc" data-field="Asset_Desc">Desc</th>
                                     <th title="Maker" data-field="Asset_Make">Maker</th>--%>
-                                <th title="Serial No" data-field="Asset_Serial_No">Serial No</th>
-                                <th title="Type" data-field="Asset_Type">Type</th>
-                                <th title="Category" data-field="Asset_Category">Category</th>
-                                <th title="Department" data-field="Department">Department</th>
-                                <th title="Location" data-field="Location">Location</th>
+                                <th>Serial No</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Department</th>
+                                <th>Location</th>
                                 <%--<th title="Asset Cost" data-field="Asset_Cost">Asset Cost</th> 
                                     <th title="Currency Type" data-field="Currency_Type">Currency Type</th>
                                     <th title="Purchase Date" data-field="Asset_Purchase_Date">Purchase Date</th>

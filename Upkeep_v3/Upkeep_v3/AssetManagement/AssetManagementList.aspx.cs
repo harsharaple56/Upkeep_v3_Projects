@@ -101,24 +101,18 @@ namespace Upkeep_v3.AssetManagement
                             //Asset_ID Asset_Name  Asset_Desc Asset_Make  Asset_Serial_No Asset_Type  Asset_Category Vendor  Department Location    
                             //    Asset_Cost Currency_Type   Asset_Purchase_Date Asset_Is_AMC_Active Created_By Created_Date
 
-                            data += "<tr>" +
-                                "<td> <a href='AssetManagementRequest.aspx?TransactionID=" + Asset_ID + "> " + Asset_ID + " </a></td>" +
-                                //"<td>" + Asset_Desc + "</td>" + 
-                                //"<td>" + Asset_Make + "</td>" +
-                                "<td>" + Asset_Name + "</td>" +
-                                "<td>" + Asset_Serial_No + "</td>" +
-                                "<td>" + Asset_Type + "</td>" +
-                                "<td>" + Asset_Category + "</td>"+ 
-                                "<td>" + Department + "</td>" +
-                                "<td>" + Location + "</td>" +
-                                //"<td>" + Asset_Cost + "</td>" +
-                                //"<td>" + Currency_Type + "</td>" +
-                                //"<td>" + Asset_Purchase_Date + "</td>" +
-                                //"<td>" + Asset_Is_AMC_Active + "</td>" +
-                                //"<td>" + Created_By + "</td>" +
-                                //"<td>" + Created_Date + "</td>" +
-                                "<td>" + AMC_Status + "</td>" +
-                                "</tr>";
+                            //data += "<tr><td> " + "<a href='AssetManagementRequest.aspx?TransactionID=" + Asset_ID + "> " + Asset_ID + " </a></td>" +
+                            //    "<td>" + Asset_Name + "</td>" +
+                            //    "<td>" + Asset_Serial_No + "</td>" +
+                            //    "<td>" + Asset_Type + "</td>" +
+                            //    "<td>" + Asset_Category + "</td>"+ 
+                            //    "<td>" + Department + "</td>" +
+                            //    "<td>" + Location + "</td>" +
+                            //    "<td>" + AMC_Status + "</td>" +
+                            //    "</tr>";
+
+                            data += "<tr><td><a href='AssetManagementRequest.aspx?TransactionID=" + Asset_ID + "'> " + Asset_ID + " </a></td><td>" + Asset_Name + "</td><td>" + Asset_Serial_No + "</td><td>" + Asset_Type + "</td><td>" + Asset_Category + "</td><td>" + Department + "</td><td>" + Location + "</td><td>" + AMC_Status + "</td> </tr>";
+                           
 
                         }
 
@@ -137,6 +131,7 @@ namespace Upkeep_v3.AssetManagement
             {
                 throw ex;
             }
+            
             return data;
         }
     }

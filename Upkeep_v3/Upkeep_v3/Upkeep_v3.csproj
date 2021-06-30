@@ -4080,11 +4080,10 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <Content Include="VMS\Visit_Request_Link.aspx" />
-    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
@@ -5371,13 +5370,6 @@
     </Compile>
     <Compile Include="VMS\Visit_Request.aspx.designer.cs">
       <DependentUpon>Visit_Request.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VMS\Visit_Request_Link.aspx.cs">
-      <DependentUpon>Visit_Request_Link.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VMS\Visit_Request_Link.aspx.designer.cs">
-      <DependentUpon>Visit_Request_Link.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\VMSConfig_Listing.aspx.cs">
       <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
