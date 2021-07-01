@@ -40,17 +40,8 @@
                     $("#m_form_status").on("change", function () { e.search($(this).val().toLowerCase(), "AMC_Status") }),
                     $("#m_form_status").selectpicker()
 
-
             }
         };
-
-        //$('#m_table_1').DataTable({
-        //    pagingType: 'full_numbers',
-        //    scrollX: true,
-        //    //'fnDrawCallback': function () {
-        //    //    init_plugins();
-        //    //}
-        //});
 
     </script>
 
