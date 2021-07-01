@@ -970,7 +970,7 @@
         <div class="m-container m-container--fluid m-container--full-height m-page__container">
             <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
                 <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
-                    <span class="m-footer__copyright">2019 &copy; eFacilito - Powered by <a href="javascript:;" class="m-link">Compel Consultancy</a>
+                    <span class="m-footer__copyright">2019 &copy; eFacilito - Powered by <a href="https://efacilito.com/about-us/" class="m-link">Compel Consultancy</a>
                     </span>
                 </div>
             </div>
@@ -1082,9 +1082,9 @@
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/components/charts/flotcharts.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/base/scripts.bundle.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/vendors/base/vendors.bundle.js") %>" type="text/javascript"></script>--%>
-
+<%--
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/components/charts/flotcharts.js") %>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/assets/vendors/custom/flot/flot.bundle.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/assets/vendors/custom/flot/flot.bundle.js") %>" type="text/javascript"></script>--%>
 
     <!--end::Global Theme Bundle -->
 

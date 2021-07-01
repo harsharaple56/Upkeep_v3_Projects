@@ -13,6 +13,15 @@ namespace Upkeep_v3.Ticketing {
     public partial class Ticket_CTT_Report {
         
         /// <summary>
+        /// export_excel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_excel;
+        
+        /// <summary>
         /// m_form_status control.
         /// </summary>
         /// <remarks>

@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="m-login__form-action">
-                                <a href="https://efacilito.com/contact/" class="btn btn-outline-focus m-btn--pill" target="_blank">Get An Account </a>
+                                <a href="https://efacilito.com/contact/" class="btn btn-outline-focus m-btn--pill" target="_blank">Buy eFacilito for your Organization</a>
                                 <%--<button type="button" id="m_login_signup" class="btn btn-outline-focus m-btn--pill">Get An Account</button>--%>
                             </div>
                             <div class="m-login__logo">

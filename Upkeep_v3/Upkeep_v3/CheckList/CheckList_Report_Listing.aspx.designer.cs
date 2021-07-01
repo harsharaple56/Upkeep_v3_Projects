@@ -13,6 +13,51 @@ namespace Upkeep_v3.CheckList {
     public partial class CheckList_Report_Listing {
         
         /// <summary>
+        /// export_excel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_excel;
+        
+        /// <summary>
+        /// export_pdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_pdf;
+        
+        /// <summary>
+        /// ddlCheckist_Name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Name;
+        
+        /// <summary>
+        /// ddlCheckist_Department control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Department;
+        
+        /// <summary>
+        /// ddlCheckist_Status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Status;
+        
+        /// <summary>
         /// start_date control.
         /// </summary>
         /// <remarks>
@@ -49,39 +94,30 @@ namespace Upkeep_v3.CheckList {
         protected global::System.Web.UI.WebControls.HiddenField date_range_title;
         
         /// <summary>
-        /// ddlCheckist_Name control.
+        /// hdnTicketStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Name;
+        protected global::System.Web.UI.WebControls.HiddenField hdnTicketStatus;
         
         /// <summary>
-        /// ddlCheckist_Status control.
+        /// hdnActionStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Status;
+        protected global::System.Web.UI.WebControls.HiddenField hdnActionStatus;
         
         /// <summary>
-        /// ddlCheckist_Department control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCheckist_Department;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
     }
 }

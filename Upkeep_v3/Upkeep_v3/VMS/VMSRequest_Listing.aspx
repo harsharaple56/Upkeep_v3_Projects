@@ -57,7 +57,7 @@
 
             }
         };
-        
+
         $(document).ready(function () {
             DatatableHtmlTableDemo.init();
             $('#m_table_1').DataTable({
@@ -77,7 +77,7 @@
             var end = moment().add(30, 'days');
 
 
-          
+
             function cb(start, end, label) {
                 var title = '';
                 var range = '';
@@ -92,8 +92,8 @@
                 ////    range = start.format('MMM D') + ' - ' + end.format('MMM D');
                 ////}
 
-                range = start.format('MMM D') + ' - ' + end.format('MMM D');
-                
+                range = start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY');
+
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
                 //alert(start);
@@ -134,120 +134,202 @@
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">List of Visit Requests	
-                            </h3>
-                        </div>
-                    </div>
 
-                    <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                        <a href="<%= Page.ResolveClientUrl("~/VMS/Visit_Request.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                            <span>
-                                <i class="la la-plus"></i>
-                                <span>New Visit Request</span>
-                            </span>
-                        </a>
-                        <div class="m-separator m-separator--dashed d-xl-none"></div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+                        <div class="m-portlet__head">
 
-                </div>
-                <div class="m-portlet__body">
-                    <!--begin: Search Form -->
-
-                    <div class="m-form m-form--label-align-right m--margin-bottom-30">
-                        <div class="row align-items-center">
-                            <div class="col-xl-12 order-2 order-xl-1">
-                                <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-3">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label>Status:</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <select class="form-control m-bootstrap-select" id="m_form_status">
-                                                    <option value="">All</option>
-                                                    <option value="IN">IN</option>
-                                                    <option value="Apply">Apply</option>
-                                                    <option value="OUT">OUT</option>
-                                                    <option value="Rejected">--</option>
-                                                    <option value="Closed">--</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
+                            <div class="m-portlet__head-wrapper">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">List of Visit Requests	
+                                        </h3>
                                     </div>
-
-                                    <div class="col-md-3">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span><i class="la la-search"></i></span>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label>Date:</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <span class="m-subheader__daterange btn btn-sm btn-outline-accent" style="padding: 0.15rem 0.8rem;" id="daterangepicker">
-                                                    <span class="m-subheader__daterange-label">
-                                                        <span class="m-subheader__daterange-title"></span>
-                                                        <span class="m-subheader__daterange-date"></span>
-                                                        <asp:hiddenfield id="start_date" clientidmode="Static" runat="server" />
-                                                        <asp:hiddenfield id="end_date" clientidmode="Static" runat="server" />
-                                                        <asp:hiddenfield id="hdn_IsPostBack" clientidmode="Static" runat="server" />
-                                                        <asp:hiddenfield id="date_range_title" clientidmode="Static" runat="server" />
-                                                    </span>
-                                                    <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
-                                                        <i class="la la-angle-down"></i>
-                                                    </button>
-                                                </span>
-                                                <div class="btn-group" style="margin-left: 50px;">
-                                                    <asp:button id="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" onclick="btnSearch_Click" text="Search" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
                                 </div>
                             </div>
 
+                             <div class="m-portlet__head-tools">
+                                <ul class="m-portlet__nav">
+
+                                    <li class="m-portlet__nav-item">
+											<a href="<%= Page.ResolveClientUrl("~/VMS/Visit_Request.aspx") %>" class="btn btn-focus m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+												<span>
+													<i class="flaticon-add"></i>
+													<span>New Visit Request</span>
+												</span>
+											</a>
+										</li>
+
+                                </ul>
+
+                                 <ul class="m-portlet__nav">
+                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+
+                                        <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-primary m-btn m-btn--label-brand m-btn--air">
+                                            <span class="fa fa-database" style="padding: 3px;"></span>
+                                            Export Data
+                                        </a>
+                                        <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 55.5px;"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__body">
+                                                    <div class="m-dropdown__content">
+                                                        <ul class="m-nav">
+                                                            <li class="m-nav__section m-nav__section--first">
+                                                                <span class="m-nav__section-text">Export Data Format</span>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_print">
+                                                                    <i class="m-nav__link-icon la la-print"></i>
+                                                                    <span class="m-nav__link-text">Print</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_copy">
+                                                                    <i class="m-nav__link-icon la la-copy"></i>
+                                                                    <span class="m-nav__link-text">Copy</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="export_excel" onserverclick="btnExportExcel_Click" runat="server">
+                                                                    <i class="m-nav__link-icon la la-file-excel-o"></i>
+                                                                    <span class="m-nav__link-text">Excel</span>
+                                                                </a>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_csv">
+                                                                    <i class="m-nav__link-icon la la-file-text-o"></i>
+                                                                    <span class="m-nav__link-text">CSV</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <%--<li class="m-nav__item">
+                                                                <a onserverclick="btnExportPDF_Click" runat="server" class="m-nav__link" id="export_pdf">
+                                                                    <i class="m-nav__link-icon la la-file-pdf-o"></i>
+                                                                    <span class="m-nav__link-text">PDF</span>
+                                                                </a>
+                                                            </li>--%>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
+
+                            <div class="m-form m-form--fit m--margin-bottom-20">
+                                <div class="row m--align-center">
+
+                                    <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+                                        
+                                        <label class="font-weight-bold">Search Data:</label>
+                                        <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+
+                                    </div>
+
+                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Status:</label>
+
+                                        <div class="m-form__control">
+                                                        <select class="form-control m-bootstrap-select" id="m_form_status">
+                                                            <option value="">All</option>
+                                                            <option value="IN">IN</option>
+                                                            <option value="Apply">Apply</option>
+                                                            <option value="OUT">OUT</option>
+                                                            <option value="Rejected">--</option>
+                                                            <option value="Closed">--</option>
+                                                        </select>
+                                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Date Range:</label>
+
+                                        <div class="m-form__control">
+                                            <span class="m-subheader__daterange btn btn-sm btn-outline-primary" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
+                                                <span class="m-subheader__daterange-label">
+                                                                <span class="m-subheader__daterange-title"></span>
+                                                                <span class="m-subheader__daterange-date"></span>
+                                                                <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                                                <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                                            </span>
+                                                <button type="button" class="btn btn-primary btn-outline-primary m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
+                                                    <i class="la la-angle-down"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Search Filters:</label>
+                                        <div class="m-form__control">
+                                            <button class="btn btn-brand m-btn m-btn--icon" id="btnSearch" runat="server" onserverclick="btnSearch_Click">
+                                                <span>
+                                                    <i class="la la-search"></i>
+                                                    <span>Search</span>
+                                                </span>
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                
+
+                            </div>
+
+
+
+
+
+
+
+                            <!--end: Search Form -->
+
+                            <!--begin: Datatable -->
+                            <table class="m-datatable" id="html_table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
+                                        <th title="Request ID" data-field="RequestID">Request ID</th>
+                                        <th title="Configuration Title" data-field="Config_Title">Configuration Title</th>
+                                        <th title="Name" data-field="Name">Name</th>
+                                        <th title="Contact" data-field="Phone">Contact</th>
+                                        <th title="Email" data-field="Email">Email</th>
+                                        <th title="In Time" data-field="InTime">In Time</th>
+                                        <th title="Out Time" data-field="OutTime">Out Time</th>
+                                        <th title="Status" data-field="Status">Status</th>
+                                        <th title="Created By" data-field="Created_By">Created By</th>
+                                        <th title="Visit Date" data-field="MeetDate">Visit Date</th>
+                                        <th title="Request Date" data-field="RequestDate">Request Date</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <%=fetchVMSRequestList()%>
+                                </tbody>
+                            </table>
+
+                            <!--end: Datatable -->
+
                         </div>
                     </div>
-
-                    <!--end: Search Form -->
-
-                    <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
-                        <thead>
-                            <tr>
-                                <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
-                                <th title="Request ID" data-field="RequestID">Request ID</th>
-                                <th title="Configuration Title" data-field="Config_Title">Configuration Title</th>
-                                <th title="Visit Date" data-field="VisitDate">Visit Date</th>
-                                <th title="Request Date" data-field="RequestDate">Request Date</th>
-                                 <th title="In Time" data-field="InTime">In Time</th>
-                                 <th title="Out Time" data-field="OutTime">Out Time</th>
-                                <th title="Status" data-field="Status">Status</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <%=fetchVMSRequestList()%>
-                        </tbody>
-                    </table>
-
-                    <!--end: Datatable -->
-
                 </div>
             </div>
 

@@ -4072,6 +4072,7 @@
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="VMS\Visit_Request_Public.aspx" />
+    <Content Include="WebCam\WebCam.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
     <Content Include="WorkPermit\WorkPermit_Configuration.aspx" />
@@ -5386,6 +5387,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebCam\WebCam.aspx.cs">
+      <DependentUpon>WebCam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCam\WebCam.aspx.designer.cs">
+      <DependentUpon>WebCam.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkPermit\MyActionable_WorkPermit.aspx.cs">
       <DependentUpon>MyActionable_WorkPermit.aspx</DependentUpon>

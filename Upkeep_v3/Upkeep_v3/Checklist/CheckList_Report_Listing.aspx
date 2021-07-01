@@ -30,7 +30,7 @@
                         //    field: "PercentCompleted", title: "PercentCompleted", template: function (e) {
                         //        var t1 =
                         //        {
-                                  
+
                         //        }; return '<span class="m-badge m-badge--success Progress m-badge--wide"></span>'
                         //    }
                         //}
@@ -118,223 +118,227 @@
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">My Checklist Report		
-                            </h3>
-                        </div>
-                    </div>
 
-                    <div class="m-portlet__head-tools">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
-                        
-                        <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-left" m-dropdown-toggle="hover" style="margin-right: 3%;">
+                        <div class="m-portlet__head">
 
-
-                            <a href="#" class="m-dropdown__toggle btn btn-accent dropdown-toggle" style="padding: 5%; margin-left: 7%;">
-                                <img src="../assets/app/media/img/icons/database_export_35.png" />
-                                Export
-                            </a>
-                            <div class="m-dropdown__wrapper">
-                                <span class="m-dropdown__arrow m-dropdown__arrow--left"></span>
-                                <div class="m-dropdown__inner">
-                                    <div class="m-dropdown__body">
-                                        <div class="m-dropdown__content">
-                                            <ul class="m-nav">
-                                                <li class="m-nav__item">
-                                                    <a class="m-nav__link" onserverclick="btnExportExcel_Click" runat="server">
-                                                        <i class="m-nav__link-icon fa fa-file-excel "></i>
-                                                        <span class="m-nav__link-text">Excel</span>
-                                                    </a>
-                                                </li>
-                                                <li class="m-nav__item">
-                                                    <a class="m-nav__link" onserverclick="btnExportPDF_Click" runat="server">
-                                                        <i class="m-nav__link-icon fa fa-file-pdf"></i>
-                                                        <span class="m-nav__link-text">PDF</span>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                            <div class="m-portlet__head-wrapper">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">My Checklist Report
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="m-portlet__head-tools">
+
+                                <ul class="m-portlet__nav">
+                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+
+                                        <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-primary m-btn m-btn--label-brand m-btn--air">
+                                            <span class="fa fa-database" style="padding: 3px;"></span>
+                                            Export Data
+                                        </a>
+                                        <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 55.5px;"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__body">
+                                                    <div class="m-dropdown__content">
+                                                        <ul class="m-nav">
+                                                            <li class="m-nav__section m-nav__section--first">
+                                                                <span class="m-nav__section-text">Export Data Format</span>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_print">
+                                                                    <i class="m-nav__link-icon la la-print"></i>
+                                                                    <span class="m-nav__link-text">Print</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_copy">
+                                                                    <i class="m-nav__link-icon la la-copy"></i>
+                                                                    <span class="m-nav__link-text">Copy</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="export_excel" onserverclick="btnExportExcel_Click" runat="server">
+                                                                    <i class="m-nav__link-icon la la-file-excel-o"></i>
+                                                                    <span class="m-nav__link-text">Excel</span>
+                                                                </a>
+                                                            </li>
+                                                            <%--<li class="m-nav__item">
+                                                                <a href="#" class="m-nav__link" id="export_csv">
+                                                                    <i class="m-nav__link-icon la la-file-text-o"></i>
+                                                                    <span class="m-nav__link-text">CSV</span>
+                                                                </a>
+                                                            </li>--%>
+                                                            <li class="m-nav__item">
+                                                                <a onserverclick="btnExportPDF_Click" runat="server" class="m-nav__link" id="export_pdf">
+                                                                    <i class="m-nav__link-icon la la-file-pdf-o"></i>
+                                                                    <span class="m-nav__link-text">PDF</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+
                         </div>
 
-                    </div>
 
-                    <%--<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                            <a href="<%= Page.ResolveClientUrl("~/CheckList/CheckList_Configuration.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                <span>
-                                    <i class="la la-plus"></i>
-                                    <span>New Checklist</span>
-                                </span>
-                            </a>
-                            <div class="m-separator m-separator--dashed d-xl-none"></div>
-                        </div>--%>
-                </div>
-                <div class="m-portlet__body">
-                    <!--begin: Search Form -->
+                        <div class="m-portlet__body">
+                            <!--begin: Search Form -->
 
-                    <div class="m-form m-form--label-align-right m--margin-bottom-30">
-                        <div class="row align-items-center">
-                            <div class="col-xl-12 order-2 order-xl-1">
-                                <div class="form-group m-form__group row align-items-center">
-                                    
+                            <div class="m-form m-form--fit m--margin-bottom-20">
+                                <div class="row m--align-center">
 
-                                    <div class="col-md-5">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search Anything in below Data..." id="generalSearch" />
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span><i class="la la-search"></i></span>
+                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Checklist:</label>
+
+                                        <div class="m-form__control">
+                                            <asp:DropDownList ID="ddlCheckist_Name" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Department:</label>
+
+                                        <div class="m-form__control">
+                                            <asp:DropDownList ID="ddlCheckist_Department" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Status:</label>
+
+                                        <div class="m-form__control">
+                                            <asp:DropDownList ID="ddlCheckist_Status" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
+                                                <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Filter Date Range:</label>
+
+                                        <div class="m-form__control">
+                                            <span class="m-subheader__daterange btn btn-sm btn-outline-primary" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
+                                                <span class="m-subheader__daterange-label">
+                                                    <span class="m-subheader__daterange-title"></span>
+                                                    <span class="m-subheader__daterange-date"></span>
+                                                    <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                                    <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                                    <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                                    <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                                    <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
+                                                    <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
+                                                </span>
+                                                <button type="button" class="btn btn-primary btn-outline-primary m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
+                                                    <i class="la la-angle-down"></i>
+                                                </button>
                                             </span>
                                         </div>
+
                                     </div>
 
-                                    <div class="col-md-3">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label>Date:</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <span class="m-subheader__daterange btn btn-sm btn-outline-accent" style="padding: 0.15rem 0.8rem;" id="daterangepicker">
-                                                    <span class="m-subheader__daterange-label">
-                                                        <span class="m-subheader__daterange-title"></span>
-                                                        <span class="m-subheader__daterange-date"></span>
-                                                        <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                                                        <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                                                        <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                                        <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                                                    </span>
-                                                    <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
-                                                        <i class="la la-angle-down"></i>
-                                                    </button>
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Search Filters:</label>
+                                        <div class="m-form__control">
+                                            <button class="btn btn-brand m-btn m-btn--icon" id="btnSearch" runat="server" onserverclick="btnSearch_Click">
+                                                <span>
+                                                    <i class="la la-search"></i>
+                                                    <span>Search</span>
                                                 </span>
-                                                
-                                                
+                                            </button>
 
-                                            </div>
                                         </div>
-                                    </div>
-
-                                     <div class="col-md-4">
-                                         <a href="<%= Page.ResolveClientUrl("~/CheckList/Checklist_Consolidated_Report_List.aspx") %>" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md">
-                                                        <i class="flaticon-diagram"></i>
-                                                        View Consolidated Checklist Report
-                                                    </a>
-
-                                         </div>
-
-
-                                </div>
-                                <div class="form-group m-form__group row align-items-center">
-                                    
-
-                                    <div class="col-md-5">
-                                        <div class="m-form__group m-form__group--inline">
-                                                    <div class="m-form__label">
-                                                        <label>Checklist:</label>
-                                                    </div>
-                                                    <div class="m-form__control">
-                                                        <asp:DropDownList ID="ddlCheckist_Name" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                                            <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-
-                                      <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
-                                    
-                                    <div class="col-md-2">
-                                                <div class="m-form__group m-form__group--inline">
-                                                    <div class="m-form__label">
-                                                        <label>Status:</label>
-                                                    </div>
-                                                    <div class="m-form__control">
-                                                        <asp:DropDownList ID="ddlCheckist_Status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                                            <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                                <div class="d-md-none m--margin-bottom-10"></div>
-                                            </div>
-
-                                    <div class="col-md-3">
-                                                <div class="m-form__group m-form__group--inline">
-                                                    <div class="m-form__label">
-                                                        <label class="m-label m-label--single">Department:</label>
-                                                    </div>
-                                                    <div class="m-form__control">
-                                                        <asp:DropDownList ID="ddlCheckist_Department" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                                            <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                                            <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                                            <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                                            <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                                            <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                                            <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                                            <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                                <div class="d-md-none m--margin-bottom-10"></div>
-                                            </div>
-
-                                    <div class="col-md-1">
-                                        
-                                    <div class="btn-group">
-                                                    <asp:Button ID="Button1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
-                                                </div>
-                                                
 
                                     </div>
 
 
                                 </div>
+                                <div class="row m--align-center" style="padding-top: 1rem;">
+                                    <div class="col-lg-6 m--margin-bottom-10-tablet-and-mobile">
+                                        <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+
+                                    </div>
+
+                                    <div class="col-lg-6 m--margin-bottom-10-tablet-and-mobile">
+                                        <div class="m-form__control">
+                                            <a href="<%= Page.ResolveClientUrl("~/CheckList/Checklist_Consolidated_Report_List.aspx") %>" class="btn btn-brand m-btn m-btn--icon" style="width: -webkit-fill-available;">
+                                                <span>
+                                                    <i class="flaticon-diagram"></i>
+                                                    <span style="white-space: normal !important; word-wrap: break-word;">Generate Consolidated Checklist Report</span>
+                                                </span>
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
                             </div>
 
+                            <!--end: Search Form -->
+
+                            <!--begin: Datatable -->
+                            <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12"> 
+
+                                            <table class="m-datatable" id="html_table" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
+                                                        <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
+                                                        <th title="Checklist No" data-field="Chk_Response_No">Checklist No</th>
+                                                        <th title="Checklist Name" data-field="Checklist Name">Checklist Name</th>
+                                                        <th title="Department" data-field="Department">Department</th>
+                                                        <th title="Location" data-field="Location">Location</th>
+                                                        <th title="Start Time" data-field="Start Time">Start Time</th>
+                                                        <th title="End Time" data-field="End Time">End Time</th>
+                                                        <th title="Total Hrs" data-field="Total Hrs">Total Hrs</th>
+                                                        <th title="PercentCompleted" data-field="PercentCompleted">Progress</th>
+                                                        <th title="Generated_By" data-field="Generated_By">Generated By</th>
+                                                        <th title="Status" data-field="Status">Status</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%=fetchChkReportListing()%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--end: Datatable -->
+
                         </div>
+
                     </div>
 
-                    <!--end: Search Form -->
-
-                    <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
-                        <thead>
-                            <tr>
-                                <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
-                                <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
-                                <th title="Checklist No" data-field="Chk_Response_No">Checklist No</th>
-                                <th title="Checklist Name" data-field="Checklist Name">Checklist Name</th>
-                                <th title="Department" data-field="Department">Department</th>
-                                <th title="Location" data-field="Location">Location</th>
-                                <th title="Start Time" data-field="Start Time">Start Time</th>
-                                <th title="End Time" data-field="End Time">End Time</th>
-                                <th title="Total Hrs" data-field="Total Hrs">Total Hrs</th>
-                                <th title="PercentCompleted" data-field="PercentCompleted">Progress</th>
-                                <th title="Generated_By" data-field="Generated_By">Generated By</th>
-                                <th title="Status" data-field="Status">Status</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%=fetchChkReportListing()%>
-                        </tbody>
-                    </table>
-
-                    <!--end: Datatable -->
-
+                    <!-- END EXAMPLE TABLE PORTLET-->
                 </div>
             </div>
-
-            <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
 
