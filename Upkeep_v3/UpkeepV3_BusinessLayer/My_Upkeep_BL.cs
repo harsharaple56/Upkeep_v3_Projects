@@ -4628,6 +4628,45 @@ namespace UpkeepV3_BusinessLayer
 
 		#endregion
 
+
+		#region WhatsApp Log
+		public DataSet Insert_WhatSappLog(string ModuleType, int RecordID, string AccountSid,
+			string AuthToken, string MsgSid, string MsgBody, string MsgStatus, string FromNo,
+			string ToNo, int? ErrorCode, string ErrorMSg, int CompanyID, string LoggedInUserID, string StrConn)
+		{
+			DataSet ds = new DataSet();
+			try
+			{
+				
+			   SqlConnection con = new SqlConnection(StrConn);
+				SqlCommand cmd = new SqlCommand("SPR_INSERT_WHATSAPPLOG", con);
+				cmd.CommandType = CommandType.StoredProcedure;
+				cmd.Parameters.AddWithValue("@ModuleType", ModuleType);
+				cmd.Parameters.AddWithValue("@RecordID", RecordID);
+				cmd.Parameters.AddWithValue("@AccountSid", AccountSid);
+				cmd.Parameters.AddWithValue("@AuthToken", AuthToken);
+				cmd.Parameters.AddWithValue("@MsgSid", MsgSid);
+				cmd.Parameters.AddWithValue("@MsgBody", MsgBody);
+				cmd.Parameters.AddWithValue("@MsgStatus", MsgStatus);
+				cmd.Parameters.AddWithValue("@FromNo", FromNo);
+				cmd.Parameters.AddWithValue("@ToNo", ToNo);
+				cmd.Parameters.AddWithValue("@ErrorCode", ErrorCode);
+				cmd.Parameters.AddWithValue("@ErrorMsg", ErrorMSg);
+				cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+				cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+				SqlDataAdapter da = new SqlDataAdapter(cmd);
+				da.Fill(ds);
+				return ds;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+
+		}
+
+		#endregion
 	}
 
 }

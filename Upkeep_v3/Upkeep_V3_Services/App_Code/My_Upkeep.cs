@@ -3270,4 +3270,25 @@ public class My_Upkeep
 
 	#endregion
 
+	#region WhatsApp Log
+	public DataSet Insert_WhatSappLog(string ModuleType, int RecordID, string AccountSid,
+		string AuthToken, string MsgSid, string MsgBody, string MsgStatus, string FromNo,
+		string ToNo, int? ErrorCode, string ErrorMSg, int CompanyID, string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			ds = ObjUpkeepCC_BL.Insert_WhatSappLog(ModuleType, RecordID, AccountSid,
+				AuthToken, MsgSid, MsgBody, MsgStatus, FromNo,
+				ToNo, ErrorCode, ErrorMSg, CompanyID, LoggedInUserID, StrConn);
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+		return ds;
+	}
+	#endregion
+
 }

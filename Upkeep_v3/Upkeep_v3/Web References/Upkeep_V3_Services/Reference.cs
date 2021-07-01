@@ -112,6 +112,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback INSERT_Electricity_CategoryOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Insert_WhatSappLogOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Close_Ticket_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Store_AttendanceOperationCompleted;
@@ -610,6 +612,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event INSERT_Electricity_CategoryCompletedEventHandler INSERT_Electricity_CategoryCompleted;
+        
+        /// <remarks/>
+        public event Insert_WhatSappLogCompletedEventHandler Insert_WhatSappLogCompleted;
         
         /// <remarks/>
         public event Close_Ticket_DetailsCompletedEventHandler Close_Ticket_DetailsCompleted;
@@ -2544,6 +2549,59 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.INSERT_Electricity_CategoryCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_Electricity_CategoryCompleted(this, new INSERT_Electricity_CategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_WhatSappLog", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_WhatSappLog(string ModuleType, int RecordID, string AccountSid, string AuthToken, string MsgSid, string MsgBody, string MsgStatus, string FromNo, string ToNo, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> ErrorCode, string ErrorMSg, int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_WhatSappLog", new object[] {
+                        ModuleType,
+                        RecordID,
+                        AccountSid,
+                        AuthToken,
+                        MsgSid,
+                        MsgBody,
+                        MsgStatus,
+                        FromNo,
+                        ToNo,
+                        ErrorCode,
+                        ErrorMSg,
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_WhatSappLogAsync(string ModuleType, int RecordID, string AccountSid, string AuthToken, string MsgSid, string MsgBody, string MsgStatus, string FromNo, string ToNo, System.Nullable<int> ErrorCode, string ErrorMSg, int CompanyID, string LoggedInUserID) {
+            this.Insert_WhatSappLogAsync(ModuleType, RecordID, AccountSid, AuthToken, MsgSid, MsgBody, MsgStatus, FromNo, ToNo, ErrorCode, ErrorMSg, CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_WhatSappLogAsync(string ModuleType, int RecordID, string AccountSid, string AuthToken, string MsgSid, string MsgBody, string MsgStatus, string FromNo, string ToNo, System.Nullable<int> ErrorCode, string ErrorMSg, int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Insert_WhatSappLogOperationCompleted == null)) {
+                this.Insert_WhatSappLogOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_WhatSappLogOperationCompleted);
+            }
+            this.InvokeAsync("Insert_WhatSappLog", new object[] {
+                        ModuleType,
+                        RecordID,
+                        AccountSid,
+                        AuthToken,
+                        MsgSid,
+                        MsgBody,
+                        MsgStatus,
+                        FromNo,
+                        ToNo,
+                        ErrorCode,
+                        ErrorMSg,
+                        CompanyID,
+                        LoggedInUserID}, this.Insert_WhatSappLogOperationCompleted, userState);
+        }
+        
+        private void OnInsert_WhatSappLogOperationCompleted(object arg) {
+            if ((this.Insert_WhatSappLogCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_WhatSappLogCompleted(this, new Insert_WhatSappLogCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9798,6 +9856,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal INSERT_Electricity_CategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Insert_WhatSappLogCompletedEventHandler(object sender, Insert_WhatSappLogCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_WhatSappLogCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_WhatSappLogCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
