@@ -180,39 +180,30 @@
 
                         <!--end: Search Form -->
 
-                        <!--begin: Datatable -->
-                        <table class="m-datatable" id="html_table" width="100%">
-                            <thead>
-                                <tr> 
 
-                                    <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
-                                    <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
-                                    <th title="Asset_Name" data-field="Asset_Name">Service ID</th>
-                                    <th title="Asset_Name" data-field="Asset_Name">Asset Name</th>
-                                    <th title="Asset_Type" data-field="Asset_Type">Asset Type</th>
-                                    <th title="Asset_Category" data-field="Asset_Type">Asset Categeory</th>
+                        <table class="table table-striped- table-bordered table-hover table-checkable m-datatable__table" id="m_table_1">
+                        <thead>
+                            <tr>
 
+                                <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
+                                <%--<th title="Config ID" data-field="Chk_Config_ID">Checklist Config ID</th>--%>
+                                <th>Asset ID</th>
+                                <th>Asset Name</th>
+                                <%--<th title="Desc" data-field="Asset_Desc">Desc</th>
+                                    <th title="Maker" data-field="Asset_Make">Maker</th>--%>
+                                <th>Asset_Type</th>
+                                <th>Asset_Category</th>
+                                <th>Service_Date</th>
+                                <th>Assigned_To</th>
+                                <th title="Status" data-field="Status">Status</th>
 
-                                    <th title="Service_Date" data-field="Service_Date">Service Date</th>
-                                    <th title="Assigned_To" data-field="Assigned_To">Assigned To</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    <%--                <th title="Alert_Date" data-field="Alert_Date">Alert_Date</th>
-                                    <th title="Remarks" data-field="Remarks">Remarks</th>
-                                    <th title="Vendor" data-field="Vendor">Vendor</th>
-                                    <th title="Department" data-field="Department">Department</th>
-                                    <th title="Location" data-field="Location">Location</th> --%>
-                                    <th title="Status" data-field="Status">Status</th>
-                                    <th title="Service_Date" data-field="Service_Date">Closing Date</th>
-                                   <%-- <th title="Created By" data-field="Created_By">Created By</th>
-                                    <th title="Created Date" data-field="Created_Date">Created Date</th>--%>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                 <%=fetchListing()%>
-                            </tbody>
-                        </table>
+                            <%=fetchListing()%>
+                        </tbody>
+                    </table>
 
                         <!--end: Datatable -->
 

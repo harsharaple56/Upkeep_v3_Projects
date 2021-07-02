@@ -281,7 +281,7 @@ namespace Upkeep_v3.VMS
         protected void btnSuccessOk_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
-                Response.Redirect("http://www.efacilito.com");
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             else
                 Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
         }

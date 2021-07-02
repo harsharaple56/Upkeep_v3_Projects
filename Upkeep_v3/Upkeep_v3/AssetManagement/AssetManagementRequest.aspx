@@ -536,7 +536,7 @@
 
     </script>
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 10px;">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
 
@@ -598,12 +598,12 @@
                             </div>
                         </div>
 
-                                <div class="m-portlet__body" style="padding: 2rem 3rem 0rem 3rem;">
+                        <div class="m-portlet__body" style="padding: 2rem 3rem 0rem 3rem;">
 
-                                        <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Details</h3>
-									    </div>
-                                    </br>
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Details</h3>
+                            </div>
+                            </br>
                                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlAssetType" EventName="SelectedIndexChanged" />
@@ -637,7 +637,7 @@
                                                         <%-- OnClick="btnSave_Click"   --%>
                                                     </div>
 
-        
+
 
                                                 </div>
                                             </div>
@@ -645,7 +645,7 @@
                                             <br />
                                             <div id="Div1" runat="server" style="display: block;">
                                                 <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Category :</label>
+                                                    <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Category :</label>
                                                     <div class="col-xl3 col-lg-3">
                                                         <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
                                                         <asp:DropDownList ID="ddlAssetCategory" class="form-control m-input" runat="server">
@@ -668,47 +668,47 @@
 
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    <br />
-                                    <div id="Div2" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:TextBox ID="txtAssetName" runat="server" class="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAssetName" Visible="true"
-                                                    Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please enter Asset Name"></asp:RequiredFieldValidator>
-                                            </div>
-
-                                            <label class="col-xl-2 col-lg-2 form-control-label"> Asset Description :</label>
-                                            <div class="col-xl-5 col-lg-3">
-                                                <asp:TextBox ID="txtAssetDescription" TextMode="MultiLine" runat="server" class="form-control" ></asp:TextBox>
-                                            </div>
-                                        </div>
+                            <br />
+                            <div id="Div2" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name :</label>
+                                    <div class="col-xl-3 col-lg-3">
+                                        <asp:TextBox ID="txtAssetName" runat="server" class="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAssetName" Visible="true"
+                                            Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
+                                            ErrorMessage="Please enter Asset Name"></asp:RequiredFieldValidator>
                                     </div>
 
-                                    <br />
-                                    <div id="Div4" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 form-control-label">Manufactured By :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:TextBox ID="txtAssetMaker" runat="server" class="form-control"></asp:TextBox>
-                                            </div>
+                                    <label class="col-xl-2 col-lg-2 form-control-label">Asset Description :</label>
+                                    <div class="col-xl-5 col-lg-3">
+                                        <asp:TextBox ID="txtAssetDescription" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
 
-                                            <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Serial No :</label>
-                                            <div class="col-xl-5 col-lg-3">
-                                                <asp:TextBox ID="txtAssetSerialNo" runat="server" class="form-control" placeholder="Enter Serial No as printed on Asset Barcode"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAssetSerialNo" Visible="true"
-                                                    Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please enter Asset Serial No"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
+                            <br />
+                            <div id="Div4" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-2 col-lg-2 form-control-label">Manufactured By :</label>
+                                    <div class="col-xl-3 col-lg-3">
+                                        <asp:TextBox ID="txtAssetMaker" runat="server" class="form-control"></asp:TextBox>
                                     </div>
 
-                                    </br>
-                                        <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Purchase Information</h3>
-									    </div>
-                                    </br>
+                                    <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Serial No :</label>
+                                    <div class="col-xl-5 col-lg-3">
+                                        <asp:TextBox ID="txtAssetSerialNo" runat="server" class="form-control" placeholder="Enter Serial No as printed on Asset Barcode"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAssetSerialNo" Visible="true"
+                                            Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
+                                            ErrorMessage="Please enter Asset Serial No"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </br>
+                                        <div class="m-form__heading" style="text-align: center;">
+                                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Purchase Information</h3>
+                                        </div>
+                            </br>
 
                                     <div id="Div6" runat="server" style="display: block;">
                                         <%-- <asp:UpdatePanel ID="UpdatePanel4" runat="server">
@@ -744,7 +744,7 @@
                                         <%-- </ContentTemplate>
                                                 </asp:UpdatePanel>--%>
                                     </div>
-                                    </br>
+                            </br>
                                     <div id="Div9" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Cost :</label>
@@ -767,7 +767,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </br>
+                            </br>
 
                                 
 
@@ -790,12 +790,12 @@
                                     </div>
 
 
-                                    <br />
+                            <br />
 
-                                    <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Assigned Details</h3>
-									    </div>
-                                    </br>
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Assigned Details</h3>
+                            </div>
+                            </br>
                                     <div id="Div7" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                             <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Assign Department :</label>
@@ -818,129 +818,129 @@
                                         </div>
                                     </div>
 
-                                    <br />
-                                    <div id="Div8" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Assign Location :</label>
-                                            <div class="col-xl-10 col-lg-3">
-                                                <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
-                                                <%--<asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server">
+                            <br />
+                            <div id="Div8" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Assign Location :</label>
+                                    <div class="col-xl-10 col-lg-3">
+                                        <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
+                                        <%--<asp:DropDownList ID="ddlLocation" class="form-control m-input" runat="server">
                                                         </asp:DropDownList>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlLocation" Visible="true"
                                                             Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
                                                             ErrorMessage="Please select Location"></asp:RequiredFieldValidator>--%>
 
-                                                <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
+                                        <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
 
-                                                <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
-                                                    class="form-control" runat="server" clientidmode="Static" />
-                                                <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
-                                                    Visible="true" Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please select Vendor"></asp:RequiredFieldValidator>
+                                        <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                            class="form-control" runat="server" clientidmode="Static" />
+                                        <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="txtassetLocation"
+                                            Visible="true" Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
+                                            ErrorMessage="Please select Vendor"></asp:RequiredFieldValidator>
 
-                                            </div>
-                                            <%--<label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;"></span></label>--%>
-                                            <div class="col-xl-3 col-lg-3" style="display: none">
-                                                <asp:Button ID="btnAddLocation" type="Button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
-                                                    Text="+" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
-                                                    data-title="Add Location" data-backdrop="static" data-keyboard="false" />
-                                                <%--OnClick="btnSave_Click" OnClientClick="return false" --%>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <%--<label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;"></span></label>--%>
+                                    <div class="col-xl-3 col-lg-3" style="display: none">
+                                        <asp:Button ID="btnAddLocation" type="Button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
+                                            Text="+" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
+                                            data-title="Add Location" data-backdrop="static" data-keyboard="false" />
+                                        <%--OnClick="btnSave_Click" OnClientClick="return false" --%>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <br />
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Media Files</h3>
+                            </div>
+                            </br>
                                     <br />
-                                     <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Media Files</h3>
-									    </div>
-                                    </br>
-                                    <br />
-                                    <div id="Div11" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;"><span style="color: red;">*</span> Upload Asset Images :</label>
-                                            <div class="col-xl-8 col-lg-6">
-                                                <%--   <input id="flAssetImg" class="form-control" clientidmode="static" runat="server"
+                            <div id="Div11" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;"><span style="color: red;">*</span> Upload Asset Images :</label>
+                                    <div class="col-xl-8 col-lg-6">
+                                        <%--   <input id="flAssetImg" class="form-control" clientidmode="static" runat="server"
                                                     accept="image/*" onchange="readURL(this);" type="file" />--%>
-                                                <asp:FileUpload ID="flAssetImg" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
+                                        <asp:FileUpload ID="flAssetImg" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
 
-                                            </div>
-                                            <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetImg">
+                                    </div>
+                                    <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetImg">
 
-                                                <div id="divImgBtns" runat="server">
-                                                    <button id='btnAssetImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                        data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
-                                                        title='View Uploaded Image' data-title='View Uploaded Image'>
-                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                    </button>
-                                                    <asp:HiddenField ID="hdnAssetImg" runat="server" ClientIDMode="Static" />
-                                                </div>
-                                            </div>
+                                        <div id="divImgBtns" runat="server">
+                                            <button id='btnAssetImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
+                                                title='View Uploaded Image' data-title='View Uploaded Image'>
+                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                            </button>
+                                            <asp:HiddenField ID="hdnAssetImg" runat="server" ClientIDMode="Static" />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <br />
-                                    <div id="Div12" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;">Upload Asset Videos :</label>
-                                            <div class="col-xl-8 col-lg-6">
-                                                <%--        <input id="flAssetVideo" class="form-control" clientidmode="static" runat="server"
+                            <br />
+                            <div id="Div12" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;">Upload Asset Videos :</label>
+                                    <div class="col-xl-8 col-lg-6">
+                                        <%--        <input id="flAssetVideo" class="form-control" clientidmode="static" runat="server"
                                                     accept="video/*" onchange="readURL(this);" type="file" />--%>
-                                                <asp:FileUpload ID="flAssetVideo" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
+                                        <asp:FileUpload ID="flAssetVideo" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
 
 
 
-                                            </div>
-                                            <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetImg" id="AssetVideo">
-                                                <div id="div22" runat="server">
-                                                    <button id='btnAssetVid' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                        data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
-                                                        title='View Uploaded Video' data-title='View Uploaded Videos'> 
-                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                    </button>
-                                                    <asp:HiddenField ID="hdnAssetVid" runat="server" ClientIDMode="Static" />
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetImg" id="AssetVideo">
+                                        <div id="div22" runat="server">
+                                            <button id='btnAssetVid' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
+                                                title='View Uploaded Video' data-title='View Uploaded Videos'>
+                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                            </button>
+                                            <asp:HiddenField ID="hdnAssetVid" runat="server" ClientIDMode="Static" />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <br />
-                                    <div id="Div13" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;">Upload Asset Documents :</label>
-                                            <div class="col-xl-8 col-lg-6">
-                                                <%--  <input id="flAssetDoc" class="form-control" clientidmode="static" runat="server"
+                            <br />
+                            <div id="Div13" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-3 col-lg-2 form-control-label" style="max-width: 20%;">Upload Asset Documents :</label>
+                                    <div class="col-xl-8 col-lg-6">
+                                        <%--  <input id="flAssetDoc" class="form-control" clientidmode="static" runat="server"
                                                     onchange="readURL(this);" type="file" />--%>
 
-                                                <asp:FileUpload ID="flAssetDoc" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
+                                        <asp:FileUpload ID="flAssetDoc" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
 
 
-                                            </div>
-                                            <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetDoc">
-                                                <div id="div25" runat="server">
-                                                    <button id='btnAssetDoc' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                        data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
-                                                        title='View Uploaded Document' data-title='View Uploaded Document'>
-                                                        <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                    </button>
-                                                    <asp:HiddenField ID="hdnAssetDoc" runat="server" ClientIDMode="Static" />
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AssetDoc">
+                                        <div id="div25" runat="server">
+                                            <button id='btnAssetDoc' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top'
+                                                title='View Uploaded Document' data-title='View Uploaded Document'>
+                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                            </button>
+                                            <asp:HiddenField ID="hdnAssetDoc" runat="server" ClientIDMode="Static" />
                                         </div>
                                     </div>
-
                                 </div>
+                            </div>
 
-                                <div class="m-portlet__body" style="padding: 0rem 3rem 0rem 3rem;">
-                                    <br />
-                                     <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Annual Maintenance Contract (AMC) Details</h3>
-									    </div>
-                                    </br>
+                        </div>
+
+                        <div class="m-portlet__body" style="padding: 0rem 3rem 0rem 3rem;">
+                            <br />
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Annual Maintenance Contract (AMC) Details</h3>
+                            </div>
+                            </br>
                                     <div id="Div3" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            
-                                            <div class="col-xl-1 col-lg-3" style="text-align:center; max-width: 3%;">
+
+                                            <div class="col-xl-1 col-lg-3" style="text-align: center; max-width: 3%;">
                                                 <input type="checkbox" id="customCheck" runat="server" class="customcontrolinput" name="example1" clientidmode="Static" />
 
                                             </div>
@@ -949,237 +949,237 @@
                                         </div>
                                     </div>
 
-                                    <div id="DivIsAssetCoveredInAmc">
+                            <div id="DivIsAssetCoveredInAmc">
 
-                                        <br />
-                                        <div id="Div5" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Select AMC Type :</label>
-                                                <div class="col-xl-3 col-lg-3">
-                                                    <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
-                                                    <asp:DropDownList ID="ddlAmcType" class="form-control m-input" runat="server">
-                                                        <asp:ListItem value="value" selected="True">--Select AMC Type--</asp:ListItem>
-                                                        <asp:ListItem value="value" >Monthly</asp:ListItem>
-                                                        <asp:ListItem value="value" >Quarterly</asp:ListItem>
-                                                        <asp:ListItem value="value" >Annually</asp:ListItem>
+                                <br />
+                                <div id="Div5" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Select AMC Type :</label>
+                                        <div class="col-xl-3 col-lg-3">
+                                            <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
+                                            <asp:DropDownList ID="ddlAmcType" class="form-control m-input" runat="server">
+                                                <asp:ListItem Value="value" Selected="True">--Select AMC Type--</asp:ListItem>
+                                                <asp:ListItem Value="value">Monthly</asp:ListItem>
+                                                <asp:ListItem Value="value">Quarterly</asp:ListItem>
+                                                <asp:ListItem Value="value">Annually</asp:ListItem>
 
-                                                    </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAmcType" Visible="true"
-                                                        Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please select AMC Type"></asp:RequiredFieldValidator>
-                                                </div>
-                                                <label id="AMC_Status1" runat="server" class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
-                                                <div id="AMC_Status2" runat="server" class="col-xl-3 col-lg-3">
-                                                    <asp:TextBox ID="txtAmcStatus" ReadOnly="true" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
+                                            </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAmcType" Visible="true"
+                                                Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please select AMC Type"></asp:RequiredFieldValidator>
                                         </div>
-
-                                        <br />
-                                        <div id="Div24" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label">AMC Description :</label>
-                                                <div class="col-xl-10 col-lg-8">
-                                                    <asp:TextBox ID="txtAmcDescription" TextMode="MultiLine" runat="server" class="form-control" placeholder="Enter Detailed Description OR Summary about AMC"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtAmcDescription" Visible="true"
-                                                        Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please enter AMC Description"></asp:RequiredFieldValidator>
-                                                </div>
-                                            </div>
+                                        <label id="AMC_Status1" runat="server" class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Status :</label>
+                                        <div id="AMC_Status2" runat="server" class="col-xl-3 col-lg-3">
+                                            <asp:TextBox ID="txtAmcStatus" ReadOnly="true" runat="server" class="form-control"></asp:TextBox>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <br />
-                                        <div id="Div15" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style=" color: red; ">*</span> AMC Start Date :</label>
-                                                <div class="col-xl-3 col-lg-3 col-form-label" style="padding-top: calc(0rem + 0px);">
-                                                    <div class="input-group date">
-                                                        <asp:TextBox ID="txtAmcStartDate" runat="server" autocomplete="off" class="form-control m-input datepicker"
-                                                            placeholder="Select Amc Start Date"></asp:TextBox>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                        </div>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtAmcStartDate" Visible="true" Display="Dynamic"
-                                                            ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select Start Date"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                    <span id="error_AmcStartDate" class="text-danger small"></span>
-                                                </div>
-                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC End Date :</label>
-                                                <div class="col-xl-3 col-lg-3 col-form-label" style="padding-top: calc(0rem + 0px);">
-                                                    <div class="input-group date">
-                                                        <asp:TextBox ID="txtAmcEndDate" runat="server" autocomplete="off" class="form-control m-input datepicker"
-                                                            placeholder="Select AMC End Date"></asp:TextBox>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                        </div>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtAmcEndDate" Visible="true" Display="Dynamic"
-                                                            ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select End Date"></asp:RequiredFieldValidator>
-                                                    </div>
-                                                    <span id="error_AmcEndDate" class="text-danger small"></span>
-                                                </div>
-                                            </div>
+                                <br />
+                                <div id="Div24" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label">AMC Description :</label>
+                                        <div class="col-xl-10 col-lg-8">
+                                            <asp:TextBox ID="txtAmcDescription" TextMode="MultiLine" runat="server" class="form-control" placeholder="Enter Detailed Description OR Summary about AMC"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtAmcDescription" Visible="true"
+                                                Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please enter AMC Description"></asp:RequiredFieldValidator>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="Div15" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Start Date :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label" style="padding-top: calc(0rem + 0px);">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="txtAmcStartDate" runat="server" autocomplete="off" class="form-control m-input datepicker"
+                                                    placeholder="Select Amc Start Date"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                </div>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtAmcStartDate" Visible="true" Display="Dynamic"
+                                                    ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select Start Date"></asp:RequiredFieldValidator>
+                                            </div>
+                                            <span id="error_AmcStartDate" class="text-danger small"></span>
+                                        </div>
+                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC End Date :</label>
+                                        <div class="col-xl-3 col-lg-3 col-form-label" style="padding-top: calc(0rem + 0px);">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="txtAmcEndDate" runat="server" autocomplete="off" class="form-control m-input datepicker"
+                                                    placeholder="Select AMC End Date"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                </div>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtAmcEndDate" Visible="true" Display="Dynamic"
+                                                    ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0" ErrorMessage="Please Select End Date"></asp:RequiredFieldValidator>
+                                            </div>
+                                            <span id="error_AmcEndDate" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                                        <br />
-                                        <div id="Div17" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Assigned Vendor :</label>
-                                                <div class="col-xl-10 col-lg-3">
-                                                    <asp:HiddenField ID="hfAmcAssignedVendor" runat="server" ClientIDMode="Static" />
-                                                    <%--  <asp:TextBox ID="txtAmcAssignedVendor" runat="server" class="form-control" autocomplete="off"></asp:TextBox>
+                                <br />
+                                <div id="Div17" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Assigned Vendor :</label>
+                                        <div class="col-xl-10 col-lg-3">
+                                            <asp:HiddenField ID="hfAmcAssignedVendor" runat="server" ClientIDMode="Static" />
+                                            <%--  <asp:TextBox ID="txtAmcAssignedVendor" runat="server" class="form-control" autocomplete="off"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtAmcAssignedVendor" Visible="true"
                                                         Display="Dynamic" ValidationGroup="validateWorkPermit" ForeColor="Red" InitialValue="0"
                                                         ErrorMessage="Please select Vendor"></asp:RequiredFieldValidator>--%>
 
-                                                    <input list="dlamcassigVendor" id="txtamcassigVendor" name="txtamcassigVendor"
-                                                        class="form-control" runat="server" clientidmode="Static" />
-                                                    <datalist id="dlamcassigVendor" runat="server" clientidmode="Static"></datalist>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtamcassigVendor"
-                                                        Visible="true" Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please select Vendor"></asp:RequiredFieldValidator>
+                                            <input list="dlamcassigVendor" id="txtamcassigVendor" name="txtamcassigVendor"
+                                                class="form-control" runat="server" clientidmode="Static" />
+                                            <datalist id="dlamcassigVendor" runat="server" clientidmode="Static"></datalist>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtamcassigVendor"
+                                                Visible="true" Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please select Vendor"></asp:RequiredFieldValidator>
 
-                                                </div>
-                                            </div>
                                         </div>
-
-                                        <br />
-                                        <div id="Div18" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label" > AMC Inclusions :</label>
-                                                <div class="col-xl-4 col-lg-3" style="padding-right: 0px;" >
-                                                    <asp:TextBox ID="txtAmcInclusion" TextMode="MultiLine" runat="server" class="form-control" placeholder="Summarize List of things Included Under AMC"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtAmcInclusion" Visible="true"
-                                                        Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please enter AMC Inclusion"></asp:RequiredFieldValidator>
-                                                </div>
-                                                <label class="col-xl-2 col-lg-2 form-control-label"> AMC Exclusions :</label>
-                                                <div class="col-xl-4 col-lg-3" >
-                                                    <asp:TextBox ID="txtAmcExclusion" TextMode="MultiLine" runat="server" class="form-control" placeholder="Summarize List of things Included Under AMC"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtAmcExclusion" Visible="true"
-                                                        Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
-                                                        ErrorMessage="Please enter AMC Exclusion"></asp:RequiredFieldValidator>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br />
-                                        <div id="Div20" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label"> Additional Remarks :</label>
-                                                <div class="col-xl-10 col-lg-6">
-                                                    <asp:TextBox ID="txtAmcRemarks" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br />
-                                        <div id="Div21" runat="server" style="display: block;">
-                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                <label class="col-xl-2 col-lg-2 form-control-label"> AMC Documents :</label>
-                                                <div class="col-xl-9 col-lg-6">
-                                                    <%--<input id="flAmcDoc" class="form-control" clientidmode="static" runat="server" onchange="readURL(this);" type="file" />--%>
-
-                                                    <asp:FileUpload ID="flAmcDoc" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
-
-                                                </div>
-                                                <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AmcDoc">
-                                                    <div id="div26" runat="server">
-                                                        <button id='btnAMCDoc' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                            data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;"
-                                                            data-placement='top' title='View Uploaded Document' data-title='View Uploaded Document'>
-                                                            <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                        </button>
-                                                        <asp:HiddenField ID="HdnAmcDoc" runat="server" ClientIDMode="Static" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__body" style="padding: 0rem 3rem 3rem 3rem;">
-                                    
-                                     <br />
-                                     <div class="m-form__heading" style="text-align:center; ">
-										    <h3 class="m-form__heading-title" style="line-height: 2.0;background: aliceblue; font-size: 1.2rem;">Asset Scheduled Service / Maintenance Details</h3>
-									    </div>
-                                    </br>
+                                <br />
+                                <div id="Div18" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label">AMC Inclusions :</label>
+                                        <div class="col-xl-4 col-lg-3" style="padding-right: 0px;">
+                                            <asp:TextBox ID="txtAmcInclusion" TextMode="MultiLine" runat="server" class="form-control" placeholder="Summarize List of things Included Under AMC"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtAmcInclusion" Visible="true"
+                                                Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please enter AMC Inclusion"></asp:RequiredFieldValidator>
+                                        </div>
+                                        <label class="col-xl-2 col-lg-2 form-control-label">AMC Exclusions :</label>
+                                        <div class="col-xl-4 col-lg-3">
+                                            <asp:TextBox ID="txtAmcExclusion" TextMode="MultiLine" runat="server" class="form-control" placeholder="Summarize List of things Included Under AMC"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtAmcExclusion" Visible="true"
+                                                Display="Dynamic" ValidationGroup="validateAssetAMC" ForeColor="Red" InitialValue="0"
+                                                ErrorMessage="Please enter AMC Exclusion"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="Div20" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label">Additional Remarks :</label>
+                                        <div class="col-xl-10 col-lg-6">
+                                            <asp:TextBox ID="txtAmcRemarks" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="Div21" runat="server" style="display: block;">
+                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                        <label class="col-xl-2 col-lg-2 form-control-label">AMC Documents :</label>
+                                        <div class="col-xl-9 col-lg-6">
+                                            <%--<input id="flAmcDoc" class="form-control" clientidmode="static" runat="server" onchange="readURL(this);" type="file" />--%>
+
+                                            <asp:FileUpload ID="flAmcDoc" runat="server" ClientIDMode="static" class="form-control" AllowMultiple="true" />
+
+                                        </div>
+                                        <div class="col-xl-1 col-lg-3 col-form-label" style="overflow: auto; padding-top: calc(0rem + 0px);" id="AmcDoc">
+                                            <div id="div26" runat="server">
+                                                <button id='btnAMCDoc' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                    data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;"
+                                                    data-placement='top' title='View Uploaded Document' data-title='View Uploaded Document'>
+                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                </button>
+                                                <asp:HiddenField ID="HdnAmcDoc" runat="server" ClientIDMode="Static" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="m-portlet__body" style="padding: 0rem 3rem 3rem 3rem;">
+
+                            <br />
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Scheduled Service / Maintenance Details</h3>
+                            </div>
+                            </br>
                                     <div id="Div10" runat="server" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <div class="col-xl-1 col-lg-3" style="text-align:center; max-width: 3%;">
+                                            <div class="col-xl-1 col-lg-3" style="text-align: center; max-width: 3%;">
                                                 <input type="checkbox" id="customCheck1" runat="server" checked="checked" class="customcontrolinput" name="example1" clientidmode="Static" />
                                                 <asp:TextBox ID="txtHdn" TextMode="MultiLine" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
                                             </div>
                                             <label class="col-xl-10 col-lg-2 form-control-label">Check this box if you would like to Schedule Service Dates of your Asset now</label>
-                                            
+
                                         </div>
                                     </div>
 
-                                    <div id="DivIsServiceSchedule">
-                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                            <div id="DivIsServiceSchedule">
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
 
-                                            <ContentTemplate>
-                                                <br />
-                                                <div id="Div16" runat="server" style="display: block;">
-                                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <label class="col-xl-4 col-lg-2 form-control-label"><span style="color: red;">*</span> Enter No. of Service Requests to Schedule :</label>
-                                                        <div class="col-xl-2 col-lg-3">
-                                                            <%--<asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>--%>
-                                                            <input type="number" min="1" id="txtNoOfService" class="form-control" runat="server" clientidmode="Static" />
-                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ControlToValidate="txtNoOfService" Visible="true"
-                                                                Display="Dynamic" ValidationGroup="validateAssetService" ForeColor="Red" InitialValue="0"
-                                                                ErrorMessage="Please enter Number of Services to Schedule"></asp:RequiredFieldValidator>
-                                                        </div>
-                                                        <div class="col-xl-3 col-lg-3">
-                                                            <asp:Button id="btnNoOfService" text="Click here to Schedule" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon" OnClick="btnNoOfService_Click" />
-                                                        </div>
-                                                        
-                                                    </div>
+                                    <ContentTemplate>
+                                        <br />
+                                        <div id="Div16" runat="server" style="display: block;">
+                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                                <label class="col-xl-4 col-lg-2 form-control-label"><span style="color: red;">*</span> Enter No. of Service Requests to Schedule :</label>
+                                                <div class="col-xl-2 col-lg-3">
+                                                    <%--<asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>--%>
+                                                    <input type="number" min="1" id="txtNoOfService" class="form-control" runat="server" clientidmode="Static" />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ControlToValidate="txtNoOfService" Visible="true"
+                                                        Display="Dynamic" ValidationGroup="validateAssetService" ForeColor="Red" InitialValue="0"
+                                                        ErrorMessage="Please enter Number of Services to Schedule"></asp:RequiredFieldValidator>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3">
+                                                    <asp:Button ID="btnNoOfService" Text="Click here to Schedule" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon" OnClick="btnNoOfService_Click" />
                                                 </div>
 
-                                                <br />
-                                                <div id="Div23" runat="server" style="display: block;">
-                                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <label class="col-xl-12 col-lg-2 form-control-label"><span style="color: red;">*</span> Fill in the below Details for each Service Schedule Request :</label>
-                                                    </div>
-                                                </div>
-
-                                                <div id="Div19" runat="server" style="display: block;">
-                                                    <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                                        <div class="col-xl-12 col-lg-12">
-                                                            <%-- class="table table-nomargin"--%>
-                                                            <table id="TblLevels" runat="server" border="1" visible="true" clientidmode="Static" width="100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Sr No</th>
-                                                                        <th>Service Scheduled Date</th>
-                                                                        <th>Assigned To</th>
-                                                                        <th>Alert Before(Days)</th>
-                                                                        <th style="display: none;">Remarks</th>
-                                                                        <th style="display: none;">Status</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr></tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
+                                            </div>
+                                        </div>
 
                                         <br />
+                                        <div id="Div23" runat="server" style="display: block;">
+                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                                <label class="col-xl-12 col-lg-2 form-control-label"><span style="color: red;">*</span> Fill in the below Details for each Service Schedule Request :</label>
+                                            </div>
+                                        </div>
 
-                                    </div>
+                                        <div id="Div19" runat="server" style="display: block;">
+                                            <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                                <div class="col-xl-12 col-lg-12">
+                                                    <%-- class="table table-nomargin"--%>
+                                                    <table id="TblLevels" runat="server" border="1" visible="true" clientidmode="Static" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr No</th>
+                                                                <th>Service Scheduled Date</th>
+                                                                <th>Assigned To</th>
+                                                                <th>Alert Before(Days)</th>
+                                                                <th style="display: none;">Remarks</th>
+                                                                <th style="display: none;">Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr></tr>
+                                                        </tbody>
+                                                    </table>
 
-                                </div>
-                            
-                        <asp:Label runat="server" id="lblErrorMsg"></asp:Label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
+                                <br />
+
+                            </div>
+
+                        </div>
+
+                        <asp:Label runat="server" ID="lblErrorMsg"></asp:Label>
 
                     </div>
 
@@ -1201,8 +1201,8 @@
                                                     <label for="recipient-name" class="col-xl-12 col-lg-3 form-control-label">Your Asset Details has been saved successfully. As Unique Asset ID has been assigned as mentioned below</label>
                                                 </div>
                                                 <div class="form-group m-form__group row">
-                                                    <label for="message-text" class="col-xl-6 col-lg-3 form-control-label font-weight-bold" style="text-align:right">Asset ID :</label>
-                                                    <asp:Label ID="lblWpRequestCode" Text="" runat="server" CssClass="col-xl-6 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%; text-align:Left"></asp:Label>
+                                                    <label for="message-text" class="col-xl-6 col-lg-3 form-control-label font-weight-bold">Asset ID :</label>
+                                                    <asp:Label ID="lblWpRequestCode" Text="" runat="server" CssClass="col-xl-6 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); text-align: Left"></asp:Label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

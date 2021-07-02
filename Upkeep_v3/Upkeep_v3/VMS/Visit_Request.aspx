@@ -683,7 +683,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             </div>
                                             <div class="col-xl-6">
                                                 <canvas id="canvas">
-                                                    <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
+                                                    <img id="photo" runat="server" style="width: 14rem" alt="The screen capture will appear in this box.">
                                                 </canvas>
                                                 <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                                                     <span>

@@ -85,6 +85,98 @@ border: 3px solid #ccc;*/
     </style>
 
 
+
+
+    <%--Script for Web Cam--%>
+
+    <script>
+        /* JS comes here */
+        (function () {
+
+            var width = 280; // We will scale the photo width to this
+            var height = 0; // This will be computed based on the input stream
+
+            var streaming = false;
+
+            var video = null;
+            var canvas = null;
+            var photo = null;
+            var startbutton = null;
+
+            function startup() {
+                video = document.getElementById('video');
+                canvas = document.getElementById('canvas');
+                photo = document.getElementById('photo');
+                startbutton = document.getElementById('startbutton');
+
+                navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                        video.play();
+                    })
+                    .catch(function (err) {
+                        console.log("An error occurred: " + err);
+                    });
+
+                video.addEventListener('canplay', function (ev) {
+                    if (!streaming) {
+                        height = video.videoHeight / (video.videoWidth / width);
+
+                        if (isNaN(height)) {
+                            height = width / (4 / 3);
+                        }
+
+                        video.setAttribute('width', width);
+                        video.setAttribute('height', height);
+                        canvas.setAttribute('width', width);
+                        canvas.setAttribute('height', height);
+                        streaming = true;
+                    }
+                }, false);
+
+                startbutton.addEventListener('click', function (ev) {
+                    takepicture();
+                    ev.preventDefault();
+                }, false);
+
+                clearphoto();
+            }
+
+
+            function clearphoto() {
+                var context = canvas.getContext('2d');
+                context.fillStyle = "#AAA";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            }
+
+            function takepicture() {
+                var context = canvas.getContext('2d');
+                if (width && height) {
+                    canvas.width = width;
+                    canvas.height = height;
+                    context.drawImage(video, 0, 0, width, height);
+
+                    var data = canvas.toDataURL('image/png');
+                    photo.setAttribute('src', data);
+                } else {
+                    clearphoto();
+                }
+            }
+
+            window.addEventListener('load', startup, false);
+        })();
+    </script>
+
+
+
+
+
     <script>
 
         $(document).ready(function () {
@@ -457,17 +549,28 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                     </div>
 
                                     <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
-													<div class="m-radio-inline" style="padding-left: 0px;">
-														<label class="m-radio" style="padding-left:0px;">
-															<asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
-															</asp:RadioButtonList>
-														</label>
-													</div>
-												</div>
+                                        <div class="m-radio-inline" style="padding-left: 0px;">
+                                            <label class="m-radio" style="padding-left: 0px;">
+                                                <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                                </asp:RadioButtonList>
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <div id="divImage" style="display: none" runat="server">
-                                        <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: 36%;" AllowMultiple="true" />
+                                        <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" AllowMultiple="true" />
                                         &nbsp;
+
+                                        <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+
+                                                     <span>
+                                                        <i class="fa fa-camera"></i>
+                                                        <span>Use Webcam</span>
+                                                    </span>
+
+                                                </button>
+                                               
+
                                                     <div id="divImgBtns" style="display: none" runat="server">
                                                         <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
                                                             data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
@@ -564,6 +667,52 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                     <br />
                     <br />
                 </div>
+
+
+
+
+
+                <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body m--align-center">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <video id="video">Video stream not available.</video>
+
+                                                <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                    <span>
+                                                        <i class="fa fa-camera"></i>
+                                                        <span>Click Photo</span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <canvas id="canvas">
+                                                    <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
+                                                </canvas>
+                                                <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                    <span>
+                                                        <i class="fa fa-cloud-upload-alt"></i>
+                                                        <span>Upload Photo</span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
 
 
 

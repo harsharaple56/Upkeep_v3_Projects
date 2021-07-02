@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-grid__item m-grid__item--fluid">
         <div class="m-content">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">
@@ -19,7 +19,7 @@
                             <li class="m-portlet__nav-item">
                                 	<%--<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#m_modal_4">Launch Modal</button>
 									--%>	
-                                <a href="https://efacilito.com/contact/" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air">
+                                <a href="<%= Page.ResolveClientUrl("~/Support_Portal/Create_Request.aspx") %>" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air">
                                     <span>
                                         <i class="flaticon-statistics"></i>
                                         <span>Build New Report</span>

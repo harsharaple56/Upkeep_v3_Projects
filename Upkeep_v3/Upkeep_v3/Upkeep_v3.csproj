@@ -4085,6 +4085,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visit_Request_Public.aspx" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -5370,6 +5371,13 @@
     </Compile>
     <Compile Include="VMS\Visit_Request.aspx.designer.cs">
       <DependentUpon>Visit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Public.aspx.cs">
+      <DependentUpon>Visit_Request_Public.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Public.aspx.designer.cs">
+      <DependentUpon>Visit_Request_Public.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\VMSConfig_Listing.aspx.cs">
       <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
