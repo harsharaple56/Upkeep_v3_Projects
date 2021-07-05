@@ -3,6 +3,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/crud/forms/widgets/clipboard.js") %>" type="text/javascript"></script>
+
+    <%--<script>
+        function myFunction() {
+            debugger;
+
+            var grid = document.getElementById("<%= rptHeaderDetails.ClientID%>");
+            for (var i = 0; i < grid.rows.length - 1; i++) {
+                var txtAmountReceive = $("input[id*=divTextAreaid]")
+                if (txtAmountReceive[i].value != '') {
+                    alert(txtAmountReceive[i].value);
+                }
+            }
+
+
+
+            //var copyText = document.getElementById("divTextAreaid");
+            var copyText = $("input[id*='ContentPlaceHolder1_rptHeaderDetails_divTextAreaid_1']");
+            copyText.select();
+            //copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>--%>
+
+
+
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
@@ -22,7 +50,7 @@
                             <div class="m-portlet__head-tools">
                                 <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                                        
+
                                         <button id="btn_Raise_Feedback_Issue" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server" onserverclick="btn_Raise_Feedback_Issue_ServerClick">
                                             <span>
                                                 <i class="fa fa-exclamation-circle" style="font-size: 2rem;"></i>
@@ -38,90 +66,93 @@
                         <div class="m-portlet__body">
                             <div class="m-widget15">
                                 <asp:Repeater ID="rptFeedbackDetails" runat="server">
-                                            <ItemTemplate>
-                                <div class="m-widget15__items m--margin-top-20">
-                                    <div class="row">
-                                        <div class="col">
+                                    <ItemTemplate>
+                                        <div class="m-widget15__items m--margin-top-20">
+                                            <div class="row">
+                                                <div class="col">
 
-                                            <!--begin::widget item-->
-                                            <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">
-                                                    <label id="lbl_Postive_Points_Percent" runat="server"><%#Eval("Positive_Points_Percent")%></label>%
-                                                </span>
-                                                <span class="m-widget24__stats m--font-success">
-                                                    <b>
-                                                        <span class="m-badge m-badge--success m-badge--wide">
-                                                            <i class="fa fa-check-circle "></i>
-                                                            <b>Positive</b>
+                                                    <!--begin::widget item-->
+                                                    <div class="m-widget15__item">
+                                                        <span class="m-widget15__stats">
+                                                            <label id="lbl_Postive_Points_Percent" runat="server"><%#Eval("Positive_Points_Percent")%></label>%
                                                         </span>
-                                                        <label id="lbl_Postive_Points_Count" runat="server"><%#Eval("Positive_Points_Count")%></label> Responses
-                                                    </b>
-                                                </span>
-                                                <div class="m--space-10"></div>
-                                                <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <%#Eval("Positive_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <span class="m-widget24__stats m--font-success">
+                                                            <b>
+                                                                <span class="m-badge m-badge--success m-badge--wide">
+                                                                    <i class="fa fa-check-circle "></i>
+                                                                    <b>Positive</b>
+                                                                </span>
+                                                                <label id="lbl_Postive_Points_Count" runat="server"><%#Eval("Positive_Points_Count")%></label>
+                                                                Responses
+                                                            </b>
+                                                        </span>
+                                                        <div class="m--space-10"></div>
+                                                        <div class="progress m-progress--sm">
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width: <%#Eval("Positive_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--end::widget item-->
                                                 </div>
+                                                <div class="col">
+
+                                                    <!--begin::widget item-->
+                                                    <div class="m-widget15__item">
+                                                        <span class="m-widget15__stats">
+                                                            <label id="lbl_Negative_Points_Percent" runat="server"><%#Eval("Negative_Points_Percent")%></label>%
+                                                        </span>
+
+                                                        <span class="m-widget24__stats m--font-danger">
+                                                            <b>
+                                                                <span class="m-badge m-badge--danger m-badge--wide">
+                                                                    <i class="fa fa-times-circle"></i>
+                                                                    <b>Negative</b>
+                                                                </span>
+                                                                <label id="lbl_Negative_Points_Count" runat="server"><%#Eval("Negative_Points_Percent")%></label>
+                                                                Responses
+                                                            </b>
+                                                        </span>
+                                                        <div class="m--space-10"></div>
+                                                        <div class="progress m-progress--sm">
+                                                            <div class="progress-bar bg-danger" role="progressbar" style="width: <%#Eval("Negative_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--end::widget item-->
+                                                </div>
+                                                <div class="col">
+
+                                                    <!--begin::widget item-->
+                                                    <div class="m-widget15__item">
+                                                        <span class="m-widget15__stats">
+                                                            <label id="lbl_Neutral_Points_Percent" runat="server"><%#Eval("Neutral_Points_Percent")%></label>%
+                                                        </span>
+
+                                                        <span class="m-widget24__stats m--font-warning">
+                                                            <b>
+                                                                <span class="m-badge m-badge--warning m-badge--wide">
+                                                                    <i class="fa fa-times-circle"></i>
+                                                                    <b>Neutral</b>
+                                                                </span>
+                                                                <label id="lbl_Neutral_Points_Count" runat="server"><%#Eval("Neutral_Points_Count")%></label>
+                                                                Responses
+                                                            </b>
+                                                        </span>
+                                                        <div class="m--space-10"></div>
+                                                        <div class="progress m-progress--sm">
+                                                            <div class="progress-bar bg-warning" role="progressbar" style="width: <%#Eval("Neutral_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--end::widget item-->
+                                                </div>
+
                                             </div>
 
-                                            <!--end::widget item-->
-                                        </div>
-                                        <div class="col">
-
-                                            <!--begin::widget item-->
-                                            <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">
-                                                    <label id="lbl_Negative_Points_Percent" runat="server"><%#Eval("Negative_Points_Percent")%></label>%
-                                                </span>
-
-                                                <span class="m-widget24__stats m--font-danger">
-                                                    <b>
-                                                        <span class="m-badge m-badge--danger m-badge--wide">
-                                                            <i class="fa fa-times-circle"></i>
-                                                            <b>Negative</b>
-                                                        </span>
-                                                        <label id="lbl_Negative_Points_Count" runat="server"><%#Eval("Negative_Points_Percent")%></label> Responses
-                                                    </b>
-                                                </span>
-                                                <div class="m--space-10"></div>
-                                                <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%#Eval("Negative_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-
-                                            <!--end::widget item-->
-                                        </div>
-                                        <div class="col">
-
-                                            <!--begin::widget item-->
-                                            <div class="m-widget15__item">
-                                               <span class="m-widget15__stats">
-                                                    <label id="lbl_Neutral_Points_Percent" runat="server"><%#Eval("Neutral_Points_Percent")%></label>%
-                                                </span>
-
-                                                <span class="m-widget24__stats m--font-warning">
-                                                    <b>
-                                                        <span class="m-badge m-badge--warning m-badge--wide">
-                                                            <i class="fa fa-times-circle"></i>
-                                                            <b>Neutral</b>
-                                                        </span>
-                                                        <label id="lbl_Neutral_Points_Count" runat="server"><%#Eval("Neutral_Points_Count")%></label> Responses
-                                                    </b>
-                                                </span>
-                                                <div class="m--space-10"></div>
-                                                <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%#Eval("Neutral_Points_Percent")%>%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-
-                                            <!--end::widget item-->
                                         </div>
 
-                                    </div>
-
-                                </div>
-                               
-                              </ItemTemplate> 
-                            </asp:Repeater>
+                                    </ItemTemplate>
+                                </asp:Repeater>
 
                             </div>
                         </div>
@@ -170,7 +201,7 @@
                                         <span class="m-widget6__caption">Customer Photo
                                         </span>
                                         <div class="m-widget3__user-img">
-                                            <img id="imp_Customer_Image" runat="server" class="m-widget3__img" style="width:auto; max-height: 70px; max-width: 100%;">
+                                            <img id="imp_Customer_Image" runat="server" class="m-widget3__img" style="width: auto; max-height: 70px; max-width: 100%;">
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +266,7 @@
                         </div>
                         <div class="m-portlet__body">
                             <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
-                                
+
                                 <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
                                     <ItemTemplate>
 
@@ -244,18 +275,54 @@
 
                                         <div class="form-group" style="padding-left: 1%; margin-top: 4%; text-align: center;">
                                             <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
-                                            <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
+                                            <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;<%#Eval("Question_ID") %>. &nbsp; <%#Eval("Question") %> :</label>
                                             <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
                                             <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
                                             <div id="divStar" style="display: none" runat="server">
                                                 <section class='rating-widget'>
-                                                    <input type="hidden" clientidmode="Static"  runat="server" class="hdnStar" id="hdnStar" />
+                                                    <input type="hidden" clientidmode="Static" runat="server" class="hdnStar" id="hdnStar" />
                                                     <!-- Rating Stars Box -->
                                                     <div class='rating-stars text-center'>
-                                                        <ul id='stars' class="ulStars">
+                                                        <span class="rating1" id="span_star1" runat="server" style="display: none;">
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                        </span>
+                                                        <span class="rating1" id="span_star2" runat="server" style="display: none;">
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                        </span>
+                                                        <span class="rating1" id="span_star3" runat="server" style="display: none;">
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                        </span>
+                                                        <span class="rating1" id="span_star4" runat="server" style="display: none;">
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star-o fa-fw'></i>
+                                                        </span>
+                                                        <span class="rating1" id="span_star5" runat="server" style="display: none;">
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        </span>
+
+                                                        <%--<ul id='stars' class="">
                                                             <li class='star' title='Poor' data-value='1'>
-                                                                <i class='fa fa-star fa-fw'></i>
+                                                                <i class='fa fa-star fa-fw'></i><i class='fa fa-star fa-fw'></i><i class='fa fa-star fa-fw'></i>
                                                             </li>
                                                             <li class='star' title='Fair' data-value='2'>
                                                                 <i class='fa fa-star fa-fw'></i>
@@ -269,7 +336,7 @@
                                                             <li class='star' title='WOW!!!' data-value='5'>
                                                                 <i class='fa fa-star fa-fw'></i>
                                                             </li>
-                                                        </ul>
+                                                        </ul>--%>
                                                     </div>
                                                     <div>
                                                     </div>
@@ -285,12 +352,16 @@
                                             </div>
                                             <div id="divNPS" style="display: none" runat="server">
                                                 <div class="slidecontainer">
-                                                    <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
-                                                    <p class="NPRValue">Value: 5</p>
+                                                    <input type="range" min="1" max="10" clientidmode="Static" runat="server" value='<%# Eval("Answer") %>' class="slider NPRSlider" id="myRange" />
+                                                    <p class="NPRValue">Value: <%# Eval("Answer") %></p>
                                                 </div>
                                             </div>
                                             <div id="divTextArea" style="display: none" runat="server">
-                                                <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                                <%--<textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid1" class="form-control" runat="server"></textarea>--%>
+                                                <asp:TextBox ID="divTextAreaid" runat="server" CssClass="form-control" TextMode="MultiLine" Text='<%# Eval("Answer") %>'></asp:TextBox>
+                                                <%--<div class="input-group-append">
+                                                    <a href="#" class="btn btn-secondary" onclick="myFunction()"><i class="la la-copy"></i></a>
+                                                </div>--%>
                                             </div>
                                             <div id="divOptions" class="text-center" style="display: none" runat="server">
                                                 <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
@@ -301,9 +372,21 @@
                                             <div id="divEmoji" style="display: none" runat="server">
                                                 <div class="ratingSmiley text-center">
                                                     <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
-                                                    <span class="rating1">😶‍</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
+                                                    <asp:HiddenField ID="hdnAnswer" runat="server" Value='<%# Eval("Answer") %>' />
+                                                    <%--<span class="rating1">😶‍</span>
+                                                    <span class="rating2">😶</span>
+                                                    <span class="rating3">😶</span>
+                                                    <span class="rating4">😶</span>
+                                                    <span class="rating5">😶</span>--%>
+
+                                                    <span class="rating1" id="span_rating1" runat="server" style="display: none;">😠</span>
+                                                    <span class="rating2" id="span_rating2" runat="server" style="display: none;">🙁🙁</span>
+                                                    <span class="rating3" id="span_rating3" runat="server" style="display: none;">😐😐😐</span>
+                                                    <span class="rating4" id="span_rating4" runat="server" style="display: none;">😊😊😊😊</span>
+                                                    <span class="rating5" id="span_rating5" runat="server" style="display: none;">😍😍😍😍😍</span>
 
                                                 </div>
+
                                             </div>
                                         </div>
 
