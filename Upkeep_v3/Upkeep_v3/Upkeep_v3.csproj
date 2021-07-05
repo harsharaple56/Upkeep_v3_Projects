@@ -6338,6 +6338,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Asset_Manager\Assets\" />
+    <Folder Include="Asset_Manager\Contracts\" />
+    <Folder Include="Asset_Manager\Service_Requests\" />
     <Folder Include="CheckList\ImportFile\" />
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />

@@ -542,7 +542,6 @@
 
                 <div class="col-lg-12">
 
-                    <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmWorkPermit" method="post">--%>
@@ -598,7 +597,7 @@
                             </div>
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 2rem 3rem 0rem 3rem;">
+                        <div class="m-portlet__body">
 
                             <div class="m-form__heading" style="text-align: center;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Details</h3>
@@ -611,7 +610,7 @@
                                         <ContentTemplate>
 
                                             <div id="dvAssetType" runat="server" style="display: block;">
-                                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                                <div class="form-group row">
                                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Type :</label>
                                                     <div class="col-xl-3 col-lg-3">
                                                         <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
@@ -644,7 +643,7 @@
 
                                             <br />
                                             <div id="Div1" runat="server" style="display: block;">
-                                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                                <div class="form-group row" >
                                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Category :</label>
                                                     <div class="col-xl3 col-lg-3">
                                                         <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
@@ -670,7 +669,7 @@
                                     </asp:UpdatePanel>
                             <br />
                             <div id="Div2" runat="server" style="display: block;">
-                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                <div class="form-group row" >
                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name :</label>
                                     <div class="col-xl-3 col-lg-3">
                                         <asp:TextBox ID="txtAssetName" runat="server" class="form-control"></asp:TextBox>
@@ -688,7 +687,7 @@
 
                             <br />
                             <div id="Div4" runat="server" style="display: block;">
-                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                <div class="form-group row">
                                     <label class="col-xl-2 col-lg-2 form-control-label">Manufactured By :</label>
                                     <div class="col-xl-3 col-lg-3">
                                         <asp:TextBox ID="txtAssetMaker" runat="server" class="form-control"></asp:TextBox>
@@ -703,6 +702,25 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                             <br />
+
+                            <asp:Repeater ID="rptCustomFields" runat="server">
+                                <ItemTemplate>
+                                    <div class="form-group m-form__group row">
+                                        <asp:HiddenField ID="hdnFieldID" ClientIDMode="Static" runat="server" Value='<%#Eval("Asset_Field_ID")%>' />
+                                        <asp:Label ID="lblCustomFieldDesc" runat="server" class="col-xl-2 col-form-label" Text='<%#Eval("Asset_AddOn_Field_Desc")%>'  Style="font-weight: bolder;"></asp:Label>
+                                        <div class="col-xl-10">
+                                            <asp:TextBox ID="txtCustomFieldsValue" runat="server" Placeholder='<%#Eval("Asset_Field_Placeholder")%>' class="form-control"></asp:TextBox>
+                                        </div>
+
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+
+
 
                             </br>
                                         <div class="m-form__heading" style="text-align: center;">
@@ -931,23 +949,22 @@
 
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 0rem 3rem 0rem 3rem;">
-                            <br />
+                        <div class="m-portlet__body">
+
                             <div class="m-form__heading" style="text-align: center;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset Annual Maintenance Contract (AMC) Details</h3>
                             </div>
-                            </br>
-                                    <div id="Div3" runat="server" style="display: block;">
-                                        <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                            <div id="Div3" runat="server" style="display: block;">
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
 
-                                            <div class="col-xl-1 col-lg-3" style="text-align: center; max-width: 3%;">
-                                                <input type="checkbox" id="customCheck" runat="server" class="customcontrolinput" name="example1" clientidmode="Static" />
+                                    <div class="col-xl-1 col-lg-3" style="text-align: center; max-width: 3%;">
+                                        <input type="checkbox" id="customCheck" runat="server" class="customcontrolinput" name="example1" clientidmode="Static" />
 
-                                            </div>
-                                            <label class="col-xl-5 col-lg-2 form-control-label">Check this box if Asset is covered by AMC :</label>
-
-                                        </div>
                                     </div>
+                                    <label class="col-xl-5 col-lg-2 form-control-label">Check this box if Asset is covered by AMC :</label>
+
+                                </div>
+                            </div>
 
                             <div id="DivIsAssetCoveredInAmc">
 
@@ -1099,7 +1116,7 @@
                             </div>
                         </div>
 
-                        <div class="m-portlet__body" style="padding: 0rem 3rem 3rem 3rem;">
+                        <div class="m-portlet__body">
 
                             <br />
                             <div class="m-form__heading" style="text-align: center;">
@@ -1183,7 +1200,6 @@
 
                     </div>
 
-                    <!-- SUCCESS PANEL -->
                     <asp:Panel ID="pnlWpReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
                         <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document" style="max-width: 590px;">
@@ -1220,7 +1236,6 @@
                         </div>
                     </asp:Panel>
 
-                    <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <!-- Modal content-->
@@ -1388,18 +1403,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- Image Display -->
-
-                    <%--data-images="<%#Eval("Header_Data") %>"--%>
-                    <%-- <div id="divImgBtns" style="display: none" runat="server">
-                        <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                            data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
-                            <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                        </button>
-                        <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
-                    </div>--%>
 
                     <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
                         <div class="modal-dialog" role="document">

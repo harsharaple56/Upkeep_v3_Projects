@@ -98,6 +98,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Custom_FieldsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Asset_Custom_FieldsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FetchUserEmailOperationCompleted;
         
         private System.Threading.SendOrPostCallback ForgetPasswordSendOTPOperationCompleted;
@@ -591,6 +593,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Custom_FieldsCompletedEventHandler Fetch_Custom_FieldsCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Asset_Custom_FieldsCompletedEventHandler Fetch_Asset_Custom_FieldsCompleted;
         
         /// <remarks/>
         public event FetchUserEmailCompletedEventHandler FetchUserEmailCompleted;
@@ -2312,6 +2317,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Custom_FieldsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Custom_FieldsCompleted(this, new Fetch_Custom_FieldsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_Custom_Fields", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Asset_Custom_Fields(int CompanyID) {
+            object[] results = this.Invoke("Fetch_Asset_Custom_Fields", new object[] {
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_Custom_FieldsAsync(int CompanyID) {
+            this.Fetch_Asset_Custom_FieldsAsync(CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Asset_Custom_FieldsAsync(int CompanyID, object userState) {
+            if ((this.Fetch_Asset_Custom_FieldsOperationCompleted == null)) {
+                this.Fetch_Asset_Custom_FieldsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_Custom_FieldsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Asset_Custom_Fields", new object[] {
+                        CompanyID}, this.Fetch_Asset_Custom_FieldsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Asset_Custom_FieldsOperationCompleted(object arg) {
+            if ((this.Fetch_Asset_Custom_FieldsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Asset_Custom_FieldsCompleted(this, new Fetch_Asset_Custom_FieldsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9674,6 +9708,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Custom_FieldsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Asset_Custom_FieldsCompletedEventHandler(object sender, Fetch_Asset_Custom_FieldsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Asset_Custom_FieldsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Asset_Custom_FieldsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

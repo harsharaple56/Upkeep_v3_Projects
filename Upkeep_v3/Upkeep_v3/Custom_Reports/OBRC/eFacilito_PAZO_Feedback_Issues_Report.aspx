@@ -14,91 +14,19 @@
                             </h3>
                         </div>
                     </div>
-                </div>
-                <div class="m-portlet__body">
 
-                    <!--begin: Search Form -->
-                    <%--<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-                        <div class="row align-items-center">
-                            <div class="col-xl-8 order-2 order-xl-1">
-                                <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label>Status:</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <div class="dropdown bootstrap-select form-control m-bootstrap-select m-bootstrap-select--solid">
-                                                    <select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_status" tabindex="-98">
-                                                        <option value="">All</option>
-                                                        <option value="1">Pending</option>
-                                                        <option value="2">Delivered</option>
-                                                        <option value="3">Canceled</option>
-                                                    </select>
-                                                    <button type="button" class="btn dropdown-toggle bs-placeholder btn-light" data-toggle="dropdown" role="button" data-id="m_form_status" title="All">
-                                                        <div class="filter-option">
-                                                            <div class="filter-option-inner">All</div>
-                                                        </div>
-                                                        &nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu " role="combobox">
-                                                            <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
-                                                                <ul class="dropdown-menu inner show"></ul>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="m-form__group m-form__group--inline">
-                                            <div class="m-form__label">
-                                                <label class="m-label m-label--single">Type:</label>
-                                            </div>
-                                            <div class="m-form__control">
-                                                <div class="dropdown bootstrap-select form-control m-bootstrap-select m-bootstrap-select--solid">
-                                                    <select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_type" tabindex="-98">
-                                                        <option value="">All</option>
-                                                        <option value="1">Online</option>
-                                                        <option value="2">Retail</option>
-                                                        <option value="3">Direct</option>
-                                                    </select>
-                                                    <button type="button" class="btn dropdown-toggle bs-placeholder btn-light" data-toggle="dropdown" role="button" data-id="m_form_type" title="All">
-                                                        <div class="filter-option">
-                                                            <div class="filter-option-inner">All</div>
-                                                        </div>
-                                                        &nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu " role="combobox">
-                                                            <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
-                                                                <ul class="dropdown-menu inner show"></ul>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                <span><i class="la la-search"></i></span>
+                    <div class="m-portlet__head-tools">
+                                        <a href="<%= Page.ResolveClientUrl("~/Custom_Reports/Custom_Reports_Listing.aspx") %>" class="btn btn-metal m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back</span>
                                             </span>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                                <a href="#" class="btn btn-focus m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                                    <span>
-                                        <i class="la la-cart-plus"></i>
-                                        <span>New Order</span>
-                                    </span>
-                                </a>
-                                <div class="m-separator m-separator--dashed d-xl-none"></div>
-                            </div>
-                        </div>
-                    </div>--%>
 
-                    <!--end: Search Form -->
+                </div>
+
+                <div class="m-portlet__body">
 
                     <!--begin: Datatable -->
 
@@ -116,32 +44,46 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                        <thead>
-                            <tr>
 
-                                <th data-field="refId" class="m-datatable__cell"><span style="width: 110px;">Issue ID</span></th>
-                                <th data-field="title" class="m-datatable__cell"><span style="width: 110px;">Issue Title</span></th>
-                                <th data-field="createdTime" class="m-datatable__cell"><span style="width: 110px;">Time</span></th>
-                                <th data-field="createdDate" class="m-datatable__cell"><span style="width: 110px;">Date</span></th>
-                                <th data-field="department" class="m-datatable__cell"><span style="width: 110px;">Department</span></th>
-                                <th data-field="location" class="m-datatable__cell"><span style="width: 110px;">Location</span></th>
-                                <th data-field="raisedBy" class="m-datatable__cell"><span style="width: 110px;">Raised By</span></th>
-                                <th data-field="assignedTo" class="m-datatable__cell"><span style="width: 110px;">Assigned To</span></th>
-                                <th data-field="timeline" class="m-datatable__cell"><span style="width: 110px;">Timeline Status</span></th>
-                                <th data-field="statusLabel" class="m-datatable__cell"><span style="width: 110px;">Status</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+
+                        <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-xl-12">
+
+                                    <div class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" style="overflow-x: auto;">
+
+                                        <asp:GridView ID="gv_Pazo_GetIssues" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatablee"
+                                            AutoGenerateColumns="false" EmptyDataText="No records found.">
+                                            <Columns>
+
+                                                <asp:BoundField DataField="refId" HeaderText="Issue ID" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="title" HeaderText="Issue Title" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="statusLabel" HeaderText="Status" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="department" HeaderText="Department" ItemStyle-Width="100" />
+                                                <asp:BoundField DataField="assignedTo" HeaderText="Assigned To" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="timeline" HeaderText="Timeline" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="createdTime" HeaderText="Created On" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="createdDate" HeaderText="Created Date" ItemStyle-Width="150" />
+                                                <asp:BoundField DataField="dueDate" HeaderText="Due Date" ItemStyle-Width="100" />
+                                                <asp:BoundField DataField="dueTime" HeaderText="Due Time" ItemStyle-Width="100" />
+                                                <asp:BoundField DataField="lastActivityOn" HeaderText="Last Activity On" ItemStyle-Width="150" />
+
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                <div align="center">No records found.</div>
+                                            </EmptyDataTemplate>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
                 <!--end: Datatable -->
             </div>
         </div>
-    </div>
     </div>
 
 

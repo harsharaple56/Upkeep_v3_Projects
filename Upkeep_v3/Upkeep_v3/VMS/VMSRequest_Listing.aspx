@@ -167,7 +167,7 @@
                                  <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
 
-                                        <a href="#" class="btn btn-info m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                        <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
                                             <span>
                                                 <i class="fa fa-database"></i>
                                                 <span>Export Data</span>
@@ -259,7 +259,7 @@
 
                                         <div class="m-form__control">
                                             <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
-                                                <span class="m-subheader__daterange-label">
+                                                <span class="m-subheader__daterange-label" style="font-size: 12px;">
                                                                 <span class="m-subheader__daterange-title"></span>
                                                                 <span class="m-subheader__daterange-date"></span>
                                                                 <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
@@ -268,7 +268,7 @@
                                                                 <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
                                                             </span>
                                                 <button type="button" class="btn btn-brand
-                                                    btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light">
+                                                    btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
                                                     <i class="la la-angle-down"></i>
                                                 </button>
                                             </span>

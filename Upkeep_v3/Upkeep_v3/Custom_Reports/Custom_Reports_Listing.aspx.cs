@@ -53,7 +53,7 @@ namespace Upkeep_v3.Custom_Reports
                             string Report_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Report_Desc"]);
                             string Report_Path = Convert.ToString(ds.Tables[0].Rows[0]["Report_Path"]);
 
-                            data += "<tr><td>" + Report_Name + "</td><td>" + Report_Desc + "</td><td><a href='" + Report_Path + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Report'> <i class='la la-eye'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Report_Name + "</td><td>" + Report_Desc + "</td><td><a href='<%= Page.ResolveClientUrl(~" + Report_Path + ") %>' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Report'> <i class='la la-eye'></i> </a> </td></tr>";
 
                         }
                     }
