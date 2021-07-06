@@ -91,7 +91,7 @@ namespace Upkeep_v3.Feedback
                         rptFeedbackDetails.DataBind();
 
 
-                        lbl_Feedback_Total_Points.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Total_Points"]);
+                        lbl_Feedback_Total_Points.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["Total_Questions"]);
                         string User_Type = Convert.ToString(ds.Tables[0].Rows[0]["Feedback_User_Type"]);
 
                         if(User_Type=="E")
@@ -232,6 +232,8 @@ namespace Upkeep_v3.Feedback
                 String AnswerType = (e.Item.FindControl("hdnlblAnswerType") as HiddenField).Value;
                 string HeadId = (e.Item.FindControl("hfHeaderId") as HiddenField).Value;
 
+                string Answer = (e.Item.FindControl("hdnAnswer") as HiddenField).Value;
+
                 if (AnswerType == "Options") //Single Selection [Radio Button]
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divOptions") as HtmlGenericControl;
@@ -241,6 +243,33 @@ namespace Upkeep_v3.Feedback
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divStar") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+
+                    HtmlGenericControl span_star1 = e.Item.FindControl("span_star1") as HtmlGenericControl;
+                    HtmlGenericControl span_star2 = e.Item.FindControl("span_star2") as HtmlGenericControl;
+                    HtmlGenericControl span_star3 = e.Item.FindControl("span_star3") as HtmlGenericControl;
+                    HtmlGenericControl span_star4 = e.Item.FindControl("span_star4") as HtmlGenericControl;
+                    HtmlGenericControl span_star5 = e.Item.FindControl("span_star5") as HtmlGenericControl;
+
+                    if (Answer == "1")
+                    {
+                        span_star1.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "2")
+                    {
+                        span_star2.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "3")
+                    {
+                        span_star3.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "4")
+                    {
+                        span_star4.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "5")
+                    {
+                        span_star5.Attributes.Add("style", "display:block;");
+                    }
                 }
                 else if (AnswerType == "NPS") //NPS Scoring
                 {
@@ -251,6 +280,34 @@ namespace Upkeep_v3.Feedback
                 {
                     HtmlGenericControl sample = e.Item.FindControl("divEmoji") as HtmlGenericControl;
                     sample.Attributes.Remove("style");
+                    
+                    HtmlGenericControl span_rating1 = e.Item.FindControl("span_rating1") as HtmlGenericControl;
+                    HtmlGenericControl span_rating2 = e.Item.FindControl("span_rating2") as HtmlGenericControl;
+                    HtmlGenericControl span_rating3 = e.Item.FindControl("span_rating3") as HtmlGenericControl;
+                    HtmlGenericControl span_rating4 = e.Item.FindControl("span_rating4") as HtmlGenericControl;
+                    HtmlGenericControl span_rating5 = e.Item.FindControl("span_rating5") as HtmlGenericControl;
+
+                    if (Answer == "1")
+                    {
+                        span_rating1.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "2")
+                    {
+                        span_rating2.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "3")
+                    {
+                        span_rating3.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "4")
+                    {
+                        span_rating4.Attributes.Add("style", "display:block;");
+                    }
+                    else if (Answer == "5")
+                    {
+                        span_rating5.Attributes.Add("style", "display:block;");
+                    }
+
                 }
                 else if (AnswerType == "Text") // Textarea Field
                 {
@@ -286,6 +343,10 @@ namespace Upkeep_v3.Feedback
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option2"].ToString(), "2"));
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option3"].ToString(), "3"));
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option4"].ToString(), "4"));
+
+
+                        divRadioButtonrdbYes.SelectedValue = Answer;
+
                         //rptRadio.DataSource = dt;
                         //rptRadio.DataBind(); 
                         //divRadioButtonrdbYes.DataTextField = "Ans_Type_Data"; // "Ans_Type_Desc";

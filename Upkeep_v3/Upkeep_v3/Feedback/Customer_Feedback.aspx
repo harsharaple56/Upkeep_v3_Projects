@@ -273,7 +273,7 @@ background-color: blanchedalmond;
             $("span").click(function () {
                 var Rclass = $(this).attr('class').split(" ")[0];
                 var rating = Rclass.substring(6);
-
+                alert(rating)
                 $(this).siblings('.hdnEmoji').val(rating);
 
                 var emoji = ["😶", "😠", "🙁", "😐", "😊", "😍"];
