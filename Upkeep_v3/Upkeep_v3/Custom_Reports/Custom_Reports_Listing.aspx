@@ -43,7 +43,6 @@
                         </thead>
                         <tbody>
                             <%=bindgrid()%>
-                          
                         </tbody>
                     </table>
                 </div>
