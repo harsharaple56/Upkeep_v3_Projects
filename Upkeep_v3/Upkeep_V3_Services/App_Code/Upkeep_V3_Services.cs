@@ -3430,6 +3430,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Asset_Custom_Fields(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Asset_Custom_Fields(CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
     [WebMethod]

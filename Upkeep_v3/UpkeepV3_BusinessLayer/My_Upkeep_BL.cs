@@ -4442,8 +4442,30 @@ namespace UpkeepV3_BusinessLayer
 
 		}
 
+        public DataSet Fetch_Asset_Custom_Fields(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("spr_Sys_Settings_Asset_Fields", con);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-		public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID, string StrConn)
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try

@@ -871,7 +871,7 @@ namespace Upkeep_v3.VMS
                         HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
 
                         FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
-
+                        
 
                         if (ChecklistImage.HasFile)
                         {

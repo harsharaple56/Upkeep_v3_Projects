@@ -835,6 +835,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard_Admin.aspx" />
+    <Content Include="Emails_Configurations\System_Emails\Add_Email_Template.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -4782,6 +4783,13 @@
     </Compile>
     <Compile Include="Dashboard_Admin.aspx.designer.cs">
       <DependentUpon>Dashboard_Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Emails_Configurations\System_Emails\Add_Email_Template.aspx.cs">
+      <DependentUpon>Add_Email_Template.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Emails_Configurations\System_Emails\Add_Email_Template.aspx.designer.cs">
+      <DependentUpon>Add_Email_Template.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

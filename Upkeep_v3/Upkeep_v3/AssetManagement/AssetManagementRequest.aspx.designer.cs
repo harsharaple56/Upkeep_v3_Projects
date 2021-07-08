@@ -265,6 +265,15 @@ namespace Upkeep_v3.AssetManagement {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
+        /// rptCustomFields control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCustomFields;
+        
+        /// <summary>
         /// Div6 control.
         /// </summary>
         /// <remarks>

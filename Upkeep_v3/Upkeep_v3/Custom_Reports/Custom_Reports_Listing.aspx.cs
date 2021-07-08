@@ -51,9 +51,9 @@ namespace Upkeep_v3.Custom_Reports
                             int Report_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Report_ID"]);
                             string Report_Name = Convert.ToString(ds.Tables[0].Rows[i]["Report_Name"]);
                             string Report_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Report_Desc"]);
-                            string Report_Path = Convert.ToString(ds.Tables[0].Rows[0]["Report_Path"]);
+                            Global.ReportPath = Convert.ToString(ds.Tables[0].Rows[0]["Report_Path"]);
 
-                            data += "<tr><td>" + Report_Name + "</td><td>" + Report_Desc + "</td><td><a href='Add_Menu.aspx?MenuID=" + Report_Desc + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Report'> <i class='la la-eye'></i> </a>   </td></tr>";
+                            data += "<tr><td>" + Report_Name + "</td><td>" + Report_Desc + "</td><td><a href='Page_Redirect.aspx' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Report'> <i class='la la-eye'></i> </a> </td></tr>";
 
                         }
                     }
@@ -70,5 +70,15 @@ namespace Upkeep_v3.Custom_Reports
             return data;
 
         }
+
+        protected void btn_ShowReport(object sender, EventArgs e)
+        {
+            Response.Redirect(Global.ReportPath);
+        }
+    }
+
+    class Global
+    {
+        public static string ReportPath;
     }
 }

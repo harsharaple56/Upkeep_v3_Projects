@@ -1058,6 +1058,7 @@
     <Content Include="Custom_Reports\Custom_Reports_Listing.aspx" />
     <Content Include="Custom_Reports\FORUM1\Daily_versus_CurrentMonth.aspx" />
     <Content Include="Custom_Reports\OBRC\eFacilito_PAZO_Feedback_Issues_Report.aspx" />
+    <Content Include="Custom_Reports\Page_Redirect.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Dashboard_Admin_Ticketing.aspx" />
     <Content Include="Dashboard_Admin.aspx" />
@@ -4085,6 +4086,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <Content Include="VMS\Visit_Request_Public.aspx" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4572,6 +4574,13 @@
     </Compile>
     <Compile Include="Custom_Reports\OBRC\eFacilito_PAZO_Feedback_Issues_Report.aspx.designer.cs">
       <DependentUpon>eFacilito_PAZO_Feedback_Issues_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_Reports\Page_Redirect.aspx.cs">
+      <DependentUpon>Page_Redirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom_Reports\Page_Redirect.aspx.designer.cs">
+      <DependentUpon>Page_Redirect.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -5370,6 +5379,13 @@
     </Compile>
     <Compile Include="VMS\Visit_Request.aspx.designer.cs">
       <DependentUpon>Visit_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Public.aspx.cs">
+      <DependentUpon>Visit_Request_Public.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visit_Request_Public.aspx.designer.cs">
+      <DependentUpon>Visit_Request_Public.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\VMSConfig_Listing.aspx.cs">
       <DependentUpon>VMSConfig_Listing.aspx</DependentUpon>
@@ -6330,6 +6346,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Asset_Manager\Assets\" />
+    <Folder Include="Asset_Manager\Contracts\" />
+    <Folder Include="Asset_Manager\Service_Requests\" />
     <Folder Include="CheckList\ImportFile\" />
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />

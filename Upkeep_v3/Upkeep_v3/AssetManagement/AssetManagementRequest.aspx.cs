@@ -55,6 +55,7 @@ namespace Upkeep_v3.AssetManagement
                 //    }
 
                 Fetch_Bind_DropDown();
+                Fetch_Custom_Fields();
 
                 Session["TransactionID"] = 0;
                 if (TransactionID > 0)
@@ -179,6 +180,30 @@ namespace Upkeep_v3.AssetManagement
                 throw ex;
             }
         }
+
+
+        public void Fetch_Custom_Fields()
+        {
+            DataSet dsSetting = new DataSet();
+            try
+            {
+                dsSetting = ObjUpkeep.Fetch_Asset_Custom_Fields(CompanyID);
+                if (dsSetting.Tables.Count > 0)
+                {
+                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    {
+                        Session["CustomeFields"] = "True";
+                        rptCustomFields.DataSource = dsSetting.Tables[0];
+                        rptCustomFields.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public void DisplayData(int TransactionID)
         {

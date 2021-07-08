@@ -820,6 +820,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Asset_Custom_Fields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Custom_FieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Custom_FieldsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchUserEmail">
         <s:complexType>
           <s:sequence>
@@ -5310,6 +5331,12 @@
   <wsdl:message name="Fetch_Custom_FieldsSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Custom_FieldsResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Custom_FieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Custom_Fields" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Custom_FieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Custom_FieldsResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchUserEmailSoapIn">
     <wsdl:part name="parameters" element="tns:FetchUserEmail" />
   </wsdl:message>
@@ -6509,6 +6536,10 @@
       <wsdl:input message="tns:Fetch_Custom_FieldsSoapIn" />
       <wsdl:output message="tns:Fetch_Custom_FieldsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Custom_Fields">
+      <wsdl:input message="tns:Fetch_Asset_Custom_FieldsSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_Custom_FieldsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FetchUserEmail">
       <wsdl:input message="tns:FetchUserEmailSoapIn" />
       <wsdl:output message="tns:FetchUserEmailSoapOut" />
@@ -7520,6 +7551,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Custom_Fields">
       <soap:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Custom_Fields">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Custom_Fields" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9422,6 +9462,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Custom_Fields">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Custom_Fields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Custom_Fields">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Custom_Fields" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

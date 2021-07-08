@@ -102,15 +102,19 @@ namespace Upkeep_v3.AssetManagement
                             //string Created_By = Convert.ToString(ds.Tables[0].Rows[i]["Created_By"]);
                             //string Created_Date = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
                              
-                            data += "<tr><td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=1' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
+                            //data += "<tr>" +
+                            //    "<td> <a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=1' style='text-decoration: underline;' > " + Asset_Name + " </a></td>" +
                                
-                                //"<td>" + Asset_Name + "</td>" +
-                                "<td>" + Asset_Type + "</td>" +
-                                "<td>" + Asset_Category + "</td>" +
-                                "<td>" + Service_Date + "</td>" +
-                                "<td>" + Assigned_To + "</td>" +
-                                "<td>" + Status + "</td>" + 
-                                "</tr>";
+                            //    //"<td>" + Asset_Name + "</td>" +
+                            //    "<td>" + Asset_Type + "</td>" +
+                            //    "<td>" + Asset_Category + "</td>" +
+                            //    "<td>" + Service_Date + "</td>" +
+                            //    "<td>" + Assigned_To + "</td>" +
+                            //    "<td>" + Status + "</td>" + 
+                            //    "</tr>";
+
+                            data += "<tr><td><a href='AssetManagementServiceRequest.aspx?TransactionID=" + Schedule_ID + "&AssetID=" + Asset_ID + "&ActionType=1'> " + Asset_ID + " </a></td><td>" + Asset_Name + "</td><td>" + Asset_Type + "</td><td>" + Asset_Category + "</td><td>" + Service_Date + "</td><td>" + Assigned_To + "</td><td>" + Status + "</td></tr>";
+
                         }
                     }
                     else

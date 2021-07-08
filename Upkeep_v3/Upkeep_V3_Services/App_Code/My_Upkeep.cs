@@ -3147,9 +3147,25 @@ public class My_Upkeep
 	}
 
 
+    public DataSet Fetch_Asset_Custom_Fields(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Fetch_Asset_Custom_Fields(CompanyID, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
 
-	public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID)
+
+
+    public DataSet FetchUserEmail(string EmailID, string UserType, int CompanyID)
 	{
 		DataSet ds = new DataSet();
 		try
