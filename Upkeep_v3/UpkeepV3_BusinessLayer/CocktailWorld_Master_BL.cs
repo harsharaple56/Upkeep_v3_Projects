@@ -227,7 +227,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet SupplierMaster_CRUD(int Supplier_ID,  string SupplierName, string Code, int pincode, string Address, int Contact,string City ,string Email , string LoggedInUserID, int Company_ID, string Action, string StrConn)
+        public DataSet SupplierMaster_CRUD(int Supplier_ID,  string SupplierName, string Code, int pincode, string Address, string Contact,string City ,string Email , string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try
             {

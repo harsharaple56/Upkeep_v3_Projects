@@ -167,7 +167,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, int Contact,string City, string Email, string LoggedInUserID, int Company_ID, string Action)
+    public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, string Contact,string City, string Email, string LoggedInUserID, int Company_ID, string Action)
     {
         try
         {

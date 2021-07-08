@@ -324,6 +324,7 @@ namespace Upkeep_v3.VMS
                 {
                     rptQuestionDetails.DataSource = dsConfig.Tables[1];
                     rptQuestionDetails.DataBind();
+                    totalNumber.Text = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 
             }
@@ -1125,6 +1126,13 @@ namespace Upkeep_v3.VMS
                         {
                             Response.Write("<script>alert('Status changed.');</script>");
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                        }
+                        //else if (status == 5 && Action != 'N')
+                        else if (status == 5)
+                        {
+                            divCountFull.Visible = true;
+                           // Response.Write("<script>alert('Count is Full.');</script>");
+                           // Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
                         else
                         {

@@ -389,20 +389,41 @@ border: 3px solid #ccc;*/
 
                         </div>
 
+                         <div class="alert alert-brand m-alert--icon" id="divCountFull" visible="false" runat="server" role="alert">
+                            <div class="m-alert__icon">
+                                <i class="la la-warning"></i>
+                            </div>
+                            <div class="m-alert__text">
+                                <strong>Apply!</strong> This Count is Full.
+                            </div>
+                        </div>
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
+
+                               
 
                                 <!-- here can place a progress bar-->
                             </div>
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Visit Request
+                                        <h3 class="m-portlet__head-text">Visit Request  
+                                            
+                                         
                                         </h3>
                                     </div>
+
+
+
                                 </div>
 
                                 <div class="m-portlet__head-tools">
+
+                                       <h4 class="m-portlet__head-text">Total Number of Visitor inside :- &nbsp;&nbsp;<asp:Label ID="totalNumber" Text="" runat="server"></asp:Label>&nbsp;&nbsp;  
+                                        </h4>
+
+
                                     <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -429,8 +450,8 @@ border: 3px solid #ccc;*/
                             <div class="form-group m-form__group row" id="divTitle" runat="server">
                                 <label class="col-md-2 col-form-label font-weight-bold">Select Visitor form</label>
                                 <div class="col-md-10">
-                                    <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
+                                    <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server"  OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
                                         ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
                                 </div>
                             </div>

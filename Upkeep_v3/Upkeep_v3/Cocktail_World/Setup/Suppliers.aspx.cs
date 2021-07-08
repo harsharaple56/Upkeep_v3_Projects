@@ -130,7 +130,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             // string Pincode = string.Empty;
             //int Code = 0;
             string Code = string.Empty;
-            int Contact = 0;
+            string Contact = string.Empty;
             int Pincode = 0;
             string Address = string.Empty;
             string Email = string.Empty;
@@ -159,7 +159,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 supplierName = txtSupplierName.Text.Trim();
                 // Code = Convert.ToInt32(txtCode.Text.Trim());
                 Code = txtCode.Text.Trim();
-                Contact = Convert.ToInt32(txtContct.Text.Trim());
+                //Contact = Convert.ToInt64(txtContct.Text.Trim());
+                Contact = txtContct.Text.Trim();
+
                 Pincode = Convert.ToInt32(txtPincode.Text.Trim());
                 Address = txtAddress.Text.Trim();
                 Email = txtEmail.Text.Trim();
@@ -229,7 +231,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.SupplierMaster_CRUD(0, "", "", 0, "", 0, "", "", LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.SupplierMaster_CRUD(0, "", "", 0, "", "", "", "", LoggedInUserID, CompanyID, "R");
 
 
                 if (ds.Tables.Count > 0)
@@ -243,7 +245,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             int Supplier_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_ID"]);
                             string SupplierName = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Name"]);
                             string SupplierCode = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Code"]);
-                            int Contact = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_Contact"]);
+                            //  int Contact = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_Contact"]);
+
+                            string Contact = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Contact"]);
+
                             string City = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_City"]);
                             int Pincode = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_PINCODE"]);
                            // string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
