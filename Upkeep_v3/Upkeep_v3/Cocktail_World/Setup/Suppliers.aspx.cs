@@ -51,7 +51,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             //  string data = "";
             try
             {
-             //   ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
+                //   ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
 
 
 
@@ -68,8 +68,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         txtPincode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_PINCODE"]); ;
                         txtContct.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Contact"]); ;
                         txtEmail.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Email"]);
-                        
-                        
+
+
 
 
 
@@ -166,11 +166,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
 
-                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, supplierName, Code, Pincode, Address, Contact,"", Email, LoggedInUserID, CompanyID, Action);
+                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, supplierName, Code, Pincode, Address, Contact, "", Email, LoggedInUserID, CompanyID, Action);
 
                 //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
 
-              //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
+                //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
 
 
 
@@ -246,12 +246,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             int Contact = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_Contact"]);
                             string City = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_City"]);
                             int Pincode = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_PINCODE"]);
-                            string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
+                           // string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
                             string Email = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Email"]);
 
 
 
-                            data += "<tr><td>" + SupplierName + "</td><td>" + SupplierCode + "</td><td>" + Contact + "</td><td>" + City + "</td><td>" + Pincode + "</td><td>" + Address + "</td><td>" + Email + "</td> <td><a href='Suppliers.aspx?Supplier_ID=" + Supplier_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Suppliers.aspx?DelSupplier_ID=" + Supplier_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + SupplierName + "</td><td>" + SupplierCode + "</td><td>" + Contact + "</td><td>" + City + "</td><td>" + Pincode + "</td><td>" + Email + "</td> <td><a href='Suppliers.aspx?Supplier_ID=" + Supplier_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Suppliers.aspx?DelSupplier_ID=" + Supplier_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }

@@ -99,7 +99,7 @@
                             <ul class="m-portlet__nav">
                                 <li class="m-portlet__nav-item">
 
-                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Brand" />
+                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Supplier" />
                            
 
                                      <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
@@ -129,13 +129,13 @@
                             <thead>
 
                                 <tr>
-                                    <th>Supplier_ID</th>
+                                   <%-- <th>Supplier_ID</th>--%>
                                     <th>SupplierName</th>
                                     <th> SupplierCode </th>
                                     <th> Contact</th>
                                     <th> City</th>
                                     <th>Pincode</th>
-                                    <th> Address</th>
+                                  <%--  <th> Address</th>--%>
                                     <th>Email</th>
 
                                    <%-- <th>Short Name</th>--%>
@@ -252,7 +252,7 @@
 
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Supplier Contact Number :</label>
-                                            <asp:TextBox ID="txtContct" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:TextBox ID="txtContct" runat="server" TextMode="Number" class="form-control" Style="width: 60%;"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtContct" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                         </div>
@@ -260,7 +260,7 @@
                                         
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Pincode</label>
-                                            <asp:TextBox ID="txtPincode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:TextBox ID="txtPincode" runat="server" TextMode="Number" class="form-control" Style="width: 60%;"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPincode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                         </div>
@@ -277,7 +277,7 @@
                                         
                                           <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Email ID</label>
-                                            <asp:TextBox ID="txtEmail" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" class="form-control" Style="width: 60%;"></asp:TextBox>
                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Value"></asp:RequiredFieldValidator>
 
                                         </div>
