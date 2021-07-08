@@ -4,8 +4,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css"/>
+    <link href="assets/demo/base/style.bundle.css" rel="stylesheet" type="text/css" />
 
     <style type="text/css">
+
+        @page { size: 54mm 86mm; }
+
+
         .modalBackground {
             background-color: grey;
             filter: alpha(opacity=90);
@@ -43,6 +49,10 @@ border: 3px solid #ccc;*/
             color: orange;
         }
 
+        .m-stack--demo.m-stack--ver .m-stack__item, .m-stack--demo.m-stack--hor .m-stack__demo-item {
+            padding: 3px;
+        }
+
         .CovidColorBoxRed {
             width: 100%;
             height: 30px;
@@ -74,14 +84,56 @@ border: 3px solid #ccc;*/
 
         .CovidColorCheckOrange:checked + label {
             background-color: orange;
-            color: white;
+    </style>
+
+    <script>
+
+        function PrintDiv() {
+            var divContents = document.getElementById("div_PrintVisitorID").innerHTML;
+            var printWindow = window.open('', '', 'height=700,width=500');
+            printWindow.document.write('<html><head><title>Print DIV Content</title>');
+            //printWindow.document.write('<link rel="stylesheet" href="assets/demo/base/style.bundle.css" type="text/css" />');
+            
+            printWindow.document.write("<link rel=\"stylesheet\" href=\"../assets/demo/base/style.bundle.css\" type=\"text/css\" />");
+            printWindow.document.write("<link rel=\"stylesheet\" href=\"../vendors/jstree/dist/themes/default/style.css\" type=\"text/css\" />");
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+
+            printWindow.document.close(); // necessary for IE >= 10
+            printWindow.focus(); // necessary for IE >= 10*/
+
+
+            setTimeout(function () {
+            printWindow.print();
+            printWindow.close();
+            }, 1000)
+            return true;
+        }
+//        function PrintDiv() {
+//      var mywindow = window.open('', '', 'height=400,width=600');
+//      mywindow.document.write('<html><head><title></title>');
+//      mywindow.document.write('<link rel="stylesheet" href="assets/demo/base/style.bundle.css" type="text/css" />');
+//      mywindow.document.write('</head><body >');
+//      mywindow.document.write(data);
+//      mywindow.document.write('</body></html>');
+//      mywindow.document.close();
+//      mywindow.focus();
+//      setTimeout(function(){mywindow.print();},1000);
+//      mywindow.close();
+
+//      return true;
+//}
+        
+    </script>
+    <script>
+        vContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
         }
 
-        .CovidColorCheckRed:checked + label {
-            background-color: red;
-            color: white;
-        }
-    </style>
+    </script>
 
 
     <%--Script for Web Cam--%>
@@ -170,9 +222,7 @@ border: 3px solid #ccc;*/
         })();
     </script>
 
-
     <script>
-
         $(document).ready(function () {
             $('.datetimepicker').datetimepicker({
                 todayHighlight: true,
@@ -192,89 +242,6 @@ border: 3px solid #ccc;*/
             });
         });
 
-        //function AddRow() {
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-        //    var len = tbl.rows.length;
-        //    var row = tbl.insertRow(len);
-        //    for (var i = 0; i < tbl.rows[0].cells.length - 1; i++) {
-        //        row.insertCell(i).innerHTML = "<input type=text id=txt" + len + "_" + i + " class='form-control' >";
-        //    }
-        //    //row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<INPUT TYPE="button" ONCLICK="deleteRow(this)" class="btn btn-outline btn-circle dark btn-sm black" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record">';
-
-        //    row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<a ONCLICK="deleteRow(this)" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record"> <i class="la la-trash"></i> </a>';
-        //}
-
-        //function deleteRow(obj) {
-        //    var row = obj;
-        //    while (row.nodeName.toLowerCase() != 'tr') {
-        //        row = row.parentNode;
-        //    }
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-        //    tbl.deleteRow(row.rowIndex);
-
-        //}
-
-
-        //function SubmitQuestion() {
-
-        //    var cols_len = 0;
-        //    $('#ContentPlaceHolder1_tblVMSQuestion').find('tr:first td').each(function () {
-        //        var cspan = $(this).attr('colspan');
-        //        if (!cspan) cspan = 1;
-        //        cols_len += parseInt(cspan, 10);
-        //    });
-
-        //    document.getElementById("hdnVMSQuestionData").value = '';
-        //    document.getElementById("hdnVMSQuestion").value = '';
-
-        //    var arrDataParent = [];
-        //    var arrDataChild = [];
-        //    // loop over each table row (tr)
-        //    $("#ContentPlaceHolder1_tblVMSQuestion tr").each(function () {
-        //        var currentRow = $(this);
-        //        // debugger;
-        //        var k = 0;
-        //        for (var j = 0; j < cols_len - 1; j++) {
-        //            k = currentRow;
-        //            var col1_value = currentRow.find("td:eq(" + j + ")").text();
-        //            //var col2_value = currentRow.find("td:eq(1)").text();
-        //            //var col3_value = currentRow.find("td:eq(2)").text();
-
-        //            var obj = {};
-        //            obj.colNo = col1_value;
-        //            //obj.col2 = col2_value;
-        //            //obj.col3 = col3_value;
-
-        //            infox.innerHTML = infox.innerHTML + '#' + col1_value;
-        //            arrDataChild.push(obj);
-        //        }
-        //        infox.innerHTML = infox.innerHTML + ',';
-        //        arrDataParent.push(arrDataChild);
-        //    });
-        //    // alert(infox.innerHTML);
-        //    // alert(JSON.stringify(arrDataParent));
-        //    document.getElementById("hdnVMSQuestion").value = infox.innerHTML;
-        //    var myTab = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-
-
-        //    // LOOP THROUGH EACH ROW OF THE TABLE AFTER Question.
-        //    for (i = 2; i < myTab.rows.length; i++) {
-
-        //        // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-        //        var objCells = myTab.rows.item(i).cells;
-        //        //var objCells = myTab.rows.item(i).cells.find('input').val();
-
-        //        // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
-        //        //for (var j = 0; j < objCells.length; j++) {
-        //        for (var j = 0; j < cols_len - 1; j++) {
-        //            info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
-
-        //        }
-        //        info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
-        //    }
-        //    document.getElementById("hdnVMSQuestionData").value = info.innerHTML;
-        //    //alert(info.innerHTML);
-        //}
         var txtControl = null;
         var txtHdn = null;
         function PopUpGrid() {
@@ -313,21 +280,24 @@ border: 3px solid #ccc;*/
             <%--//SelectedUsersID = '<%= Session["SelectedUsersID"].ToString() %>';
             //SelectedUsersName = '<%= Session["SelectedUsersName"].ToString() %>';--%>
 
-            //alert(SelectedUsersID);
-            //alert(SelectedUsersName);
+              //alert(SelectedUsersID);
+              //alert(SelectedUsersName);
 
-            FunEditClick(SelectedUsersID, SelectedUsersName);
-            // window.close();
+              FunEditClick(SelectedUsersID, SelectedUsersName);
+              // window.close();
 
-            pnlMeetingUsers.close();
-        }
+              pnlMeetingUsers.close();
+          }
 
     </script>
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="m-grid__item m-grid__item--fluid">
         <div class="m-content">
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -389,41 +359,21 @@ border: 3px solid #ccc;*/
 
                         </div>
 
-                         <div class="alert alert-brand m-alert--icon" id="divCountFull" visible="false" runat="server" role="alert">
-                            <div class="m-alert__icon">
-                                <i class="la la-warning"></i>
-                            </div>
-                            <div class="m-alert__text">
-                                <strong>Apply!</strong> This Count is Full.
-                            </div>
-                        </div>
-
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
-
-                               
 
                                 <!-- here can place a progress bar-->
                             </div>
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Visit Request  
-                                            
-                                         
+                                        <h3 class="m-portlet__head-text">Visit Request
                                         </h3>
                                     </div>
-
-
-
                                 </div>
 
                                 <div class="m-portlet__head-tools">
-
-                                       <h4 class="m-portlet__head-text">Total Number of Visitor inside :- &nbsp;&nbsp;<asp:Label ID="totalNumber" Text="" runat="server"></asp:Label>&nbsp;&nbsp;  
-                                        </h4>
-
-
+                                    
                                     <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -450,8 +400,8 @@ border: 3px solid #ccc;*/
                             <div class="form-group m-form__group row" id="divTitle" runat="server">
                                 <label class="col-md-2 col-form-label font-weight-bold">Select Visitor form</label>
                                 <div class="col-md-10">
-                                    <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server"  OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"  ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
+                                    <asp:DropDownList ID="ddlVMSTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlVMSTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlVMSTitle" Visible="true" Display="Dynamic"
                                         ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Visit Title"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -569,18 +519,18 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             </div>
 
                                             <div id="divImage" style="display: none" runat="server">
-                                                <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width:inherit;" AllowMultiple="true" />
+                                                <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: inherit;" AllowMultiple="true" />
                                                 &nbsp;
 
                                                 <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
 
-                                                     <span>
+                                                    <span>
                                                         <i class="fa fa-camera"></i>
                                                         <span>Use Webcam</span>
                                                     </span>
 
                                                 </button>
-                                               
+
 
 
                                                 <div id="divImgBtns" style="display: none" runat="server">
@@ -722,207 +672,303 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                             </div>
                         </div>
 
+                        <div class="modal fade" id="modal_VisitorID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle1">Print Visitor ID</h5>
 
-                        <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-                            <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 590px;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                            <ContentTemplate>
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div id="div_PrintVisitorID" class="modal-body m--align-center" style="background-color: #f4516c; padding: 5px;">
+                                        <div class="m-demo__preview">
+                                            <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo">
+
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle m--align-center">
+
+                                                    <img id="Img_CompanyLogo" src="../../assets/app/media/img/users/srv_hospital.jpg" style="max-height: 70px; max-width: 170px;">
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
-                                                    </div>
-                                                    <div class="form-group m-form__group row">
-                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
-                                                        <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
-                                                        <br />
-                                                        <strong>Please note down your Request ID.</strong>
-                                                    </div>
+
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle m--align-center">
+                                                    <span class="m--font-success form-label font-weight-bold">SRV Hospital - Goregaon</span>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
+
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle m--align-center">
+                                                    <h4 class="m--font-danger font-weight-bold">
+                                                        <span class="fa fa-id-card-alt" style="font-size: 2.1rem;"></span>Visitor ID Card</h4>
                                                 </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
+                                            </div>
+                                        </div>
+                                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                                            <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: black;">
+
+                                                <img id="Img_CompanyLogo" src="../../assets/app/media/img/users/profile.jpeg" style="max-height: 170px; max-width: 170px;">
+                                            </div>
 
 
+                                            <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo">
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                    <span class="form-label font-weight-bold">Name</span>
+                                                    <label>Lokesh Devasani</label>
+                                                </div>
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                    <span class="form-label font-weight-bold">Email ID</span>
+                                                    <label>ldevasani08@gmail.com</label>
+                                                </div>
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                    <span class="form-label font-weight-bold">Contact</span>
+                                                    <label>8898084488</label>
+                                                </div>
+
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                    <span class="form-label font-weight-bold">Meeting With</span>
+                                                    <label>Vijay Singh - C00LF1</label>
+                                                </div>
+                                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                    <span class="form-label font-weight-bold">Meeting Date and Time</span>
+                                                    <label>7th July 2021 . 3.40 PM</label>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div id="div_VMS_Form_Data" class="m-stack m-stack--ver m-stack--tablet m-stack--demo">
+
+                                            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                <span class="form-label font-weight-bold">Company Name</span>
+                                                <label>Compel Consultancy Pvt. Ltd.</label>
+                                            </div>
+                                            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                <span class="form-label font-weight-bold">Reason for Visit</span>
+                                                <label>Setup and Implementation of Software</label>
+                                            </div>
+
+                                            
+                                            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                                <span class="form-label m--font-danger">ID Card Valid till 7th July 2021 6.00 PM</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button onclick="PrintDiv();" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m-btn--align-center">
+                                            <span>
+                                                <i class="la la-qrcode "></i>
+                                                <i class="fa fa-print "></i>
+                                                <span>Print Visitor ID</span>
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
-                        </asp:Panel>
 
 
-                        <%--Panel for user selection--%>
+                            <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+                                <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="max-width: 590px;">
+                                        <div class="modal-content">
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group m-form__group row">
+                                                            <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
+                                                        </div>
+                                                        <div class="form-group m-form__group row">
+                                                            <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
+                                                            <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                            <br />
+                                                            <strong>Please note down your Request ID.</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
+                                                    </div>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
 
-                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%;">
-                            <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 60%;">
-                                    <div class="modal-content">
-                                        <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
-<ContentTemplate>--%>
-
-                                        <div class="modal-header">
-                                            <h3 id="myModalLabel">Associate Information</h3>
-                                            <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="box">
-                                                <div class="nav-tabs-custom">
-                                                    <ul class="nav nav-tabs nav-fill" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#t1">User Info</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#t2">User Group Info</a>
-                                                        </li>
-                                                        <%--<li class="active">
+                                    </div>
+                                </div>
+
+                            </asp:Panel>
+
+
+                            <%--Panel for user selection--%>
+
+                            <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%;">
+                                <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="max-width: 60%;">
+                                        <div class="modal-content">
+                                            <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+<ContentTemplate>--%>
+
+                                            <div class="modal-header">
+                                                <h3 id="myModalLabel">Associate Information</h3>
+                                                <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="box">
+                                                    <div class="nav-tabs-custom">
+                                                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" data-toggle="tab" href="#t1">User Info</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#t2">User Group Info</a>
+                                                            </li>
+                                                            <%--<li class="active">
 <a href="#t1" data-toggle="tab">User Info</a>
 </li>
 <li>
 <a href="#t2" data-toggle="tab">User Info Group</a>
 </li>--%>
-                                                    </ul>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="t1">
+                                                        </ul>
+                                                    </div>
+                                                    <div class="box-body">
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active" id="t1">
 
-                                                            <br />
+                                                                <br />
 
-                                                            <asp:UpdatePanel runat="server">
-                                                                <ContentTemplate>
-                                                                    <div class="form-group m-form__group row">
-                                                                        <div class="col-md-3">
-                                                                            <div class="m-input-icon m-input-icon--left">
-                                                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                                                                                <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                                                    <span><i class="la la-search"></i></span>
-                                                                                </span>
+                                                                <asp:UpdatePanel runat="server">
+                                                                    <ContentTemplate>
+                                                                        <div class="form-group m-form__group row">
+                                                                            <div class="col-md-3">
+                                                                                <div class="m-input-icon m-input-icon--left">
+                                                                                    <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                                                                                    <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                                                        <span><i class="la la-search"></i></span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6 row">
+                                                                                <label class="col-form-label col-md-4">Department:</label>
+                                                                                <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+
+                                                                            </div>
+                                                                            <div class="col-md-3" style="text-align: right;">
+                                                                                <asp:Button ID="btnSelectUser" runat="server" Text="Select User" OnClick="btnSelectUser_Click" class="btn btn-primary btn-success" />
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-6 row">
-                                                                            <label class="col-form-label col-md-4">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                                        <br />
 
-                                                                        </div>
-                                                                        <div class="col-md-3" style="text-align: right;">
-                                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select User" OnClick="btnSelectUser_Click" class="btn btn-primary btn-success" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <br />
+                                                                        <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
+                                                                        <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
-                                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
-                                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+                                                                        <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                                            AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
+                                                                            <Columns>
+                                                                                <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
+                                                                                <asp:TemplateField HeaderText="Select">
+                                                                                    <ItemTemplate>
+                                                                                        <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
 
-                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
-                                                                        <Columns>
-                                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
-                                                                            <asp:TemplateField HeaderText="Select">
-                                                                                <ItemTemplate>
-                                                                                    <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
+                                                                                        <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
 
-                                                                                    <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
+                                                                                        <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
+                                                                                        <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
+                                                                                    <ItemTemplate>
+                                                                                        <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
+                                                                                            <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
+                                                                                        </a>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
+                                                                            </Columns>
 
-                                                                                    <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
-                                                                                    <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
-                                                                                </ItemTemplate>
-                                                                            </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
-                                                                                <ItemTemplate>
-                                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
-                                                                                        <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
-                                                                                    </a>
-                                                                                </ItemTemplate>
-                                                                            </asp:TemplateField>
-                                                                            <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
-                                                                        </Columns>
+                                                                            <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
+                                                                            <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
+                                                                        </asp:GridView>
 
-                                                                        <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
-                                                                    </asp:GridView>
-
-                                                                </ContentTemplate>
-                                                                <Triggers>
-                                                                    <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
-                                                                </Triggers>
-                                                            </asp:UpdatePanel>
-                                                        </div>
-
-                                                        <div class="tab-pane" id="t2">
-
-                                                            <br />
-                                                            <div class="form-group m-form__group row">
-                                                                <div class="col-md-3">
-                                                                    <div class="m-input-icon m-input-icon--left">
-                                                                        <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearchGroup" />
-                                                                        <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                                            <span><i class="la la-search"></i></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
+                                                                    </ContentTemplate>
+                                                                    <Triggers>
+                                                                        <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
+                                                                    </Triggers>
+                                                                </asp:UpdatePanel>
                                                             </div>
-                                                            <br />
 
-                                                            <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableGroup" runat="server" SkinID="grdSearch">
-                                                                <Columns>
-                                                                    <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
+                                                            <div class="tab-pane" id="t2">
 
-                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
-                                                                        <ItemTemplate>
-                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
-                                                                                <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
-                                                                            </a>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="GroupUsers" SortExpression="GroupUsers" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+                                                                <br />
+                                                                <div class="form-group m-form__group row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="m-input-icon m-input-icon--left">
+                                                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearchGroup" />
+                                                                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                                                <span><i class="la la-search"></i></span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
 
-                                                                </Columns>
+                                                                </div>
+                                                                <br />
 
-                                                                <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
-                                                            </asp:GridView>
+                                                                <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableGroup" runat="server" SkinID="grdSearch">
+                                                                    <Columns>
+                                                                        <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
+
+                                                                        <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
+                                                                            <ItemTemplate>
+                                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
+                                                                                    <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
+                                                                                </a>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:BoundField DataField="GroupUsers" SortExpression="GroupUsers" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
+
+                                                                    </Columns>
+
+                                                                    <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
+                                                                    <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
+                                                                </asp:GridView>
+                                                            </div>
+
                                                         </div>
-
                                                     </div>
+
                                                 </div>
-
                                             </div>
-                                        </div>
 
-                                        <%-- </ContentTemplate>--%>
-                                        <%--<Triggers>
+                                            <%-- </ContentTemplate>--%>
+                                            <%--<Triggers>
 <asp:AsyncPostBackTrigger ControlID="btnMeetingMstSave" EventName="Click" />
 </Triggers>--%>
-                                        <%--</asp:UpdatePanel>--%>
+                                            <%--</asp:UpdatePanel>--%>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </asp:Panel>
+                            </asp:Panel>
 
-                        <cc1:ModalPopupExtender ID="mpeMeetingUsers" runat="server" PopupControlID="pnlMeetingUsers" TargetControlID="pop2"
-                            CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
-                        </cc1:ModalPopupExtender>
+                            <cc1:ModalPopupExtender ID="mpeMeetingUsers" runat="server" PopupControlID="pnlMeetingUsers" TargetControlID="pop2"
+                                CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
+                            </cc1:ModalPopupExtender>
 
-                        <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
+                            <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
 
-                        <input type="hidden" id="HdnID" runat="server" />
-                        <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                            <input type="hidden" id="HdnID" runat="server" />
+                            <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
 
-                        <%--</form>--%>
+                            <%--</form>--%>
+                        </div>
                     </div>
                 </div>
             </div>

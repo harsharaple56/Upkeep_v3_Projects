@@ -363,8 +363,13 @@
                                                     <a href="#" class="btn btn-secondary" onclick="myFunction()"><i class="la la-copy"></i></a>
                                                 </div>--%>
                                             </div>
-                                            <div id="divOptions" class="text-center" style="display: none" runat="server">
+                                            <div id="divOptions" class="text-center" style="display: none; text-align: center;" runat="server">
+                                                <div class="m-radio-inline" style="padding-left: 0px;">
+                                                    <label class="m-radio" style="padding-left: 0px;">
                                                 <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10"></asp:RadioButtonList>
+                                            </label>
+                                    </div>
+                                                        
                                             </div>
                                             <div id="divOptions1" style="display: none" runat="server">
                                                 <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
