@@ -582,13 +582,13 @@ background-color: blanchedalmond;
                             <div class="m--form-group row m--align-center">
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-phone" aria-hidden="true"></span>Contact</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
+                                    <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your Contact Number"></asp:TextBox>
                                     <span id="error_Phone_No" class="text-danger small"></span>
                                 </div>
 
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-envelope" aria-hidden="true"></span>Email</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
+                                    <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Email ID"></asp:TextBox>
                                     <span id="error_EmailID" class="text-danger small"></span>
                                 </div>
 

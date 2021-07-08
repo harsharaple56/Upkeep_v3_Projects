@@ -543,6 +543,7 @@
     <Content Include="assets\app\media\img\products\product7.jpg" />
     <Content Include="assets\app\media\img\products\product8.jpg" />
     <Content Include="assets\app\media\img\products\product9.jpg" />
+    <Content Include="assets\app\media\img\srv_hospital.jpg" />
     <Content Include="assets\app\media\img\users\100_1.jpg" />
     <Content Include="assets\app\media\img\users\100_10.jpg" />
     <Content Include="assets\app\media\img\users\100_11.jpg" />
@@ -571,6 +572,8 @@
     <Content Include="assets\app\media\img\users\300_7.jpg" />
     <Content Include="assets\app\media\img\users\300_8.jpg" />
     <Content Include="assets\app\media\img\users\300_9.jpg" />
+    <Content Include="assets\app\media\img\users\profile.jpeg" />
+    <Content Include="assets\app\media\img\users\srv_hospital.jpg" />
     <Content Include="assets\app\media\img\users\user1.jpg" />
     <Content Include="assets\app\media\img\users\user2.jpg" />
     <Content Include="assets\app\media\img\users\user3.jpg" />
