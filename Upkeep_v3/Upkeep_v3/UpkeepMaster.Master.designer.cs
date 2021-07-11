@@ -40,6 +40,51 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Image Img_CompanyLogo;
         
         /// <summary>
+        /// div_list_Quick_Links control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links;
+        
+        /// <summary>
+        /// div_list_Quick_Links_MyChecklist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_MyChecklist;
+        
+        /// <summary>
+        /// div_list_Quick_Links_VistRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_VistRequest;
+        
+        /// <summary>
+        /// div_list_Quick_Links_CSM_Request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_CSM_Request;
+        
+        /// <summary>
+        /// div_list_Quick_Reports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Reports;
+        
+        /// <summary>
         /// imgProfilePic control.
         /// </summary>
         /// <remarks>

@@ -99,6 +99,7 @@
             z-index: 99999999;
             background: url("../assets/app/media/img/misc/load.gif") no-repeat center center rgba(0,0,0,0.25)
         }
+
     </style>
 
 
@@ -297,8 +298,115 @@
                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
 
                                     <asp:Image ID="Img_CompanyLogo" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
+                                </li>
 
+                                <li id="div_list_Quick_Links" runat="server" class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i class="m-menu__link-icon flaticon-paper-plane"></i><span class="m-menu__link-title"><span class="m-menu__link-wrap"><span class="m-menu__link-text">Quick Links</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--brand m-badge--wide">new</span></span>
+                                </span></span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                                        <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/Ticketing/Add_MyRequest.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">Raise Ticket</span>
+                                                </a>
+                                            </li>
+                                            <li id="div_list_Quick_Links_MyChecklist" runat="server" class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/Checklist/My_Checklists.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">View My Checklists</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/WorkPermit/WorkPermit_Request.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">Raise Work Permit</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/GatePass/GatePass_Request.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">Raise Gate pass</span>
+                                                </a>
+                                            </li>
+                                            <li id="div_list_Quick_Links_VistRequest" runat="server" class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/VMS/Visit_Request.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">Add Visitor Entry</span>
+                                                </a>
+                                            </li>
+                                            <li id="div_list_Quick_Links_CSM_Request" runat="server" class="m-menu__item " aria-haspopup="true">
+                                                <a href="<%= Page.ResolveClientUrl("~/CSM/List_Service_Requests_Type.aspx") %>" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon fa fa-fast-forward"></i>
+                                                    <span class="m-menu__link-text">Customer Service Request</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
+                                <li id="div_list_Quick_Reports" runat="server" class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i class="m-menu__link-icon flaticon-pie-chart"></i><span class="m-menu__link-title"><span class="m-menu__link-wrap"><span class="m-menu__link-text">Quick Reports</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--brand m-badge--wide">new</span></span>
+                                </span></span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                                        <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">View CTT Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">View Checklist Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Work Permit Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Gate pass Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Feedbacks Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Visitors Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Asset Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Inventory Report</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " aria-haspopup="true">
+                                                <a href="#" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Laundry Report</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -1088,7 +1196,7 @@
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/components/charts/flotcharts.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/base/scripts.bundle.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/vendors/base/vendors.bundle.js") %>" type="text/javascript"></script>--%>
-<%--
+    <%--
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/components/charts/flotcharts.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/vendors/custom/flot/flot.bundle.js") %>" type="text/javascript"></script>--%>
 

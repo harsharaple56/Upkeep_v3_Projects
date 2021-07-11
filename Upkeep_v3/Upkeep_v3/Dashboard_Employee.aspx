@@ -77,29 +77,23 @@
 
 
     <div class="m-content">
-    <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
+    
+        <div class="m-subheader " style="padding: 0px 30px 15px 30px;">
 
-        <div class="m-subheader " style="padding: 0px 30px 0 30px;">
-
-            
-
-
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
+            <div class="m-form-group row m--align-center">
+                <div class="col-xl-3" style="padding-bottom:15px;">
                     <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Dashboard</h3>
 
                     
                     <asp:Button ID="btnSearchDashboard" runat="server" OnClick="btnSearchDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
 
                 </div>
-                <div>
-                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
-                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success" OnClick="btn_Employee_Dashboard_Click" />
-                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Admin_Dashboard_Click" />
-                        <
-
-                    </div>
-
+                <div class="col-xl-6 m--align-center" style="padding-bottom: 15px;">
+                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Your Account Dashboard" class="m-btn btn btn-success m-btn--pill" OnClick="btn_Employee_Dashboard_Click" />
+                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Switch to Admin Dashboard" class="m-btn btn btn-secondary m-btn--pill" OnClick="btn_Admin_Dashboard_Click" />
+                        
+                </div>
+                <div class="col-xl-3 m--align-center" style="padding-bottom: 15px;">
                     <span class="m-subheader__daterange" id="daterangepicker">
                         <span class="m-subheader__daterange-label">
                             <span class="m-subheader__daterange-title"></span>
@@ -114,17 +108,11 @@
                             <i class="la la-angle-down"></i>
                         </a>
                     </span>
-
                 </div>
-
             </div>
+
         </div>
-           
-
-        
-        
-    </div>
-
+    
     <div class="m-porlet">
 
         <div class="row" style="width: fit-content;">

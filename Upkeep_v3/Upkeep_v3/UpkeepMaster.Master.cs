@@ -20,11 +20,14 @@ namespace Upkeep_v3
         string SessionVisitor = string.Empty;
         string ModuleIDs = string.Empty;
         int CompanyID = 0;
+        string UserType = string.Empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
-
+            UserType = Convert.ToString(Session["UserType"]);
+            
             if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
             {
                 Response.Redirect("~/Login.aspx", false);
@@ -37,7 +40,20 @@ namespace Upkeep_v3
                 CompanyID = Convert.ToInt32(Session["CompanyID"]);
             }
 
-            
+            if(UserType=="E")
+            {
+
+            }
+            else if(UserType=="R")
+            {
+                div_list_Quick_Links_MyChecklist.Visible = false;
+                div_list_Quick_Reports.Visible = false;
+                div_list_Quick_Links_VistRequest.Visible = false;
+                div_list_Quick_Links_CSM_Request.Visible = false;
+
+            }
+
+
 
             ModuleIDs = Convert.ToString(Session["ModuleID"]);
 
