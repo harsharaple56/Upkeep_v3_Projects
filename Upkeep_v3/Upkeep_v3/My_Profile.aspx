@@ -25,6 +25,32 @@
         }*/
     </style>
 
+    <script src="<%= Page.ResolveClientUrl("~/vendors/dropzone/dist/dropzone.js") %>" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("Hello");
+            Dropzone.autoDiscover = false;
+            //Simple Dropzonejs 
+            $("#dropzone_one"). ({
+                url: "hn_FileUpload.ashx",
+                maxFiles: 5,
+                addRemoveLinks: true,
+                success: function (file, response) {
+                    var imgName = response;
+                    file.previewElement.classList.add("dz-success");
+                    console.log("Successfully uploaded :" + imgName);
+                },
+                error: function (file, response) {
+                    file.previewElement.classList.add("dz-error");
+                }
+            });
+        });
+    </script>
+
+
     <script type="text/javascript">
         $(function () {
             $('#profile_picture').change(function () {
@@ -80,8 +106,8 @@
 
                                         <%--<a href="" class="m-card-profile__email m-link">mark.andre@gmail.com</a>--%>
                                     </div>
-                                    <div class="m-card-profile__details">
-                                        <button type="button" class="btn-outline-success btn btn-accent" data-toggle="modal" data-target="#m_modal_1"><i class="fa fa-image fa-fw"></i>&nbsp; Change Pic</button>
+                                    <div class="m-card-profile__details" style="padding: 15px 0 0 0;">
+                                        <button type="button" class="btn-outline-success btn btn-accent" data-toggle="modal" data-target="#m_modal_1"><i class="fa fa-image fa-fw" style="font-size: 2rem; padding-right: 31px;"></i>Update Profile Photo</button>
 
                                         <%--<label type="button" for="profile_picture" class="btn-outline-success btn btn-accent"><i class="fa fa-image fa-fw"></i>&nbsp; Change Pic</label>
                                         <input type="file" id="profile_picture" style="display: none;" runat="server" clientidmode="Static" />
@@ -108,18 +134,12 @@
                                         </a>
                                     </li>
                                     <li class="m-nav__item">
-                                        <a href="../header/profile&amp;demo=default.html" class="m-nav__link">
+                                        <a href="#" class="m-nav__link">
                                             <i class="m-nav__link-icon flaticon-share"></i>
                                             <span class="m-nav__link-text">Activity</span>
                                         </a>
                                     </li>
 
-                                    <li class="m-nav__item">
-                                        <a href="../header/profile&amp;demo=default.html" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                            <span class="m-nav__link-text">Support</span>
-                                        </a>
-                                    </li>
                                 </ul>
                                 <div class="m-portlet__body-separator"></div>
                                 <div class="m-widget1 m-widget1--paddingless">
@@ -514,7 +534,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="m-dropzone dropzone" action="http://localhost:51897/My_Profile.aspx/Update_User_ProfilePic" id="m-dropzone-one">
+                            <div class="m-dropzone dropzone" action="http://localhost:51897/My_Profile.aspx/Update_User_ProfilePic" id="dropzone_one">
 												<div class="m-dropzone__msg dz-message needsclick">
 													<h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
 													<span class="m-dropzone__msg-desc">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>

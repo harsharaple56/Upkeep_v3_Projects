@@ -218,21 +218,26 @@
                                                         <label class="m-radio">
                                                             <asp:RadioButton ID="rdbVisitor" runat="server" GroupName="question_for" />Visitor
 																		<span></span>
-																	</label>
-                                                                    <label class="m-radio">
-                                                                         <asp:RadioButton id="rdbAll" runat="server" GroupName="question_for" /> All
-																		<span></span>
-																	</label>
-																	</div>
-																	<span id="error_question_for" class="text-danger small"></span>
-																</div>
-															</div>
-															<div class="m-form__group form-group row">
-																<label class="col-3 col-form-label">* Event Mode</label>
-																<div class="col-9">
-																	<div class="m-radio-inline">
-																		<label class="m-radio">
-																			<asp:RadioButton id="rdbDaily" runat="server" GroupName="event_mode" Checked="true" /> Daily/Monthly
+                                                        </label>
+                                                        <label class="m-radio m-radio--disabled">
+                                                            <input type="radio" id="rdbEmployee" runat="server" group="question_for" disabled="">
+                                                            Employee
+
+                                                                            <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="This Feature is Under Development">
+                                                                                <i class="fa fa-info-circle"></i>
+                                                                            </a>
+                                                        </label>
+                                                    </div>
+                                                    <span id="error_question_for" class="text-danger small"></span>
+                                                </div>
+                                            </div>
+                                            <div class="m-form__group form-group row">
+                                                <label class="col-3 col-form-label">* Event Mode</label>
+                                                <div class="col-9">
+                                                    <div class="m-radio-inline">
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbDaily" runat="server" GroupName="event_mode" Checked="true" />
+                                                            Daily/Monthly
 																			<span></span>
                                                         </label>
                                                         <label class="m-radio">

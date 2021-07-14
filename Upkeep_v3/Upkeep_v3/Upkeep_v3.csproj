@@ -3376,6 +3376,7 @@
     <Content Include="vendors\select2\src\js\wrapper.start.js" />
     <Content Include="vendors\socicon\css\socicon.css" />
     <Content Include="vendors\socicon\font\socicon.svg" />
+    <Content Include="vendors\summernote\built\base\module\Dropzone.js" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\base.css" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\index.html" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\prettify.css" />
@@ -4078,6 +4079,8 @@
     <Content Include="GatePass\Gatepass_Details_Print.xss">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
+    <Content Include="Generic_Handlers\hn_FileUpload.ashx" />
+    <Content Include="vendors\summernote\built\base\module\Dropzone.js.map" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -4953,6 +4956,9 @@
     </Compile>
     <Compile Include="General_Masters\Vendor_Mst.aspx.designer.cs">
       <DependentUpon>Vendor_Mst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic_Handlers\hn_FileUpload.ashx.cs">
+      <DependentUpon>hn_FileUpload.ashx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
