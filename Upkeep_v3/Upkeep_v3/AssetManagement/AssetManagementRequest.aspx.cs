@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Services;
 using System.Globalization;
+using System.Net.Http.Formatting;
 
 namespace Upkeep_v3.AssetManagement
 {
@@ -433,6 +434,15 @@ namespace Upkeep_v3.AssetManagement
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            //string txtCustomFieldsValue = "";
+            //foreach (RepeaterItem item in rptCustomFields.Items)
+            //{
+            //    TextBox data = (TextBox)item.FindControl("txtCustomFieldsValue");
+            //    txtCustomFieldsValue = data.Text; 
+            //}
+
+           
+
             //SET FLAG
             string CRUD_Flag = "";
             if ((int)ViewState["TransactionID"] == 0)
@@ -505,6 +515,7 @@ namespace Upkeep_v3.AssetManagement
                 }
             }
             ds = ObjUpkeep.INSERT_ASSET_REQUEST_Details(LoggedInUserID, strAssetData, strAssetAMCData, strAssetServiceData);
+
             if (ds.Tables.Count > 0)
             {
                 if (ds.Tables[0].Rows.Count > 0)
@@ -513,6 +524,33 @@ namespace Upkeep_v3.AssetManagement
                     ViewState["RequestAssetID"] = Convert.ToString(ds.Tables[0].Rows[0]["RequestID"]);
                 }
             }
+
+            //Save Data of Custome Field
+            StringBuilder strXmlCustomFields = new StringBuilder();
+            string CustomFields_XML = string.Empty;
+
+            if (Convert.ToString(Session["CustomeFields"]) == "True")
+            {
+                strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
+                strXmlCustomFields.Append(@"<CustomFields>");
+
+                foreach (RepeaterItem item in rptCustomFields.Items)
+                {
+                    string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
+                    string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
+
+                    strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
+                    strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                }
+                strXmlCustomFields.Append(@"</CustomFields>");
+            }
+
+            CustomFields_XML = strXmlCustomFields.ToString();
+            DataSet dscustomfield = new DataSet();
+            int AssetID = Convert.ToInt32(ds.Tables[0].Rows[0]["RequestID"]);
+            dscustomfield = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, CustomFields_XML , AssetID);
+
+
             return Status;
         }
         public int UpdateData()
@@ -601,6 +639,7 @@ namespace Upkeep_v3.AssetManagement
             strXmlAsset.Append(@"<Asset_Desc>" + txtAssetDescription.Text.ToString() + "</Asset_Desc>");
             strXmlAsset.Append(@"<Asset_Maker>" + txtAssetMaker.Text.ToString() + "</Asset_Maker>");
             strXmlAsset.Append(@"<Asset_SerialNo>" + txtAssetSerialNo.Text.ToString() + "</Asset_SerialNo>");
+            //strXmlAsset.Append(@"<Asset_Incharge>" + txtCustomFieldsValue.ToString() + "</Asset_Incharge>");
             strXmlAsset.Append(@"<Asset_Vendor>" + ddlAssetVendor.SelectedValue.ToString() + "</Asset_Vendor>");
             strXmlAsset.Append(@"<Asset_Dept>" + ddlDepartment.SelectedValue.ToString() + "</Asset_Dept>");
             strXmlAsset.Append(@"<Asset_Loc>" + hdnassetLocation.Value.ToString() + "</Asset_Loc>");
@@ -1299,6 +1338,30 @@ namespace Upkeep_v3.AssetManagement
                 {
                     throw ex;
                 }
+            }
+        }
+
+        protected void rptCustomFields_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                //Reference the Repeater Item.
+                RepeaterItem item = e.Item;
+
+                //Reference the Controls.
+                string customerId = (item.FindControl("txtCustomFieldsValue") as TextBox).Text;
+            }
+        }
+
+        protected void rptCustomFields_ItemCreated(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                //Reference the Repeater Item.
+                RepeaterItem item = e.Item;
+
+                //Reference the Controls.
+                string customerId = (item.FindControl("txtCustomFieldsValue") as TextBox).Text;
             }
         }
     }

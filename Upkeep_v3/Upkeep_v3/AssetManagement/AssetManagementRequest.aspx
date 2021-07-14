@@ -706,13 +706,13 @@
 
                              <br />
 
-                            <asp:Repeater ID="rptCustomFields" runat="server">
+                            <asp:Repeater ID="rptCustomFields" runat="server" OnItemCreated="rptCustomFields_ItemCreated" OnItemDataBound="rptCustomFields_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="form-group m-form__group row">
                                         <asp:HiddenField ID="hdnFieldID" ClientIDMode="Static" runat="server" Value='<%#Eval("Asset_Field_ID")%>' />
                                         <asp:Label ID="lblCustomFieldDesc" runat="server" class="col-xl-2 col-form-label" Text='<%#Eval("Asset_AddOn_Field_Desc")%>'  Style="font-weight: bolder;"></asp:Label>
                                         <div class="col-xl-10">
-                                            <asp:TextBox ID="txtCustomFieldsValue" runat="server" Placeholder='<%#Eval("Asset_Field_Placeholder")%>' class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtCustomFieldsValue" runat="server"  Placeholder='<%#Eval("Asset_Field_Placeholder")%>' class="form-control"></asp:TextBox>
                                         </div>
 
                                     </div>
