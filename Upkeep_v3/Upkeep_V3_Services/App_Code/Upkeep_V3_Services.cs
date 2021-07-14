@@ -1368,7 +1368,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Event_Update(int EventID, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
+    public DataSet Event_Update(int EventID,string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
     {
         DataSet ds = new DataSet();
 
@@ -1377,7 +1377,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
             //ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
-            ds = obj.Event_Update(EventID, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID, ActionType);
+            ds = obj.Event_Update(EventID, EventName, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID, ActionType);
 
         }
         catch (Exception ex)
@@ -2869,6 +2869,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
     {
         DataSet ds = new DataSet();
@@ -3313,6 +3328,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return dsProfile;
     }
 
+    [WebMethod]
+    public DataSet Update_User_ProfilePic(string LoggedInUserID, string UserType, string ProfilePhoto_FilePath, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            dsProfile = ObjUpkeep.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsProfile;
+    }
 
 
     #endregion

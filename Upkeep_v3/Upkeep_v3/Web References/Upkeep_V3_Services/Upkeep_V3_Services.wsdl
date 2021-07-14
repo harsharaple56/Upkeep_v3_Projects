@@ -3,6 +3,31 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="UPDATE_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UPDATE_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
         <s:complexType>
           <s:sequence>
@@ -669,6 +694,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="My_Profile_Email_VerificationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_User_ProfilePic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfilePhoto_FilePath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_User_ProfilePicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_User_ProfilePicResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3023,21 +3072,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UPDATE_ASSET_REQUEST_Details">
+      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetCustomField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssetId" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UPDATE_ASSET_REQUEST_DetailsResponse">
+      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UPDATE_ASSET_REQUEST_DetailsResult">
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -4911,6 +4958,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="QuesFor" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="EventMode" type="s:string" />
@@ -5127,6 +5175,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_Details" />
   </wsdl:message>
@@ -5294,6 +5348,12 @@
   </wsdl:message>
   <wsdl:message name="My_Profile_Email_VerificationSoapOut">
     <wsdl:part name="parameters" element="tns:My_Profile_Email_VerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_User_ProfilePicSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_User_ProfilePic" />
+  </wsdl:message>
+  <wsdl:message name="Update_User_ProfilePicSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_User_ProfilePicResponse" />
   </wsdl:message>
   <wsdl:message name="Import_User_MasterSoapIn">
     <wsdl:part name="parameters" element="tns:Import_User_Master" />
@@ -5889,11 +5949,11 @@
   <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
+  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" />
   </wsdl:message>
-  <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_DetailsResponse" />
+  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -6400,6 +6460,10 @@
     <wsdl:part name="parameters" element="tns:Update_ChecklistPointsResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <wsdl:input message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsSoapOut" />
@@ -6511,6 +6575,10 @@
     <wsdl:operation name="My_Profile_Email_Verification">
       <wsdl:input message="tns:My_Profile_Email_VerificationSoapIn" />
       <wsdl:output message="tns:My_Profile_Email_VerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_User_ProfilePic">
+      <wsdl:input message="tns:Update_User_ProfilePicSoapIn" />
+      <wsdl:output message="tns:Update_User_ProfilePicSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Import_User_Master">
       <wsdl:input message="tns:Import_User_MasterSoapIn" />
@@ -6908,9 +6976,9 @@
       <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -7252,6 +7320,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <soap:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -7497,6 +7574,15 @@
     </wsdl:operation>
     <wsdl:operation name="My_Profile_Email_Verification">
       <soap:operation soapAction="http://tempuri.org/My_Profile_Email_Verification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_User_ProfilePic">
+      <soap:operation soapAction="http://tempuri.org/Update_User_ProfilePic" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8395,8 +8481,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9163,6 +9249,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_UPDATE_ASSET_AMC_REQUEST_Details">
       <soap12:operation soapAction="http://tempuri.org/INSERT_UPDATE_ASSET_AMC_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -9408,6 +9503,15 @@
     </wsdl:operation>
     <wsdl:operation name="My_Profile_Email_Verification">
       <soap12:operation soapAction="http://tempuri.org/My_Profile_Email_Verification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_User_ProfilePic">
+      <soap12:operation soapAction="http://tempuri.org/Update_User_ProfilePic" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10306,8 +10410,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

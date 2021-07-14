@@ -2550,7 +2550,23 @@ public class My_Upkeep
 		}
 	}
 
-	public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
+    public DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField,int AssetId)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
 	{
 		DataSet ds = new DataSet();
 		try
@@ -3028,11 +3044,24 @@ public class My_Upkeep
 		}
 	}
 
+    public DataSet Update_User_ProfilePic(string LoggedInUserID, string UserType, string ProfilePhoto_FilePath, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsProfile = ObjUpkeepCC_BL.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID, StrConn);
+            return dsProfile;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
+    #endregion
 
-	#endregion
-
-	public DataSet Import_User_Master(int CompanyID, string LoggedInUserID)
+    public DataSet Import_User_Master(int CompanyID, string LoggedInUserID)
 	{
 		DataSet dsUsers = new DataSet();
 		try

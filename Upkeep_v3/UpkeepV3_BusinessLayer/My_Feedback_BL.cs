@@ -631,7 +631,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Event_Update(int EventID, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType, string strConn)
+        public DataSet Event_Update(int EventID,string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -642,6 +642,7 @@ namespace UpkeepV3_BusinessLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@EventName", EventName);
             cmd.Parameters.AddWithValue("@locationName", Location);
             cmd.Parameters.AddWithValue("@QuesFor", QuesFor);
             cmd.Parameters.AddWithValue("@EventMode", EventMode);
