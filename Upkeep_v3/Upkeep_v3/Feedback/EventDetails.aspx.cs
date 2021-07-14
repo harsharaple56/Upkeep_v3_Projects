@@ -25,6 +25,7 @@ namespace Upkeep_v3.Feedback
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             //event_form.Action= @"EventDetails.aspx";  // commentd by suju removed form type 
+            
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 Response.Redirect("~/Login.aspx", false);
@@ -91,8 +92,8 @@ namespace Upkeep_v3.Feedback
                 { QuesFor = "R"; }
                 if (rdbVisitor.Checked == true)
                 { QuesFor = "V"; }
-                if (rdbAll.Checked == true)
-                { QuesFor = "A"; }
+                if (rdbEmployee.Checked == true)
+                { QuesFor = "E"; }
 
                 string EventMode = string.Empty;
                 if (rdbDaily.Checked == true)

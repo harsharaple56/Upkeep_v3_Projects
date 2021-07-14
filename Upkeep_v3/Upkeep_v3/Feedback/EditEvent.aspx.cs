@@ -56,8 +56,8 @@ namespace Upkeep_v3.Feedback
             { QuesFor = "R"; }
             if (rdbVisitor.Checked == true)
             { QuesFor = "V"; }
-            if (rdbAll.Checked == true)
-            { QuesFor = "A"; }
+            if (rdbEmployee.Checked == true)
+            { QuesFor = "E"; }
 
             string EventMode = string.Empty;
             if (rdbDaily.Checked == true)
@@ -124,7 +124,7 @@ namespace Upkeep_v3.Feedback
                         }
                         else 
                         {
-                            rdbAll.Checked = true;
+                            rdbEmployee.Checked = true;
                         }
                         string Event_Mode = Convert.ToString(ds.Tables[0].Rows[0]["Event_Mode"]);
                         if (Event_Mode == "D")

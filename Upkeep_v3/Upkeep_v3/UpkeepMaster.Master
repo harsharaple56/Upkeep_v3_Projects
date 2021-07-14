@@ -237,9 +237,6 @@
     <div id="load"></div>
 
     <div class="m-grid m-grid--hor m-grid--root m-page">
-
-
-
         <!-- BEGIN: Header -->
         <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
             <div class="m-container m-container--fluid m-container--full-height">
@@ -251,7 +248,7 @@
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
                                 <a class="m-brand__logo-wrapper">
                                     <%--<img alt="" src="<%= Page.ResolveClientUrl("~/assets/demo/media/img/logo/efacilito_White.png") %>" />--%>
-                                    <asp:Image ID="Image1" runat="server" Style="width: auto; max-height: 160px; max-width: 100%;" />
+                                    <asp:Image ID="Image1" runat="server" Style="width: auto; max-height: 160px; max-width: 150px;" />
                                 </a>
                             </div>
                             <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -401,6 +398,7 @@
                                             <li class="m-menu__item " aria-haspopup="true">
                                                 <a href="#" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-line-graph"></i>
+                                                    <span class="m-menu__link-text">Laundry Report</span>
                                                     <span class="m-menu__link-text">Laundry Report</span>
                                                 </a>
                                             </li>

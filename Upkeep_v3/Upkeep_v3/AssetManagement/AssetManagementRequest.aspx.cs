@@ -190,11 +190,15 @@ namespace Upkeep_v3.AssetManagement
                 dsSetting = ObjUpkeep.Fetch_Asset_Custom_Fields(CompanyID);
                 if (dsSetting.Tables.Count > 0)
                 {
-                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    if (rptCustomFields.Items.Count > 0)
                     {
                         Session["CustomeFields"] = "True";
                         rptCustomFields.DataSource = dsSetting.Tables[0];
                         rptCustomFields.DataBind();
+                    }
+                    else
+                    {
+                        rptCustomFields.Visible = false;
                     }
                 }
             }
