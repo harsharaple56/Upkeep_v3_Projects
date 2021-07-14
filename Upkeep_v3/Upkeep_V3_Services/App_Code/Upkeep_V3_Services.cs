@@ -2869,6 +2869,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet UPDATE_ASSET_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetXml, string AssetAmcXml, string AssetServiceXml)
     {
         DataSet ds = new DataSet();
