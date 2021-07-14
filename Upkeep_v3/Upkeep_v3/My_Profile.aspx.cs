@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
+using System.Web.Services;
 using System.Text;
 using System.IO;
 
@@ -63,6 +64,9 @@ namespace Upkeep_v3
                         txtPostCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Postcode"]);
 
                         lblUserCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
+
+                        Session["User_Code"]= Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
+
                         lblCompanyName.Text = Convert.ToString(Session["CompanyName"]);
                         lblCompanyCode.Text = Convert.ToString(Session["CompanyCode"]);
                         lblDesignation.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Designation"]);
@@ -288,5 +292,68 @@ namespace Upkeep_v3
                 throw ex;
             }
         }
+
+        protected void btnChangeProfilePic_Click(object sender, EventArgs e)
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                string ProfilePhoto_FilePath = string.Empty;
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                string ProfilePhoto = string.Empty;
+                string User_Code = string.Empty;
+                //if (profile_picture.PostedFile.FileName!="")
+                //{
+                //    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/UserImages/");
+
+                //    if (!Directory.Exists(fileUploadPath_Profile))
+                //    {
+                //        Directory.CreateDirectory(fileUploadPath_Profile);
+                //    }
+
+                //    User_Code = Convert.ToString(Session["User_Code"]);
+
+                //    string fileExtension = Path.GetExtension(profile_picture.PostedFile.FileName);
+                //    ProfilePhoto = User_Code + fileExtension;
+
+                //    string Profile_SaveLocation = Server.MapPath("~/UserImages/") + "/" + ProfilePhoto;
+                //    ProfilePhoto_FilePath = imgPath + "/UserImages/" + ProfilePhoto;
+
+                //    profile_picture.PostedFile.SaveAs(Profile_SaveLocation);
+
+                //}
+
+                dsProfile = ObjUpkeep.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID);
+
+                if (dsProfile.Tables.Count > 0)
+                {
+                    if (dsProfile.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(dsProfile.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            Session["User_Code"] = "";
+
+                            Response.Redirect(Page.ResolveClientUrl("~/My_Profile.aspx"), false);
+                        }
+                       
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [WebMethod]
+        public void Update_User_ProfilePic()
+        {
+
+
+        }
+
     }
 }

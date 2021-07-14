@@ -31,6 +31,15 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.Repeater rptFeedbackDetails;
         
         /// <summary>
+        /// div_Customer_Details1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Customer_Details1;
+        
+        /// <summary>
         /// div_Customer_Details control.
         /// </summary>
         /// <remarks>

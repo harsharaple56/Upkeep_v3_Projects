@@ -49,7 +49,13 @@ namespace Upkeep_v3.Feedback
 
             int EventID = Convert.ToInt32(Session["EventID"]);
             DataSet ds = new DataSet();
+            string EventName = string.Empty;
+            string LocationName = string.Empty;
             string QuesFor = string.Empty;
+
+            EventName = Convert.ToString(event_name.Text.Trim());
+            LocationName = Convert.ToString(Location.Text.Trim());
+
             if (rdbCustomer.Checked == true)
             { QuesFor = "C"; }
             if (rdbRetailer.Checked == true)
@@ -69,7 +75,7 @@ namespace Upkeep_v3.Feedback
                 EventMode = "P"; // Periodic            
             }
 
-            ds = ObjUpkeepFeedback.Event_Update(EventID, Location.Text.Trim(), QuesFor, EventMode, startDate.Text.Trim(), endDate.Text.Trim(), LoggedInUserID, "Update");
+            ds = ObjUpkeepFeedback.Event_Update(EventID, EventName, LocationName, QuesFor, EventMode, startDate.Text.Trim(), endDate.Text.Trim(), LoggedInUserID, "Update");
 
             if (ds.Tables.Count > 0)
             {
@@ -161,7 +167,7 @@ namespace Upkeep_v3.Feedback
 
             try
             {
-                ds = ObjUpkeepFeedback.Event_Update(EventID, "", "", "", "", "", LoggedInUserID, "Delete");
+                ds = ObjUpkeepFeedback.Event_Update(EventID,"", "", "", "", "", "", LoggedInUserID, "Delete");
 
                 if (ds.Tables.Count > 0)
                 {
