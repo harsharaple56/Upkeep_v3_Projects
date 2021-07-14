@@ -148,11 +148,7 @@ namespace Upkeep_v3.Ticketing
                             ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
                     }
-
-                    if (dsLocDetails.Tables[3].Rows.Count > 0)
-                    {
-                        lblCompanyName.Text = Convert.ToString(dsLocDetails.Tables[3].Rows[0]["Company_Desc"]);
-                    }
+                    
 
                 }
             }
@@ -807,18 +803,14 @@ namespace Upkeep_v3.Ticketing
 
             int SubCategoryID = 0;
             SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
-            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
-            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
             BindWorkflow(CategoryID, SubCategoryID);
 
-            dvDepartment.Attributes.Add("style", "display:block; padding-left: 10%;");
+            dvDepartment.Attributes.Add("style", "display:block;");
         }
 
         protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
-            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
             //int ZoneID = 0;
             int SubCategoryID = 0;
@@ -828,7 +820,7 @@ namespace Upkeep_v3.Ticketing
             SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             BindWorkflow(CategoryID, SubCategoryID);
 
-            dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
+            dvDepartment.Attributes.Add("style", "display:block;");
         }
 
         protected void btnViewWorkflow_Click(object sender, EventArgs e)
@@ -883,7 +875,7 @@ namespace Upkeep_v3.Ticketing
                     //}
                     if (dsWorkflow.Tables[1].Rows.Count > 0)
                     {
-                        lblDepartmentName.Text = Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
+                        lblDepartmentName.InnerText = Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
                         Session["Department"] = Convert.ToString(dsWorkflow.Tables[1].Rows[0]["Dept_Desc"]);
                     }
 
@@ -1032,18 +1024,14 @@ namespace Upkeep_v3.Ticketing
             {
                 SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             }
-            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
-            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
             BindWorkflow(CategoryID, SubCategoryID);
 
-            dvDepartment.Attributes.Add("style", "display:block; padding-left: 10%;");
+            dvDepartment.Attributes.Add("style", "display:block;");
         }
 
         protected void btnSubCategoryChange_Click(object sender, EventArgs e)
         {
-            btnViewWorkflow.Attributes.Add("class", "btn btn-accent  m-btn m-btn--icon");
-            btnViewWorkflow.Attributes.Add("style", "pointer-events: painted;padding: 0.45rem 1.15rem;");
 
             //int ZoneID = 0;
             int SubCategoryID = 0;
@@ -1053,7 +1041,7 @@ namespace Upkeep_v3.Ticketing
             SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
             BindWorkflow(CategoryID, SubCategoryID);
 
-            dvDepartment.Attributes.Add("style", "display:block; padding-left: 18%;");
+            dvDepartment.Attributes.Add("style", "display:block;");
         }
 
         public void Fetch_Custom_Fields()

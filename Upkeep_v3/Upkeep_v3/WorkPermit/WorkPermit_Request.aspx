@@ -511,31 +511,31 @@
 
 
                             <div id="dvApprovalHistory" runat="server">
-                                
+
                                 <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                                     <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Approval History</h3>
                                 </div>
                                 <asp:Panel ID="panel1" runat="server" ScrollBars="vertical">
 
-                                
-                                <asp:GridView ID="gvApprovalHistory" style="overflow: scroll" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline collapsed" AutoGenerateColumns="False">
 
-                                    <Columns>
-                                        <asp:BoundField DataField="Level" HeaderText="Level" />
-                                        <asp:BoundField DataField="Approver" HeaderText="Approver" />
-                                        <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
-                                        <asp:BoundField DataField="Action Date" HeaderText="Action Date" />
-                                        <asp:BoundField DataField="Status" HeaderText="Status" />
-                                        <asp:TemplateField HeaderText="Signature">
-                                            <ItemTemplate>
-                                                <asp:Image ID="imgSignature" Height="100" Width="100" runat="server" AlternateText="Signature Missing.."
-                                                    ImageUrl='<%# ResolveUrl(Eval("Emp_Sign").ToString()) %>' />
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                                    </asp:Panel>
+                                    <asp:GridView ID="gvApprovalHistory" Style="overflow: scroll" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline collapsed" AutoGenerateColumns="False">
+
+                                        <Columns>
+                                            <asp:BoundField DataField="Level" HeaderText="Level" />
+                                            <asp:BoundField DataField="Approver" HeaderText="Approver" />
+                                            <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
+                                            <asp:BoundField DataField="Action Date" HeaderText="Action Date" />
+                                            <asp:BoundField DataField="Status" HeaderText="Status" />
+                                            <asp:TemplateField HeaderText="Signature">
+                                                <ItemTemplate>
+                                                    <asp:Image ID="imgSignature" Height="100" Width="100" runat="server" AlternateText="Signature Missing.."
+                                                        ImageUrl='<%# ResolveUrl(Eval("Emp_Sign").ToString()) %>' />
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </asp:Panel>
 
 
                             </div>

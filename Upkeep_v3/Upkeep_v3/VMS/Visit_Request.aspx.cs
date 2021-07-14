@@ -324,7 +324,7 @@ namespace Upkeep_v3.VMS
                 {
                     rptQuestionDetails.DataSource = dsConfig.Tables[1];
                     rptQuestionDetails.DataBind();
-                    totalNumber.Text = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
+                    totalNumber.InnerText = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 
             }
@@ -701,8 +701,6 @@ namespace Upkeep_v3.VMS
                     }
                     if (ds.Tables[1].Rows.Count > 0)
                     {
-                        grdGroupDesc.DataSource = ds.Tables[1];
-                        grdGroupDesc.DataBind();
                     }
                 }
 

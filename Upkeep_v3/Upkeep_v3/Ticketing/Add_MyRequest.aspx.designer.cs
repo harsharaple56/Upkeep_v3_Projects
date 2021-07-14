@@ -13,15 +13,6 @@ namespace Upkeep_v3.Ticketing {
     public partial class Add_MyRequest {
         
         /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
         /// btnTest control.
         /// </summary>
         /// <remarks>
@@ -247,13 +238,31 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dlSubCategory;
         
         /// <summary>
+        /// dvDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvDepartment;
+        
+        /// <summary>
+        /// lblDepartmentName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDepartmentName;
+        
+        /// <summary>
         /// btnViewWorkflow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnViewWorkflow;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnViewWorkflow;
         
         /// <summary>
         /// mpeWorkflow control.
@@ -274,24 +283,6 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Button btnWorkflow;
         
         /// <summary>
-        /// dvDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvDepartment;
-        
-        /// <summary>
-        /// lblDepartmentName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDepartmentName;
-        
-        /// <summary>
         /// txtTicketDesc control.
         /// </summary>
         /// <remarks>
@@ -308,15 +299,6 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTicketDesc;
-        
-        /// <summary>
-        /// rptCustomFields control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCustomFields;
         
         /// <summary>
         /// FileUpload_TicketImage control.
@@ -344,6 +326,15 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Is_ImageUpload_ValidFile;
+        
+        /// <summary>
+        /// rptCustomFields control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCustomFields;
         
         /// <summary>
         /// lblTicketErrorMsg control.

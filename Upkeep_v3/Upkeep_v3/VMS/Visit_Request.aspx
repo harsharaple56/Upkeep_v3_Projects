@@ -372,7 +372,7 @@ border: 3px solid #ccc;*/
                                 <i class="la la-warning"></i>
                             </div>
                             <div class="m-alert__text">
-                                <strong>Apply!</strong> This Request is Applied.
+                                <strong>Apply!</strong> This Request is in Applied State.
                             </div>
                         </div>
                         <div class="alert alert-danger m-alert--icon" id="divAlertRejected" visible="false" runat="server" role="alert">
@@ -389,7 +389,7 @@ border: 3px solid #ccc;*/
                                 <i class="la la-warning"></i>
                             </div>
                             <div class="m-alert__text">
-                                <strong>Full!</strong> This Visitor Count is Full. Can't Let you IN
+                                <strong>Covid Restriction Alert!</strong> Active Visitor Count Limit is Full. Please Mark someone OUT to raise a request.
                             </div>
                         </div>
 
@@ -410,12 +410,16 @@ border: 3px solid #ccc;*/
                                         </h3>
                                     </div>
                                 </div>
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">Total number of Visitor Inside :
+                                            <span id="totalNumber" runat="server">0</span>
+                                        </h3>
+                                    </div>
+                                </div>
 
                                 <div class="m-portlet__head-tools">
 
-                                      <h3 class="m-portlet__head-text"> Total number of Visitor Inside:- &nbsp;  <asp:Label ID="totalNumber" Text="" runat="server"></asp:Label>  
-                                        </h3>   
-                                    &nbsp;&nbsp;&nbsp;
                                     <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -757,46 +761,23 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                         <%--Panel for user selection--%>
 
-                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%;">
+                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%">
                             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 60%;">
+                                <div class="modal-dialog" role="document" >
                                     <div class="modal-content">
                                         <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
 <ContentTemplate>--%>
 
                                         <div class="modal-header">
-                                            <h3 id="myModalLabel">Associate Information</h3>
+                                            <h3 id="myModalLabel">Select Users for Meeting</h3>
                                             <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                                         </div>
                                         <div class="modal-body">
-                                            <div class="box">
-                                                <div class="nav-tabs-custom">
-                                                    <ul class="nav nav-tabs nav-fill" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#t1">User Info</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#t2">User Group Info</a>
-                                                        </li>
-                                                        <%--<li class="active">
-<a href="#t1" data-toggle="tab">User Info</a>
-</li>
-<li>
-<a href="#t2" data-toggle="tab">User Info Group</a>
-</li>--%>
-                                                    </ul>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="t1">
-
-                                                            <br />
-
-                                                            <asp:UpdatePanel runat="server">
+                                            <asp:UpdatePanel runat="server">
                                                                 <ContentTemplate>
                                                                     <div class="form-group m-form__group row">
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-4">
                                                                             <div class="m-input-icon m-input-icon--left">
                                                                                 <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
                                                                                 <span class="m-input-icon__icon m-input-icon__icon--left">
@@ -804,13 +785,12 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                                 </span>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-6 row">
-                                                                            <label class="col-form-label col-md-4">Department:</label>
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input" Style="width: 40%;" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                                        <div class="col-md-5">
+                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input " OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
 
                                                                         </div>
-                                                                        <div class="col-md-3" style="text-align: right;">
-                                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select User" OnClick="btnSelectUser_Click" class="btn btn-primary btn-success" />
+                                                                        <div class="col-md-3" style="text-align: center;">
+                                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select" OnClick="btnSelectUser_Click" style="width: inherit;" class="btn btn-primary btn-success" />
                                                                         </div>
                                                                     </div>
                                                                     <br />
@@ -843,7 +823,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                         </Columns>
 
                                                                         <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
+                                                                        <EmptyDataRowStyle Height="25%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
                                                                     </asp:GridView>
 
                                                                 </ContentTemplate>
@@ -851,55 +831,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                                     <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
                                                                 </Triggers>
                                                             </asp:UpdatePanel>
-                                                        </div>
-
-                                                        <div class="tab-pane" id="t2">
-
-                                                            <br />
-                                                            <div class="form-group m-form__group row">
-                                                                <div class="col-md-3">
-                                                                    <div class="m-input-icon m-input-icon--left">
-                                                                        <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearchGroup" />
-                                                                        <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                                            <span><i class="la la-search"></i></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <br />
-
-                                                            <asp:GridView ID="grdGroupDesc" AutoGenerateColumns="false" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatableGroup" runat="server" SkinID="grdSearch">
-                                                                <Columns>
-                                                                    <asp:BoundField DataField="GroupID" Visible="false"></asp:BoundField>
-
-                                                                    <asp:TemplateField HeaderText="Action/Info Group Description" SortExpression="GroupName">
-                                                                        <ItemTemplate>
-                                                                            <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('0#<%# (DataBinder.Eval(Container.DataItem,"GroupID")) %>','<%# (DataBinder.Eval(Container.DataItem,"GroupName")) %>')">
-                                                                                <%# (DataBinder.Eval(Container.DataItem, "GroupName"))%>
-                                                                            </a>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:BoundField DataField="GroupUsers" SortExpression="GroupUsers" HeaderText="ActionInfo" ControlStyle-Width="100%"></asp:BoundField>
-
-                                                                </Columns>
-
-                                                                <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
-                                                            </asp:GridView>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                                        
                                         </div>
-
-                                        <%-- </ContentTemplate>--%>
-                                        <%--<Triggers>
-<asp:AsyncPostBackTrigger ControlID="btnMeetingMstSave" EventName="Click" />
-</Triggers>--%>
-                                        <%--</asp:UpdatePanel>--%>
                                     </div>
                                 </div>
                             </div>

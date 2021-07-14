@@ -76,25 +76,25 @@
 
 
     <div class="m-content">
-    <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 20px;">
+    
+           <div class="m-subheader " style="padding: 0px 30px 15px 30px;">
 
-        <div class="m-subheader ">
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
+            <div class="m-form-group row m--align-center">
+                <div class="col-xl-3" style="padding-bottom:15px;">
                     <h3 class="m-subheader__title " style="padding: 7px 7px 7px 0;">Admin Dashboard</h3>
 
                     
-                    <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
+                    <asp:Button ID="Button3" runat="server" OnClick="btnDashboard_Click" Text="Search" ClientIDMode="Static" style="display:none;" CssClass="btn btn-sm btn-brand" />
                     
                 </div>
-                <div>
-                    <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
-                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Switch to Your Account Dashboard" class="m-btn btn btn-secondary" OnClick="btn_Employee_Dashboard_Click" />
-                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Admin Dashboard" class="m-btn btn btn-success" OnClick="btn_Admin_Dashboard_Click" />
-
-                    </div>
+                <div class="col-xl-6 m--align-center" style="padding-bottom: 15px;">
+                        <asp:Button ID="btn_Employee_Dashboard" runat="server" Text="Switch to Your Account Dashboard" class="m-btn btn btn-secondary m-btn--pill" OnClick="btn_Employee_Dashboard_Click" />
+                        <asp:Button ID="btn_Admin_Dashboard" runat="server" Text="Admin Dashboard" class="m-btn btn btn-success m-btn--pill" OnClick="btn_Admin_Dashboard_Click" />
+                        
+                </div>
+                <div class="col-xl-3 m--align-center" style="padding-bottom: 15px;">
                     <span class="m-subheader__daterange" id="daterangepicker">
-                        <span class="m-subheader__daterange-label">
+                        <span class="m-subheader__daterange-label"> 
                             <span class="m-subheader__daterange-title"></span>
                             <span class="m-subheader__daterange-date m--font-brand"></span>
                             <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
@@ -109,13 +109,9 @@
                         </a>
                     </span>
                 </div>
-
             </div>
+
         </div>
-
-    </div>
-    
-
 
 
     <div class="m-porlet">
@@ -142,7 +138,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
-                                        <asp:Label ID="lbl_Tkt_Total" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">18</asp:Label>
+                                        <asp:Label ID="lbl_Tkt_Total" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">0</asp:Label>
 
                                         <span class="m-widget19__comment">Tickets
                                         </span>
@@ -169,7 +165,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:Label ID="lbl_Tkt_open" runat="server" class="m-widget4__number m--font-danger">500</asp:Label>
+                                        <asp:Label ID="lbl_Tkt_open" runat="server" class="m-widget4__number m--font-danger">0</asp:Label>
 
                                     </div>
                                 </div>
@@ -186,7 +182,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:Label ID="lbl_Tkt_Closed" runat="server" class="m-widget4__number m--font-success">64</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Closed" runat="server" class="m-widget4__number m--font-success">0</asp:Label>
 
                                         </span>
                                     </div>
@@ -205,7 +201,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:Label ID="lbl_Tkt_Parked" runat="server" class="m-widget4__number m--font-warning">1800</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Parked" runat="server" class="m-widget4__number m--font-warning">0</asp:Label>
 
                                         </span>
                                     </div>
@@ -223,7 +219,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:Label ID="lbl_Tkt_Expired" runat="server" class="m-widget4__number m--font-secondary">19</asp:Label>
+                                            <asp:Label ID="lbl_Tkt_Expired" runat="server" class="m-widget4__number m--font-secondary">0</asp:Label>
 
                                         </span>
                                     </div>
@@ -265,7 +261,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
-                                        <asp:label id="lbl_Chk_Total_Attended" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">1800</asp:label>
+                                        <asp:label id="lbl_Chk_Total_Attended" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">0</asp:label>
                                         <span class="m-widget19__comment">Checklists
                                         </span>
                                     </div>
@@ -291,7 +287,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:label id="lbl_chk_Open" runat="server" class="m-widget4__number m--font-danger">501</asp:label>
+                                        <asp:label id="lbl_chk_Open" runat="server" class="m-widget4__number m--font-danger">0</asp:label>
                                     </div>
                                 </div>
                                 <div class="m-widget4__item">
@@ -308,7 +304,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_chk_Closed" runat="server" class="m-widget4__number m--font-success">501</asp:label>
+                                            <asp:label id="lbl_chk_Closed" runat="server" class="m-widget4__number m--font-success">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -356,7 +352,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
-                                        <asp:Label ID="lbl_GP_Total" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">18</asp:Label>
+                                        <asp:Label ID="lbl_GP_Total" runat="server" class="m-widget19__number m--font-brand" style="font-size: 2.5rem;">0</asp:Label>
 
                                         <span class="m-widget19__comment">Gate Passes
                                         </span>
@@ -382,7 +378,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:label id="lbl_GP_Open" runat="server" class="m-widget4__number m--font-danger">501</asp:label>
+                                        <asp:label id="lbl_GP_Open" runat="server" class="m-widget4__number m--font-danger">0</asp:label>
                                     </div>
                                 </div>
 
@@ -398,7 +394,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:label id="lbl_GP_InProgress" runat="server" class="m-widget4__number m--font-warning">501</asp:label>
+                                        <asp:label id="lbl_GP_InProgress" runat="server" class="m-widget4__number m--font-warning">0</asp:label>
                                     </div>
                                 </div>
 
@@ -415,7 +411,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_GP_Approved" runat="server" class="m-widget4__number m--font-info">501</asp:label>
+                                            <asp:label id="lbl_GP_Approved" runat="server" class="m-widget4__number m--font-info">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -433,7 +429,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_GP_Closed" runat="server" class="m-widget4__number m--font-success">501</asp:label>
+                                            <asp:label id="lbl_GP_Closed" runat="server" class="m-widget4__number m--font-success">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -451,7 +447,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_GP_Hold" runat="server" class="m-widget4__number m--font-info">501</asp:label>
+                                            <asp:label id="lbl_GP_Hold" runat="server" class="m-widget4__number m--font-info">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -469,7 +465,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_GP_Rejected" runat="server" class="m-widget4__number m--font-danger">501</asp:label>
+                                            <asp:label id="lbl_GP_Rejected" runat="server" class="m-widget4__number m--font-danger">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -488,7 +484,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_GP_Expired" runat="server" class="m-widget4__number m--font-secondary">501</asp:label>
+                                            <asp:label id="lbl_GP_Expired" runat="server" class="m-widget4__number m--font-secondary">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -534,7 +530,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
-                                        <asp:Label id="lbl_WP_Total" class="m-widget19__number m--font-brand" runat="server" style="font-size: 2.5rem;"></asp:Label>
+                                        <asp:Label id="lbl_WP_Total" class="m-widget19__number m--font-brand" runat="server" style="font-size: 2.5rem;">0</asp:Label>
                                         <span class="m-widget19__comment">Work Permits
                                         </span>
                                     </div>
@@ -559,7 +555,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:label id="lbl_WP_Open" runat="server" class="m-widget4__number m--font-danger">501</asp:label>
+                                        <asp:label id="lbl_WP_Open" runat="server" class="m-widget4__number m--font-danger">0</asp:label>
                                     </div>
                                 </div>
 
@@ -575,7 +571,7 @@
                                         </span>
                                     </div>
                                     <div class="m-widget4__ext">
-                                        <asp:label id="lbl_WP_InProgress" runat="server" class="m-widget4__number m--font-warning">501</asp:label>
+                                        <asp:label id="lbl_WP_InProgress" runat="server" class="m-widget4__number m--font-warning">0</asp:label>
                                     </div>
                                 </div>
 
@@ -592,7 +588,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_WP_Approved" runat="server" class="m-widget4__number m--font-info">501</asp:label>
+                                            <asp:label id="lbl_WP_Approved" runat="server" class="m-widget4__number m--font-info">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -610,7 +606,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_WP_Closed" runat="server" class="m-widget4__number m--font-success">501</asp:label>
+                                            <asp:label id="lbl_WP_Closed" runat="server" class="m-widget4__number m--font-success">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -628,7 +624,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_WP_Hold" runat="server" class="m-widget4__number m--font-info">501</asp:label>
+                                            <asp:label id="lbl_WP_Hold" runat="server" class="m-widget4__number m--font-info">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -665,7 +661,7 @@
                                     </div>
                                     <div class="m-widget4__ext">
                                         <span class="m-widget4__stats m--font-info">
-                                            <asp:label id="lbl_WP_Expired" runat="server" class="m-widget4__number m--font-secondary">501</asp:label>
+                                            <asp:label id="lbl_WP_Expired" runat="server" class="m-widget4__number m--font-secondary">0</asp:label>
                                         </span>
                                     </div>
                                 </div>
@@ -706,7 +702,7 @@
                                     </span>
                                 </div>
                                 <div class="m-widget19__stats" style="line-height: 1;">
-                                    <asp:Label id="lbl_Feedback_Total" class="m-widget19__number m--font-brand" runat="server" style="font-size: 2.5rem;">18</asp:Label>
+                                    <asp:Label id="lbl_Feedback_Total" class="m-widget19__number m--font-brand" runat="server" style="font-size: 2.5rem;">0</asp:Label>
                                     <span class="m-widget19__comment">Feedbacks
                                     </span>
                                 </div>

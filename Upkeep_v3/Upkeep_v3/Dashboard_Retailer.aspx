@@ -126,13 +126,14 @@
                                                         <br>
                                                         <span class="m-widget24__desc">Click to log the time when your store Opens
 
+                                                        </span>
+                                                        <span class="m-widget24__stats m--font-info">
                                                             <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" id="btnPunchIn" onserverclick="Btn_Retailer_PunchIn_Click">
                                                                 <span>
                                                                     <i class="la la-hand-pointer-o"></i>
                                                                     <span>Punch IN</span>
                                                                 </span>
                                                             </a>
-
                                                         </span>
                                                         <div class="m--space-10"></div>
                                                         <div class="progress m-progress--sm">
@@ -167,9 +168,6 @@
                                                                 </span>
                                                             </a>
                                                         </span>
-
-
-
                                                         <div class="m--space-10"></div>
                                                         <div class="progress m-progress--sm">
                                                             <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
