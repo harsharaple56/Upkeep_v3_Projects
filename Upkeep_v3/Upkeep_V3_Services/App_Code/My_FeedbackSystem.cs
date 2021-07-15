@@ -444,7 +444,7 @@ public class My_FeedbackSystem
         }
     }
 
-    public DataSet Event_Update(int EventID, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
+    public DataSet Event_Update(int EventID,string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
     {
         try
         {
@@ -453,7 +453,7 @@ public class My_FeedbackSystem
             DataSet ds = new DataSet();
             //FeedbackSystemBusiness.Class1  objEmp = new //FeedbackSystemBusiness.Class1 ();
             //ds = objEmp.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType,EventID, strConn);
-            ds = ObjFeedback_BL.Event_Update(EventID, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID,ActionType, strConn);
+            ds = ObjFeedback_BL.Event_Update(EventID, EventName, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID,ActionType, strConn);
 
             return ds;
         }

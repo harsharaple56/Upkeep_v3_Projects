@@ -1669,7 +1669,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Retail_Store_Name.Value</Value>
+                                  <Value>=First(Fields!Retail_Store_Name.Value, "ds_GP1_Retailers")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1858,7 +1858,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Contact</rd:DefaultName>

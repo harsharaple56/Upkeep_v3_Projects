@@ -130,11 +130,11 @@
                                     <div class="m-widget19__user-img">
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
-                                    <div class="m-widget19__info">
+                                    <div class="m-widget19__info" style="padding-right: 1rem;">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem; line-height: initial;">Pending Closure
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Tickets accepted by You which requires closure
+                                        <span class="m-widget1__title" style="line-height: initial;">Total No. of Tickets accepted by You which requires closure
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -277,11 +277,11 @@
                                     <div class="m-widget19__user-img">
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
-                                    <div class="m-widget19__info">
+                                    <div class="m-widget19__info" style="padding-right: 1rem;">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;"    line-height: initial;>Incomplete Checklists
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Checklists pending for closure
+                                        <span class="m-widget1__title" style="line-height: initial;">Total No. of Checklists pending for closure
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -352,11 +352,11 @@
                                     <div class="m-widget19__user-img">
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
-                                    <div class="m-widget19__info">
+                                    <div class="m-widget19__info" style="padding-right: 1rem;">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Work Permits pending for your approval
+                                        <span class="m-widget1__title" style="line-height: initial;">Total No. of Work Permits pending for your approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">
@@ -469,11 +469,11 @@
                                     <div class="m-widget19__user-img">
                                         <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
                                     </div>
-                                    <div class="m-widget19__info">
+                                    <div class="m-widget19__info" style="padding-right: 1rem;">
                                         <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
                                         </span>
                                         <br>
-                                        <span class="m-widget19__time" style="line-height: initial;">Total No. of Gatepass pending for your approval
+                                        <span class="m-widget1__title" style="line-height: initial;">Total No. of Gatepass pending for your approval
                                         </span>
                                     </div>
                                     <div class="m-widget19__stats" style="line-height: 1;">

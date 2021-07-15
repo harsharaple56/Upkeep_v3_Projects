@@ -53,14 +53,14 @@
                         <div class="m-form m-form--fit m--margin-bottom-20">
                                 <div class="row m--align-center">
 
-                                    <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         
                                         <label class="font-weight-bold">Search Data:</label>
                                         <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
 
                                     </div>
 
-                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Filter Status:</label>
 
                                         <div class="m-form__control">
@@ -75,7 +75,7 @@
                                     </div>
 
 
-                                       <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                       <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Filter Action Status:</label>
 
                                     <div class="m-form__control">

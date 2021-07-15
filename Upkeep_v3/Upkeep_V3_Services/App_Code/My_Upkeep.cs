@@ -3044,11 +3044,24 @@ public class My_Upkeep
 		}
 	}
 
+    public DataSet Update_User_ProfilePic(string LoggedInUserID, string UserType, string ProfilePhoto_FilePath, int CompanyID)
+    {
+        DataSet dsProfile = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsProfile = ObjUpkeepCC_BL.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID, StrConn);
+            return dsProfile;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
+    #endregion
 
-	#endregion
-
-	public DataSet Import_User_Master(int CompanyID, string LoggedInUserID)
+    public DataSet Import_User_Master(int CompanyID, string LoggedInUserID)
 	{
 		DataSet dsUsers = new DataSet();
 		try

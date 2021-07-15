@@ -175,8 +175,8 @@
                         </div>
 
                         <div class="m-portlet__body">
-                            <div class="m-widget6" id="div_Customer_Details" runat="server">
-                                <div id="div_Employee" class="m-widget6__head">
+                            <div class="m-widget6" id="div_Customer_Details1" runat="server">
+                                <div id="div_Customer_Details" runat="server" class="m-widget6__head">
                                     <div class="m-widget6__item">
                                         <span class="m-widget6__caption">Customer Name
                                         </span>

@@ -4316,12 +4316,33 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
+        public DataSet Update_User_ProfilePic(string LoggedInUserID, string UserType, string ProfilePhoto_FilePath, int CompanyID, string StrConn)
+        {
+            DataSet dsProfile = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Update_User_Profile_Pic", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@UserType", UserType);
+                cmd.Parameters.AddWithValue("@ProfilePhoto_FilePath", ProfilePhoto_FilePath);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsProfile);
+                return dsProfile;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 
-		#endregion
+        #endregion
 
-		public DataSet Import_User_Master(int CompanyID, string LoggedInUserID, string StrConn)
+        public DataSet Import_User_Master(int CompanyID, string LoggedInUserID, string StrConn)
 		{
 			try
 			{

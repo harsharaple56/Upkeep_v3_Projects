@@ -587,13 +587,14 @@ namespace Upkeep_v3.GatePass
 
 
 
+
                 if (dsConfig.Tables.Count > 1)
                 {
                     if (dsConfig.Tables[2].Rows.Count > 0)
                     {
                         ddlDepartment.DataSource = dsConfig.Tables[2];
-                        ddlDepartment.DataTextField = "DepartmentName";
-                        ddlDepartment.DataValueField = "DepartmentId";
+                        ddlDepartment.DataTextField = "Dept_Desc";
+                        ddlDepartment.DataValueField = "Department_ID";
                         ddlDepartment.DataBind();
                         ddlDepartment.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
