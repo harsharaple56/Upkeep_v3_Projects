@@ -1344,29 +1344,6 @@ namespace Upkeep_v3.AssetManagement
                 }
             }
         }
-
-        protected void rptCustomFields_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                //Reference the Repeater Item.
-                RepeaterItem item = e.Item;
-
-                //Reference the Controls.
-                string customerId = (item.FindControl("txtCustomFieldsValue") as TextBox).Text;
-            }
-        }
-
-        protected void rptCustomFields_ItemCreated(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                //Reference the Repeater Item.
-                RepeaterItem item = e.Item;
-
-                //Reference the Controls.
-                string customerId = (item.FindControl("txtCustomFieldsValue") as TextBox).Text;
-            }
-        }
+       
     }
 }

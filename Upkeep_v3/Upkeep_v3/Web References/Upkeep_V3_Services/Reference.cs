@@ -5642,16 +5642,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId) {
-            object[] results = this.Invoke("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetCustomField,
-                        AssetId});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
         public void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetCustomField, int AssetId) {
             this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(LoggedInUserID, AssetCustomField, AssetId, null);
         }
