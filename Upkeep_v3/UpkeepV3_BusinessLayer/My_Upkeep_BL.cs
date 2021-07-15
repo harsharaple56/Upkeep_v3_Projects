@@ -3618,7 +3618,28 @@ namespace UpkeepV3_BusinessLayer
 			}
 		}
 
-		public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, string StrConn)
+        public DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomeField, int AssetId, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_ASSET_CUSTOMFIELD_INSERT_REQUEST_DATA", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@AssetCustomField", AssetCustomeField);
+                cmd.Parameters.AddWithValue("@AssetID", AssetId);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, string StrConn)
 		{
 			DataSet ds = new DataSet();
 			try
