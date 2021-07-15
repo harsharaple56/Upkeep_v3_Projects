@@ -26,6 +26,28 @@
     </style>
 
     <script type="text/javascript">
+
+        //$(document).ready(function () {
+        //    Dropzone.autoDiscover = false;
+        //    //alert('method called');
+        //    //Simple Dropzonejs 
+        //    $("#m-dropzone-one").dropzone({
+        //        url: "Image_Upload_Control.ashx",
+        //        //params: {'UserCode':'1'},
+        //        addRemoveLinks: true,
+        //        success: function (file, response) {
+        //            var imgName = response;
+        //            file.previewElement.classList.add("dz-success");
+        //            //alert(imgName);
+        //            //console.log(“Successfully uploaded : ” + imgName);
+        //        },
+        //        error: function (file, response) {
+        //            file.previewElement.classList.add("dz-error");
+        //        }
+        //    });
+        //});
+
+
         $(function () {
             $('#profile_picture').change(function () {
                 var fileExtension = ['jpeg', 'jpg', 'png'];
@@ -514,12 +536,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="m-dropzone dropzone" action="http://localhost:51897/My_Profile.aspx/Update_User_ProfilePic" id="m-dropzone-one">
-												<div class="m-dropzone__msg dz-message needsclick">
-													<h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
-													<span class="m-dropzone__msg-desc">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>
-												</div>
-											</div>
+                            <div class="m-dropzone dropzone" id="m-dropzone-one">
+                                <div class="m-dropzone__msg dz-message needsclick">
+                                    <%--<h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>--%>
+                                    <%--<span class="m-dropzone__msg-desc" >This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>--%>
+
+                                    <label type="button" for="profile_picture" class="m-dropzone__msg-title">Drop files here or click to upload.</label>
+
+                                    <input type="file" id="profile_picture" style="display: none;" runat="server" clientidmode="Static" />
+                                        <asp:Button ID="btnChangeProfilePic" runat="server" OnClick="btnChangeProfilePic_Click" Style="display: none;" ClientIDMode="Static"></asp:Button>
+                                </div>
+                            </div>
                         </div>
                         <%--<div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

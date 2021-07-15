@@ -4078,18 +4078,19 @@
     <Content Include="GatePass\Gatepass_Details_Print.xss">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
+    <Content Include="Image_Upload_Control.ashx" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="VMS\Visit_Request_Public.aspx" />
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="VMS\Visit_Request_Public.aspx" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4956,6 +4957,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Image_Upload_Control.ashx.cs">
+      <DependentUpon>Image_Upload_Control.ashx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\General_Master.aspx.cs">
       <DependentUpon>General_Master.aspx</DependentUpon>

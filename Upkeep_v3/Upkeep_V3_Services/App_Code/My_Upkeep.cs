@@ -2557,7 +2557,7 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjUpkeepCC_BL.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId, StrConn);
+            //ds = ObjUpkeepCC_BL.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId, StrConn);
             return ds;
         }
         catch (Exception ex)
