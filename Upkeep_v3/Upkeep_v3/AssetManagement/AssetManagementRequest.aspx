@@ -706,7 +706,7 @@
 
                              <br />
 
-                            <asp:Repeater ID="rptCustomFields" runat="server" OnItemCreated="rptCustomFields_ItemCreated" OnItemDataBound="rptCustomFields_ItemDataBound">
+                            <asp:Repeater ID="rptCustomFields" runat="server">
                                 <ItemTemplate>
                                     <div class="form-group m-form__group row">
                                         <asp:HiddenField ID="hdnFieldID" ClientIDMode="Static" runat="server" Value='<%#Eval("Asset_Field_ID")%>' />
