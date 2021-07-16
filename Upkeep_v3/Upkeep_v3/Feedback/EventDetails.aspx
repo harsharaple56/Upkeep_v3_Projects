@@ -277,18 +277,25 @@
                                     <div class="col-xl-12">
                                         <div class="m-form__section m-form__section--first">
                                             <div class="form-group m-form__group row">
-                                                <label class="col-xl-2 col-lg-3 col-form-label">
-                                                    
+                                                <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold" style="padding-right: 0px;">
                                                     Feedback Form Name:</label>
-                                                <div class="col-xl-10 col-lg-9">
+                                                <div class="col-xl-4 col-lg-9">
                                                     <asp:TextBox ID="name" runat="server" class="form-control m-input" placeholder="Enter the name of your Feedback Form"></asp:TextBox>
                                                     <span id="error_name" class="text-danger small"></span>
                                                     <span class="error_type text-danger font-weight-bold">Error : Same feedback name / left blank</span>
 
                                                 </div>
+                                                <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">
+                                                    Upload Form Banner:</label>
+                                                <div class="col-xl-4 col-lg-9" style="    padding-top: 8px;">
+                                                    <input type="file" name="FileUpload_BannerImage" id="FileUpload_BannerImage" style="padding-right: 20px;">
+                                                    <input type="hidden" name="Is_ImageUpload_ValidFile" id="Is_ImageUpload_ValidFile">
+                                                    <span class="error_type text-danger font-weight-bold">Invalid File Uploaded error</span>
+
+                                                </div>
                                             </div>
                                             <div class="m-form__group form-group row">
-                                                <label class="col-2 col-form-label">
+                                                <label class="col-2 col-form-label font-weight-bold">
                                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select For which whom you are configuring this Feedback form. <RETAILER> option is relevant when your property is a Mall. <VISITORS> Option can be selected if you want to add the Feedback form in your VMS Configuration ">
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
@@ -319,12 +326,25 @@
                                                         </label>
                                                     </div>
                                                     <span id="error_question_for" class="text-danger small"></span>
+
                                                 </div>
+
+                                            </div>
+                                            <div class="m-form__group form-group row">
+
+                                                <span class="col-1 m-switch m-switch--outline m-switch--icon m-switch--success" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Email Reminders are sent every week until they submit a feedback for the current Month.">
+                                                    <label>
+                                                        <input type="checkbox" name="">
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                                <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
                                             </div>
 
 
+
                                             <div class="m-form__group form-group row">
-                                                <label class="col-2 col-form-label">
+                                                <label class="col-2 col-form-label font-weight-bold">
                                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Choose if you want your Feedback form to be active Always OR Between a particular time Period ">
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
@@ -351,7 +371,7 @@
 
                                             <div class="dates_div_group" style="display: none;" id="dvDate" runat="server">
                                                 <div class="form-group m-form__group row" id="dvStartDate" runat="server">
-                                                    <label class="col-xl-2 col-lg-3 col-form-label">* Start at</label>
+                                                    <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">* Start at</label>
                                                     <div class="col-xl-10 col-lg-9">
                                                         <div class="input-group date">
                                                             <asp:TextBox ID="startDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
@@ -363,7 +383,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group row" id="dvEndDate" runat="server">
-                                                    <label class="col-xl-2 col-lg-3 col-form-label">* End at</label>
+                                                    <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">* End at</label>
                                                     <div class="col-xl-10 col-lg-9">
                                                         <div class="input-group date">
                                                             <asp:TextBox ID="endDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
@@ -377,7 +397,7 @@
                                             </div>
 
                                             <div class="form-group m-form__group row">
-                                                <label class="col-xl-2 col-lg-3 col-form-label">
+                                                <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">
                                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Enter the Name of Location where this feedback form will be used. Eg. Phoenix Mall , Kurla">
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
@@ -389,7 +409,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group m-form__group row">
-                                                <div class="col-xl-8">
+                                                <div class="col-xl-7">
 
                                                     <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
                                                         <input type="checkbox">
@@ -401,7 +421,7 @@
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
                                                 </div>
-                                                <div class="col-xl-4">
+                                                <div class="col-xl-5">
                                                     <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_6">
                                                         <i class="fa fa-info-circle"></i>
                                                         Check how your Feedbacks are analysed
@@ -460,7 +480,7 @@
                                             </div>
 
                                             <div class="form-group m-form__group row">
-                                                
+
                                                 <label class="col-xl-3 col-form-label font-weight-bold">
                                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This Location ( Configured in your General Setup >> Location Map )will be selected by default for the automatic Ticket">
                                                         <i class="fa fa-info-circle"></i>
@@ -483,16 +503,23 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="form-group m-form__group row">
                                                 <div class="col-xl-12">
-                                                    
+
                                                     <div class="input-group m-input-group">
-													    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
-													    <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
-													    <div class="input-group-append"><span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span></div>
-												    </div>
+                                                        <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
+                                                            <i class="fa fa-flag"></i>
+                                                        </a>
+                                                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
+
+                                                        <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
+                                                        <div class="input-group-append">
+
+                                                            <span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span>
+                                                        </div>
+                                                    </div>
                                                     <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                 </div>
                                             </div>
@@ -526,11 +553,10 @@
                                                                     </a>
                                                                     <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
                                                                         <input type="checkbox">
-
                                                                         Flag on Negative Feedback
 											                            <span></span>
                                                                     </label>
-                                                                    
+
                                                                 </div>
                                                                 <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
 

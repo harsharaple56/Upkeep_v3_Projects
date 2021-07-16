@@ -1116,6 +1116,21 @@
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="GPDocuments\03-04-2021\GPDoc_87_20210403_095417625.png" />
+    <Content Include="GPDocuments\03-04-2021\GPDoc_88_20210403_095418026.png" />
+    <Content Include="GPDocuments\04-04-2021\GPDoc_87_20210404_025454257.jpg" />
+    <Content Include="GPDocuments\05-02-2021\GPDoc_62_20210205_032930529.png" />
+    <Content Include="GPDocuments\05-02-2021\GPDoc_73_20210205_034002199.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_011741794.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_012612265.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013305342.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013457624.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013610397.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013628571.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013708411.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013752369.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013808997.png" />
+    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013828098.png" />
     <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Purchase_Details.aspx" />
@@ -4081,6 +4096,12 @@
     </Content>
     <Content Include="Generic_Handlers\hn_FileUpload.ashx" />
     <Content Include="vendors\summernote\built\base\module\Dropzone.js.map" />
+    <Content Include="GPDocuments\04-04-2021\GPDoc_88_20210404_025454258.pdf" />
+    <Content Include="GPDocuments\06-04-2021\GPDoc_19_20210406_042931883.pdf" />
+    <Content Include="GPDocuments\06-04-2021\GPDoc_19_20210406_080711927.pdf" />
+    <Content Include="GPDocuments\06-04-2021\GPDoc_27_20210406_010239974.pdf" />
+    <Content Include="GPDocuments\06-04-2021\GPDoc_90_20210406_010333441.pdf" />
+    <Content Include="GPDocuments\06-04-2021\GPDoc_91_20210406_010333442.pdf" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -6365,6 +6386,7 @@
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
+    <Folder Include="GPDocuments\13-07-2021\" />
     <Folder Include="Laundry_Management\Reports\" />
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
