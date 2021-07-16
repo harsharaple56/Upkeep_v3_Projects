@@ -33,7 +33,7 @@ namespace Upkeep_v3.AssetManagement
             {
                 TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                 ViewState["TransactionID"] = TransactionID;
-                
+
             }
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -191,15 +191,11 @@ namespace Upkeep_v3.AssetManagement
                 dsSetting = ObjUpkeep.Fetch_Asset_Custom_Fields(CompanyID);
                 if (dsSetting.Tables.Count > 0)
                 {
-                    if (rptCustomFields.Items.Count > 0)
+                    if (dsSetting.Tables[0].Rows.Count > 0)
                     {
                         Session["CustomeFields"] = "True";
                         rptCustomFields.DataSource = dsSetting.Tables[0];
                         rptCustomFields.DataBind();
-                    }
-                    else
-                    {
-                        rptCustomFields.Visible = false;
                     }
                 }
             }
@@ -263,6 +259,12 @@ namespace Upkeep_v3.AssetManagement
                         txtAssetPurchaseDate.Text = dsAssestData.Tables[0].Rows[0]["Asset_Purchase_Date"].ToString();
 
 
+                        foreach (RepeaterItem item in rptCustomFields.Items)
+                        {
+                            (rptCustomFields.Items[item.ItemIndex].FindControl("txtCustomFieldsValue") as TextBox).Text = dsAssestData.Tables[0].Rows[item.ItemIndex]["Asset_Field_Value"].ToString();
+                        }
+
+
                         if (dsAssestData.Tables[1].Rows.Count > 0)
                         {
                             DataTable dtImg = new DataTable();
@@ -283,7 +285,7 @@ namespace Upkeep_v3.AssetManagement
                             else { hdnAssetImg.Value = ""; }
 
                             dtVid.DefaultView.RowFilter = "Asset_Doc_Type = '" + "VIDEO" + "' ";
-                            dtVid= dtVid.DefaultView.ToTable();
+                            dtVid = dtVid.DefaultView.ToTable();
                             if (dtVid.Rows.Count > 0)
                             {
                                 hdnAssetVid.Value = dtVid.Rows[0]["ImagePath"].ToString();
@@ -291,7 +293,7 @@ namespace Upkeep_v3.AssetManagement
                             else { hdnAssetVid.Value = ""; }
 
                             dtDoc.DefaultView.RowFilter = "Asset_Doc_Type = '" + "DOC" + "' ";
-                            dtDoc=dtDoc.DefaultView.ToTable();
+                            dtDoc = dtDoc.DefaultView.ToTable();
                             if (dtDoc.Rows.Count > 0)
                             {
                                 hdnAssetDoc.Value = dtDoc.Rows[0]["ImagePath"].ToString();
@@ -330,7 +332,7 @@ namespace Upkeep_v3.AssetManagement
                         //txtAmcStatus.Enabled = false;
                         //flAmcDoc.Enabled = false;
 
-              
+
 
 
 
@@ -352,13 +354,13 @@ namespace Upkeep_v3.AssetManagement
                     {
                         customCheck1.Checked = true;
                         txtNoOfService.Value = Convert.ToString(dsAssestData.Tables[4].Rows.Count);
-                        
+
                         //Schedule_ID Asset_ID    Service_Date Alert_Date  Assigned_To Service_Status  Created_By Created_Date   
                         //Updated_By Updated_Date    Is_Deleted Remarks Company_ID
                         AddRows(dsAssestData.Tables[4].Rows.Count, dsAssestData.Tables[4].Copy());
 
                     }
-                     
+
                 }
 
                 //AMC
@@ -438,15 +440,6 @@ namespace Upkeep_v3.AssetManagement
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //string txtCustomFieldsValue = "";
-            //foreach (RepeaterItem item in rptCustomFields.Items)
-            //{
-            //    TextBox data = (TextBox)item.FindControl("txtCustomFieldsValue");
-            //    txtCustomFieldsValue = data.Text; 
-            //}
-
-           
-
             //SET FLAG
             string CRUD_Flag = "";
             if ((int)ViewState["TransactionID"] == 0)
@@ -530,29 +523,30 @@ namespace Upkeep_v3.AssetManagement
             }
 
             //Save Data of Custome Field
-            StringBuilder strXmlCustomFields = new StringBuilder();
-            string CustomFields_XML = string.Empty;
 
             if (Convert.ToString(Session["CustomeFields"]) == "True")
             {
-                strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
-                strXmlCustomFields.Append(@"<CustomFields>");
 
                 foreach (RepeaterItem item in rptCustomFields.Items)
                 {
+                    StringBuilder strXmlCustomFields = new StringBuilder();
+                    string CustomFields_XML = string.Empty;
+                    strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
+                    strXmlCustomFields.Append(@"<CustomFields>");
                     string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
                     string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
 
                     strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
                     strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                    strXmlCustomFields.Append(@"</CustomFields>");
+
+                    CustomFields_XML = strXmlCustomFields.ToString();
+                    ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, CustomFields_XML, Convert.ToInt32(ds.Tables[0].Rows[0]["RequestID"]));
                 }
-                strXmlCustomFields.Append(@"</CustomFields>");
+
             }
 
-            CustomFields_XML = strXmlCustomFields.ToString();
-            DataSet dscustomfield = new DataSet();
-            int AssetID = Convert.ToInt32(ds.Tables[0].Rows[0]["RequestID"]);
-            dscustomfield = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, CustomFields_XML , AssetID);
+
 
 
             return Status;
@@ -584,6 +578,31 @@ namespace Upkeep_v3.AssetManagement
                     ViewState["RequestAssetID"] = Convert.ToString(ds.Tables[0].Rows[0]["RequestID"]);
                 }
             }
+
+            //Update Data of Custome Field
+
+            if (Convert.ToString(Session["CustomeFields"]) == "True")
+            {
+
+                foreach (RepeaterItem item in rptCustomFields.Items)
+                {
+                    StringBuilder strXmlCustomFields = new StringBuilder();
+                    string CustomFields_XML = string.Empty;
+                    strXmlCustomFields.Append(@"<?xml version=""1.0"" ?>");
+                    strXmlCustomFields.Append(@"<CustomFields>");
+                    string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
+                    string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
+
+                    strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
+                    strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                    strXmlCustomFields.Append(@"</CustomFields>");
+
+                    CustomFields_XML = strXmlCustomFields.ToString();
+                    ObjUpkeep.UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, CustomFields_XML, (int)ViewState["TransactionID"]);
+                }
+
+            }
+
             return Status;
         }
 
@@ -838,14 +857,14 @@ namespace Upkeep_v3.AssetManagement
             //strXmlAsset.Append(@"<?xml version=""1.0"" ?>");
             strXmlAsset.Append(@"<Asset_Vendor_ROOT>");
             strXmlAsset.Append(@"<Asset_Vendor>");
-             
+
             //-------------------------------------------------------------------------------------------------------------------
-            strXmlAsset.Append(@"<Asset_Vendor_Name>" +  txtModalVendor_Name.Text.ToString() + "</Asset_Vendor_Name>");
+            strXmlAsset.Append(@"<Asset_Vendor_Name>" + txtModalVendor_Name.Text.ToString() + "</Asset_Vendor_Name>");
             strXmlAsset.Append(@"<Asset_Vendor_Desc>" + txtModalVendor_Desc.Text.ToString() + "</Asset_Vendor_Desc>");
             strXmlAsset.Append(@"<Asset_Vendor_Address>" + txtModalVendor_Address.Text.ToString() + "</Asset_Vendor_Address>");
             strXmlAsset.Append(@"<Asset_Vendor_Contact1>" + txtModalVendor_Contact1.Text.ToString() + "</Asset_Vendor_Contact1>");
             strXmlAsset.Append(@"<Asset_Vendor_Contact2>" + txtModalVendor_Contact2.Text.ToString() + "</Asset_Vendor_Contact2>");
-            strXmlAsset.Append(@"<Asset_Vendor_Email>" + txtModalVendor_Email.Text.ToString() + "</Asset_Vendor_Email>"); 
+            strXmlAsset.Append(@"<Asset_Vendor_Email>" + txtModalVendor_Email.Text.ToString() + "</Asset_Vendor_Email>");
             //-------------------------------------------------------------------------------------------------------------------
             strXmlAsset.Append(@"</Asset_Vendor>");
             strXmlAsset.Append(@"</Asset_Vendor_ROOT>");
@@ -870,7 +889,7 @@ namespace Upkeep_v3.AssetManagement
                 //SPR_ASSET_INSERT_ASSET_TYPE
             }
             else if (hdAddAsset.Value == "2")
-            { 
+            {
                 // ADD ASSET CATEGORY
                 if (txtModalAssetCategory.Text == "")
                 {
@@ -913,7 +932,7 @@ namespace Upkeep_v3.AssetManagement
             else if (hdAddAsset.Value == "3") //3 5
                 dsConfig = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, "VENDOR", "", "", VendorxXml.ToString());
             else if (hdAddAsset.Value == "4") //3 5
-                dsConfig = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, "DEPARTMENT", txtModalDepartment.Text,"","");
+                dsConfig = ObjUpkeep.ASSET_INSERT_GRNL_MASTER(LoggedInUserID, "DEPARTMENT", txtModalDepartment.Text, "", "");
 
             if (dsConfig.Tables.Count > 0)
             {
@@ -951,7 +970,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID),CompanyID);
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)
@@ -1038,7 +1057,7 @@ namespace Upkeep_v3.AssetManagement
                             dlassetLocation.DataBind();
                         }
                     }
-                     
+
                 }
             }
             catch (Exception ex)
@@ -1188,7 +1207,7 @@ namespace Upkeep_v3.AssetManagement
                         txtServiceStatus.Attributes.Add("class", "form-control m-input");
                         txtServiceStatus.Attributes.Add("style", "width: 100px");
 
-                        txtServiceStatus.Attributes.Add("style", "display:none"); 
+                        txtServiceStatus.Attributes.Add("style", "display:none");
 
                         txtServiceStatus.ReadOnly = true;
                         txtServiceStatus.Text = "Open";
@@ -1213,7 +1232,8 @@ namespace Upkeep_v3.AssetManagement
                     throw ex;
                 }
             }
-            else {
+            else
+            {
 
                 try
                 {
@@ -1230,10 +1250,10 @@ namespace Upkeep_v3.AssetManagement
                         string AlertDays = "";
                         string Remarks = "";
                         string Service_Status = "";
-                         
+
                         Service_Date = ObjDt.Rows[IntPriCounter]["Service_Date"].ToString();
                         Assigned_To = ObjDt.Rows[IntPriCounter]["Assigned_To"].ToString();
-                        AlertDays = ObjDt.Rows[IntPriCounter]["Alert_Day"].ToString(); 
+                        AlertDays = ObjDt.Rows[IntPriCounter]["Alert_Day"].ToString();
                         Remarks = ObjDt.Rows[IntPriCounter]["Remarks"].ToString();
                         Service_Status = ObjDt.Rows[IntPriCounter]["Service_Status"].ToString();
 
@@ -1247,7 +1267,7 @@ namespace Upkeep_v3.AssetManagement
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[0].Attributes.Add("class", "GridItem");
 
                         string sCellId = "Cell" + Convert.ToString(IntPriCounter + 1);
-                       
+
                         this.TblLevels.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("class", "GridItem");
                         System.Web.UI.HtmlControls.HtmlInputText txtServiceDate = new System.Web.UI.HtmlControls.HtmlInputText();
@@ -1286,7 +1306,7 @@ namespace Upkeep_v3.AssetManagement
                         LocTxtActionGroup.SelectedValue = Assigned_To;
 
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocTxtActionGroup);
-                         
+
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocHdnAction);
 
                         this.TblLevels.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
@@ -1320,7 +1340,7 @@ namespace Upkeep_v3.AssetManagement
                         System.Web.UI.WebControls.TextBox txtServiceStatus = new System.Web.UI.WebControls.TextBox();
                         txtServiceStatus.Attributes.Add("class", "form-control m-input");
                         txtServiceStatus.Attributes.Add("style", "width: 100px");
-                        txtServiceStatus.ReadOnly = true; 
+                        txtServiceStatus.ReadOnly = true;
                         txtServiceStatus.Attributes.Add("ID", "" + sCellId + "5" + "");
                         txtServiceStatus.Text = Service_Status;
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[5].Controls.Add(txtServiceStatus);
@@ -1344,6 +1364,6 @@ namespace Upkeep_v3.AssetManagement
                 }
             }
         }
-       
+
     }
 }

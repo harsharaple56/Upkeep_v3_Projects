@@ -32,6 +32,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback UPDATE_ASSET_REQUEST_DetailsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_MyAsset_ServiceOperationCompleted;
@@ -498,6 +500,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event UPDATE_ASSET_REQUEST_DetailsCompletedEventHandler UPDATE_ASSET_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted;
         
         /// <remarks/>
         public event INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompletedEventHandler INSERT_UPDATE_ASSET_AMC_REQUEST_DetailsCompleted;
@@ -1172,6 +1177,39 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.UPDATE_ASSET_REQUEST_DetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UPDATE_ASSET_REQUEST_DetailsCompleted(this, new UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetXml, int TransactionID) {
+            object[] results = this.Invoke("UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        TransactionID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, int TransactionID) {
+            this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, TransactionID, null);
+        }
+        
+        /// <remarks/>
+        public void UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, int TransactionID, object userState) {
+            if ((this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted == null)) {
+                this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        TransactionID}, this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnUPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted(this, new UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5604,19 +5642,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         AssetServiceXml});
             return ((System.Data.DataSet)(results[0]));
         }
-
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace = "http://tempuri.org/", ResponseNamespace = "http://tempuri.org/", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomFiled, int AssetID)
-        {
-            object[] results = this.Invoke("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetCustomFiled,
-                        AssetID
-                        });
-            return ((System.Data.DataSet)(results[0]));
-        }
-
+        
         /// <remarks/>
         public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
             this.INSERT_ASSET_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, null);
@@ -5639,6 +5665,16 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.INSERT_ASSET_REQUEST_DetailsCompleted(this, new INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId) {
+            object[] results = this.Invoke("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetCustomField,
+                        AssetId});
+            return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
@@ -8932,6 +8968,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal UPDATE_ASSET_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler(object sender, UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

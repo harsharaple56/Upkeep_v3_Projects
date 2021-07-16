@@ -1368,7 +1368,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Event_Update(int EventID,string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
+    public DataSet Event_Update(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType)
     {
         DataSet ds = new DataSet();
 
@@ -2874,7 +2874,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField,AssetId);
+            ds = ObjUpkeep.INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetCustomField, AssetId);
         }
         catch (Exception ex)
         {
@@ -2890,6 +2890,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.UPDATE_ASSET_REQUEST_Details(LoggedInUserID, TransactionID, AssetXml, AssetAmcXml, AssetServiceXml);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetXml, int TransactionID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetXml, TransactionID);
         }
         catch (Exception ex)
         {
