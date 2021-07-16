@@ -153,7 +153,6 @@ namespace Upkeep_v3.GatePass
                         }
                     }
                 }
-
                 if (dsApproval.Tables.Count > 1)
                 {
                     if (dsApproval.Tables[2].Rows.Count > 0)
@@ -162,7 +161,6 @@ namespace Upkeep_v3.GatePass
                         gvGPHeader.DataBind();
                     }
                 }
-
                 if (dsApproval.Tables.Count > 2)
                 {
                     if (dsApproval.Tables[3].Rows.Count > 0)
@@ -171,7 +169,6 @@ namespace Upkeep_v3.GatePass
                         rptTermsCondition.DataBind();
                     }
                 }
-
                 if (dsApproval.Tables.Count > 3)
                 {
                     if (dsApproval.Tables[4].Rows.Count > 0)
@@ -183,7 +180,6 @@ namespace Upkeep_v3.GatePass
                         ddlAction.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
                 }
-
                 if (dsApproval.Tables.Count > 4)
                 {
                     if (dsApproval.Tables[5].Rows.Count > 0)
@@ -201,7 +197,6 @@ namespace Upkeep_v3.GatePass
                         //}
                     }
                 }
-
                 if (dsApproval.Tables.Count > 5)
                 {
                     if (dsApproval.Tables[6].Rows.Count > 0)
@@ -234,7 +229,6 @@ namespace Upkeep_v3.GatePass
                         }
                     }
                 }
-
                 if (dsApproval.Tables.Count > 7)
                 {
                     if (dsApproval.Tables[8].Rows.Count > 0)

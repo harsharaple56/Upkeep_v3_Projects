@@ -19,7 +19,7 @@ namespace Upkeep_v3.Ticketing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddcategory;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnAddcategory;
         
         /// <summary>
         /// mpeCategoryMaster control.
@@ -101,15 +101,6 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
-        
-        /// <summary>
-        /// btnCloseCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCloseCategory;
         
         /// <summary>
         /// btnCategorySave control.

@@ -64,12 +64,12 @@ namespace Upkeep_v3.Feedback
                             string CreatedOn = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
                             string ImagePath = Convert.ToString(ds.Tables[0].Rows[i]["ImagePath"]);
 
-                            int Duplicate_Emails = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Emails"]);
-                            int Unique_Emails = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Emails"]);
-                            int Duplicate_Contacts = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Contacts"]);
-                            int Unique_Contacts = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Contacts"]);
-                            int Duplicate_Names = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Names"]);
-                            int Unique_Names = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Names"]);
+                            //int Duplicate_Emails = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Emails"]);
+                            //int Unique_Emails = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Emails"]);
+                            //int Duplicate_Contacts = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Contacts"]);
+                            //int Unique_Contacts = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Contacts"]);
+                            //int Duplicate_Names = Convert.ToInt32(ds.Tables[1].Rows[i]["Duplicate_Names"]);
+                            //int Unique_Names = Convert.ToInt32(ds.Tables[1].Rows[i]["Unique_Names"]);
 
 
                             data += "<tr><td>" + CustomerName + "</td><td>" + Gender + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + CreatedOn + "</td><td><button type='button' data-toggle='modal' data-target='#photo_modal' data-src='" + ImagePath + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Photo'><i class='la la-image'></i></button></td></tr>";
