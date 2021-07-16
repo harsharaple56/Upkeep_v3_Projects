@@ -2596,9 +2596,24 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
+    
+    public DataSet UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetXml,int TransactionID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.UPDATE_ASSET_CUSTOMFIELD_REQUEST_Details(LoggedInUserID, AssetXml, TransactionID,StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
-
-	public DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag)
+    public DataSet INSERT_UPDATE_ASSET_AMC_REQUEST_Details(string LoggedInUserID, string TransactionID, string AssetAmcXml, string Flag)
 	{
 		DataSet ds = new DataSet();
 		try
