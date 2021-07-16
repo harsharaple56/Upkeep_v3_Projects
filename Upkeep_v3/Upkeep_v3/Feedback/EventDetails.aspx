@@ -109,6 +109,13 @@
                 }
             });
 
+            $('.chkEnableNegativeFeedback').change(function () {
+                //alert('dhfjhsd');
+                $('.dvEnableNegativeFeedback').toggle();
+            })
+
+
+
             $('#startDate').on('change', function () {
                 $('#error_startDate').html('').parents('.form-group').removeClass('has-error');
                 if ($(this).val().trim() == '') {
@@ -287,7 +294,7 @@
                                                 </div>
                                                 <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">
                                                     Upload Form Banner:</label>
-                                                <div class="col-xl-4 col-lg-9" style="    padding-top: 8px;">
+                                                <div class="col-xl-4 col-lg-9" style="padding-top: 8px;">
                                                     <input type="file" name="FileUpload_BannerImage" id="FileUpload_BannerImage" style="padding-right: 20px;">
                                                     <input type="hidden" name="Is_ImageUpload_ValidFile" id="Is_ImageUpload_ValidFile">
                                                     <span class="error_type text-danger font-weight-bold">Invalid File Uploaded error</span>
@@ -411,8 +418,8 @@
                                             <div class="form-group m-form__group row">
                                                 <div class="col-xl-7">
 
-                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
-                                                        <input type="checkbox">
+                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand chkEnableNegativeFeedback" style="margin-top: 10px;">
+                                                        <input type="checkbox" />
                                                         Enable and configure automated ticketing on Negative Feedbacks
 											        <span></span>
                                                     </label>
@@ -422,89 +429,98 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-xl-5">
-                                                    <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_6">
+                                                    <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_feedback_analysis">
                                                         <i class="fa fa-info-circle"></i>
                                                         Check how your Feedbacks are analysed
                                                     </button>
 
                                                 </div>
                                             </div>
-                                            <div class="form-group m-form__group row">
 
-                                                <label class="col-xl-3 col-form-label font-weight-bold">
-                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Category will be selected by default for the automatic Ticket">
-                                                        <i class="fa fa-info-circle"></i>
-                                                    </a>
-                                                    Select Ticket Category
-                                                </label>
-                                                <div class="col-md-3">
-                                                    <div class="m-form__group">
-                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                            <select name="type" class="form-control m-input type_select">
-                                                                <option value="" selected="selected">Answer Type</option>
-                                                                <option value="Emoji">Emoji</option>
-                                                                <option value="Text">Text</option>
-                                                                <option value="Options">Options</option>
-                                                                <option value="Star">Star</option>
-                                                                <option value="NPS">NPS</option>
-                                                            </select>
-                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+                                            <div class="dvEnableNegativeFeedback" style="display: none;">
 
+                                                <div class="form-group m-form__group row">
+
+                                                    <label class="col-xl-3 col-form-label font-weight-bold">
+                                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Category will be selected by default for the automatic Ticket">
+                                                            <i class="fa fa-info-circle"></i>
+                                                        </a>
+                                                        Select Ticket Category
+                                                    </label>
+                                                    <div class="col-md-3">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                                <select name="type" class="form-control m-input type_select">
+                                                                    <option value="" selected="selected">Answer Type</option>
+                                                                    <option value="Emoji">Emoji</option>
+                                                                    <option value="Text">Text</option>
+                                                                    <option value="Options">Options</option>
+                                                                    <option value="Star">Star</option>
+                                                                    <option value="NPS">NPS</option>
+                                                                </select>
+                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <label class="col-xl-3 col-form-label font-weight-bold">
-                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Sub-Category will be selected by default for the automatic Ticket">
-                                                        <i class="fa fa-info-circle"></i>
-                                                    </a>
-                                                    Select Ticket Sub-Category
-                                                </label>
-                                                <div class="col-md-3">
-                                                    <div class="m-form__group">
-                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                            <select name="type" class="form-control m-input type_select">
-                                                                <option value="" selected="selected">Answer Type</option>
-                                                                <option value="Emoji">Emoji</option>
-                                                                <option value="Text">Text</option>
-                                                                <option value="Options">Options</option>
-                                                                <option value="Star">Star</option>
-                                                                <option value="NPS">NPS</option>
-                                                            </select>
-                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+                                                    <label class="col-xl-3 col-form-label font-weight-bold">
+                                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Sub-Category will be selected by default for the automatic Ticket">
+                                                            <i class="fa fa-info-circle"></i>
+                                                        </a>
+                                                        Select Ticket Sub-Category
+                                                    </label>
+                                                    <div class="col-md-3">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                                <select name="type" class="form-control m-input type_select">
+                                                                    <option value="" selected="selected">Answer Type</option>
+                                                                    <option value="Emoji">Emoji</option>
+                                                                    <option value="Text">Text</option>
+                                                                    <option value="Options">Options</option>
+                                                                    <option value="Star">Star</option>
+                                                                    <option value="NPS">NPS</option>
+                                                                </select>
+                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
 
+                                                            </div>
                                                         </div>
                                                     </div>
+
+
                                                 </div>
 
+                                                <div class="form-group m-form__group row">
+
+                                                    <label class="col-xl-3 col-form-label font-weight-bold">
+                                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This Location ( Configured in your General Setup >> Location Map )will be selected by default for the automatic Ticket">
+                                                            <i class="fa fa-info-circle"></i>
+                                                        </a>
+                                                        Assign Location for Ticket
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                                <select name="type" class="form-control m-input type_select">
+                                                                    <option value="" selected="selected">Answer Type</option>
+                                                                    <option value="Emoji">Emoji</option>
+                                                                    <option value="Text">Text</option>
+                                                                    <option value="Options">Options</option>
+                                                                    <option value="Star">Star</option>
+                                                                    <option value="NPS">NPS</option>
+                                                                </select>
+                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
 
                                             </div>
 
-                                            <div class="form-group m-form__group row">
 
-                                                <label class="col-xl-3 col-form-label font-weight-bold">
-                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This Location ( Configured in your General Setup >> Location Map )will be selected by default for the automatic Ticket">
-                                                        <i class="fa fa-info-circle"></i>
-                                                    </a>
-                                                    Assign Location for Ticket
-                                                </label>
-                                                <div class="col-md-9">
-                                                    <div class="m-form__group">
-                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                            <select name="type" class="form-control m-input type_select">
-                                                                <option value="" selected="selected">Answer Type</option>
-                                                                <option value="Emoji">Emoji</option>
-                                                                <option value="Text">Text</option>
-                                                                <option value="Options">Options</option>
-                                                                <option value="Star">Star</option>
-                                                                <option value="NPS">NPS</option>
-                                                            </select>
-                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
 
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                            </div>
                                             <div class="form-group m-form__group row">
                                                 <div class="col-xl-12">
 
@@ -648,6 +664,30 @@
                     <!--end::Portlet-->
                 </div>
             </div>
+
+
+            <div class="modal fade" id="m_modal_feedback_analysis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Sample Feedback Analysis</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Sample Feedback Analysis Data</label>
+                        </div>
+                        <%--<div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>--%>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 
