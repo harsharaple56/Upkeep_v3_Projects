@@ -302,26 +302,26 @@ namespace Upkeep_v3
                 string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
                 string ProfilePhoto = string.Empty;
                 string User_Code = string.Empty;
-                //if (profile_picture.PostedFile.FileName!="")
-                //{
-                //    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/UserImages/");
+                if (profile_picture.PostedFile.FileName != "")
+                {
+                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/UserImages/");
 
-                //    if (!Directory.Exists(fileUploadPath_Profile))
-                //    {
-                //        Directory.CreateDirectory(fileUploadPath_Profile);
-                //    }
+                    if (!Directory.Exists(fileUploadPath_Profile))
+                    {
+                        Directory.CreateDirectory(fileUploadPath_Profile);
+                    }
 
-                //    User_Code = Convert.ToString(Session["User_Code"]);
+                    User_Code = Convert.ToString(Session["User_Code"]);
 
-                //    string fileExtension = Path.GetExtension(profile_picture.PostedFile.FileName);
-                //    ProfilePhoto = User_Code + fileExtension;
+                    string fileExtension = Path.GetExtension(profile_picture.PostedFile.FileName);
+                    ProfilePhoto = User_Code + fileExtension;
 
-                //    string Profile_SaveLocation = Server.MapPath("~/UserImages/") + "/" + ProfilePhoto;
-                //    ProfilePhoto_FilePath = imgPath + "/UserImages/" + ProfilePhoto;
+                    string Profile_SaveLocation = Server.MapPath("~/UserImages/") + "/" + ProfilePhoto;
+                    ProfilePhoto_FilePath = imgPath + "/UserImages/" + ProfilePhoto;
 
-                //    profile_picture.PostedFile.SaveAs(Profile_SaveLocation);
+                    profile_picture.PostedFile.SaveAs(Profile_SaveLocation);
 
-                //}
+                }
 
                 dsProfile = ObjUpkeep.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID);
 
@@ -333,7 +333,7 @@ namespace Upkeep_v3
                         if (Status == 1)
                         {
                             Session["User_Code"] = "";
-
+                            Session["Profile_Photo"] = ProfilePhoto_FilePath;
                             Response.Redirect(Page.ResolveClientUrl("~/My_Profile.aspx"), false);
                         }
                        
@@ -349,7 +349,7 @@ namespace Upkeep_v3
         }
 
         [WebMethod]
-        public void Update_User_ProfilePic()
+        public void Update_User_ProfilePic(HttpContext context)
         {
 
 
