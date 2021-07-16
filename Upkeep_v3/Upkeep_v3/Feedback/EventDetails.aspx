@@ -113,6 +113,21 @@
                 //alert('dhfjhsd');
                 $('.dvEnableNegativeFeedback').toggle();
             })
+            
+
+           $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
+               
+
+                if ($(this).val() == 'rdbRetailer') {
+                    //alert('2');
+                    $('.dvEnable_RetailerFeedback_Alerts').slideDown();
+                }
+                else {
+                    //alert('3');
+                    $('.dvEnable_RetailerFeedback_Alerts').slideUp();
+                }
+            });
+            
 
 
 
@@ -337,17 +352,19 @@
                                                 </div>
 
                                             </div>
-                                            <div class="m-form__group form-group row">
+                                            <div class="dvEnable_RetailerFeedback_Alerts" style="display: none;">
 
-                                                <span class="col-1 m-switch m-switch--outline m-switch--icon m-switch--success" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Email Reminders are sent every week until they submit a feedback for the current Month.">
-                                                    <label>
-                                                        <input type="checkbox" name="">
-                                                        <span></span>
-                                                    </label>
-                                                </span>
-                                                <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
+                                                <div class="m-form__group form-group row">
+
+                                                    <span class="col-1 m-switch m-switch--outline m-switch--icon m-switch--success" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Email Reminders are sent every week until they submit a feedback for the current Month.">
+                                                        <label>
+                                                            <input type="checkbox" name="">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                    <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
+                                                </div>
                                             </div>
-
 
 
                                             <div class="m-form__group form-group row">
@@ -372,9 +389,6 @@
                                                     <span id="error_event_mode" class="text-danger small"></span>
                                                 </div>
                                             </div>
-
-
-
 
                                             <div class="dates_div_group" style="display: none;" id="dvDate" runat="server">
                                                 <div class="form-group m-form__group row" id="dvStartDate" runat="server">
@@ -415,6 +429,7 @@
 
                                                 </div>
                                             </div>
+
                                             <div class="form-group m-form__group row">
                                                 <div class="col-xl-7">
 
@@ -429,7 +444,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-xl-5">
-                                                    <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_feedback_analysis">
+                                                    <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-info" data-toggle="modal" data-target="#m_modal_feedback_analysis">
                                                         <i class="fa fa-info-circle"></i>
                                                         Check how your Feedbacks are analysed
                                                     </button>
@@ -516,29 +531,30 @@
 
                                                 </div>
 
-                                            </div>
 
 
 
 
-                                            <div class="form-group m-form__group row">
-                                                <div class="col-xl-12">
+                                                <div class="form-group m-form__group row">
+                                                    <div class="col-xl-12">
 
-                                                    <div class="input-group m-input-group">
-                                                        <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
-                                                            <i class="fa fa-flag"></i>
-                                                        </a>
-                                                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
+                                                        <div class="input-group m-input-group">
+                                                            <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
+                                                                <i class="fa fa-flag"></i>
+                                                            </a>
+                                                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
 
-                                                        <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
-                                                        <div class="input-group-append">
+                                                            <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
+                                                            <div class="input-group-append">
 
-                                                            <span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span>
+                                                                <span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span>
+                                                            </div>
                                                         </div>
+                                                        <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                     </div>
-                                                    <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                 </div>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -567,7 +583,7 @@
                                                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
                                                                         <i class="fa fa-flag"></i>
                                                                     </a>
-                                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
+                                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--danger" style="margin-top: 10px;">
                                                                         <input type="checkbox">
                                                                         Flag on Negative Feedback
 											                            <span></span>
@@ -667,16 +683,152 @@
 
 
             <div class="modal fade" id="m_modal_feedback_analysis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Sample Feedback Analysis</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Learn How your Feedbacks are Analysed</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <label>Sample Feedback Analysis Data</label>
+                            
+                            <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+
+                                <div class="m-stack__item">
+                                    <h3 class="m--font-brand">
+                                        <i class="fa fa-star" style="font-size: 2.1rem;"></i>
+                                        Star Rating</h3>
+
+                                    If Rating is Less than 3 ( i.e 1 or 2 ) = <span class="m-badge m-badge--danger m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Negative</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is More than 3 ( i.e 4 or 5 ) = <span class="m-badge m-badge--success m-badge--wide">
+                                        <i class="fa fa-check-circle " aria-hidden="true"></i>
+                                        <b>Positive</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is 3 = <span class="m-badge m-badge--warning m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Neutral</b>
+                                    </span>
+                                </div>
+                                <div class="m-stack__item">
+                                    <h3 class="m--font-brand">
+                                        <i class="fa fa-smile-beam" style="font-size: 2.1rem;"></i>
+                                        Emoji Rating</h3>
+
+
+                                    </br>
+                                    If Rating is Less than 3 ( i.e 1 or 2 ) = <span class="m-badge m-badge--danger m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Negative</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is More than 3 ( i.e 4 or 5 ) = <span class="m-badge m-badge--success m-badge--wide">
+                                        <i class="fa fa-check-circle " aria-hidden="true"></i>
+                                        <b>Positive</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is 3 = <span class="m-badge m-badge--warning m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Neutral</b>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+
+                                <div class="m-stack__item">
+                                    <h3 class="m--font-brand">
+                                        <i class="fa fa-smile " style="font-size: 2.1rem;"></i>NPS Rating 
+                                    </h3>
+
+                                    <h6 class="m--font-brand">(Net Promoter Score)
+                                                                            <a href="https://en.wikipedia.org/wiki/Net_Promoter" style="width: 25px; height: 25px;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Click to know more about NPS">
+                                                                                <i class="fa fa-info-circle"></i>
+                                                                            </a>
+
+                                    </h6>
+
+
+                                    If Rating is Less than 7 ( i.e 0 to 6 ) = <span class="m-badge m-badge--danger m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Negative</b>
+                                    </span>
+                                    <span class="m-badge m-badge--danger m-badge--wide">
+                                        <i class="fa fa-child" aria-hidden="true"></i>
+                                        <b>Detractors</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is 9 or 10 = <span class="m-badge m-badge--success m-badge--wide">
+                                        <i class="fa fa-check-circle " aria-hidden="true"></i>
+                                        <b>Positive</b>
+                                    </span>
+                                    <span class="m-badge m-badge--success m-badge--wide">
+                                        <i class="fa fa-child" aria-hidden="true"></i>
+                                        <b>Promoters</b>
+                                    </span>
+                                    </br>
+                                    </br>
+
+                                    If Rating is 7 or 8 = <span class="m-badge m-badge--warning m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Neutral</b>
+                                    </span>
+                                    <span class="m-badge m-badge--warning m-badge--wide">
+                                        <i class="fa fa-child" aria-hidden="true"></i>
+                                        <b>Passives</b>
+                                    </span>
+                                </div>
+                                <div class="m-stack__item">
+                                    <h3 class="m--font-brand">
+                                        <i class="fa fa-bars" style="font-size: 2.1rem;"></i>
+                                        Selected Options</h3>
+
+                                    <h6 class="m--font-brand">Answer Options added by You in Feedback Form
+                                                                            <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Upcoming Feature">
+                                                                                <i class="fa fa-info-circle"></i>
+                                                                            </a>
+
+                                    </h6>
+
+                                    You pre-define which options are <span class="m-badge m-badge--danger m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Negative</b>
+                                    </span>
+                                    , <span class="m-badge m-badge--success m-badge--wide">
+                                        <i class="fa fa-check-circle " aria-hidden="true"></i>
+                                        <b>Positive</b>
+                                    </span>
+                                    or 
+                                    <span class="m-badge m-badge--warning m-badge--wide">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <b>Neutral</b>
+                                    </span>
+                                    while creating the feedback form.
+
+                                    </br>
+                                    </br>
+
+                                    System will accordingly consider a response whenever a Feedback is submitted.
+                                   
+                                </div>
+                            </div>
+
+
+
                         </div>
                         <%--<div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
