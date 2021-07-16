@@ -193,7 +193,7 @@
 
                                     <div class="form-group m-form__group row">
                                         <div class="col-xl-9 col-lg-9">
-                                            <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+                                            <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" Font-Bold="true" ForeColor="Red"></asp:Label>
                                         </div>
                                     </div>
                                 </div>

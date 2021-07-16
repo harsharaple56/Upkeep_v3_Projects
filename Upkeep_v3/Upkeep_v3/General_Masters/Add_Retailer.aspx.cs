@@ -130,6 +130,10 @@ namespace Upkeep_v3.General_Masters
                             Session["RetailerID"] = "";
                             Response.Redirect(Page.ResolveClientUrl("~/General_Masters/Retailer_Master.aspx"), false);
                         }
+                        else if (Status == 4)
+                        {
+                            lblErrorMsg.Text = "Retailer with this Username already exists";
+                        }
                         else if (Status == 3)
                         {
                             lblErrorMsg.Text = "Store details already exists";

@@ -1116,21 +1116,6 @@
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="GPDocuments\03-04-2021\GPDoc_87_20210403_095417625.png" />
-    <Content Include="GPDocuments\03-04-2021\GPDoc_88_20210403_095418026.png" />
-    <Content Include="GPDocuments\04-04-2021\GPDoc_87_20210404_025454257.jpg" />
-    <Content Include="GPDocuments\05-02-2021\GPDoc_62_20210205_032930529.png" />
-    <Content Include="GPDocuments\05-02-2021\GPDoc_73_20210205_034002199.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_011741794.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_012612265.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013305342.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013457624.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013610397.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013628571.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013708411.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013752369.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013808997.png" />
-    <Content Include="GPDocuments\27-06-2021\GPDoc_92_20210627_013828098.png" />
     <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Purchase_Details.aspx" />
@@ -3391,7 +3376,6 @@
     <Content Include="vendors\select2\src\js\wrapper.start.js" />
     <Content Include="vendors\socicon\css\socicon.css" />
     <Content Include="vendors\socicon\font\socicon.svg" />
-    <Content Include="vendors\summernote\built\base\module\Dropzone.js" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\base.css" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\index.html" />
     <Content Include="vendors\summernote\coverage\PhantomJS 2.1.1 %28Mac OS X 0.0.0%29\html\prettify.css" />
@@ -4094,26 +4078,19 @@
     <Content Include="GatePass\Gatepass_Details_Print.xss">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
-    <Content Include="Generic_Handlers\hn_FileUpload.ashx" />
-    <Content Include="vendors\summernote\built\base\module\Dropzone.js.map" />
-    <Content Include="GPDocuments\04-04-2021\GPDoc_88_20210404_025454258.pdf" />
-    <Content Include="GPDocuments\06-04-2021\GPDoc_19_20210406_042931883.pdf" />
-    <Content Include="GPDocuments\06-04-2021\GPDoc_19_20210406_080711927.pdf" />
-    <Content Include="GPDocuments\06-04-2021\GPDoc_27_20210406_010239974.pdf" />
-    <Content Include="GPDocuments\06-04-2021\GPDoc_90_20210406_010333441.pdf" />
-    <Content Include="GPDocuments\06-04-2021\GPDoc_91_20210406_010333442.pdf" />
+    <Content Include="Image_Upload_Control.ashx" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="VMS\Visit_Request_Public.aspx" />
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
-    <Content Include="VMS\Visit_Request_Public.aspx" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4978,11 +4955,11 @@
     <Compile Include="General_Masters\Vendor_Mst.aspx.designer.cs">
       <DependentUpon>Vendor_Mst.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Generic_Handlers\hn_FileUpload.ashx.cs">
-      <DependentUpon>hn_FileUpload.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Image_Upload_Control.ashx.cs">
+      <DependentUpon>Image_Upload_Control.ashx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\General_Master.aspx.cs">
       <DependentUpon>General_Master.aspx</DependentUpon>
@@ -6386,7 +6363,6 @@
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
-    <Folder Include="GPDocuments\13-07-2021\" />
     <Folder Include="Laundry_Management\Reports\" />
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
