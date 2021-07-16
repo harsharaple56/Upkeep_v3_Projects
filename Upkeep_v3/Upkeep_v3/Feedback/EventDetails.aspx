@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="EventDetails.aspx.cs" Inherits="Upkeep_v3.Feedback.EventDetails" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -252,7 +254,7 @@
                                 <div class="m-portlet__head-wrapper">
                                     <div class="m-portlet__head-caption">
                                         <div class="m-portlet__head-title">
-                                            <h3 class="m-portlet__head-text">Event details
+                                            <h3 class="m-portlet__head-text">Configure Feedback Form
                                             </h3>
                                         </div>
                                     </div>
@@ -269,203 +271,352 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--begin: Form Body -->
                             <div class="m-portlet__body">
-                                <!--begin: Form Body -->
-                                <div class="m-portlet__body">
-                                    <div class="row">
-                                        <div class="col-xl-8 offset-xl-2">
-                                            <div class="m-form__section m-form__section--first">
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Event Name:</label>
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:TextBox ID="name" runat="server" class="form-control m-input" placeholder="Event name"></asp:TextBox>
-                                                        <span id="error_name" class="text-danger small"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="m-form__group form-group row">
-                                                    <label class="col-3 col-form-label">* Questions For</label>
-                                                    <div class="col-9">
-                                                        <div class="m-radio-inline">
-                                                            <label class="m-radio">
-                                                                <asp:RadioButton ID="rdbCustomer" runat="server" GroupName="question_for" Checked="true" />
-                                                                Customers
-																		<span></span>
-                                                            </label>
-                                                            <label class="m-radio">
-                                                                <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="question_for" />
-                                                                Retailers
-																		<span></span>
-                                                            </label>
-                                                            <label class="m-radio">
-                                                                <asp:RadioButton ID="rdbVisitor" runat="server" GroupName="question_for" />Visitor
-																		<span></span>
-                                                            </label>
-                                                            <label class="m-radio m-radio--disabled">
-                                                                <input type="radio" id="rdbEmployee" runat="server" group="question_for" disabled="">
-                                                                Employee
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-xl-2 col-lg-3 col-form-label">
+                                                    
+                                                    Feedback Form Name:</label>
+                                                <div class="col-xl-10 col-lg-9">
+                                                    <asp:TextBox ID="name" runat="server" class="form-control m-input" placeholder="Enter the name of your Feedback Form"></asp:TextBox>
+                                                    <span id="error_name" class="text-danger small"></span>
+                                                    <span class="error_type text-danger font-weight-bold">Error : Same feedback name / left blank</span>
 
-                                                                <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="This Feature is Under Development">
+                                                </div>
+                                            </div>
+                                            <div class="m-form__group form-group row">
+                                                <label class="col-2 col-form-label">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select For which whom you are configuring this Feedback form. <RETAILER> option is relevant when your property is a Mall. <VISITORS> Option can be selected if you want to add the Feedback form in your VMS Configuration ">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Questions For</label>
+                                                <div class="col-10">
+                                                    <div class="m-radio-inline">
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbCustomer" runat="server" GroupName="question_for" Checked="true" />
+                                                            Customers
+																		<span></span>
+                                                        </label>
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="question_for" />
+                                                            Retailers
+																		<span></span>
+                                                        </label>
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbVisitor" runat="server" GroupName="question_for" />Visitors
+																		<span></span>
+                                                        </label>
+                                                        <label class="m-radio m-radio--disabled">
+                                                            <input type="radio" id="rdbEmployee" runat="server" group="question_for" disabled="">
+                                                            Employee
+
+                                                                <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="This Feature is Under Development">
                                                                     <i class="fa fa-info-circle"></i>
                                                                 </a>
-                                                            </label>
-                                                        </div>
-                                                        <span id="error_question_for" class="text-danger small"></span>
+                                                        </label>
                                                     </div>
+                                                    <span id="error_question_for" class="text-danger small"></span>
                                                 </div>
+                                            </div>
 
 
-                                                <div class="m-form__group form-group row">
-                                                    <label class="col-3 col-form-label">* Event Mode</label>
-                                                    <div class="col-9">
-                                                        <div class="m-radio-inline">
-                                                            <label class="m-radio">
-                                                                <asp:RadioButton ID="rdbDaily" runat="server" GroupName="event_mode" Checked="true" />
-                                                                Daily/Monthly
+                                            <div class="m-form__group form-group row">
+                                                <label class="col-2 col-form-label">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Choose if you want your Feedback form to be active Always OR Between a particular time Period ">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Active Mode</label>
+                                                <div class="col-10">
+                                                    <div class="m-radio-inline">
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbDaily" runat="server" GroupName="event_mode" Checked="true" />
+                                                            Always Active
 																		<span></span>
-                                                            </label>
-                                                            <label class="m-radio">
-                                                                <asp:RadioButton ID="rdbPeriodic" runat="server" GroupName="event_mode" ClientIDMode="Static" />
-                                                                Periodic
+                                                        </label>
+                                                        <label class="m-radio">
+                                                            <asp:RadioButton ID="rdbPeriodic" runat="server" GroupName="event_mode" ClientIDMode="Static" />
+                                                            Between Scheduled Period
 																		<span></span>
-                                                            </label>
+                                                        </label>
+                                                    </div>
+                                                    <span id="error_event_mode" class="text-danger small"></span>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="dates_div_group" style="display: none;" id="dvDate" runat="server">
+                                                <div class="form-group m-form__group row" id="dvStartDate" runat="server">
+                                                    <label class="col-xl-2 col-lg-3 col-form-label">* Start at</label>
+                                                    <div class="col-xl-10 col-lg-9">
+                                                        <div class="input-group date">
+                                                            <asp:TextBox ID="startDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                            </div>
                                                         </div>
-                                                        <span id="error_event_mode" class="text-danger small"></span>
+                                                        <span id="error_startDate" class="text-danger small"></span>
                                                     </div>
                                                 </div>
-
-
-                                                <div class="form-group m-form__group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">* Location:</label>
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:TextBox ID="Location" runat="server" class="form-control m-input" placeholder="Event Location"></asp:TextBox>
-                                                        <span id="error_Location" class="text-danger small"></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="dates_div_group" style="display: none;" id="dvDate" runat="server">
-                                                    <div class="form-group m-form__group row" id="dvStartDate" runat="server">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">* Start at</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <div class="input-group date">
-                                                                <asp:TextBox ID="startDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                                </div>
+                                                <div class="form-group m-form__group row" id="dvEndDate" runat="server">
+                                                    <label class="col-xl-2 col-lg-3 col-form-label">* End at</label>
+                                                    <div class="col-xl-10 col-lg-9">
+                                                        <div class="input-group date">
+                                                            <asp:TextBox ID="endDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                                             </div>
-                                                            <span id="error_startDate" class="text-danger small"></span>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group row" id="dvEndDate" runat="server">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">* End at</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <div class="input-group date">
-                                                                <asp:TextBox ID="endDate" runat="server" class="form-control m-input datetimepicker" ReadOnly="true" placeholder="Select date & time"></asp:TextBox>
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                                                </div>
-                                                            </div>
-                                                            <span id="error_endDate" class="text-danger small"></span>
-                                                        </div>
+                                                        <span id="error_endDate" class="text-danger small"></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <div class="m-separator m-separator--dashed m-separator--lg"></div>
-                                            <div class="m-form__section">
-                                                <div class="m-form__heading">
-                                                    <h3 class="m-form__heading-title">Questions
-                                                    </h3>
+
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-xl-2 col-lg-3 col-form-label">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Enter the Name of Location where this feedback form will be used. Eg. Phoenix Mall , Kurla">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Location</label>
+                                                <div class="col-xl-10 col-lg-9">
+                                                    <asp:TextBox ID="Location" runat="server" class="form-control m-input" placeholder="Location Assigned to Feedback Form"></asp:TextBox>
+                                                    <span class="error_type text-danger font-weight-bold">Error : Location Left Blank</span>
+
                                                 </div>
-                                                <div class="question_repeater">
-                                                    <div class="form-group  m-form__group row">
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-xl-8">
 
+                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
+                                                        <input type="checkbox">
+                                                        Enable and configure automated ticketing on Negative Feedbacks
+											        <span></span>
+                                                    </label>
 
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="right" title="" data-original-title="If you have Ticketing Module enabled, You can check this box and configure the feedback form to recieve certain Negative Feedbacks">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <button type="button" id="btn_Chk_Fdbk_Info" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_6">
+                                                        <i class="fa fa-info-circle"></i>
+                                                        Check how your Feedbacks are analysed
+                                                    </button>
 
-                                                        <div data-repeater-list="Customer" class="col-lg-12" runat="server" id="Customer1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
 
-                                                            <%-- <%=EventBind()%>  --%>
+                                                <label class="col-xl-3 col-form-label font-weight-bold">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Category will be selected by default for the automatic Ticket">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Select Ticket Category
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <div class="m-form__group">
+                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                            <select name="type" class="form-control m-input type_select">
+                                                                <option value="" selected="selected">Answer Type</option>
+                                                                <option value="Emoji">Emoji</option>
+                                                                <option value="Text">Text</option>
+                                                                <option value="Options">Options</option>
+                                                                <option value="Star">Star</option>
+                                                                <option value="NPS">NPS</option>
+                                                            </select>
+                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
 
-                                                            <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvCustomer">
-                                                                <div class="col-md-8">
-                                                                    <div class="m-form__group">
-                                                                        <div class="m-form__control">
-                                                                            <asp:TextBox ID="txtCustomerQuestion" runat="server" ClientIDMode="Static" TextMode="MultiLine" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter question" Rows="1"></asp:TextBox>
-
-                                                                            <%--<textarea class="form-control m-input autosize_textarea question_textarea" placeholder="Enter question" rows="1" runat="server" id="txtquestion" name="txtquestion"></textarea>--%>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-md-none m--margin-bottom-10"></div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="m-form__group">
-                                                                        <div class="m-form__control">
-                                                                            <select name="type" class="form-control m-input type_select">
-                                                                                <option value="" selected="selected">Select Answer Type</option>
-                                                                                <option value="Emoji">Emoji</option>
-                                                                                <option value="Text">Text</option>
-                                                                                <option value="Options">Options</option>
-                                                                                <option value="Star">Star</option>
-                                                                                <option value="NPS">NPS</option>
-                                                                            </select>
-                                                                            <span class="error_type text-danger small"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-md-none m--margin-bottom-10"></div>
-                                                                </div>
-                                                                <div class="col-md-1">
-                                                                    <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-                                                                        <i class="la la-trash"></i>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="options_group row col-md-12" style="display: none;">
-                                                                    <div class="col-md-12 m--margin-bottom-10 font-weight-bold">Enter Options</div>
-                                                                    <div class="col-md-6 m--margin-bottom-10">
-                                                                        <%--<input type="text" name="option1" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                        <asp:TextBox ID="option1" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" Text=""></asp:TextBox>
-                                                                        <span class="error_option text-danger small"></span>
-                                                                    </div>
-                                                                    <div class="col-md-6 m--margin-bottom-10">
-                                                                        <%--<input type="text" name="option2" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                        <asp:TextBox ID="option2" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
-                                                                        <span class="error_option text-danger small"></span>
-                                                                    </div>
-                                                                    <div class="col-md-6 m--margin-bottom-10">
-                                                                        <%--<input type="text" name="option3" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                        <asp:TextBox ID="option3" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
-                                                                        <span class="error_option text-danger small"></span>
-                                                                    </div>
-                                                                    <div class="col-md-6 m--margin-bottom-10">
-                                                                        <%--<input type="text" name="option4" class="form-control m-input text_option" placeholder="Enter option">--%>
-                                                                        <asp:TextBox ID="option4" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
-                                                                        <span class="error_option text-danger small"></span>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="m-form__group form-group row">
-                                                        <div class="col-lg-4">
-                                                            <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
-                                                                <span>
-                                                                    <i class="la la-plus"></i>
-                                                                    <span>Add more questions</span>
-                                                                </span>
-                                                            </div>
+                                                </div>
+                                                <label class="col-xl-3 col-form-label font-weight-bold">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This ticket Sub-Category will be selected by default for the automatic Ticket">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Select Ticket Sub-Category
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <div class="m-form__group">
+                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                            <select name="type" class="form-control m-input type_select">
+                                                                <option value="" selected="selected">Answer Type</option>
+                                                                <option value="Emoji">Emoji</option>
+                                                                <option value="Text">Text</option>
+                                                                <option value="Options">Options</option>
+                                                                <option value="Star">Star</option>
+                                                                <option value="NPS">NPS</option>
+                                                            </select>
+                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
                                                         </div>
-                                                        <div class="col-lg-8">
-                                                            <label id="lblCustQueCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
-                                                        </div>
-                                                        <span id="error_question_repeater" class="text-danger small"></span>
                                                     </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="form-group m-form__group row">
+                                                
+                                                <label class="col-xl-3 col-form-label font-weight-bold">
+                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="This Location ( Configured in your General Setup >> Location Map )will be selected by default for the automatic Ticket">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </a>
+                                                    Assign Location for Ticket
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <div class="m-form__group">
+                                                        <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                            <select name="type" class="form-control m-input type_select">
+                                                                <option value="" selected="selected">Answer Type</option>
+                                                                <option value="Emoji">Emoji</option>
+                                                                <option value="Text">Text</option>
+                                                                <option value="Options">Options</option>
+                                                                <option value="Star">Star</option>
+                                                                <option value="NPS">NPS</option>
+                                                            </select>
+                                                            <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-xl-12">
+                                                    
+                                                    <div class="input-group m-input-group">
+													    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
+													    <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
+													    <div class="input-group-append"><span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span></div>
+												    </div>
+                                                    <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="m-form__section m--align-center">
+
+                                            <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Feedback Points</h3>
+                                            </div>
+                                            <div class="question_repeater">
+                                                <div class="form-group  m-form__group row">
+
+
+
+                                                    <div data-repeater-list="Customer" class="col-lg-12" runat="server" id="Customer1">
+
+                                                        <%-- <%=EventBind()%>  --%>
+
+                                                        <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvCustomer">
+                                                            <div class="col-md-7">
+                                                                <div class="m-form__group">
+                                                                    <div class="m-form__control">
+                                                                        <asp:TextBox ID="txtCustomerQuestion" runat="server" ClientIDMode="Static" TextMode="MultiLine" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter question description" Rows="1"></asp:TextBox>
+                                                                    </div>
+
+                                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
+                                                                        <i class="fa fa-flag"></i>
+                                                                    </a>
+                                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
+                                                                        <input type="checkbox">
+
+                                                                        Flag on Negative Feedback
+											                            <span></span>
+                                                                    </label>
+                                                                    
+                                                                </div>
+                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
+                                                                <div class="d-md-none m--margin-bottom-10"></div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="m-form__group">
+                                                                    <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                                        <select name="type" class="form-control m-input type_select">
+                                                                            <option value="" selected="selected">Answer Type</option>
+                                                                            <option value="Emoji">Emoji</option>
+                                                                            <option value="Text">Text</option>
+                                                                            <option value="Options">Options</option>
+                                                                            <option value="Star">Star</option>
+                                                                            <option value="NPS">NPS</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
+                                                                        <input type="checkbox">
+                                                                        Include in Ticket Remarks
+											                            <span></span>
+                                                                    </label>
+                                                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If Checked , whatever text is entered in the text field for this question , will be added as Remarks for the automated ticket">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+
+                                                            </div>
+
+                                                            <div class="col-md-1">
+                                                                <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+                                                                    <i class="la la-trash"></i>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="options_group row col-md-12" style="display: none;">
+                                                                <div class="col-md-12 m--margin-bottom-10 font-weight-bold">Enter Options</div>
+                                                                <div class="col-md-6 m--margin-bottom-10">
+                                                                    <%--<input type="text" name="option1" class="form-control m-input text_option" placeholder="Enter option">--%>
+                                                                    <asp:TextBox ID="option1" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option" Text=""></asp:TextBox>
+                                                                    <span class="error_option text-danger small"></span>
+                                                                </div>
+                                                                <div class="col-md-6 m--margin-bottom-10">
+                                                                    <%--<input type="text" name="option2" class="form-control m-input text_option" placeholder="Enter option">--%>
+                                                                    <asp:TextBox ID="option2" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
+                                                                    <span class="error_option text-danger small"></span>
+                                                                </div>
+                                                                <div class="col-md-6 m--margin-bottom-10">
+                                                                    <%--<input type="text" name="option3" class="form-control m-input text_option" placeholder="Enter option">--%>
+                                                                    <asp:TextBox ID="option3" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
+                                                                    <span class="error_option text-danger small"></span>
+                                                                </div>
+                                                                <div class="col-md-6 m--margin-bottom-10">
+                                                                    <%--<input type="text" name="option4" class="form-control m-input text_option" placeholder="Enter option">--%>
+                                                                    <asp:TextBox ID="option4" runat="server" ClientIDMode="Static" class="form-control m-input text_option" placeholder="Enter option"></asp:TextBox>
+                                                                    <span class="error_option text-danger small"></span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-form__group form-group row">
+                                                    <div class="col-lg-3">
+                                                        <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                            <span>
+                                                                <i class="la la-plus"></i>
+                                                                <span>Add more questions</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9 m--align-left">
+                                                        <label id="lblCustQueCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Question(s)</label>
+                                                    </div>
+                                                    <span id="error_question_repeater" class="text-danger small"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
+
+
                         </form>
                     </div>
                     <!--end::Portlet-->
