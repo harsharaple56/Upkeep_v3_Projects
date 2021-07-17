@@ -56,7 +56,7 @@
             <span>Primary</span>
         </span>
     </a>
-    <a id="btnAddcategory" runat="server" onserverclick="btnAddcategory_Click1" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+    <a id="btnAddcategory" runat="server" onserverclick="btnAddcategory_Click1" class="btn btn-success m-btn m-btn--icon m-btn--pill m-btn--air">
         <span>
             <i class="flaticon-add"></i>
             <span>Add New Category</span>
