@@ -196,6 +196,7 @@ namespace Upkeep_v3.AssetManagement
                         Session["CustomeFields"] = "True";
                         rptCustomFields.DataSource = dsSetting.Tables[0];
                         rptCustomFields.DataBind();
+                          
                     }
                 }
             }
