@@ -228,7 +228,7 @@
                                             <asp:DropDownList ID="ddlCheckist_Status" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                 <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                                 <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                                <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                <asp:ListItem Value="Close" Text="Closed"></asp:ListItem>
                                                 <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
