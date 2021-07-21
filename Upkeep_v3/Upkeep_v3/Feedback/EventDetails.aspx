@@ -114,6 +114,32 @@
                 $('.dvEnableNegativeFeedback').toggle();
             })
 
+            $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
+
+
+                if ($(this).val() == 'rdbRetailer') {
+                    //alert('2');
+                    $('.dvEnable_RetailerFeedback_Alerts').slideDown();
+                }
+                else {
+                    //alert('3');
+                    $('.dvEnable_RetailerFeedback_Alerts').slideUp();
+                }
+            });
+
+            $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
+
+
+                if ($(this).val() == 'rdbCustomer') {
+                    //alert('2');
+                    $('.dvConfigure_Mandatory_Fields_Cust').slideDown();
+                }
+                else {
+                    //alert('3');
+                    $('.dvConfigure_Mandatory_Fields_Cust').slideUp();
+                }
+            });
+
 
 
             $('#startDate').on('change', function () {
@@ -421,17 +447,61 @@
                                                 </div>
 
                                             </div>
-                                            <div class="m-form__group form-group row">
 
-                                                <span class="col-1 m-switch m-switch--outline m-switch--icon m-switch--success" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Email Reminders are sent every week until they submit a feedback for the current Month.">
-                                                    <label>
-                                                        <input type="checkbox" name="">
-                                                        <span></span>
-                                                    </label>
-                                                </span>
-                                                <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
+                                             <div class="dvEnable_RetailerFeedback_Alerts" style="display: none;">
+
+                                                <div class="m-form__group form-group row">
+
+                                                    <span class="col-1 m-switch m-switch--outline m-switch--icon m-switch--success" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Email Reminders are sent every week until they submit a feedback for the current Month.">
+                                                        <label>
+                                                            <input type="checkbox" name="">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                    <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
+                                                </div>
                                             </div>
 
+                                            <div class="dvConfigure_Mandatory_Fields_Cust">
+                                                <div class="m-form__group form-group row">
+
+                                                    <label class="col-xl-4 col-form-label font-weight-bold">
+                                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select Which Customer Information Fields are mandatory while submitting this Feedback Form">
+                                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                        </a>
+                                                        Select Mandatory Fields for Customer Data
+
+                                                    </label>
+                                                    <div class="col-xl-8 m-checkbox-inline" style="padding: 10px;">
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            First Name
+									                    <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Last Name
+									                    <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Email
+										                <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Contact
+										                <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Gender
+										                <span></span>
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
 
 
                                             <div class="m-form__group form-group row">
@@ -597,12 +667,7 @@
 
                                                 </div>
 
-                                            </div>
-
-
-
-
-                                            <div class="form-group m-form__group row">
+                                                <div class="form-group m-form__group row">
                                                 <div class="col-xl-12">
 
                                                     <div class="input-group m-input-group">
@@ -620,6 +685,9 @@
                                                     <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                 </div>
                                             </div>
+
+                                            </div>
+
 
                                         </div>
                                     </div>
