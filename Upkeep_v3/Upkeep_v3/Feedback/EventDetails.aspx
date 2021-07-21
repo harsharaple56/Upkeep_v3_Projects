@@ -148,6 +148,7 @@
                 }
                 if ($(this).val() == 'Options') {
                     $(this).closest('.form-group').find('.options_group').slideDown();
+                    $(this).closest('.form-group').find('.clsIncludeTicketRemarks').slideUp();
                 }
                 else {
                     $(this).closest('.form-group').find('.options_group').slideUp();
@@ -273,6 +274,57 @@
                     event.preventDefault();
                 }
             });
+
+            $("#txtCategory").on('input', function () {
+                var val = this.value;
+
+                $('#hdnCategory').val("");
+                if ($('#dlCategory option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnCategory').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                    //$("#btnCategoryChange").click();
+                }
+            });
+
+            $("#txtSubCategory").on('input', function () {
+                var val = this.value;
+
+                $('#hdnSubCategory').val("");
+                if ($('#dlSubCategory option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnSubCategory').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                    //$("#btnSubCategoryChange").click();
+                }
+            });
+
+            $("#txtassetLocation").on('input', function () {
+                var val = this.value;
+
+                $('#hdnassetLocation').val("");
+                if ($('#dlassetLocation option').filter(function () {
+                    if (this.value.toUpperCase() === val.toUpperCase()) {
+                        //alert($(this).attr('text'));
+                        $('#hdnassetLocation').val($(this).attr('text'));
+                    }
+                    return this.value.toUpperCase() === val.toUpperCase();
+                }).length) {
+                    //send ajax request
+                    //alert(this.id);
+                }
+            });
+
         });
     </script>
 
@@ -481,7 +533,16 @@
                                                     </label>
                                                     <div class="col-md-3">
                                                         <div class="m-form__group">
-                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
+                                                            <asp:HiddenField ID="hdnCategory" runat="server" ClientIDMode="Static" />
+                                                            <asp:Button ID="btnCategoryChange" runat="server" Style="display: none;" ClientIDMode="Static" />
+
+                                                            <input list="dlCategory" id="txtCategory" name="txtassetLocation"
+                                                                class="form-control" runat="server" clientidmode="Static" />
+                                                            <datalist id="dlCategory" runat="server" clientidmode="Static"></datalist>
+
+                                                            <span id="CategoryError_Msg" style="color: red;"></span>
+
+                                                            <%--<div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
                                                                 <select name="type" class="form-control m-input ">
                                                                     <option value="0" selected="selected">Answer Type</option>
                                                                     <option value="Emoji">Emoji</option>
@@ -492,7 +553,7 @@
                                                                 </select>
                                                                 <span class="error_type1 text-danger font-weight-bold">Answer Type error text</span>
 
-                                                            </div>
+                                                            </div>--%>
                                                         </div>
                                                     </div>
                                                     <label class="col-xl-3 col-form-label font-weight-bold">
@@ -503,18 +564,12 @@
                                                     </label>
                                                     <div class="col-md-3">
                                                         <div class="m-form__group">
-                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                                <select name="type" class="form-control m-input ">
-                                                                    <option value="" selected="selected">Answer Type</option>
-                                                                    <option value="Emoji">Emoji</option>
-                                                                    <option value="Text">Text</option>
-                                                                    <option value="Options">Options</option>
-                                                                    <option value="Star">Star</option>
-                                                                    <option value="NPS">NPS</option>
-                                                                </select>
-                                                                <span class="error_type2 text-danger font-weight-bold">Answer Type error text</span>
+                                                            <asp:HiddenField ID="hdnSubCategory" runat="server" ClientIDMode="Static" />
+                                                            <asp:Button ID="btnSubCategoryChange" runat="server" Style="display: none;"  ClientIDMode="Static" />
 
-                                                            </div>
+                                                            <input list="dlSubCategory" id="txtSubCategory" name="txtassetLocation"
+                                                                class="form-control" runat="server" clientidmode="Static" />
+                                                            <datalist id="dlSubCategory" runat="server" clientidmode="Static"></datalist>
                                                         </div>
                                                     </div>
 
@@ -531,18 +586,12 @@
                                                     </label>
                                                     <div class="col-md-9">
                                                         <div class="m-form__group">
-                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                                <select name="type" class="form-control m-input ">
-                                                                    <option value="" selected="selected">Answer Type</option>
-                                                                    <option value="Emoji">Emoji</option>
-                                                                    <option value="Text">Text</option>
-                                                                    <option value="Options">Options</option>
-                                                                    <option value="Star">Star</option>
-                                                                    <option value="NPS">NPS</option>
-                                                                </select>
-                                                                <span class="error_type3 text-danger font-weight-bold">Answer Type error text</span>
-
-                                                            </div>
+                                                             <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
+                                                        <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                                            class="form-control" runat="server" clientidmode="Static" />
+                                                        <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
+                                                        
+                                                        <span id="LocationError_Msg" style="color: red;"></span>
                                                         </div>
                                                     </div>
 

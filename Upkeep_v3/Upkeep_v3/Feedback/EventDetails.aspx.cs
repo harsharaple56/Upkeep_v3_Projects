@@ -100,8 +100,8 @@ namespace Upkeep_v3.Feedback
                     {
                         builder.Append(String.Format("<option value='{0}' text='{1}'>", dsCategory.Tables[0].Rows[i]["SubCategory_Desc"], dsCategory.Tables[0].Rows[i]["SubCategory_ID"]));
                     }
-                    //dlSubCategory.InnerHtml = builder.ToString();
-                    //dlSubCategory.DataBind();
+                    dlSubCategory.InnerHtml = builder.ToString();
+                    dlSubCategory.DataBind();
                 }
 
             }
