@@ -758,7 +758,7 @@ namespace Upkeep_v3.VMS
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
                 DateTime temp;
-                string strVisitDate = (DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString();
+                string strVisitDate = (DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strMeetUsers = hdnSelectedUserID.Value;
                 string strCovidTestDate = (DateTime.TryParse(txtAsmmtDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
                 string strTemperature = txtTemperature.Text;
