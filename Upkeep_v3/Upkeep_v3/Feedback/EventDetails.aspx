@@ -113,10 +113,10 @@
                 //alert('dhfjhsd');
                 $('.dvEnableNegativeFeedback').toggle();
             })
-            
 
-           $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
-               
+
+            $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
+
 
                 if ($(this).val() == 'rdbRetailer') {
                     //alert('2');
@@ -127,7 +127,20 @@
                     $('.dvEnable_RetailerFeedback_Alerts').slideUp();
                 }
             });
-            
+
+            $('input:radio[name="ctl00$ContentPlaceHolder1$question_for"]').change(function () {
+
+
+                if ($(this).val() == 'rdbCustomer') {
+                    //alert('2');
+                    $('.dvConfigure_Mandatory_Fields_Cust').slideDown();
+                }
+                else {
+                    //alert('3');
+                    $('.dvConfigure_Mandatory_Fields_Cust').slideUp();
+                }
+            });
+
 
 
 
@@ -291,7 +304,7 @@
                                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSave_Click" Text="Save" />
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <!--begin: Form Body -->
@@ -364,6 +377,47 @@
                                                         </label>
                                                     </span>
                                                     <label class="col-form-label">Enable to send automated Email Reminders to Retailers to submit Feedback </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="dvConfigure_Mandatory_Fields_Cust">
+                                                <div class="m-form__group form-group row">
+
+                                                    <label class="col-xl-4 col-form-label font-weight-bold">
+                                                        <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select Which Customer Information Fields are mandatory while submitting this Feedback Form">
+                                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                        </a>
+                                                        Select Mandatory Fields for Customer Data
+
+                                                    </label>
+                                                    <div class="col-xl-8 m-checkbox-inline" style="padding: 10px;">
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            First Name
+									                    <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Last Name
+									                    <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Email
+										                <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Contact
+										                <span></span>
+                                                        </label>
+                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                            <input type="checkbox" checked="true">
+                                                            Gender
+										                <span></span>
+                                                        </label>
+                                                    </div>
+
                                                 </div>
                                             </div>
 
@@ -487,18 +541,11 @@
                                                     </label>
                                                     <div class="col-md-3">
                                                         <div class="m-form__group">
-                                                            <div class="m-form__control" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the Answer Type for your Feedback point">
-                                                                <select name="type" class="form-control m-input type_select">
-                                                                    <option value="" selected="selected">Answer Type</option>
-                                                                    <option value="Emoji">Emoji</option>
-                                                                    <option value="Text">Text</option>
-                                                                    <option value="Options">Options</option>
-                                                                    <option value="Star">Star</option>
-                                                                    <option value="NPS">NPS</option>
-                                                                </select>
-                                                                <span class="error_type text-danger font-weight-bold">Answer Type error text</span>
+                                                            <input list="dlCategory" id="txtCategory" name="txtassetLocation"
+                                                    class="form-control" runat="server" clientidmode="Static" />
+                                                <datalist id="dlCategory" runat="server" clientidmode="Static"></datalist>
 
-                                                            </div>
+
                                                         </div>
                                                     </div>
 
@@ -693,7 +740,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            
+
                             <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
 
                                 <div class="m-stack__item">

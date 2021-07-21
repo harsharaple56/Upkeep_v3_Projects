@@ -142,10 +142,9 @@ namespace Upkeep_v3.CheckList
             GridView dgGrid = new GridView();
             string From_Date = string.Empty;
             string To_Date = string.Empty;
-            int Checklist_ID = Convert.ToInt32(ddlCheckist_Name.SelectedValue);
-            int Department_ID = Convert.ToInt32(ddlCheckist_Department.SelectedValue);
-            string Checklist_Status = Convert.ToString(ddlCheckist_Status.SelectedValue);
-
+            int Checklist_ID = 0;
+            int Department_ID = 0;
+            string Checklist_Status = " ";
 
             try
             {
@@ -248,9 +247,9 @@ namespace Upkeep_v3.CheckList
             GridView dgGrid = new GridView();
             string From_Date = string.Empty;
             string To_Date = string.Empty;
-            int Checklist_ID = Convert.ToInt32(ddlCheckist_Name.SelectedValue);
-            int Department_ID = Convert.ToInt32(ddlCheckist_Department.SelectedValue);
-            string Checklist_Status = Convert.ToString(ddlCheckist_Status.SelectedValue);
+            int Checklist_ID = 0;
+            int Department_ID = 0;
+            string Checklist_Status = " ";
 
             Document doc = new Document();
             try
