@@ -16,6 +16,7 @@ namespace Upkeep_v3
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        string Store_No = string.Empty;
         string UserType = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,6 +36,10 @@ namespace Upkeep_v3
 
             if (!IsPostBack)
             {
+                Session["LoggedInUserID"] = LoggedInUserID;
+                Session["CompanyID"] = CompanyID;
+                Session["UserType"] = UserType;
+                Session["Store_No"] = Store_No;
                 Fetch_My_Profile_Details(LoggedInUserID, UserType, CompanyID);
                 this.Bind_Retailer_Escalation_Grid();
             }
@@ -53,6 +58,7 @@ namespace Upkeep_v3
                     {
                         lblStorename.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Store_Name"]);
                         lblStoreNo.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Store_No"]);
+                        Session["Store_No"] = Convert.ToString(dsProfile.Tables[0].Rows[0]["Store_No"]);
                         lblUsername.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Username"]);
                         lblFirstName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerFirstName"]);
                         lblLastName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerLastName"]);
