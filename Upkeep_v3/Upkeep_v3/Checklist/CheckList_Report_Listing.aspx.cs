@@ -63,7 +63,6 @@ namespace Upkeep_v3.CheckList
             //int Department_ID = 0;
             //string Checklist_Status = " ";
 
-
             try
             {
                 if (start_date.Value != "")
