@@ -27,45 +27,23 @@
 
     <script type="text/javascript">
 
-        //$(document).ready(function () {
-        //    Dropzone.autoDiscover = false;
-        //    //alert('method called');
-        //    //Simple Dropzonejs 
-        //    $("#m-dropzone-one").dropzone({
-        //        url: "Image_Upload_Control.ashx",
-        //        //params: {'UserCode':'1'},
-        //        addRemoveLinks: true,
-        //        success: function (file, response) {
-        //            var imgName = response;
-        //            file.previewElement.classList.add("dz-success");
-        //            //alert(imgName);
-        //            //console.log(“Successfully uploaded : ” + imgName);
-        //        },
-        //        error: function (file, response) {
-        //            file.previewElement.classList.add("dz-error");
-        //        }
-        //    });
-        //});
-
-
-        $(function () {
-            $('#profile_picture').change(function () {
-                var fileExtension = ['jpeg', 'jpg', 'png'];
-
-                $('#fileupload_Msg').text('').hide();
-                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-
-                    $('#fileupload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
-                    $(this).replaceWith($(this).val('').clone(true));
-                    return false;
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            var url = window.location.href;
+            $("#dZUpload").dropzone({
+                url: "hn_SimpeFileUploader.ashx",
+                maxFiles: 1,
+                success: function () {
+                    $('#m_modal_1').modal('hide');
+                    $(location).attr('href', url);
+                },
+                error: function () {
+                    $('#m_modal_1').modal('hide');
+                    $(location).attr('href', url);
                 }
-
-                $("#btnChangeProfilePic").click();
-            })
-
-        })
+            });
+        });
     </script>
-
     <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin-bottom: 0px">
             <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
@@ -535,23 +513,22 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body">
-                            <div class="m-dropzone dropzone" id="m-dropzone-one">
+                            <div class="m-dropzone dropzone" id="dZUpload">
                                 <div class="m-dropzone__msg dz-message needsclick">
-                                    <%--<h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>--%>
-                                    <%--<span class="m-dropzone__msg-desc" >This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>--%>
-
-                                    <label type="button" for="profile_picture" class="m-dropzone__msg-title">Drop files here or click to upload.</label>
-
-                                    <input type="file" id="profile_picture" style="display: none;" runat="server" clientidmode="Static" />
-                                        <asp:Button ID="btnChangeProfilePic" runat="server" OnClick="btnChangeProfilePic_Click" Style="display: none;" ClientIDMode="Static"></asp:Button>
+                                    <h5 class="m-dropzone__msg-title">Drop files here or click to upload.</h5>
                                 </div>
                             </div>
                         </div>
+                        
+
+
                         <%--<div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>--%>
+
                     </div>
                 </div>
             </div>
