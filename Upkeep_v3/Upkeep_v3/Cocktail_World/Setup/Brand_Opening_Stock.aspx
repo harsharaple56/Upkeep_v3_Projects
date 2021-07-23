@@ -98,7 +98,7 @@
                                 <ul class="m-portlet__nav">
 
                                     <li class="m-portlet__nav-item">
-											<a href="#" class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+											<a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Add_Brand_Opening_Stock.aspx") %>" class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 												<span>
 													<i class="flaticon-add"></i>
 													<span>Add Brand Opening</span>

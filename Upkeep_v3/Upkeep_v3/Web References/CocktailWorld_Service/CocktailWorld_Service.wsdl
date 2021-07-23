@@ -38,6 +38,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Category_Brand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Category_BrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Category_BrandResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Brand_Opening">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Cat_Size_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Brand_OpeningResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Brand_OpeningResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchCategorySizeLinkup">
         <s:complexType>
           <s:sequence>
@@ -49,6 +94,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="FetchCategorySizeLinkupResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchBrandSizeLinkup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Brand_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchBrandSizeLinkupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchBrandSizeLinkupResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -193,6 +260,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Save_BrandOpening">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryDetails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Operation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_BrandOpeningResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_BrandOpeningResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="License">
         <s:complexType>
           <s:sequence>
@@ -261,11 +354,29 @@
   <wsdl:message name="CategoryMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:CategoryMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Category_BrandSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Category_Brand" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Category_BrandSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Category_BrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Brand_OpeningSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Brand_Opening" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Brand_OpeningSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Brand_OpeningResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchCategorySizeLinkupSoapIn">
     <wsdl:part name="parameters" element="tns:FetchCategorySizeLinkup" />
   </wsdl:message>
   <wsdl:message name="FetchCategorySizeLinkupSoapOut">
     <wsdl:part name="parameters" element="tns:FetchCategorySizeLinkupResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchBrandSizeLinkupSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchBrandSizeLinkup" />
+  </wsdl:message>
+  <wsdl:message name="FetchBrandSizeLinkupSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchBrandSizeLinkupResponse" />
   </wsdl:message>
   <wsdl:message name="BrandMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:BrandMaster_CRUD" />
@@ -297,6 +408,12 @@
   <wsdl:message name="Save_CategorySizeLinkupSoapOut">
     <wsdl:part name="parameters" element="tns:Save_CategorySizeLinkupResponse" />
   </wsdl:message>
+  <wsdl:message name="Save_BrandOpeningSoapIn">
+    <wsdl:part name="parameters" element="tns:Save_BrandOpening" />
+  </wsdl:message>
+  <wsdl:message name="Save_BrandOpeningSoapOut">
+    <wsdl:part name="parameters" element="tns:Save_BrandOpeningResponse" />
+  </wsdl:message>
   <wsdl:message name="LicenseSoapIn">
     <wsdl:part name="parameters" element="tns:License" />
   </wsdl:message>
@@ -318,9 +435,21 @@
       <wsdl:input message="tns:CategoryMaster_CRUDSoapIn" />
       <wsdl:output message="tns:CategoryMaster_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Category_Brand">
+      <wsdl:input message="tns:Fetch_Category_BrandSoapIn" />
+      <wsdl:output message="tns:Fetch_Category_BrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Brand_Opening">
+      <wsdl:input message="tns:Fetch_Brand_OpeningSoapIn" />
+      <wsdl:output message="tns:Fetch_Brand_OpeningSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FetchCategorySizeLinkup">
       <wsdl:input message="tns:FetchCategorySizeLinkupSoapIn" />
       <wsdl:output message="tns:FetchCategorySizeLinkupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchBrandSizeLinkup">
+      <wsdl:input message="tns:FetchBrandSizeLinkupSoapIn" />
+      <wsdl:output message="tns:FetchBrandSizeLinkupSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="BrandMaster_CRUD">
       <wsdl:input message="tns:BrandMaster_CRUDSoapIn" />
@@ -341,6 +470,10 @@
     <wsdl:operation name="Save_CategorySizeLinkup">
       <wsdl:input message="tns:Save_CategorySizeLinkupSoapIn" />
       <wsdl:output message="tns:Save_CategorySizeLinkupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Save_BrandOpening">
+      <wsdl:input message="tns:Save_BrandOpeningSoapIn" />
+      <wsdl:output message="tns:Save_BrandOpeningSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="License">
       <wsdl:input message="tns:LicenseSoapIn" />
@@ -371,8 +504,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Category_Brand">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Category_Brand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Brand_Opening">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Brand_Opening" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FetchCategorySizeLinkup">
       <soap:operation soapAction="http://tempuri.org/FetchCategorySizeLinkup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchBrandSizeLinkup">
+      <soap:operation soapAction="http://tempuri.org/FetchBrandSizeLinkup" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -425,6 +585,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Save_BrandOpening">
+      <soap:operation soapAction="http://tempuri.org/Save_BrandOpening" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="License">
       <soap:operation soapAction="http://tempuri.org/License" style="document" />
       <wsdl:input>
@@ -464,8 +633,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Category_Brand">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Category_Brand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Brand_Opening">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Brand_Opening" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FetchCategorySizeLinkup">
       <soap12:operation soapAction="http://tempuri.org/FetchCategorySizeLinkup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchBrandSizeLinkup">
+      <soap12:operation soapAction="http://tempuri.org/FetchBrandSizeLinkup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -511,6 +707,15 @@
     </wsdl:operation>
     <wsdl:operation name="Save_CategorySizeLinkup">
       <soap12:operation soapAction="http://tempuri.org/Save_CategorySizeLinkup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_BrandOpening">
+      <soap12:operation soapAction="http://tempuri.org/Save_BrandOpening" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

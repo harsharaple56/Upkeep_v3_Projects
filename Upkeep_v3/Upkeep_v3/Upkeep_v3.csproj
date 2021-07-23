@@ -1053,6 +1053,7 @@
     <Content Include="Cocktail_World\Reports\Transfers_Report.aspx" />
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
+    <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
     <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
@@ -4419,6 +4420,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
       <DependentUpon>Generate_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx.cs">
+      <DependentUpon>Add_Brand_Opening_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx.designer.cs">
+      <DependentUpon>Add_Brand_Opening_Stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Bill_Book.aspx.cs">
       <DependentUpon>Bill_Book.aspx</DependentUpon>
