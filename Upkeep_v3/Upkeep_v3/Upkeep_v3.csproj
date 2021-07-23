@@ -1168,6 +1168,14 @@
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
     <Content Include="Retailer_Profile.aspx" />
+    <Content Include="vendors\dropzone\basic.css" />
+    <Content Include="vendors\dropzone\basic.min.css" />
+    <Content Include="vendors\dropzone\dropzone-amd-module.js" />
+    <Content Include="vendors\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="vendors\dropzone\dropzone.css" />
+    <Content Include="vendors\dropzone\dropzone.js" />
+    <Content Include="vendors\dropzone\dropzone.min.css" />
+    <Content Include="vendors\dropzone\dropzone.min.js" />
     <Content Include="Security\Assign_RoleList.aspx" />
     <Content Include="Security\Assign_RoleMst.aspx" />
     <Content Include="Security\Role_Listing.aspx" />
@@ -2190,17 +2198,6 @@
     <Content Include="vendors\clipboard\package.js" />
     <Content Include="vendors\counterup\jquery.counterup.js" />
     <Content Include="vendors\counterup\jquery.counterup.min.js" />
-    <Content Include="vendors\dropzone\dist\basic.css" />
-    <Content Include="vendors\dropzone\dist\dropzone-amd-module.js" />
-    <Content Include="vendors\dropzone\dist\dropzone.css" />
-    <Content Include="vendors\dropzone\dist\dropzone.js" />
-    <Content Include="vendors\dropzone\dist\dropzone.min.rtl.css" />
-    <Content Include="vendors\dropzone\dist\dropzone.rtl.css" />
-    <Content Include="vendors\dropzone\dist\min\basic.min.css" />
-    <Content Include="vendors\dropzone\dist\min\dropzone-amd-module.min.js" />
-    <Content Include="vendors\dropzone\dist\min\dropzone.min.css" />
-    <Content Include="vendors\dropzone\dist\min\dropzone.min.js" />
-    <Content Include="vendors\dropzone\index.js" />
     <Content Include="vendors\es6-promise-polyfill\promise.js" />
     <Content Include="vendors\es6-promise-polyfill\promise.min.js" />
     <Content Include="vendors\handlebars\.gitattributes" />
@@ -4085,7 +4082,6 @@
     <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
-    <Content Include="vendors\dropzone\dist\dropzone.js.map" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
@@ -4112,7 +4108,8 @@
     <Content Include="GatePass\Gatepass_Details_Print.xss">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
-    <Content Include="Image_Upload_Control.ashx" />
+    <Content Include="Handlers\UserImage_Handler.ashx" />
+    <Content Include="Handlers\RetailerImage_Handler.ashx" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -4998,9 +4995,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Image_Upload_Control.ashx.cs">
-      <DependentUpon>Image_Upload_Control.ashx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\General_Master.aspx.cs">
       <DependentUpon>General_Master.aspx</DependentUpon>
@@ -5915,15 +5909,6 @@
     <Content Include="vendors\counterup\LICENSE" />
     <Content Include="vendors\counterup\package.json" />
     <Content Include="vendors\counterup\README.md" />
-    <Content Include="vendors\dropzone\.tagconfig" />
-    <Content Include="vendors\dropzone\bower.json" />
-    <Content Include="vendors\dropzone\component.json" />
-    <Content Include="vendors\dropzone\composer.json" />
-    <Content Include="vendors\dropzone\CONTRIBUTING.md" />
-    <Content Include="vendors\dropzone\dist\readme.md" />
-    <Content Include="vendors\dropzone\LICENSE" />
-    <Content Include="vendors\dropzone\package.json" />
-    <Content Include="vendors\dropzone\README.md" />
     <Content Include="vendors\es6-promise-polyfill\.npmignore" />
     <Content Include="vendors\es6-promise-polyfill\.travis.yml" />
     <Content Include="vendors\es6-promise-polyfill\bower.json" />
@@ -6406,6 +6391,7 @@
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="Laundry_Management\Reports\" />
+    <Folder Include="RetailerImages\" />
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />

@@ -148,7 +148,7 @@ namespace Upkeep_v3.Ticketing
                             ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
                     }
-                    
+
 
                 }
             }
@@ -463,10 +463,10 @@ namespace Upkeep_v3.Ticketing
                     }
 
                     CustomFields_XML = strXmlCustomFields.ToString();
-                    
+
                     dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, "C");
                     //mpeTicketSaveSuccess.Show();
-                    
+
                     if(CompanyCode.Equals("ALEMCO1"))
                     {
                         if (dsTicketSave.Tables.Count > 0)
@@ -513,7 +513,7 @@ namespace Upkeep_v3.Ticketing
                                             Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                             SendSMS sms = new SendSMS();
-                                            
+
 
                                             foreach (DataRow dr in dsTicketSave.Tables[2].Rows)
                                             {
@@ -550,7 +550,7 @@ namespace Upkeep_v3.Ticketing
                                                     if (Is_SMS_Send > 0)
                                                     {
                                                         string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
-                                                        
+
                                                     }
                                                 }
                                             }
@@ -664,7 +664,7 @@ namespace Upkeep_v3.Ticketing
                                             Password = Convert.ToString(dsTicketSave.Tables[1].Rows[0]["Password"]);
 
                                             Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
-                                            
+
                                             Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
 
 
@@ -696,15 +696,15 @@ namespace Upkeep_v3.Ticketing
                                                 TextMessage += "%0a%0aLogn to eFacilito and accept the ticket to take further action";
 
 
-                                                
-                                                    //Send SMS only when the user has access to send SMS in workflow
-                                                    if (Is_SMS_Send > 0)
-                                                    {
+
+                                                //Send SMS only when the user has access to send SMS in workflow
+                                                if (Is_SMS_Send > 0)
+                                                {
                                                     //string response = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, MobileNo, TextMessage);
                                                     //string response = sms1.Send_SMS("https://www.businesssms.co.in/smsaspx?", "compel.admin@compelconsultancy.com", "Compel@12345", "9920874488", "Dear%20Lokesh,%20A%20ticket%20TKT3547%20has%20been%20raised%20by%20Ajay%20from%20Operations%20Department.%20Category%20:%20Housekeeping%20Location%20:1st%20Floor%3E34th%20Room%20Status%20:%20OPEN%20Level%20:%201%20Logn%20to%20eFacilito%20and%20accept%20the%20ticket%20to%20take%20further%20action.", "1007940892573975122");
                                                     string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, MobileNo, TextMessage, "1007940892573975122");
 
-                                                    }
+                                                }
                                             }
 
                                             if (Convert.ToString(Session["UserType"]) == "E")
@@ -717,7 +717,7 @@ namespace Upkeep_v3.Ticketing
                                                 TextMessage_RaisedBy = "Dear " + StoreManager_Name + ",";
                                             }
                                             TextMessage_RaisedBy += "%0a%0aYour ticket " + TicketCode + " has been raised successfully & has been sent to the users of " + Department + " Department.";
-                                            
+
                                             string response_raisedBy = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, TicketRaisedBy_MobileNo, TextMessage, "1007940892573975122");
 
 
@@ -834,7 +834,10 @@ namespace Upkeep_v3.Ticketing
             int CategoryID = 0;
             //ZoneID = Convert.ToInt32(ddlZone.SelectedValue);
             CategoryID = Convert.ToInt32(hdnCategory.Value);
-            SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+            if (!string.IsNullOrEmpty(hdnSubCategory.Value))
+                SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+            else
+                SubCategoryID = 0;
             BindWorkflow(CategoryID, SubCategoryID);
 
 
