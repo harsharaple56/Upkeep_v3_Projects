@@ -3349,6 +3349,27 @@ public class My_Upkeep
 		}
 		return ds;
 	}
-	#endregion
+    #endregion
+
+
+    public DataSet Fetch_VMS_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+          
+            ds = ObjUpkeepCC_BL.Fetch_VMS_MIS_Report(EventID,From_Date,To_Date,CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+
 
 }

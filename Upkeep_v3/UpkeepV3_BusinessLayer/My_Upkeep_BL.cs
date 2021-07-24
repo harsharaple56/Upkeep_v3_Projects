@@ -4753,6 +4753,31 @@ namespace UpkeepV3_BusinessLayer
         }
 
         #endregion
+
+
+
+        public DataSet Fetch_VMS_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            string strOutput = string.Empty;
+
+            SqlConnection con = new SqlConnection(strConn);
+
+            SqlCommand cmd = new SqlCommand("VMS_Proc_MIS_Report", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@From_Date", From_Date);
+            cmd.Parameters.AddWithValue("@To_Date", To_Date);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            return ds;
+        }
     }
 
 }

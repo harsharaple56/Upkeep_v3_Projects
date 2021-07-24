@@ -3625,6 +3625,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     #endregion
+
+    [WebMethod]
+    public DataSet Fetch_VMS_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID,From_Date,To_Date,CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
 }
 
 public class AuthenticationHeader : SoapHeader

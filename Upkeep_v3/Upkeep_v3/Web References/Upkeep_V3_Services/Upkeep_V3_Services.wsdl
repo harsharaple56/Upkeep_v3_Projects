@@ -1110,6 +1110,30 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_VMS_MIS_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EventID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_VMS_MIS_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMS_MIS_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Close_Ticket_Details">
         <s:complexType>
           <s:sequence>
@@ -5474,6 +5498,12 @@
   <wsdl:message name="Insert_WhatSappLogSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_WhatSappLogResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_VMS_MIS_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_VMS_MIS_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_VMS_MIS_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_VMS_MIS_ReportResponse" />
+  </wsdl:message>
   <wsdl:message name="Close_Ticket_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Close_Ticket_Details" />
   </wsdl:message>
@@ -6673,6 +6703,10 @@
       <wsdl:input message="tns:Insert_WhatSappLogSoapIn" />
       <wsdl:output message="tns:Insert_WhatSappLogSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_VMS_MIS_Report">
+      <wsdl:input message="tns:Fetch_VMS_MIS_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_VMS_MIS_ReportSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Close_Ticket_Details">
       <wsdl:input message="tns:Close_Ticket_DetailsSoapIn" />
       <wsdl:output message="tns:Close_Ticket_DetailsSoapOut" />
@@ -7760,6 +7794,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_WhatSappLog">
       <soap:operation soapAction="http://tempuri.org/Insert_WhatSappLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMS_MIS_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_VMS_MIS_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9698,6 +9741,15 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_WhatSappLog">
       <soap12:operation soapAction="http://tempuri.org/Insert_WhatSappLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_VMS_MIS_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_VMS_MIS_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
