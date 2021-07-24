@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Data;
 namespace UpkeepV3_BusinessLayer
 {
-  public class CocktailWorld_Master_BL
+    public class CocktailWorld_Master_BL
     {
 
 
@@ -40,7 +40,75 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet FetchCategory_SizeLinkup(int Category_ID,string StrConn)
+
+        public DataSet Fetch_Category_Brand(int CompanyID, int CategoryID, String StrConn) //Added CompanyId by sujata
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Category_Brand", con);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
+        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int BrandID,int CompanyID, String StrConn) //Added CompanyId by sujata
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Brand_Opening", con);
+                cmd.Parameters.AddWithValue("@Cat_Size_ID", Cat_Size_ID);
+                cmd.Parameters.AddWithValue("@BrandID", BrandID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+        
+          public DataSet FetchBrand_SizeLinkup(int Category_ID,int Brand_ID ,string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_BrandSizeLinkUP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Category_Id", Category_ID);
+                cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public DataSet FetchCategory_SizeLinkup(int Category_ID, string StrConn)
         {
             try
             {
@@ -49,7 +117,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
 
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_CategorySizeLinkUP", con);
-                cmd.CommandType = CommandType.StoredProcedure;             
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Category_Id", Category_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -61,37 +129,37 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-          public DataSet BrandMaster_CRUD(int Company_ID,int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action,string StrConn)
-          {
-                try
-                {
-                    string strOutput = string.Empty;
+        public DataSet BrandMaster_CRUD(int Company_ID,int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action,string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
 
-                    SqlConnection con = new SqlConnection(StrConn);
-                    SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Brand", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
-                    cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
-                    cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
-                    cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategory_ID);
-                    cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
-                    cmd.Parameters.AddWithValue("@Strength", Strength);
-                    cmd.Parameters.AddWithValue("@Purchase_Rate_Peg", Purchase_Rate_Peg);
-                    cmd.Parameters.AddWithValue("@Selling_Rate_Peg", Selling_Rate_Peg);
-                    cmd.Parameters.AddWithValue("@Selling_Rate_Bottle", Selling_Rate_Bottle);
-                    cmd.Parameters.AddWithValue("@Is_Disabled", Is_Disabled);
-                    cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                    cmd.Parameters.AddWithValue("@Action", Action);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                     da.Fill(ds);
-                     return ds;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Brand", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
+                cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
+                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategory_ID);
+                cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
+                cmd.Parameters.AddWithValue("@Strength", Strength);
+                cmd.Parameters.AddWithValue("@Purchase_Rate_Peg", Purchase_Rate_Peg);
+                cmd.Parameters.AddWithValue("@Selling_Rate_Peg", Selling_Rate_Peg);
+                cmd.Parameters.AddWithValue("@Selling_Rate_Bottle", Selling_Rate_Bottle);
+                cmd.Parameters.AddWithValue("@Is_Disabled", Is_Disabled);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-          }
+        }
 
         public DataSet SizeMaster_CRUD(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
@@ -188,7 +256,35 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@License_ID", LicenseID);
                 cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID,string Operation, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Save_Brand_Opening", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
+                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
+                cmd.Parameters.AddWithValue("@Brand_ID", BrandID);
+                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Operation", Operation);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -211,7 +307,7 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_License", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-               
+
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
@@ -236,7 +332,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Supplier", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-               
+
                 cmd.Parameters.AddWithValue("@Supplier_ID", Supplier_ID);
                 cmd.Parameters.AddWithValue("@Supplier_Name", SupplierName);
                 cmd.Parameters.AddWithValue("@Supplier_Code", Code);

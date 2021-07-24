@@ -65,6 +65,39 @@ public class My_CocktailWorld
       
     }
 
+    public DataSet FetchBrandSizeLinkup(int Category_ID,int Brand_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID,Brand_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Brand_ID,int Company_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID, Brand_ID,Company_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
     public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action)
     {
         try
@@ -97,8 +130,21 @@ public class My_CocktailWorld
     }
 
 
-
-
+    public DataSet Fetch_Category_Brand(int CompanyID, int CategoryID)
+    {
+        try
+        {
+            StrConn = System.Configuration.ConfigurationManager.ConnectionStrings["CocktailWorld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+            ds = ObjcocktailWorld_Master_BL.Fetch_Category_Brand(CompanyID, CategoryID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     public DataSet SubCategoryMaster_CRUD(int SubCategory_ID , int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action)
     {
@@ -151,6 +197,21 @@ public class My_CocktailWorld
 
     }
 
+    public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID,string Operation)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.Save_BrandOpening(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID,Operation, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     public DataSet License(string LoggedInUserID, int Company_ID, string Action)
     {

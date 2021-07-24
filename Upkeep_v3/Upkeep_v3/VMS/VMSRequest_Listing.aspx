@@ -71,10 +71,10 @@
             $('.m_selectpicker').selectpicker();
             //alert('1111');
             var picker = $('#daterangepicker');
-            var start = moment().subtract(29, 'days');
+            var start = moment().subtract(0, 'days');
             //var end = moment();
             //var start = moment();
-            var end = moment().add(30, 'days');
+            var end = moment().add(0, 'days');
 
 
 

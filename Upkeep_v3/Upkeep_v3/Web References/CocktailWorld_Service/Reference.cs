@@ -34,7 +34,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback CategoryMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Category_BrandOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Brand_OpeningOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FetchCategorySizeLinkupOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FetchBrandSizeLinkupOperationCompleted;
         
         private System.Threading.SendOrPostCallback BrandMaster_CRUDOperationCompleted;
         
@@ -45,6 +51,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private System.Threading.SendOrPostCallback PermitMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Save_CategorySizeLinkupOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Save_BrandOpeningOperationCompleted;
         
         private System.Threading.SendOrPostCallback LicenseOperationCompleted;
         
@@ -95,7 +103,16 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event CategoryMaster_CRUDCompletedEventHandler CategoryMaster_CRUDCompleted;
         
         /// <remarks/>
+        public event Fetch_Category_BrandCompletedEventHandler Fetch_Category_BrandCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Brand_OpeningCompletedEventHandler Fetch_Brand_OpeningCompleted;
+        
+        /// <remarks/>
         public event FetchCategorySizeLinkupCompletedEventHandler FetchCategorySizeLinkupCompleted;
+        
+        /// <remarks/>
+        public event FetchBrandSizeLinkupCompletedEventHandler FetchBrandSizeLinkupCompleted;
         
         /// <remarks/>
         public event BrandMaster_CRUDCompletedEventHandler BrandMaster_CRUDCompleted;
@@ -111,6 +128,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Save_CategorySizeLinkupCompletedEventHandler Save_CategorySizeLinkupCompleted;
+        
+        /// <remarks/>
+        public event Save_BrandOpeningCompletedEventHandler Save_BrandOpeningCompleted;
         
         /// <remarks/>
         public event LicenseCompletedEventHandler LicenseCompleted;
@@ -185,6 +205,70 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Category_Brand", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Category_Brand(int CompanyId, int CategoryID) {
+            object[] results = this.Invoke("Fetch_Category_Brand", new object[] {
+                        CompanyId,
+                        CategoryID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID) {
+            this.Fetch_Category_BrandAsync(CompanyId, CategoryID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID, object userState) {
+            if ((this.Fetch_Category_BrandOperationCompleted == null)) {
+                this.Fetch_Category_BrandOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Category_BrandOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Category_Brand", new object[] {
+                        CompanyId,
+                        CategoryID}, this.Fetch_Category_BrandOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Category_BrandOperationCompleted(object arg) {
+            if ((this.Fetch_Category_BrandCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Category_BrandCompleted(this, new Fetch_Category_BrandCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Brand_Opening", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Brand_Opening(int Cat_Size_ID, int BrandID, int CompanyID) {
+            object[] results = this.Invoke("Fetch_Brand_Opening", new object[] {
+                        Cat_Size_ID,
+                        BrandID,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Brand_OpeningAsync(int Cat_Size_ID, int BrandID, int CompanyID) {
+            this.Fetch_Brand_OpeningAsync(Cat_Size_ID, BrandID, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Brand_OpeningAsync(int Cat_Size_ID, int BrandID, int CompanyID, object userState) {
+            if ((this.Fetch_Brand_OpeningOperationCompleted == null)) {
+                this.Fetch_Brand_OpeningOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Brand_OpeningOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Brand_Opening", new object[] {
+                        Cat_Size_ID,
+                        BrandID,
+                        CompanyID}, this.Fetch_Brand_OpeningOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Brand_OpeningOperationCompleted(object arg) {
+            if ((this.Fetch_Brand_OpeningCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Brand_OpeningCompleted(this, new Fetch_Brand_OpeningCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchCategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet FetchCategorySizeLinkup(int Category_ID) {
             object[] results = this.Invoke("FetchCategorySizeLinkup", new object[] {
@@ -210,6 +294,37 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.FetchCategorySizeLinkupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FetchCategorySizeLinkupCompleted(this, new FetchCategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchBrandSizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID) {
+            object[] results = this.Invoke("FetchBrandSizeLinkup", new object[] {
+                        Category_ID,
+                        Brand_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID) {
+            this.FetchBrandSizeLinkupAsync(Category_ID, Brand_ID, null);
+        }
+        
+        /// <remarks/>
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, object userState) {
+            if ((this.FetchBrandSizeLinkupOperationCompleted == null)) {
+                this.FetchBrandSizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchBrandSizeLinkupOperationCompleted);
+            }
+            this.InvokeAsync("FetchBrandSizeLinkup", new object[] {
+                        Category_ID,
+                        Brand_ID}, this.FetchBrandSizeLinkupOperationCompleted, userState);
+        }
+        
+        private void OnFetchBrandSizeLinkupOperationCompleted(object arg) {
+            if ((this.FetchBrandSizeLinkupCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FetchBrandSizeLinkupCompleted(this, new FetchBrandSizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -417,6 +532,45 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_BrandOpening", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation) {
+            object[] results = this.Invoke("Save_BrandOpening", new object[] {
+                        Opening_ID,
+                        CategoryDetails,
+                        BrandID,
+                        CompanyID,
+                        LoggedInUserID,
+                        Operation});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_BrandOpeningAsync(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation) {
+            this.Save_BrandOpeningAsync(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID, Operation, null);
+        }
+        
+        /// <remarks/>
+        public void Save_BrandOpeningAsync(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation, object userState) {
+            if ((this.Save_BrandOpeningOperationCompleted == null)) {
+                this.Save_BrandOpeningOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_BrandOpeningOperationCompleted);
+            }
+            this.InvokeAsync("Save_BrandOpening", new object[] {
+                        Opening_ID,
+                        CategoryDetails,
+                        BrandID,
+                        CompanyID,
+                        LoggedInUserID,
+                        Operation}, this.Save_BrandOpeningOperationCompleted, userState);
+        }
+        
+        private void OnSave_BrandOpeningOperationCompleted(object arg) {
+            if ((this.Save_BrandOpeningCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_BrandOpeningCompleted(this, new Save_BrandOpeningCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/License", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet License(string LoggedInUserID, int Company_ID, string Action) {
             object[] results = this.Invoke("License", new object[] {
@@ -571,6 +725,58 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Category_BrandCompletedEventHandler(object sender, Fetch_Category_BrandCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Category_BrandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Category_BrandCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Brand_OpeningCompletedEventHandler(object sender, Fetch_Brand_OpeningCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Brand_OpeningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Brand_OpeningCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void FetchCategorySizeLinkupCompletedEventHandler(object sender, FetchCategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
@@ -582,6 +788,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal FetchCategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void FetchBrandSizeLinkupCompletedEventHandler(object sender, FetchBrandSizeLinkupCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FetchBrandSizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FetchBrandSizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -712,6 +944,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Save_CategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Save_BrandOpeningCompletedEventHandler(object sender, Save_BrandOpeningCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_BrandOpeningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_BrandOpeningCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -17,6 +17,8 @@ namespace Upkeep_v3.Feedback
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeepFeedback = new Upkeep_V3_Services.Upkeep_V3_Services();
 
+        Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
+
         DataSet ds = new DataSet();
         int CompanyID = 0;
         string LoggedInUserID = string.Empty;
@@ -38,10 +40,14 @@ namespace Upkeep_v3.Feedback
 
                 int EventID_Delete = Convert.ToInt32(Request.QueryString["DelEventID"]);
 
+                Fetch_CategorySubCategory(0);
+                Fetch_LocationTree();
+
                 if (EventID > 0)
                 {
                     Session["EventID"] = Convert.ToString(EventID);
                     bindEventDetails(EventID);
+                    
                 }
 
                 if (EventID_Delete > 0)
@@ -52,6 +58,59 @@ namespace Upkeep_v3.Feedback
             }
         }
 
+        public void Fetch_CategorySubCategory(int CategoryID)
+        {
+            DataSet dsCategory = new DataSet();
+            try
+            {
+
+                dsCategory = ObjUpkeep.Fetch_CategorySubCategory(CategoryID, CompanyID);
+
+                if (CategoryID == 0)
+                {
+                    //ddlCategory.DataSource = dsCategory.Tables[0];
+                    //ddlCategory.DataTextField = "Category_Desc";
+                    //ddlCategory.DataValueField = "Category_ID";
+                    //ddlCategory.DataBind();
+                    //ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    //dlCategory.InnerHtml = "";
+                    //dlCategory.DataBind();
+
+                    var builder = new System.Text.StringBuilder();
+
+                    for (int i = 0; i < dsCategory.Tables[0].Rows.Count; i++)
+                    {
+                        builder.Append(String.Format("<option value='{0}' text='{1}'>", dsCategory.Tables[0].Rows[i]["Category_Desc"], dsCategory.Tables[0].Rows[i]["Category_ID"]));
+                    }
+                    dlCategory.InnerHtml = builder.ToString();
+                    dlCategory.DataBind();
+
+                }
+                else if (CategoryID > 0)
+                {
+                    //ddlSubCategory.DataSource = dsCategory.Tables[0];
+                    //ddlSubCategory.DataTextField = "SubCategory_Desc";
+                    //ddlSubCategory.DataValueField = "SubCategory_ID";
+                    //ddlSubCategory.DataBind();
+                    //ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                    var builder = new System.Text.StringBuilder();
+
+                    for (int i = 0; i < dsCategory.Tables[0].Rows.Count; i++)
+                    {
+                        builder.Append(String.Format("<option value='{0}' text='{1}'>", dsCategory.Tables[0].Rows[i]["SubCategory_Desc"], dsCategory.Tables[0].Rows[i]["SubCategory_ID"]));
+                    }
+                    dlSubCategory.InnerHtml = builder.ToString();
+                    dlSubCategory.DataBind();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -389,5 +448,43 @@ namespace Upkeep_v3.Feedback
         {
 
         }
+
+        protected void btnCategoryChange_Click(object sender, EventArgs e)
+        {
+            int CategoryID = Convert.ToInt32(hdnCategory.Value);
+
+            Fetch_CategorySubCategory(CategoryID);
+
+        }
+
+        public void Fetch_LocationTree()
+        {
+            DataSet dsLocDetails = new DataSet();
+            try
+            {
+                dsLocDetails = ObjUpkeep.Fetch_LocationTree(CompanyID);
+
+                if (dsLocDetails.Tables.Count > 0)
+                {
+                    if (dsLocDetails.Tables[0].Rows.Count > 0)
+                    {
+                        
+                        var builder = new System.Text.StringBuilder();
+
+                        for (int i = 0; i < dsLocDetails.Tables[0].Rows.Count; i++)
+                        {
+                            builder.Append(String.Format("<option value='{0}' text='{1}'>", dsLocDetails.Tables[0].Rows[i]["Loc_Desc"], dsLocDetails.Tables[0].Rows[i]["Loc_id"]));
+                        }
+                        dlassetLocation.InnerHtml = builder.ToString();
+                        dlassetLocation.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -104,62 +104,8 @@
     </script>
 
 
-    <script type="text/javascript" language="javascript">
-
-
-
-<%--        function FunSizeDetails(idn) {
-            if (idn.tagName == "INPUT") {
-                idn.value = idn.parentNode.title;
-                if (idn.checked == true) {
-                    if (document.getElementById('<%=Me.txtDetails.ClientId%>').value.indexOf("=$=" + idn.value + "=$=") < 0) {
-                        if (document.getElementById('<%=Me.txtDetails.ClientId%>').value == "") //if it is 1st item in a hidden field
-                        {
-                            document.getElementById('<%=Me.txtDetails.ClientId%>').value = "=$=" + idn.value + "=$=";
-                        }
-                        else//if it is not 1st item in a hidden field
-                        {
-
-                            document.getElementById('<%=Me.txtDetails.ClientId%>').value += idn.value + "=$=";
-
-                            idn.checked = true;
-                        }
-                    }
-                }
-                else //if check box is unchecked then remove Designation idn from hidden field
-                {
-                    if (document.getElementById('<%=Me.txtDetails.ClientId%>').value.indexOf("=$=" + idn.value + "=$=") >= 0) {
-                        document.getElementById('<%=Me.txtDetails.ClientId%>').value = document.getElementById('<%=Me.txtDetails.ClientId%>').value.replace("=$=" + idn.value + "=$=", "=$=");
-
-                    }
-
-                }
-            }
-        }--%>
-
-
-<%--        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
-                    return true;
-                else
-                    $("#<%=lblmsg.ClientID %>").text("Please Enter Only Alphabet.");
-                $("#<%=divmsg.ClientID %>").css("display", "inline");
-                return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }--%>
-        }
-        //-----Added by Ravindra 27-Dec-2017 to fetch Category Change msg
-
+    <script type="text/javascript">
+        
         function Confirm(CategoryChangeMsg) {
 
             var confirm_value = document.createElement("INPUT");

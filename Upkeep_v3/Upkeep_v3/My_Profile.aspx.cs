@@ -17,6 +17,7 @@ namespace Upkeep_v3
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        string UserCode = string.Empty;
         string UserType = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,6 +36,10 @@ namespace Upkeep_v3
 
             if (!IsPostBack)
             {
+                Session["LoggedInUserID"] = LoggedInUserID;
+                Session["CompanyID"] = CompanyID;
+                Session["UserType"] = UserType;
+                Session["UserCode"] = UserCode;
                 //dvOTPBox.Attributes.Add("style", "display:none;");
                 Fetch_My_Profile_Details(LoggedInUserID, UserType, CompanyID);
             }
@@ -65,7 +70,7 @@ namespace Upkeep_v3
 
                         lblUserCode.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
 
-                        Session["User_Code"]= Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
+                        Session["User_Code"] = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_Code"]);
 
                         lblCompanyName.Text = Convert.ToString(Session["CompanyName"]);
                         lblCompanyCode.Text = Convert.ToString(Session["CompanyCode"]);
@@ -278,7 +283,7 @@ namespace Upkeep_v3
 
                         //if (Status == 1)
                         //{
-                            
+
                         //}
                     }
                 }
@@ -295,64 +300,13 @@ namespace Upkeep_v3
 
         protected void btnChangeProfilePic_Click(object sender, EventArgs e)
         {
-            DataSet dsProfile = new DataSet();
-            try
-            {
-                string ProfilePhoto_FilePath = string.Empty;
-                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                string ProfilePhoto = string.Empty;
-                string User_Code = string.Empty;
-                if (profile_picture.PostedFile.FileName != "")
-                {
-                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/UserImages/");
-
-                    if (!Directory.Exists(fileUploadPath_Profile))
-                    {
-                        Directory.CreateDirectory(fileUploadPath_Profile);
-                    }
-
-                    User_Code = Convert.ToString(Session["User_Code"]);
-
-                    string fileExtension = Path.GetExtension(profile_picture.PostedFile.FileName);
-                    ProfilePhoto = User_Code + fileExtension;
-
-                    string Profile_SaveLocation = Server.MapPath("~/UserImages/") + "/" + ProfilePhoto;
-                    ProfilePhoto_FilePath = imgPath + "/UserImages/" + ProfilePhoto;
-
-                    profile_picture.PostedFile.SaveAs(Profile_SaveLocation);
-
-                }
-
-                dsProfile = ObjUpkeep.Update_User_ProfilePic(LoggedInUserID, UserType, ProfilePhoto_FilePath, CompanyID);
-
-                if (dsProfile.Tables.Count > 0)
-                {
-                    if (dsProfile.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsProfile.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            Session["User_Code"] = "";
-                            Session["Profile_Photo"] = ProfilePhoto_FilePath;
-                            Response.Redirect(Page.ResolveClientUrl("~/My_Profile.aspx"), false);
-                        }
-                       
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         [WebMethod]
-        public void Update_User_ProfilePic(HttpContext context)
+        public static string Update_User_ProfilePic(HttpContext context)
         {
 
-
+            return "";
         }
 
     }
