@@ -757,10 +757,9 @@ namespace Upkeep_v3.VMS
                 string strName = txtName.Text;
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
-                DateTime temp;
-                string strVisitDate = (DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
+                string strVisitDate = txtVMSDate.Text != null ? txtVMSDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")	;
                 string strMeetUsers = hdnSelectedUserID.Value;
-                string strCovidTestDate = (DateTime.TryParse(txtAsmmtDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
+                string strCovidTestDate = txtAsmmtDate.Text != null ? txtAsmmtDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
                 string strTemperature = txtTemperature.Text;
                 string strCovidColor = string.Empty;
                 if (rdbGreen.Checked == true)
