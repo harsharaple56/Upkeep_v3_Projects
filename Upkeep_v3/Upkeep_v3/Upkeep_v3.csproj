@@ -1168,6 +1168,7 @@
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
     <Content Include="Retailer_Profile.aspx" />
+    <Content Include="Testing_Codes\SendMail_SMTP.aspx" />
     <Content Include="vendors\dropzone\basic.css" />
     <Content Include="vendors\dropzone\basic.min.css" />
     <Content Include="vendors\dropzone\dropzone-amd-module.js" />
@@ -5275,6 +5276,13 @@
     </Compile>
     <Compile Include="Support_Portal\View_Request_List.aspx.designer.cs">
       <DependentUpon>View_Request_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing_Codes\SendMail_SMTP.aspx.cs">
+      <DependentUpon>SendMail_SMTP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing_Codes\SendMail_SMTP.aspx.designer.cs">
+      <DependentUpon>SendMail_SMTP.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestMaster.Master.cs">
       <DependentUpon>TestMaster.Master</DependentUpon>

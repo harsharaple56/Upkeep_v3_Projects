@@ -162,6 +162,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SendEmail_Controller.cs" />
     <Compile Include="Controllers\TicketingController.cs" />
     <Compile Include="Controllers\UpKeepController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Models\ClsUpkeepMasters.cs" />
     <Compile Include="Models\ClsDashboard.cs" />
     <Compile Include="Models\Cls_CocktailWorld.cs" />
+    <Compile Include="Models\Cls_Send_Email.cs" />
     <Compile Include="Models\GatePassMail.cs" />
     <Compile Include="Models\SendSMS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -24,8 +24,24 @@ public class My_Upkeep
 		//
 	}
 
+    public DataSet Send_Mail_Test(string Emails, string Subject, string HTML_Body)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
 
-	public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+            ds = ObjUpkeepCC_BL.Send_Mail_Test(Emails, Subject, HTML_Body, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
 	{
 		try
 		{
