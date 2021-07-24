@@ -314,7 +314,7 @@
                 }).length) {
                     //send ajax request
                     //alert(this.id);
-                    //$("#btnCategoryChange").click();
+                    $("#btnCategoryChange").click();
                 }
             });
 
@@ -604,7 +604,7 @@
                                                     <div class="col-md-3">
                                                         <div class="m-form__group">
                                                             <asp:HiddenField ID="hdnCategory" runat="server" ClientIDMode="Static" />
-                                                            <asp:Button ID="btnCategoryChange" runat="server" Style="display: none;" ClientIDMode="Static" />
+                                                            <asp:Button ID="btnCategoryChange" runat="server" Style="display: none;" OnClick="btnCategoryChange_Click" ClientIDMode="Static" />
 
                                                             <input list="dlCategory" id="txtCategory" name="txtassetLocation"
                                                                 class="form-control" runat="server" clientidmode="Static" />

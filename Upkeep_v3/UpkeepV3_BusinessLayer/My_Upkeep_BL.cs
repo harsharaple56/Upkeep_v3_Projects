@@ -4775,6 +4775,56 @@ namespace UpkeepV3_BusinessLayer
         }
 
         #endregion
+
+
+
+        public DataSet Fetch_VMS_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID, string strConn)
+        {
+            DataSet ds = new DataSet();
+            string strOutput = string.Empty;
+
+            SqlConnection con = new SqlConnection(strConn);
+
+            SqlCommand cmd = new SqlCommand("VMS_Proc_MIS_Report", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@EventID", EventID);
+            cmd.Parameters.AddWithValue("@From_Date", From_Date);
+            cmd.Parameters.AddWithValue("@To_Date", To_Date);
+            cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+
+            return ds;
+        }
+
+
+
+        public DataSet Fetch_VMSRequestList_Report(int EventID,int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_VMS_REQUEST_LIST_REPORT", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EventID", EventID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

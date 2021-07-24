@@ -50,6 +50,35 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Category_Brand(int CompanyId, int CategoryID)   //Added CompanyId by sujata
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Category_Brand(CompanyId, CategoryID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int BrandID,int CompanyID)   //Added CompanyId by sujata
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, BrandID, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+    }
 
 
     [WebMethod]
@@ -66,6 +95,21 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         }
         return ds;
     }
+    [WebMethod]
+    public DataSet FetchBrandSizeLinkup(int Category_ID,int Brand_ID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID,Brand_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     [WebMethod]
     public DataSet BrandMaster_CRUD(int Company_ID,int Brand_ID,int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg , int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action)
     {
@@ -139,6 +183,21 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         try
         {
             ds = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID,string Operation)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Save_BrandOpening(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID, Operation);
 
         }
         catch (Exception ex)

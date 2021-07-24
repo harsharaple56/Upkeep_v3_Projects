@@ -7,72 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.VMS {
+namespace Upkeep_v3.Cocktail_World.Setup {
     
     
-    public partial class Visits_Report {
+    public partial class Add_Brand_Opening_Stock {
         
         /// <summary>
-        /// ddlFormName control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFormName;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// start_date control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField start_date;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// end_date control.
+        /// rfvddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField end_date;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlCategory;
         
         /// <summary>
-        /// hdn_IsPostBack control.
+        /// ddlBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBrand;
         
         /// <summary>
-        /// date_range_title control.
+        /// rfvddlBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField date_range_title;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlBrand;
         
         /// <summary>
-        /// btnSearch control.
+        /// grdCatagLinkUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// btnExport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExport;
+        protected global::System.Web.UI.WebControls.GridView grdCatagLinkUp;
     }
 }

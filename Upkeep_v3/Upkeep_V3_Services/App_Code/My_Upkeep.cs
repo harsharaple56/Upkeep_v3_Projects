@@ -3365,6 +3365,42 @@ public class My_Upkeep
 		}
 		return ds;
 	}
-	#endregion
+    #endregion
+
+
+    public DataSet Fetch_VMS_MIS_Report(string EventID, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            DataSet ds = new DataSet();
+          
+            ds = ObjUpkeepCC_BL.Fetch_VMS_MIS_Report(EventID,From_Date,To_Date,CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public DataSet Fetch_VMSRequestList_Report(int EventID,int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_VMSRequestList_Report(EventID,CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
 }

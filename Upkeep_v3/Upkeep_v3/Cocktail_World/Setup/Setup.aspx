@@ -87,7 +87,7 @@
                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
-                                    <a href="Brand_Sizes.aspx" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air">
+                                    <a href="Brand_Categories.aspx" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air">
                                         <span>
                                             <i class="fa fa-angle-double-right"></i>
                                             <span>Click Here</span>

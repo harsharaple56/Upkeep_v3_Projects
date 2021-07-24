@@ -41,6 +41,7 @@ namespace Upkeep_v3.Feedback
                 int EventID_Delete = Convert.ToInt32(Request.QueryString["DelEventID"]);
 
                 Fetch_CategorySubCategory(0);
+                Fetch_LocationTree();
 
                 if (EventID > 0)
                 {
@@ -447,5 +448,43 @@ namespace Upkeep_v3.Feedback
         {
 
         }
+
+        protected void btnCategoryChange_Click(object sender, EventArgs e)
+        {
+            int CategoryID = Convert.ToInt32(hdnCategory.Value);
+
+            Fetch_CategorySubCategory(CategoryID);
+
+        }
+
+        public void Fetch_LocationTree()
+        {
+            DataSet dsLocDetails = new DataSet();
+            try
+            {
+                dsLocDetails = ObjUpkeep.Fetch_LocationTree(CompanyID);
+
+                if (dsLocDetails.Tables.Count > 0)
+                {
+                    if (dsLocDetails.Tables[0].Rows.Count > 0)
+                    {
+                        
+                        var builder = new System.Text.StringBuilder();
+
+                        for (int i = 0; i < dsLocDetails.Tables[0].Rows.Count; i++)
+                        {
+                            builder.Append(String.Format("<option value='{0}' text='{1}'>", dsLocDetails.Tables[0].Rows[i]["Loc_Desc"], dsLocDetails.Tables[0].Rows[i]["Loc_id"]));
+                        }
+                        dlassetLocation.InnerHtml = builder.ToString();
+                        dlassetLocation.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
