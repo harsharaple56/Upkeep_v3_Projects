@@ -136,7 +136,49 @@
                             <div class="m-portlet__body">
 
                                 <!--begin: Datatable -->
-                                <table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
+
+                                 <table class="m-datatable" id="html_table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
+                                        <th title="Request ID" data-field="RequestID">Request ID</th>
+                                        <th title="Configuration Title" data-field="Config_Title">Configuration Title</th>
+                                        <th title="Name" data-field="Name">Name</th>
+                                        <th title="Contact" data-field="Phone">Contact</th>
+                                        <th title="Email" data-field="Email">Email</th>
+                                        <th title="In Time" data-field="InTime">In Time</th>
+                                        <th title="Out Time" data-field="OutTime">Out Time</th>
+                                        <th title="Status" data-field="Status">Status</th>
+                                        <th title="Created By" data-field="Created_By">Created By</th>
+                                        <th title="Visit Date" data-field="MeetDate">Visit Date</th>
+                                        <th title="Request Date" data-field="RequestDate">Request Date</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <%=fetchVMSRequestList()%>
+                                </tbody>
+                            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               <!-- <table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
                                     <thead>
                                      
                                   <%--      <%=bindHeader()%>--%>
@@ -149,7 +191,7 @@
 
                                        
                                     </tbody>
-                                </table>
+                                </table>-->
                                 
                                 <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
                             </div>

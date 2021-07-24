@@ -3368,7 +3368,22 @@ public class My_Upkeep
             throw ex;
         }
     }
+    public DataSet Fetch_VMSRequestList_Report(int EventID,int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
 
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_VMSRequestList_Report(EventID,CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
 

@@ -124,6 +124,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_VMS_MIS_ReportOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_VMSRequestList_ReportOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Close_Ticket_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Store_AttendanceOperationCompleted;
@@ -640,6 +642,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_VMS_MIS_ReportCompletedEventHandler Fetch_VMS_MIS_ReportCompleted;
+        
+        /// <remarks/>
+        public event Fetch_VMSRequestList_ReportCompletedEventHandler Fetch_VMSRequestList_ReportCompleted;
         
         /// <remarks/>
         public event Close_Ticket_DetailsCompletedEventHandler Close_Ticket_DetailsCompleted;
@@ -2796,6 +2801,43 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_VMS_MIS_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_VMS_MIS_ReportCompleted(this, new Fetch_VMS_MIS_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_VMSRequestList_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_VMSRequestList_Report(int EventID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_VMSRequestList_Report", new object[] {
+                        EventID,
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSRequestList_ReportAsync(int EventID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date) {
+            this.Fetch_VMSRequestList_ReportAsync(EventID, CompanyID, LoggedInUserID, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_VMSRequestList_ReportAsync(int EventID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_VMSRequestList_ReportOperationCompleted == null)) {
+                this.Fetch_VMSRequestList_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_VMSRequestList_ReportOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_VMSRequestList_Report", new object[] {
+                        EventID,
+                        CompanyID,
+                        LoggedInUserID,
+                        From_Date,
+                        To_Date}, this.Fetch_VMSRequestList_ReportOperationCompleted, userState);
+        }
+        
+        private void OnFetch_VMSRequestList_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_VMSRequestList_ReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_VMSRequestList_ReportCompleted(this, new Fetch_VMSRequestList_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10204,6 +10246,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_VMS_MIS_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Fetch_VMSRequestList_ReportCompletedEventHandler(object sender, Fetch_VMSRequestList_ReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_VMSRequestList_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_VMSRequestList_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
