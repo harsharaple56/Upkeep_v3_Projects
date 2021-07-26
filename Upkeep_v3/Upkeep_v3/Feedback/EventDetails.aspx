@@ -573,7 +573,7 @@
                                                 <div class="col-xl-7">
 
                                                     <label class="m-checkbox m-checkbox--solid m-checkbox--brand chkEnableNegativeFeedback" style="margin-top: 10px;">
-                                                        <input type="checkbox" />
+                                                        <input type="checkbox" id="chkEnableNegativeFeedback" runat="server" />
                                                         Enable and configure automated ticketing on Negative Feedbacks
 											        <span></span>
                                                     </label>
@@ -591,7 +591,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="dvEnableNegativeFeedback" style="display: none;">
+                                            <div class="dvEnableNegativeFeedback" style="display: none;" id="dvEnableNegativeFeedback" runat="server">
 
                                                 <div class="form-group m-form__group row">
 
