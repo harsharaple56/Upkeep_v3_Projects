@@ -88,7 +88,7 @@ namespace Upkeep_v3.Testing_Codes
             
             try
             {
-                ds = ObjUpkeep.Send_Mail_Test("","","");
+               // ds = ObjUpkeep.Send_Mail_Test("","","");
 
                 if (ds.Tables.Count > 0)
                 {
