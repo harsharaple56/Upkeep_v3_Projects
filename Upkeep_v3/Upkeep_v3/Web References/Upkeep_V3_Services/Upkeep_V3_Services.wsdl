@@ -3,6 +3,53 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="INSERT_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetCustomField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssetId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="UPDATE_ASSET_REQUEST_Details">
         <s:complexType>
           <s:sequence>
@@ -1149,6 +1196,60 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestList_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChecklistRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ScheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ZoneID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubLocationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChecklistID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChecklistRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChecklistRequestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_ChecklistPoints">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TicketNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strXmlChecklist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="list_Images" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Update_ChecklistPointsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Update_ChecklistPointsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3120,53 +3221,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="INSERT_ASSET_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetAmcXml" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetServiceXml" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_ASSET_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetCustomField" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="AssetId" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3200,6 +3254,41 @@
             </s:element>
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="Send_Mail_Test">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Emails" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HTML_Body" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Send_Mail_TestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Send_Mail_TestResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Send_Mail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="To_Emails" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Html_Body" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Send_MailResponse">
+        <s:complexType />
       </s:element>
       <s:element name="Fetch_Feedback_Details">
         <s:complexType>
@@ -5186,60 +5275,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ChecklistRequest">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ScheduleDate" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="ZoneID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="SubLocationID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="ChecklistID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="TicketNumber" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ChecklistRequestResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ChecklistRequestResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Update_ChecklistPoints">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="TicketNumber" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strXmlChecklist" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="list_Images" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Update_ChecklistPointsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Update_ChecklistPointsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5247,6 +5282,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="UPDATE_ASSET_REQUEST_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:UPDATE_ASSET_REQUEST_Details" />
   </wsdl:message>
@@ -5534,6 +5581,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_VMSRequestList_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChecklistRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:ChecklistRequest" />
+  </wsdl:message>
+  <wsdl:message name="ChecklistRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:ChecklistRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Update_ChecklistPointsSoapIn">
+    <wsdl:part name="parameters" element="tns:Update_ChecklistPoints" />
+  </wsdl:message>
+  <wsdl:message name="Update_ChecklistPointsSoapOut">
+    <wsdl:part name="parameters" element="tns:Update_ChecklistPointsResponse" />
   </wsdl:message>
   <wsdl:message name="Close_Ticket_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Close_Ticket_Details" />
@@ -6033,18 +6092,6 @@
   <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_DetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6056,6 +6103,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_AdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="Send_Mail_TestSoapIn">
+    <wsdl:part name="parameters" element="tns:Send_Mail_Test" />
+  </wsdl:message>
+  <wsdl:message name="Send_Mail_TestSoapOut">
+    <wsdl:part name="parameters" element="tns:Send_Mail_TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Send_MailSoapIn">
+    <wsdl:part name="parameters" element="tns:Send_Mail" />
+  </wsdl:message>
+  <wsdl:message name="Send_MailSoapOut">
+    <wsdl:part name="parameters" element="tns:Send_MailResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Feedback_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Feedback_Details" />
@@ -6537,19 +6596,15 @@
   <wsdl:message name="ChecklistPoint_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:ChecklistPoint_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="ChecklistRequestSoapIn">
-    <wsdl:part name="parameters" element="tns:ChecklistRequest" />
-  </wsdl:message>
-  <wsdl:message name="ChecklistRequestSoapOut">
-    <wsdl:part name="parameters" element="tns:ChecklistRequestResponse" />
-  </wsdl:message>
-  <wsdl:message name="Update_ChecklistPointsSoapIn">
-    <wsdl:part name="parameters" element="tns:Update_ChecklistPoints" />
-  </wsdl:message>
-  <wsdl:message name="Update_ChecklistPointsSoapOut">
-    <wsdl:part name="parameters" element="tns:Update_ChecklistPointsResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <wsdl:input message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
       <wsdl:input message="tns:UPDATE_ASSET_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:UPDATE_ASSET_REQUEST_DetailsSoapOut" />
@@ -6741,6 +6796,14 @@
     <wsdl:operation name="Fetch_VMSRequestList_Report">
       <wsdl:input message="tns:Fetch_VMSRequestList_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_VMSRequestList_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistRequest">
+      <wsdl:input message="tns:ChecklistRequestSoapIn" />
+      <wsdl:output message="tns:ChecklistRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistPoints">
+      <wsdl:input message="tns:Update_ChecklistPointsSoapIn" />
+      <wsdl:output message="tns:Update_ChecklistPointsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Close_Ticket_Details">
       <wsdl:input message="tns:Close_Ticket_DetailsSoapIn" />
@@ -7074,14 +7137,6 @@
       <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
-      <wsdl:input message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7089,6 +7144,14 @@
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
       <wsdl:output message="tns:Fetch_Dashboard_AdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail_Test">
+      <wsdl:input message="tns:Send_Mail_TestSoapIn" />
+      <wsdl:output message="tns:Send_Mail_TestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail">
+      <wsdl:input message="tns:Send_MailSoapIn" />
+      <wsdl:output message="tns:Send_MailSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Feedback_Details">
       <wsdl:input message="tns:Fetch_Feedback_DetailsSoapIn" />
@@ -7411,17 +7474,27 @@
       <wsdl:input message="tns:ChecklistPoint_CRUDSoapIn" />
       <wsdl:output message="tns:ChecklistPoint_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ChecklistRequest">
-      <wsdl:input message="tns:ChecklistRequestSoapIn" />
-      <wsdl:output message="tns:ChecklistRequestSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Update_ChecklistPoints">
-      <wsdl:input message="tns:Update_ChecklistPointsSoapIn" />
-      <wsdl:output message="tns:Update_ChecklistPointsSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
       <soap:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -7847,6 +7920,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistRequest">
+      <soap:operation soapAction="http://tempuri.org/ChecklistRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistPoints">
+      <soap:operation soapAction="http://tempuri.org/Update_ChecklistPoints" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8601,24 +8692,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8630,6 +8703,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail_Test">
+      <soap:operation soapAction="http://tempuri.org/Send_Mail_Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail">
+      <soap:operation soapAction="http://tempuri.org/Send_Mail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9357,27 +9448,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChecklistRequest">
-      <soap:operation soapAction="http://tempuri.org/ChecklistRequest" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Update_ChecklistPoints">
-      <soap:operation soapAction="http://tempuri.org/Update_ChecklistPoints" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UPDATE_ASSET_REQUEST_Details">
       <soap12:operation soapAction="http://tempuri.org/UPDATE_ASSET_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -9803,6 +9894,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistRequest">
+      <soap12:operation soapAction="http://tempuri.org/ChecklistRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Update_ChecklistPoints">
+      <soap12:operation soapAction="http://tempuri.org/Update_ChecklistPoints" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10557,24 +10666,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="INSERT_ASSET_CUSTOMFIELD_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10586,6 +10677,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail_Test">
+      <soap12:operation soapAction="http://tempuri.org/Send_Mail_Test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send_Mail">
+      <soap12:operation soapAction="http://tempuri.org/Send_Mail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11306,24 +11415,6 @@
     </wsdl:operation>
     <wsdl:operation name="ChecklistPoint_CRUD">
       <soap12:operation soapAction="http://tempuri.org/ChecklistPoint_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChecklistRequest">
-      <soap12:operation soapAction="http://tempuri.org/ChecklistRequest" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Update_ChecklistPoints">
-      <soap12:operation soapAction="http://tempuri.org/Update_ChecklistPoints" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

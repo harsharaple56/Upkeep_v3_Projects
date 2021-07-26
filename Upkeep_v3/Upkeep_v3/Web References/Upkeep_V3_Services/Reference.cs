@@ -30,6 +30,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback INSERT_ASSET_REQUEST_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UPDATE_ASSET_REQUEST_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback UPDATE_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted;
@@ -125,6 +129,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_VMS_MIS_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_ReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChecklistRequestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Update_ChecklistPointsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Close_Ticket_DetailsOperationCompleted;
         
@@ -292,13 +300,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback INSERT_ASSET_REQUEST_DetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_AdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Send_Mail_TestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Send_MailOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Feedback_DetailsOperationCompleted;
         
@@ -460,10 +468,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback ChecklistPoint_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ChecklistRequestOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Update_ChecklistPointsOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -501,6 +505,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event INSERT_ASSET_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_REQUEST_DetailsCompleted;
+        
+        /// <remarks/>
+        public event INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted;
         
         /// <remarks/>
         public event UPDATE_ASSET_REQUEST_DetailsCompletedEventHandler UPDATE_ASSET_REQUEST_DetailsCompleted;
@@ -645,6 +655,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_VMSRequestList_ReportCompletedEventHandler Fetch_VMSRequestList_ReportCompleted;
+        
+        /// <remarks/>
+        public event ChecklistRequestCompletedEventHandler ChecklistRequestCompleted;
+        
+        /// <remarks/>
+        public event Update_ChecklistPointsCompletedEventHandler Update_ChecklistPointsCompleted;
         
         /// <remarks/>
         public event Close_Ticket_DetailsCompletedEventHandler Close_Ticket_DetailsCompleted;
@@ -896,16 +912,16 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_ASSET_REQUEST_DetailsCompletedEventHandler Fetch_ASSET_REQUEST_DetailsCompleted;
         
         /// <remarks/>
-        public event INSERT_ASSET_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_REQUEST_DetailsCompleted;
-        
-        /// <remarks/>
-        public event INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
         public event Fetch_Dashboard_AdminCompletedEventHandler Fetch_Dashboard_AdminCompleted;
+        
+        /// <remarks/>
+        public event Send_Mail_TestCompletedEventHandler Send_Mail_TestCompleted;
+        
+        /// <remarks/>
+        public event Send_MailCompletedEventHandler Send_MailCompleted;
         
         /// <remarks/>
         public event Fetch_Feedback_DetailsCompletedEventHandler Fetch_Feedback_DetailsCompleted;
@@ -1148,10 +1164,72 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event ChecklistPoint_CRUDCompletedEventHandler ChecklistPoint_CRUDCompleted;
         
         /// <remarks/>
-        public event ChecklistRequestCompletedEventHandler ChecklistRequestCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            object[] results = this.Invoke("INSERT_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml});
+            return ((System.Data.DataSet)(results[0]));
+        }
         
         /// <remarks/>
-        public event Update_ChecklistPointsCompletedEventHandler Update_ChecklistPointsCompleted;
+        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
+            this.INSERT_ASSET_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
+            if ((this.INSERT_ASSET_REQUEST_DetailsOperationCompleted == null)) {
+                this.INSERT_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetXml,
+                        AssetAmcXml,
+                        AssetServiceXml}, this.INSERT_ASSET_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.INSERT_ASSET_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_ASSET_REQUEST_DetailsCompleted(this, new INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId) {
+            object[] results = this.Invoke("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetCustomField,
+                        AssetId});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetCustomField, int AssetId) {
+            this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(LoggedInUserID, AssetCustomField, AssetId, null);
+        }
+        
+        /// <remarks/>
+        public void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetCustomField, int AssetId, object userState) {
+            if ((this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted == null)) {
+                this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        AssetCustomField,
+                        AssetId}, this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnINSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted(this, new INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UPDATE_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2838,6 +2916,88 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_VMSRequestList_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_VMSRequestList_ReportCompleted(this, new Fetch_VMSRequestList_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChecklistRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ChecklistRequest(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction) {
+            object[] results = this.Invoke("ChecklistRequest", new object[] {
+                        ScheduleDate,
+                        ZoneID,
+                        LocationID,
+                        SubLocationID,
+                        DepartmentID,
+                        ChecklistID,
+                        StartTime,
+                        TicketNumber,
+                        LoggedInUserID,
+                        strAction});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChecklistRequestAsync(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction) {
+            this.ChecklistRequestAsync(ScheduleDate, ZoneID, LocationID, SubLocationID, DepartmentID, ChecklistID, StartTime, TicketNumber, LoggedInUserID, strAction, null);
+        }
+        
+        /// <remarks/>
+        public void ChecklistRequestAsync(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction, object userState) {
+            if ((this.ChecklistRequestOperationCompleted == null)) {
+                this.ChecklistRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChecklistRequestOperationCompleted);
+            }
+            this.InvokeAsync("ChecklistRequest", new object[] {
+                        ScheduleDate,
+                        ZoneID,
+                        LocationID,
+                        SubLocationID,
+                        DepartmentID,
+                        ChecklistID,
+                        StartTime,
+                        TicketNumber,
+                        LoggedInUserID,
+                        strAction}, this.ChecklistRequestOperationCompleted, userState);
+        }
+        
+        private void OnChecklistRequestOperationCompleted(object arg) {
+            if ((this.ChecklistRequestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChecklistRequestCompleted(this, new ChecklistRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_ChecklistPoints", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Update_ChecklistPoints(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID) {
+            object[] results = this.Invoke("Update_ChecklistPoints", new object[] {
+                        TicketNumber,
+                        strXmlChecklist,
+                        list_Images,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Update_ChecklistPointsAsync(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID) {
+            this.Update_ChecklistPointsAsync(TicketNumber, strXmlChecklist, list_Images, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Update_ChecklistPointsAsync(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID, object userState) {
+            if ((this.Update_ChecklistPointsOperationCompleted == null)) {
+                this.Update_ChecklistPointsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_ChecklistPointsOperationCompleted);
+            }
+            this.InvokeAsync("Update_ChecklistPoints", new object[] {
+                        TicketNumber,
+                        strXmlChecklist,
+                        list_Images,
+                        LoggedInUserID}, this.Update_ChecklistPointsOperationCompleted, userState);
+        }
+        
+        private void OnUpdate_ChecklistPointsOperationCompleted(object arg) {
+            if ((this.Update_ChecklistPointsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Update_ChecklistPointsCompleted(this, new Update_ChecklistPointsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5715,74 +5875,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_ASSET_REQUEST_Details(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            object[] results = this.Invoke("INSERT_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml) {
-            this.INSERT_ASSET_REQUEST_DetailsAsync(LoggedInUserID, AssetXml, AssetAmcXml, AssetServiceXml, null);
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, string AssetXml, string AssetAmcXml, string AssetServiceXml, object userState) {
-            if ((this.INSERT_ASSET_REQUEST_DetailsOperationCompleted == null)) {
-                this.INSERT_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("INSERT_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetXml,
-                        AssetAmcXml,
-                        AssetServiceXml}, this.INSERT_ASSET_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnINSERT_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.INSERT_ASSET_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INSERT_ASSET_REQUEST_DetailsCompleted(this, new INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INSERT_ASSET_CUSTOMFIELD_REQUEST_Details(string LoggedInUserID, string AssetCustomField, int AssetId) {
-            object[] results = this.Invoke("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetCustomField,
-                        AssetId});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetCustomField, int AssetId) {
-            this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(LoggedInUserID, AssetCustomField, AssetId, null);
-        }
-        
-        /// <remarks/>
-        public void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsAsync(string LoggedInUserID, string AssetCustomField, int AssetId, object userState) {
-            if ((this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted == null)) {
-                this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("INSERT_ASSET_CUSTOMFIELD_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        AssetCustomField,
-                        AssetId}, this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnINSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompleted(this, new INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -5841,6 +5933,71 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Dashboard_AdminCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Dashboard_AdminCompleted(this, new Fetch_Dashboard_AdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Send_Mail_Test", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Send_Mail_Test(string Emails, string Subject, string HTML_Body) {
+            object[] results = this.Invoke("Send_Mail_Test", new object[] {
+                        Emails,
+                        Subject,
+                        HTML_Body});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Send_Mail_TestAsync(string Emails, string Subject, string HTML_Body) {
+            this.Send_Mail_TestAsync(Emails, Subject, HTML_Body, null);
+        }
+        
+        /// <remarks/>
+        public void Send_Mail_TestAsync(string Emails, string Subject, string HTML_Body, object userState) {
+            if ((this.Send_Mail_TestOperationCompleted == null)) {
+                this.Send_Mail_TestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSend_Mail_TestOperationCompleted);
+            }
+            this.InvokeAsync("Send_Mail_Test", new object[] {
+                        Emails,
+                        Subject,
+                        HTML_Body}, this.Send_Mail_TestOperationCompleted, userState);
+        }
+        
+        private void OnSend_Mail_TestOperationCompleted(object arg) {
+            if ((this.Send_Mail_TestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Send_Mail_TestCompleted(this, new Send_Mail_TestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Send_Mail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void Send_Mail(string To_Emails, string Subject, string Html_Body) {
+            this.Invoke("Send_Mail", new object[] {
+                        To_Emails,
+                        Subject,
+                        Html_Body});
+        }
+        
+        /// <remarks/>
+        public void Send_MailAsync(string To_Emails, string Subject, string Html_Body) {
+            this.Send_MailAsync(To_Emails, Subject, Html_Body, null);
+        }
+        
+        /// <remarks/>
+        public void Send_MailAsync(string To_Emails, string Subject, string Html_Body, object userState) {
+            if ((this.Send_MailOperationCompleted == null)) {
+                this.Send_MailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSend_MailOperationCompleted);
+            }
+            this.InvokeAsync("Send_Mail", new object[] {
+                        To_Emails,
+                        Subject,
+                        Html_Body}, this.Send_MailOperationCompleted, userState);
+        }
+        
+        private void OnSend_MailOperationCompleted(object arg) {
+            if ((this.Send_MailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Send_MailCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -8937,88 +9094,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChecklistRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ChecklistRequest(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction) {
-            object[] results = this.Invoke("ChecklistRequest", new object[] {
-                        ScheduleDate,
-                        ZoneID,
-                        LocationID,
-                        SubLocationID,
-                        DepartmentID,
-                        ChecklistID,
-                        StartTime,
-                        TicketNumber,
-                        LoggedInUserID,
-                        strAction});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ChecklistRequestAsync(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction) {
-            this.ChecklistRequestAsync(ScheduleDate, ZoneID, LocationID, SubLocationID, DepartmentID, ChecklistID, StartTime, TicketNumber, LoggedInUserID, strAction, null);
-        }
-        
-        /// <remarks/>
-        public void ChecklistRequestAsync(string ScheduleDate, int ZoneID, int LocationID, int SubLocationID, int DepartmentID, int ChecklistID, string StartTime, string TicketNumber, string LoggedInUserID, string strAction, object userState) {
-            if ((this.ChecklistRequestOperationCompleted == null)) {
-                this.ChecklistRequestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChecklistRequestOperationCompleted);
-            }
-            this.InvokeAsync("ChecklistRequest", new object[] {
-                        ScheduleDate,
-                        ZoneID,
-                        LocationID,
-                        SubLocationID,
-                        DepartmentID,
-                        ChecklistID,
-                        StartTime,
-                        TicketNumber,
-                        LoggedInUserID,
-                        strAction}, this.ChecklistRequestOperationCompleted, userState);
-        }
-        
-        private void OnChecklistRequestOperationCompleted(object arg) {
-            if ((this.ChecklistRequestCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ChecklistRequestCompleted(this, new ChecklistRequestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_ChecklistPoints", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Update_ChecklistPoints(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID) {
-            object[] results = this.Invoke("Update_ChecklistPoints", new object[] {
-                        TicketNumber,
-                        strXmlChecklist,
-                        list_Images,
-                        LoggedInUserID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Update_ChecklistPointsAsync(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID) {
-            this.Update_ChecklistPointsAsync(TicketNumber, strXmlChecklist, list_Images, LoggedInUserID, null);
-        }
-        
-        /// <remarks/>
-        public void Update_ChecklistPointsAsync(string TicketNumber, string strXmlChecklist, string list_Images, string LoggedInUserID, object userState) {
-            if ((this.Update_ChecklistPointsOperationCompleted == null)) {
-                this.Update_ChecklistPointsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_ChecklistPointsOperationCompleted);
-            }
-            this.InvokeAsync("Update_ChecklistPoints", new object[] {
-                        TicketNumber,
-                        strXmlChecklist,
-                        list_Images,
-                        LoggedInUserID}, this.Update_ChecklistPointsOperationCompleted, userState);
-        }
-        
-        private void OnUpdate_ChecklistPointsOperationCompleted(object arg) {
-            if ((this.Update_ChecklistPointsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Update_ChecklistPointsCompleted(this, new Update_ChecklistPointsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -9034,6 +9109,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void INSERT_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_ASSET_REQUEST_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class INSERT_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -10272,6 +10399,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_VMSRequestList_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void ChecklistRequestCompletedEventHandler(object sender, ChecklistRequestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChecklistRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChecklistRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Update_ChecklistPointsCompletedEventHandler(object sender, Update_ChecklistPointsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Update_ChecklistPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Update_ChecklistPointsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -12445,58 +12624,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void INSERT_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_ASSET_REQUEST_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class INSERT_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal INSERT_ASSET_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventHandler(object sender, INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -12546,6 +12673,36 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Send_Mail_TestCompletedEventHandler(object sender, Send_Mail_TestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Send_Mail_TestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Send_Mail_TestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
+    public delegate void Send_MailCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
@@ -14614,58 +14771,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal ChecklistPoint_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void ChecklistRequestCompletedEventHandler(object sender, ChecklistRequestCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ChecklistRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ChecklistRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void Update_ChecklistPointsCompletedEventHandler(object sender, Update_ChecklistPointsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Update_ChecklistPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Update_ChecklistPointsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -134,7 +134,7 @@
                             </div>
                            
                             <div class="m-portlet__body">
-                                <h2>Ajay</h2>
+                                
                                 <!--begin: Datatable -->
 
                               <!--   <table class="m-datatable1" id="html_table1" width="100%">
@@ -182,7 +182,7 @@
                                 <table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
                                     <thead>
                                      
-                                  <!--   <%--   <%=bindHeader()%>--%>-->
+                                      <%=bindHeader()%>
 
                                            
                                     </thead>

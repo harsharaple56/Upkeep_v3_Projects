@@ -4119,10 +4119,10 @@
     </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
     <Content Include="VMS\Visit_Request_Public.aspx" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
