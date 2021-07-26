@@ -455,6 +455,7 @@ namespace Upkeep_v3.Feedback
 
             Fetch_CategorySubCategory(CategoryID);
 
+            dvEnableNegativeFeedback.Attributes.Add("style","display:block;");
         }
 
         public void Fetch_LocationTree()

@@ -15,4 +15,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     }
 
+    public class Cls_Send_Email_Json
+    {
+        public string To_Email { get; set; }
+        public string Subject { get; set; }
+        public string Html_Body { get; set; }
+
+    }
+
 }
