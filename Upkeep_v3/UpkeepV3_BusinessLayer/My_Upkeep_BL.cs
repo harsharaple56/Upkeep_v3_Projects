@@ -2023,6 +2023,28 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Send_Mail_Test(string Emails , string Subject , string HTML_Body, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Send_Mail_Test", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Emails", Emails);
+                cmd.Parameters.AddWithValue("@Subject_Mail", Subject);
+                cmd.Parameters.AddWithValue("@HTML_Body", HTML_Body);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet GatePassType_CRUD(int GP_TypeID, string GP_TypeDesc, int GatePass_ConfigID, string LoggedInUserID, string strAction, string StrConn)
         {
             DataSet ds = new DataSet();

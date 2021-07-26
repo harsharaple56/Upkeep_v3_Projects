@@ -48,8 +48,9 @@ namespace Upkeep_v3.VMS
                 }
                 else
                 {
-                    From_Date = DateTime.Now.AddDays(-29).ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    //From_Date = DateTime.Now.AddDays(-29).ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
 
+                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
                 }
 
                 if (end_date.Value != "")
@@ -58,8 +59,10 @@ namespace Upkeep_v3.VMS
                 }
                 else
                 {
-                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
-                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
+                    DateTime To_Date_dt = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture));
+
+                    To_Date = To_Date_dt.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
                 }
 
                 DataSet ds = new DataSet();
