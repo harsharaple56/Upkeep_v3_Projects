@@ -131,7 +131,7 @@ namespace Upkeep_v3.VMS
                             string Question = string.Empty;
 
                             //   data = "<tr><th>Action</th><th>visitor No</th> <th>UserName</th><th>Vist Date </th><th>Email</th><th>Phone No</th> <th> Meeting User Name</th><th>Meeting With</th> ";
-                            data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
+                            data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
 
                             ColumnCount = (ds.Tables[1].Rows.Count);
 
@@ -155,19 +155,19 @@ namespace Upkeep_v3.VMS
                         else
                         {
                            
-                            data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
+                            data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
 
                         }
                     }
                     else
                     {
-                         data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
+                         data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
                         //invalid login
                     }
                 }
                 else
                 {
-                    data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
+                    data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
                 }
             }
             catch (Exception ex)
@@ -224,8 +224,9 @@ namespace Upkeep_v3.VMS
                 string FeedbackNo = string.Empty;
                 string MeetingDate = string.Empty;
                 string Config_Title = string.Empty;
+                string RequestDate = string.Empty;
 
-               // DateTime FeedbackDate;
+                // DateTime FeedbackDate;
                 int x = 0;
 
                 if (ds.Tables.Count > 0)
@@ -250,14 +251,15 @@ namespace Upkeep_v3.VMS
                                     MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
                                     MeetingDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
                                     Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Title"]);
+                                    RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
 
                             
-                                data += "<tr><td>"+ UserID + "</td><td>"+ Name +"</td><td>"+ EmailID + "</td><td>"+ MobileNo + "</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
+                                data += "<tr><td>"+ UserID + "</td><td>"+ Name +"</td><td>"+ EmailID + "</td><td>"+ MobileNo + "</td><td>"+RequestDate+"</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
 
                                 ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 6; j < ColumnCount; j++)
+                                    for (int j = 7; j < ColumnCount; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";
