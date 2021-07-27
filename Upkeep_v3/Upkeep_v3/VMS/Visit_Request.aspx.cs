@@ -788,6 +788,7 @@ namespace Upkeep_v3.VMS
                 dt.Columns.Add("QuestionID");
                 dt.Columns.Add("AnswerID");
                 dt.Columns.Add("Data");
+               // dt.Columns.Add("DataValue");  //Add by Mohammed
                 // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
 
                 string Is_Not_Valid = "False";
@@ -820,7 +821,8 @@ namespace Upkeep_v3.VMS
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = item.Value;
+                                dtRow["Data"] = item;
+                               // dtRow["DataValue"] = item;
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -850,7 +852,9 @@ namespace Upkeep_v3.VMS
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = item.Value;
+                               // dtRow["Data"] = item.Value;
+                                dtRow["Data"] = item;
+                              //  dtRow["DataValue"] = item;
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -926,6 +930,7 @@ namespace Upkeep_v3.VMS
                                             dtRow["QuestionID"] = HeadId;
                                             dtRow["AnswerID"] = AnswerTypeID;
                                             dtRow["Data"] = FileLocation;
+                                          //  dtRow["DataValue"] = FileLocation;
                                             dt.Rows.Add(dtRow);
                                         }
                                     }
@@ -973,6 +978,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
+                       // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
                         if (Is_Mandatory == "*")
@@ -1004,6 +1010,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
+                       // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
 
@@ -1035,6 +1042,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
+                       // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
 
@@ -1065,6 +1073,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
+                        //dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
 
