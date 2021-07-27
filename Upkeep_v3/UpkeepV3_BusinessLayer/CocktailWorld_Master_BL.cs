@@ -85,8 +85,8 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        
-          public DataSet FetchBrand_SizeLinkup(int Category_ID,int Brand_ID ,string StrConn)
+
+        public DataSet FetchBrand_SizeLinkup(int Category_ID,int Brand_ID ,string StrConn)
         {
             try
             {
@@ -356,6 +356,85 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+
+        public DataSet CocktailMaster_CRUD(string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Cocktail", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CocktailName", Cocktail_Name);
+                cmd.Parameters.AddWithValue("@Rate", Rate);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_CocktailBrandMaster", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Cocktail_ID", Cocktail_ID);
+                cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
+                cmd.Parameters.AddWithValue("@Pegml", Pegml);
+                cmd.Parameters.AddWithValue("@Size", Size);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet Fetch_Cocktail_Brand_Details(string Cocktail_Desc, int Company_ID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Cocktail_Brand_Details", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
     }
 }

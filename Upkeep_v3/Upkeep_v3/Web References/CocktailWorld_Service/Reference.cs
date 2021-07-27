@@ -40,6 +40,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback FetchCategorySizeLinkupOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CocktailMaster_CRUDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Cocktail_Brand_DetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CocktailBrandsMaster_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FetchBrandSizeLinkupOperationCompleted;
         
         private System.Threading.SendOrPostCallback BrandMaster_CRUDOperationCompleted;
@@ -110,6 +116,15 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event FetchCategorySizeLinkupCompletedEventHandler FetchCategorySizeLinkupCompleted;
+        
+        /// <remarks/>
+        public event CocktailMaster_CRUDCompletedEventHandler CocktailMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Cocktail_Brand_DetailsCompletedEventHandler Fetch_Cocktail_Brand_DetailsCompleted;
+        
+        /// <remarks/>
+        public event CocktailBrandsMaster_CRUDCompletedEventHandler CocktailBrandsMaster_CRUDCompleted;
         
         /// <remarks/>
         public event FetchBrandSizeLinkupCompletedEventHandler FetchBrandSizeLinkupCompleted;
@@ -294,6 +309,115 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.FetchCategorySizeLinkupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FetchCategorySizeLinkupCompleted(this, new FetchCategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CocktailMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CocktailMaster_CRUD(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("CocktailMaster_CRUD", new object[] {
+                        Category_Desc,
+                        Rate,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CocktailMaster_CRUDAsync(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
+            this.CocktailMaster_CRUDAsync(Category_Desc, Rate, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void CocktailMaster_CRUDAsync(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.CocktailMaster_CRUDOperationCompleted == null)) {
+                this.CocktailMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCocktailMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("CocktailMaster_CRUD", new object[] {
+                        Category_Desc,
+                        Rate,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.CocktailMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnCocktailMaster_CRUDOperationCompleted(object arg) {
+            if ((this.CocktailMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CocktailMaster_CRUDCompleted(this, new CocktailMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Cocktail_Brand_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Cocktail_Brand_Details(string Category_Desc, int Company_ID) {
+            object[] results = this.Invoke("Fetch_Cocktail_Brand_Details", new object[] {
+                        Category_Desc,
+                        Company_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Cocktail_Brand_DetailsAsync(string Category_Desc, int Company_ID) {
+            this.Fetch_Cocktail_Brand_DetailsAsync(Category_Desc, Company_ID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Cocktail_Brand_DetailsAsync(string Category_Desc, int Company_ID, object userState) {
+            if ((this.Fetch_Cocktail_Brand_DetailsOperationCompleted == null)) {
+                this.Fetch_Cocktail_Brand_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Cocktail_Brand_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Cocktail_Brand_Details", new object[] {
+                        Category_Desc,
+                        Company_ID}, this.Fetch_Cocktail_Brand_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Cocktail_Brand_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_Cocktail_Brand_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Cocktail_Brand_DetailsCompleted(this, new Fetch_Cocktail_Brand_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CocktailBrandsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("CocktailBrandsMaster_CRUD", new object[] {
+                        Cocktail_ID,
+                        Brand_ID,
+                        Pegml,
+                        Size,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
+            this.CocktailBrandsMaster_CRUDAsync(Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.CocktailBrandsMaster_CRUDOperationCompleted == null)) {
+                this.CocktailBrandsMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCocktailBrandsMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("CocktailBrandsMaster_CRUD", new object[] {
+                        Cocktail_ID,
+                        Brand_ID,
+                        Pegml,
+                        Size,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.CocktailBrandsMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnCocktailBrandsMaster_CRUDOperationCompleted(object arg) {
+            if ((this.CocktailBrandsMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CocktailBrandsMaster_CRUDCompleted(this, new CocktailBrandsMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -788,6 +912,84 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal FetchCategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CocktailMaster_CRUDCompletedEventHandler(object sender, CocktailMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CocktailMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CocktailMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Cocktail_Brand_DetailsCompletedEventHandler(object sender, Fetch_Cocktail_Brand_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Cocktail_Brand_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Cocktail_Brand_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CocktailBrandsMaster_CRUDCompletedEventHandler(object sender, CocktailBrandsMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CocktailBrandsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CocktailBrandsMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

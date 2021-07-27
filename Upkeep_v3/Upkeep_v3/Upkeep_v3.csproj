@@ -1054,6 +1054,7 @@
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
+    <Content Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx" />
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
     <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
@@ -4112,18 +4113,18 @@
     </Content>
     <Content Include="Handlers\UserImage_Handler.ashx" />
     <Content Include="Handlers\RetailerImage_Handler.ashx" />
+    <Content Include="VMS\Visit_Request_Public.aspx" />
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <Content Include="VMS\Visit_Request_Public.aspx" />
     <None Include="Web References\Upkeep_V3_Services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
+    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
     <Content Include="WorkPermit\MyWorkPermit.aspx" />
@@ -4428,6 +4429,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx.designer.cs">
       <DependentUpon>Add_Brand_Opening_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx.cs">
+      <DependentUpon>Add_Cocktail_Recipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx.designer.cs">
+      <DependentUpon>Add_Cocktail_Recipes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Bill_Book.aspx.cs">
       <DependentUpon>Bill_Book.aspx</DependentUpon>
