@@ -36,9 +36,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             ddlCocktail.ClearSelection();
             ddlCocktail.SelectedIndex = 0;
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Name"), new DataColumn("Size"), new DataColumn("Pegml") });
             grdAddData.DataSource = null;
             grdAddData.DataBind();
-
+            ViewState["Customers"] = dt;
         }
 
         protected void ddlCocktail_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,7 +143,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string item = e.Row.Cells[0].Text;
                 foreach (Button button in e.Row.Cells[0].Controls.OfType<Button>())
                 {
                     if (button.CommandName == "Delete")
@@ -157,10 +158,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Customers"] as DataTable;
             dt.Rows[index].Delete();
+            dt.AcceptChanges();
             ViewState["Customers"] = dt;
             BindGrid();
         }
 
+        protected void grdAddData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdAddData.PageIndex = e.NewPageIndex;
+            BindGrid();
+        }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -201,7 +208,46 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             }
                             ds.AcceptChanges();
                         }
-                        
+                        else
+                        {
+                            //Update Rate In Cocktial Master Table
+                            ds = ObjCocktailWorld.CocktailMaster_CRUD(ddlCocktail.SelectedItem.Text, txtRate.Text, CompanyID, LoggedInUserID, "Update");
+
+                            //Fetch Old Grid From Cocktail Brand Master Table
+                            DataSet dsOldGrid = new DataSet();
+                            dsOldGrid = ObjCocktailWorld.CocktailBrandsMaster_CRUD(Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), 0, 0, 0, CompanyID, LoggedInUserID, "Fetch_OldGrid");
+
+                            if (dsOldGrid.Tables[0].Rows.Count > 0 && grdAddData.Rows.Count > 0)
+                            {
+                                for (int i = 0; i < dsOldGrid.Tables[0].Rows.Count; i++)
+                                {
+                                    DataSet dsBrandId = new DataSet();
+                                    dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, dsOldGrid.Tables[0].Rows[i]["Brand_Desc"].ToString(), 0, 0, 0, 0, 0, LoggedInUserID, "Fetch");
+                                    ObjCocktailWorld.CocktailBrandsMaster_CRUD(Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), Convert.ToInt32(dsBrandId.Tables[0].Rows[0]["Brand_ID"]), Convert.ToInt32(dsOldGrid.Tables[0].Rows[i]["Peg_ML_Qty"]), Convert.ToInt32(dsOldGrid.Tables[0].Rows[i]["Size"]), CompanyID, LoggedInUserID, "Delete");
+                                }
+
+                                DataTable dtGridData = new DataTable();
+                                foreach (TableCell cell in grdAddData.HeaderRow.Cells)
+                                {
+                                    dtGridData.Columns.Add(cell.Text);
+                                }
+                                foreach (GridViewRow row in grdAddData.Rows)
+                                {
+                                    dtGridData.Rows.Add();
+                                    for (int i = 0; i < row.Cells.Count; i++)
+                                    {
+                                        dtGridData.Rows[row.RowIndex][i] = row.Cells[i].Text;
+                                    }
+                                }
+                                for (int i = 0; i < dtGridData.Rows.Count; i++)
+                                {
+                                    DataSet dsBrandId = new DataSet();
+                                    dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, dtGridData.Rows[i]["Brand Name"].ToString(), 0, 0, 0, 0, 0, LoggedInUserID, "Fetch");
+                                    ObjCocktailWorld.CocktailBrandsMaster_CRUD(Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), Convert.ToInt32(dsBrandId.Tables[0].Rows[0]["Brand_ID"]), Convert.ToInt32(dtGridData.Rows[i]["ML / Peg"]), Convert.ToInt32(dtGridData.Rows[i]["Size"]), CompanyID, LoggedInUserID, "Insert");
+                                }
+                            }
+                        }
+
                         ds.AcceptChanges();
                     }
                     else

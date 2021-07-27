@@ -101,7 +101,8 @@
                                                         PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
                                                         HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
                                                         PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                                        PagerSettings-Position="Bottom" ClientIDMode="Static" CssClass="ct-grid" OnRowDeleting="OnRowDeleting" OnRowDataBound="OnRowDataBound">
+                                                        PagerSettings-Position="Bottom" ClientIDMode="Static" CssClass="ct-grid" OnRowDeleting="OnRowDeleting"
+                                                        OnRowDataBound="OnRowDataBound" OnPageIndexChanging="grdAddData_PageIndexChanging">
                                                         <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
                                                         <Columns>
                                                             <asp:CommandField ShowDeleteButton="True" DeleteText="Remove" ControlStyle-CssClass="btn btn-danger" ButtonType="Button" ItemStyle-Width="120" />
