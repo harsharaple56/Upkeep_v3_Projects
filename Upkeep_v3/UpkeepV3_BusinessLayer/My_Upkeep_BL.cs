@@ -4825,6 +4825,28 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_VMSRequestList_Report_Excel(string EventID, int CompanyID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("VMS_Proc_MIS_Report_Excel", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EventID", EventID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

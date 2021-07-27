@@ -3717,6 +3717,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_VMSRequestList_Report_Excel(string EventID, int CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_VMSRequestList_Report_Excel(EventID, CompanyID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 }
 
 public class AuthenticationHeader : SoapHeader

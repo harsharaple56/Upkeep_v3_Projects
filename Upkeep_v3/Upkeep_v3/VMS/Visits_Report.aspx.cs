@@ -395,8 +395,8 @@ namespace Upkeep_v3.VMS
                 string EventID = Convert.ToString(ddlFormName.SelectedValue);
 
                 DataSet dsMisReport = new DataSet();
-                dsMisReport = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
-
+                dsMisReport = ObjUpkeep.Fetch_VMSRequestList_Report_Excel(EventID, Convert.ToInt32(Session["CompanyID"]), From_Date, To_Date);
+              
                 System.Data.DataTable dtMISReport = new System.Data.DataTable();
 
 

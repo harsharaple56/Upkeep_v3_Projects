@@ -3401,6 +3401,23 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_VMSRequestList_Report_Excel(string EventID, int CompanyID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_VMSRequestList_Report_Excel(EventID, CompanyID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
 
 }
