@@ -68,7 +68,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
 
         [Route("api/SendEmail/Send_Email_Json")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Send_Email_Json([FromBody] Cls_Send_Email_Json objMail)
         {
             string email_response = string.Empty;
