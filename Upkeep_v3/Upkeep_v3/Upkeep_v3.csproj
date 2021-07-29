@@ -1067,9 +1067,11 @@
     <Content Include="Cocktail_World\Setup\Permit_Holders.aspx" />
     <Content Include="Cocktail_World\Setup\Setup.aspx" />
     <Content Include="Cocktail_World\Setup\Suppliers.aspx" />
+    <Content Include="Cocktail_World\Transactions\Add_Sales.aspx" />
     <Content Include="Cocktail_World\Transactions\Auto_Billing.aspx" />
     <Content Include="Cocktail_World\Transactions\Purchases.aspx" />
     <Content Include="Cocktail_World\Transactions\Sales.aspx" />
+    <Content Include="Cocktail_World\Transactions\Select_Transaction.aspx" />
     <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
@@ -4521,6 +4523,13 @@
     <Compile Include="Cocktail_World\Setup\Suppliers.aspx.designer.cs">
       <DependentUpon>Suppliers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Sales.aspx.cs">
+      <DependentUpon>Add_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Sales.aspx.designer.cs">
+      <DependentUpon>Add_Sales.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Transactions\Auto_Billing.aspx.cs">
       <DependentUpon>Auto_Billing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4541,6 +4550,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Select_Transaction.aspx.cs">
+      <DependentUpon>Select_Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Select_Transaction.aspx.designer.cs">
+      <DependentUpon>Select_Transaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Transfers.aspx.cs">
       <DependentUpon>Transfers.aspx</DependentUpon>

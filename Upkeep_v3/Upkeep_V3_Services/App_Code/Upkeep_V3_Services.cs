@@ -1252,7 +1252,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int CompanyID)
+    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime,int Is_Enable_AutomatedTicket,int CategoryID,int SubCategoryID,int LocationID,int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int Is_Flag_Negative,int Is_IncludeTicketRemarks, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -1261,7 +1261,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
             //ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
-            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
+            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID, SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks, CompanyID);
 
         }
         catch (Exception ex)

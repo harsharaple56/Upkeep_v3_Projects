@@ -27,7 +27,7 @@ namespace Upkeep_v3.Feedback
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             //event_form.Action= @"EventDetails.aspx";  // commentd by suju removed form type 
-            
+
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
                 Response.Redirect("~/Login.aspx", false);
@@ -36,7 +36,7 @@ namespace Upkeep_v3.Feedback
             if (!IsPostBack)
             {
                 int EventID = Convert.ToInt32(Request.QueryString["EventID"]);
-                
+
 
                 int EventID_Delete = Convert.ToInt32(Request.QueryString["DelEventID"]);
 
@@ -47,7 +47,7 @@ namespace Upkeep_v3.Feedback
                 {
                     Session["EventID"] = Convert.ToString(EventID);
                     bindEventDetails(EventID);
-                    
+
                 }
 
                 if (EventID_Delete > 0)
@@ -142,6 +142,49 @@ namespace Upkeep_v3.Feedback
                 string option3 = string.Empty;
                 string option4 = string.Empty;
 
+                //[+][Ajay Prajapati][New Feedback changes: automated ticket on negative flag]
+                string Banner_Path = string.Empty;
+                int CategoryID = 0;
+                int SubCategoryID = 0;
+                int LocationID = 0;
+                int Total_Negative_Flag = 0;
+                int Is_Enable_AutomatedTicket = 0;
+
+                int Is_Flag_Negative = 0;
+                int Is_IncludeTicketRemarks = 0;
+
+                if (chkEnableNegativeFeedback.Checked)
+                {
+                    Is_Enable_AutomatedTicket = 1;
+
+                    if (Convert.ToString(hdnCategory.Value) != "")
+                    {
+                        CategoryID = Convert.ToInt32(hdnCategory.Value);
+                    }
+                    if (Convert.ToString(hdnSubCategory.Value) != "")
+                    {
+                        SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                    }
+                    if (Convert.ToString(hdnassetLocation.Value) != "")
+                    {
+                        LocationID = Convert.ToInt32(hdnassetLocation.Value);
+                    }
+
+                    if (Convert.ToString(txtTotalNegativeFlag.Value) != "")
+                    {
+                        Total_Negative_Flag = Convert.ToInt32(txtTotalNegativeFlag.Value);
+                    }
+                }
+                else
+                {
+                    Is_Enable_AutomatedTicket = 0;
+                }
+
+               
+
+
+                //[-][Ajay Prajapati][New Feedback changes: automated ticket on negative flag]
+
                 int EventID = 0;
                 DataSet ds = new DataSet();
                 string QuesFor = string.Empty;
@@ -167,7 +210,9 @@ namespace Upkeep_v3.Feedback
                 int ccc = Request.Form.Count;
                 for (int i = 0; i < ccc; i++)
                 {
-                    
+                    Is_Flag_Negative = 0;
+                    Is_IncludeTicketRemarks = 0;
+
                     //string[] CustQuesArray = Request.Form.GetValues("Customer[" + i + "][txtCustomerQuestion]");
                     string[] CustQuesArray = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$txtCustomerQuestion]");
 
@@ -182,6 +227,27 @@ namespace Upkeep_v3.Feedback
                     {
                         CustQuesType = CustQuestypeArray[0];
                     }
+
+                    string[] CustQuesFlagArray = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$chkFlag_Negative][]");
+
+                    if (CustQuesFlagArray != null)
+                    {
+                        if (CustQuesFlagArray[0] == "on")
+                        {
+                            Is_Flag_Negative = 1;
+                        }
+                    }
+
+                    string[] CustQuesIncludeRemarksArray = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$chkIncludeTicketRemarks][]");
+
+                    if (CustQuesIncludeRemarksArray != null)
+                    {
+                        if (CustQuesIncludeRemarksArray[0] == "on")
+                        {
+                            Is_IncludeTicketRemarks = 1;
+                        }
+                    }
+
 
                     string[] Arr_option1 = Request.Form.GetValues("Customer[" + i + "][ctl00$ContentPlaceHolder1$option1]");
                     if (Arr_option1 != null)
@@ -225,7 +291,8 @@ namespace Upkeep_v3.Feedback
                     {
                         //ds = objFeedbackService.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
 
-                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
+                        //ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
+                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID, SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks, CompanyID);
 
                         if (ds.Tables.Count > 0)
                         {
@@ -248,7 +315,7 @@ namespace Upkeep_v3.Feedback
                 }
 
                 Response.Redirect(Page.ResolveClientUrl("~/Feedback/EventListing.aspx"), false);
-                
+
 
                 //foreach (string key in Request.Form)
                 //{
@@ -277,7 +344,7 @@ namespace Upkeep_v3.Feedback
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepFeedback.bindEventDetails(CompanyID,EventID);
+                ds = ObjUpkeepFeedback.bindEventDetails(CompanyID, EventID);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -349,7 +416,7 @@ namespace Upkeep_v3.Feedback
         {
             string data = "";
             DataSet ds = new DataSet();
-            ds = ObjUpkeepFeedback.bindEventDetails(CompanyID,3);
+            ds = ObjUpkeepFeedback.bindEventDetails(CompanyID, 3);
 
             int rowCount = ds.Tables[0].Rows.Count;
 
@@ -455,7 +522,7 @@ namespace Upkeep_v3.Feedback
 
             Fetch_CategorySubCategory(CategoryID);
 
-            dvEnableNegativeFeedback.Attributes.Add("style","display:block;");
+            dvEnableNegativeFeedback.Attributes.Add("style", "display:block;");
         }
 
         public void Fetch_LocationTree()
@@ -469,7 +536,7 @@ namespace Upkeep_v3.Feedback
                 {
                     if (dsLocDetails.Tables[0].Rows.Count > 0)
                     {
-                        
+
                         var builder = new System.Text.StringBuilder();
 
                         for (int i = 0; i < dsLocDetails.Tables[0].Rows.Count; i++)
