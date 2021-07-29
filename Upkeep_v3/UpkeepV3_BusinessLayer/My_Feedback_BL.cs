@@ -200,7 +200,7 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int CompanyID, string strConn)
+        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID, int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int Is_Flag_Negative,int Is_IncludeTicketRemarks, int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -214,6 +214,13 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@locationName", locationName);
             cmd.Parameters.AddWithValue("@startDateTime", startDateTime);
             cmd.Parameters.AddWithValue("@endDateTime", endDateTime);
+
+            cmd.Parameters.AddWithValue("@Is_Enable_AutomatedTicket", Is_Enable_AutomatedTicket);
+            cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+            cmd.Parameters.AddWithValue("@SubCategoryID", SubCategoryID);
+            cmd.Parameters.AddWithValue("@LocationID", LocationID);
+            cmd.Parameters.AddWithValue("@Total_Negative_Flag", Total_Negative_Flag);
+
             cmd.Parameters.AddWithValue("@CustomerQuestion", CustomerQuestion);
             cmd.Parameters.AddWithValue("@CustAnsType", CustQuesType);
             cmd.Parameters.AddWithValue("@QuesFor", QuesFor);
@@ -225,6 +232,10 @@ namespace UpkeepV3_BusinessLayer
             cmd.Parameters.AddWithValue("@option2", option2);
             cmd.Parameters.AddWithValue("@option3", option3);
             cmd.Parameters.AddWithValue("@option4", option4);
+
+            cmd.Parameters.AddWithValue("@Is_Flag_Negative", Is_Flag_Negative);
+            cmd.Parameters.AddWithValue("@Is_IncludeTicketRemarks", Is_IncludeTicketRemarks);
+
             cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 
             con.Open();

@@ -407,7 +407,7 @@
                                                 <div class="col-xl-4 col-lg-9" style="padding-top: 8px;">
                                                     <input type="file" name="FileUpload_BannerImage" id="FileUpload_BannerImage" style="padding-right: 20px;" />
                                                     <input type="hidden" name="Is_ImageUpload_ValidFile" id="Is_ImageUpload_ValidFile" />
-                                                    <span class="error_type7 text-danger font-weight-bold">Invalid File Uploaded error</span>
+                                                    <span class="error_type7 text-danger font-weight-bold"></span>
 
                                                 </div>
                                             </div>
@@ -448,7 +448,7 @@
 
                                             </div>
 
-                                             <div class="dvEnable_RetailerFeedback_Alerts" style="display: none;">
+                                            <div class="dvEnable_RetailerFeedback_Alerts" style="display: none;">
 
                                                 <div class="m-form__group form-group row">
 
@@ -635,7 +635,7 @@
                                                     <div class="col-md-3">
                                                         <div class="m-form__group">
                                                             <asp:HiddenField ID="hdnSubCategory" runat="server" ClientIDMode="Static" />
-                                                            <asp:Button ID="btnSubCategoryChange" runat="server" Style="display: none;"  ClientIDMode="Static" />
+                                                            <asp:Button ID="btnSubCategoryChange" runat="server" Style="display: none;" ClientIDMode="Static" />
 
                                                             <input list="dlSubCategory" id="txtSubCategory" name="txtassetLocation"
                                                                 class="form-control" runat="server" clientidmode="Static" />
@@ -656,35 +656,35 @@
                                                     </label>
                                                     <div class="col-md-9">
                                                         <div class="m-form__group">
-                                                             <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
-                                                        <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
-                                                            class="form-control" runat="server" clientidmode="Static" />
-                                                        <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
-                                                        
-                                                        <span id="LocationError_Msg" style="color: red;"></span>
+                                                            <asp:HiddenField ID="hdnassetLocation" runat="server" ClientIDMode="Static" />
+                                                            <input list="dlassetLocation" id="txtassetLocation" name="txtassetLocation"
+                                                                class="form-control" runat="server" clientidmode="Static" />
+                                                            <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
+
+                                                            <span id="LocationError_Msg" style="color: red;"></span>
                                                         </div>
                                                     </div>
 
                                                 </div>
 
                                                 <div class="form-group m-form__group row">
-                                                <div class="col-xl-12">
+                                                    <div class="col-xl-12">
 
-                                                    <div class="input-group m-input-group">
-                                                        <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
-                                                            <i class="fa fa-flag"></i>
-                                                        </a>
-                                                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
+                                                        <div class="input-group m-input-group">
+                                                            <a href="#" style="width: 25px; height: 25px;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If checked , the system will keep track of Negative Responses on this question and raise a Red Flag. When total no. of Red-Flags on a Feedback are equal to the Number entered in the NEGATIVE FLAGS Textbox above , an automated Ticket will raise">
+                                                                <i class="fa fa-flag"></i>
+                                                            </a>
+                                                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Raise ticket with configured parameters when </span></div>
 
-                                                        <input type="text" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1">
-                                                        <div class="input-group-append">
+                                                            <input type="text" id="txtTotalNegativeFlag" runat="server" class="form-control m-input" placeholder="(Enter No. of Negative Flags)" aria-describedby="basic-addon1" />
+                                                            <div class="input-group-append">
 
-                                                            <span class="input-group-text" id="basic-addon1">Negative Flags are detected on feedback submission</span>
+                                                                <span class="input-group-text" id="basic-addon2">Negative Flags are detected on feedback submission</span>
+                                                            </div>
                                                         </div>
+                                                        <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                     </div>
-                                                    <span class="m-form__help m--font-danger font-weight-bold">Error Text here</span>
                                                 </div>
-                                            </div>
 
                                             </div>
 
@@ -720,7 +720,7 @@
                                                                             <i class="fa fa-flag"></i>
                                                                         </a>
                                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
-                                                                            <input type="checkbox" id="chkFlag_Negative" />
+                                                                            <input type="checkbox" id="chkFlag_Negative" runat="server" />
                                                                             Flag on Negative Feedback
 											                            <span></span>
                                                                         </label>
@@ -751,7 +751,7 @@
 
                                                                     <div class="clsIncludeTicketRemarks" style="display: none;">
                                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand" style="margin-top: 10px;">
-                                                                            <input type="checkbox" id="chkIncludeTicketRemarks" />
+                                                                            <input type="checkbox" id="chkIncludeTicketRemarks" runat="server" />
                                                                             Include in Ticket Remarks
 											                            <span></span>
                                                                         </label>
