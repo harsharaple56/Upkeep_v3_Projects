@@ -580,26 +580,50 @@
                                         </a>
                                         Select Mandatory Fields</label>
                                     <div class="m-checkbox-inline">
-                                        <label class="m-checkbox">
-                                            <input type="checkbox" checked="true">
+                                        <%--<label class="m-checkbox">--%>
+                                                    <asp:CheckBox ID="ChkNameComp" autocomplete="off" runat="server" Checked="true" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i> Name
+                                        
+                                        <%--</label>--%>
+                                                   
+                                            <%--<input type="checkbox" checked="true">
                                             Name
 									    <span></span>
-                                        </label>
-                                        <label class="m-checkbox">
+                                        </label>--%>
+                                    <%--    <label class="m-checkbox">
                                             <input type="checkbox">
                                             Email
 										<span></span>
-                                        </label>
-                                        <label class="m-checkbox">
+                                        </label>--%>
+                                         <label class="">
+                                                    <asp:CheckBox ID="ChkEmailComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i> Email</label>
+
+
+
+                                      <%--  <label class="m-checkbox">
                                             <input type="checkbox">
                                             Contact
 										<span></span>
-                                        </label>
-                                        <label class="m-checkbox">
+                                        </label>--%>
+
+                                          <label class="">
+                                                    <asp:CheckBox ID="ChkContactComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i> Contact</label>
+
+
+
+                                       <%-- <label class="m-checkbox">
                                             <input type="checkbox">
                                             Meeting With
 										<span></span>
-                                        </label>
+                                        </label>--%>
+
+                                         <label class="">
+                                                    <asp:CheckBox ID="ChkMeetingComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i> Meeting With</label>
+
+
                                     </div>
                                 </div>
 
@@ -610,16 +634,26 @@
                                         </a>
                                         Email and Contact Verification</label>
                                     <div class="m-checkbox-inline">
-                                        <label class="m-checkbox">
+
+                                           <label class="">
+                                                    <asp:CheckBox ID="ChkContactOTPComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>  Contact OTP Compulsory</label>
+
+                                      <%--  <label class="m-checkbox">
                                             <input type="checkbox" checked="true">
-                                            Contact OTP Compulsory
+                                           
 									    <span></span>
-                                        </label>
-                                        <label class="m-checkbox">
+                                        </label>--%>
+                                      <%--  <label class="m-checkbox">
                                             <input type="checkbox">
                                             Email OTP Compulsory 
 										<span></span>
-                                        </label>
+                                        </label>--%>
+
+
+                                             <label class="">
+                                                    <asp:CheckBox ID="ChkEmailOtpCom" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>   Email OTP Compulsory </label>
                                     </div>
                                 </div>
 

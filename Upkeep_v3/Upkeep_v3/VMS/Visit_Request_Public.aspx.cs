@@ -326,6 +326,40 @@ namespace Upkeep_v3.VMS
                     rptQuestionDetails.DataBind();
                 }
 
+                string blEmailComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_Compulsory"]);
+                string blContactComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_Compulsory"]);
+                string blMeetingComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
+                string blContactOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
+                string blEmailOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
+
+
+                if (blEmailComp == "True")
+                {
+                    //divEmailComp.Visible = true;
+                    //spnEmailComp.Visible = true;
+                    rfvEmail.Enabled = true;
+                }
+
+                if (blContactComp == "True")
+                {
+
+                    rfvphone.Enabled = true;
+                }
+                if (blMeetingComp == "True")
+                {
+
+                    // rfvMeeting.Enabled = true;
+                    rfvMeetingNew.Enabled = true;
+                }
+
+
+
+
+
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -821,7 +855,9 @@ namespace Upkeep_v3.VMS
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = item.Value;
+                               // dtRow["Data"] = item.Value;
+                                dtRow["Data"] = item;
+
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -851,7 +887,8 @@ namespace Upkeep_v3.VMS
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = item.Value;
+                              //  dtRow["Data"] = item.Value;
+                                dtRow["Data"] = item;
                                 dt.Rows.Add(dtRow);
                             }
                         }

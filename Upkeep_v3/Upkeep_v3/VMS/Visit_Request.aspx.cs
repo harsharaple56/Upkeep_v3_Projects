@@ -327,6 +327,41 @@ namespace Upkeep_v3.VMS
                     totalNumber.InnerText = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 
+               // string blNameComp = "true";
+                string blEmailComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_Compulsory"]);
+                string blContactComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_Compulsory"]);
+                string blMeetingComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
+                string blContactOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
+                string blEmailOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
+
+               
+                if (blEmailComp == "True")
+                {
+                    //divEmailComp.Visible = true;
+                    //spnEmailComp.Visible = true;
+                    rfvEmail.Enabled = true;
+                }
+               
+                if(blContactComp == "True")
+                {
+                   
+                    rfvphone.Enabled = true;
+                }
+                if(blMeetingComp == "True")
+                {
+                   
+                   // rfvMeeting.Enabled = true;
+                    rfvMeetingNew.Enabled = true;
+                }
+
+
+
+                // spnEmailComp.Visible = true;
+
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -369,6 +404,10 @@ namespace Upkeep_v3.VMS
 
                         txtVMSDate.Text = dsData.Tables[1].Rows[0]["Meeting_Time"].ToString();
                         txtName.Text = dsData.Tables[1].Rows[0]["Name"].ToString();
+
+                        //if
+                        //rfvName.Enabled = true;
+
                         txtEmail.Text = dsData.Tables[1].Rows[0]["Email"].ToString();
                         txtPhone.Text = dsData.Tables[1].Rows[0]["Phone"].ToString();
 
@@ -609,6 +648,8 @@ namespace Upkeep_v3.VMS
                 string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
 
                 string HeadMandatoryId = (itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value;
+
+               // string EmailMandatoryId = (itemQuestion.FindControl("hdnIs_EmailMandatory") as HiddenField).Value;
                 if (HeadMandatoryId == "*")
                 {
 

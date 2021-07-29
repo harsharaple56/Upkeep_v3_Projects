@@ -2995,7 +2995,7 @@ namespace UpkeepV3_BusinessLayer
         #region VMS
 
         //Added by RC This function is used to save VMS Configuration
-        public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID, string StrConn)
+        public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3013,6 +3013,12 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@FeedbackID", FeedbackTitle);
                 cmd.Parameters.AddWithValue("@EnableCovid", blEnableCovid);
                 cmd.Parameters.AddWithValue("@EntryCount", EntryCount);
+                cmd.Parameters.AddWithValue("@NameComp", blNameComp);
+                cmd.Parameters.AddWithValue("@ContactComp", blContactComp);
+                cmd.Parameters.AddWithValue("@EmailComp", blEmailComp);
+                cmd.Parameters.AddWithValue("@MeetingComp", blMeetingComp);
+                cmd.Parameters.AddWithValue("@EmailOtpComp", blEmailOtpComp);
+                cmd.Parameters.AddWithValue("@ContactOtpComp", blContactOtpComp);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

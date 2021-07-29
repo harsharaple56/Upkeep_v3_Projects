@@ -5028,7 +5028,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Update_VMSConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
+        public System.Data.DataSet Insert_Update_VMSConfiguration(
+                    int ConfigID, 
+                    string strConfigTitle, 
+                    string strConfigDesc, 
+                    int CompanyID, 
+                    string strInitiator, 
+                    string strXmlVMS_Question, 
+                    bool blFeedbackCompulsary, 
+                    int FeedbackTitle, 
+                    bool blEnableCovid, 
+                    int EntryCount, 
+                    bool blNameComp, 
+                    bool blContactComp, 
+                    bool blEmailComp, 
+                    bool blMeetingComp, 
+                    bool blEmailOtpComp, 
+                    bool blContactOtpComp, 
+                    string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
                         ConfigID,
                         strConfigTitle,
@@ -5040,17 +5057,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         FeedbackTitle,
                         blEnableCovid,
                         EntryCount,
+                        blNameComp,
+                        blContactComp,
+                        blEmailComp,
+                        blMeetingComp,
+                        blEmailOtpComp,
+                        blContactOtpComp,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID) {
-            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID, null);
+        public void Insert_Update_VMSConfigurationAsync(
+                    int ConfigID, 
+                    string strConfigTitle, 
+                    string strConfigDesc, 
+                    int CompanyID, 
+                    string strInitiator, 
+                    string strXmlVMS_Question, 
+                    bool blFeedbackCompulsary, 
+                    int FeedbackTitle, 
+                    bool blEnableCovid, 
+                    int EntryCount, 
+                    bool blNameComp, 
+                    bool blContactComp, 
+                    bool blEmailComp, 
+                    bool blMeetingComp, 
+                    bool blEmailOtpComp, 
+                    bool blContactOtpComp, 
+                    string LoggedInUserID) {
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID, null);
         }
         
         /// <remarks/>
-        public void Insert_Update_VMSConfigurationAsync(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID, object userState) {
+        public void Insert_Update_VMSConfigurationAsync(
+                    int ConfigID, 
+                    string strConfigTitle, 
+                    string strConfigDesc, 
+                    int CompanyID, 
+                    string strInitiator, 
+                    string strXmlVMS_Question, 
+                    bool blFeedbackCompulsary, 
+                    int FeedbackTitle, 
+                    bool blEnableCovid, 
+                    int EntryCount, 
+                    bool blNameComp, 
+                    bool blContactComp, 
+                    bool blEmailComp, 
+                    bool blMeetingComp, 
+                    bool blEmailOtpComp, 
+                    bool blContactOtpComp, 
+                    string LoggedInUserID, 
+                    object userState) {
             if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
                 this.Insert_Update_VMSConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Update_VMSConfigurationOperationCompleted);
             }
@@ -5065,6 +5123,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         FeedbackTitle,
                         blEnableCovid,
                         EntryCount,
+                        blNameComp,
+                        blContactComp,
+                        blEmailComp,
+                        blMeetingComp,
+                        blEmailOtpComp,
+                        blContactOtpComp,
                         LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         

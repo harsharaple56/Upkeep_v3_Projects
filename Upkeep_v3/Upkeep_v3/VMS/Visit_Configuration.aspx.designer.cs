@@ -139,6 +139,60 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtCount;
         
         /// <summary>
+        /// ChkNameComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkNameComp;
+        
+        /// <summary>
+        /// ChkEmailComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkEmailComp;
+        
+        /// <summary>
+        /// ChkContactComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkContactComp;
+        
+        /// <summary>
+        /// ChkMeetingComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkMeetingComp;
+        
+        /// <summary>
+        /// ChkContactOTPComp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkContactOTPComp;
+        
+        /// <summary>
+        /// ChkEmailOtpCom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkEmailOtpCom;
+        
+        /// <summary>
         /// VMSQuestion control.
         /// </summary>
         /// <remarks>

@@ -184,13 +184,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfvName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
         
         /// <summary>
         /// txtEmail control.
@@ -202,13 +202,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rfvEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
         
         /// <summary>
         /// txtPhone control.
@@ -220,13 +220,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// rfvphone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvphone;
         
         /// <summary>
         /// txtVMSDate control.
@@ -256,13 +256,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtMeetUsers;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// rfvMeetingNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMeetingNew;
         
         /// <summary>
         /// rptQuestionDetails control.

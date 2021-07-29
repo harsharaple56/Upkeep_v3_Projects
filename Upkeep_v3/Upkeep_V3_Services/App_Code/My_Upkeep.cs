@@ -2125,7 +2125,7 @@ public class My_Upkeep
 	#region VMS
 
 	//Added by RC This function is used to save VMS Configuration 
-	public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, string LoggedInUserID)
+	public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID)
 	{
 
 		DataSet ds = new DataSet();
@@ -2133,7 +2133,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)

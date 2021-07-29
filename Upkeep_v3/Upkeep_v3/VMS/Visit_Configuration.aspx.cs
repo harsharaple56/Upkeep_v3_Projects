@@ -200,6 +200,13 @@ namespace Upkeep_v3.VMS
                 bool blEnableCovid = false;
                 int FeedbackTitle = 0;
                 int EntryCount = 0;
+                bool blNameComp = false;
+                bool blEmailComp = false;
+                bool blContactComp = false;
+                bool blMeetingComp = false;
+                bool blContactOtpComp = false;
+                bool blEmailOtpComp = false;
+
 
                 strConfigTitle = txtTitle.Text.Trim();
                 strConfigDesc = txtVMSDesc.Text.Trim();
@@ -210,13 +217,21 @@ namespace Upkeep_v3.VMS
                 if (rdbVisitor.Checked == true)
                 { strInitiator = "V"; }
 
+                blNameComp = Convert.ToBoolean(ChkNameComp.Checked);
+                blEmailComp = Convert.ToBoolean(ChkEmailComp.Checked);
+                blContactComp = Convert.ToBoolean(ChkContactComp.Checked);
+                blMeetingComp = Convert.ToBoolean(ChkMeetingComp.Checked);
+                blContactOtpComp = Convert.ToBoolean(ChkContactOTPComp.Checked);
+                blEmailOtpComp = Convert.ToBoolean(ChkEmailOtpCom.Checked);
+
                 if (ddlFeedbackTitle.SelectedValue.All(char.IsDigit))
                     FeedbackTitle = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
                 blFeedbackCompulsary = Convert.ToBoolean(ChkFeedback.Checked);
                 blEnableCovid = Convert.ToBoolean(ChkCovid.Checked);
 
+
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount,blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -343,7 +358,16 @@ namespace Upkeep_v3.VMS
                     ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
                     ChkCovid.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]);
                     ddlFeedbackTitle.SelectedValue = dsConfig.Tables[0].Rows[0]["Feedback_ID"].ToString();
-                    
+                    ChkNameComp.Checked = true;
+                    ChkContactComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Contact_Compulsory"]);
+                    ChkEmailComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Email_Compulsory"]);
+                    ChkMeetingComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
+                    ChkEmailOtpCom.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
+                    ChkContactOTPComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
+                   
+
+
+
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"
                        + s.Field<bool>("Is_Mandatory").ToString() + "||" + s.Field<bool>("Is_Visible").ToString() + "||"

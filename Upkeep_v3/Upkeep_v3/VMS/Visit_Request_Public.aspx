@@ -456,16 +456,16 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
+                           <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
 
                         </div>
                         <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
+                           <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
                         </div>
 
@@ -474,8 +474,8 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
 
                         </div>
@@ -507,8 +507,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                         </div>
                         <%-- </div>--%>
 
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic"
-                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                             <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
 
                     </div>
 
