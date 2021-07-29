@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "eFacilito_Onboarding", "eFacilito_Onboarding\", "{9BCD7DB7-BDD2-4242-9A82-7CC875A1FA93}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64504"
+		Debug.AspNetCompiler.PhysicalPath = "eFacilito_Onboarding\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64504\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64504"
+		Release.AspNetCompiler.PhysicalPath = "eFacilito_Onboarding\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64504\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64504"
+		SlnRelativePath = "eFacilito_Onboarding\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BCD7DB7-BDD2-4242-9A82-7CC875A1FA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BCD7DB7-BDD2-4242-9A82-7CC875A1FA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11E11459-68CD-40AC-B752-DC525BD2B58E}
+	EndGlobalSection
+EndGlobal
