@@ -27,18 +27,53 @@ namespace Upkeep_v3.Testing_Codes
 
         static async Task Execute()
         {
-            var apiKey = "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";
-            var Template_ID = "d-6d2b77e7749043f6a5e98c9f832c279e";
+            try
+            {
+                var apiKey = "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";
+                var Template_ID = "d-6d2b77e7749043f6a5e98c9f832c279e";
 
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("admin@efacilito.com", "eFacilito System");
-            var to = new EmailAddress("lokesh@compelconsultancy.com", "Lokesh Devasani");
-            var dynamicData = "test";
-            var msg = MailHelper.CreateSingleTemplateEmail(from, to, Template_ID,dynamicData);
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("admin@efacilito.com", "eFacilito System");
+                var to = new EmailAddress("ajay.p@compelconsultancy.com", "Lokesh Devasani");
+                //var dynamicData = "test";
 
-            var response = await client.SendEmailAsync(msg);
+                var dynamicData = new Dictionary<string, object>
+                    {
+                        { "test", "value1" }
+                    };
 
-            string response1 = Convert.ToString(response);
+                var msg = MailHelper.CreateSingleTemplateEmail(from, to, Template_ID, dynamicData);
+                //var msg = MailHelper.CreateSingleEmail(from, to, Template_ID, dynamicData);
+
+                var response = await client.SendEmailAsync(msg);
+
+                string response1 = Convert.ToString(response);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
+        //public static SendGridMessage CreateSingleTemplateEmail(EmailAddress from,EmailAddress to,string templateId,object dynamicTemplateData)
+        //{
+        //    if (string.IsNullOrWhiteSpace(templateId))
+        //    {
+        //        throw new ArgumentException($"{nameof(templateId)} is required when creating a dynamic template email.", nameof(templateId));
+        //    }
+
+        //    var msg = new SendGridMessage();
+        //    msg.SetFrom(from);
+        //    msg.AddTo(to);
+        //    msg.TemplateId = templateId;
+
+        //    if (dynamicTemplateData != null)
+        //    {
+        //        msg.SetTemplateData(dynamicTemplateData);
+        //    }
+
+        //    return msg;
+        //}
+
     }
 }
