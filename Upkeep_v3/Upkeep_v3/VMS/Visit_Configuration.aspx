@@ -4,6 +4,14 @@
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
+     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+     <script type="text/javascript" >
+            // This jQuery code makes all check boxes read-only
+            $('#ChkNameComp').click(function(){
+                return false;
+            });
+        </script>
 
     <style type="text/css">
         .modalBackground {
@@ -581,7 +589,7 @@
                                         Select Mandatory Fields</label>
                                     <div class="m-checkbox-inline">
                                         <%--<label class="m-checkbox">--%>
-                                                    <asp:CheckBox ID="ChkNameComp" autocomplete="off" runat="server" Checked="true" ClientIDMode="Static" />
+                                                    <asp:CheckBox ID="ChkNameComp" autocomplete="off" runat="server" Checked="true"   ClientIDMode="Static" />
                                             <i class="fa fa-check" aria-hidden="true"></i> Name
                                         
                                         <%--</label>--%>
