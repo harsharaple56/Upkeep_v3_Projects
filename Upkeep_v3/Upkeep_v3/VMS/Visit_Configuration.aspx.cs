@@ -25,6 +25,7 @@ namespace Upkeep_v3.VMS
             string strConfigID = string.Empty;
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            ChkNameComp.Enabled = false;
             //frmGatePass.Action = @"GatePass_Configuration.aspx";
             if (LoggedInUserID == "")
             {
