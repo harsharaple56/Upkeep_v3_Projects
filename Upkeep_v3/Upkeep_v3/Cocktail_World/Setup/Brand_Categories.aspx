@@ -105,7 +105,7 @@
 
 
     <script type="text/javascript">
-        
+
         function Confirm(CategoryChangeMsg) {
 
             var confirm_value = document.createElement("INPUT");
@@ -130,151 +130,120 @@
 
     <div runat="server">
         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="">
+        <div class="m-grid__item m-grid__item--fluid">
+            <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
 
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Category Master		
+                                <h3 class="m-portlet__head-text">Assign Available Brand Sizes for each Category	
                                 </h3>
                             </div>
                         </div>
                         <div class="m-portlet__head-tools">
+
+                            <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                                <span>
+                                    <i class="la la-arrow-left"></i>
+                                    <span>Back</span>
+                                </span>
+                            </a>
+
                             <ul class="m-portlet__nav">
                                 <li class="m-portlet__nav-item">
 
-                                    <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Category" />
+                                    <button type="button" runat="server" id="btnSave" onserverclick="btnSave_Click" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="flaticon-add"></i>
+                                            <span>Save Category Sizes</span>
+                                        </span>
+                                    </button>
 
-                                    <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
-                                        CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
-                                    </cc1:ModalPopupExtender>
+
 
                                 </li>
                             </ul>
-
-                            <%--  <asp:Button ID="Add_Category1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"  OnClick="btnAddCategory_Click" Text="+ New Category" />
-                            --%>
+                          
                         </div>
 
                     </div>
 
                     <div class="m-portlet__body">
 
-                        <div class="m-form m-form--label-align-right m--margin-bottom-30">
-                            <div class="align-items-center">
-                                <div class="col-xl-12 order-2 order-xl-1 row">
-                                    <%-- <div class="form-group m-form__group row align-items-center">--%>
+                        <form class="m-form m-form--fit m--margin-bottom-20">
 
-                                    <div class="col-md-3">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <div class="form-group m-form__group">
-                                                <label for="message-text" class="form-control-label">Category :</label>
-                                            </div>
 
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="m-form__group m-form__group--inline">
-
-                                            <div class="m-form__control">
-                                                <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                                <div class="btn-group" style="width: 500px;">
-
-                                                    <asp:DropDownList ID="ddlCategory" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-
-                                                </div>
-                                            </div>
-                                            <div class="m-form__control">
-
-                                                <asp:HiddenField ID="HiddenField1" ClientIDMode="Static" runat="server" />
-
-                                                <div class="btn-group" style="width: 500px;">
-
-                                                    <asp:DropDownList ID="ddllicense" class="form-control" Style="width: 100%" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <%--</div>--%>
+                            <div class="m--form-group row m--align-center">
+                                <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                    <label class="font-weight-bold">Select Category</label>
                                 </div>
 
-                            </div>
-                        </div>
+                                <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
 
-                        <table width="100%" cellpadding="2" cellspacing="2">
-                            <%--  <tr>
-                        <td class="ClsLabelTd">
-                            Category
-                        </td>
-                        <td class="ClsControlTd">
-                            <asp:DropDownList ID="DDLCatag" runat="server" AutoPostBack="True">
-                            </asp:DropDownList>
-                        </td>
-                    </tr>--%>
-                            <%--   <tr id="tr_extra" runat="server">
-                        <td class="ClsLabelTd">
-                            License
-                        </td>
-                        <td class="ClsControlTd">
-                            <asp:DataList ID="DataList1" runat="server" DataKeyField="LicenseId" RepeatDirection="Horizontal"
-                                RepeatColumns="5">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="LicenseId" runat="server" Text='<%# Eval("LicenseName") %>' />
-                                    <asp:Label ID="DescriptionLabel" Visible="false" runat="server" CssClass="big" Text='<%# Eval("LicenseId") %>' />
-                                </ItemTemplate>
-                            </asp:DataList>
-                        </td>
-                    </tr>--%>
+                                    <div class="m-form__control">
+                                        <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                        <asp:DropDownList ID="ddlCategory" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                    <div class="m-form__control">
+                                        <button type="button" id="btnAddcategory" runat="server" onserverclick="btnAddcategory_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                            <span>
+                                                <i class="fa fa-plus"></i>
+                                                <span>Add New Category</span>
+                                            </span>
+                                        </button>
+
+                                        <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
+                                            CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                                        </cc1:ModalPopupExtender>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <table class="table table-striped- table-bordered table-hover table-checkable" width="100%" cellpadding="2" cellspacing="2">
+
+
                             <tr>
                                 <td colspan="2" class="ClsControlTd">
-                                    <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
-                                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
-                                        HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
+                                    <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
+                                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                         PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
                                         PagerSettings-Position="Bottom" ClientIDMode="Static">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                 <ItemTemplate>
 
-                                                    <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
-
+                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                                        <input id="chkSelct" runat="server" type="checkbox" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>'>
+														<span></span>
+                                                    </label>
                                                     <%-- <asp:CheckBox ID="chkSelct" runat="server" Checked='<%#(DataBinder.Eval(Container.DataItem,"Selected"))%>' />--%>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
                                                 Visible="false" />
-                                            <asp:BoundField DataField="Size_ID" HeaderText="Size ID" SortExpression="Size_ID" />
                                             <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
                                             <asp:TemplateField HeaderText="Alias" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Size_ID"))%>' />
-                                                    <asp:TextBox ID="txtalias" Width="80px" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
+                                                    <asp:TextBox class="form-control m-input" ID="txtalias" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <%--  <asp:TemplateField HeaderText="ML" ItemStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtml" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"ML"))%>'></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Speg" ItemStyle-HorizontalAlign="Center">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Speg"))%>'></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>--%>
+
                                             <asp:TemplateField HeaderText="Stock IN" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <%-- <asp:TextBox ID="txtstockin" Width="40px" runat="server" MaxLength="1" onkeypress="return onlyAlphabets(event,this);"
-                                                Text='<%#(DataBinder.Eval(Container.DataItem,"Stock_In"))%>'></asp:TextBox>--%>
+
                                                     <asp:HiddenField ID="hdnStockIn" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Stock_In"))%>' />
-                                                    <asp:DropDownList ID="ddlStockIn" runat="server">
+                                                    <asp:DropDownList class="form-control m-input" ID="ddlStockIn" runat="server">
                                                         <asp:ListItem Text="Select" Value="0"></asp:ListItem>
                                                         <asp:ListItem Text="Bottle" Value="B"></asp:ListItem>
                                                         <asp:ListItem Text="Peg" Value="P"></asp:ListItem>
@@ -285,24 +254,13 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="No Of Speg" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtnoofspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
+                                                    <asp:TextBox class="form-control m-input" ID="txtnoofspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Peg Size(ML)" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtpegsize" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
+                                                    <asp:TextBox class="form-control m-input" ID="txtpegsize" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                                <ItemTemplate>
-                                                    <%-- <asp:LinkButton ID="Delete" runat="server" Style="cursor: pointer; text-decoration: underline;"
-                                                CommandName="Delete" CommandArgument='<%# Trim(DataBinder.Eval(Container.DataItem, "CategorySizeLinkUpID")) %>'
-                                                OnClientClick="return confirm('Are you sure you want to delete ?');">
-                                                        Delete
-                                            </asp:LinkButton>--%>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                             </asp:TemplateField>
                                         </Columns>
                                         <EmptyDataTemplate>
@@ -315,7 +273,6 @@
                             </tr>
                             <tr>
                                 <td class="ClsControlTd" align="center" colspan="2">
-                                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-navy" ClientIDMode="Static" OnClick="btnSave_Click" />
                                     <asp:Label ID="lblwarn" runat="server"></asp:Label>
                                 </td>
                             </tr>
@@ -323,29 +280,6 @@
                         <asp:TextBox ID="txtDetails" runat="server" Width="500" Style="display: none;">
                         </asp:TextBox>
 
-                        <!--begin: Datatable -->
-                        <%-- <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-
-
-                            <thead>
-
-                                <tr>
-                                    <th>Category Desc</th>
-                                    <th>Assigned Department</th>
-                                    <th>Action</th>
-                                </tr>
-
-                            </thead>
-                            <%-- <tbody>
-                            <tr>
-                                <td>compel</td>
-                                <td>hjsdhfsj</td>
-                            </tr>
-                        </tbody>--%>
-                        <%--  <tbody>
-                                <%=bindgrid()%>
-                            </tbody>
-                        </table>--%>
                     </div>
                 </div>
             </div>
@@ -400,5 +334,6 @@
         </asp:Panel>
 
     </div>
+
 
 </asp:Content>
