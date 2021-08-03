@@ -11,7 +11,8 @@ namespace Upkeep_v3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SendMail mail = new SendMail();
+            mail.Send_Mail("ajay.p@compelconsultancy.com", "MailBody", "MailSubject");
         }
 
         protected void btnWhatsapp_Click(object sender, EventArgs e)

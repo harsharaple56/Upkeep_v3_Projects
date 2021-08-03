@@ -34,7 +34,8 @@ namespace Upkeep_v3.Testing_Codes
 
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("admin@efacilito.com", "eFacilito System");
-                var to = new EmailAddress("ajay.p@compelconsultancy.com", "Lokesh Devasani");
+                var to = new EmailAddress("lokesh@compelconsultancy.com", "Lokesh Devasani");
+                //var to = new EmailAddress("prajapatiajay39@gmail.com", "Ajay Prajapati");
                 //var dynamicData = "test";
 
                 var dynamicData = new Dictionary<string, object>
