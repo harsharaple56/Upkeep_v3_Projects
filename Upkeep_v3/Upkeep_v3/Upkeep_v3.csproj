@@ -5264,6 +5264,7 @@
     <Compile Include="Security\Role_Menu_Rights.aspx.designer.cs">
       <DependentUpon>Role_Menu_Rights.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SendMail.cs" />
     <Compile Include="SendSMS.cs" />
     <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
