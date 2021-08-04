@@ -128,7 +128,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-                var baseAddress = "https://api.zeptomail.com/v1.1/email/template/batch";
+                var baseAddress = "https://api.zeptomail.in/v1.1/email/template/batch";
 
                 var http = (HttpWebRequest)WebRequest.Create(new Uri(baseAddress));
                 http.Accept = "application/json";
