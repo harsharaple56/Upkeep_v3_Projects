@@ -84,7 +84,62 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 http.Method = "POST";
                 http.PreAuthenticate = true;
                 http.Headers.Add("Authorization", "Zoho-enczapikey PHtE6r1bR+3p2mZ6pxFVsP+5H5KiYIIrqO1nKlFE4d1HXvFSHk1V+ox/kGWxrEosUvFDFPSTzoJh57PN4r6DIzrrZzsaVWqyqK3sx/VYSPOZsbq6x00VslsdcEHbUobsc99i3SXXudfSNA==");
-                JObject parsedContent = JObject.Parse("{'bounce_address':'system@bounce.efacilito.com','from': { 'address': 'admin@efacilito.com'},'to': [{'email_address': {'address': '" + objMail.To_Email + "','name': 'eFacilito System'}}],'subject':'" + objMail.Subject + "','htmlbody':'" + objMail.Html_Body + "'}");
+                //JObject parsedContent = JObject.Parse("{'bounce_address':'system@bounce.efacilito.com','from': { 'address': 'admin@efacilito.com'},'to': [{'email_address': {'address': '" + objMail.To_Email + "','name': 'eFacilito System'}}],'subject':'" + objMail.Subject + "','htmlbody':'" + objMail.Html_Body + "'}");
+
+                JObject parsedContent = JObject.Parse("{'mail_template_key': '2518b.750a35af209617d1.k1.d5c656c0-f492-11eb-a4cb-5254006ade39.17b0d89462c','bounce_address': 'system@bounce.efacilito.com','from': {'address': 'admin@efacilito.com','name': 'eFacilito System'},'to': [{'email_address': {'address': 'lokesh@compelconsultancy.com','name': 'Lokesh Devasani'}}],'cc': [{'email_address': {'address': 'ajay.p@compelconsultancy.com','name': 'Ajay Prajapati'}}],'bcc': [{'email_address': {'address': '','name': ''}}],'merge_info': {'meeting_link':''},'reply_to': [{'address': 'support@efacilito.com','name': 'eFacilito Support Team'}],'client_reference': '1234','mime_headers': {'X-Test': 'test'}}");
+
+
+
+                Console.WriteLine(parsedContent.ToString());
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                Byte[] bytes = encoding.GetBytes(parsedContent.ToString());
+
+                Stream newStream = http.GetRequestStream();
+                newStream.Write(bytes, 0, bytes.Length);
+                newStream.Close();
+
+                var response = http.GetResponse();
+
+                var stream = response.GetResponseStream();
+                var sr = new StreamReader(stream);
+                var content = sr.ReadToEnd();
+                Console.WriteLine(content);
+
+                email_response = Convert.ToString(content);
+
+                return Request.CreateResponse(HttpStatusCode.OK, email_response);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+        [Route("api/SendEmail/Send_Email_Json_Template")]
+        [HttpPost]
+        public HttpResponseMessage Send_Email_Json_Template()
+        {
+            string email_response = string.Empty;
+
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                var baseAddress = "https://api.zeptomail.com/v1.1/email/template/batch";
+
+                var http = (HttpWebRequest)WebRequest.Create(new Uri(baseAddress));
+                http.Accept = "application/json";
+                http.ContentType = "application/json";
+                http.Method = "POST";
+                http.PreAuthenticate = true;
+                http.Headers.Add("Authorization", "Zoho-enczapikey PHtE6r1ZQenu3jUq9EIE5PG6FpKsNYx9/e9gelROtIxADqMHTk1W/914xDLjrUguXKEWQKGbntg8sb7Ptr/WJWrpYGhJWmqyqK3sx/VYSPOZsbq6x00ZtlkYdE3ZVIfsdNZp3SPUvN3YNA==");
+                //JObject parsedContent = JObject.Parse("{'bounce_address':'system@bounce.efacilito.com','from': { 'address': 'admin@efacilito.com'},'to': [{'email_address': {'address': '" + objMail.To_Email + "','name': 'eFacilito System'}}],'subject':'" + objMail.Subject + "','htmlbody':'" + objMail.Html_Body + "'}");
+
+                JObject parsedContent = JObject.Parse("{'mail_template_key': '2518b.750a35af209617d1.k1.d5c656c0-f492-11eb-a4cb-5254006ade39.17b0d89462c','bounce_address': 'system@bounce.efacilito.com','from': {'address': 'admin@efacilito.com','name': 'eFacilito System'},'to': [{'email_address': {'address': 'lokesh@compelconsultancy.com','name': 'Lokesh Devasani'}}],'cc': [{'email_address': {'address': 'ajay.p@compelconsultancy.com','name': 'Ajay Prajapati'}}],'bcc': [{'email_address': {'address': '','name': ''}}],'merge_info': {'meeting_link':''},'reply_to': [{'address': 'support@efacilito.com','name': 'eFacilito Support Team'}],'client_reference': '1234','mime_headers': {'X-Test': 'test'}}");
+
                 Console.WriteLine(parsedContent.ToString());
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 Byte[] bytes = encoding.GetBytes(parsedContent.ToString());

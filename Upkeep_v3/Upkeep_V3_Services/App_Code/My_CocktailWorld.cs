@@ -296,6 +296,22 @@ public class My_CocktailWorld
         }
     }
 
+    public DataSet Fetch_Test_Dataset_RDLC()
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjcocktailWorld_Master_BL.Fetch_Test_Dataset_RDLC( StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
 
 }

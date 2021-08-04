@@ -209,8 +209,7 @@
                         </form>
 
 
-                        <table class="table table-striped- table-bordered table-hover table-checkable" width="100%" cellpadding="2" cellspacing="2">
-
+                        <table width="100%" cellpadding="2" cellspacing="2">
 
                             <tr>
                                 <td colspan="2" class="ClsControlTd">
