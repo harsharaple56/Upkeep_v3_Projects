@@ -120,9 +120,9 @@
 
                                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                                         </asp:ScriptManager>  
-                                      <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" BorderWidth="0px" Visible="false" ShowFindControls="False" Height="100%" ShowBackButton="True"
+                                        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True"
                                                     ProcessingMode="Remote" ShowPromptAreaButton="False">
-                                    </rsweb:ReportViewer>
+                                        </rsweb:ReportViewer>
 
                                 </form>
                      
@@ -138,7 +138,7 @@
                                         
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button1" runat="server">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" onserverclick="btn_Generate_FLRIII_PrePrinted_ServerClick"  id="btn_Generate_FLRIII_PrePrinted" runat="server">
                                                     <span>
                                                         <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
                                                         <span>Generate <b>FLR-III (Pre-Printed)</b> Report</span>
@@ -148,26 +148,13 @@
 
                                         </div>
                                     </div>
+                                    
+                                        <rsweb:ReportViewer ID="rv_FLRIII_PrePrinted" runat="server" Width="100%" ShowBackButton="True"
+                                                    ProcessingMode="Remote" ShowPromptAreaButton="False">
+                                        </rsweb:ReportViewer>
+
                                 </form>
 
-                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Stock Qty</th>
-                                            <th>Bottle Qty</th>
-                                            <th>Bottle Rate</th>
-                                            <th>SPeg Qty</th>
-                                            <th>SPeg Rate</th>
-                                            <th>LPeg Qty</th>
-                                            <th>LPeg Rate</th>
-                                            <th>Total Amount</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <%--<%=Fetch_Department_Transactions()%>--%>
-                                    </tbody>
-                                </table>
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_3_tab_content" role="tabpanel">

@@ -58,13 +58,22 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
         
         /// <summary>
-        /// Button1 control.
+        /// btn_Generate_FLRIII_PrePrinted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Generate_FLRIII_PrePrinted;
+        
+        /// <summary>
+        /// rv_FLRIII_PrePrinted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_FLRIII_PrePrinted;
         
         /// <summary>
         /// Button2 control.
