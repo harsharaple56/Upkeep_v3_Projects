@@ -4,6 +4,19 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+<script type='text/javascript'>
+$(window).load(function(){
+$(function() {
+    $("#btn_Generate_FLR3_Report_Click").click(function() {
+        $('#div_FLR3_Report')
+            .load('HtmlPage1.html');
+    
+    });
+});
+});
+</script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -107,7 +120,7 @@
                                         
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_AddBrand" runat="server" onserverclick="btn_GenerateReport1_ServerClick2">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLR3_Report_Click" runat="server">
                                                     <span>
                                                         <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
                                                         <span>Generate <b>FLR-III</b> Excise Report</span>
@@ -117,13 +130,17 @@
 
                                         </div>
                                     </div>
+                                    <div class="row m--margin-bottom-20 m--align-center">
+                                        <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
+                                            <div id="div_FLR3_Report"></div>
+                                                <iframe name="div_FLR3_Report_iFrame" runat="server" src="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports_Excise/Maharashtra/FLR3_Report1.aspx") %>" width="100%" height="100%">
+                                                    
+                                                </iframe>
+                                        </div>
+                                    </div>
 
-                                        <asp:ScriptManager ID="ScriptManager1" runat="server">
-                                        </asp:ScriptManager>  
-                                        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True"
-                                                    ProcessingMode="Remote" ShowPromptAreaButton="False">
-                                        </rsweb:ReportViewer>
-
+                                    
+                                    
                                 </form>
                      
 
@@ -138,21 +155,22 @@
                                         
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" onserverclick="btn_Generate_FLRIII_PrePrinted_ServerClick"  id="btn_Generate_FLRIII_PrePrinted" runat="server">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air"  id="btn_Generate_FLRIII_PrePrinted" runat="server">
                                                     <span>
                                                         <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
                                                         <span>Generate <b>FLR-III (Pre-Printed)</b> Report</span>
+                                                    </span>
+                                                </button>
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button1" onclick="" runat="server">
+                                                    <span>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <span>Generate <b>FLR-III A</b> Excise Report</span>
                                                     </span>
                                                 </button>
                                             </div>
 
                                         </div>
                                     </div>
-                                    
-                                        <rsweb:ReportViewer ID="rv_FLRIII_PrePrinted" runat="server" Width="100%" ShowBackButton="True"
-                                                    ProcessingMode="Remote" ShowPromptAreaButton="False">
-                                        </rsweb:ReportViewer>
-
                                 </form>
 
 

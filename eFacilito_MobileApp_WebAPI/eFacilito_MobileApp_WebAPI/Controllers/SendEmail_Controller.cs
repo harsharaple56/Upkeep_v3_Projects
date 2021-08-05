@@ -181,7 +181,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             @"}" + "\n" +
                           @"]," + "\n" +
                 @"""merge_info"": {" + "\n" +
-                        @"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" +
+                        @"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""," + "\n" +
+                        @"""name"":""Lokesh Devasani""," + "\n" +
+                        @"""product_name"":""eFacilito VMS""" + "\n" +
+
                 @"}," + "\n" +
                 @"""reply_to"": [" + "\n" +
                                    @"{" + "\n" +
