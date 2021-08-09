@@ -1060,6 +1060,9 @@
     <Content Include="Cocktail_World\Reports\Transfers_Report.aspx" />
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\HtmlPage1.html" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx" />
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
@@ -1074,6 +1077,7 @@
     <Content Include="Cocktail_World\Setup\Permit_Holders.aspx" />
     <Content Include="Cocktail_World\Setup\Setup.aspx" />
     <Content Include="Cocktail_World\Setup\Suppliers.aspx" />
+    <Content Include="Cocktail_World\Transactions\Add_Purchases.aspx" />
     <Content Include="Cocktail_World\Transactions\Add_Sales.aspx" />
     <Content Include="Cocktail_World\Transactions\Auto_Billing.aspx" />
     <Content Include="Cocktail_World\Transactions\Purchases.aspx" />
@@ -4113,6 +4117,17 @@
     <Content Include="GatePass\Gatepass_Details_Print.xsc">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
+    <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xsc">
+      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Flr3reportDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xss">
+      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
+    </Content>
     <None Include="GatePass\Gatepass_Details_Print.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4433,6 +4448,25 @@
     <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
       <DependentUpon>Generate_Reports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx.cs">
+      <DependentUpon>FLR3_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx.designer.cs">
+      <DependentUpon>FLR3_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx.cs">
+      <DependentUpon>FLR3_Report1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx.designer.cs">
+      <DependentUpon>FLR3_Report1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx.cs">
       <DependentUpon>Add_Brand_Opening_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4530,6 +4564,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Setup\Suppliers.aspx.designer.cs">
       <DependentUpon>Suppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Purchases.aspx.cs">
+      <DependentUpon>Add_Purchases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Purchases.aspx.designer.cs">
+      <DependentUpon>Add_Purchases.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Add_Sales.aspx.cs">
       <DependentUpon>Add_Sales.aspx</DependentUpon>
@@ -5264,6 +5305,7 @@
     <Compile Include="Security\Role_Menu_Rights.aspx.designer.cs">
       <DependentUpon>Role_Menu_Rights.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SendMail.cs" />
     <Compile Include="SendSMS.cs" />
     <Compile Include="Retailer_Attendance\My_StoreOpeningClosing_Report.aspx.cs">
       <DependentUpon>My_StoreOpeningClosing_Report.aspx</DependentUpon>
@@ -6442,6 +6484,7 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
+    <Folder Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC Files\" />
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
@@ -6481,6 +6524,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
   </ItemGroup>

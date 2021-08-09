@@ -346,6 +346,21 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Test_Dataset_RDLC()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Test_Dataset_RDLC();
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
 }

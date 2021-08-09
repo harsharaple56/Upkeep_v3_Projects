@@ -12,6 +12,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;
+//using mailinblue;
 
 namespace Upkeep_v3.Testing_Codes
 {
@@ -110,6 +111,33 @@ namespace Upkeep_v3.Testing_Codes
 
 
         }
+
+        //protected void Button4_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        API sendinBlue = new mailinblue.API("xkeysib - 68798a1b10c50144abb17dcd35cfa9eec222d7d9f45b35cf6a526ddc6a63a4f5 - nA49k7XzDVO1UTpK");
+
+        //        Dictionary<string, object> data = null;
+        //        Dictionary<string, string> to = new Dictionary<string, string>();
+        //        to.Add("to@email.com", "to whom!");
+        //        List<string> from_name = new List<string>();
+        //        from_name.Add("from@email.com");
+        //        from_name.Add("from email!");
+        //        List<string> attachment = new List<string>();
+        //        attachment.Add("https://domain.com/path-to-file/filename1.pdf");
+        //        attachment.Add("https://domain.com/path-to-file/filename2.jpg");
+        //        data.Add("to", to);
+        //        data.Add("from", from_name);
+        //        data.Add("subject", "My subject");
+        //        data.Add("html", "This is the <h1>HTML</h1>");
+        //        data.Add("attachment", attachment);
+        //        Object sendEmail = sendinBlue.send_email(data);
+        //        string response = sendEmail.ToString();
+        //    }
+        //    catch (Exception) { }
+        //}
+
 
         public void Send_Mail_InFunction( string To_Emails , string Subject ,string Html_Body)
         {

@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="CocktailWorld_Master_BL.cs" />
-    <Compile Include="CocktailWorld_Transaction_BL.cs" />
     <Compile Include="My_Feedback_BL.cs" />
     <Compile Include="My_Upkeep_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

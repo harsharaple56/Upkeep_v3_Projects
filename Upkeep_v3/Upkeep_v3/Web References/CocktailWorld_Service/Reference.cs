@@ -74,6 +74,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback SupplierMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Test_Dataset_RDLCOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -177,6 +179,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event SupplierMaster_CRUDCompletedEventHandler SupplierMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Test_Dataset_RDLCCompletedEventHandler Fetch_Test_Dataset_RDLCCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1075,6 +1080,33 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Test_Dataset_RDLC", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Test_Dataset_RDLC() {
+            object[] results = this.Invoke("Fetch_Test_Dataset_RDLC", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Test_Dataset_RDLCAsync() {
+            this.Fetch_Test_Dataset_RDLCAsync(null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Test_Dataset_RDLCAsync(object userState) {
+            if ((this.Fetch_Test_Dataset_RDLCOperationCompleted == null)) {
+                this.Fetch_Test_Dataset_RDLCOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Test_Dataset_RDLCOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Test_Dataset_RDLC", new object[0], this.Fetch_Test_Dataset_RDLCOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Test_Dataset_RDLCOperationCompleted(object arg) {
+            if ((this.Fetch_Test_Dataset_RDLCCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Test_Dataset_RDLCCompleted(this, new Fetch_Test_Dataset_RDLCCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1652,6 +1684,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal SupplierMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Test_Dataset_RDLCCompletedEventHandler(object sender, Fetch_Test_Dataset_RDLCCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Test_Dataset_RDLCCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Test_Dataset_RDLCCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

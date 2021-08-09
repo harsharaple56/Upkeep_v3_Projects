@@ -248,7 +248,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0, CompanyID, LoggedInUserID, "R");
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
                 if (dsSetting.Tables.Count > 0)
                 {
                     if (dsSetting.Tables[0].Rows.Count > 0)
@@ -467,7 +467,47 @@ namespace Upkeep_v3.Ticketing
                     dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, "C");
                     //mpeTicketSaveSuccess.Show();
 
-                    if(CompanyCode.Equals("ALEMCO1"))
+                    //Send Mails
+                    if (dsTicketSave.Tables.Count > 0)
+                    {
+                        if (dsTicketSave.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(dsTicketSave.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                string Initiator_EmailID = string.Empty;
+                                string Initiator_MailSubject = string.Empty;
+                                string Initiator_MailBody = string.Empty;
+
+                                string Users_EmailID = string.Empty;
+                                string Users_MailSubject = string.Empty;
+                                string Users_MailBody = string.Empty;
+
+                                Initiator_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["InitiatorEmailID"]);
+                                Initiator_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Subject"]);
+                                Initiator_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Body"]);
+
+                                Users_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserEmailID"]);
+                                Users_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Subject"]);
+                                Users_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Body"]);
+
+                                SendMail mail = new SendMail();
+
+                                if (Initiator_MailBody != "" && Initiator_EmailID !="")
+                                {
+                                    mail.Send_Mail(Initiator_EmailID, Initiator_MailBody, Initiator_MailSubject);
+                                }
+
+                                if (Users_MailBody != "" && Users_EmailID != "")
+                                {
+                                    mail.Send_Mail(Users_EmailID, Users_MailBody, Users_MailSubject);
+                                }
+                            }
+                        }
+                    }
+                    //End Mails
+
+                    if (CompanyCode.Equals("ALEMCO1"))
                     {
                         if (dsTicketSave.Tables.Count > 0)
                         {
