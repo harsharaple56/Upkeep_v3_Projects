@@ -94,7 +94,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
                 Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
 
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID,0,"","",CompanyID);
 
                 for (int i = ds.Tables[0].Rows.Count - 1; i >= 0; i--)
                 {
@@ -169,7 +169,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
                     BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
                     DataSet dt = new DataSet();
-                    dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, BrandID, CompanyID);
+                    dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID,0, BrandID,"","", CompanyID);
                     if (dt.Tables[0].Rows.Count == 0)
                     {
                         Operation = "Insert";

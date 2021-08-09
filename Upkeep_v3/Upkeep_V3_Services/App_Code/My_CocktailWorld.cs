@@ -30,6 +30,72 @@ public class My_CocktailWorld
 
     }
 
+
+    public DataSet FetchTaxDetails(int Brand_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.FetchTaxDetails(Brand_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet BrandOpeningMaster_CRUD(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.BrandOpeningMaster_CRUD(Opening_ID, Closing_Bottle, Closing_Speg, Action, LoggedInUser, Company_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet SaleDetailsMaster_Crud(int Sale_ID,string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder,int License_ID, string Action, int LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.SaleDetailsMaster_Crud(Sale_ID,Brand_Desc,  Size_Desc,  Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount,Permit_Holder,License_ID,Action, LoggedInUser, Company_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+    public DataSet SaleMaster_Crud(string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.SaleMaster_Crud(date, Bill_No, license, Action, LoggedInUser, Company_ID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet CategoryMaster_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action)
     {
         try
@@ -65,14 +131,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID,string Brand_Desc,string Size_Desc,int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, Size_ID,Brand_Desc,Size_Desc,Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -82,14 +148,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Brand_ID, int Company_ID)
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID,int Opening_ID, int Brand_ID,string Brand_Desc,string Cocktail_Desc, int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID, Brand_ID, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID,Opening_ID, Brand_ID, Brand_Desc,Cocktail_Desc, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
