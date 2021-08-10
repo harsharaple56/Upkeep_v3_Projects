@@ -114,7 +114,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
 
-                dsCategory = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID);
+                dsCategory = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID,0,"","",CompanyID);
 
                 if (BrandID == 0)
                 {
