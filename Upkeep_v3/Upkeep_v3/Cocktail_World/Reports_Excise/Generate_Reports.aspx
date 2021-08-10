@@ -5,20 +5,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<script type='text/javascript'>
-$(window).load(function(){
-$(function() {
-    $("#btn_Generate_FLR3_Report_Click").click(function() {
-        $('#div_FLR3_Report')
-            .load('HtmlPage1.html');
-    
-    });
-});
-});
-</script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>  
+
 
     <div class="m-grid__item m-grid__item--fluid">
         <div class="m-content" runat="server" id="div_Maharashtra_Excise" style="padding: 30px 10px;" >
@@ -108,6 +100,9 @@ $(function() {
                         </div>
                     </div>
 
+
+
+
                     <div class="m-portlet__body">
                         <div class="tab-content">
                             <div class="tab-pane active show" id="m_portlet_base_demo_1_1_tab_content" role="tabpanel">
@@ -120,7 +115,7 @@ $(function() {
                                         
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLR3_Report_Click" runat="server">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLR3_Report_Click" onserverclick="btn_GenerateReport1_ServerClick2" runat="server">
                                                     <span>
                                                         <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
                                                         <span>Generate <b>FLR-III</b> Excise Report</span>
@@ -132,11 +127,9 @@ $(function() {
                                     </div>
                                     <div class="row m--margin-bottom-20 m--align-center">
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
-                                           <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>  
-
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
-         </rsweb:ReportViewer>
+                                           
+                                            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
+                                             </rsweb:ReportViewer>
                                         </div>
                                     </div>
 
@@ -160,12 +153,6 @@ $(function() {
                                                     <span>
                                                         <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
                                                         <span>Generate <b>FLR-III (Pre-Printed)</b> Report</span>
-                                                    </span>
-                                                </button>
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button1" onclick="" runat="server">
-                                                    <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
-                                                        <span>Generate <b>FLR-III A</b> Excise Report</span>
                                                     </span>
                                                 </button>
                                             </div>

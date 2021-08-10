@@ -13,6 +13,15 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
     public partial class Generate_Reports {
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// div_Maharashtra_Excise control.
         /// </summary>
         /// <remarks>
@@ -40,15 +49,6 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_Generate_FLR3_Report_Click;
         
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
         /// ReportViewer1 control.
         /// </summary>
         /// <remarks>
@@ -65,15 +65,6 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_Generate_FLRIII_PrePrinted;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
         
         /// <summary>
         /// Button2 control.

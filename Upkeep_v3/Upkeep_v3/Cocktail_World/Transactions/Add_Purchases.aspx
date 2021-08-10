@@ -6,6 +6,10 @@
         .auto-style1 {
             height: 21px;
         }
+
+        .input-group-text {
+            padding:0rem;
+        }
     </style>
     <script type="text/javascript">
 
@@ -101,7 +105,7 @@
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                             <label class="font-weight-bold">Select Purchase Date</label>
 
                                             <div class="m-form__control">
@@ -115,10 +119,61 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                            <label class="font-weight-bold">Select Supplier</label>
+
+                                             <div class="m-form__control">
+                                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    <asp:ListItem Value="All" Text="All"></asp:ListItem>
+                                                    <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
+                                                    <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
+                                                    <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
+                                                    <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                            <label class="font-weight-bold">Enter TP Number</label>
+
+                                            
+                                            <div class="m-form__control">
+                                                    <input type="text" class="form-control m-input" id="txt_Inv_No">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                            <label class="font-weight-bold">Discount %</label>
+
+                                            <div class="m-form__control">
+                                                    <input type="text" class="form-control m-input" id="txt_Inv_No">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                            <label class="font-weight-bold">Invoice Number</label>
+
+                                            <div class="m-form__control">
+                                                    <input type="text" class="form-control m-input" id="txt_Inv_No">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                            <label class="font-weight-bold">Total Charges</label>
+
+                                            <div class="m-form__control">
+                                                    <input type="text" class="form-control m-input" id="txt_Inv_No">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                                <form class="m-form m-form--fit m--margin-bottom-20">
+                                    <div class="row m--margin-bottom-20 m--align-center">
                                         <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                             <label class="font-weight-bold">Select Brand</label>
                                             <div class="m-form__control">
-                                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                                     <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
                                                     <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
@@ -131,7 +186,7 @@
                                             <label class="font-weight-bold">Select Size</label>
 
                                             <div class="m-form__control">
-                                                <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                                     <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
                                                     <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
@@ -147,7 +202,7 @@
                                         <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                             <label class="font-weight-bold">Add Brand</label>
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_AddBrand" runat="server">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button1" runat="server">
                                                     <span>
                                                         <i class="fa fa-plus"></i>
                                                         <span>Add Selected Brand</span>
@@ -166,19 +221,17 @@
 
                                             <th>Brand</th>
                                             <th>Size</th>
+                                            <th>Stock Available</th>
 
-                                            <th>Stock Qty</th>
                                             <th>Bottle Qty</th>
                                             <th>Bottle Rate</th>
                                             <th>SPeg Qty</th>
                                             <th>SPeg Rate</th>
-                                            <th>LPeg Qty</th>
-                                            <th>LPeg Rate</th>
-                                            <th>Total Amount</th>
+                                            <th>Boxes</th>
+                                            <th>Batch No</th>
+                                            <th>Mfg Date</th>
                                             <th>Tax Amt</th>
-                                            <th>Permit Holder</th>
-
-
+                                            <th>Total Amt</th>
                                         </tr>
                                     </thead>
 
