@@ -40,8 +40,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback SaleMaster_CrudOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Category_Tax_CRUDOperationCompleted;
-        
         private System.Threading.SendOrPostCallback CategoryMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Category_BrandOperationCompleted;
@@ -128,9 +126,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event SaleMaster_CrudCompletedEventHandler SaleMaster_CrudCompleted;
-        
-        /// <remarks/>
-        public event Category_Tax_CRUDCompletedEventHandler Category_Tax_CRUDCompleted;
         
         /// <remarks/>
         public event CategoryMaster_CRUDCompletedEventHandler CategoryMaster_CRUDCompleted;
@@ -437,35 +432,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.SaleMaster_CrudCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.SaleMaster_CrudCompleted(this, new SaleMaster_CrudCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Category_Tax_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Category_Tax_CRUD(string Action) {
-            object[] results = this.Invoke("Category_Tax_CRUD", new object[] {
-                        Action});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Category_Tax_CRUDAsync(string Action) {
-            this.Category_Tax_CRUDAsync(Action, null);
-        }
-        
-        /// <remarks/>
-        public void Category_Tax_CRUDAsync(string Action, object userState) {
-            if ((this.Category_Tax_CRUDOperationCompleted == null)) {
-                this.Category_Tax_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCategory_Tax_CRUDOperationCompleted);
-            }
-            this.InvokeAsync("Category_Tax_CRUD", new object[] {
-                        Action}, this.Category_Tax_CRUDOperationCompleted, userState);
-        }
-        
-        private void OnCategory_Tax_CRUDOperationCompleted(object arg) {
-            if ((this.Category_Tax_CRUDCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Category_Tax_CRUDCompleted(this, new Category_Tax_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1242,32 +1208,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal SaleMaster_CrudCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Category_Tax_CRUDCompletedEventHandler(object sender, Category_Tax_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Category_Tax_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Category_Tax_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

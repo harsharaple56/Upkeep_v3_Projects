@@ -124,27 +124,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Category_Tax_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Category_Tax_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Category_Tax_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="CategoryMaster_CRUD">
         <s:complexType>
           <s:sequence>
@@ -603,12 +582,6 @@
   <wsdl:message name="SaleMaster_CrudSoapOut">
     <wsdl:part name="parameters" element="tns:SaleMaster_CrudResponse" />
   </wsdl:message>
-  <wsdl:message name="Category_Tax_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:Category_Tax_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="Category_Tax_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:Category_Tax_CRUDResponse" />
-  </wsdl:message>
   <wsdl:message name="CategoryMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CategoryMaster_CRUD" />
   </wsdl:message>
@@ -732,10 +705,6 @@
       <wsdl:input message="tns:SaleMaster_CrudSoapIn" />
       <wsdl:output message="tns:SaleMaster_CrudSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Category_Tax_CRUD">
-      <wsdl:input message="tns:Category_Tax_CRUDSoapIn" />
-      <wsdl:output message="tns:Category_Tax_CRUDSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="CategoryMaster_CRUD">
       <wsdl:input message="tns:CategoryMaster_CRUDSoapIn" />
       <wsdl:output message="tns:CategoryMaster_CRUDSoapOut" />
@@ -845,15 +814,6 @@
     </wsdl:operation>
     <wsdl:operation name="SaleMaster_Crud">
       <soap:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Category_Tax_CRUD">
-      <soap:operation soapAction="http://tempuri.org/Category_Tax_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1055,15 +1015,6 @@
     </wsdl:operation>
     <wsdl:operation name="SaleMaster_Crud">
       <soap12:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Category_Tax_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/Category_Tax_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
