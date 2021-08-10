@@ -1060,6 +1060,9 @@
     <Content Include="Cocktail_World\Reports\Transfers_Report.aspx" />
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\HtmlPage1.html" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx" />
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
@@ -4445,6 +4448,20 @@
     <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
       <DependentUpon>Generate_Reports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx.cs">
+      <DependentUpon>FLR3_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx.designer.cs">
+      <DependentUpon>FLR3_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx.cs">
+      <DependentUpon>FLR3_Report1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx.designer.cs">
+      <DependentUpon>FLR3_Report1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -6467,6 +6484,7 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
+    <Folder Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC Files\" />
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />

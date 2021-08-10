@@ -12,6 +12,139 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FetchTaxDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Brand_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchTaxDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchTaxDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BrandOpeningMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Closing_Bottle" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Closing_Speg" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUser" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BrandOpeningMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BrandOpeningMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaleDetailsMaster_Crud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Sale_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cocktail_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaxType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="TaxAmount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Permit_Holder" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUser" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaleDetailsMaster_CrudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaleDetailsMaster_CrudResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaleMaster_Crud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Bill_No" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="license" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUser" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaleMaster_CrudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaleMaster_CrudResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Category_Tax_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Category_Tax_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Category_Tax_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CategoryMaster_CRUD">
         <s:complexType>
           <s:sequence>
@@ -64,7 +197,10 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="Cat_Size_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cocktail_Desc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -183,6 +319,10 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Brand_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Size_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -439,6 +579,36 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="FetchTaxDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
+  </wsdl:message>
+  <wsdl:message name="FetchTaxDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchTaxDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="BrandOpeningMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:BrandOpeningMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="BrandOpeningMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:BrandOpeningMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaleDetailsMaster_CrudSoapIn">
+    <wsdl:part name="parameters" element="tns:SaleDetailsMaster_Crud" />
+  </wsdl:message>
+  <wsdl:message name="SaleDetailsMaster_CrudSoapOut">
+    <wsdl:part name="parameters" element="tns:SaleDetailsMaster_CrudResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaleMaster_CrudSoapIn">
+    <wsdl:part name="parameters" element="tns:SaleMaster_Crud" />
+  </wsdl:message>
+  <wsdl:message name="SaleMaster_CrudSoapOut">
+    <wsdl:part name="parameters" element="tns:SaleMaster_CrudResponse" />
+  </wsdl:message>
+  <wsdl:message name="Category_Tax_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:Category_Tax_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="Category_Tax_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:Category_Tax_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="CategoryMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CategoryMaster_CRUD" />
   </wsdl:message>
@@ -546,6 +716,26 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="FetchTaxDetails">
+      <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
+      <wsdl:output message="tns:FetchTaxDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BrandOpeningMaster_CRUD">
+      <wsdl:input message="tns:BrandOpeningMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:BrandOpeningMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaleDetailsMaster_Crud">
+      <wsdl:input message="tns:SaleDetailsMaster_CrudSoapIn" />
+      <wsdl:output message="tns:SaleDetailsMaster_CrudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaleMaster_Crud">
+      <wsdl:input message="tns:SaleMaster_CrudSoapIn" />
+      <wsdl:output message="tns:SaleMaster_CrudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Category_Tax_CRUD">
+      <wsdl:input message="tns:Category_Tax_CRUDSoapIn" />
+      <wsdl:output message="tns:Category_Tax_CRUDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="CategoryMaster_CRUD">
       <wsdl:input message="tns:CategoryMaster_CRUDSoapIn" />
       <wsdl:output message="tns:CategoryMaster_CRUDSoapOut" />
@@ -619,6 +809,51 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchTaxDetails">
+      <soap:operation soapAction="http://tempuri.org/FetchTaxDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BrandOpeningMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/BrandOpeningMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaleDetailsMaster_Crud">
+      <soap:operation soapAction="http://tempuri.org/SaleDetailsMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaleMaster_Crud">
+      <soap:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Category_Tax_CRUD">
+      <soap:operation soapAction="http://tempuri.org/Category_Tax_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -784,6 +1019,51 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchTaxDetails">
+      <soap12:operation soapAction="http://tempuri.org/FetchTaxDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BrandOpeningMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/BrandOpeningMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaleDetailsMaster_Crud">
+      <soap12:operation soapAction="http://tempuri.org/SaleDetailsMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaleMaster_Crud">
+      <soap12:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Category_Tax_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/Category_Tax_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
