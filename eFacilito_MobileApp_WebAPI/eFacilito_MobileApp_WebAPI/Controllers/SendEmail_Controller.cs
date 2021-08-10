@@ -160,6 +160,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 //return Request.CreateResponse(HttpStatusCode.OK, email_response);
 
+
+                string merge_info = string.Empty;
+
+                merge_info = @"""name"":""Ajay Prajapati""," + "\n" + @"""product_name"":""eFacilito System""," + "\n" + @"""username"":""ajay.p""" + "\n";
+
                 var client = new RestClient("https://api.zeptomail.in/v1.1/email/template/batch");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
@@ -175,13 +180,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 @"""to"": [" + "\n" +
                             @"{" + "\n" +
                                 @"""email_address"": {" + "\n" +
-                                    @"""address"": ""lokesh@compelconsultancy.com""," + "\n" +
+                                    @"""address"": ""ajay.p@compelconsultancy.com""," + "\n" +
                                      @"""name"": ""Ajay""" + "\n" +
                                 @"}" + "\n" +
                             @"}" + "\n" +
                           @"]," + "\n" +
-                @"""merge_info"": {" + "\n" +
-                        @"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" +
+                @"""merge_info"": {" + "\n" //+
+                        //@"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" 
+                        + Convert.ToString(merge_info)
+                        +
                 @"}," + "\n" +
                 @"""reply_to"": [" + "\n" +
                                    @"{" + "\n" +
@@ -210,6 +217,156 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/SendEmail/Send_Email_Zepto_Template")]
+        [HttpPost]
+        public HttpResponseMessage Send_Email_Zepto_Template(string mail_template_key, string to_email_address, string dynamic_values)
+        {
+            string email_response = string.Empty;
+
+            try
+            {
+                string merge_info = string.Empty;
+                string dynamic_values2 = string.Empty;
+
+                //json mail body
+                //To to = new To()
+                //{
+                //    email_address = new EmailAddress()
+                //    {
+                //        address = "ajay.p@compelconsultancy.com",
+                //        name = "Ajay",
+                //    },
+                //};
+
+                Json_Mail_Root rootBody = new Json_Mail_Root()
+                {
+                    mail_template_key = mail_template_key,
+                    bounce_address = "system@bounce.efacilito.com",
+                    from = new From()
+                    {
+                        address = "admin@efacilito.com",
+                        name = "eFacilito System",
+                    },
+                    to = new List<To>()
+                    //{
+                    //  email_address = new EmailAddress()
+                    //    {
+                    //        address = "ajay.p@compelconsultancy.com",
+                    //        name = "Ajay",
+                    //    },
+                    //}
+                    ,
+                    merge_info = new MergeInfo()
+                    {
+                        RaisedBy_Name = "Ajay Prajapati",
+                        meeting_link = "",
+                    },
+                    reply_to = new List<ReplyTo> (),
+                    client_reference = "",
+                    mime_headers = new MimeHeaders()
+                    {
+                        XTest = "",
+                    },
+                };
+
+                From from = new From()
+                {
+                    address = "",
+                    name = "",
+                };
+
+                EmailAddress emailaddress = new EmailAddress()
+                {
+                    address = "",
+                    name = "",
+                };
+
+                //To to = new To()
+                //{
+                //    email_address = new EmailAddress()
+                //    {
+                //        address = "ajay.p@compelconsultancy.com",
+                //        name = "Ajay",
+                //    },
+                //};
+
+                MergeInfo mergeinfo = new MergeInfo()
+                {
+                    RaisedBy_Name = "Ajay Prajapati",
+                    meeting_link = "",
+                };
+
+                ReplyTo replyto = new ReplyTo()
+                {
+                    address = "admin@compelconsultancy.com",
+                    name = "eFacilito System",
+                };
+
+
+                string rootBody_Json = JsonConvert.SerializeObject(rootBody);
+
+
+                // json mail body
+
+
+                //dynamic_values2 = dynamic_values.Replace("\",\"", "");
+
+                //merge_info = "" + dynamic_values;
+
+                //merge_info = ""+ @"""name"":""Ajay Prajapati""," + "\n" + @"""product_name"":""eFacilito System""," + "\n" + @"""username"":""ajay.p""" + "\n";
+
+                var client = new RestClient("https://api.zeptomail.in/v1.1/email/template/batch");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Authorization", "Zoho-enczapikey PHtE6r1bR+3p2mZ6pxFVsP+5H5KiYIIrqO1nKlFE4d1HXvFSHk1V+ox/kGWxrEosUvFDFPSTzoJh57PN4r6DIzrrZzsaVWqyqK3sx/VYSPOZsbq6x00VslsdcEHbUobsc99i3SXXudfSNA==");
+                request.AddHeader("Cookie", "6389eb1069=abcd21ccb74b786b4877b315e275abe4; tmappgrp=-1");
+                //var body = @"{" + "\n" + @"""mail_template_key"": """ + Convert.ToString(mail_template_key) + "\""+"," + "\n" +
+                //@"""bounce_address"": ""system@bounce.efacilito.com""," + "\n" +
+                //@"""from"": {" + "\n" +
+                //@"""address"": ""admin@efacilito.com""," + "\n" +
+                //@"""name"": ""Mail from API""" + "\n" +
+                //          @"}," + "\n" +
+                //@"""to"": [" + "\n" +
+                //            @"{" + "\n" +
+                //                @"""email_address"": {" + "\n" +
+                //                    @"""address"": ""ajay.p@compelconsultancy.com""," + "\n" +
+                //                     @"""name"": ""Ajay""" + "\n" +
+                //                @"}" + "\n" +
+                //            @"}" + "\n" +
+                //          @"]," + "\n" +
+                //@"""merge_info"": {" + "\n" //+
+                //                            //@"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" 
+                //        + Convert.ToString(merge_info)
+                //        +
+                //@"}," + "\n" +
+                //@"""reply_to"": [" + "\n" +
+                //                   @"{" + "\n" +
+                //                        @"""address"": ""admin@compelconsultancy.com""," + "\n" +
+                //                        @"""name"": ""Rebecca""" + "\n" +
+                //                    @"}" + "\n" +
+                //                @"]," + "\n" +
+                //@"""client_reference"": ""1234""," + "\n" +
+                //@"""mime_headers"": {" + "\n" +
+                //                        @"""X-Test"": ""test""" + "\n" +
+                //                    @"}" + "\n" +
+                //@"}";
+                //request.AddParameter("application/json", body, ParameterType.RequestBody);
+                request.AddParameter("application/json", rootBody_Json, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                Console.WriteLine(response.Content);
+
+                email_response = Convert.ToString(response.Content);
+
+                return Request.CreateResponse(HttpStatusCode.OK, email_response);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
     }
 }
