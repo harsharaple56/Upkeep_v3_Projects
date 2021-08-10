@@ -40,6 +40,24 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_Generate_FLR3_Report_Click;
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// ReportViewer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
+        
+        /// <summary>
         /// btn_Generate_FLRIII_PrePrinted control.
         /// </summary>
         /// <remarks>

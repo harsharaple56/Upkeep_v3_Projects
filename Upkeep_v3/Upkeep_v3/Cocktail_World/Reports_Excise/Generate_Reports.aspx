@@ -132,10 +132,11 @@ $(function() {
                                     </div>
                                     <div class="row m--margin-bottom-20 m--align-center">
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
-                                            <div id="div_FLR3_Report"></div>
-                                                <iframe name="div_FLR3_Report_iFrame" runat="server" src="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports_Excise/Maharashtra/FLR3_Report1.aspx") %>" width="100%" height="100%">
-                                                    
-                                                </iframe>
+                                           <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>  
+
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
+         </rsweb:ReportViewer>
                                         </div>
                                     </div>
 

@@ -7,6 +7,10 @@
         .auto-style1 {
             height: 21px;
         }
+
+        .form-control {
+            padding:0.5rem;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -260,10 +264,7 @@
                         </div>
                     </div>
 
-
-
-
-                    <div class="m-portlet__body">
+                <div class="m-portlet__body">
                         <div class="tab-content">
                             <div class="tab-pane" id="tab1" role="tabpanel">
 
@@ -332,7 +333,7 @@
                                 <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">
                                     <tr>
                                         <td colspan="2" class="ClsControlTd">
-                                            <asp:GridView ID="grdBrandLinkup" runat="server" Width="100%"
+                                            <asp:GridView ID="grdBrandLinkup" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
                                                 AllowPaging="true"
                                                 PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                 PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
@@ -436,8 +437,7 @@
                                                 <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
                                                     HorizontalAlign="Center" />
 
-                                                <HeaderStyle BackColor="#2E5E79" ForeColor="White"></HeaderStyle>
-
+                                                
                                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
 
                                                 <PagerStyle HorizontalAlign="Center"></PagerStyle>
@@ -503,8 +503,9 @@
                                 </div>
                                 <table width="100%">
                                     <tr>
+                                        
                                         <td class="ClsControlTd">
-                                            <asp:GridView ID="grdCocktail" runat="server" Width="100%" AllowPaging="true"
+                                            <asp:GridView ID="grdCocktail"  runat="server" Width="100%" AllowPaging="true"
                                                 PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
                                                 HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
                                                 PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
@@ -563,13 +564,12 @@
                                                 <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
                                                     HorizontalAlign="Center" />
 
-                                                <HeaderStyle BackColor="#2E5E79" ForeColor="White"></HeaderStyle>
-
                                                 <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
 
                                                 <PagerStyle HorizontalAlign="Center"></PagerStyle>
                                             </asp:GridView>
                                         </td>
+
                                     </tr>
                                 </table>
 
