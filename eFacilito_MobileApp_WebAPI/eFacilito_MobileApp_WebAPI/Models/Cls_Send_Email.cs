@@ -60,7 +60,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
     public class MergeInfo
     {
         public string RaisedBy_Name { get; set; }
-        public string meeting_link { get; set; }
+        public string Ticket_ID { get; set; }
     }
 
     public class ReplyTo

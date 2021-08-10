@@ -27,7 +27,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Send_Email(string To_Emails, string Subject, string Html_Body)
         {
             string email_response = string.Empty;
-            
+
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
@@ -73,7 +73,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Send_Email_Json([FromBody] Cls_Send_Email_Json objMail)
         {
             string email_response = string.Empty;
-           
+
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
@@ -186,7 +186,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             @"}" + "\n" +
                           @"]," + "\n" +
                 @"""merge_info"": {" + "\n" //+
-                        //@"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" 
+                                            //@"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" 
                         + Convert.ToString(merge_info)
                         +
                 @"}," + "\n" +
@@ -219,7 +219,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         [Route("api/SendEmail/Send_Email_Zepto_Template")]
         [HttpPost]
-        public HttpResponseMessage Send_Email_Zepto_Template(string mail_template_key, string to_email_address, string dynamic_values)
+        public HttpResponseMessage Send_Email_Zepto_Template_Ticket(string mail_template_key, string to_email_address, string dynamic_values)
         {
             string email_response = string.Empty;
 
@@ -228,15 +228,24 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 string merge_info = string.Empty;
                 string dynamic_values2 = string.Empty;
 
-                //json mail body
-                //To to = new To()
-                //{
-                //    email_address = new EmailAddress()
-                //    {
-                //        address = "ajay.p@compelconsultancy.com",
-                //        name = "Ajay",
-                //    },
-                //};
+                List<To> dataTo = new List<To>();
+                To toItem = new To();
+                {
+                    toItem.email_address = new EmailAddress
+                    {
+                        address = "harsharaple56@gmail.com",
+                        name = "Ajay",
+                    };
+                };
+                dataTo.Add(toItem);
+
+                List<ReplyTo> dataReply = new List<ReplyTo>();
+                ReplyTo replyItem = new ReplyTo();
+                {
+                    replyItem.address = "admin@efacilito.com";
+                    replyItem.name = "eFacilito System";
+                };
+                dataReply.Add(replyItem);
 
                 Json_Mail_Root rootBody = new Json_Mail_Root()
                 {
@@ -247,61 +256,19 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         address = "admin@efacilito.com",
                         name = "eFacilito System",
                     },
-                    to = new List<To>()
-                    //{
-                    //  email_address = new EmailAddress()
-                    //    {
-                    //        address = "ajay.p@compelconsultancy.com",
-                    //        name = "Ajay",
-                    //    },
-                    //}
-                    ,
+                    to = dataTo,
                     merge_info = new MergeInfo()
                     {
                         RaisedBy_Name = "Ajay Prajapati",
-                        meeting_link = "",
+                        Ticket_ID = "TKT100",
                     },
-                    reply_to = new List<ReplyTo> (),
+                    reply_to = dataReply,
                     client_reference = "",
                     mime_headers = new MimeHeaders()
                     {
                         XTest = "",
                     },
                 };
-
-                From from = new From()
-                {
-                    address = "",
-                    name = "",
-                };
-
-                EmailAddress emailaddress = new EmailAddress()
-                {
-                    address = "",
-                    name = "",
-                };
-
-                //To to = new To()
-                //{
-                //    email_address = new EmailAddress()
-                //    {
-                //        address = "ajay.p@compelconsultancy.com",
-                //        name = "Ajay",
-                //    },
-                //};
-
-                MergeInfo mergeinfo = new MergeInfo()
-                {
-                    RaisedBy_Name = "Ajay Prajapati",
-                    meeting_link = "",
-                };
-
-                ReplyTo replyto = new ReplyTo()
-                {
-                    address = "admin@compelconsultancy.com",
-                    name = "eFacilito System",
-                };
-
 
                 string rootBody_Json = JsonConvert.SerializeObject(rootBody);
 
