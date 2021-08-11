@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Add_Sales.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Transactions.Add_Sales" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
@@ -9,7 +11,7 @@
         }
 
         .form-control {
-            padding:0.5rem;
+            padding: 0.5rem;
         }
     </style>
     <script type="text/javascript">
@@ -46,7 +48,7 @@
     <script type="text/javascript">
         $(function () {
 
-            $("[id*=txtspegqty]").keyup(function () {
+            $("[id*=txtspegqty]").keydown(function () {
 
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
@@ -68,7 +70,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtspegrate]").keyup(function () {
+            $("[id*=txtspegrate]").keydown(function () {
                 //calculate total for current row
                 var val3 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $('#sessionInput').val() == "" ? 0 : $('#sessionInput').val();
@@ -89,7 +91,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtlpegqty]").keyup(function () {
+            $("[id*=txtlpegqty]").keydown(function () {
                 //calculate total for current row
                 var val4 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -110,7 +112,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtlpegrate]").keyup(function () {
+            $("[id*=txtlpegrate]").keydown(function () {
                 //calculate total for current row
                 var val5 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -131,7 +133,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtbottleqty]").keyup(function () {
+            $("[id*=txtbottleqty]").keydown(function () {
                 //calculate total for current row
                 var val6 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -152,7 +154,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtbottlerate]").keyup(function () {
+            $("[id*=txtbottlerate]").keydown(function () {
                 //calculate total for current row
                 var val7 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -173,7 +175,7 @@
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
 
-            $("[id*=cocktailqty]").keyup(function () {
+            $("[id*=cocktailqty]").keydown(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
                 var val2 = $(this).parent().parent().find("#cocktailrate").val() == "" ? 0 : $(this).parent().parent().find("#cocktailrate").val();
@@ -187,7 +189,7 @@
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal + taxAmount);
             });
 
-            $("[id*=cocktailrate]").keyup(function () {
+            $("[id*=cocktailrate]").keydown(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
                 var val2 = $(this).parent().parent().find("#cocktailqty").val() == "" ? 0 : $(this).parent().parent().find("#cocktailqty").val();
@@ -205,6 +207,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
     <div class="m-grid__item m-grid__item--fluid">
         <div class="m-content">
@@ -220,12 +223,11 @@
                     <div class="col-xl-9 m-portlet__head-tools">
 
                         <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
-
                             <div class="m-form__control">
                                 <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true" Style="margin-left: 34%;" ValidationGroup="validateMain" ForeColor="Red" ErrorMessage="Please enter Cocktail Name"></asp:RequiredFieldValidator>
-
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
+                                    ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 
@@ -235,7 +237,7 @@
                                 <span>Back</span>
                             </span>
                         </a>
-                        <asp:LinkButton runat="server" ValidationGroup="validateMain" OnClick="btn_Add_Brand_Cocktail_Sale_Click" CssClass="col-lg-3 btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Brand_Cocktail_Sale_Click" class="col-lg-3 btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                             <span>
                                 <i class="fa fa-plus"></i>
                                 <span>Save Transaction</span>
@@ -255,7 +257,6 @@
                                         <i class="fa fa-wine-bottle" style="font-size: 2rem;"></i>Add Brand Sales
                                     </a>
                                 </li>
-
                                 <li class="nav-item m-tabs__item"><a href="#tab2" class="nav-link m-tabs__link" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-cocktail" style="font-size: 2rem;"></i>Add Cocktail Sales
                                 </a></li>
                                 <li class="nav-item m-tabs__item"><a href="#tab3" class="nav-link m-tabs__link" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-file-import" style="font-size: 2rem;"></i>Import Sale Data
@@ -264,21 +265,21 @@
                         </div>
                     </div>
 
-                <div class="m-portlet__body">
+                    <div class="m-portlet__body">
                         <div class="tab-content">
-                            <div class="tab-pane" id="tab1" role="tabpanel">
 
+
+                            <div class="tab-pane" id="tab1" role="tabpanel">
                                 <div class="row m--margin-bottom-20 m--align-center">
 
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Bill No.</label>
                                         <div class="m-form__control">
-
                                             <asp:TextBox ID="txtBill" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBill" Visible="true" Style="margin-left: 34%;" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Cocktail Name"></asp:RequiredFieldValidator>
-
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBill" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Sale Date</label>
 
@@ -295,6 +296,9 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBrandDate" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
+
+
+
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
@@ -305,21 +309,29 @@
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />
                                     </div>
 
+
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Size</label>
 
                                         <div class="m-form__control">
-                                            <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Size"></asp:RequiredFieldValidator>
-
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
+
 
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Add Brand</label>
                                         <div class="m-form__control">
-                                            <asp:LinkButton OnClick="btn_AddBrand_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" ID="btn_AddBrand" runat="server">
+                                            <asp:LinkButton ID="btn_AddBrand" CausesValidation="true" OnClick="btn_AddBrand_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>
                                                         <i class="fa fa-plus"></i>
                                                         <span>Add Selected Brand</span>
@@ -328,125 +340,136 @@
                                         </div>
 
                                     </div>
+
+
                                 </div>
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
+                                    <ContentTemplate>
 
-                                <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">
-                                    <tr>
-                                        <td colspan="2" class="ClsControlTd">
-                                            <asp:GridView ID="grdBrandLinkup" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
-                                                AllowPaging="true"
-                                                PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
-                                                PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                                PagerSettings-Position="Bottom" ClientIDMode="Static" OnRowDeleting="BrandOnRowDeleting"
-                                                OnRowDataBound="BrandOnRowDataBound" OnPageIndexChanging="grdBrandLinkup_PageIndexChanging">
-                                                <Columns>
-                                                    <asp:CommandField ItemStyle-HorizontalAlign="Center" ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" />
+                                        <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">
+                                            <tr>
+                                                <td colspan="2" class="ClsControlTd">
+                                                    <asp:GridView ID="grdBrandLinkup" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
+                                                        AllowPaging="true"
+                                                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                        PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
+                                                        PagerSettings-Position="Bottom" ClientIDMode="Static" OnRowDeleting="BrandOnRowDeleting"
+                                                        OnRowDataBound="BrandOnRowDataBound" OnPageIndexChanging="grdBrandLinkup_PageIndexChanging">
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <Columns>
+                                                            <asp:CommandField ItemStyle-HorizontalAlign="Center" ShowDeleteButton="True" HeaderText="Delete" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" />
 
+                                                            <asp:BoundField HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Brand" HeaderText="Brand" SortExpression="Brand" />
+                                                            <asp:BoundField HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Size" HeaderText="Size" SortExpression="Size" />
+                                                            <asp:BoundField HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Stock" HeaderText="Stock" SortExpression="Stock" />
 
-                                                    <asp:BoundField ControlStyle-CssClass="form-control" DataField="Brand" HeaderText="Brand" SortExpression="Brand" />
-                                                    <asp:BoundField ControlStyle-CssClass="form-control" DataField="Size" HeaderText="Size" SortExpression="Size" />
-                                                    <asp:BoundField ControlStyle-CssClass="form-control" DataField="Stock" HeaderText="Stock" SortExpression="Stock" />
+                                                            <asp:TemplateField HeaderText="SPeg Qty" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                                                                        ID="txtspegqty" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"sPegQty"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="SPeg Qty" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                                                ID="txtspegqty" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"sPegQty"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="SPeg Rate" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtspegrate"
+                                                                        Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"sPegRate"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="SPeg Rate" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtspegrate"
-                                                                Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"sPegRate"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="LPeg Qty" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                                                                        ID="txtlpegqty" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"lPegQty"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="LPeg Qty" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                                                ID="txtlpegqty" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"lPegQty"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="LPeg Rate" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                                                                        ID="txtlpegrate" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"lPegRate"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="LPeg Rate" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                                                ID="txtlpegrate" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"lPegRate"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottleqty"
+                                                                        Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Qty"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottleqty"
-                                                                Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Qty"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottlerate" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Rate"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottlerate" Width="50px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Rate"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ReadOnly="true" ID="txttotalamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Total_Amount"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ReadOnly="true" ID="txttotalamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Total_Amount"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ReadOnly="true" ID="txtamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Tax_Amount"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ReadOnly="true" ID="txtamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Tax_Amount"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
-
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
-
-
-
-                                                    <asp:TemplateField HeaderText="Permit Holder">
-
-                                                        <ItemTemplate>
-
-                                                            <asp:DropDownList ID="ddlPermit" runat="server" CssClass="form-control" AppendDataBoundItems="true">
-
-                                                                <asp:ListItem Value="-1">--Select--</asp:ListItem>
-
-                                                            </asp:DropDownList>
-
-                                                        </ItemTemplate>
-
-                                                    </asp:TemplateField>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
 
-                                                </Columns>
-                                                <EmptyDataTemplate>
-                                                    No Records Found !!!
-                                                </EmptyDataTemplate>
-                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
-                                                    HorizontalAlign="Center" />
 
-                                                
-                                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
+                                                            <asp:TemplateField HeaderText="Permit Holder">
 
-                                                <PagerStyle HorizontalAlign="Center"></PagerStyle>
-                                            </asp:GridView>
-                                        </td>
-                                    </tr>
-                                </table>
+                                                                <ItemTemplate>
 
+                                                                    <asp:DropDownList ID="ddlPermit" runat="server" CssClass="form-control" AppendDataBoundItems="true">
+
+                                                                        <asp:ListItem Value="-1">--Select--</asp:ListItem>
+
+                                                                    </asp:DropDownList>
+
+                                                                </ItemTemplate>
+
+                                                            </asp:TemplateField>
+
+
+                                                        </Columns>
+                                                        <EmptyDataTemplate>
+                                                            No Records Found !!!
+                                                        </EmptyDataTemplate>
+                                                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                                                            HorizontalAlign="Center" />
+
+
+                                                        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
+
+                                                        <PagerStyle HorizontalAlign="Center"></PagerStyle>
+                                                    </asp:GridView>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btn_AddBrand" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
                             </div>
+
+
                             <div class="tab-pane" id="tab2" role="tabpanel">
                                 <div class="row m--margin-bottom-20 m--align-center">
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
@@ -454,7 +477,7 @@
                                         <div class="m-form__control">
 
                                             <asp:TextBox ID="CocktailBill" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true"  ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
 
                                         </div>
                                     </div>
@@ -471,7 +494,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true"  ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -491,7 +514,7 @@
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Add Cocktail</label>
                                         <div class="m-form__control">
-                                            <asp:LinkButton OnClick="btn_AddCocktail_Click" ValidationGroup="cocktailvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" ID="btnAddCocktail" runat="server">
+                                            <asp:LinkButton ID="btnAddCocktail" CausesValidation="true" OnClick="btn_AddCocktail_Click" ValidationGroup="cocktailvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>
                                                         <i class="fa fa-plus"></i>
                                                         <span>Add Selected Cocktail</span>
@@ -501,79 +524,87 @@
 
                                     </div>
                                 </div>
-                                <table width="100%">
-                                    <tr>
-                                        
-                                        <td class="ClsControlTd">
-                                            <asp:GridView ID="grdCocktail"  runat="server" Width="100%" AllowPaging="true"
-                                                PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
-                                                HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
-                                                PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                                PagerSettings-Position="Bottom" ClientIDMode="Static" CssClass="ct-grid" OnRowDeleting="CocktailOnRowDeleting"
-                                                OnRowDataBound="CocktailOnRowDataBound" OnPageIndexChanging="grdCocktailLinkup_PageIndexChanging">
-                                                <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
-                                                <Columns>
 
-                                                    <asp:CommandField ItemStyle-HorizontalAlign="Center" ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" />
-                                                    <asp:BoundField ControlStyle-CssClass="form-control" DataField="Cocktail_Desc" HeaderText="Cocktail" SortExpression="Cocktail_Desc" />
+                                <asp:UpdatePanel ID="Updatepanel3" runat="server" UpdateMode="Always">
+                                    <ContentTemplate>
+                                        <table width="100%">
+                                            <tr>
+                                                <td colspan="2" class="ClsControlTd">
+                                                    <asp:GridView ID="grdCocktail" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
+                                                        AllowPaging="true"
+                                                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                        PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
+                                                        PagerSettings-Position="Bottom" ClientIDMode="Static" OnRowDeleting="CocktailOnRowDeleting"
+                                                        OnRowDataBound="CocktailOnRowDataBound" OnPageIndexChanging="grdCocktailLinkup_PageIndexChanging">
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <Columns>
 
-                                                    <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="cocktailqty" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Bottle_Qty"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                            <asp:CommandField ItemStyle-HorizontalAlign="Center" HeaderText="Delete" ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" />
+                                                            <asp:BoundField HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Cocktail_Desc" HeaderText="Cocktail" SortExpression="Cocktail_Desc" />
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="cocktailqty" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Bottle_Qty"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="cocktailrate" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Bottle_Rate"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="cocktailrate" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Bottle_Rate"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ReadOnly="true" ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ReadOnly="true" ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
-                                                        </ItemTemplate>
+                                                            <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ReadOnly="true" ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                    </asp:TemplateField>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ReadOnly="true" ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
+                                                                </ItemTemplate>
 
-                                                    <asp:TemplateField HeaderText="Permit Holder">
-                                                        <ItemTemplate>
-                                                            <asp:DropDownList ID="ddlPermit" runat="server" CssClass="form-control" AppendDataBoundItems="true">
-                                                                <asp:ListItem Value="-1">--Select--</asp:ListItem>
-                                                            </asp:DropDownList>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Permit Holder">
+                                                                <ItemTemplate>
+                                                                    <asp:DropDownList ID="ddlPermit" runat="server" CssClass="form-control" AppendDataBoundItems="true">
+                                                                        <asp:ListItem Value="-1">--Select--</asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
 
 
-                                                </Columns>
-                                                <EmptyDataTemplate>
-                                                    No Records Found !!!
-                                                </EmptyDataTemplate>
-                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
-                                                    HorizontalAlign="Center" />
+                                                        </Columns>
+                                                        <EmptyDataTemplate>
+                                                            No Records Found !!!
+                                                        </EmptyDataTemplate>
+                                                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                                                            HorizontalAlign="Center" />
 
-                                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
+                                                        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
 
-                                                <PagerStyle HorizontalAlign="Center"></PagerStyle>
-                                            </asp:GridView>
-                                        </td>
+                                                        <PagerStyle HorizontalAlign="Center"></PagerStyle>
+                                                    </asp:GridView>
+                                                </td>
 
-                                    </tr>
-                                </table>
+                                            </tr>
+                                        </table>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnAddCocktail" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
 
                             </div>
+
                             <div class="tab-pane" id="tab3" role="tabpanel">
                                 <div class="m-section">
                                     <div class="m-section__sub">
@@ -624,6 +655,7 @@
                                 </div>
 
                             </div>
+
                             <asp:HiddenField ID="hfTab" runat="server" />
 
                         </div>
