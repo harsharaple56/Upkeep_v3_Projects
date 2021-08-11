@@ -49,9 +49,9 @@
                         <thead>
                             <tr>
                                 <th>Transaction ID</th>
-                                <th>License Name</th>
+                                <th>Bill No</th>
                                 <th>Sale Date</th>
-                                <th>Total Amount</th>
+                                <th>License Name</th>
                                 <th>Created By</th>
                                 <th>Created Date</th>
                                 <th>Action</th>
@@ -60,7 +60,7 @@
                         </thead>
 
                         <tbody>
-                            <%--<%=Fetch_Department_Transactions()%>--%>
+                            <%=Fetch_Sales_Transaction()%>
                         </tbody>
                     </table>
 

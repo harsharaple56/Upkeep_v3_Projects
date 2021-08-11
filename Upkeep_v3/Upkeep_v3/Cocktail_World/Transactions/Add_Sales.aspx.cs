@@ -73,11 +73,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 BrandID = 0;
 
-            if (!string.IsNullOrEmpty(ddlSize.SelectedValue))
-                Size_ID = Convert.ToInt32(ddlSize.SelectedValue);
-            else
-                Size_ID = 0;
-
             try
             {
                 ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID);
@@ -118,11 +113,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         }
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Fetch_Brand_Size();
-        }
-
-        protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             Fetch_Brand_Size();
         }
@@ -571,7 +561,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
               !string.IsNullOrEmpty(dt.Rows[index]["lPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegRate"]) : 0,
               !string.IsNullOrEmpty(dt.Rows[index]["Total_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Total_Amount"]) : 0,
               !string.IsNullOrEmpty(dt.Rows[index]["Tax_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Tax_Amount"]) : 0,
-              !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, ddlLicense.SelectedIndex, "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+              !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, Convert.ToInt32(ddlLicense.SelectedValue), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
 
             dt.Rows[index].Delete();
             dt.AcceptChanges();
@@ -708,7 +698,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 {
                     //Insert Operation for Brand Sale
                     DataSet dsBrandSale = new DataSet();
-                    dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(txtBrandDate.Text, txtBill.Text, ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                    dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(txtBrandDate.Text, txtBill.Text,Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                     if (dsBrandSale.Tables[0].Rows.Count > 0)
                     {
                         foreach (GridViewRow row in grdBrandLinkup.Rows)
@@ -881,7 +871,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
             else
             {
-                Response.Write("<script>alert('Nothing To Save.')</script>");
+                Response.Write("<script>alert('Please select License.')</script>");
             }
         }
 
@@ -1034,7 +1024,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
             else
             {
-                Response.Write("<script>alert('Nothing To Save.')</script>");
+                Response.Write("<script>alert('Please select License.')</script>");
             }
         }
 

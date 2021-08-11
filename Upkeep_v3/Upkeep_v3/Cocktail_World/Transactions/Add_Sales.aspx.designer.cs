@@ -31,6 +31,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
+        /// linkAddData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkAddData;
+        
+        /// <summary>
         /// txtBill control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
+        /// Updatepanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel1;
+        
+        /// <summary>
         /// ddlSize control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btn_AddBrand;
+        
+        /// <summary>
+        /// Updatepanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel2;
         
         /// <summary>
         /// grdBrandLinkup control.
@@ -182,6 +209,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddCocktail;
+        
+        /// <summary>
+        /// Updatepanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel3;
         
         /// <summary>
         /// grdCocktail control.
