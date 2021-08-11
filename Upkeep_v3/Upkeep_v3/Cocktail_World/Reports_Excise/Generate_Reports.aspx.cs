@@ -70,6 +70,44 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise
             }
         }
 
+        protected void btn_GenerateReport1_ServerClick3(object sender, EventArgs e)
+        {
+
+            try
+            {
+                DataSet dsReport = new DataSet();
+                dsReport = ObjCocktailWorld.Fetch_Test_Dataset_RDLC();
+
+                if (dsReport != null)
+                {
+                    if (dsReport.Tables.Count > 0)
+                    {
+                        if (dsReport.Tables[0].Rows.Count > 0)
+                        {
+                            ReportViewer2.ProcessingMode = ProcessingMode.Local;
+                            ReportViewer2.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Flr3ReportWizard.rdlc");
+
+                            ReportDataSource datasource0 = new ReportDataSource("Flr3DatasetReportWizard", dsReport.Tables[0]);
+                            ReportDataSource datasource1 = new ReportDataSource("DataSet1", dsReport.Tables[1]);
+
+                            ReportViewer2.LocalReport.DataSources.Clear();
+                            ReportViewer2.LocalReport.EnableHyperlinks = true;
+                            ReportViewer2.LocalReport.DataSources.Add(datasource0);
+                            ReportViewer2.LocalReport.DataSources.Add(datasource1);
+                            ReportViewer2.LocalReport.Refresh();
+
+
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

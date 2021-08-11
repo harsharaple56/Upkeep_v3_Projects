@@ -151,7 +151,7 @@
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_2_tab_content" role="tabpanel">
 
-                                <form class="m-form m-form--fit m--margin-bottom-20">
+                                <div class="m-form m-form--fit m--margin-bottom-20">
 
 
 
@@ -169,32 +169,50 @@
 
                                         </div>
                                     </div>
-                                </form>
+                                </div>
 
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_3_tab_content" role="tabpanel">
 
 
-                                <form class="m-form m-form--fit m--margin-bottom-20">
+                                <div class="m-form m-form--fit m--margin-bottom-20">
+                                
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                        <ContentTemplate>
+
+                                            <div class="row m--margin-bottom-20 m--align-center">
+
+                                                <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
+                                                    <div class="m-form__control">
+                                                        <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button1" onserverclick="btn_GenerateReport1_ServerClick2" runat="server">
+                                                            <span>
+                                                                <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
+                                                                <span>Generate <b>FLR-III A</b> Excise Report</span>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row m--margin-bottom-20 m--align-center">
+                                                <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
 
 
+                                                    <rsweb:ReportViewer ID="ReportViewer2" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
+                                                    </rsweb:ReportViewer>
 
-                                    <div class="row m--margin-bottom-20 m--align-center">
 
-                                        <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
-                                            <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button2" runat="server">
-                                                    <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
-                                                        <span>Generate <b>FLR-III A</b> Excise Report</span>
-                                                    </span>
-                                                </button>
+                                                </div>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                </form>
+                                        </ContentTemplate>
+                                        <%--<Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="btn_Generate_FLR3_Report_Click" EventName="Click" />
+                                                 </Triggers>--%>
+                                    </asp:UpdatePanel>
+
+                                </div>
 
                                 <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                                     <thead>
