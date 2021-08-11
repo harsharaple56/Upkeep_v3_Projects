@@ -40,6 +40,15 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         protected global::System.Web.UI.WebControls.DropDownList m_form_type;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// btn_Generate_FLR3_Report_Click control.
         /// </summary>
         /// <remarks>

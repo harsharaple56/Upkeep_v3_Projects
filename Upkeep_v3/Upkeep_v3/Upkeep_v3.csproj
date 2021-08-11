@@ -1079,6 +1079,7 @@
     <Content Include="Cocktail_World\Setup\Suppliers.aspx" />
     <Content Include="Cocktail_World\Transactions\Add_Purchases.aspx" />
     <Content Include="Cocktail_World\Transactions\Add_Sales.aspx" />
+    <Content Include="Cocktail_World\Transactions\Add_Transfers.aspx" />
     <Content Include="Cocktail_World\Transactions\Auto_Billing.aspx" />
     <Content Include="Cocktail_World\Transactions\Purchases.aspx" />
     <Content Include="Cocktail_World\Transactions\Sales.aspx" />
@@ -4578,6 +4579,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Add_Sales.aspx.designer.cs">
       <DependentUpon>Add_Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Transfers.aspx.cs">
+      <DependentUpon>Add_Transfers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Transactions\Add_Transfers.aspx.designer.cs">
+      <DependentUpon>Add_Transfers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Auto_Billing.aspx.cs">
       <DependentUpon>Auto_Billing.aspx</DependentUpon>

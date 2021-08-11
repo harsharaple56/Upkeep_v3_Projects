@@ -1,19 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Generate_Reports.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Generate_Reports" %>
 
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>  
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
 
     <div class="m-grid__item m-grid__item--fluid">
-        <div class="m-content" runat="server" id="div_Maharashtra_Excise" style="padding: 30px 10px;" >
+        <div class="m-content" runat="server" id="div_Maharashtra_Excise" style="padding: 30px 10px;">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">
                     <div class="col-xl-4 m-portlet__head-caption">
@@ -107,51 +107,61 @@
                         <div class="tab-content">
                             <div class="tab-pane active show" id="m_portlet_base_demo_1_1_tab_content" role="tabpanel">
 
-                                <form id="form1" class="m-form m-form--fit m--margin-bottom-20">
+                                <div id="form1" class="m-form m-form--fit m--margin-bottom-20">
+
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                        <ContentTemplate>
+
+                                            <div class="row m--margin-bottom-20 m--align-center">
+
+                                                <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
+                                                    <div class="m-form__control">
+                                                        <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLR3_Report_Click" onserverclick="btn_GenerateReport1_ServerClick2" runat="server">
+                                                            <span>
+                                                                <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
+                                                                <span>Generate <b>FLR-III</b> Excise Report</span>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row m--margin-bottom-20 m--align-center">
+                                                <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
 
 
+                                                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
+                                                    </rsweb:ReportViewer>
 
-                                    <div class="row m--margin-bottom-20 m--align-center">
-                                        
-                                        <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
-                                            <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLR3_Report_Click" onserverclick="btn_GenerateReport1_ServerClick2" runat="server">
-                                                    <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
-                                                        <span>Generate <b>FLR-III</b> Excise Report</span>
-                                                    </span>
-                                                </button>
+
+                                                </div>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="row m--margin-bottom-20 m--align-center">
-                                        <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
-                                           
-                                            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
-                                             </rsweb:ReportViewer>
-                                        </div>
-                                    </div>
+                                        </ContentTemplate>
+                                        <%--<Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="btn_Generate_FLR3_Report_Click" EventName="Click" />
+                                                 </Triggers>--%>
+                                    </asp:UpdatePanel>
 
-                                    
-                                    
-                                </form>
-                     
+
+
+                                </div>
+
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_2_tab_content" role="tabpanel">
-                                
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
-                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air"  id="btn_Generate_FLRIII_PrePrinted" runat="server">
+                                                <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="btn_Generate_FLRIII_PrePrinted" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-III (Pre-Printed)</b> Report</span>
                                                     </span>
                                                 </button>
@@ -164,19 +174,19 @@
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_3_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button2" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-III A</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -208,19 +218,19 @@
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_4_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button3" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-IV</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -252,19 +262,19 @@
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_5_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button4" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-VI</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -296,19 +306,19 @@
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_6_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button5" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-VI (Pre-Printed)</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -340,19 +350,19 @@
 
                             </div>
                             <div class="tab-pane" id="m_portlet_base_demo_1_7_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button6" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>FLR-VI A</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -385,19 +395,19 @@
                             </div>
 
                             <div class="tab-pane" id="m_portlet_base_demo_1_8_tab_content" role="tabpanel">
-                                
-                                
+
+
                                 <form class="m-form m-form--fit m--margin-bottom-20">
 
 
 
                                     <div class="row m--margin-bottom-20 m--align-center">
-                                        
+
                                         <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
                                             <div class="m-form__control">
                                                 <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" id="Button7" runat="server">
                                                     <span>
-                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem;}"></i>
+                                                        <i class="fab fa-whmcs" style="font-size: 2.1rem; }"></i>
                                                         <span>Generate <b>Chatai</b> Excise Report</span>
                                                     </span>
                                                 </button>
@@ -439,7 +449,7 @@
 
     </div>
 
-    
+
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js") %>" type="text/javascript"></script>
 
 
