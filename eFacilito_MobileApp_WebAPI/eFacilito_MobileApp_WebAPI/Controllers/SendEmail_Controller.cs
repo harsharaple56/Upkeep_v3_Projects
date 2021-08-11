@@ -217,14 +217,42 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
-        [Route("api/SendEmail/Send_Email_Zepto_Template")]
+        [Route("api/SendEmail/Send_Email_Zepto_Template_Ticket")]
         [HttpPost]
         public HttpResponseMessage Send_Email_Zepto_Template_Ticket(string mail_template_key, string to_email_address, string dynamic_values)
         {
             string email_response = string.Empty;
 
+            string strRaisedBy_Name = string.Empty;
+            string strAssigned_Department = string.Empty;
+            string strTicket_ID = string.Empty;
+            string strTicket_Date = string.Empty;
+            string strTicket_Location = string.Empty;
+            string strTicket_Category = string.Empty;
+            string strTicket_SubCategory = string.Empty;
+            string strTicket_Level = string.Empty;
+            string strUser_Department = string.Empty;
+
+            //dynamic_values = "Ajay Prajapati,Engineering,Tkt1001,10/08/2021 05:00 PM,loc > loc 1,Housekeeping,Cleaning,1,DepartmentName";
+
             try
             {
+                string[] mergeinfo_array = dynamic_values.Split(',');
+
+                //foreach (string lst in mergeinfo_array)
+                //for (int i = 0; i <= mergeinfo_array.Length; i++)
+                //{
+                strRaisedBy_Name = Convert.ToString(mergeinfo_array[0]);
+                strAssigned_Department = Convert.ToString(mergeinfo_array[1]);
+                strTicket_ID = Convert.ToString(mergeinfo_array[2]);
+                strTicket_Date = Convert.ToString(mergeinfo_array[3]);
+                strTicket_Location = Convert.ToString(mergeinfo_array[4]);
+                strTicket_Category = Convert.ToString(mergeinfo_array[5]);
+                strTicket_SubCategory = Convert.ToString(mergeinfo_array[6]);
+                strTicket_Level = Convert.ToString(mergeinfo_array[7]);
+                strUser_Department = Convert.ToString(mergeinfo_array[8]);
+                //}
+
                 string merge_info = string.Empty;
                 string dynamic_values2 = string.Empty;
 
@@ -233,8 +261,8 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 {
                     toItem.email_address = new EmailAddress
                     {
-                        address = "harsharaple56@gmail.com",
-                        name = "Ajay",
+                        address = to_email_address,
+                        name = "",
                     };
                 };
                 dataTo.Add(toItem);
@@ -259,8 +287,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     to = dataTo,
                     merge_info = new MergeInfo()
                     {
-                        RaisedBy_Name = "Ajay Prajapati",
-                        Ticket_ID = "TKT100",
+                        RaisedBy_Name = strRaisedBy_Name,
+                        Assigned_Department = strAssigned_Department,
+                        Ticket_ID = strTicket_ID,
+                        Ticket_Date = strTicket_Date,
+                        Ticket_Location = strTicket_Location,
+                        Ticket_Category = strTicket_Category,
+                        Ticket_SubCategory = strTicket_SubCategory,
+                        Ticket_Level = strTicket_Level,
+                        User_Department = strUser_Department,
                     },
                     reply_to = dataReply,
                     client_reference = "",
@@ -272,53 +307,13 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 string rootBody_Json = JsonConvert.SerializeObject(rootBody);
 
-
-                // json mail body
-
-
-                //dynamic_values2 = dynamic_values.Replace("\",\"", "");
-
-                //merge_info = "" + dynamic_values;
-
-                //merge_info = ""+ @"""name"":""Ajay Prajapati""," + "\n" + @"""product_name"":""eFacilito System""," + "\n" + @"""username"":""ajay.p""" + "\n";
-
                 var client = new RestClient("https://api.zeptomail.in/v1.1/email/template/batch");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("Authorization", "Zoho-enczapikey PHtE6r1bR+3p2mZ6pxFVsP+5H5KiYIIrqO1nKlFE4d1HXvFSHk1V+ox/kGWxrEosUvFDFPSTzoJh57PN4r6DIzrrZzsaVWqyqK3sx/VYSPOZsbq6x00VslsdcEHbUobsc99i3SXXudfSNA==");
                 request.AddHeader("Cookie", "6389eb1069=abcd21ccb74b786b4877b315e275abe4; tmappgrp=-1");
-                //var body = @"{" + "\n" + @"""mail_template_key"": """ + Convert.ToString(mail_template_key) + "\""+"," + "\n" +
-                //@"""bounce_address"": ""system@bounce.efacilito.com""," + "\n" +
-                //@"""from"": {" + "\n" +
-                //@"""address"": ""admin@efacilito.com""," + "\n" +
-                //@"""name"": ""Mail from API""" + "\n" +
-                //          @"}," + "\n" +
-                //@"""to"": [" + "\n" +
-                //            @"{" + "\n" +
-                //                @"""email_address"": {" + "\n" +
-                //                    @"""address"": ""ajay.p@compelconsultancy.com""," + "\n" +
-                //                     @"""name"": ""Ajay""" + "\n" +
-                //                @"}" + "\n" +
-                //            @"}" + "\n" +
-                //          @"]," + "\n" +
-                //@"""merge_info"": {" + "\n" //+
-                //                            //@"""meeting_link"":""https://meeting.zoho.com/join?key=103666049*************22c92ca4""" + "\n" 
-                //        + Convert.ToString(merge_info)
-                //        +
-                //@"}," + "\n" +
-                //@"""reply_to"": [" + "\n" +
-                //                   @"{" + "\n" +
-                //                        @"""address"": ""admin@compelconsultancy.com""," + "\n" +
-                //                        @"""name"": ""Rebecca""" + "\n" +
-                //                    @"}" + "\n" +
-                //                @"]," + "\n" +
-                //@"""client_reference"": ""1234""," + "\n" +
-                //@"""mime_headers"": {" + "\n" +
-                //                        @"""X-Test"": ""test""" + "\n" +
-                //                    @"}" + "\n" +
-                //@"}";
-                //request.AddParameter("application/json", body, ParameterType.RequestBody);
+
                 request.AddParameter("application/json", rootBody_Json, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
