@@ -46,10 +46,8 @@
         });
     </script>
     <script type="text/javascript">
-        $(function () {
-
-            $("[id*=txtspegqty]").keydown(function () {
-
+        function pageLoad(sender, args) {
+            $("[id*=txtspegqty]").keyup(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
                 var val2 = $('#sessionInput').val() == "" ? 0 : $('#sessionInput').val();
@@ -70,7 +68,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtspegrate]").keydown(function () {
+            $("[id*=txtspegrate]").keyup(function () {
                 //calculate total for current row
                 var val3 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $('#sessionInput').val() == "" ? 0 : $('#sessionInput').val();
@@ -91,7 +89,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtlpegqty]").keydown(function () {
+            $("[id*=txtlpegqty]").keyup(function () {
                 //calculate total for current row
                 var val4 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -112,7 +110,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtlpegrate]").keydown(function () {
+            $("[id*=txtlpegrate]").keyup(function () {
                 //calculate total for current row
                 var val5 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -133,7 +131,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtbottleqty]").keydown(function () {
+            $("[id*=txtbottleqty]").keyup(function () {
                 //calculate total for current row
                 var val6 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -154,7 +152,7 @@
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
-            $("[id*=txtbottlerate]").keydown(function () {
+            $("[id*=txtbottlerate]").keyup(function () {
                 //calculate total for current row
                 var val7 = $(this).val() == "" ? 0 : $(this).val();
                 var val1 = $(this).parent().parent().find("#txtspegqty").val() == "" ? 0 : $(this).parent().parent().find("#txtspegqty").val();
@@ -175,7 +173,7 @@
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
             });
 
-            $("[id*=cocktailqty]").keydown(function () {
+            $("[id*=cocktailqty]").keyup(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
                 var val2 = $(this).parent().parent().find("#cocktailrate").val() == "" ? 0 : $(this).parent().parent().find("#cocktailrate").val();
@@ -189,7 +187,7 @@
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal + taxAmount);
             });
 
-            $("[id*=cocktailrate]").keydown(function () {
+            $("[id*=cocktailrate]").keyup(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
                 var val2 = $(this).parent().parent().find("#cocktailqty").val() == "" ? 0 : $(this).parent().parent().find("#cocktailqty").val();
@@ -202,7 +200,8 @@
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal + taxAmount);
             });
-        })
+
+        }
     </script>
 
 </asp:Content>
@@ -343,7 +342,7 @@
 
 
                                 </div>
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
 
                                         <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">
@@ -416,14 +415,14 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ReadOnly="true" ID="txttotalamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Total_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox ID="txttotalamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Total_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ReadOnly="true" ID="txtamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Tax_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox ID="txtamount" Width="70px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Tax_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
