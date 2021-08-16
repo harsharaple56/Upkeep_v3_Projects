@@ -911,7 +911,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                         Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
                                         Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
                                         Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
-                                        ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                        Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                                     displayMessage = true;
                                 }
                             }

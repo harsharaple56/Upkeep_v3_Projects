@@ -36,6 +36,10 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback BrandOpeningMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback PurchaseMaster_CRUDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PurchaseDetailsMaster_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback SaleDetailsMaster_CrudOperationCompleted;
         
         private System.Threading.SendOrPostCallback SaleMaster_CrudOperationCompleted;
@@ -120,6 +124,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event BrandOpeningMaster_CRUDCompletedEventHandler BrandOpeningMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event PurchaseMaster_CRUDCompletedEventHandler PurchaseMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event PurchaseDetailsMaster_CRUDCompletedEventHandler PurchaseDetailsMaster_CRUDCompleted;
         
         /// <remarks/>
         public event SaleDetailsMaster_CrudCompletedEventHandler SaleDetailsMaster_CrudCompleted;
@@ -270,6 +280,176 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.BrandOpeningMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.BrandOpeningMaster_CRUDCompleted(this, new BrandOpeningMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PurchaseMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("PurchaseMaster_CRUD", new object[] {
+                        Supplier_ID,
+                        TP_No,
+                        Invoice_No,
+                        Purchase_Date,
+                        Other_Charges,
+                        Discount_Percentage,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PurchaseMaster_CRUDAsync(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
+            this.PurchaseMaster_CRUDAsync(Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges, Discount_Percentage, License_ID, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void PurchaseMaster_CRUDAsync(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.PurchaseMaster_CRUDOperationCompleted == null)) {
+                this.PurchaseMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPurchaseMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("PurchaseMaster_CRUD", new object[] {
+                        Supplier_ID,
+                        TP_No,
+                        Invoice_No,
+                        Purchase_Date,
+                        Other_Charges,
+                        Discount_Percentage,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.PurchaseMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnPurchaseMaster_CRUDOperationCompleted(object arg) {
+            if ((this.PurchaseMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PurchaseMaster_CRUDCompleted(this, new PurchaseMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PurchaseDetailsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet PurchaseDetailsMaster_CRUD(
+                    int Purchase_ID, 
+                    int Brand_Opening_ID, 
+                    string Brand_Desc, 
+                    string Size_Desc, 
+                    decimal Bottle_Qty, 
+                    decimal Bottle_Rate, 
+                    decimal Speg_Qty, 
+                    decimal Speg_Rate, 
+                    int Free_Qty, 
+                    int No_Of_Boxes, 
+                    int Batch_No, 
+                    string Mfg, 
+                    string Tax_Type, 
+                    decimal Tax_Amt, 
+                    decimal Total_Amt, 
+                    int License_ID, 
+                    int Company_ID, 
+                    string LoggedInUserID, 
+                    string Action) {
+            object[] results = this.Invoke("PurchaseDetailsMaster_CRUD", new object[] {
+                        Purchase_ID,
+                        Brand_Opening_ID,
+                        Brand_Desc,
+                        Size_Desc,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        Speg_Qty,
+                        Speg_Rate,
+                        Free_Qty,
+                        No_Of_Boxes,
+                        Batch_No,
+                        Mfg,
+                        Tax_Type,
+                        Tax_Amt,
+                        Total_Amt,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PurchaseDetailsMaster_CRUDAsync(
+                    int Purchase_ID, 
+                    int Brand_Opening_ID, 
+                    string Brand_Desc, 
+                    string Size_Desc, 
+                    decimal Bottle_Qty, 
+                    decimal Bottle_Rate, 
+                    decimal Speg_Qty, 
+                    decimal Speg_Rate, 
+                    int Free_Qty, 
+                    int No_Of_Boxes, 
+                    int Batch_No, 
+                    string Mfg, 
+                    string Tax_Type, 
+                    decimal Tax_Amt, 
+                    decimal Total_Amt, 
+                    int License_ID, 
+                    int Company_ID, 
+                    string LoggedInUserID, 
+                    string Action) {
+            this.PurchaseDetailsMaster_CRUDAsync(Purchase_ID, Brand_Opening_ID, Brand_Desc, Size_Desc, Bottle_Qty, Bottle_Rate, Speg_Qty, Speg_Rate, Free_Qty, No_Of_Boxes, Batch_No, Mfg, Tax_Type, Tax_Amt, Total_Amt, License_ID, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void PurchaseDetailsMaster_CRUDAsync(
+                    int Purchase_ID, 
+                    int Brand_Opening_ID, 
+                    string Brand_Desc, 
+                    string Size_Desc, 
+                    decimal Bottle_Qty, 
+                    decimal Bottle_Rate, 
+                    decimal Speg_Qty, 
+                    decimal Speg_Rate, 
+                    int Free_Qty, 
+                    int No_Of_Boxes, 
+                    int Batch_No, 
+                    string Mfg, 
+                    string Tax_Type, 
+                    decimal Tax_Amt, 
+                    decimal Total_Amt, 
+                    int License_ID, 
+                    int Company_ID, 
+                    string LoggedInUserID, 
+                    string Action, 
+                    object userState) {
+            if ((this.PurchaseDetailsMaster_CRUDOperationCompleted == null)) {
+                this.PurchaseDetailsMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPurchaseDetailsMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("PurchaseDetailsMaster_CRUD", new object[] {
+                        Purchase_ID,
+                        Brand_Opening_ID,
+                        Brand_Desc,
+                        Size_Desc,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        Speg_Qty,
+                        Speg_Rate,
+                        Free_Qty,
+                        No_Of_Boxes,
+                        Batch_No,
+                        Mfg,
+                        Tax_Type,
+                        Tax_Amt,
+                        Total_Amt,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.PurchaseDetailsMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnPurchaseDetailsMaster_CRUDOperationCompleted(object arg) {
+            if ((this.PurchaseDetailsMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PurchaseDetailsMaster_CRUDCompleted(this, new PurchaseDetailsMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1156,6 +1336,58 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal BrandOpeningMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void PurchaseMaster_CRUDCompletedEventHandler(object sender, PurchaseMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PurchaseMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PurchaseMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void PurchaseDetailsMaster_CRUDCompletedEventHandler(object sender, PurchaseDetailsMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PurchaseDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PurchaseDetailsMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

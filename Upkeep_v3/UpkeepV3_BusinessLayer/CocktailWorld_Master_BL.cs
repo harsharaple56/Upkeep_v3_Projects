@@ -284,6 +284,77 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, 
+            decimal Discount_Percentage, int License_ID,int Company_ID ,string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Purchase", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Supplier_ID", Supplier_ID);
+                cmd.Parameters.AddWithValue("@TP_No", TP_No);
+                cmd.Parameters.AddWithValue("@Invoice_No", Invoice_No);
+                cmd.Parameters.AddWithValue("@Purchase_Date", Purchase_Date);
+                cmd.Parameters.AddWithValue("@Other_Charges", Other_Charges);
+                cmd.Parameters.AddWithValue("@Discount_Percentage", Discount_Percentage);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID,string Brand_Desc,string Size_Desc,decimal Bottle_Qty, decimal Bottle_Rate
+            ,decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No,string Mfg,string Tax_Type,decimal Tax_Amt,decimal Total_Amt
+            ,int License_ID,int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_PurchaseDetails", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Purchase_ID", Purchase_ID);
+                cmd.Parameters.AddWithValue("@Brand_Opening_ID", Brand_Opening_ID);
+                cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
+                cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
+                cmd.Parameters.AddWithValue("@Bottle_Qty", Bottle_Qty);
+                cmd.Parameters.AddWithValue("@Bottle_Rate", Bottle_Rate);
+                cmd.Parameters.AddWithValue("@Speg_Qty", Speg_Qty);
+                cmd.Parameters.AddWithValue("@Speg_Rate", Speg_Rate);
+                cmd.Parameters.AddWithValue("@Free_Qty", Free_Qty);
+                cmd.Parameters.AddWithValue("@No_Of_Boxes", No_Of_Boxes);
+                cmd.Parameters.AddWithValue("@Batch_No", Batch_No);
+                cmd.Parameters.AddWithValue("@Mfg", Mfg);
+                cmd.Parameters.AddWithValue("@Tax_Type", Tax_Type);
+                cmd.Parameters.AddWithValue("@Tax_Amt", Tax_Amt);
+                cmd.Parameters.AddWithValue("@Total_Amt", Total_Amt);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public DataSet SizeMaster_CRUD(int Size_ID, string Size_Desc, int Size_Alias, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try

@@ -59,6 +59,75 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="PurchaseMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Supplier_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TP_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Invoice_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Purchase_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Other_Charges" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Discount_Percentage" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurchaseMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PurchaseMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurchaseDetailsMaster_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Purchase_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Brand_Opening_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Speg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Speg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Free_Qty" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="No_Of_Boxes" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Batch_No" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mfg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tax_Type" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tax_Amt" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Total_Amt" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurchaseDetailsMaster_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PurchaseDetailsMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="SaleDetailsMaster_Crud">
         <s:complexType>
           <s:sequence>
@@ -570,6 +639,18 @@
   <wsdl:message name="BrandOpeningMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:BrandOpeningMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="PurchaseMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:PurchaseMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="PurchaseMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:PurchaseMaster_CRUDResponse" />
+  </wsdl:message>
+  <wsdl:message name="PurchaseDetailsMaster_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:PurchaseDetailsMaster_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="PurchaseDetailsMaster_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:PurchaseDetailsMaster_CRUDResponse" />
+  </wsdl:message>
   <wsdl:message name="SaleDetailsMaster_CrudSoapIn">
     <wsdl:part name="parameters" element="tns:SaleDetailsMaster_Crud" />
   </wsdl:message>
@@ -697,6 +778,14 @@
       <wsdl:input message="tns:BrandOpeningMaster_CRUDSoapIn" />
       <wsdl:output message="tns:BrandOpeningMaster_CRUDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="PurchaseMaster_CRUD">
+      <wsdl:input message="tns:PurchaseMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:PurchaseMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PurchaseDetailsMaster_CRUD">
+      <wsdl:input message="tns:PurchaseDetailsMaster_CRUDSoapIn" />
+      <wsdl:output message="tns:PurchaseDetailsMaster_CRUDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SaleDetailsMaster_Crud">
       <wsdl:input message="tns:SaleDetailsMaster_CrudSoapIn" />
       <wsdl:output message="tns:SaleDetailsMaster_CrudSoapOut" />
@@ -796,6 +885,24 @@
     </wsdl:operation>
     <wsdl:operation name="BrandOpeningMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/BrandOpeningMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurchaseMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/PurchaseMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurchaseDetailsMaster_CRUD">
+      <soap:operation soapAction="http://tempuri.org/PurchaseDetailsMaster_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -997,6 +1104,24 @@
     </wsdl:operation>
     <wsdl:operation name="BrandOpeningMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/BrandOpeningMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurchaseMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/PurchaseMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurchaseDetailsMaster_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/PurchaseDetailsMaster_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

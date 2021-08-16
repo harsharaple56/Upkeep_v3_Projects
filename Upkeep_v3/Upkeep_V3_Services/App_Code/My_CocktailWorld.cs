@@ -63,14 +63,52 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet SaleDetailsMaster_Crud(int Sale_ID,string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder,int License_ID, string Action, int LoggedInUser, int Company_ID)
+    public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
+            decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.SaleDetailsMaster_Crud(Sale_ID,Brand_Desc,  Size_Desc,  Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount,Permit_Holder,License_ID,Action, LoggedInUser, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.PurchaseMaster_CRUD(Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
+             Discount_Percentage, License_ID, Company_ID, LoggedInUserID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID, string Brand_Desc, string Size_Desc, decimal Bottle_Qty, decimal Bottle_Rate
+            , decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No, string Mfg, string Tax_Type, decimal Tax_Amt, decimal Total_Amt
+            , int License_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.PurchaseDetailsMaster_CRUD(Purchase_ID, Brand_Opening_ID, Brand_Desc, Size_Desc, Bottle_Qty, Bottle_Rate
+            , Speg_Qty, Speg_Rate, Free_Qty, No_Of_Boxes, Batch_No, Mfg, Tax_Type, Tax_Amt, Total_Amt
+            , License_ID, Company_ID, LoggedInUserID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet SaleDetailsMaster_Crud(int Sale_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjcocktailWorld_Master_BL.SaleDetailsMaster_Crud(Sale_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -131,14 +169,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID,string Brand_Desc,string Size_Desc,int Company_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, Size_ID,Brand_Desc,Size_Desc,Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -148,14 +186,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID,int Opening_ID, int Brand_ID,string Brand_Desc,string Cocktail_Desc, int Company_ID)
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int Brand_ID, string Brand_Desc, string Cocktail_Desc, int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID,Opening_ID, Brand_ID, Brand_Desc,Cocktail_Desc, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, Brand_ID, Brand_Desc, Cocktail_Desc, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -288,7 +326,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Fetch_Cocktail_Brand_Details(Cocktail_Desc, Company_ID,StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Cocktail_Brand_Details(Cocktail_Desc, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -368,7 +406,7 @@ public class My_CocktailWorld
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
-            ds = ObjcocktailWorld_Master_BL.Fetch_Test_Dataset_RDLC( StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Test_Dataset_RDLC(StrConn);
             return ds;
         }
         catch (Exception ex)

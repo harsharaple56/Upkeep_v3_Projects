@@ -54,7 +54,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(Opening_ID,Closing_Bottle,Closing_Speg,Action,LoggedInUser,Company_ID);
+            ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(Opening_ID, Closing_Bottle, Closing_Speg, Action, LoggedInUser, Company_ID);
 
         }
         catch (Exception ex)
@@ -65,11 +65,47 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet SaleDetailsMaster_Crud(int Sale_ID,string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID)
+    public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
+            decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID,  Brand_Desc,  Size_Desc,  Cocktail_Desc, Opening_ID,TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount,Permit_Holder,License_ID, Action, LoggedInUser, Company_ID);
+            ds = ObjCocktailWorld.PurchaseMaster_CRUD(Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
+             Discount_Percentage, License_ID, Company_ID, LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID, string Brand_Desc, string Size_Desc, decimal Bottle_Qty, decimal Bottle_Rate
+            , decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No, string Mfg, string Tax_Type, decimal Tax_Amt, decimal Total_Amt
+            , int License_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, Brand_Opening_ID, Brand_Desc, Size_Desc, Bottle_Qty, Bottle_Rate
+            , Speg_Qty, Speg_Rate, Free_Qty, No_Of_Boxes, Batch_No, Mfg, Tax_Type, Tax_Amt, Total_Amt
+            , License_ID, Company_ID, LoggedInUserID, Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet SaleDetailsMaster_Crud(int Sale_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID);
 
         }
         catch (Exception ex)
@@ -125,11 +161,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID,int Opening_ID, int BrandID, string Brand_Desc,string Cocktail_Desc,int CompanyID)   //Added CompanyId by sujata
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID,Opening_ID, BrandID, Brand_Desc, Cocktail_Desc, CompanyID);
+            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, BrandID, Brand_Desc, Cocktail_Desc, CompanyID);
         }
         catch (Exception ex)
         {
@@ -202,11 +238,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID,string Brand_Desc,string Size_Desc,int Company_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID,Brand_Desc,Size_Desc,Company_ID);
+            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID);
 
         }
         catch (Exception ex)

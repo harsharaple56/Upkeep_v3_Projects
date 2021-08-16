@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Purchases.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Transactions.Purchases" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
+
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
     <style type="text/css">
@@ -12,7 +13,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    
+
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="m-portlet m-portlet--mobile">
@@ -25,7 +26,7 @@
                     </div>
 
                     <div class="m-portlet__head-tools">
-                        
+
                         <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Select_Transaction.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
@@ -49,9 +50,11 @@
                         <thead>
                             <tr>
                                 <th>Transaction ID</th>
+                                <th>TP No</th>
+                                <th>Invoice No</th>
+                                <th>Supplier Name</th>
                                 <th>License Name</th>
                                 <th>Purchase Date</th>
-                                <th>Total Amount</th>
                                 <th>Created By</th>
                                 <th>Created Date</th>
                                 <th>Action</th>
@@ -60,7 +63,7 @@
                         </thead>
 
                         <tbody>
-                            <%--<%=Fetch_Department_Transactions()%>--%>
+                            <%= Fetch_Purchase() %>
                         </tbody>
                     </table>
 
