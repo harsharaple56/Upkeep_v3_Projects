@@ -388,7 +388,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 };
                 dataReply.Add(replyItem);
 
-                Json_Mail_Root rootBody = new Json_Mail_Root()
+                Json_Mail_Root_Gatepass rootBody = new Json_Mail_Root_Gatepass()
                 {
                     mail_template_key = mail_template_key,
                     bounce_address = "system@bounce.efacilito.com",
