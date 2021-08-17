@@ -330,5 +330,118 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [Route("api/SendEmail/Send_Email_Zepto_Template_Gatepass")]
+        [HttpPost]
+        public HttpResponseMessage Send_Email_Zepto_Template_Gatepass(string mail_template_key, string to_email_address, string dynamic_values)
+        {
+            string email_response = string.Empty;
+
+            string Raiser_Name = string.Empty;
+            string Gatepass_ID = string.Empty;
+            string Gatepass_Raised_Date = string.Empty;
+            string Gatepass_No = string.Empty;
+            string Gatepass_Title = string.Empty;
+            string Gatepass_Type = string.Empty;
+            string Gatepass_Date = string.Empty;
+            string Gatepass_Material_Detail = string.Empty;
+            string Company_Name = string.Empty;
+
+            //dynamic_values = "Ajay Prajapati,Engineering,Tkt1001,10/08/2021 05:00 PM,loc > loc 1,Housekeeping,Cleaning,1,DepartmentName";
+
+            try
+            {
+                string[] mergeinfo_array = dynamic_values.Split(',');
+
+                //foreach (string lst in mergeinfo_array)
+                //for (int i = 0; i <= mergeinfo_array.Length; i++)
+                //{
+                Raiser_Name = Convert.ToString(mergeinfo_array[0]);
+                Gatepass_ID = Convert.ToString(mergeinfo_array[1]);
+                Gatepass_Raised_Date = Convert.ToString(mergeinfo_array[2]);
+                Gatepass_No = Convert.ToString(mergeinfo_array[3]);
+                Gatepass_Title = Convert.ToString(mergeinfo_array[4]);
+                Gatepass_Type = Convert.ToString(mergeinfo_array[5]);
+                Gatepass_Date = Convert.ToString(mergeinfo_array[6]);
+                Gatepass_Material_Detail = Convert.ToString(mergeinfo_array[8]);
+                Company_Name = Convert.ToString(mergeinfo_array[9]);
+                //}
+
+                string merge_info_gatepass = string.Empty;
+                string dynamic_values2 = string.Empty;
+
+                List<To> dataTo = new List<To>();
+                To toItem = new To();
+                {
+                    toItem.email_address = new EmailAddress
+                    {
+                        address = to_email_address,
+                        name = "",
+                    };
+                };
+                dataTo.Add(toItem);
+
+                List<ReplyTo> dataReply = new List<ReplyTo>();
+                ReplyTo replyItem = new ReplyTo();
+                {
+                    replyItem.address = "admin@efacilito.com";
+                    replyItem.name = "eFacilito System";
+                };
+                dataReply.Add(replyItem);
+
+                Json_Mail_Root rootBody = new Json_Mail_Root()
+                {
+                    mail_template_key = mail_template_key,
+                    bounce_address = "system@bounce.efacilito.com",
+                    from = new From()
+                    {
+                        address = "admin@efacilito.com",
+                        name = "eFacilito System",
+                    },
+                    to = dataTo,
+                    merge_info_gatepass = new MergeInfo_Gatepass()
+                    {
+                        Raiser_Name = Raiser_Name,
+                        Gatepass_ID = Gatepass_ID,
+                        Gatepass_Raised_Date = Gatepass_Raised_Date,
+                        Gatepass_No = Gatepass_No,
+                        Gatepass_Title = Gatepass_Title,
+                        Gatepass_Type = Gatepass_Type,
+                        Gatepass_Date = Gatepass_Date,
+                        Gatepass_Material_Detail = Gatepass_Material_Detail,
+                        Company_Name = Company_Name
+                    },
+                    reply_to = dataReply,
+                    client_reference = "",
+                    mime_headers = new MimeHeaders()
+                    {
+                        XTest = "",
+                    },
+                };
+
+                string rootBody_Json = JsonConvert.SerializeObject(rootBody);
+
+                var client = new RestClient("https://api.zeptomail.in/v1.1/email/template/batch");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Authorization", "Zoho-enczapikey PHtE6r1bR+3p2mZ6pxFVsP+5H5KiYIIrqO1nKlFE4d1HXvFSHk1V+ox/kGWxrEosUvFDFPSTzoJh57PN4r6DIzrrZzsaVWqyqK3sx/VYSPOZsbq6x00VslsdcEHbUobsc99i3SXXudfSNA==");
+                request.AddHeader("Cookie", "6389eb1069=abcd21ccb74b786b4877b315e275abe4; tmappgrp=-1");
+
+                request.AddParameter("application/json", rootBody_Json, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                Console.WriteLine(response.Content);
+
+                email_response = Convert.ToString(response.Content);
+
+                return Request.CreateResponse(HttpStatusCode.OK, email_response);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

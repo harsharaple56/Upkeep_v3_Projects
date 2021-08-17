@@ -33,6 +33,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public List<To> to { get; set; }
         //public To to { get; set; }
         public MergeInfo merge_info { get; set; }
+        public MergeInfo_Gatepass merge_info_gatepass { get; set; }
         //public ReplyTo reply_to { get; set; }
         public List<ReplyTo> reply_to { get; set; }
         public string client_reference { get; set; }
@@ -69,6 +70,19 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_Level { get; set; }
         public string User_Department { get; set; }
 
+    }
+
+    public class MergeInfo_Gatepass
+    {
+        public string Raiser_Name { get; set; }
+        public string Gatepass_ID { get; set; }
+        public string Gatepass_Raised_Date { get; set; }
+        public string Gatepass_No { get; set; }
+        public string Gatepass_Title { get; set; }
+        public string Gatepass_Type { get; set; }
+        public string Gatepass_Date { get; set; }
+        public string Gatepass_Material_Detail { get; set; }
+        public string Company_Name { get; set; }
     }
 
     public class ReplyTo
