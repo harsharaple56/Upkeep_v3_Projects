@@ -346,7 +346,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             string Gatepass_Material_Detail = string.Empty;
             string Company_Name = string.Empty;
 
-            //dynamic_values = "Ajay Prajapati,Engineering,Tkt1001,10/08/2021 05:00 PM,loc > loc 1,Housekeeping,Cleaning,1,DepartmentName";
+            //dynamic_values = "Anjali Kori,Housekeepings,TKT4592,17 Aug 2021 6:46PM,CENTRIUM,Cat100,NA,Housekeepings,aaa,bbb";
 
             try
             {
@@ -398,7 +398,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         name = "eFacilito System",
                     },
                     to = dataTo,
-                    merge_info_gatepass = new MergeInfo_Gatepass()
+                    merge_info = new MergeInfo_Gatepass()
                     {
                         Raiser_Name = Raiser_Name,
                         Gatepass_ID = Gatepass_ID,

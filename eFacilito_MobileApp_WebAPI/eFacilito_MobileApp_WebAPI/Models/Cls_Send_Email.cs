@@ -79,7 +79,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public From from { get; set; }
         public List<To> to { get; set; }
         //public To to { get; set; }
-        public MergeInfo_Gatepass merge_info_gatepass { get; set; }
+        public MergeInfo_Gatepass merge_info { get; set; }
         //public ReplyTo reply_to { get; set; }
         public List<ReplyTo> reply_to { get; set; }
         public string client_reference { get; set; }
