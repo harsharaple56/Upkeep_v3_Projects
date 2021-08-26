@@ -475,33 +475,33 @@ namespace Upkeep_v3.Ticketing
                             int Status = Convert.ToInt32(dsTicketSave.Tables[0].Rows[0]["Status"]);
                             if (Status == 1)
                             {
-                                string Initiator_EmailID = string.Empty;
-                                string Initiator_MailSubject = string.Empty;
-                                string Initiator_MailBody = string.Empty;
+                                //string Initiator_EmailID = string.Empty;
+                                //string Initiator_MailSubject = string.Empty;
+                                //string Initiator_MailBody = string.Empty;
 
-                                string Users_EmailID = string.Empty;
-                                string Users_MailSubject = string.Empty;
-                                string Users_MailBody = string.Empty;
+                                //string Users_EmailID = string.Empty;
+                                //string Users_MailSubject = string.Empty;
+                                //string Users_MailBody = string.Empty;
 
-                                Initiator_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["InitiatorEmailID"]);
-                                Initiator_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Subject"]);
-                                Initiator_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Body"]);
+                                //Initiator_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["InitiatorEmailID"]);
+                                //Initiator_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Subject"]);
+                                //Initiator_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["Initiator_Mail_Body"]);
 
-                                Users_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserEmailID"]);
-                                Users_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Subject"]);
-                                Users_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Body"]);
+                                //Users_EmailID = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserEmailID"]);
+                                //Users_MailSubject = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Subject"]);
+                                //Users_MailBody = Convert.ToString(dsTicketSave.Tables[0].Rows[0]["UserMail_Body"]);
 
-                                SendMail mail = new SendMail();
+                                //SendMail mail = new SendMail();
 
-                                if (Initiator_MailBody != "" && Initiator_EmailID !="")
-                                {
-                                    mail.Send_Mail(Initiator_EmailID, Initiator_MailBody, Initiator_MailSubject);
-                                }
+                                //if (Initiator_MailBody != "" && Initiator_EmailID !="")
+                                //{
+                                //    mail.Send_Mail(Initiator_EmailID, Initiator_MailBody, Initiator_MailSubject);
+                                //}
 
-                                if (Users_MailBody != "" && Users_EmailID != "")
-                                {
-                                    mail.Send_Mail(Users_EmailID, Users_MailBody, Users_MailSubject);
-                                }
+                                //if (Users_MailBody != "" && Users_EmailID != "")
+                                //{
+                                //    mail.Send_Mail(Users_EmailID, Users_MailBody, Users_MailSubject);
+                                //}
                             }
                         }
                     }

@@ -366,23 +366,27 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 Gatepass_Title = Convert.ToString(mergeinfo_array[4]);
                 Gatepass_Type = Convert.ToString(mergeinfo_array[5]);
                 Gatepass_Date = Convert.ToString(mergeinfo_array[6]);
-                Gatepass_Material_Detail = Convert.ToString(mergeinfo_array[8]);
-                Company_Name = Convert.ToString(mergeinfo_array[9]);
+                Gatepass_Material_Detail = Convert.ToString(mergeinfo_array[7]);
+                Company_Name = Convert.ToString(mergeinfo_array[8]);
                 //}
 
                 string merge_info_gatepass = string.Empty;
                 string dynamic_values2 = string.Empty;
 
                 List<To> dataTo = new List<To>();
-                To toItem = new To();
+                for (int i = 0; i < to_email_address.Split(';').Count(); i++)
                 {
-                    toItem.email_address = new EmailAddress
+                    To toItem = new To();
                     {
-                        address = to_email_address,
-                        name = "",
+                        toItem.email_address = new EmailAddress
+                        {
+                            address = to_email_address.Split(';')[i],
+                            name = "",
+                        };
+
                     };
-                };
-                dataTo.Add(toItem);
+                    dataTo.Add(toItem);
+                }
 
                 List<ReplyTo> dataReply = new List<ReplyTo>();
                 ReplyTo replyItem = new ReplyTo();
