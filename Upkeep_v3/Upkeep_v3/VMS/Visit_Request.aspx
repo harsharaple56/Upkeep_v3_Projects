@@ -321,7 +321,7 @@ border: 3px solid #ccc;*/
 
             pnlMeetingUsers.close();
         }
-            
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -384,7 +384,7 @@ border: 3px solid #ccc;*/
                             </div>
                         </div>
 
-                          <div class="alert alert-brand m-alert--icon" id="divCountFull" visible="false" runat="server" role="alert">
+                        <div class="alert alert-brand m-alert--icon" id="divCountFull" visible="false" runat="server" role="alert">
                             <div class="m-alert__icon">
                                 <i class="la la-warning"></i>
                             </div>
@@ -462,6 +462,8 @@ border: 3px solid #ccc;*/
                             </div>
 
 
+
+
                             <div class="form-group row">
                                 <%--<div id="divNameComp" runat="server" style="display: block;">
                                     <span id="NameComp" runat="server" style="color: red;">*</span>
@@ -469,7 +471,7 @@ border: 3px solid #ccc;*/
                                 <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-user"></span>Name</label>
                                 <div class="col-md-3 col-form-label">
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                    
+
                                     <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
@@ -480,24 +482,23 @@ border: 3px solid #ccc;*/
                                         </div>--%>
                                 <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
                                 <div class="col-md-3 col-form-label">
-                                   
+
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                     <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                                   <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
+                                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
 
-                               <%--        <asp:HiddenField ID="hdnIs_EmailMandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_EnamilMandatory"))  ? "*" : " " %>' />
+                                    <%--        <asp:HiddenField ID="hdnIs_EmailMandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_EnamilMandatory"))  ? "*" : " " %>' />
                                             <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
-                                     
                                 </div>
-                              <%--  <div id="dvphone" runat="server" style="display: block;">
+                                <%--  <div id="dvphone" runat="server" style="display: block;">
                                 <span id ="SpnPhone" runat="server" style="color: red;">*</span>
                                 </div>--%>
                                 <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
                                 <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
                                 <div class="col-md-3 col-form-label">
-                                      
+
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                     <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
@@ -524,21 +525,78 @@ border: 3px solid #ccc;*/
                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
 
                                 <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                              <%--  <div id="dvMeeting" runat="server" style="display: block;">
+                                <%--  <div id="dvMeeting" runat="server" style="display: block;">
                                   <span id ="spnMeeting" runat="server" style="color: red;">*</span>
                                     </div>--%>
-                                <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
-                                <div class="col-md-4 col-form-label">
+                                <div class="div_MeetingWith" runat="server">
+                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                                    <div class="col-md-4 col-form-label">
                                     <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                     <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                     <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
-                                <%--    <asp:RequiredFieldValidator ID="rfvMeeting" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic" Enabled="false"
+                                    <%--    <asp:RequiredFieldValidator ID="rfvMeeting" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic" Enabled="false"
 ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
                                 </div>
+                                    <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+
+                                </div>
+                               
                                 <%-- </div>--%>
 
-                                <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                                
+                            </div>
+
+
+                            <br />
+
+                            <div class="m-form__heading" style="text-align: center;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Vaccination Details</h3>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xl-6">
+                                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+
+                                            <iframe src="https://compelapps.in/eFacilito_UAT/AssetMangDocs/DOC/27-08-2021/HARDWARE_customfields_27-08-2021%20125421_certificate-2.pdf" width="100%" height="500px"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo">
+                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                       
+                                            <div class="m-card-profile__title">
+                                                <b>Photo of Vaccinated Visitor</b>
+                                            </div>
+                                            <div class="m-card-profile"">
+                                                 <div class="m-card-profile__pic">
+                                                <div class="m-card-profile__pic-wrapper" style="margin: 0px;">
+                                                    <img id="ContentPlaceHolder1_imgProfilePic" src="http://localhost:51897/UserImages/DEMO1.jpg">
+                                                </div>
+                                            </div>
+                                            </div>
+                                           
+
+                                        </div>
+                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                            <b>Date of 2nd Dose Vaccination provided by Visitor</b> :
+                                            <h2 class="font-weight-bold m--font-danger">27th August 2021</h2>
+                                            </br>
+
+                                            <div>
+                                                <h5 class="font-weight-bold m--font-danger">NOTE: Please verify if the Vaccination date shown above is mentioned in the Certificate on the Left under </h5>
+                                            </div>
+                                            <h4 class="m--font-success">Date of 2nd Dose ुसा डोसची तारीख</h4>
+                                            </br>
+
+                                            <div>
+                                                <h5 class="font-weight-bold m--font-danger">If Date is Same , then Approve the Request , else Reject it</h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -583,18 +641,18 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             </div>
 
                                             <div id="divImage" style="display: none" runat="server">
-                                                <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width:inherit;" AllowMultiple="true" />
+                                                <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" Style="width: inherit;" AllowMultiple="true" />
                                                 &nbsp;
 
                                                 <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
 
-                                                     <span>
+                                                    <span>
                                                         <i class="fa fa-camera"></i>
                                                         <span>Use Webcam</span>
                                                     </span>
 
                                                 </button>
-                                               
+
 
 
                                                 <div id="divImgBtns" style="display: none" runat="server">
@@ -781,7 +839,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                         <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%">
                             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" >
+                                <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
 <ContentTemplate>--%>
@@ -793,63 +851,63 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                         </div>
                                         <div class="modal-body">
                                             <asp:UpdatePanel runat="server">
-                                                                <ContentTemplate>
-                                                                    <div class="form-group m-form__group row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="m-input-icon m-input-icon--left">
-                                                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                                                                                <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                                                    <span><i class="la la-search"></i></span>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-5">
-                                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input " OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                                <ContentTemplate>
+                                                    <div class="form-group m-form__group row">
+                                                        <div class="col-md-4">
+                                                            <div class="m-input-icon m-input-icon--left">
+                                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                                                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                                    <span><i class="la la-search"></i></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input " OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
 
-                                                                        </div>
-                                                                        <div class="col-md-3" style="text-align: center;">
-                                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select" OnClick="btnSelectUser_Click" style="width: inherit;" class="btn btn-primary btn-success" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <br />
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align: center;">
+                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select" OnClick="btnSelectUser_Click" Style="width: inherit;" class="btn btn-primary btn-success" />
+                                                        </div>
+                                                    </div>
+                                                    <br />
 
-                                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
-                                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
+                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
 
-                                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
-                                                                        <Columns>
-                                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
-                                                                            <asp:TemplateField HeaderText="Select">
-                                                                                <ItemTemplate>
-                                                                                    <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
+                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
+                                                            <asp:TemplateField HeaderText="Select">
+                                                                <ItemTemplate>
+                                                                    <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
 
-                                                                                    <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
+                                                                    <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
 
-                                                                                    <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
-                                                                                    <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
-                                                                                </ItemTemplate>
-                                                                            </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
-                                                                                <ItemTemplate>
-                                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
-                                                                                        <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
-                                                                                    </a>
-                                                                                </ItemTemplate>
-                                                                            </asp:TemplateField>
-                                                                            <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
-                                                                        </Columns>
+                                                                    <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
+                                                                    <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
+                                                                <ItemTemplate>
+                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
+                                                                        <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
+                                                                    </a>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
+                                                        </Columns>
 
-                                                                        <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                                        <EmptyDataRowStyle Height="25%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
-                                                                    </asp:GridView>
+                                                        <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
+                                                        <EmptyDataRowStyle Height="25%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
+                                                    </asp:GridView>
 
-                                                                </ContentTemplate>
-                                                                <Triggers>
-                                                                    <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
-                                                                </Triggers>
-                                                            </asp:UpdatePanel>
-                                                        
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+
                                         </div>
                                     </div>
                                 </div>

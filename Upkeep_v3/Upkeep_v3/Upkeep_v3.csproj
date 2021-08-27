@@ -4102,6 +4102,7 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="VMS\Visitor_ID.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
     <Content Include="CheckList\ChecklistReport.xsc">
@@ -5515,6 +5516,13 @@
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="VMS\Visitor_ID.aspx.cs">
+      <DependentUpon>Visitor_ID.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visitor_ID.aspx.designer.cs">
+      <DependentUpon>Visitor_ID.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VMS\Visits_Report.aspx.cs">
       <DependentUpon>Visits_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6544,6 +6552,7 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
+    <EmbeddedResource Include="VMS\Visitor_ID.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

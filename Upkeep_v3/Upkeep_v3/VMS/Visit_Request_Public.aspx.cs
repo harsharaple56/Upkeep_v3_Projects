@@ -39,12 +39,13 @@ namespace Upkeep_v3.VMS
             if (!IsPostBack)
             {
 
-                if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
-                {
-                    Response.Redirect("~/Login.aspx", false);
-                    return;
-                }
-                else if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
+                //if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                //{
+                //    Response.Redirect("~/Login.aspx", false);
+                //    return;
+                //}
+                //else
+                if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
                 {
                     divTitle.Visible = false;
                     if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ConfigID"]))
@@ -280,10 +281,11 @@ namespace Upkeep_v3.VMS
 
         protected void btnSuccessOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
-                Page.Response.Redirect(Page.Request.Url.ToString(), true);
-            else
-                Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+            //if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
+            //    Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            //else
+            //    Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+            mpeVMSRequestSaveSuccess.Hide();
         }
 
         protected void btnReject_Click(object sender, EventArgs e)

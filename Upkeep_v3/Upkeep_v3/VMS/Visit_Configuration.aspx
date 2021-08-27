@@ -682,7 +682,7 @@
                             </div>
 
                             <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
-                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Configure Additional Fields For your Visitor Form</h3>
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Configure Additional Fields For your Visitor Form</h3>
                             </div>
                             <br />
                             <div class="col-xl-12">

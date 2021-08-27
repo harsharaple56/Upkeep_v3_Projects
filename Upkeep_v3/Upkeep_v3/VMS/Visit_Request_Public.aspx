@@ -443,7 +443,7 @@ border: 3px solid #ccc;*/
                     <div id="divDesc" class="form-group row" runat="server">
                         <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Description</label>
                         <div class="col-xl-9 col-lg-9 col-form-label">
-                            <span id="spnDesc" runat="server" class="form-control-label"></span>
+                            <span id="spnDesc" runat="server" class="form-control-label font-weight-bold"></span>
                         </div>
                     </div>
                     <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">

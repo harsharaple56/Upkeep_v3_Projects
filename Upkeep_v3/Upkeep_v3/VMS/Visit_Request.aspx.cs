@@ -353,6 +353,10 @@ namespace Upkeep_v3.VMS
                    // rfvMeeting.Enabled = true;
                     rfvMeetingNew.Enabled = true;
                 }
+                else
+                {
+                    //div_MeetingWith1.Visible = false;
+                }
 
 
 
