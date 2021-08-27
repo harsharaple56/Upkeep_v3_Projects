@@ -91,7 +91,7 @@
                 }
                 // return resultx;
             });
-            alert(resultx);
+            //alert(resultx);
             return true;
         }
 
@@ -110,8 +110,8 @@
             });
             $("#hdnPrntD").val("");
             $("#hdnPrntD").val(ConfigID);
-            alert($("#hdnPrntD").val());
-            alert(ConntP);
+            //alert($("#hdnPrntD").val());
+            //alert(ConntP);
             document.getElementById("btnPopup").click();
             // document.forms[0].target = "_blank";
         };
@@ -123,7 +123,7 @@
 
 
 
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">
@@ -167,22 +167,21 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-<%--                                <th>Select</th>--%>
+                                <%--                                <th>Select</th>--%>
                                 <th style="display: none">Item ID</th>
                                 <th>Item Name</th>
-<%--                                <th>Available Stock</th>
+                                <%--                                <th>Available Stock</th>
                                 <th>Department</th>--%>
                                 <th>Category</th>
                                 <th>Sub Category</th>
                                 <th>Action</th>
-                                
-<%--                                <asp:HiddenField ID="HiddenField1" runat="server" />--%>
+
+                                <%--                                <asp:HiddenField ID="HiddenField1" runat="server" />--%>
                             </tr>
                         </thead>
                         <tbody>
 
-                           <%=Fetch_Stock_Details()%>
-
+                            <%=Fetch_Stock_Details()%>
                         </tbody>
                     </table>
 
@@ -196,7 +195,7 @@
     </div>
 
 
-   <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <asp:UpdatePanel runat="server" style="width: 100%;">
         <%--<Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnPopup" EventName="Click" />
@@ -210,7 +209,7 @@
     </asp:UpdatePanel>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -223,38 +222,30 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Select Item:</label>
-                                <asp:DropDownList ID="ddl_Category" class="form-control" Style="width: 70%" runat="server">
-                                </asp:DropDownList>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        
-                        <div class="col-xl-12">
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Select Vendor:</label>
-                                <asp:DropDownList ID="ddl_SubCategory" class="form-control" Style="width: 70%" runat="server">
-                                </asp:DropDownList>
+                                <label for="message-text" class="form-control-label font-weight-bold">Item Name:</label>
+                                <asp:TextBox ID="txtItem_Desc" runat="server" class="form-control"></asp:TextBox>
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="row">
-                        <div class="col-xl-12">
-
-
-                            <div class="form-group m-form__group row">
-                                <label for="message-text" class="col-xl-3 col-lg-3 form-control-label">Cost:</label>
-                                <asp:TextBox ID="txtItem_Desc" runat="server" class="form-control" Style="width: 70%;"></asp:TextBox>
-                            </div>
-                        </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="col-xl-12">
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="form-control-label font-weight-bold">Assign Category:</label>
+                                        <asp:DropDownList ID="ddl_Category" AutoPostBack="true" OnSelectedIndexChanged="ddl_SubCategory_SelectedIndexChanged" class="form-control" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="form-control-label font-weight-bold">Assign Sub-Category :</label>
+                                        <asp:DropDownList ID="ddl_SubCategory" class="form-control" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
 
                     <asp:Label ID="lblStockErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>

@@ -19,12 +19,13 @@ namespace Upkeep_v3.Laundry_Management.Stock_Setup
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         static string CategoryName = string.Empty;
         static string SubCatName = string.Empty;
-
+        
         #endregion
 
         #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!string.IsNullOrEmpty(hdnTxtSubCategory.Text))
             {
                 lblSubCategory.Text = hdnTxtSubCategory.Text;
@@ -602,9 +603,14 @@ namespace Upkeep_v3.Laundry_Management.Stock_Setup
             string data = "";
             string URL = "";
             URL = Page.ResolveClientUrl("~/Inventory/General_Master.aspx");
+
+            string LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
+            string CompanyID = Convert.ToString(Session["CompanyID"]);
+
+
             try
             {
-                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), 0, "", "R");
+                ds = ObjUpkeep.Crud_Inv_Category_Mst(LoggedInUserID, CompanyID, 0, "", "R");
 
                 if (ds.Tables.Count > 0)
                 {

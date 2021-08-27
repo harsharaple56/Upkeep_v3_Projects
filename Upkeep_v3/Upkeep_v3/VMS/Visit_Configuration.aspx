@@ -513,7 +513,9 @@
                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Relevant Feedback Forms will be displayed in dropdown, as created for Visitors / Customer">
                                         <i class="fa fa-info-circle"></i>
                                     </a>
-                                    Form For</label>
+                                    Form For
+
+                                </label>
                                 <div class="col-4">
                                     <div class="m-radio-inline">
                                         <label class="m-radio" for="rdbCustomer">
@@ -530,6 +532,9 @@
                                     <span id="error_question_for" class="text-danger small"></span>
                                 </div>
 
+                            </div>
+                            <div class="form-group m-form__group row">
+                                
                                 <div class="col-md-3">
                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled you can select a Feedback Form which will be sent to Visitors once they are Marked Out">
                                         <i class="fa fa-info-circle"></i>
@@ -547,6 +552,15 @@
                                     <div class="btn-group btn-group-toggle" id="divChkCovid" data-toggle="buttons">
                                         <label class="btn btn-light" id="lblChkCovid">
                                             <asp:CheckBox ID="ChkCovid" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Covid Test</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled the visitors Photo needs to be uploaded, 2nd Dose Vaccine Date needs to be entered and 2nd Dose Vaccination Cerificate by CoWIN needs to be uploaded to raise a Visit Request">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <div class="btn-group btn-group-toggle" id="divChkVaccinated" data-toggle="buttons">
+                                        <label class="btn btn-light" id="lblChkVaccinated">
+                                            <asp:CheckBox ID="ChkVaccinated" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Check for Vaccination</label>
                                     </div>
                                 </div>
                             </div>
@@ -640,7 +654,7 @@
                                         <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Make OTP Verification for Email / Contact Number Compulsory for raising Visit Request">
                                             <i class="fa fa-info-circle"></i>
                                         </a>
-                                        Email and Contact Verification</label>
+                                        Visitor Email and Contact Verification</label>
                                     <div class="m-checkbox-inline">
 
                                            <label class="">

@@ -18,12 +18,15 @@ namespace Upkeep_v3.Laundry_Management.Stock
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
         DataSet ds = new DataSet();
+        int Del_Item_ID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            Del_Item_ID = Convert.ToInt32(Request.QueryString["Del_Item_ID"]);
+
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -33,7 +36,11 @@ namespace Upkeep_v3.Laundry_Management.Stock
             {
                 //Fetch_Stock_Details();
                 bindCategory();
-                bind_SubCategory();
+                //bind_SubCategory();
+            }
+            if (Del_Item_ID > 0)
+            {
+                Delete_Item(Del_Item_ID);
             }
 
 
@@ -48,7 +55,7 @@ namespace Upkeep_v3.Laundry_Management.Stock
             string Item_Desc = Convert.ToString(txtItem_Desc.Text);
             
 
-            ds = ObjUpkeep.INV_ItemMaster_CRUD(0, Item_Desc, Category_ID, SubCategory_ID, CompanyID, LoggedInUserID, "C");
+            ds = ObjUpkeep.LMS_ItemMaster_CRUD(0, Item_Desc, Category_ID, SubCategory_ID, CompanyID, LoggedInUserID, "C");
 
             if (ds.Tables.Count > 0)
             {
@@ -88,7 +95,7 @@ namespace Upkeep_v3.Laundry_Management.Stock
             try
             {
                 //ds = ObjUpkeep.INV_ItemMaster_CRUD(0, "", 0, 0, CompanyID, "", "R");
-                ds = ObjUpkeep.INV_ItemMaster_CRUD(0, "", 0, 0, CompanyID, "", "R");
+                ds = ObjUpkeep.LMS_ItemMaster_CRUD(0, "", 0, 0, CompanyID, "", "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -104,7 +111,7 @@ namespace Upkeep_v3.Laundry_Management.Stock
                             string SubCategory_Desc = Convert.ToString(ds.Tables[0].Rows[i]["SubCategory_Desc"]);
 
 
-                            data += "<tr><td>" + Item_ID + "</td><td>" + Item_Desc + "</td><td>" + Category_Desc + "</td><td>" + SubCategory_Desc + "</td><td><a href='Add_User_Mst.aspx?User_ID=" + Item_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Add_User_Mst.aspx?DelUser_ID=" + Item_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Item_ID + "</td><td>" + Item_Desc + "</td><td>" + Category_Desc + "</td><td>" + SubCategory_Desc + "</td><td><a href='Item_Details.aspx?Del_Item_ID=" + Item_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'> <i class='la la-edit'></i> </a>  <a href='Items_Details.aspx?Del_Item_ID=" + Item_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' > 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                     else
@@ -124,6 +131,39 @@ namespace Upkeep_v3.Laundry_Management.Stock
                 throw ex;
             }
         }
+
+
+        public void Delete_Item(int Del_Item_ID)
+
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                ds = ds = ObjUpkeep.LMS_ItemMaster_CRUD(Del_Item_ID, "", 0, 0, CompanyID, "", "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        //Response.Redirect("~/General_Masters/User_Mst.aspx", false);
+                        Response.Redirect(Page.ResolveClientUrl("~/General_Masters/User_Mst.aspx"), false);
+                    }
+                }
+                else
+                {
+                    //invalid login
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
 
         public void bindCategory()
         {
@@ -155,6 +195,11 @@ namespace Upkeep_v3.Laundry_Management.Stock
                 throw ex;
             }
 
+        }
+
+        protected void ddl_SubCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bind_SubCategory();
         }
 
         public void bind_SubCategory()

@@ -330,7 +330,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback INV_ItemStock_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback INV_Fetch_Items_ListOperationCompleted;
+        private System.Threading.SendOrPostCallback LMS_Fetch_Items_ListOperationCompleted;
         
         private System.Threading.SendOrPostCallback LMS_Vendor_CostOperationCompleted;
         
@@ -392,7 +392,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback LocationMaster_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback INV_ItemMaster_CRUDOperationCompleted;
+        private System.Threading.SendOrPostCallback LMS_ItemMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback SubLocationMaster_CRUDOperationCompleted;
         
@@ -959,7 +959,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event INV_ItemStock_CRUDCompletedEventHandler INV_ItemStock_CRUDCompleted;
         
         /// <remarks/>
-        public event INV_Fetch_Items_ListCompletedEventHandler INV_Fetch_Items_ListCompleted;
+        public event LMS_Fetch_Items_ListCompletedEventHandler LMS_Fetch_Items_ListCompleted;
         
         /// <remarks/>
         public event LMS_Vendor_CostCompletedEventHandler LMS_Vendor_CostCompleted;
@@ -1052,7 +1052,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event LocationMaster_CRUDCompletedEventHandler LocationMaster_CRUDCompleted;
         
         /// <remarks/>
-        public event INV_ItemMaster_CRUDCompletedEventHandler INV_ItemMaster_CRUDCompleted;
+        public event LMS_ItemMaster_CRUDCompletedEventHandler LMS_ItemMaster_CRUDCompleted;
         
         /// <remarks/>
         public event SubLocationMaster_CRUDCompletedEventHandler SubLocationMaster_CRUDCompleted;
@@ -6458,31 +6458,31 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INV_Fetch_Items_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INV_Fetch_Items_List(int CompanyID) {
-            object[] results = this.Invoke("INV_Fetch_Items_List", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LMS_Fetch_Items_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet LMS_Fetch_Items_List(int CompanyID) {
+            object[] results = this.Invoke("LMS_Fetch_Items_List", new object[] {
                         CompanyID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void INV_Fetch_Items_ListAsync(int CompanyID) {
-            this.INV_Fetch_Items_ListAsync(CompanyID, null);
+        public void LMS_Fetch_Items_ListAsync(int CompanyID) {
+            this.LMS_Fetch_Items_ListAsync(CompanyID, null);
         }
         
         /// <remarks/>
-        public void INV_Fetch_Items_ListAsync(int CompanyID, object userState) {
-            if ((this.INV_Fetch_Items_ListOperationCompleted == null)) {
-                this.INV_Fetch_Items_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINV_Fetch_Items_ListOperationCompleted);
+        public void LMS_Fetch_Items_ListAsync(int CompanyID, object userState) {
+            if ((this.LMS_Fetch_Items_ListOperationCompleted == null)) {
+                this.LMS_Fetch_Items_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLMS_Fetch_Items_ListOperationCompleted);
             }
-            this.InvokeAsync("INV_Fetch_Items_List", new object[] {
-                        CompanyID}, this.INV_Fetch_Items_ListOperationCompleted, userState);
+            this.InvokeAsync("LMS_Fetch_Items_List", new object[] {
+                        CompanyID}, this.LMS_Fetch_Items_ListOperationCompleted, userState);
         }
         
-        private void OnINV_Fetch_Items_ListOperationCompleted(object arg) {
-            if ((this.INV_Fetch_Items_ListCompleted != null)) {
+        private void OnLMS_Fetch_Items_ListOperationCompleted(object arg) {
+            if ((this.LMS_Fetch_Items_ListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INV_Fetch_Items_ListCompleted(this, new INV_Fetch_Items_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.LMS_Fetch_Items_ListCompleted(this, new LMS_Fetch_Items_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7644,9 +7644,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INV_ItemMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action) {
-            object[] results = this.Invoke("INV_ItemMaster_CRUD", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LMS_ItemMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet LMS_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("LMS_ItemMaster_CRUD", new object[] {
                         Item_ID,
                         Item_Desc,
                         Category_ID,
@@ -7658,29 +7658,29 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void INV_ItemMaster_CRUDAsync(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action) {
-            this.INV_ItemMaster_CRUDAsync(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action, null);
+        public void LMS_ItemMaster_CRUDAsync(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action) {
+            this.LMS_ItemMaster_CRUDAsync(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void INV_ItemMaster_CRUDAsync(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, object userState) {
-            if ((this.INV_ItemMaster_CRUDOperationCompleted == null)) {
-                this.INV_ItemMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnINV_ItemMaster_CRUDOperationCompleted);
+        public void LMS_ItemMaster_CRUDAsync(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, object userState) {
+            if ((this.LMS_ItemMaster_CRUDOperationCompleted == null)) {
+                this.LMS_ItemMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLMS_ItemMaster_CRUDOperationCompleted);
             }
-            this.InvokeAsync("INV_ItemMaster_CRUD", new object[] {
+            this.InvokeAsync("LMS_ItemMaster_CRUD", new object[] {
                         Item_ID,
                         Item_Desc,
                         Category_ID,
                         SubCategory_ID,
                         Company_ID,
                         LoggedInUserID,
-                        Action}, this.INV_ItemMaster_CRUDOperationCompleted, userState);
+                        Action}, this.LMS_ItemMaster_CRUDOperationCompleted, userState);
         }
         
-        private void OnINV_ItemMaster_CRUDOperationCompleted(object arg) {
-            if ((this.INV_ItemMaster_CRUDCompleted != null)) {
+        private void OnLMS_ItemMaster_CRUDOperationCompleted(object arg) {
+            if ((this.LMS_ItemMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.INV_ItemMaster_CRUDCompleted(this, new INV_ItemMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.LMS_ItemMaster_CRUDCompleted(this, new LMS_ItemMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -13161,17 +13161,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void INV_Fetch_Items_ListCompletedEventHandler(object sender, INV_Fetch_Items_ListCompletedEventArgs e);
+    public delegate void LMS_Fetch_Items_ListCompletedEventHandler(object sender, LMS_Fetch_Items_ListCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class INV_Fetch_Items_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class LMS_Fetch_Items_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal INV_Fetch_Items_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal LMS_Fetch_Items_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13967,17 +13967,17 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void INV_ItemMaster_CRUDCompletedEventHandler(object sender, INV_ItemMaster_CRUDCompletedEventArgs e);
+    public delegate void LMS_ItemMaster_CRUDCompletedEventHandler(object sender, LMS_ItemMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class INV_ItemMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class LMS_ItemMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal INV_ItemMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal LMS_ItemMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -743,9 +743,9 @@
                                                     ClientIDMode="Static" autocomplete="off">
                                                 </asp:DropDownList>
 
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlAssetVendor" Visible="true"
+<%--                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlAssetVendor" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please select Asset Vendor"></asp:RequiredFieldValidator>
+                                                    ErrorMessage="Please select Asset Vendor"></asp:RequiredFieldValidator>--%>
 
 
                                             </div>
@@ -769,9 +769,9 @@
                                             <div class="col-xl-3 col-lg-3">
                                                 <%--<asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>--%>
                                                 <input type="number" min="0" name="divNumberName" id="txtAssetCost" class="form-control" runat="server" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtAssetCost" Visible="true"
+                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtAssetCost" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please enter Asset Cost"></asp:RequiredFieldValidator>
+                                                    ErrorMessage="Please enter Asset Cost"></asp:RequiredFieldValidator>--%>
                                             </div>
 
                                             <label class="col-xl-5 col-lg-2 form-control-label" style="max-width: 30%;"><span style="color: red;">*</span> Currency in which Asset was Purchased:</label>
@@ -779,9 +779,9 @@
                                                 <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
                                                 <asp:DropDownList ID="ddlCurrencyType" class="form-control m-input" runat="server">
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlCurrencyType" Visible="true"
+                                            <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlCurrencyType" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
-                                                    ErrorMessage="Please select Currency Type"></asp:RequiredFieldValidator>
+                                                    ErrorMessage="Please select Currency Type"></asp:RequiredFieldValidator>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -799,9 +799,9 @@
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                                     </div>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtAssetPurchaseDate" Visible="true" Display="Dynamic"
+                                                <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtAssetPurchaseDate" Visible="true" Display="Dynamic"
                                                         ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0" ErrorMessage="Please Purchase Date"></asp:RequiredFieldValidator>
-                                                </div>
+                                                --%></div>
                                                 <span id="error_startDate" class="text-danger small"></span>
                                             </div>
                                         </div>

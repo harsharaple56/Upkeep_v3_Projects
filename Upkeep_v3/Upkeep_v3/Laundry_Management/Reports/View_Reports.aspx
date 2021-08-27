@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Coming_Soon.aspx.cs" Inherits="Upkeep_v3.Coming_Soon" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="View_Reports.aspx.cs" Inherits="Upkeep_v3.Laundry_Management.Reports.View_Reports" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <div class="m-grid m-grid--hor m-grid--root m-page">
 			<div class="m-grid__item m-grid__item--fluid m-grid  m-error-6" >
 				<div class="m-error_container">
 					<div >

@@ -92,7 +92,7 @@
                 }
                 // return resultx;
             });
-            alert(resultx);
+            //alert(resultx);
             return true;
         }
 
@@ -111,8 +111,8 @@
             });
             $("#hdnPrntD").val("");
             $("#hdnPrntD").val(ConfigID);
-            alert($("#hdnPrntD").val());
-            alert(ConntP);
+            //alert($("#hdnPrntD").val());
+            //alert(ConntP);
             document.getElementById("btnPopup").click();
             // document.forms[0].target = "_blank";
         };

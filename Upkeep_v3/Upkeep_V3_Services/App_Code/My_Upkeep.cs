@@ -195,14 +195,14 @@ public class My_Upkeep
 	}
 
 
-	public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
+	public DataSet LMS_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
 	{
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
 
-			ds = ObjUpkeepCC_BL.INV_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action, StrConn);
+			ds = ObjUpkeepCC_BL.LMS_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -229,7 +229,7 @@ public class My_Upkeep
 
 	}
 
-	public DataSet INV_Fetch_Items_List(int CompanyID)  //Added CompanyId by sujata
+	public DataSet LMS_Fetch_Items_List(int CompanyID)  //Added CompanyId by sujata
 	{
 		try
 		{
@@ -237,7 +237,7 @@ public class My_Upkeep
 			string strOutput = string.Empty;
 			DataSet ds = new DataSet();
 
-			ds = ObjUpkeepCC_BL.INV_Fetch_Items_List(CompanyID, StrConn);
+			ds = ObjUpkeepCC_BL.LMS_Fetch_Items_List(CompanyID, StrConn);
 
 			return ds;
 		}

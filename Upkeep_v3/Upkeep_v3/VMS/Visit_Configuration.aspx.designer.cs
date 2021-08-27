@@ -121,6 +121,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.CheckBox ChkCovid;
         
         /// <summary>
+        /// ChkVaccinated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkVaccinated;
+        
+        /// <summary>
         /// ddlFeedbackTitle control.
         /// </summary>
         /// <remarks>

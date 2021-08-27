@@ -1165,6 +1165,7 @@
     <Content Include="Knowledge_Base\Retailer_Manual.aspx" />
     <Content Include="Knowledge_Base\User_Manual.aspx" />
     <Content Include="Knowledge_Base\Eureka_DMS_User_Manual.html" />
+    <Content Include="Laundry_Management\Reports\View_Reports.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Item_Categorization.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Setup.aspx" />
     <Content Include="Laundry_Management\Stock_Setup\Items_Details.aspx" />
@@ -5163,6 +5164,13 @@
     <Compile Include="Knowledge_Base\User_Manual.aspx.designer.cs">
       <DependentUpon>User_Manual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Laundry_Management\Reports\View_Reports.aspx.cs">
+      <DependentUpon>View_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Laundry_Management\Reports\View_Reports.aspx.designer.cs">
+      <DependentUpon>View_Reports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Laundry_Management\Stock_Setup\Item_Categorization.aspx.cs">
       <DependentUpon>Item_Categorization.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6496,7 +6504,6 @@
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
-    <Folder Include="Laundry_Management\Reports\" />
     <Folder Include="RetailerImages\" />
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />

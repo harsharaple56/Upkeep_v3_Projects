@@ -394,6 +394,11 @@ border: 3px solid #ccc;*/
                     <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
 
                 </div>
+                <div class="m--align-center" style="    padding: 15px;">
+                    <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
+                            
+                </div>
+
 
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-progress">
@@ -403,18 +408,13 @@ border: 3px solid #ccc;*/
                     <div class="m-portlet__head-wrapper">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Visit Request
+                                <h3 class="m-portlet__head-text">[[Form Name]]
                                 </h3>
                             </div>
                         </div>
 
                         <div class="m-portlet__head-tools">
-                            <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                <span>
-                                    <i class="la la-arrow-left"></i>
-                                    <span>Back</span>
-                                </span>
-                            </a>
+                          
                             <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
 
                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
@@ -456,16 +456,16 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
-                           <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
 
                         </div>
                         <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                           <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
                         </div>
 
@@ -474,8 +474,8 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
-                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
 
                         </div>
@@ -493,22 +493,25 @@ border: 3px solid #ccc;*/
                             </div>
                             <span id="error_startDate" class="text-danger small"></span>
                         </div>
+
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                             ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
 
                         <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                        <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
-                        <div class="col-md-4 col-form-label">
-                            <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
-                            <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                            <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
-                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
+                        <div id="div_MeetingWith" runat="server">
+                            <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                            <div class="col-md-4 col-form-label">
+                                <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                                <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
+                                <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic"
 ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
+                            </div>
                         </div>
                         <%-- </div>--%>
 
-                             <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
 
                     </div>
 
@@ -563,22 +566,22 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                         <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
 
-                                                     <span>
-                                                        <i class="fa fa-camera"></i>
-                                                        <span>Use Webcam</span>
-                                                    </span>
+                                            <span>
+                                                <i class="fa fa-camera"></i>
+                                                <span>Use Webcam</span>
+                                            </span>
 
-                                                </button>
-                                               
+                                        </button>
 
-                                                    <div id="divImgBtns" style="display: none" runat="server">
-                                                        <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                            data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
-                                                            <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                            <%--data-images="<%#Eval("Question_Data") %>"--%>
-                                                        </button>
-                                                        <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
-                                                    </div>
+
+                                        <div id="divImgBtns" style="display: none" runat="server">
+                                            <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
+                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                <%--data-images="<%#Eval("Question_Data") %>"--%>
+                                            </button>
+                                            <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
+                                        </div>
                                     </div>
 
                                     <div id="divDate" style="display: none" runat="server">
@@ -603,6 +606,62 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                         </FooterTemplate>
 
                     </asp:Repeater>
+
+                    <br />
+
+                    <div class="m-form__heading" style="text-align: center;">
+                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Verify Vaccination</h3>
+                    </div>
+
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                            <div class="font-weight-bold">Upload Your Photo</div>
+                            </br>
+                              <button type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+
+                                  <span>
+                                      <i class="fa fa-camera"></i>
+                                      <span>Click Photo</span>
+                                  </span>
+
+                              </button>
+
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
+                            </div>
+
+                        </div>
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+
+                            <div class="font-weight-bold">Upload Vaccination Certificate</div>
+                            </br>
+                            <div class="m-dropzone dropzone dz-clickable" id="dZUpload">
+                                <div class="m-dropzone__msg dz-message needsclick">
+                                    <h5 class="m-dropzone__msg-title">Drop files here or click to upload.</h5>
+                                </div>
+                            </div>
+
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                Please upload your 2nd Dose vaccination certificate provided by CoWIN.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                            
+                                <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
+                                <div class="input-group date">
+                                    <asp:TextBox ID="TextBox1" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                    </div>
+                                </div>
+                                <span id="error_startDate" class="text-danger small"></span>
+                        
+
+                        </div>
+                    </div>
 
                     <br />
                     <%-- Covid19 assessment --%>
@@ -673,45 +732,45 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
 
                 <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body m--align-center">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <video id="video">Video stream not available.</video>
+
+                                        <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                            <span>
+                                                <i class="fa fa-camera"></i>
+                                                <span>Click Photo</span>
+                                            </span>
                                         </button>
                                     </div>
-                                    <div class="modal-body m--align-center">
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <video id="video">Video stream not available.</video>
-
-                                                <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                    <span>
-                                                        <i class="fa fa-camera"></i>
-                                                        <span>Click Photo</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <canvas id="canvas">
-                                                    <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
-                                                </canvas>
-                                                <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                    <span>
-                                                        <i class="fa fa-cloud-upload-alt"></i>
-                                                        <span>Upload Photo</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-
-
+                                    <div class="col-xl-6">
+                                        <canvas id="canvas">
+                                            <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
+                                        </canvas>
+                                        <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                            <span>
+                                                <i class="fa fa-cloud-upload-alt"></i>
+                                                <span>Upload Photo</span>
+                                            </span>
+                                        </button>
                                     </div>
-
                                 </div>
+
+
                             </div>
+
                         </div>
+                    </div>
+                </div>
 
 
 

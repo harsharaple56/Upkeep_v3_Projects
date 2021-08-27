@@ -257,7 +257,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet LMS_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -321,13 +321,13 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet INV_Fetch_Items_List(int CompanyID, String StrConn)
+        public DataSet LMS_Fetch_Items_List(int CompanyID, String StrConn)
         {
             try
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_INV_Fetch_AddStock_Items", con);
+                SqlCommand cmd = new SqlCommand("Spr_LMS_Fetch_Stock_Items", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

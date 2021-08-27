@@ -321,11 +321,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet INV_Fetch_Items_List(int CompanyID)
+    public DataSet LMS_Fetch_Items_List(int CompanyID)
     {
         try
         {
-            ds = ObjUpkeep.INV_Fetch_Items_List(CompanyID);
+            ds = ObjUpkeep.LMS_Fetch_Items_List(CompanyID);
 
         }
         catch (Exception ex)
@@ -835,11 +835,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet INV_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
+    public DataSet LMS_ItemMaster_CRUD(int Item_ID, string Item_Desc, int Category_ID, int SubCategory_ID, int Company_ID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.INV_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action);
+            ds = ObjUpkeep.LMS_ItemMaster_CRUD(Item_ID, Item_Desc, Category_ID, SubCategory_ID, Company_ID, LoggedInUserID, Action);
 
         }
         catch (Exception ex)

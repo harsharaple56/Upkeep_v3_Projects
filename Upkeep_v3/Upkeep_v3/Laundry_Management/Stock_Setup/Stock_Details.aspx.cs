@@ -177,7 +177,7 @@ namespace Upkeep_v3.Laundry_Management.Stock_Setup
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeep.INV_Fetch_Items_List(CompanyID);
+                ds = ObjUpkeep.LMS_Fetch_Items_List(CompanyID);
 
                 if (ds.Tables.Count > 0)
                 {

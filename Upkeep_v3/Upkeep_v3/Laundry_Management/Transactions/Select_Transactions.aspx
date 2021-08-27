@@ -67,9 +67,7 @@
                     </br>
                     To Add a Laundry Transaction with a Vendor , click below
                     
-                    
-
-                    <img src="/assets/app/media/img/LMS_Icons/laundry_vendor_50.png"  alt="" style="padding-top: 30px;">
+                    <img src="<%= Page.ResolveClientUrl("~/assets/app/media/img/LMS_Icons/laundry_vendor_50.png") %>"  alt="" style="padding-top: 30px;">
 
 
                 </div>

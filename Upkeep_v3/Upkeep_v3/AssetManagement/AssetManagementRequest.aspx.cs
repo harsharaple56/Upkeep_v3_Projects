@@ -649,6 +649,12 @@ namespace Upkeep_v3.AssetManagement
         #region Generate XML For Processing 
         private string AssetData(int AsseetID, string sIU_Type)
         {
+            string Asset_Cost = txtAssetCost.Value.ToString();
+            if (Asset_Cost == "")
+            {
+                Asset_Cost = "0";
+            }
+
             StringBuilder strXmlAsset = new StringBuilder();
             //strXmlAsset.Append(@"<?xml version=""1.0"" ?>");
             strXmlAsset.Append(@"<Asset_ROOT>");
@@ -667,7 +673,7 @@ namespace Upkeep_v3.AssetManagement
             strXmlAsset.Append(@"<Asset_Vendor>" + ddlAssetVendor.SelectedValue.ToString() + "</Asset_Vendor>");
             strXmlAsset.Append(@"<Asset_Dept>" + ddlDepartment.SelectedValue.ToString() + "</Asset_Dept>");
             strXmlAsset.Append(@"<Asset_Loc>" + hdnassetLocation.Value.ToString() + "</Asset_Loc>");
-            strXmlAsset.Append(@"<Asset_Cost>" + txtAssetCost.Value.ToString() + "</Asset_Cost>");
+            strXmlAsset.Append(@"<Asset_Cost>" + Asset_Cost + "</Asset_Cost>");
             strXmlAsset.Append(@"<Asset_CurrencyType>" + ddlCurrencyType.SelectedValue.ToString() + "</Asset_CurrencyType>");
             //-------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------
