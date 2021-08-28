@@ -5113,6 +5113,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blFeedbackCompulsary, 
                     int FeedbackTitle, 
                     bool blEnableCovid, 
+                    bool blChk_Vaccination, 
                     int EntryCount, 
                     bool blNameComp, 
                     bool blContactComp, 
@@ -5131,6 +5132,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
+                        blChk_Vaccination,
                         EntryCount,
                         blNameComp,
                         blContactComp,
@@ -5153,6 +5155,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blFeedbackCompulsary, 
                     int FeedbackTitle, 
                     bool blEnableCovid, 
+                    bool blChk_Vaccination, 
                     int EntryCount, 
                     bool blNameComp, 
                     bool blContactComp, 
@@ -5161,7 +5164,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blEmailOtpComp, 
                     bool blContactOtpComp, 
                     string LoggedInUserID) {
-            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID, null);
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5175,6 +5178,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blFeedbackCompulsary, 
                     int FeedbackTitle, 
                     bool blEnableCovid, 
+                    bool blChk_Vaccination, 
                     int EntryCount, 
                     bool blNameComp, 
                     bool blContactComp, 
@@ -5197,6 +5201,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blFeedbackCompulsary,
                         FeedbackTitle,
                         blEnableCovid,
+                        blChk_Vaccination,
                         EntryCount,
                         blNameComp,
                         blContactComp,

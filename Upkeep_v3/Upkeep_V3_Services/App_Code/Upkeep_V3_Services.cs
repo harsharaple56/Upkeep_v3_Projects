@@ -2515,12 +2515,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, int EntryCount,bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount,bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID);
+            ds = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID);
         }
         catch (Exception ex)
         {

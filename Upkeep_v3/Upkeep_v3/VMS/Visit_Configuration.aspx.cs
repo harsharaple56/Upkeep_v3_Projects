@@ -199,6 +199,7 @@ namespace Upkeep_v3.VMS
                 string strInitiator = string.Empty;
                 bool blFeedbackCompulsary = false;
                 bool blEnableCovid = false;
+                bool blEnableVaccination = false;
                 int FeedbackTitle = 0;
                 int EntryCount = 0;
                 bool blNameComp = false;
@@ -229,10 +230,12 @@ namespace Upkeep_v3.VMS
                     FeedbackTitle = Convert.ToInt32(ddlFeedbackTitle.SelectedValue);
                 blFeedbackCompulsary = Convert.ToBoolean(ChkFeedback.Checked);
                 blEnableCovid = Convert.ToBoolean(ChkCovid.Checked);
+                blEnableVaccination = Convert.ToBoolean(ChkVaccinated.Checked);
+
 
 
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, EntryCount,blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -365,6 +368,7 @@ namespace Upkeep_v3.VMS
                     ChkMeetingComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
                     ChkEmailOtpCom.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
                     ChkContactOTPComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
+                    ChkVaccinated.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
                    
 
 

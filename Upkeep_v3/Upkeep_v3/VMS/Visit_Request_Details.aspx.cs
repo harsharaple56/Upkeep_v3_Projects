@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace Upkeep_v3.VMS
 {
-    public partial class Visit_Request : System.Web.UI.Page
+    public partial class Visit_Request_Details : System.Web.UI.Page
     {
 
         #region Global variables
@@ -23,8 +23,7 @@ namespace Upkeep_v3.VMS
         //int CompanyID = 0;
         int ConfigID = 0;
         #endregion
-
-        #region Events
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
@@ -55,7 +54,7 @@ namespace Upkeep_v3.VMS
                             ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
                         }
                         BindVMSConfig();
-                        
+
                     }
                 }
                 else if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
@@ -291,9 +290,7 @@ namespace Upkeep_v3.VMS
             ViewState["Action"] = 'R';
             SaveVisitData();
         }
-
-        #endregion
-
+        
         #region Functions
 
         private void BindVMSConfig()
@@ -318,7 +315,7 @@ namespace Upkeep_v3.VMS
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
                 {
                     divCovid.Visible = true;
-                } 
+                }
 
                 if (ViewState["RequestID"] == null)
                 {
@@ -327,35 +324,38 @@ namespace Upkeep_v3.VMS
                     totalNumber.InnerText = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 
-               // string blNameComp = "true";
+                // string blNameComp = "true";
                 string blEmailComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_Compulsory"]);
                 string blContactComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_Compulsory"]);
                 string blMeetingComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
                 string blContactOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
                 string blEmailOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
 
-               
+
                 if (blEmailComp == "True")
                 {
                     //divEmailComp.Visible = true;
                     //spnEmailComp.Visible = true;
                     rfvEmail.Enabled = true;
                 }
-               
-                if(blContactComp == "True")
+
+                if (blContactComp == "True")
                 {
-                   
+
                     rfvphone.Enabled = true;
                 }
-                if(blMeetingComp == "True")
+                if (blMeetingComp == "True")
                 {
-                   
-                   // rfvMeeting.Enabled = true;
-                    rfvMeetingNew.Enabled = true;
+
+                    div_MeetingWith1.Visible = true;
+                    div_MeetingWith2.Visible = true;
+
                 }
                 else
                 {
-                    //div_MeetingWith1.Visible = false;
+                    div_MeetingWith1.Visible = false;
+                    div_MeetingWith2.Visible = true;
+
                 }
 
 
@@ -395,6 +395,16 @@ namespace Upkeep_v3.VMS
 
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         BindVMSConfig();
+
+                        bool isVaccineCheck_Enable = Convert.ToBoolean(dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+                        if (isVaccineCheck_Enable = true)
+                        {
+                            div_vaccination.Visible = true;
+                        }
+                        else
+                        {
+                            div_vaccination.Visible = false;
+                        }
                     }
                     //Bind inserted Visit data
                     if (dsData.Tables[1].Rows.Count > 0)
@@ -475,6 +485,8 @@ namespace Upkeep_v3.VMS
                             txtAsmmtDate.Text = dsData.Tables[2].Rows[0]["TestDate"].ToString();
                             txtTemperature.Text = dsData.Tables[2].Rows[0]["Temperature"].ToString();
                         }
+
+                        
                     }
                     //Bind configured Visit data
                     if (dsData.Tables[3].Rows.Count > 0)
@@ -626,14 +638,9 @@ namespace Upkeep_v3.VMS
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-                        txtMeetUsers.ReadOnly = true;
-
-
-                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
-
                         
-
-
+                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
+                        
                     }
                 }
 
@@ -653,7 +660,7 @@ namespace Upkeep_v3.VMS
 
                 string HeadMandatoryId = (itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value;
 
-               // string EmailMandatoryId = (itemQuestion.FindControl("hdnIs_EmailMandatory") as HiddenField).Value;
+                // string EmailMandatoryId = (itemQuestion.FindControl("hdnIs_EmailMandatory") as HiddenField).Value;
                 if (HeadMandatoryId == "*")
                 {
 
@@ -802,7 +809,7 @@ namespace Upkeep_v3.VMS
                 string strName = txtName.Text;
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
-                string strVisitDate = txtVMSDate.Text != null ? txtVMSDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")	;
+                string strVisitDate = txtVMSDate.Text != null ? txtVMSDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
                 string strMeetUsers = hdnSelectedUserID.Value;
                 string strCovidTestDate = txtAsmmtDate.Text != null ? txtAsmmtDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
                 string strTemperature = txtTemperature.Text;
@@ -833,7 +840,7 @@ namespace Upkeep_v3.VMS
                 dt.Columns.Add("QuestionID");
                 dt.Columns.Add("AnswerID");
                 dt.Columns.Add("Data");
-               // dt.Columns.Add("DataValue");  //Add by Mohammed
+                // dt.Columns.Add("DataValue");  //Add by Mohammed
                 // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
 
                 string Is_Not_Valid = "False";
@@ -867,7 +874,7 @@ namespace Upkeep_v3.VMS
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
                                 dtRow["Data"] = item;
-                               // dtRow["DataValue"] = item;
+                                // dtRow["DataValue"] = item;
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -897,9 +904,9 @@ namespace Upkeep_v3.VMS
                                 DataRow dtRow = dt.NewRow();
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerTypeID;
-                               // dtRow["Data"] = item.Value;
+                                // dtRow["Data"] = item.Value;
                                 dtRow["Data"] = item;
-                              //  dtRow["DataValue"] = item;
+                                //  dtRow["DataValue"] = item;
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -919,7 +926,7 @@ namespace Upkeep_v3.VMS
                         HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
 
                         FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
-                        
+
 
                         if (ChecklistImage.HasFile)
                         {
@@ -975,7 +982,7 @@ namespace Upkeep_v3.VMS
                                             dtRow["QuestionID"] = HeadId;
                                             dtRow["AnswerID"] = AnswerTypeID;
                                             dtRow["Data"] = FileLocation;
-                                          //  dtRow["DataValue"] = FileLocation;
+                                            //  dtRow["DataValue"] = FileLocation;
                                             dt.Rows.Add(dtRow);
                                         }
                                     }
@@ -1006,7 +1013,7 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "NUMBR") //Number Text Field
                     {
-                       // isField = "True";
+                        // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
@@ -1023,7 +1030,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
-                       // dtRow["DataValue"] = sVal;
+                        // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
                         if (Is_Mandatory == "*")
@@ -1038,7 +1045,7 @@ namespace Upkeep_v3.VMS
                     }
                     else if (AnswerType == "STEXT") //Normal Text Field
                     {
-                       // isField = "True";
+                        // isField = "True";
                         HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
@@ -1055,7 +1062,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
-                       // dtRow["DataValue"] = sVal;
+                        // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
 
@@ -1087,7 +1094,7 @@ namespace Upkeep_v3.VMS
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerTypeID;
                         dtRow["Data"] = sVal;
-                       // dtRow["DataValue"] = sVal;
+                        // dtRow["DataValue"] = sVal;
                         dt.Rows.Add(dtRow);
 
 
@@ -1155,10 +1162,10 @@ namespace Upkeep_v3.VMS
                     xmlstr = sr.ReadToEnd();
                     strVMSData = xmlstr;
                 }
-                #endregion
+            #endregion
 
-                #region SaveDataToDB
-                Save:
+            #region SaveDataToDB
+            Save:
                 DataSet dsVMSQuestionData = new DataSet();
                 dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
 
@@ -1183,8 +1190,8 @@ namespace Upkeep_v3.VMS
                         else if (status == 5)
                         {
                             divCountFull.Visible = true;
-                           // Response.Write("<script>alert('Count is Full.');</script>");
-                           // Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                            // Response.Write("<script>alert('Count is Full.');</script>");
+                            // Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
                         else
                         {
@@ -1209,7 +1216,7 @@ namespace Upkeep_v3.VMS
             if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
             {
                 lblErrorMsg.Text = "Please enter only number";
-               // MessageBox.Show("Please enter only numbers.");
+                // MessageBox.Show("Please enter only numbers.");
                 txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
             }
         }

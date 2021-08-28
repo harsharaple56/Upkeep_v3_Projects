@@ -89,7 +89,7 @@ namespace Upkeep_v3.VMS
                             string Phone = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
                             string Email = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
                             
-                            data += "<tr><td> <a href='Visit_Request.aspx?RequestID=" + RequestID + "' style='text-decoration: underline;' > " + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + Name + "</td><td>" + Phone + "</td><td>" + Email + "</td><td>" + InTime + "</td><td>" + OutTime + "</td><td>" + Status + "</td><td>" + Created_By + "</td><td>" + MeetDate + "</td><td>" + RequestDate + "</td></tr>";
+                            data += "<tr><td> <a href='Visit_Request_Details.aspx?RequestID=" + RequestID + "' style='text-decoration: underline;' > " + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + Name + "</td><td>" + Phone + "</td><td>" + Email + "</td><td>" + InTime + "</td><td>" + OutTime + "</td><td>" + Status + "</td><td>" + Created_By + "</td><td>" + MeetDate + "</td><td>" + RequestDate + "</td></tr>";
 
                         }
 

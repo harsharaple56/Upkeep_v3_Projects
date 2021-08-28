@@ -2695,6 +2695,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="blFeedbackCompulsary" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="FeedbackTitle" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="blEnableCovid" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="blChk_Vaccination" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="EntryCount" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="blNameComp" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="blContactComp" type="s:boolean" />
