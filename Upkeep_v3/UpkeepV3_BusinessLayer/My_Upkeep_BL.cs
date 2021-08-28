@@ -3071,6 +3071,25 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet VMS_Generate_Visitor_ID(int Request_ID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_VMS_Generate_ID_Card", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Request_ID", Request_ID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //Added by RC This function is used to Fetch VMS Request list
         public DataSet Fetch_VMSRequestList(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
         {

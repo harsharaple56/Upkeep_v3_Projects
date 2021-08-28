@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback INSERT_ASSET_REQUEST_DetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback INSERT_ASSET_CUSTOMFIELD_REQUEST_DetailsOperationCompleted;
@@ -131,6 +133,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_Report_ExcelOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChecklistPoint_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback ChecklistRequestOperationCompleted;
         
@@ -300,11 +304,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_MyAssetOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_AdminOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback VMS_Generate_Visitor_IDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Send_Mail_TestOperationCompleted;
         
@@ -468,8 +472,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback AddChecklistMaster_CRUDOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ChecklistPoint_CRUDOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -507,6 +509,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_ASSET_REQUEST_DetailsCompletedEventHandler Fetch_ASSET_REQUEST_DetailsCompleted;
         
         /// <remarks/>
         public event INSERT_ASSET_REQUEST_DetailsCompletedEventHandler INSERT_ASSET_REQUEST_DetailsCompleted;
@@ -660,6 +665,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_VMSRequestList_Report_ExcelCompletedEventHandler Fetch_VMSRequestList_Report_ExcelCompleted;
+        
+        /// <remarks/>
+        public event ChecklistPoint_CRUDCompletedEventHandler ChecklistPoint_CRUDCompleted;
         
         /// <remarks/>
         public event ChecklistRequestCompletedEventHandler ChecklistRequestCompleted;
@@ -914,13 +922,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_MyAssetCompletedEventHandler Fetch_MyAssetCompleted;
         
         /// <remarks/>
-        public event Fetch_ASSET_REQUEST_DetailsCompletedEventHandler Fetch_ASSET_REQUEST_DetailsCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
         public event Fetch_Dashboard_AdminCompletedEventHandler Fetch_Dashboard_AdminCompleted;
+        
+        /// <remarks/>
+        public event VMS_Generate_Visitor_IDCompletedEventHandler VMS_Generate_Visitor_IDCompleted;
         
         /// <remarks/>
         public event Send_Mail_TestCompletedEventHandler Send_Mail_TestCompleted;
@@ -1166,7 +1174,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event AddChecklistMaster_CRUDCompletedEventHandler AddChecklistMaster_CRUDCompleted;
         
         /// <remarks/>
-        public event ChecklistPoint_CRUDCompletedEventHandler ChecklistPoint_CRUDCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID) {
+            object[] results = this.Invoke("Fetch_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID) {
+            this.Fetch_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID, object userState) {
+            if ((this.Fetch_ASSET_REQUEST_DetailsOperationCompleted == null)) {
+                this.Fetch_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_ASSET_REQUEST_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_ASSET_REQUEST_Details", new object[] {
+                        LoggedInUserID,
+                        TransactionID}, this.Fetch_ASSET_REQUEST_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_ASSET_REQUEST_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_ASSET_REQUEST_DetailsCompleted(this, new Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/INSERT_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2956,6 +2992,45 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_VMSRequestList_Report_ExcelCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_VMSRequestList_Report_ExcelCompleted(this, new Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChecklistPoint_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ChecklistPoint_CRUD(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("ChecklistPoint_CRUD", new object[] {
+                        ChecklistID,
+                        ChecklistPointID,
+                        strChecklistPointDesc,
+                        strChecklstAnstype,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ChecklistPoint_CRUDAsync(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action) {
+            this.ChecklistPoint_CRUDAsync(ChecklistID, ChecklistPointID, strChecklistPointDesc, strChecklstAnstype, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void ChecklistPoint_CRUDAsync(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action, object userState) {
+            if ((this.ChecklistPoint_CRUDOperationCompleted == null)) {
+                this.ChecklistPoint_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChecklistPoint_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("ChecklistPoint_CRUD", new object[] {
+                        ChecklistID,
+                        ChecklistPointID,
+                        strChecklistPointDesc,
+                        strChecklstAnstype,
+                        LoggedInUserID,
+                        Action}, this.ChecklistPoint_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnChecklistPoint_CRUDOperationCompleted(object arg) {
+            if ((this.ChecklistPoint_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChecklistPoint_CRUDCompleted(this, new ChecklistPoint_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5948,37 +6023,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_ASSET_REQUEST_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_ASSET_REQUEST_Details(string LoggedInUserID, int TransactionID) {
-            object[] results = this.Invoke("Fetch_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID) {
-            this.Fetch_ASSET_REQUEST_DetailsAsync(LoggedInUserID, TransactionID, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_ASSET_REQUEST_DetailsAsync(string LoggedInUserID, int TransactionID, object userState) {
-            if ((this.Fetch_ASSET_REQUEST_DetailsOperationCompleted == null)) {
-                this.Fetch_ASSET_REQUEST_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_ASSET_REQUEST_DetailsOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_ASSET_REQUEST_Details", new object[] {
-                        LoggedInUserID,
-                        TransactionID}, this.Fetch_ASSET_REQUEST_DetailsOperationCompleted, userState);
-        }
-        
-        private void OnFetch_ASSET_REQUEST_DetailsOperationCompleted(object arg) {
-            if ((this.Fetch_ASSET_REQUEST_DetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_ASSET_REQUEST_DetailsCompleted(this, new Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -6037,6 +6081,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Dashboard_AdminCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Dashboard_AdminCompleted(this, new Fetch_Dashboard_AdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/VMS_Generate_Visitor_ID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet VMS_Generate_Visitor_ID(int Request_ID) {
+            object[] results = this.Invoke("VMS_Generate_Visitor_ID", new object[] {
+                        Request_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void VMS_Generate_Visitor_IDAsync(int Request_ID) {
+            this.VMS_Generate_Visitor_IDAsync(Request_ID, null);
+        }
+        
+        /// <remarks/>
+        public void VMS_Generate_Visitor_IDAsync(int Request_ID, object userState) {
+            if ((this.VMS_Generate_Visitor_IDOperationCompleted == null)) {
+                this.VMS_Generate_Visitor_IDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnVMS_Generate_Visitor_IDOperationCompleted);
+            }
+            this.InvokeAsync("VMS_Generate_Visitor_ID", new object[] {
+                        Request_ID}, this.VMS_Generate_Visitor_IDOperationCompleted, userState);
+        }
+        
+        private void OnVMS_Generate_Visitor_IDOperationCompleted(object arg) {
+            if ((this.VMS_Generate_Visitor_IDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.VMS_Generate_Visitor_IDCompleted(this, new VMS_Generate_Visitor_IDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9224,45 +9297,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChecklistPoint_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ChecklistPoint_CRUD(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action) {
-            object[] results = this.Invoke("ChecklistPoint_CRUD", new object[] {
-                        ChecklistID,
-                        ChecklistPointID,
-                        strChecklistPointDesc,
-                        strChecklstAnstype,
-                        LoggedInUserID,
-                        Action});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ChecklistPoint_CRUDAsync(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action) {
-            this.ChecklistPoint_CRUDAsync(ChecklistID, ChecklistPointID, strChecklistPointDesc, strChecklstAnstype, LoggedInUserID, Action, null);
-        }
-        
-        /// <remarks/>
-        public void ChecklistPoint_CRUDAsync(int ChecklistID, int ChecklistPointID, string strChecklistPointDesc, string strChecklstAnstype, string LoggedInUserID, string Action, object userState) {
-            if ((this.ChecklistPoint_CRUDOperationCompleted == null)) {
-                this.ChecklistPoint_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChecklistPoint_CRUDOperationCompleted);
-            }
-            this.InvokeAsync("ChecklistPoint_CRUD", new object[] {
-                        ChecklistID,
-                        ChecklistPointID,
-                        strChecklistPointDesc,
-                        strChecklstAnstype,
-                        LoggedInUserID,
-                        Action}, this.ChecklistPoint_CRUDOperationCompleted, userState);
-        }
-        
-        private void OnChecklistPoint_CRUDOperationCompleted(object arg) {
-            if ((this.ChecklistPoint_CRUDCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ChecklistPoint_CRUDCompleted(this, new ChecklistPoint_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -9278,6 +9312,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, Fetch_ASSET_REQUEST_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -10594,6 +10654,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ChecklistPoint_CRUDCompletedEventHandler(object sender, ChecklistPoint_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ChecklistPoint_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ChecklistPoint_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -12793,32 +12879,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_ASSET_REQUEST_DetailsCompletedEventHandler(object sender, Fetch_ASSET_REQUEST_DetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_ASSET_REQUEST_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_ASSET_REQUEST_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -12856,6 +12916,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Dashboard_AdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void VMS_Generate_Visitor_IDCompletedEventHandler(object sender, VMS_Generate_Visitor_IDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class VMS_Generate_Visitor_IDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal VMS_Generate_Visitor_IDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -14940,32 +15026,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal AddChecklistMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void ChecklistPoint_CRUDCompletedEventHandler(object sender, ChecklistPoint_CRUDCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ChecklistPoint_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ChecklistPoint_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

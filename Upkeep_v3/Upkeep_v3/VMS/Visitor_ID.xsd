@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Visitor_ID" targetNamespace="http://tempuri.org/Visitor_ID.xsd" xmlns:mstns="http://tempuri.org/Visitor_ID.xsd" xmlns="http://tempuri.org/Visitor_ID.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Visitor_ID" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Visitor_ID" msprop:Generator_UserDSName="Visitor_ID">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_Visitor_Info" msprop:Generator_TableClassName="dt_Visitor_InfoDataTable" msprop:Generator_TableVarName="tabledt_Visitor_Info" msprop:Generator_TablePropName="dt_Visitor_Info" msprop:Generator_RowDeletingName="dt_Visitor_InfoRowDeleting" msprop:Generator_RowChangingName="dt_Visitor_InfoRowChanging" msprop:Generator_RowEvHandlerName="dt_Visitor_InfoRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_Visitor_InfoRowDeleted" msprop:Generator_UserTableName="dt_Visitor_Info" msprop:Generator_RowChangedName="dt_Visitor_InfoRowChanged" msprop:Generator_RowEvArgName="dt_Visitor_InfoRowChangeEvent" msprop:Generator_RowClassName="dt_Visitor_InfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Company_Name" msprop:Generator_ColumnVarNameInTable="columnCompany_Name" msprop:Generator_ColumnPropNameInRow="Company_Name" msprop:Generator_ColumnPropNameInTable="Company_NameColumn" msprop:Generator_UserColumnName="Company_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Company_Logo" msprop:Generator_ColumnVarNameInTable="columnCompany_Logo" msprop:Generator_ColumnPropNameInRow="Company_Logo" msprop:Generator_ColumnPropNameInTable="Company_LogoColumn" msprop:Generator_UserColumnName="Company_Logo" type="xs:string" minOccurs="0" />
+              <xs:element name="Visitor_Photo" msprop:Generator_ColumnVarNameInTable="columnVisitor_Photo" msprop:Generator_ColumnPropNameInRow="Visitor_Photo" msprop:Generator_ColumnPropNameInTable="Visitor_PhotoColumn" msprop:Generator_UserColumnName="Visitor_Photo" type="xs:string" minOccurs="0" />
+              <xs:element name="Visitor_Name" msprop:Generator_ColumnVarNameInTable="columnVisitor_Name" msprop:Generator_ColumnPropNameInRow="Visitor_Name" msprop:Generator_ColumnPropNameInTable="Visitor_NameColumn" msprop:Generator_UserColumnName="Visitor_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Visitor_Contact" msprop:Generator_ColumnVarNameInTable="columnVisitor_Contact" msprop:Generator_ColumnPropNameInRow="Visitor_Contact" msprop:Generator_ColumnPropNameInTable="Visitor_ContactColumn" msprop:Generator_UserColumnName="Visitor_Contact" type="xs:string" minOccurs="0" />
+              <xs:element name="Visitor_Email" msprop:Generator_ColumnVarNameInTable="columnVisitor_Email" msprop:Generator_ColumnPropNameInRow="Visitor_Email" msprop:Generator_ColumnPropNameInTable="Visitor_EmailColumn" msprop:Generator_UserColumnName="Visitor_Email" type="xs:string" minOccurs="0" />
+              <xs:element name="Visit_Date" msprop:Generator_ColumnVarNameInTable="columnVisit_Date" msprop:Generator_ColumnPropNameInRow="Visit_Date" msprop:Generator_ColumnPropNameInTable="Visit_DateColumn" msprop:Generator_UserColumnName="Visit_Date" type="xs:string" minOccurs="0" />
+              <xs:element name="Visit_Request_Date" msprop:Generator_ColumnVarNameInTable="columnVisit_Request_Date" msprop:Generator_ColumnPropNameInRow="Visit_Request_Date" msprop:Generator_ColumnPropNameInTable="Visit_Request_DateColumn" msprop:Generator_UserColumnName="Visit_Request_Date" type="xs:string" minOccurs="0" />
+              <xs:element name="Vaccination_Status" msprop:Generator_ColumnVarNameInTable="columnVaccination_Status" msprop:Generator_ColumnPropNameInRow="Vaccination_Status" msprop:Generator_ColumnPropNameInTable="Vaccination_StatusColumn" msprop:Generator_UserColumnName="Vaccination_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Visit_Request_Date_Text" msprop:Generator_ColumnVarNameInTable="columnVisit_Request_Date_Text" msprop:Generator_ColumnPropNameInRow="Visit_Request_Date_Text" msprop:Generator_ColumnPropNameInTable="Visit_Request_Date_TextColumn" msprop:Generator_UserColumnName="Visit_Request_Date_Text" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -3,6 +3,28 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_ASSET_REQUEST_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_ASSET_REQUEST_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_ASSET_REQUEST_DetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="INSERT_ASSET_REQUEST_Details">
         <s:complexType>
           <s:sequence>
@@ -1220,6 +1242,32 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestList_Report_ExcelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChecklistPoint_CRUD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChecklistID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChecklistPointID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strChecklistPointDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strChecklstAnstype" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChecklistPoint_CRUDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChecklistPoint_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3229,28 +3277,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_ASSET_REQUEST_Details">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_ASSET_REQUEST_DetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_ASSET_REQUEST_DetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3275,6 +3301,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Dashboard_AdminResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VMS_Generate_Visitor_ID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Request_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VMS_Generate_Visitor_IDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VMS_Generate_Visitor_IDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5286,32 +5333,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ChecklistPoint_CRUD">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ChecklistID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="ChecklistPointID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="strChecklistPointDesc" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="strChecklstAnstype" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ChecklistPoint_CRUDResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ChecklistPoint_CRUDResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5319,6 +5340,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="INSERT_ASSET_REQUEST_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:INSERT_ASSET_REQUEST_Details" />
   </wsdl:message>
@@ -5624,6 +5651,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_VMSRequestList_Report_ExcelSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList_Report_ExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChecklistPoint_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:ChecklistPoint_CRUD" />
+  </wsdl:message>
+  <wsdl:message name="ChecklistPoint_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:ChecklistPoint_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="ChecklistRequestSoapIn">
     <wsdl:part name="parameters" element="tns:ChecklistRequest" />
@@ -6129,12 +6162,6 @@
   <wsdl:message name="Fetch_MyAssetSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyAssetResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_Details" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_ASSET_REQUEST_DetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_ASSET_REQUEST_DetailsResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6146,6 +6173,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_AdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="VMS_Generate_Visitor_IDSoapIn">
+    <wsdl:part name="parameters" element="tns:VMS_Generate_Visitor_ID" />
+  </wsdl:message>
+  <wsdl:message name="VMS_Generate_Visitor_IDSoapOut">
+    <wsdl:part name="parameters" element="tns:VMS_Generate_Visitor_IDResponse" />
   </wsdl:message>
   <wsdl:message name="Send_Mail_TestSoapIn">
     <wsdl:part name="parameters" element="tns:Send_Mail_Test" />
@@ -6633,13 +6666,11 @@
   <wsdl:message name="AddChecklistMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:AddChecklistMaster_CRUDResponse" />
   </wsdl:message>
-  <wsdl:message name="ChecklistPoint_CRUDSoapIn">
-    <wsdl:part name="parameters" element="tns:ChecklistPoint_CRUD" />
-  </wsdl:message>
-  <wsdl:message name="ChecklistPoint_CRUDSoapOut">
-    <wsdl:part name="parameters" element="tns:ChecklistPoint_CRUDResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
       <wsdl:input message="tns:INSERT_ASSET_REQUEST_DetailsSoapIn" />
       <wsdl:output message="tns:INSERT_ASSET_REQUEST_DetailsSoapOut" />
@@ -6843,6 +6874,10 @@
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <wsdl:input message="tns:Fetch_VMSRequestList_Report_ExcelSoapIn" />
       <wsdl:output message="tns:Fetch_VMSRequestList_Report_ExcelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistPoint_CRUD">
+      <wsdl:input message="tns:ChecklistPoint_CRUDSoapIn" />
+      <wsdl:output message="tns:ChecklistPoint_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ChecklistRequest">
       <wsdl:input message="tns:ChecklistRequestSoapIn" />
@@ -7180,10 +7215,6 @@
       <wsdl:input message="tns:Fetch_MyAssetSoapIn" />
       <wsdl:output message="tns:Fetch_MyAssetSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <wsdl:input message="tns:Fetch_ASSET_REQUEST_DetailsSoapIn" />
-      <wsdl:output message="tns:Fetch_ASSET_REQUEST_DetailsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7191,6 +7222,10 @@
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
       <wsdl:output message="tns:Fetch_Dashboard_AdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VMS_Generate_Visitor_ID">
+      <wsdl:input message="tns:VMS_Generate_Visitor_IDSoapIn" />
+      <wsdl:output message="tns:VMS_Generate_Visitor_IDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Send_Mail_Test">
       <wsdl:input message="tns:Send_Mail_TestSoapIn" />
@@ -7517,13 +7552,18 @@
       <wsdl:input message="tns:AddChecklistMaster_CRUDSoapIn" />
       <wsdl:output message="tns:AddChecklistMaster_CRUDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ChecklistPoint_CRUD">
-      <wsdl:input message="tns:ChecklistPoint_CRUDSoapIn" />
-      <wsdl:output message="tns:ChecklistPoint_CRUDSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
       <soap:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -7976,6 +8016,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistPoint_CRUD">
+      <soap:operation soapAction="http://tempuri.org/ChecklistPoint_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8739,15 +8788,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <soap:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8759,6 +8799,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VMS_Generate_Visitor_ID">
+      <soap:operation soapAction="http://tempuri.org/VMS_Generate_Visitor_ID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9495,18 +9544,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChecklistPoint_CRUD">
-      <soap:operation soapAction="http://tempuri.org/ChecklistPoint_CRUD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="INSERT_ASSET_REQUEST_Details">
       <soap12:operation soapAction="http://tempuri.org/INSERT_ASSET_REQUEST_Details" style="document" />
       <wsdl:input>
@@ -9959,6 +10008,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChecklistPoint_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/ChecklistPoint_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10722,15 +10780,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_ASSET_REQUEST_Details">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_ASSET_REQUEST_Details" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10742,6 +10791,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Dashboard_Admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VMS_Generate_Visitor_ID">
+      <soap12:operation soapAction="http://tempuri.org/VMS_Generate_Visitor_ID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11471,15 +11529,6 @@
     </wsdl:operation>
     <wsdl:operation name="AddChecklistMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/AddChecklistMaster_CRUD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChecklistPoint_CRUD">
-      <soap12:operation soapAction="http://tempuri.org/ChecklistPoint_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -11,15 +11,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Name :</Value>
-                    <Style />
+                    <Value>Name</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>4.22833cm</Top>
+            <Top>4.86333cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.6cm</Height>
             <Width>1.28292cm</Width>
@@ -34,12 +36,14 @@
             </Style>
           </Textbox>
           <Image Name="Image1">
-            <Source>Embedded</Source>
-            <Value>Phx_Palladium</Value>
+            <Source>External</Source>
+            <Value>=First(Fields!Company_Logo.Value, "ds_Visitor_Info_ID")</Value>
+            <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
+            <Top>0.635cm</Top>
             <Left>2.06375cm</Left>
             <Height>2.02917cm</Height>
-            <Width>2.89347cm</Width>
+            <Width>3.16278cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -48,13 +52,14 @@
             </Style>
           </Image>
           <Image Name="Image2">
-            <Source>Embedded</Source>
-            <Value>user4</Value>
+            <Source>External</Source>
+            <Value>=First(Fields!Visitor_Photo.Value, "ds_Visitor_Info_ID")</Value>
+            <MIMEType>image/jpeg</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>2.34097cm</Top>
-            <Left>2.64583cm</Left>
-            <Height>1.5cm</Height>
-            <Width>1.5cm</Width>
+            <Top>2.97597cm</Top>
+            <Left>2.75167cm</Left>
+            <Height>1.71097cm</Height>
+            <Width>1.71167cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -69,15 +74,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Email :</Value>
-                    <Style />
+                    <Value>Email</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.78111cm</Top>
+            <Top>6.41611cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>1.28292cm</Width>
@@ -99,15 +106,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Contact :</Value>
-                    <Style />
+                    <Value>Contact</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.00472cm</Top>
+            <Top>5.63972cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.6cm</Height>
             <Width>1.60514cm</Width>
@@ -129,15 +138,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Date of Visit :</Value>
-                    <Style />
+                    <Value>Date of Visit</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.5575cm</Top>
+            <Top>7.1925cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>2.29306cm</Width>
@@ -159,7 +170,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=First(Fields!Visitor_Name.Value, "ds_Visitor_Info_ID")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -167,10 +178,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>4.22833cm</Top>
-            <Left>1.74153cm</Left>
+            <Top>4.86333cm</Top>
+            <Left>1.77681cm</Left>
             <Height>0.6cm</Height>
-            <Width>5.16348cm</Width>
+            <Width>5.1282cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -189,7 +200,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=First(Fields!Visitor_Contact.Value, "ds_Visitor_Info_ID")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -197,7 +208,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.00472cm</Top>
+            <Top>5.63972cm</Top>
             <Left>2.06375cm</Left>
             <Height>0.6cm</Height>
             <Width>4.84126cm</Width>
@@ -219,7 +230,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=First(Fields!Visitor_Email.Value, "ds_Visitor_Info_ID")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -227,7 +238,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.78111cm</Top>
+            <Top>6.41611cm</Top>
             <Left>1.74153cm</Left>
             <Height>0.6cm</Height>
             <Width>5.16347cm</Width>
@@ -249,7 +260,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=First(Fields!Visit_Date.Value, "ds_Visitor_Info_ID")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -257,7 +268,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.5575cm</Top>
+            <Top>7.1925cm</Top>
             <Left>2.75167cm</Left>
             <Height>0.6cm</Height>
             <Width>4.15334cm</Width>
@@ -291,7 +302,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.33389cm</Top>
+            <Top>7.96889cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>6.55222cm</Width>
@@ -315,15 +326,17 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Vaccination Status :</Value>
-                    <Style />
+                    <Value>Vaccination Status</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>8.11028cm</Top>
+            <Top>8.74528cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>3.36903cm</Width>
@@ -357,7 +370,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>8.11028cm</Top>
+            <Top>8.74528cm</Top>
             <Left>3.82764cm</Left>
             <Height>0.6cm</Height>
             <Width>3.07736cm</Width>
@@ -381,7 +394,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Visitor ID Created on 21st July 2021 11.00 AM</Value>
+                    <Value>=First(Fields!Visit_Request_Date_Text.Value, "ds_Visitor_Info_ID")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -393,7 +406,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.25542cm</Top>
+            <Top>9.90806cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.56472cm</Height>
             <Width>6.55222cm</Width>
@@ -413,22 +426,22 @@
         <KeepTogether>true</KeepTogether>
         <Top>0.29287cm</Top>
         <Left>0.25259cm</Left>
-        <Height>9.82014cm</Height>
+        <Height>10.47278cm</Height>
         <Width>7.2644cm</Width>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
           </Border>
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>4.125in</Height>
+    <Height>4.35417in</Height>
     <Style />
   </Body>
   <Width>3.0775in</Width>
   <Page>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
+    <PageHeight>18cm</PageHeight>
+    <PageWidth>12cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
     <RightMargin>2cm</RightMargin>
     <TopMargin>2cm</TopMargin>
@@ -437,6 +450,73 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="Visitor_ID">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>c7358b62-7244-4004-9bda-77badc84796a</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ds_Visitor_Info_ID">
+      <Query>
+        <DataSourceName>Visitor_ID</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Company_Name">
+          <DataField>Company_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Company_Logo">
+          <DataField>Company_Logo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visitor_Photo">
+          <DataField>Visitor_Photo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visitor_Name">
+          <DataField>Visitor_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visitor_Contact">
+          <DataField>Visitor_Contact</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visitor_Email">
+          <DataField>Visitor_Email</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visit_Date">
+          <DataField>Visit_Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visit_Request_Date">
+          <DataField>Visit_Request_Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Vaccination_Status">
+          <DataField>Vaccination_Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visit_Request_Date_Text">
+          <DataField>Visit_Request_Date_Text</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Visitor_ID</rd:DataSetName>
+        <rd:SchemaPath>D:\GitHub\GitHub_Repositories_26_Apr_2021\Upkeep_v3_Projects\Upkeep_v3\Upkeep_v3\VMS\Visitor_ID.xsd</rd:SchemaPath>
+        <rd:TableName>dt_Visitor_Info</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <EmbeddedImages>
     <EmbeddedImage Name="Phx_Palladium">
       <MIMEType>image/png</MIMEType>

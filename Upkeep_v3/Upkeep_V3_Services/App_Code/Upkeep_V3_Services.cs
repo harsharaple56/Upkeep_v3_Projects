@@ -97,6 +97,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+
+    [WebMethod]
+    public DataSet VMS_Generate_Visitor_ID(int Request_ID)
+    {
+        try
+        {
+            ds = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     [WebMethod]
     public DataSet Send_Mail_Test(string Emails, string Subject, string HTML_Body)
     {

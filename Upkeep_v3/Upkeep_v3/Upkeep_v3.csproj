@@ -4102,7 +4102,7 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="VMS\Visitor_ID.aspx" />
+    <Content Include="VMS\Visitor_ID_v2.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
     <Content Include="CheckList\ChecklistReport.xsc">
@@ -4142,6 +4142,17 @@
     <Content Include="Handlers\UserImage_Handler.ashx" />
     <Content Include="Handlers\RetailerImage_Handler.ashx" />
     <Content Include="VMS\Visit_Request_Public.aspx" />
+    <Content Include="VMS\Visitor_ID.xsc">
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
+    </Content>
+    <None Include="VMS\Visitor_ID.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Visitor_ID.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="VMS\Visitor_ID.xss">
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
+    </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
     <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -5516,12 +5527,17 @@
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="VMS\Visitor_ID.aspx.cs">
-      <DependentUpon>Visitor_ID.aspx</DependentUpon>
+    <Compile Include="VMS\Visitor_ID.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visitor_ID_v2.aspx.cs">
+      <DependentUpon>Visitor_ID_v2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VMS\Visitor_ID.aspx.designer.cs">
-      <DependentUpon>Visitor_ID.aspx</DependentUpon>
+    <Compile Include="VMS\Visitor_ID_v2.aspx.designer.cs">
+      <DependentUpon>Visitor_ID_v2.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visits_Report.aspx.cs">
       <DependentUpon>Visits_Report.aspx</DependentUpon>
