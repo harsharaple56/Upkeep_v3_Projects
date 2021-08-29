@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Configuration;
 using System.Linq;
+using Upkeep_v3.SMS;
 
 namespace Upkeep_v3.VMS
 {
@@ -813,6 +814,9 @@ namespace Upkeep_v3.VMS
                 { strCovidColor = "ORANGE"; }
                 if (rdbRed.Checked == true)
                 { strCovidColor = "RED"; }
+
+                Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
+
                 #endregion
 
                 #region VisitQuestion
@@ -1167,12 +1171,31 @@ namespace Upkeep_v3.VMS
                     if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                     {
                         int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
+
+                        int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
+                        string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
+                        string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
+                        string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
+                        string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+
+
                         if (status == 1 && Action == 'N')
                         {
                             //SetRepeater();
                             //divinsertbutton.visible = false;
                             lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+
+                            int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+                            string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
+
                             mpeVMSRequestSaveSuccess.Show();
+
+                            string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at "+ Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+
+                            if (SMS_Enabled == 1)
+                            {
+                                string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                            }
                         }
                         else if (status == 1 && Action != 'N')
                         {
