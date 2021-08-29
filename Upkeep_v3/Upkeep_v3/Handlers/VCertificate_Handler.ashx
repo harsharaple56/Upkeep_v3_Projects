@@ -27,7 +27,7 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
         UserType = Convert.ToString(context.Session["UserType"]);
 
 
-        string dirFullPath = HttpContext.Current.Server.MapPath("~/VaccinationCertificate/");
+        string dirFullPath = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
         string[] files;
         int numFiles;
         files = System.IO.Directory.GetFiles(dirFullPath);
@@ -44,7 +44,7 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
             string fileExtension = file.ContentType;
             if (!string.IsNullOrEmpty(fileName))
             {
-                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VaccinationCertificate/");
+                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
 
                 if (!Directory.Exists(fileUploadPath_Profile))
                 {
@@ -66,10 +66,10 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
                 fileExtension = Path.GetExtension(fileName);
                 str_image = id + "_" + genRand + "_" + DateTime.Now.ToString("dd-MMM-yy") + fileExtension;
 
-                string pathToSave = HttpContext.Current.Server.MapPath("~/VaccinationCertificate/") + str_image;
-                ProfilePhoto_FilePath = imgPath + "/VaccinationCertificate/" + str_image;
+                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
+                ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
                 context.Session["fileContent"] = string.Empty;
-                context.Session["fileContent"] = str_image;
+                context.Session["fileContent"] = ProfilePhoto_FilePath;
                 file.SaveAs(pathToSave);
             }
         }

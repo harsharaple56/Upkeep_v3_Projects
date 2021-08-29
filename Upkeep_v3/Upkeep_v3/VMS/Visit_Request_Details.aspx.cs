@@ -643,6 +643,14 @@ namespace Upkeep_v3.VMS
                         txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
                         
                     }
+
+                    //Bind Vaccination_Details Data
+                    if (dsData.Tables[6].Rows.Count > 0)
+                    {
+                        ContentPlaceHolder1_imgProfilePic.ImageUrl = dsData.Tables[6].Rows[0]["Visitor_Photo"].ToString();
+                        iframe_Document.Attributes.Add("src", dsData.Tables[6].Rows[0]["Vaccine_Certificate"].ToString());
+                        lbl_DoseDate.Text = DateTime.Parse(dsData.Tables[6].Rows[0]["Date_of_Vaccination"].ToString()).ToString("dd-MMM-yyyy");
+                    }
                 }
 
             }

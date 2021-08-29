@@ -6541,8 +6541,6 @@
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
-    <Folder Include="VaccinateUserImages\" />
-    <Folder Include="VaccinationCertificate\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
     <Folder Include="vendors\handlebars\node_modules\.bin\" />
@@ -6550,6 +6548,8 @@
     <Folder Include="vendors\handlebars\node_modules\source-map\lib\source-map\" />
     <Folder Include="vendors\markdown\bin\" />
     <Folder Include="vendors\markdown\node_modules\.bin\" />
+    <Folder Include="VMS_Uploads\Vacc_User_Certificate\" />
+    <Folder Include="VMS_Uploads\Vacc_User_Photo\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ACTIVEXLib">

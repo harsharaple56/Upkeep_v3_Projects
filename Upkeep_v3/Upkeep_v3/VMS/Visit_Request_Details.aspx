@@ -547,8 +547,7 @@ border: 3px solid #ccc;*/
                                 <div class="col-xl-6">
                                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-
-                                            <iframe src="https://compelapps.in/eFacilito_UAT/AssetMangDocs/DOC/27-08-2021/HARDWARE_customfields_27-08-2021%20125421_certificate-2.pdf" width="100%" height="500px"></iframe>
+                                            <iframe id="iframe_Document" runat="server" width="100%" height="500px"></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -562,7 +561,8 @@ border: 3px solid #ccc;*/
                                             <div class="m-card-profile"">
                                                  <div class="m-card-profile__pic">
                                                 <div class="m-card-profile__pic-wrapper" style="margin: 0px;">
-                                                    <img id="ContentPlaceHolder1_imgProfilePic" src="http://localhost:51897/UserImages/DEMO1.jpg">
+                                                    <%--<img runat="server" id="ContentPlaceHolder1_imgProfilePic">--%>
+                                                     <asp:Image ID="ContentPlaceHolder1_imgProfilePic" runat="server" />
                                                 </div>
                                             </div>
                                             </div>
@@ -571,8 +571,10 @@ border: 3px solid #ccc;*/
                                         </div>
                                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                                             <b>Date of 2nd Dose Vaccination provided by Visitor</b> :
-                                            <h2 class="font-weight-bold m--font-danger">27th August 2021</h2>
-                                            </br>
+                                                                                            <h2 class="font-weight-bold m--font-danger">
+                                            <asp:Label id="lbl_DoseDate" runat="server" CssClass="font-weight-bold m--font-danger"></asp:Label>
+                                                                                            </h2>
+                                                </br>
 
                                             <div>
                                                 <h5 class="font-weight-bold m--font-danger">NOTE: Please verify if the Vaccination date shown above is mentioned in the Certificate on the Left under </h5>

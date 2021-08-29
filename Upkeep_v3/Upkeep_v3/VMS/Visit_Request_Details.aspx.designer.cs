@@ -301,6 +301,33 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_vaccination;
         
         /// <summary>
+        /// iframe_Document control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe iframe_Document;
+        
+        /// <summary>
+        /// ContentPlaceHolder1_imgProfilePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ContentPlaceHolder1_imgProfilePic;
+        
+        /// <summary>
+        /// lbl_DoseDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_DoseDate;
+        
+        /// <summary>
         /// rptQuestionDetails control.
         /// </summary>
         /// <remarks>

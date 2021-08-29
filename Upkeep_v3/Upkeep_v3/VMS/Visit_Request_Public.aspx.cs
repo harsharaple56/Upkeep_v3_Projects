@@ -27,7 +27,6 @@ namespace Upkeep_v3.VMS
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
-            HttpContext.Current.Session.Clear();
             Random r = new Random();
             int genRand = r.Next(1, 1000);
 
@@ -47,13 +46,16 @@ namespace Upkeep_v3.VMS
             byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
 
             //Save the Byte Array as Image File.
-            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VaccinateUserImages/{0}.jpg", fileName));
-
-            File.WriteAllBytes(filePath, imageBytes);
+            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", fileName));
 
             string fileExtension = Path.GetExtension(filePath);
-            string fileNameToSave = fileName + fileExtension;
-            HttpContext.Current.Session["UserPhoto"] = fileNameToSave;
+
+            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
+            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + fileName + fileExtension;
+
+            File.WriteAllBytes(filePath, imageBytes);
+            HttpContext.Current.Session["UserPhoto"] = ProfilePhoto_FilePath;
             return true;
         }
 

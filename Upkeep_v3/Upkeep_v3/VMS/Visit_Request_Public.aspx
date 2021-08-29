@@ -175,16 +175,27 @@ border: 3px solid #ccc;*/
     <script type="text/javascript">
         $(document).ready(function () {
             Dropzone.autoDiscover = false;
-            var url = window.location.href;
             $("#dZUpload").dropzone({
                 url: "/Handlers/VCertificate_Handler.ashx",
+                addRemoveLinks: true,
                 maxFiles: 1,
-                addRemoveLinks: false,
-                success: function () {
-                    alert('Your Document Added!');
+                maxFilesize: 5, // MB
+                acceptedFiles: ".pdf",
+                init: function () {
+                    this.on("maxfilesexceeded", function (file) {
+                        this.removeAllFiles();
+                        this.addFile(file);
+                    });
                 },
-                error: function () {
-                    $(location).attr('href', url);
+                success: function (file, response) {
+                    var fileName = response;
+                    file.previewElement.classList.add("dz-success");
+                    alert("Successfully uploaded :" + fileName);
+                },
+                error: function (file, response) {
+                    var fileName = response;
+                    file.previewElement.classList.add("dz-error");
+                    alert("File not uploaded :" + fileName);
                 }
             });
         });
@@ -205,7 +216,7 @@ border: 3px solid #ccc;*/
             });
         }
         function OnSuccess(response) {
-            alert('Your Photo Added!');
+            alert('Your Photo Successfully uploaded!');
         }
     </script>
 
@@ -663,7 +674,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                   <div id="div_Upload" class="modal-body">
                                       <div class="m-dropzone dropzone" id="dZUpload">
                                           <div class="m-dropzone__msg dz-message needsclick">
-                                              <h5 class="m-dropzone__msg-title">Drop files here or click to upload.</h5>
+                                              <h2 class="m-dropzone__msg-title">Drop files here or click to upload.</h2>
+                                              <h5 class="m-dropzone__msg-desc">Max file limit : 5 Mb</h5>
                                           </div>
                                       </div>
                                   </div>
@@ -684,8 +696,10 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
+
                             </div>
-                            <span id="error_startDate" class="text-danger small"></span>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2nd Dose Vaccination Date"></asp:RequiredFieldValidator>
 
 
                         </div>
