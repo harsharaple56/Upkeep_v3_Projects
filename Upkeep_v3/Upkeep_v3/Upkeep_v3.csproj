@@ -4146,6 +4146,7 @@
     <Content Include="VMS\Visitor_ID.xsc">
       <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
+    <Content Include="Handlers\VCertificate_Handler.ashx" />
     <None Include="VMS\Visitor_ID.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -6540,6 +6541,8 @@
     <Folder Include="Retailer_Sales\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
+    <Folder Include="VaccinateUserImages\" />
+    <Folder Include="VaccinationCertificate\" />
     <Folder Include="vendors\handlebars\.idea\" />
     <Folder Include="vendors\handlebars\bin\" />
     <Folder Include="vendors\handlebars\node_modules\.bin\" />

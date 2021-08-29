@@ -4,14 +4,14 @@
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
-     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
 
-     <script type="text/javascript" >
-            // This jQuery code makes all check boxes read-only
-            $('#ChkNameComp').click(function(){
-                return false;
-            });
-        </script>
+    <script type="text/javascript">
+        // This jQuery code makes all check boxes read-only
+        $('#ChkNameComp').click(function () {
+            return false;
+        });
+    </script>
 
     <style type="text/css">
         .modalBackground {
@@ -356,6 +356,11 @@
                     $("#divCount").show(300);
                     $("#ChkCovid").parent().parent().addClass("active");
                 }
+
+                if ($("#ChkVaccinated").is(":checked")) {
+                    $("#divChkCovid").show(300);
+                    $("#ChkVaccinated").parent().parent().addClass("active");
+                }
                 var qns = $('#hdnVMSQns').val();
                 var arrQns = qns.split("~");
                 //alert(qns);
@@ -536,7 +541,7 @@
 
                             </div>
                             <div class="form-group m-form__group row">
-                                
+
                                 <div class="col-md-3">
                                     <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled you can select a Feedback Form which will be sent to Visitors once they are Marked Out">
                                         <i class="fa fa-info-circle"></i>
@@ -605,47 +610,47 @@
                                         Select Mandatory Fields</label>
                                     <div class="m-checkbox-inline">
                                         <%--<label class="m-checkbox">--%>
-                                                    <asp:CheckBox ID="ChkNameComp" autocomplete="off" runat="server" Checked="true"   ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i> Name
+                                        <asp:CheckBox ID="ChkNameComp" autocomplete="off" runat="server" Checked="true" ClientIDMode="Static" />
+                                        <i class="fa fa-check" aria-hidden="true"></i>Name
                                         
                                         <%--</label>--%>
-                                                   
-                                            <%--<input type="checkbox" checked="true">
+
+                                        <%--<input type="checkbox" checked="true">
                                             Name
 									    <span></span>
                                         </label>--%>
-                                    <%--    <label class="m-checkbox">
+                                        <%--    <label class="m-checkbox">
                                             <input type="checkbox">
                                             Email
 										<span></span>
                                         </label>--%>
-                                         <label class="">
-                                                    <asp:CheckBox ID="ChkEmailComp" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i> Email</label>
+                                        <label class="">
+                                            <asp:CheckBox ID="ChkEmailComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>Email</label>
 
 
 
-                                      <%--  <label class="m-checkbox">
+                                        <%--  <label class="m-checkbox">
                                             <input type="checkbox">
                                             Contact
 										<span></span>
                                         </label>--%>
 
-                                          <label class="">
-                                                    <asp:CheckBox ID="ChkContactComp" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i> Contact</label>
+                                        <label class="">
+                                            <asp:CheckBox ID="ChkContactComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>Contact</label>
 
 
 
-                                       <%-- <label class="m-checkbox">
+                                        <%-- <label class="m-checkbox">
                                             <input type="checkbox">
                                             Meeting With
 										<span></span>
                                         </label>--%>
 
-                                         <label class="">
-                                                    <asp:CheckBox ID="ChkMeetingComp" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i> Meeting With</label>
+                                        <label class="">
+                                            <asp:CheckBox ID="ChkMeetingComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>Meeting With</label>
 
 
                                     </div>
@@ -659,25 +664,26 @@
                                         Visitor Email and Contact Verification</label>
                                     <div class="m-checkbox-inline">
 
-                                           <label class="">
-                                                    <asp:CheckBox ID="ChkContactOTPComp" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i>  Contact OTP Compulsory</label>
+                                        <label class="">
+                                            <asp:CheckBox ID="ChkContactOTPComp" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>Contact OTP Compulsory</label>
 
-                                      <%--  <label class="m-checkbox">
+                                        <%--  <label class="m-checkbox">
                                             <input type="checkbox" checked="true">
                                            
 									    <span></span>
                                         </label>--%>
-                                      <%--  <label class="m-checkbox">
+                                        <%--  <label class="m-checkbox">
                                             <input type="checkbox">
                                             Email OTP Compulsory 
 										<span></span>
                                         </label>--%>
 
 
-                                             <label class="">
-                                                    <asp:CheckBox ID="ChkEmailOtpCom" autocomplete="off" runat="server" ClientIDMode="Static" />
-                                            <i class="fa fa-check" aria-hidden="true"></i>   Email OTP Compulsory </label>
+                                        <label class="">
+                                            <asp:CheckBox ID="ChkEmailOtpCom" autocomplete="off" runat="server" ClientIDMode="Static" />
+                                            <i class="fa fa-check" aria-hidden="true"></i>Email OTP Compulsory
+                                        </label>
                                     </div>
                                 </div>
 
@@ -727,7 +733,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="col-md-10">
-                                                                
+
                                                                 <asp:DropDownList ID="ddlAns" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlAns" placeholder="select" runat="server"></asp:DropDownList>
                                                                 <input type="hidden" name="hdnRepeaterAnswer" placeholder="Enter Answer data" class="hdnRepeaterAnswer mt-3 form-control m-input autosize_textarea" id="hdnRepeaterAnswer" />
                                                                 <i class="fa fa-edit lblAnswerCnt"></i>

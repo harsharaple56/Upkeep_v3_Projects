@@ -190,20 +190,20 @@
 
             //document.getElementsByName("secondsIdle").innerHTML = seconds;
             document.getElementsByName("seconds").innerHTML = seconds;
-           
+
             setInterval(function () {
                 seconds--;
                 document.getElementById("seconds").innerHTML = seconds;
                 //document.getElementById("secondsIdle").innerHTML = seconds;
-              
+
             }, 1000);
             setTimeout(function () {
                 //Show Popup before 20 seconds of timeout.
                 //$find("mpeTimeout").show();
-                
+
                 $("#MyPopup").modal({
-            backdrop: 'static',
-            keyboard: false
+                    backdrop: 'static',
+                    keyboard: false
                 });
                 $("#MyPopup").modal("show");
 
@@ -312,14 +312,14 @@
 
         <form runat="server">
             <!-- begin::Body -->
-            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: inherit;padding-top: 0px !important;">
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="padding-left: inherit; padding-top: 0px !important;">
                 <%--<cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></cc1:ToolkitScriptManager>--%>
                 <!-- BEGIN: Left Aside -->
-                
+
                 <!-- END: Left Aside -->
                 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
-                   
+
 
                     <div class="m-content">
 
@@ -329,7 +329,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <!-- Modal Popup -->
                 <div id="MyPopup" class="modal fade" role="dialog">
@@ -338,7 +338,7 @@
                         <div class="modal-content">
                             <div class="modal-header btn-danger" style="padding: 15px !important;">
                                 <h3 class="modal-title" style="color: white;">Session Expiring </h3>
-                                <button type="button" class="close" data-dismiss="modal" style="color: white; margin-top: -6px;"> &times;</button>
+                                <button type="button" class="close" data-dismiss="modal" style="color: white; margin-top: -6px;">&times;</button>
 
                             </div>
                             <div class="modal-body">
@@ -880,7 +880,7 @@
     <script src="<%= Page.ResolveClientUrl("~/vendors/autosize/dist/autosize.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/vendors/clipboard/dist/clipboard.min.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/vendors/ion-rangeslider/js/ion.rangeSlider.js") %>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/vendors/dropzone/dist/dropzone.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/vendors/dropzone/dropzone.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/vendors/summernote/dist/summernote.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/vendors/markdown/lib/markdown.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/vendors/bootstrap-markdown/js/bootstrap-markdown.js") %>" type="text/javascript"></script>
@@ -916,6 +916,7 @@
 
     <!--begin::Page Vendors -->
     <script src="<%= Page.ResolveClientUrl("~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js") %>" type="text/javascript"></script>
+
 
     <!--end::Page Vendors -->
 

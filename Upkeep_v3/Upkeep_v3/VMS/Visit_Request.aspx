@@ -174,6 +174,14 @@ border: 3px solid #ccc;*/
     <script>
 
         $(document).ready(function () {
+            window.addEventListener("dragover", function (e) {
+                e = e || event;
+                e.preventDefault();
+            }, false);
+            window.addEventListener("drop", function (e) {
+                e = e || event;
+                e.preventDefault();
+            }, false);
             $('.datetimepicker').datetimepicker({
                 todayHighlight: true,
                 autoclose: true,
@@ -528,7 +536,7 @@ border: 3px solid #ccc;*/
                                 <%--  <div id="dvMeeting" runat="server" style="display: block;">
                                   <span id ="spnMeeting" runat="server" style="color: red;">*</span>
                                     </div>--%>
-                                <div class="div_MeetingWith" runat="server">
+                                     <div id="div_MeetingWith" runat="server" visible="false">
                                     <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
                                     <div class="col-md-4 col-form-label">
                                     <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>

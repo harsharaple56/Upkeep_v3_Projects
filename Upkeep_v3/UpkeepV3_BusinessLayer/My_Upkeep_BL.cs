@@ -41,6 +41,30 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet GetLastVMSRequestID(int CompanyID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Last_VMS_ReqeustID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
         {
@@ -3137,7 +3161,9 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID, string StrConn)
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, 
+            string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, 
+            string strVMSCovidTestDate, string strTemperature,string Visitor_Photo,string Vaccine_Certificate,string Date_of_Vaccination, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3158,6 +3184,9 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CovidColorCode", strVMSCovidColorCode);
                 cmd.Parameters.AddWithValue("@CovidtestDate", strVMSCovidTestDate);
                 cmd.Parameters.AddWithValue("@Temperature", strTemperature);
+                cmd.Parameters.AddWithValue("@Visitor_Photo", Visitor_Photo);
+                cmd.Parameters.AddWithValue("@Vaccine_Certificate", Vaccine_Certificate);
+                cmd.Parameters.AddWithValue("@Date_of_Vaccination", Date_of_Vaccination);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

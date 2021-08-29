@@ -36,19 +36,29 @@
     <script>
         //Copy Element Function
 
-        function copyFunction() {
-            /* Get the text field */
-            var copyText = document.getElementById("hLink");
+        function copyText() {
+            var range, selection, worked;
+            var element = document.getElementById("hLink");
 
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            if (document.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(element);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();
+                range = document.createRange();
+                range.selectNodeContents(element);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
 
-            /* Copy the text inside the text field */
-            document.execCommand("copy");
-
-            /* Alert the copied text */
-            alert("Link Copied");
+            try {
+                document.execCommand('copy');
+                alert('URL Copied');
+            }
+            catch (err) {
+                alert('unable to copy URL');
+            }
         }
 
     </script>
@@ -134,7 +144,7 @@
                     <figure class="figure" id="printdivcontent">
                         <div id="plBarCode" runat="server" class="text-center"></div>
                         <h5 class="text-center text-primary" id="hLink"></h5>
-                                
+
                     </figure>
 
                     <h5 class="text-center text-primary">
@@ -145,9 +155,9 @@
                                 <span>Download QR Code</span>
                             </span>
                         </button>
-                        <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" data-toggle="m-popover" title="" data-content="Click to Copy Link to QR Code">
-                                    <i class="fa fa-copy"></i>
-                         </a>
+                        <a href="#" onclick='copyText()' class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" data-toggle="m-popover" title="" data-content="Click to Copy Link to QR Code">
+                            <i class="fa fa-copy"></i>
+                        </a>
                     </h5>
 
                 </div>

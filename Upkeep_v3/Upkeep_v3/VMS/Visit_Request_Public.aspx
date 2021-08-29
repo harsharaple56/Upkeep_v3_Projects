@@ -172,29 +172,55 @@ border: 3px solid #ccc;*/
             window.addEventListener('load', startup, false);
         })();
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            var url = window.location.href;
+            $("#dZUpload").dropzone({
+                url: "/Handlers/VCertificate_Handler.ashx",
+                maxFiles: 1,
+                addRemoveLinks: false,
+                success: function () {
+                    alert('Your Document Added!');
+                },
+                error: function () {
+                    $(location).attr('href', url);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function InserUserImage() {
+            $.ajax({
+                type: "POST",
+                url: "Visit_Request_Public.aspx/SaveUserImage",
+                data: "{data: '" + $("#photo")[0].src + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+        function OnSuccess(response) {
+            alert('Your Photo Added!');
+        }
+    </script>
 
 
 
-
-
-    <script>
+    <script type="text/javascript">
 
         $(document).ready(function () {
-            $('.datetimepicker').datetimepicker({
+            $('.datetimepicker').datepicker({
                 todayHighlight: true,
+                orientation: 'auto bottom',
                 autoclose: true,
                 pickerPosition: 'bottom-right',
-                format: 'dd-MM-yyyy HH:ii P',
-                showMeridian: true,
-                startDate: moment().format('dd-MM-yyyy'),
-            }).on('changeDate', function (event) {
-                var startDate = moment($('#txtVMSDate').val(), 'dd-MM-yyyy hh:mm A').valueOf();
-                //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
-                $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
-                //if(endDate < startDate)
-                //{
-                // $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
-                //}
+                format: 'dd-MM-yyyy',
+                showMeridian: true
             });
         });
 
@@ -342,7 +368,6 @@ border: 3px solid #ccc;*/
 
                 <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmVMS" method="post">--%>
                 <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-
                 <asp:HiddenField ID="hdnVMSQuestionData" runat="server" ClientIDMode="Static" />
                 <asp:HiddenField ID="hdnVMSQuestion" runat="server" ClientIDMode="Static" />
                 <p id="info" style="display: none;"></p>
@@ -394,9 +419,8 @@ border: 3px solid #ccc;*/
                     <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
 
                 </div>
-                <div class="m--align-center" style="    padding: 15px;">
+                <div class="m--align-center" style="padding: 15px;">
                     <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
-                            
                 </div>
 
 
@@ -414,7 +438,7 @@ border: 3px solid #ccc;*/
                         </div>
 
                         <div class="m-portlet__head-tools">
-                          
+
                             <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
 
                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
@@ -586,7 +610,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                     <div id="divDate" style="display: none" runat="server">
                                         <div class="input-group date">
-                                            <asp:TextBox ID="divDateID" runat="server" autocomplete="off" class="form-control m-input datetimepicker"
+                                            <asp:TextBox ID="VisitDate" runat="server" autocomplete="off"
+                                                class="form-control m-input datetimepicker"
                                                 placeholder="Select date & time"></asp:TextBox>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
@@ -617,8 +642,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <div class="font-weight-bold">Upload Your Photo</div>
                             </br>
-                              <button type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-
+                              <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
                                   <span>
                                       <i class="fa fa-camera"></i>
                                       <span>Click Photo</span>
@@ -635,11 +659,15 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                             <div class="font-weight-bold">Upload Vaccination Certificate</div>
                             </br>
-                            <div class="m-dropzone dropzone dz-clickable" id="dZUpload">
-                                <div class="m-dropzone__msg dz-message needsclick">
-                                    <h5 class="m-dropzone__msg-title">Drop files here or click to upload.</h5>
-                                </div>
-                            </div>
+                            
+                                  <div id="div_Upload" class="modal-body">
+                                      <div class="m-dropzone dropzone" id="dZUpload">
+                                          <div class="m-dropzone__msg dz-message needsclick">
+                                              <h5 class="m-dropzone__msg-title">Drop files here or click to upload.</h5>
+                                          </div>
+                                      </div>
+                                  </div>
+
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please upload your 2nd Dose vaccination certificate provided by CoWIN.
@@ -649,16 +677,16 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                     </div>
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                            
-                                <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
-                                <div class="input-group date">
-                                    <asp:TextBox ID="TextBox1" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                    </div>
+
+                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
+                            <div class="input-group date">
+                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
-                                <span id="error_startDate" class="text-danger small"></span>
-                        
+                            </div>
+                            <span id="error_startDate" class="text-danger small"></span>
+
 
                         </div>
                     </div>
@@ -754,9 +782,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                     </div>
                                     <div class="col-xl-6">
                                         <canvas id="canvas">
-                                            <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
+                                            <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box." />
                                         </canvas>
-                                        <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <button onclick="InserUserImage()" type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                                             <span>
                                                 <i class="fa fa-cloud-upload-alt"></i>
                                                 <span>Upload Photo</span>

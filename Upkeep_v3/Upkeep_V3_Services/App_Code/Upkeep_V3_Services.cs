@@ -83,6 +83,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
+    public DataSet GetLastVMSRequestID(int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
     {
         try
@@ -1268,7 +1283,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime,int Is_Enable_AutomatedTicket,int CategoryID,int SubCategoryID,int LocationID,int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int Is_Flag_Negative,int Is_IncludeTicketRemarks, int CompanyID)
+    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID, int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int Is_Flag_Negative, int Is_IncludeTicketRemarks, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -2515,7 +2530,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount,bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2595,12 +2610,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string Visitor_Photo, string Vaccine_Certificate, string Date_of_Vaccination, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, LoggedInUserID);
+            ds = ObjUpkeep.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, Visitor_Photo, Vaccine_Certificate, Date_of_Vaccination, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -3710,7 +3725,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID,From_Date,To_Date,CompanyID);
+            ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
         }
         catch (Exception ex)
         {
@@ -3719,12 +3734,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_VMSRequestList_Report(int EventID,int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    public DataSet Fetch_VMSRequestList_Report(int EventID, int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_VMSRequestList_Report(EventID,CompanyID, LoggedInUserID, From_Date, To_Date);
+            ds = ObjUpkeep.Fetch_VMSRequestList_Report(EventID, CompanyID, LoggedInUserID, From_Date, To_Date);
         }
         catch (Exception ex)
         {

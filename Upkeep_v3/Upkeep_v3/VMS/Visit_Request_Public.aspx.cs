@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Configuration;
 using System.Linq;
-
+using System.Web.Services;
 
 namespace Upkeep_v3.VMS
 {
@@ -23,6 +23,39 @@ namespace Upkeep_v3.VMS
         //int CompanyID = 0;
         int ConfigID = 0;
         #endregion
+
+        [WebMethod(EnableSession = true)]
+        public static bool SaveUserImage(string data)
+        {
+            HttpContext.Current.Session.Clear();
+            Random r = new Random();
+            int genRand = r.Next(1, 1000);
+
+            Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
+            DataSet ds = new DataSet();
+            int CompanyID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
+            int id = 0;
+            ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                id = Convert.ToInt32(row["RequestID"]);
+            }
+            id++;
+            string fileName = id + "_" + genRand + "_" + DateTime.Now.ToString("dd-MMM-yy");
+
+            //Convert Base64 Encoded string to Byte Array.
+            byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
+
+            //Save the Byte Array as Image File.
+            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VaccinateUserImages/{0}.jpg", fileName));
+
+            File.WriteAllBytes(filePath, imageBytes);
+
+            string fileExtension = Path.GetExtension(filePath);
+            string fileNameToSave = fileName + fileExtension;
+            HttpContext.Current.Session["UserPhoto"] = fileNameToSave;
+            return true;
+        }
 
         #region Events
         protected void Page_Load(object sender, EventArgs e)
@@ -356,14 +389,6 @@ namespace Upkeep_v3.VMS
                 {
                     div_MeetingWith.Visible = false;
                 }
-
-
-
-
-
-
-
-
 
             }
             catch (Exception ex)
@@ -780,403 +805,429 @@ namespace Upkeep_v3.VMS
         {
             try
             {
-                #region UserData
+                DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim()).Date;
+                DateTime dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
+                double eligleDays = 14;
+                double remainDays = 0;
                 int RequestID = 0;
                 char Action = 'N';
-                if (ViewState["Action"] != null)
+                if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {
-                    Action = Convert.ToChar(ViewState["Action"]);
-                }
-                if (ViewState["RequestID"] != null)
-                {
-                    RequestID = Convert.ToInt32(ViewState["RequestID"]);
-                }
-                ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
-                string LoggedInUser = LoggedInUserID;
-                string strName = txtName.Text;
-                string strEmail = txtEmail.Text;
-                string strPhone = txtPhone.Text;
-                DateTime temp;
-                string strVisitDate = (DateTime.TryParse(txtVMSDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
-                string strMeetUsers = hdnSelectedUserID.Value;
-                string strCovidTestDate = (DateTime.TryParse(txtAsmmtDate.Text, out temp) ? temp : DateTime.Now).ToString("dd-MMM-yyyy");
-                string strTemperature = txtTemperature.Text;
-                string strCovidColor = string.Empty;
-                if (rdbGreen.Checked == true)
-                { strCovidColor = "GREEN"; }
-                if (rdbOrange.Checked == true)
-                { strCovidColor = "ORANGE"; }
-                if (rdbRed.Checked == true)
-                { strCovidColor = "RED"; }
-                #endregion
-
-                #region VisitQuestion
-                /*
-                 Create table and store data in table and convert later in xml and pass in to Datatbase..
-                 Table Structure :  QuestionID | AnswerID | Data
-                */
-
-                string strVMSData = "";
-
-
-                if (Action != 'N')
-                    goto Save;
-
-                DataTable dt = new DataTable();
-                dt.Clear();
-                dt.TableName = "TableVisitQuestion";
-                dt.Columns.Add("QuestionID");
-                dt.Columns.Add("AnswerID");
-                dt.Columns.Add("Data");
-                // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
-
-                string Is_Not_Valid = "False";
-
-
-                foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
-                {
-
-                    string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
-                    string Is_Mandatory = Convert.ToString((itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value);
-                    Label lblQuestionErr = (itemQuestion.FindControl("lblQuestionErr") as Label);
-                    string isField = "False";
-
-                    int AnswerTypeID = Convert.ToInt32((itemQuestion.FindControl("hdnAnswerID") as HiddenField).Value);
-                    string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
-
-                    if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
+                    remainDays = (dtVMSDate.Date - dtDoseDate.Date).TotalDays;
+                    if (remainDays > eligleDays)
                     {
-                        CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
-                        List<String> chkStrList = new List<string>();
-
-
-                        foreach (ListItem item in divCheckBoxIDI.Items)
+                        #region Variable and Value Declaration
+                        if (ViewState["Action"] != null)
                         {
-                            if (item.Selected)
-                            {
-                                isField = "True";
-
-                                chkStrList.Add(item.Value);
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                               // dtRow["Data"] = item.Value;
-                                dtRow["Data"] = item;
-
-                                dt.Rows.Add(dtRow);
-                            }
+                            Action = Convert.ToChar(ViewState["Action"]);
                         }
-
-                        if (Is_Mandatory == "*")
+                        if (ViewState["RequestID"] != null)
                         {
-                            if (isField == "False")
-                            {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
-                            }
+                            RequestID = Convert.ToInt32(ViewState["RequestID"]);
                         }
-
-                        //String YrStr = String.Join(";", chkStrList.ToArray());
-                    }
-                    else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
-                    {
-                        RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
-                        List<String> RadioStrList = new List<string>();
-                        foreach (ListItem item in divRadioButtonrdbYes.Items)
+                        ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
+                        string LoggedInUser = LoggedInUserID;
+                        string strName = txtName.Text;
+                        string strEmail = txtEmail.Text;
+                        string strPhone = txtPhone.Text;
+                        string strVisitDate = dtVMSDate.ToString("dd-MMM-yyyy");
+                        string strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
+                        string strCovidTestDate = string.Empty;
+                        if (!string.IsNullOrEmpty(txtAsmmtDate.Text))
                         {
-                            if (item.Selected)
-                            {
-                                isField = "True";
-                                RadioStrList.Add(item.Value);
-
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                              //  dtRow["Data"] = item.Value;
-                                dtRow["Data"] = item;
-                                dt.Rows.Add(dtRow);
-                            }
+                            DateTime dtAsmmtDate = Convert.ToDateTime(txtAsmmtDate.Text.Trim()).Date;
+                            strCovidTestDate = dtAsmmtDate.ToString("dd-MMM-yyyy");
                         }
-                        if (Is_Mandatory == "*")
+                        string strMeetUsers = hdnSelectedUserID.Value;
+                        string strTemperature = txtTemperature.Text;
+                        string strCovidColor = string.Empty;
+                        if (rdbGreen.Checked == true)
                         {
-                            if (isField == "False")
-                            {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
-                            }
+                            strCovidColor = "GREEN";
                         }
-                        //String YrStr = String.Join(";", RadioStrList.ToArray());
-
-                    }
-                    else if (AnswerType == "IMAGE") //Image Upload  
-                    {
-                        HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
-
-                        FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
-
-
-                        if (ChecklistImage.HasFile)
+                        if (rdbOrange.Checked == true)
                         {
-                            isField = "True";
-                            List<int> Lst_ValidImage = new List<int>();
-                            List<int> Lst_ImageSaved = new List<int>();
-                            List<string> Lst_Images = new List<string>();
-                            string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
-                            string fileName = string.Empty;
+                            strCovidColor = "ORANGE";
+                        }
+                        if (rdbRed.Checked == true)
+                        {
+                            strCovidColor = "RED";
+                        }
+                        #endregion
 
-                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/VMSImages/" + CurrentDate);
-                            if (!Directory.Exists(fileUploadPath))
+                        #region VisitQuestion
+                        /*
+                         Create table and store data in table and convert later in xml and pass in to Datatbase..
+                         Table Structure :  QuestionID | AnswerID | Data
+                        */
+
+                        string strVMSData = "";
+
+
+                        if (Action != 'N')
+                            goto Save;
+
+                        DataTable dt = new DataTable();
+                        dt.Clear();
+                        dt.TableName = "TableVisitQuestion";
+                        dt.Columns.Add("QuestionID");
+                        dt.Columns.Add("AnswerID");
+                        dt.Columns.Add("Data");
+                        // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
+
+                        string Is_Not_Valid = "False";
+
+
+                        foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
+                        {
+
+                            string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                            string Is_Mandatory = Convert.ToString((itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value);
+                            Label lblQuestionErr = (itemQuestion.FindControl("lblQuestionErr") as Label);
+                            string isField = "False";
+
+                            int AnswerTypeID = Convert.ToInt32((itemQuestion.FindControl("hdnAnswerID") as HiddenField).Value);
+                            string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
+
+                            if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
                             {
-                                Directory.CreateDirectory(fileUploadPath);
-                            }
+                                CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
+                                List<String> chkStrList = new List<string>();
 
-                            int i = 0;
 
-                            foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
-                            {
-                                string filetype = Path.GetExtension(postfiles.FileName);
-                                if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                foreach (ListItem item in divCheckBoxIDI.Items)
                                 {
-                                    Lst_ValidImage.Add(1);
-                                }
-                                else
-                                {
-                                    Lst_ValidImage.Add(0);
-                                }
-                            }
-                            foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
-                            {
-                                string filetype = Path.GetExtension(postfiles.FileName);
-                                if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
-                                {
-                                    try
+                                    if (item.Selected)
                                     {
-                                        fileName = HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
-                                        string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                                        string SaveLocation = Server.MapPath("~/VMSImages/" + CurrentDate) + "/" + fileName;
-                                        string FileLocation = imgPath + "/VMSImages/" + CurrentDate + "/" + fileName;// + "*WP";
-                                        string ImageName = Path.GetFileName(postfiles.FileName);
-                                        Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
-                                        var targetFile = SaveLocation;
+                                        isField = "True";
 
-                                        if (!Lst_ValidImage.Contains(0))
+                                        chkStrList.Add(item.Value);
+                                        DataRow dtRow = dt.NewRow();
+                                        dtRow["QuestionID"] = HeadId;
+                                        dtRow["AnswerID"] = AnswerTypeID;
+                                        // dtRow["Data"] = item.Value;
+                                        dtRow["Data"] = item;
+
+                                        dt.Rows.Add(dtRow);
+                                    }
+                                }
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
+
+                                //String YrStr = String.Join(";", chkStrList.ToArray());
+                            }
+                            else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
+                            {
+                                RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+                                List<String> RadioStrList = new List<string>();
+                                foreach (ListItem item in divRadioButtonrdbYes.Items)
+                                {
+                                    if (item.Selected)
+                                    {
+                                        isField = "True";
+                                        RadioStrList.Add(item.Value);
+
+                                        DataRow dtRow = dt.NewRow();
+                                        dtRow["QuestionID"] = HeadId;
+                                        dtRow["AnswerID"] = AnswerTypeID;
+                                        //  dtRow["Data"] = item.Value;
+                                        dtRow["Data"] = item;
+                                        dt.Rows.Add(dtRow);
+                                    }
+                                }
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
+                                //String YrStr = String.Join(";", RadioStrList.ToArray());
+
+                            }
+                            else if (AnswerType == "IMAGE") //Image Upload  
+                            {
+                                HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
+
+                                FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
+
+
+                                if (ChecklistImage.HasFile)
+                                {
+                                    isField = "True";
+                                    List<int> Lst_ValidImage = new List<int>();
+                                    List<int> Lst_ImageSaved = new List<int>();
+                                    List<string> Lst_Images = new List<string>();
+                                    string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                                    string fileName = string.Empty;
+
+                                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/VMSImages/" + CurrentDate);
+                                    if (!Directory.Exists(fileUploadPath))
+                                    {
+                                        Directory.CreateDirectory(fileUploadPath);
+                                    }
+
+                                    int i = 0;
+
+                                    foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                                    {
+                                        string filetype = Path.GetExtension(postfiles.FileName);
+                                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
                                         {
-                                            postfiles.SaveAs(SaveLocation);
-                                            Lst_Images.Add(FileLocation);
-
-                                            isField = "True";
-                                            DataRow dtRow = dt.NewRow();
-                                            dtRow["QuestionID"] = HeadId;
-                                            dtRow["AnswerID"] = AnswerTypeID;
-                                            dtRow["Data"] = FileLocation;
-                                            dt.Rows.Add(dtRow);
+                                            Lst_ValidImage.Add(1);
+                                        }
+                                        else
+                                        {
+                                            Lst_ValidImage.Add(0);
                                         }
                                     }
-                                    catch (Exception ex)
+                                    foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
                                     {
-                                        Lst_ImageSaved.Add(0); // Image failed to save
-                                        throw ex;
+                                        string filetype = Path.GetExtension(postfiles.FileName);
+                                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                        {
+                                            try
+                                            {
+                                                fileName = HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
+                                                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                                string SaveLocation = Server.MapPath("~/VMSImages/" + CurrentDate) + "/" + fileName;
+                                                string FileLocation = imgPath + "/VMSImages/" + CurrentDate + "/" + fileName;// + "*WP";
+                                                string ImageName = Path.GetFileName(postfiles.FileName);
+                                                Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
+                                                var targetFile = SaveLocation;
+
+                                                if (!Lst_ValidImage.Contains(0))
+                                                {
+                                                    postfiles.SaveAs(SaveLocation);
+                                                    Lst_Images.Add(FileLocation);
+
+                                                    isField = "True";
+                                                    DataRow dtRow = dt.NewRow();
+                                                    dtRow["QuestionID"] = HeadId;
+                                                    dtRow["AnswerID"] = AnswerTypeID;
+                                                    dtRow["Data"] = FileLocation;
+                                                    dt.Rows.Add(dtRow);
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Lst_ImageSaved.Add(0); // Image failed to save
+                                                throw ex;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Lst_ValidImage.Add(0);  // image extension is not proper
+                                        }
+                                        i = i + 1;
                                     }
+                                }
+
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
+
+                            }
+                            else if (AnswerType == "NUMBR") //Number Text Field
+                            {
+                                // isField = "True";
+                                HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
+                                string txtNum = sample.Controls[1].UniqueID;
+                                string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                if (sVal == "")
+                                {
+                                    isField = "False";
                                 }
                                 else
                                 {
-                                    Lst_ValidImage.Add(0);  // image extension is not proper
+                                    isField = "True";
                                 }
-                                i = i + 1;
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["QuestionID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerTypeID;
+                                dtRow["Data"] = sVal;
+                                dt.Rows.Add(dtRow);
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
+
                             }
-                        }
-
-
-                        if (Is_Mandatory == "*")
-                        {
-                            if (isField == "False")
+                            else if (AnswerType == "STEXT") //Normal Text Field
                             {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
+                                // isField = "True";
+                                HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
+                                string txtNum = sample.Controls[1].UniqueID;
+                                string sVal = Request.Form.GetValues(txtNum)[0];
+                                if (sVal == "")
+                                {
+                                    isField = "False";
+                                }
+                                else
+                                {
+                                    isField = "True";
+                                }
+
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["QuestionID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerTypeID;
+                                dtRow["Data"] = sVal;
+                                dt.Rows.Add(dtRow);
+
+
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
                             }
-                        }
-
-                    }
-                    else if (AnswerType == "NUMBR") //Number Text Field
-                    {
-                        // isField = "True";
-                        HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
-                        string txtNum = sample.Controls[1].UniqueID;
-                        string sVal = Request.Form.GetValues(txtNum)[0];
-
-                        if (sVal == "")
-                        {
-                            isField = "False";
-                        }
-                        else
-                        {
-                            isField = "True";
-                        }
-                        DataRow dtRow = dt.NewRow();
-                        dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerTypeID;
-                        dtRow["Data"] = sVal;
-                        dt.Rows.Add(dtRow);
-
-                        if (Is_Mandatory == "*")
-                        {
-                            if (isField == "False")
+                            else if (AnswerType == "LTEXT") // Textarea Field
                             {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
+                                isField = "True";
+                                HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
+                                string txtNum = sample.Controls[1].UniqueID;
+                                string sVal = Request.Form.GetValues(txtNum)[0];
+                                if (sVal == "")
+                                {
+                                    isField = "False";
+                                }
+                                else
+                                {
+                                    isField = "True";
+                                }
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["QuestionID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerTypeID;
+                                dtRow["Data"] = sVal;
+                                dt.Rows.Add(dtRow);
+
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
                             }
-                        }
-
-                    }
-                    else if (AnswerType == "STEXT") //Normal Text Field
-                    {
-                        // isField = "True";
-                        HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
-                        string txtNum = sample.Controls[1].UniqueID;
-                        string sVal = Request.Form.GetValues(txtNum)[0];
-                        if (sVal == "")
-                        {
-                            isField = "False";
-                        }
-                        else
-                        {
-                            isField = "True";
-                        }
-
-                        DataRow dtRow = dt.NewRow();
-                        dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerTypeID;
-                        dtRow["Data"] = sVal;
-                        dt.Rows.Add(dtRow);
-
-
-
-                        if (Is_Mandatory == "*")
-                        {
-                            if (isField == "False")
+                            else  //Normal Text Field
                             {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
+                                isField = "True";
+                                HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
+                                string txtNum = sample.Controls[1].UniqueID;
+                                string sVal = Request.Form.GetValues(txtNum)[0];
+                                if (sVal == "")
+                                {
+                                    isField = "False";
+                                }
+                                else
+                                {
+                                    isField = "True";
+                                }
+                                DataRow dtRow = dt.NewRow();
+                                dtRow["QuestionID"] = HeadId;
+                                dtRow["AnswerID"] = AnswerTypeID;
+                                dtRow["Data"] = sVal;
+                                dt.Rows.Add(dtRow);
+
+
+                                if (Is_Mandatory == "*")
+                                {
+                                    if (isField == "False")
+                                    {
+                                        Is_Not_Valid = "True";
+                                        lblQuestionErr.Text = "Please provide valid data.";
+                                    }
+                                }
                             }
                         }
-                    }
-                    else if (AnswerType == "LTEXT") // Textarea Field
-                    {
-                        isField = "True";
-                        HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
-                        string txtNum = sample.Controls[1].UniqueID;
-                        string sVal = Request.Form.GetValues(txtNum)[0];
-                        if (sVal == "")
-                        {
-                            isField = "False";
-                        }
-                        else
-                        {
-                            isField = "True";
-                        }
-                        DataRow dtRow = dt.NewRow();
-                        dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerTypeID;
-                        dtRow["Data"] = sVal;
-                        dt.Rows.Add(dtRow);
 
 
-                        if (Is_Mandatory == "*")
+
+                        if (Is_Not_Valid == "True")
                         {
-                            if (isField == "False")
+                            //call repeater
+                            BindVMSConfig();
+                            return;
+                        }
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            DataTable DTS = new DataTable();
+                            DTS = dt.Copy();
+
+                            MemoryStream str = new MemoryStream();
+                            DTS.WriteXml(str, true);
+                            str.Seek(0, SeekOrigin.Begin);
+                            StreamReader sr = new StreamReader(str);
+                            string xmlstr;
+                            xmlstr = sr.ReadToEnd();
+                            strVMSData = xmlstr;
+                        }
+                    #endregion
+
+                    #region SaveDataToDB
+                    Save:
+                        DataSet dsVMSQuestionData = new DataSet();
+                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"].ToString(), Session["fileContent"].ToString(), strDoseDate, LoggedInUserID);
+
+                        if (dsVMSQuestionData.Tables.Count > 0)
+                        {
+                            if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                             {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
+                                int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
+                                if (status == 1 && Action == 'N')
+                                {
+                                    //SetRepeater();
+                                    //divinsertbutton.visible = false;
+                                    lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+                                    mpeVMSRequestSaveSuccess.Show();
+                                }
+                                else if (status == 1 && Action != 'N')
+                                {
+                                    Response.Write("<script>alert('Status changed.');</script>");
+                                    Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                                }
+                                else
+                                {
+                                    SetRepeater();
+                                    divError.Visible = true;
+                                    lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
+                                }
                             }
                         }
-                    }
-                    else  //Normal Text Field
-                    {
-                        isField = "True";
-                        HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
-                        string txtNum = sample.Controls[1].UniqueID;
-                        string sVal = Request.Form.GetValues(txtNum)[0];
-                        if (sVal == "")
-                        {
-                            isField = "False";
-                        }
-                        else
-                        {
-                            isField = "True";
-                        }
-                        DataRow dtRow = dt.NewRow();
-                        dtRow["QuestionID"] = HeadId;
-                        dtRow["AnswerID"] = AnswerTypeID;
-                        dtRow["Data"] = sVal;
-                        dt.Rows.Add(dtRow);
-
-
-                        if (Is_Mandatory == "*")
-                        {
-                            if (isField == "False")
-                            {
-                                Is_Not_Valid = "True";
-                                lblQuestionErr.Text = "Please provide valid data.";
-                            }
-                        }
+                        #endregion
                     }
                 }
-
-
-
-                if (Is_Not_Valid == "True")
+                else
                 {
-                    //call repeater
-                    BindVMSConfig();
-                    return;
+                    Response.Write("<script>alert('You are not eligible for Visit.')</script>");
                 }
-
-                if (dt.Rows.Count > 0)
-                {
-                    DataTable DTS = new DataTable();
-                    DTS = dt.Copy();
-
-                    MemoryStream str = new MemoryStream();
-                    DTS.WriteXml(str, true);
-                    str.Seek(0, SeekOrigin.Begin);
-                    StreamReader sr = new StreamReader(str);
-                    string xmlstr;
-                    xmlstr = sr.ReadToEnd();
-                    strVMSData = xmlstr;
-                }
-            #endregion
-
-            #region SaveDataToDB
-            Save:
-                DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, LoggedInUserID);
-
-                if (dsVMSQuestionData.Tables.Count > 0)
-                {
-                    if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
-                    {
-                        int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
-                        if (status == 1 && Action == 'N')
-                        {
-                            //SetRepeater();
-                            //divinsertbutton.visible = false;
-                            lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-                            mpeVMSRequestSaveSuccess.Show();
-                        }
-                        else if (status == 1 && Action != 'N')
-                        {
-                            Response.Write("<script>alert('Status changed.');</script>");
-                            Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
-                        }
-                        else
-                        {
-                            SetRepeater();
-                            divError.Visible = true;
-                            lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
-                        }
-                    }
-                }
-                #endregion
             }
             catch (Exception ex)
             {
