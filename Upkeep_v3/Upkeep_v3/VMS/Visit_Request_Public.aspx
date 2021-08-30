@@ -660,6 +660,9 @@ border: 3px solid #ccc;*/
                             </div>
 
                         </div>
+                        
+                    </div>
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
                             <div class="font-weight-bold">Upload Vaccination Certificate</div>
@@ -683,6 +686,27 @@ border: 3px solid #ccc;*/
                     </div>
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                            <div class="font-weight-bold">Upload Your Aadhar Photo ID</div>
+                            </br>
+                              <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                  <span>
+                                      <i class="fa fa-camera"></i>
+                                      <span>Click Photo</span>
+                                  </span>
+
+                              </button>
+
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                Please click your Aadhar Card ( Front ) for verification purposes.
+                            </div>
+
+
+                        </div>
+
+                        
+                    </div>
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
                             <div class="input-group date">
@@ -697,6 +721,7 @@ border: 3px solid #ccc;*/
 
 
                         </div>
+
                     </div>
 
                     <br />
