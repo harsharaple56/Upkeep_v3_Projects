@@ -2890,6 +2890,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="Visitor_Photo" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Vaccine_Certificate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Date_of_Vaccination" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Visitor_IDProof" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>

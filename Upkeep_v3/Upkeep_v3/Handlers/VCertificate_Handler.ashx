@@ -51,9 +51,6 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
                     Directory.CreateDirectory(fileUploadPath_Profile);
                 }
 
-                Random r = new Random();
-                int genRand = r.Next(1, 1000);
-
                 DataSet ds = new DataSet();
                 int id = 0;
                 ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
@@ -64,7 +61,7 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
                 id++;
 
                 fileExtension = Path.GetExtension(fileName);
-                str_image = id + "_" + genRand + "_" + DateTime.Now.ToString("dd-MMM-yy") + fileExtension;
+                str_image = id + "_" + DateTime.Now.ToString("dd-MMM-yy") + fileExtension;
 
                 string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
                 ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;

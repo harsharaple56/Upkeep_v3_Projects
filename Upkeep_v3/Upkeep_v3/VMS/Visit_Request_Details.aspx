@@ -574,17 +574,32 @@ border: 3px solid #ccc;*/
                                                                                             <h2 class="font-weight-bold m--font-danger">
                                             <asp:Label id="lbl_DoseDate" runat="server" CssClass="font-weight-bold m--font-danger"></asp:Label>
                                                                                             </h2>
-                                                </br>
+                                                <br/>
 
                                             <div>
                                                 <h5 class="font-weight-bold m--font-danger">NOTE: Please verify if the Vaccination date shown above is mentioned in the Certificate on the Left under </h5>
                                             </div>
                                             <h4 class="m--font-success">Date of 2nd Dose ुसा डोसची तारीख</h4>
-                                            </br>
+                                            <br/>
 
                                             <div>
                                                 <h5 class="font-weight-bold m--font-danger">If Date is Same , then Approve the Request , else Reject it</h5>
                                             </div>
+                                        </div>
+                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                                       
+                                            <div class="m-card-profile__title">
+                                                <b>Photo of ID Proof </b>
+                                            </div>
+                                            <div class="m-card-profile"">
+                                                 <div class="">
+                                                <div class="m-card-profile__pic-wrapper" style="margin: 0px;">
+                                                     <asp:Image ID="IDProof" runat="server" />
+                                                </div>
+                                            </div>
+                                            </div>
+                                           
+
                                         </div>
 
                                     </div>

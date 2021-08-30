@@ -398,7 +398,7 @@ namespace Upkeep_v3.VMS
                         BindVMSConfig();
 
                         bool isVaccineCheck_Enable = Convert.ToBoolean(dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
-                        if (isVaccineCheck_Enable = true)
+                        if (isVaccineCheck_Enable == true)
                         {
                             div_vaccination.Visible = true;
                         }
@@ -648,6 +648,7 @@ namespace Upkeep_v3.VMS
                     if (dsData.Tables[6].Rows.Count > 0)
                     {
                         ContentPlaceHolder1_imgProfilePic.ImageUrl = dsData.Tables[6].Rows[0]["Visitor_Photo"].ToString();
+                        IDProof.ImageUrl = dsData.Tables[6].Rows[0]["ID_Proof"].ToString();
                         iframe_Document.Attributes.Add("src", dsData.Tables[6].Rows[0]["Vaccine_Certificate"].ToString());
                         lbl_DoseDate.Text = DateTime.Parse(dsData.Tables[6].Rows[0]["Date_of_Vaccination"].ToString()).ToString("dd-MMM-yyyy");
                     }
@@ -1179,7 +1180,7 @@ namespace Upkeep_v3.VMS
             #region SaveDataToDB
             Save:
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature,"","","", LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature,"","","","", LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {
