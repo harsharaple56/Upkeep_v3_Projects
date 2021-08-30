@@ -385,11 +385,14 @@ namespace Upkeep_v3.VMS
                 if (blMeetingComp == "True")
                 {
                     // rfvMeeting.Enabled = true;
+                    div_MeetingWith.Visible = true;
                     rfvMeetingNew.Enabled = true;
                 }
                 else
                 {
                     div_MeetingWith.Visible = false;
+                    rfvMeetingNew.Enabled = false;
+
                 }
 
             }
