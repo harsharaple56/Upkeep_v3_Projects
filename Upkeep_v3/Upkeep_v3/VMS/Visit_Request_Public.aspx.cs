@@ -341,9 +341,14 @@ namespace Upkeep_v3.VMS
 
                 ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigID);
+                string Config_Desc = string.Empty;
+
 
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString()))
                 {
+                    Config_Desc = Convert.ToString(dsConfig.Tables[0].Rows[0]["Config_Title"]);
+                    lbl_Form_Name.Text = Config_Desc;
+
                     divDesc.Visible = true;
                     spnDesc.InnerText = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                 }
@@ -412,7 +417,7 @@ namespace Upkeep_v3.VMS
 
                 DataSet dsData = new DataSet();
                 dsData = ObjUpkeep.Bind_VMSRequestDetails(RequestID, LoggedInUserID);
-
+                string Config_Desc = string.Empty;
                 if (dsData.Tables.Count > 0)
                 {
 
@@ -422,7 +427,9 @@ namespace Upkeep_v3.VMS
                         ViewState["ConfigID"] = Convert.ToInt32(dsData.Tables[0].Rows[0]["VMS_Config_ID"]);
 
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
+                        
                         BindVMSConfig();
+
                     }
                     //Bind inserted Visit data
                     if (dsData.Tables[1].Rows.Count > 0)

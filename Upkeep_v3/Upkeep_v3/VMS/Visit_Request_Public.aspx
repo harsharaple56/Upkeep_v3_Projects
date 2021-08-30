@@ -443,7 +443,8 @@ border: 3px solid #ccc;*/
                     <div class="m-portlet__head-wrapper">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">[[Form Name]]
+                                <h3 class="m-portlet__head-text">
+                                    <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
                                 </h3>
                             </div>
                         </div>
@@ -451,8 +452,6 @@ border: 3px solid #ccc;*/
                         <div class="m-portlet__head-tools">
 
                             <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
-
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
 
                             <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                             <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -723,6 +722,14 @@ border: 3px solid #ccc;*/
                         </div>
 
                     </div>
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+
+                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                        </div>
+                    </div>
+                    
+                    
 
                     <br />
                     <%-- Covid19 assessment --%>
