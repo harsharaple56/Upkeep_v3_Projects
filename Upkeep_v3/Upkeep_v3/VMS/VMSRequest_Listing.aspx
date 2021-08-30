@@ -154,7 +154,7 @@
                                 <ul class="m-portlet__nav">
 
                                     <li class="m-portlet__nav-item">
-											<a class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <a href="Visit_Request.aspx" class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 												<span>
 													<i class="flaticon-add"></i>
 													<span>New Visit Request</span>

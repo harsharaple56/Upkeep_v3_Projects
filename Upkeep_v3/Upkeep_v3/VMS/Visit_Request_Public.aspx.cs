@@ -499,7 +499,7 @@ namespace Upkeep_v3.VMS
                         {
                             case "Apply":
                                 divAlertApply.Visible = true;
-                                btnReject.Visible = true;
+                                //btnReject.Visible = true;
                                 ViewState["Action"] = 'I';
                                 break;
                             case "IN":
