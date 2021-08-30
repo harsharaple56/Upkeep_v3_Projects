@@ -28,13 +28,24 @@ namespace Upkeep_v3.VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Request_ID = 2;
+            Request_ID = Convert.ToInt32(Request.QueryString["Request_ID"]);
 
             if (IsPostBack)
                 return;
             else
             {
-                Generate_Report();
+                if (Request_ID > 0)
+                {
+                    div_Visitor_ID.Visible = true;
+                    div_No_Visitor_ID.Visible = false;
+                    Generate_Report();
+                }
+                else
+                {
+                    div_Visitor_ID.Visible = false;
+                    div_No_Visitor_ID.Visible = true;
+                }
+                
             }
         }
 

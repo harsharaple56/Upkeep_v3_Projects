@@ -22,6 +22,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// div_Visitor_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Visitor_ID;
+        
+        /// <summary>
         /// rv_Visitor_ID control.
         /// </summary>
         /// <remarks>
@@ -29,5 +38,14 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.Reporting.WebForms.ReportViewer rv_Visitor_ID;
+        
+        /// <summary>
+        /// div_No_Visitor_ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_No_Visitor_ID;
     }
 }

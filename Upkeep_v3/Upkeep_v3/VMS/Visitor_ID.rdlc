@@ -42,7 +42,7 @@
             <Sizing>FitProportional</Sizing>
             <Top>0.635cm</Top>
             <Left>2.06375cm</Left>
-            <Height>2.02917cm</Height>
+            <Height>2.16458cm</Height>
             <Width>3.16278cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -138,7 +138,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Date of Visit</Value>
+                    <Value>Visit Request ID</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -151,7 +151,7 @@
             <Top>7.1925cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.29306cm</Width>
+            <Width>2.89278cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -260,7 +260,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!Visit_Date.Value, "ds_Visitor_Info_ID")</Value>
+                    <Value>=First(Fields!Visit_Request_ID.Value, "ds_Visitor_Info_ID")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -269,9 +269,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>7.1925cm</Top>
-            <Left>2.75167cm</Left>
+            <Left>3.35139cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.15334cm</Width>
+            <Width>3.55362cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -406,7 +406,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.90806cm</Top>
+            <Top>10.86056cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.56472cm</Height>
             <Width>6.55222cm</Width>
@@ -422,11 +422,75 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Vaccination Date</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>9.52167cm</Top>
+            <Left>0.35278cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.36903cm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox14">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Vaccination_Date.Value, "ds_Visitor_Info_ID")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>9.52167cm</Top>
+            <Left>3.82764cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.07735cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>0.29287cm</Top>
         <Left>0.25259cm</Left>
-        <Height>10.47278cm</Height>
+        <Height>11.42528cm</Height>
         <Width>7.2644cm</Width>
         <Style>
           <Border>
@@ -435,7 +499,7 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>4.35417in</Height>
+    <Height>4.73611in</Height>
     <Style />
   </Body>
   <Width>3.0775in</Width>
@@ -504,6 +568,14 @@
         </Field>
         <Field Name="Visit_Request_Date_Text">
           <DataField>Visit_Request_Date_Text</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Vaccination_Date">
+          <DataField>Vaccination_Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visit_Request_ID">
+          <DataField>Visit_Request_ID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

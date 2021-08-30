@@ -16,7 +16,8 @@
         <div class="m-content">
 
             <div class="row">
-                <div class="col-lg-12">
+
+                <div id="div_Visitor_ID" runat="server" class="col-lg-12">
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
                         <div class="m-portlet__head">
@@ -47,6 +48,21 @@
 
                     </div>
                 </div>
+
+                <div id="div_No_Visitor_ID" runat="server" class="col-lg-12">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+                        
+                        <div class="m-portlet__body">
+
+                            NO ID Card found
+                        </div>
+
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

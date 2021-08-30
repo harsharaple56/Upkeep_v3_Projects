@@ -299,6 +299,10 @@ namespace Upkeep_v3.VMS {
             
             private global::System.Data.DataColumn columnVisit_Request_Date_Text;
             
+            private global::System.Data.DataColumn columnVaccination_Date;
+            
+            private global::System.Data.DataColumn columnVisit_Request_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dt_Visitor_InfoDataTable() {
@@ -414,6 +418,22 @@ namespace Upkeep_v3.VMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Vaccination_DateColumn {
+                get {
+                    return this.columnVaccination_Date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Visit_Request_IDColumn {
+                get {
+                    return this.columnVisit_Request_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +469,7 @@ namespace Upkeep_v3.VMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dt_Visitor_InfoRow Adddt_Visitor_InfoRow(string Company_Name, string Company_Logo, string Visitor_Photo, string Visitor_Name, string Visitor_Contact, string Visitor_Email, string Visit_Date, string Visit_Request_Date, string Vaccination_Status, string Visit_Request_Date_Text) {
+            public dt_Visitor_InfoRow Adddt_Visitor_InfoRow(string Company_Name, string Company_Logo, string Visitor_Photo, string Visitor_Name, string Visitor_Contact, string Visitor_Email, string Visit_Date, string Visit_Request_Date, string Vaccination_Status, string Visit_Request_Date_Text, string Vaccination_Date, string Visit_Request_ID) {
                 dt_Visitor_InfoRow rowdt_Visitor_InfoRow = ((dt_Visitor_InfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Company_Name,
@@ -461,7 +481,9 @@ namespace Upkeep_v3.VMS {
                         Visit_Date,
                         Visit_Request_Date,
                         Vaccination_Status,
-                        Visit_Request_Date_Text};
+                        Visit_Request_Date_Text,
+                        Vaccination_Date,
+                        Visit_Request_ID};
                 rowdt_Visitor_InfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdt_Visitor_InfoRow);
                 return rowdt_Visitor_InfoRow;
@@ -494,6 +516,8 @@ namespace Upkeep_v3.VMS {
                 this.columnVisit_Request_Date = base.Columns["Visit_Request_Date"];
                 this.columnVaccination_Status = base.Columns["Vaccination_Status"];
                 this.columnVisit_Request_Date_Text = base.Columns["Visit_Request_Date_Text"];
+                this.columnVaccination_Date = base.Columns["Vaccination_Date"];
+                this.columnVisit_Request_ID = base.Columns["Visit_Request_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +543,10 @@ namespace Upkeep_v3.VMS {
                 base.Columns.Add(this.columnVaccination_Status);
                 this.columnVisit_Request_Date_Text = new global::System.Data.DataColumn("Visit_Request_Date_Text", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVisit_Request_Date_Text);
+                this.columnVaccination_Date = new global::System.Data.DataColumn("Vaccination_Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVaccination_Date);
+                this.columnVisit_Request_ID = new global::System.Data.DataColumn("Visit_Request_ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVisit_Request_ID);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -822,6 +850,38 @@ namespace Upkeep_v3.VMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Vaccination_Date {
+                get {
+                    try {
+                        return ((string)(this[this.tabledt_Visitor_Info.Vaccination_DateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Vaccination_Date\' in table \'dt_Visitor_Info\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledt_Visitor_Info.Vaccination_DateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Visit_Request_ID {
+                get {
+                    try {
+                        return ((string)(this[this.tabledt_Visitor_Info.Visit_Request_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Visit_Request_ID\' in table \'dt_Visitor_Info\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledt_Visitor_Info.Visit_Request_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCompany_NameNull() {
                 return this.IsNull(this.tabledt_Visitor_Info.Company_NameColumn);
             }
@@ -938,6 +998,30 @@ namespace Upkeep_v3.VMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetVisit_Request_Date_TextNull() {
                 this[this.tabledt_Visitor_Info.Visit_Request_Date_TextColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsVaccination_DateNull() {
+                return this.IsNull(this.tabledt_Visitor_Info.Vaccination_DateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetVaccination_DateNull() {
+                this[this.tabledt_Visitor_Info.Vaccination_DateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsVisit_Request_IDNull() {
+                return this.IsNull(this.tabledt_Visitor_Info.Visit_Request_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetVisit_Request_IDNull() {
+                this[this.tabledt_Visitor_Info.Visit_Request_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
