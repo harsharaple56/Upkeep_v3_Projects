@@ -238,13 +238,22 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtVMSDate;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// lbl_MeetingWith control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_MeetingWith;
         
         /// <summary>
         /// div_MeetingWith control.
@@ -265,13 +274,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtMeetUsers;
         
         /// <summary>
-        /// rfvMeetingNew control.
+        /// div_VisitDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMeetingNew;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_VisitDetails;
         
         /// <summary>
         /// rptQuestionDetails control.

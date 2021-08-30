@@ -172,8 +172,114 @@ border: 3px solid #ccc;*/
             window.addEventListener('load', startup, false);
         })();
     </script>
+    <script>
+        /* JS comes here */
+        (function () {
+
+            var width = 280; // We will scale the photo width to this
+            var height = 0; // This will be computed based on the input stream
+
+            var streaming = false;
+
+            var video = null;
+            var canvas = null;
+            var photo = null;
+            var startbutton = null;
+
+            function startup() {
+                video = document.getElementById('video1');
+                canvas = document.getElementById('canvas1');
+                photo = document.getElementById('idproof');
+                startbutton = document.getElementById('startbutton1');
+
+                navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                        video.play();
+                    })
+                    .catch(function (err) {
+                        console.log("An error occurred: " + err);
+                    });
+
+                video.addEventListener('canplay', function (ev) {
+                    if (!streaming) {
+                        height = video.videoHeight / (video.videoWidth / width);
+
+                        if (isNaN(height)) {
+                            height = width / (4 / 3);
+                        }
+
+                        video.setAttribute('width', width);
+                        video.setAttribute('height', height);
+                        canvas.setAttribute('width', width);
+                        canvas.setAttribute('height', height);
+                        streaming = true;
+                    }
+                }, false);
+
+                startbutton.addEventListener('click', function (ev) {
+                    takepicture();
+                    ev.preventDefault();
+                }, false);
+
+                clearphoto();
+            }
+
+
+            function clearphoto() {
+                var context = canvas.getContext('2d');
+                context.fillStyle = "#AAA";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            }
+
+            function takepicture() {
+                var context = canvas.getContext('2d');
+                if (width && height) {
+                    canvas.width = width;
+                    canvas.height = height;
+                    context.drawImage(video, 0, 0, width, height);
+
+                    var data = canvas.toDataURL('image/png');
+                    photo.setAttribute('src', data);
+                } else {
+                    clearphoto();
+                }
+            }
+
+            window.addEventListener('load', startup, false);
+        })();
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            var getValue = $("input[name=vCode]").val();
+            if (getValue != undefined) {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr.warning("Your are not eligible for Visit.");
+            }
+
+
             Dropzone.autoDiscover = false;
             $("#dZUpload").dropzone({
                 url: "/Handlers/VCertificate_Handler.ashx",
@@ -190,12 +296,46 @@ border: 3px solid #ccc;*/
                 success: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-success");
-                    alert("Successfully uploaded :" + fileName);
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    toastr.success("Your File Successfully Uploaded\n" + fileName);
                 },
                 error: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-error");
-                    alert("File not uploaded :" + fileName);
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    toastr.error("Your File Not Uploaded : " + fileName);
                 }
             });
         });
@@ -209,15 +349,109 @@ border: 3px solid #ccc;*/
                 data: "{data: '" + $("#photo")[0].src + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: OnSuccess,
+                success: function (response) {
+                    $("#m_modal_6").modal("hide");
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.success("Your Photo Successfully Added..!");
+                },
                 failure: function (response) {
-                    alert(response.d);
+                    $("#m_modal_6").modal("hide");
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.error("Your Photo Not Added..!");
                 }
             });
         }
-        function OnSuccess(response) {
-            alert('Your Photo Successfully uploaded!');
+    </script>
+
+    <script type="text/javascript">
+        function InserUserIDProof() {
+            $.ajax({
+                type: "POST",
+                url: "Visit_Request_Public.aspx/SaveUserIdProof",
+                data: "{data: '" + $("#idproof")[0].src + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#m_modal_7").modal("hide");
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.success("Your ID Proof Successfully Added..!");
+                },
+                failure: function (response) {
+                    $("#m_modal_7").modal("hide");
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.error("Your ID Proof Not Added..!");
+                }
+            });
         }
+
     </script>
 
 
@@ -233,6 +467,13 @@ border: 3px solid #ccc;*/
                 format: 'dd-MM-yyyy',
                 showMeridian: true
             });
+
+            var txtControl = null;
+            var txtHdn = null;
+            //debugger;
+            $find('<%= mpeMeetingUsers.ClientID %>').show();
+            txtHdn = hdnMeetUsersID.toString();
+            txtControl = txtMeetUsers;
         });
 
         //function AddRow() {
@@ -445,6 +686,7 @@ border: 3px solid #ccc;*/
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
                                     <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
+
                                 </h3>
                             </div>
                         </div>
@@ -452,6 +694,7 @@ border: 3px solid #ccc;*/
                         <div class="m-portlet__head-tools">
 
                             <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
+
 
                             <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                             <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -498,7 +741,7 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
                         </div>
@@ -508,7 +751,7 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
+                            <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
 
@@ -525,72 +768,71 @@ border: 3px solid #ccc;*/
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
                             </div>
-                            <span id="error_startDate" class="text-danger small"></span>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
 
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
-                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
 
-                        <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                        <div id="div_MeetingWith" runat="server">
-                            <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
-                            <div class="col-md-4 col-form-label">
-                                <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
-                                <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                                <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" /></div>
-                            <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+
+                        <label id="lbl_MeetingWith" runat="server" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                        <div id="div_MeetingWith" runat="server" class="col-md-4 col-form-label">
+                            <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                            <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
+                            <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
+
+                            <%-- <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
                         </div>
                     </div>
+
 
 
                     <br />
 
-                    <div class="m-form__heading" style="text-align: center;">
+                    <div id="div_VisitDetails" runat="server" class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
-                    </div>
 
 
-                    <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
-                        <ItemTemplate>
+                        <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
+                            <ItemTemplate>
 
-                            <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
-                            <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
-                            <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
+                                <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
+                                <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
-                            <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                <div class="col-md-3">
-                                    <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                    <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
-                                    <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
-                                    <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                </div>
-                                <div class="col-md-9">
-
-                                    <div id="divText" style="display: none" runat="server">
-                                        <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <div class="col-md-3">
+                                        <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
+                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                        <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
+                                        <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     </div>
+                                    <div class="col-md-9">
 
-                                    <div id="divNumber" style="display: none" runat="server">
-                                        <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
-                                    </div>
-
-                                    <div id="divTextArea" style="display: none" runat="server">
-                                        <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
-                                    </div>
-
-                                    <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
-                                        <div class="m-radio-inline" style="padding-left: 0px;">
-                                            <label class="m-radio" style="padding-left: 0px;">
-                                                <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
-                                                </asp:RadioButtonList>
-                                            </label>
+                                        <div id="divText" style="display: none" runat="server">
+                                            <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                         </div>
-                                    </div>
 
-                                    <div id="divImage" style="display: none" runat="server">
-                                        <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" AllowMultiple="true" />
-                                        &nbsp;
+                                        <div id="divNumber" style="display: none" runat="server">
+                                            <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
+                                        </div>
+
+                                        <div id="divTextArea" style="display: none" runat="server">
+                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                        </div>
+
+                                        <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
+                                            <div class="m-radio-inline" style="padding-left: 0px;">
+                                                <label class="m-radio" style="padding-left: 0px;">
+                                                    <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                                    </asp:RadioButtonList>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="divImage" style="display: none" runat="server">
+                                            <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" AllowMultiple="true" />
+                                            &nbsp;
 
                                         <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
 
@@ -602,39 +844,40 @@ border: 3px solid #ccc;*/
                                         </button>
 
 
-                                        <div id="divImgBtns" style="display: none" runat="server">
-                                            <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
-                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                <%--data-images="<%#Eval("Question_Data") %>"--%>
-                                            </button>
-                                            <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
-                                        </div>
-                                    </div>
-
-                                    <div id="divDate" style="display: none" runat="server">
-                                        <div class="input-group date">
-                                            <asp:TextBox ID="VisitDate" runat="server" autocomplete="off"
-                                                class="form-control m-input datetimepicker"
-                                                placeholder="Select date & time"></asp:TextBox>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                            <div id="divImgBtns" style="display: none" runat="server">
+                                                <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                    data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
+                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                    <%--data-images="<%#Eval("Question_Data") %>"--%>
+                                                </button>
+                                                <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="divCheckBox" style="display: none" runat="server">
-                                        <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
+
+                                        <div id="divDate" style="display: none" runat="server">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="VisitDate" runat="server" autocomplete="off"
+                                                    class="form-control m-input datetimepicker"
+                                                    placeholder="Select date & time"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divCheckBox" style="display: none" runat="server">
+                                            <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
-                                Style="display: none;"></asp:Label>
-                        </FooterTemplate>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                                    Style="display: none;"></asp:Label>
+                            </FooterTemplate>
 
-                    </asp:Repeater>
+                        </asp:Repeater>
+                    </div>
 
                     <br />
 
@@ -644,56 +887,74 @@ border: 3px solid #ccc;*/
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                            <div class="font-weight-bold">Upload Your Photo</div>
-                            </br>
-                              <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-                                  <span>
-                                      <i class="fa fa-camera"></i>
-                                      <span>Click Photo</span>
-                                  </span>
+                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
+                            <div class="input-group date">
+                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                </div>
+                            </div>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2nd Dose Vaccination Date"></asp:RequiredFieldValidator>
+                        </div>
 
-                              </button>
+                    </div>
+                    &nbsp;
+                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+
+                             <div class="font-weight-bold">Upload Vaccination Certificate</div>
+                             <br />
+
+                             <div id="div_Upload" class="modal-body">
+                                 <div class="m-dropzone dropzone" id="dZUpload">
+                                     <div class="m-dropzone__msg dz-message needsclick">
+                                         <h2 class="m-dropzone__msg-title">Drop files here or click to upload.</h2>
+                                         <h5 class="m-dropzone__msg-desc">Max file limit : 5 Mb</h5>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+                             <div class="alert m-alert m-alert--default" role="alert">
+                                 Please upload your 2nd Dose vaccination certificate provided by CoWIN.
+                             </div>
+                         </div>
+
+                     </div>
+                    &nbsp;
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                            <div class="font-weight-bold">Upload Your Photo</div>
+                            <br />
+                            <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                <span>
+                                    <i class="fa fa-camera"></i>
+                                    <span>Click Photo</span>
+                                </span>
+
+                            </button>
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
                             </div>
 
                         </div>
-                        
-                    </div>
-                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-
-                            <div class="font-weight-bold">Upload Vaccination Certificate</div>
-                            </br>
-                            
-                                  <div id="div_Upload" class="modal-body">
-                                      <div class="m-dropzone dropzone" id="dZUpload">
-                                          <div class="m-dropzone__msg dz-message needsclick">
-                                              <h2 class="m-dropzone__msg-title">Drop files here or click to upload.</h2>
-                                              <h5 class="m-dropzone__msg-desc">Max file limit : 5 Mb</h5>
-                                          </div>
-                                      </div>
-                                  </div>
-
-
-                            <div class="alert m-alert m-alert--default" role="alert">
-                                Please upload your 2nd Dose vaccination certificate provided by CoWIN.
-                            </div>
-                        </div>
 
                     </div>
+                    &nbsp;
+
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <div class="font-weight-bold">Upload Your Aadhar Photo ID</div>
-                            </br>
-                              <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-                                  <span>
-                                      <i class="fa fa-camera"></i>
-                                      <span>Click Photo</span>
-                                  </span>
+                            <br />
+                            <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
+                                <span>
+                                    <i class="fa fa-camera"></i>
+                                    <span>Click Photo</span>
+                                </span>
 
-                              </button>
+                            </button>
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please click your Aadhar Card ( Front ) for verification purposes.
@@ -702,35 +963,14 @@ border: 3px solid #ccc;*/
 
                         </div>
 
-                        
-                    </div>
-                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
-                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
-                            <div class="input-group date">
-                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                </div>
-
-                            </div>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2nd Dose Vaccination Date"></asp:RequiredFieldValidator>
-
-
-                        </div>
-
-                    </div>
-                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-
-                        <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
-                        </div>
                     </div>
                     
-                    
-
+					<div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                        </div>
+                    </div>
                     <br />
                     <%-- Covid19 assessment --%>
                     <div id="divCovid" runat="server" visible="false">
@@ -840,6 +1080,46 @@ border: 3px solid #ccc;*/
                     </div>
                 </div>
 
+                <div class="modal fade" id="m_modal_7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle1">Click Photo and Upload</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body m--align-center">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <video id="video1">Video stream not available.</video>
+
+                                        <button id="startbutton1" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                            <span>
+                                                <i class="fa fa-camera"></i>
+                                                <span>Click Photo</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <canvas id="canvas1">
+                                            <img id="idproof" style="width: 14rem" alt="The screen capture will appear in this box." />
+                                        </canvas>
+                                        <button onclick="InserUserIDProof()" type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                            <span>
+                                                <i class="fa fa-cloud-upload-alt"></i>
+                                                <span>Upload ID Proof</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
 
 

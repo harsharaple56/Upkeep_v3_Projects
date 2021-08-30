@@ -12,7 +12,6 @@ using System.Linq;
 using System.Web.Services;
 using Upkeep_v3.SMS;
 
-
 namespace Upkeep_v3.VMS
 {
     public partial class Visit_Request_Public : System.Web.UI.Page
@@ -29,9 +28,6 @@ namespace Upkeep_v3.VMS
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
-            Random r = new Random();
-            int genRand = r.Next(1, 1000);
-
             Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
             DataSet ds = new DataSet();
             int CompanyID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
@@ -42,7 +38,7 @@ namespace Upkeep_v3.VMS
                 id = Convert.ToInt32(row["RequestID"]);
             }
             id++;
-            string fileName = id + "_" + genRand + "_" + DateTime.Now.ToString("dd-MMM-yy");
+            string fileName = id + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
 
             //Convert Base64 Encoded string to Byte Array.
             byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
@@ -54,10 +50,42 @@ namespace Upkeep_v3.VMS
 
             string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
 
-            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + fileName + fileExtension;
+            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + fileName + fileExtension;
 
             File.WriteAllBytes(filePath, imageBytes);
             HttpContext.Current.Session["UserPhoto"] = ProfilePhoto_FilePath;
+            return true;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public static bool SaveUserIdProof(string data)
+        {
+            Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
+            DataSet ds = new DataSet();
+            int CompanyID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
+            int id = 0;
+            ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                id = Convert.ToInt32(row["RequestID"]);
+            }
+            id++;
+            string fileName = id + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+            //Convert Base64 Encoded string to Byte Array.
+            byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
+
+            //Save the Byte Array as Image File.
+            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_IDProof/{0}.jpg", fileName));
+
+            string fileExtension = Path.GetExtension(filePath);
+
+            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+
+            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + fileName + fileExtension;
+
+            File.WriteAllBytes(filePath, imageBytes);
+            HttpContext.Current.Session["User_IDProof"] = ProfilePhoto_FilePath;
             return true;
         }
 
@@ -82,8 +110,11 @@ namespace Upkeep_v3.VMS
                 //    return;
                 //}
                 //else
-                if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
+                if ((string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor)) || (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor)))
                 {
+                    if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
+                        SessionVisitor = Convert.ToString("Visitor");
+
                     divTitle.Visible = false;
                     if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ConfigID"]))
                     {
@@ -121,6 +152,7 @@ namespace Upkeep_v3.VMS
                 Fetch_User_UserGroupList();
                 Fetch_Department();
                 BindVMSTitle();
+                div_VisitDetails.Visible = false;
             }
         }
 
@@ -350,7 +382,6 @@ namespace Upkeep_v3.VMS
                 {
                     Config_Desc = Convert.ToString(dsConfig.Tables[0].Rows[0]["Config_Title"]);
                     lbl_Form_Name.Text = Config_Desc;
-
                     divDesc.Visible = true;
                     spnDesc.InnerText = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                 }
@@ -366,8 +397,18 @@ namespace Upkeep_v3.VMS
 
                 if (ViewState["RequestID"] == null)
                 {
-                    rptQuestionDetails.DataSource = dsConfig.Tables[1];
-                    rptQuestionDetails.DataBind();
+                    if (dsConfig.Tables[1].Rows.Count > 0)
+                    {
+                        div_VisitDetails.Visible = true;
+                        rptQuestionDetails.Visible = true;
+                        rptQuestionDetails.DataSource = dsConfig.Tables[1];
+                        rptQuestionDetails.DataBind();
+                    }
+                    else
+                    {
+                        div_VisitDetails.Visible = false;
+                        rptQuestionDetails.Visible = false;
+                    }
                 }
 
                 string blEmailComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_Compulsory"]);
@@ -393,12 +434,14 @@ namespace Upkeep_v3.VMS
                 {
                     // rfvMeeting.Enabled = true;
                     div_MeetingWith.Visible = true;
-                    rfvMeetingNew.Enabled = true;
+                    lbl_MeetingWith.Visible = true;
+                    //rfvMeetingNew.Enabled = true;
                 }
                 else
                 {
                     div_MeetingWith.Visible = false;
-                    rfvMeetingNew.Enabled = false;
+                    lbl_MeetingWith.Visible = false;
+                    //  rfvMeetingNew.Enabled = false;
 
                 }
 
@@ -420,6 +463,7 @@ namespace Upkeep_v3.VMS
                 DataSet dsData = new DataSet();
                 dsData = ObjUpkeep.Bind_VMSRequestDetails(RequestID, LoggedInUserID);
                 string Config_Desc = string.Empty;
+
                 if (dsData.Tables.Count > 0)
                 {
 
@@ -429,9 +473,7 @@ namespace Upkeep_v3.VMS
                         ViewState["ConfigID"] = Convert.ToInt32(dsData.Tables[0].Rows[0]["VMS_Config_ID"]);
 
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
-                        
                         BindVMSConfig();
-
                     }
                     //Bind inserted Visit data
                     if (dsData.Tables[1].Rows.Count > 0)
@@ -512,8 +554,15 @@ namespace Upkeep_v3.VMS
                     //Bind configured Visit data
                     if (dsData.Tables[3].Rows.Count > 0)
                     {
+                        div_VisitDetails.Visible = true;
+                        rptQuestionDetails.Visible = true;
                         rptQuestionDetails.DataSource = dsData.Tables[3];
                         rptQuestionDetails.DataBind();
+                    }
+                    else
+                    {
+                        div_VisitDetails.Visible = false;
+                        rptQuestionDetails.Visible = false;
                     }
                     //Bind configured Visit data
                     if (dsData.Tables[4].Rows.Count > 0)
@@ -825,7 +874,6 @@ namespace Upkeep_v3.VMS
                 double remainDays = 0;
                 int RequestID = 0;
                 char Action = 'N';
-
                 Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
 
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
@@ -1211,20 +1259,18 @@ namespace Upkeep_v3.VMS
                     #region SaveDataToDB
                     Save:
                         DataSet dsVMSQuestionData = new DataSet();
-                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"].ToString(), Session["fileContent"].ToString(), strDoseDate, LoggedInUserID);
+                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"].ToString(), Session["fileContent"].ToString(), strDoseDate, Session["User_IDProof"].ToString(), LoggedInUserID);
 
                         if (dsVMSQuestionData.Tables.Count > 0)
                         {
                             if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                             {
                                 int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
-
                                 int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
                                 string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
                                 string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
                                 string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
                                 string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
-
                                 if (status == 1 && Action == 'N')
                                 {
                                     //SetRepeater();
@@ -1235,7 +1281,7 @@ namespace Upkeep_v3.VMS
                                     string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
 
                                     mpeVMSRequestSaveSuccess.Show();
-                                    
+
                                     string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
 
                                     if (SMS_Enabled == 1)
@@ -1258,10 +1304,16 @@ namespace Upkeep_v3.VMS
                         }
                         #endregion
                     }
+                    else
+                    {
+                        ViewState["DateInvalid"] = "DateInvalid";
+                        Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
+                    }
                 }
                 else
                 {
-                    Response.Write("<script>alert('You are not eligible for Visit.')</script>");
+                    ViewState["DateInvalid"] = "DateInvalid";
+                    Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
                 }
             }
             catch (Exception ex)

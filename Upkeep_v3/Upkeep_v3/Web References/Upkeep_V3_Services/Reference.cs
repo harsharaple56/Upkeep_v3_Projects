@@ -5520,6 +5520,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Visitor_Photo, 
                     string Vaccine_Certificate, 
                     string Date_of_Vaccination, 
+                    string Visitor_IDProof, 
                     string LoggedInUserID) {
             object[] results = this.Invoke("Insert_VMSRequest", new object[] {
                         CompanyID,
@@ -5538,6 +5539,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Visitor_Photo,
                         Vaccine_Certificate,
                         Date_of_Vaccination,
+                        Visitor_IDProof,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
@@ -5560,8 +5562,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Visitor_Photo, 
                     string Vaccine_Certificate, 
                     string Date_of_Vaccination, 
+                    string Visitor_IDProof, 
                     string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, Visitor_Photo, Vaccine_Certificate, Date_of_Vaccination, LoggedInUserID, null);
+            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, Visitor_Photo, Vaccine_Certificate, Date_of_Vaccination, Visitor_IDProof, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5582,6 +5585,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Visitor_Photo, 
                     string Vaccine_Certificate, 
                     string Date_of_Vaccination, 
+                    string Visitor_IDProof, 
                     string LoggedInUserID, 
                     object userState) {
             if ((this.Insert_VMSRequestOperationCompleted == null)) {
@@ -5604,6 +5608,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Visitor_Photo,
                         Vaccine_Certificate,
                         Date_of_Vaccination,
+                        Visitor_IDProof,
                         LoggedInUserID}, this.Insert_VMSRequestOperationCompleted, userState);
         }
         

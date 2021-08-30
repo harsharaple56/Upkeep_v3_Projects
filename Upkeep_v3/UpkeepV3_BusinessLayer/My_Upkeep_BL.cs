@@ -3163,7 +3163,7 @@ namespace UpkeepV3_BusinessLayer
         //Added by RC This function is used to save VMS Request
         public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, 
             string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, 
-            string strVMSCovidTestDate, string strTemperature,string Visitor_Photo,string Vaccine_Certificate,string Date_of_Vaccination, string LoggedInUserID, string StrConn)
+            string strVMSCovidTestDate, string strTemperature,string Visitor_Photo,string Vaccine_Certificate,string Date_of_Vaccination,string Visitor_IDProof, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3187,6 +3187,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Visitor_Photo", Visitor_Photo);
                 cmd.Parameters.AddWithValue("@Vaccine_Certificate", Vaccine_Certificate);
                 cmd.Parameters.AddWithValue("@Date_of_Vaccination", Date_of_Vaccination);
+                cmd.Parameters.AddWithValue("@Visitor_IDProof", Visitor_IDProof);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

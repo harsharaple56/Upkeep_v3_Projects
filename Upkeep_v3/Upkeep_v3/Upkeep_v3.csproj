@@ -6549,6 +6549,7 @@
     <Folder Include="vendors\markdown\bin\" />
     <Folder Include="vendors\markdown\node_modules\.bin\" />
     <Folder Include="VMS_Uploads\Vacc_User_Certificate\" />
+    <Folder Include="VMS_Uploads\Vacc_User_IDProof\" />
     <Folder Include="VMS_Uploads\Vacc_User_Photo\" />
   </ItemGroup>
   <ItemGroup>
