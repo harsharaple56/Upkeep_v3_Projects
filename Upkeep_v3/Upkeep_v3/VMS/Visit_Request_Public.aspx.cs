@@ -890,6 +890,51 @@ namespace Upkeep_v3.VMS
                         {
                             RequestID = Convert.ToInt32(ViewState["RequestID"]);
                         }
+                        string storefilePathtoDB = string.Empty;
+                        if (VCertificate.HasFile)
+                        {
+                            try
+                            {
+                                int maxFileSize = 5000; // 5MB
+                                int fileSize = VCertificate.PostedFile.ContentLength;
+                                if (fileSize > (maxFileSize * 1024))
+                                {
+                                    lbl_error.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                    return;
+                                }
+
+                                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
+                                if (!Directory.Exists(fileUploadPath_Profile))
+                                {
+                                    Directory.CreateDirectory(fileUploadPath_Profile);
+                                }
+
+                                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                string fileName = VCertificate.FileName;
+                                string fileExtension = Path.GetExtension(fileName);
+
+                                DataSet ds = new DataSet();
+                                int id = 0;
+                                ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
+                                foreach (DataRow row in ds.Tables[0].Rows)
+                                {
+                                    id = Convert.ToInt32(row["RequestID"]);
+                                }
+                                id++;
+                                string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
+                                storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
+                                VCertificate.SaveAs(pathToSave);
+                            }
+                            catch (Exception ex)
+                            {
+                                lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString() ;
+                            }
+                        }
+                        else
+                        {
+                           lbl_error.Text = "Please Select File and Upload Again";
+                        }
                         ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                         string LoggedInUser = LoggedInUserID;
                         string strName = txtName.Text;
@@ -1259,7 +1304,7 @@ namespace Upkeep_v3.VMS
                     #region SaveDataToDB
                     Save:
                         DataSet dsVMSQuestionData = new DataSet();
-                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"].ToString(), Session["fileContent"].ToString(), strDoseDate, Session["User_IDProof"].ToString(), LoggedInUserID);
+                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"] != null ? Session["UserPhoto"].ToString() : string.Empty, storefilePathtoDB, strDoseDate, Session["User_IDProof"] != null ? Session["User_IDProof"].ToString() : string.Empty, LoggedInUserID);
 
                         if (dsVMSQuestionData.Tables.Count > 0)
                         {
@@ -1267,10 +1312,7 @@ namespace Upkeep_v3.VMS
                             {
                                 int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
                                 int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-                                string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
-                                string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
-                                string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
-                                string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+                                
                                 if (status == 1 && Action == 'N')
                                 {
                                     //SetRepeater();
@@ -1286,6 +1328,11 @@ namespace Upkeep_v3.VMS
 
                                     if (SMS_Enabled == 1)
                                     {
+                                        string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
+                                        string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
+                                        string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
+                                        string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+
                                         string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                                     }
                                 }

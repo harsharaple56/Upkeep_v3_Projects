@@ -459,9 +459,31 @@ border: 3px solid #ccc;*/
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            $('.datetimepicker_VisitDate').datepicker({
+                todayHighlight: true,
+                orientation: 'auto top',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true,
+                startDate: moment().format('dd-MM-yyyy'),
+            });
+
+            $('.datetimepicker_Dose').datepicker({
+                todayHighlight: true,
+                orientation: 'auto top',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true,
+                endDate: moment().format('dd-MM-yyyy'),
+            });
+
+
             $('.datetimepicker').datepicker({
                 todayHighlight: true,
-                orientation: 'auto bottom',
+                orientation: 'auto top',
                 autoclose: true,
                 pickerPosition: 'bottom-right',
                 format: 'dd-MM-yyyy',
@@ -674,18 +696,18 @@ border: 3px solid #ccc;*/
                 <div class="m--align-center" style="padding: 15px;">
                     <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
                 </div>
-                 <div class="m--align-center" style="padding: 15px;">
+                <div class="m--align-center" style="padding: 15px;">
                     <h4 class="m--font-primary font-weight-bold">
-                                    <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
+                        <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
 
-                                </h4>
-                         
-                            <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                            <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
-                                CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
-                            </cc1:ModalPopupExtender>
-                            
-                 </div>
+                    </h4>
+
+                    <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                    <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
+                        CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
+                    </cc1:ModalPopupExtender>
+
+                </div>
 
 
                 <div class="m-portlet__body" style="padding: 0rem 2.2rem;">
@@ -743,7 +765,7 @@ border: 3px solid #ccc;*/
                         <div class="col-md-4 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <div class="input-group date">
-                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_VisitDate" placeholder="Select Visit date & time"></asp:TextBox>
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
@@ -869,7 +891,7 @@ border: 3px solid #ccc;*/
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
                             <div class="input-group date">
-                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
+                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
@@ -886,13 +908,12 @@ border: 3px solid #ccc;*/
                              <div class="font-weight-bold">Upload Vaccination Certificate</div>
                              <br />
 
-                             <div id="div_Upload" class="modal-body">
-                                 <div class="m-dropzone dropzone" id="dZUpload">
-                                     <div class="m-dropzone__msg dz-message needsclick">
-                                         <h2 class="m-dropzone__msg-title">Drop files here or click to upload.</h2>
-                                         <h5 class="m-dropzone__msg-desc">Max file limit : 5 Mb</h5>
-                                     </div>
-                                 </div>
+                             <div class="custom-file">
+                                 <asp:FileUpload ID="VCertificate" runat="server" CssClass="custom-file-input" />
+                                 <label class="custom-file-label" for="customFile">Choose file (Max File Limit : 5 MB)</label>
+                                 <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
+                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                              </div>
 
 
@@ -945,8 +966,8 @@ border: 3px solid #ccc;*/
 
 
                     </div>
-                    
-					<div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
                         </div>
