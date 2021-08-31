@@ -23,22 +23,32 @@ namespace Upkeep_v3.VMS
         DataSet dsConfig = new DataSet();
         //int CompanyID = 0;
         int ConfigID = 0;
-        #endregion
 
+
+        #endregion
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
             Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
             DataSet ds = new DataSet();
-            int CompanyID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
             int id = 0;
-            ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
+            int Company_ID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
+            ds = ObjUpkeep.GetLastVMSRequestID(Company_ID);
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 id = Convert.ToInt32(row["RequestID"]);
             }
             id++;
-            string fileName = id + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+
+            string fileName = id + "_" + RandomString(5) + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
 
             //Convert Base64 Encoded string to Byte Array.
             byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
@@ -70,7 +80,7 @@ namespace Upkeep_v3.VMS
                 id = Convert.ToInt32(row["RequestID"]);
             }
             id++;
-            string fileName = id + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+            string fileName = id + "_" + RandomString(5) + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
 
             //Convert Base64 Encoded string to Byte Array.
             byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
@@ -928,12 +938,12 @@ namespace Upkeep_v3.VMS
                             }
                             catch (Exception ex)
                             {
-                                lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString() ;
+                                lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
                             }
                         }
                         else
                         {
-                           lbl_error.Text = "Please Select File and Upload Again";
+                            lbl_error.Text = "Please Select File and Upload Again";
                         }
                         ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                         string LoggedInUser = LoggedInUserID;
@@ -1312,7 +1322,7 @@ namespace Upkeep_v3.VMS
                             {
                                 int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
                                 int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-                                
+
                                 if (status == 1 && Action == 'N')
                                 {
                                     //SetRepeater();
