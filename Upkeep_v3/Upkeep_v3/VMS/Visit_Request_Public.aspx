@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request_Public.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request_Public" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request_Public.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request_Public" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -644,13 +645,13 @@ ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\
                         </div>
 
                         <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                        <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
+                        <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Mobile No.</label>
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                            <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Mobile No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red"
-                                ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                                ErrorMessage="Please enter Mobile Number"></asp:RequiredFieldValidator>
 
                         
 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
@@ -787,11 +788,11 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     <br />
 
                     <div class="m-form__heading" style="text-align: center;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Verify Vaccination Details</h3>
+                        <h3 class="m-form__heading-title" style="line-height: 2.0; background:bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
                     </div>
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:bisque;">
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                             <div class="input-group date">
                                 <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
@@ -806,7 +807,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     </div>
                     &nbsp;
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:bisque;">
 
                              <div class="font-weight-bold">Upload Vaccination Certificate</div>
                              <br />
@@ -828,7 +829,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                      </div>
                     &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:antiquewhite;">
                             <div class="font-weight-bold">Upload Your Photo</div>
                             <br />
                             <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
@@ -849,7 +850,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     &nbsp;
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:antiquewhite;">
                             <div class="font-weight-bold">Upload Your Aadhar Photo ID</div>
                             <br />
                             <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
@@ -861,7 +862,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                             </button>
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please click your Aadhar Card ( Front ) for verification purposes.
+                                Please upload your photo of your ID proof like PAN, Driving License, Passport for verification purposes. (Front side)
                             </div>
 
 
@@ -872,7 +873,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                            <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Submit" />
                         </div>
                     </div>
                     <br />
