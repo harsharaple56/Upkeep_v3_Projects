@@ -258,24 +258,24 @@ border: 3px solid #ccc;*/
     <script type="text/javascript">
         $(document).ready(function () {
             var getValue = $("input[name=vCode]").val();
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
             if (getValue != undefined) {
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
                 toastr.warning("Your are not eligible for Visit.");
             }
 
@@ -296,45 +296,11 @@ border: 3px solid #ccc;*/
                 success: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-success");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
                     toastr.success("Your File Successfully Uploaded\n" + fileName);
                 },
                 error: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-error");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
                     toastr.error("Your File Not Uploaded : " + fileName);
                 }
             });
@@ -351,46 +317,10 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_6").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.success("Your Photo Successfully Added..!");
                 },
                 failure: function (response) {
                     $("#m_modal_6").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.error("Your Photo Not Added..!");
                 }
             });
@@ -407,46 +337,10 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_7").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.success("Your ID Proof Successfully Added..!");
                 },
                 failure: function (response) {
                     $("#m_modal_7").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.error("Your ID Proof Not Added..!");
                 }
             });
@@ -459,21 +353,38 @@ border: 3px solid #ccc;*/
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            $('.datetimepicker_VisitDate').datepicker({
+                todayHighlight: true,
+                orientation: 'auto top',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true,
+                startDate: moment().format('dd-MM-yyyy'),
+            });
+
+            $('.datetimepicker_Dose').datepicker({
+                todayHighlight: true,
+                orientation: 'auto top',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true,
+                endDate: moment().format('dd-MM-yyyy'),
+            });
+
+
             $('.datetimepicker').datepicker({
                 todayHighlight: true,
-                orientation: 'auto bottom',
+                orientation: 'auto top',
                 autoclose: true,
                 pickerPosition: 'bottom-right',
                 format: 'dd-MM-yyyy',
                 showMeridian: true
             });
 
-            var txtControl = null;
-            var txtHdn = null;
-            //debugger;
-            $find('<%= mpeMeetingUsers.ClientID %>').show();
-            txtHdn = hdnMeetUsersID.toString();
-            txtControl = txtMeetUsers;
+
         });
 
         //function AddRow() {
@@ -674,18 +585,18 @@ border: 3px solid #ccc;*/
                 <div class="m--align-center" style="padding: 15px;">
                     <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
                 </div>
-                 <div class="m--align-center" style="padding: 15px;">
+                <div class="m--align-center" style="padding: 15px;">
                     <h4 class="m--font-primary font-weight-bold">
-                                    <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
+                        <asp:Label ID="lbl_Form_Name" runat="server"></asp:Label>
 
-                                </h4>
-                         
-                            <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                            <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
-                                CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
-                            </cc1:ModalPopupExtender>
-                            
-                 </div>
+                    </h4>
+
+                    <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                    <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
+                        CancelControlID="btnCloseQuestion2" BackgroundCssClass="modalBackground">
+                    </cc1:ModalPopupExtender>
+
+                </div>
 
 
                 <div class="m-portlet__body" style="padding: 0rem 2.2rem;">
@@ -714,6 +625,9 @@ border: 3px solid #ccc;*/
                             <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtName"
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="*Only Alphabets allow." ForeColor="Red" />
+<br />
 
                         </div>
                         <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
@@ -723,6 +637,10 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"   
+ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
+</asp:RegularExpressionValidator>  
+
                         </div>
 
                         <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
@@ -731,8 +649,16 @@ border: 3px solid #ccc;*/
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                                ValidationGroup="validateVMS" ForeColor="Red"
+                                ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
+                        
+<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
+Display = "Dynamic"
+ControlToValidate = "txtPhone"
+ValidationExpression = "^[0-9]{10,10}$" ForeColor="Red"
+ErrorMessage="*Enter valid phone number in 10 digits.">
+</asp:RegularExpressionValidator>
 
                         </div>
                     </div>
@@ -742,7 +668,7 @@ border: 3px solid #ccc;*/
                         <div class="col-md-4 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <div class="input-group date">
-                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_VisitDate" placeholder="Select Visit date & time"></asp:TextBox>
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
@@ -868,7 +794,7 @@ border: 3px solid #ccc;*/
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                             <div class="input-group date">
-                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
+                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
@@ -885,13 +811,12 @@ border: 3px solid #ccc;*/
                              <div class="font-weight-bold">Upload Vaccination Certificate</div>
                              <br />
 
-                             <div id="div_Upload" class="modal-body">
-                                 <div class="m-dropzone dropzone" id="dZUpload">
-                                     <div class="m-dropzone__msg dz-message needsclick">
-                                         <h2 class="m-dropzone__msg-title">Drop files here or click to upload.</h2>
-                                         <h5 class="m-dropzone__msg-desc">Max file limit : 5 Mb</h5>
-                                     </div>
-                                 </div>
+                             <div class="custom-file">
+                                 <asp:FileUpload ID="VCertificate" runat="server" CssClass="custom-file-input" />
+                                 <label class="custom-file-label" for="customFile">Choose file (Max File Limit : 5 MB)</label>
+                                 <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
+                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                              </div>
 
 
@@ -944,8 +869,8 @@ border: 3px solid #ccc;*/
 
 
                     </div>
-                    
-					<div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
                         </div>
