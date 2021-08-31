@@ -258,24 +258,24 @@ border: 3px solid #ccc;*/
     <script type="text/javascript">
         $(document).ready(function () {
             var getValue = $("input[name=vCode]").val();
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
             if (getValue != undefined) {
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
                 toastr.warning("Your are not eligible for Visit.");
             }
 
@@ -296,45 +296,11 @@ border: 3px solid #ccc;*/
                 success: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-success");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
                     toastr.success("Your File Successfully Uploaded\n" + fileName);
                 },
                 error: function (file, response) {
                     var fileName = response;
                     file.previewElement.classList.add("dz-error");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
                     toastr.error("Your File Not Uploaded : " + fileName);
                 }
             });
@@ -351,46 +317,10 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_6").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.success("Your Photo Successfully Added..!");
                 },
                 failure: function (response) {
                     $("#m_modal_6").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.error("Your Photo Not Added..!");
                 }
             });
@@ -407,46 +337,10 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_7").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.success("Your ID Proof Successfully Added..!");
                 },
                 failure: function (response) {
                     $("#m_modal_7").modal("hide");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-
                     toastr.error("Your ID Proof Not Added..!");
                 }
             });
@@ -490,12 +384,7 @@ border: 3px solid #ccc;*/
                 showMeridian: true
             });
 
-            var txtControl = null;
-            var txtHdn = null;
-            //debugger;
-            $find('<%= mpeMeetingUsers.ClientID %>').show();
-            txtHdn = hdnMeetUsersID.toString();
-            txtControl = txtMeetUsers;
+
         });
 
         //function AddRow() {
@@ -737,6 +626,9 @@ border: 3px solid #ccc;*/
                             <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtName"
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="*Only Alphabets allow." ForeColor="Red" />
+<br />
 
                         </div>
                         <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
@@ -746,6 +638,10 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
+                           <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"   
+ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
+</asp:RegularExpressionValidator>  
+
                         </div>
 
                         <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
@@ -754,8 +650,16 @@ border: 3px solid #ccc;*/
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
+                                ValidationGroup="validateVMS" ForeColor="Red"
+                                ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
+                        
+<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
+Display = "Dynamic"
+ControlToValidate = "txtPhone"
+ValidationExpression = "^[0-9]{10,10}$" ForeColor="Red"
+ErrorMessage="*Enter valid phone number in 10 digits.">
+</asp:RegularExpressionValidator>
 
                         </div>
                     </div>
