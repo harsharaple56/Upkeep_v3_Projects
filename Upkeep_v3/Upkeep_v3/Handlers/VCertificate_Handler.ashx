@@ -18,60 +18,68 @@ public class VCertificate_Handler : IHttpHandler, IReadOnlySessionState
 
     public void ProcessRequest(HttpContext context)
     {
-        Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services();
-
-        context.Response.ContentType = "text/plain";
-
-        LoggedInUserID = Convert.ToString(context.Session["LoggedInUserID"]);
-        CompanyID = Convert.ToInt32(context.Session["CompanyID"]);
-        UserType = Convert.ToString(context.Session["UserType"]);
-
-
-        string dirFullPath = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
-        string[] files;
-        int numFiles;
-        files = System.IO.Directory.GetFiles(dirFullPath);
-        numFiles = files.Length;
-        numFiles = numFiles + 1;
-
-        string str_image = string.Empty;
-        string ProfilePhoto_FilePath = string.Empty;
-        string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-        foreach (string s in context.Request.Files)
+        try
         {
-            HttpPostedFile file = context.Request.Files[s];
-            string fileName = file.FileName;
-            string fileExtension = file.ContentType;
-            if (!string.IsNullOrEmpty(fileName))
+            Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services();
+
+            context.Response.ContentType = "text/plain";
+
+            LoggedInUserID = Convert.ToString(context.Session["LoggedInUserID"]);
+            CompanyID = Convert.ToInt32(context.Session["CompanyID"]);
+            UserType = Convert.ToString(context.Session["UserType"]);
+
+
+            string dirFullPath = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
+            string[] files;
+            int numFiles;
+            files = System.IO.Directory.GetFiles(dirFullPath);
+            numFiles = files.Length;
+            numFiles = numFiles + 1;
+
+            string str_image = string.Empty;
+            string ProfilePhoto_FilePath = string.Empty;
+            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+            foreach (string s in context.Request.Files)
             {
-                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
-
-                if (!Directory.Exists(fileUploadPath_Profile))
+                HttpPostedFile file = context.Request.Files[s];
+                string fileName = file.FileName;
+                string fileExtension = file.ContentType;
+                if (!string.IsNullOrEmpty(fileName))
                 {
-                    Directory.CreateDirectory(fileUploadPath_Profile);
+                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
+
+                    if (!Directory.Exists(fileUploadPath_Profile))
+                    {
+                        Directory.CreateDirectory(fileUploadPath_Profile);
+                    }
+
+                    DataSet ds = new DataSet();
+                    int id = 0;
+                    ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        id = Convert.ToInt32(row["RequestID"]);
+                    }
+                    id++;
+
+                    fileExtension = Path.GetExtension(fileName);
+                    str_image = id + "_" + DateTime.Now.ToString("dd-MMM-yy") + fileExtension;
+
+                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
+                    ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
+                    context.Session["fileContent"] = string.Empty;
+                    context.Session["fileContent"] = ProfilePhoto_FilePath;
+                    file.SaveAs(pathToSave);
                 }
-
-                DataSet ds = new DataSet();
-                int id = 0;
-                ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
-                foreach (DataRow row in ds.Tables[0].Rows)
-                {
-                    id = Convert.ToInt32(row["RequestID"]);
-                }
-                id++;
-
-                fileExtension = Path.GetExtension(fileName);
-                str_image = id + "_" + DateTime.Now.ToString("dd-MMM-yy") + fileExtension;
-
-                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
-                ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
-                context.Session["fileContent"] = string.Empty;
-                context.Session["fileContent"] = ProfilePhoto_FilePath;
-                file.SaveAs(pathToSave);
             }
+
+            context.Response.Write(str_image);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
 
-        context.Response.Write(str_image);
     }
 
     public bool IsReusable

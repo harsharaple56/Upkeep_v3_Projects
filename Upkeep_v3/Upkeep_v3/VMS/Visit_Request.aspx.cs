@@ -306,6 +306,8 @@ namespace Upkeep_v3.VMS
                 ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 dsConfig = ObjUpkeep.Bind_VMSConfiguration(ConfigID);
 
+
+
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString()))
                 {
                     divDesc.Visible = true;
@@ -319,7 +321,20 @@ namespace Upkeep_v3.VMS
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
                 {
                     divCovid.Visible = true;
-                } 
+                }
+                
+                int Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+
+                if (Vaccine_Check_Enable == 0)
+                {
+                    div_Vaccination.Visible = false;
+                }
+                else
+                {
+                    div_Vaccination.Visible = true;
+                }
+
+
 
                 if (ViewState["RequestID"] == null)
                 {
@@ -789,11 +804,13 @@ namespace Upkeep_v3.VMS
             {
                 #region UserData
                 int RequestID = 0;
-                char Action = 'N';
-                if (ViewState["Action"] != null)
-                {
-                    Action = Convert.ToChar(ViewState["Action"]);
-                }
+                char Action = 'I';
+
+                //Commented By Lokesh on 30th Aug 2021 , as not required
+                //if (ViewState["Action"] != null)
+                //{
+                //    Action = Convert.ToChar(ViewState["Action"]);
+                //}
                 if (ViewState["RequestID"] != null)
                 {
                     RequestID = Convert.ToInt32(ViewState["RequestID"]);
@@ -1173,11 +1190,7 @@ namespace Upkeep_v3.VMS
                         int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
 
                         int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-                        string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
-                        string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
-                        string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
-                        string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
-
+                        
 
                         if (status == 1 && Action == 'N')
                         {
@@ -1194,7 +1207,25 @@ namespace Upkeep_v3.VMS
 
                             if (SMS_Enabled == 1)
                             {
-                                string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                                string Send_SMS_URL = string.Empty;
+                                string User_ID = string.Empty;
+                                string Password = string.Empty;
+                                string DLT_Template_ID = string.Empty;
+
+                                if (dsVMSQuestionData.Tables[2].Rows.Count > 0)
+                                {
+                                     Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
+                                     User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
+                                     Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
+                                }
+                                if (dsVMSQuestionData.Tables[3].Rows.Count > 0)
+                                {
+                                    DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+                                }
+                                if (Send_SMS_URL != "")
+                                {
+                                    string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                                }
                             }
                         }
                         else if (status == 1 && Action != 'N')

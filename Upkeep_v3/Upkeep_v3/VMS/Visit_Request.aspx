@@ -557,7 +557,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
 
                             <br />
+                            <div id="div_Vaccination" runat="server" visible="false">
 
+                            
                             <div class="m-form__heading" style="text-align: center;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Vaccination Details</h3>
                             </div>
@@ -605,6 +607,8 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                     </div>
                                 </div>
+
+                            </div>
 
                             </div>
 

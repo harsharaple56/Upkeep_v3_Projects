@@ -292,6 +292,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMeetingNew;
         
         /// <summary>
+        /// div_Vaccination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Vaccination;
+        
+        /// <summary>
         /// rptQuestionDetails control.
         /// </summary>
         /// <remarks>
