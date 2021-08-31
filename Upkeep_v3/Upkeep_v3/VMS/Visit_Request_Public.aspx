@@ -698,8 +698,7 @@ border: 3px solid #ccc;*/
                         </div>
                     </div>
                     <div id="divDesc" class="form-group row" runat="server">
-                        <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Description</label>
-                        <div class="col-xl-9 col-lg-9 col-form-label">
+                        <div class="col-xl-12 col-lg-9 col-form-label m--align-center">
                             <span id="spnDesc" runat="server" class="form-control-label font-weight-bold"></span>
                         </div>
                     </div>
@@ -862,12 +861,12 @@ border: 3px solid #ccc;*/
                     <br />
 
                     <div class="m-form__heading" style="text-align: center;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Verify Vaccination</h3>
+                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Verify Vaccination Details</h3>
                     </div>
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2nd Dose Vaccination Date</label>
+                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                             <div class="input-group date">
                                 <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select date & time"></asp:TextBox>
                                 <div class="input-group-append">
@@ -875,7 +874,7 @@ border: 3px solid #ccc;*/
                                 </div>
                             </div>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2nd Dose Vaccination Date"></asp:RequiredFieldValidator>
+                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2<sup>nd</sup> Dose Vaccination Date"></asp:RequiredFieldValidator>
                         </div>
 
                     </div>
@@ -897,7 +896,7 @@ border: 3px solid #ccc;*/
 
 
                              <div class="alert m-alert m-alert--default" role="alert">
-                                 Please upload your 2nd Dose vaccination certificate provided by CoWIN.
+                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN.
                              </div>
                          </div>
 
