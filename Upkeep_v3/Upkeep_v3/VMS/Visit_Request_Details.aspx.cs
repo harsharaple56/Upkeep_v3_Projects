@@ -24,7 +24,7 @@ namespace Upkeep_v3.VMS
         //int CompanyID = 0;
         int ConfigID = 0;
         #endregion
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
@@ -291,7 +291,7 @@ namespace Upkeep_v3.VMS
             ViewState["Action"] = 'R';
             SaveVisitData();
         }
-        
+
         #region Functions
 
         private void BindVMSConfig()
@@ -487,7 +487,7 @@ namespace Upkeep_v3.VMS
                             txtTemperature.Text = dsData.Tables[2].Rows[0]["Temperature"].ToString();
                         }
 
-                        
+
                     }
                     //Bind configured Visit data
                     if (dsData.Tables[3].Rows.Count > 0)
@@ -639,9 +639,9 @@ namespace Upkeep_v3.VMS
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-                        
+
                         txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
-                        
+
                     }
 
                     //Bind Vaccination_Details Data
@@ -1175,12 +1175,12 @@ namespace Upkeep_v3.VMS
                     xmlstr = sr.ReadToEnd();
                     strVMSData = xmlstr;
                 }
-            #endregion
+                #endregion
 
-            #region SaveDataToDB
-            Save:
+                #region SaveDataToDB
+                Save:
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature,"","","","", LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, "", "", "", "", LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {
@@ -1192,8 +1192,11 @@ namespace Upkeep_v3.VMS
                         string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
                         string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
                         string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
-                        
+                        string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Company_Name"]);
+                        string Visitor_ID_Link = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Visitor_ID_Link"]);
 
+                        int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+                        string TextMessage = string.Empty;
 
                         if (status == 1 && Action == 'N')
                         {
@@ -1201,21 +1204,27 @@ namespace Upkeep_v3.VMS
                             //divinsertbutton.visible = false;
                             lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
 
-                            int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-
                             mpeVMSRequestSaveSuccess.Show();
 
-                            string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at Company_Name through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+                            TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at Company_Name through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
 
-                            if (SMS_Enabled==1)
+                            if (SMS_Enabled > 0)
                             {
                                 string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                             }
 
                         }
-                        else if (status == 1 && Action != 'N')
+                        else if (status == 1 && Action == 'I')
                         {
                             Response.Write("<script>alert('Status changed.');</script>");
+
+                            TextMessage = "Dear " + strName + "," + "%0a%0aYour Visit Request ID " + Visit_Request_ID + " is Approved and you can now use your Digital Visitor Pass to visit " + Company_Desc + " , by clicking the link below." + "%0a%0aeFacilito Visitor Pass >> " + Visitor_ID_Link;
+
+                            if (SMS_Enabled > 0)
+                            {
+                                string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                            }
+
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
                         //else if (status == 5 && Action != 'N')
