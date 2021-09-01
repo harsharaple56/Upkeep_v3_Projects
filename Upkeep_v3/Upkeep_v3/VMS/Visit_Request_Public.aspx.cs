@@ -47,7 +47,6 @@ namespace Upkeep_v3.VMS
         public static bool SaveUserIdProof(string data)
         {
             UserImage_fileData = data;
-
             return true;
         }
 
@@ -1031,14 +1030,16 @@ namespace Upkeep_v3.VMS
                         #endregion
 
                         #region Get User Upload Image Brows or Web cam
-                        if ((UserPhotoIDPath_Brows != null && UserPhotoID_ProfilePhoto_FilePath != null) || (UserPhotoIDPath_Brows != null && UserPhotoID_ProfilePhoto_FilePath == null))
+                        if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows) || !string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
                         {
-                            GetUserPhotoIDPath = UserPhotoIDPath_Brows;
+                            if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
+                                GetUserPhotoIDPath = UserPhotoIDPath_Brows;
+                            else if(!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
+                                GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
                         }
-                        else if (UserPhotoIDPath_Brows == null && UserPhotoID_ProfilePhoto_FilePath != null)
-                        {
-                            GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
-                        }
+                        
+
+
                         #endregion
 
 
