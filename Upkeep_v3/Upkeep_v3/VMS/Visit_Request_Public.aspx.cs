@@ -143,7 +143,7 @@ namespace Upkeep_v3.VMS
         public bool ValidateTermsCondition()
         {
             //Validate Terms and Conditions..
-            foreach (RepeaterItem item in rptTermsCondition.Items)
+            foreach (RepeaterItem item in rptTermsCondition1.Items)
             {
                 if (((CheckBox)item.FindControl("chkTermsCondition")).Checked == false)
                 {
@@ -430,8 +430,8 @@ namespace Upkeep_v3.VMS
 
                 if (dsConfig.Tables.Count > 4)
                 {
-                    rptTermsCondition.DataSource = dsConfig.Tables[4];
-                    rptTermsCondition.DataBind();
+                    rptTermsCondition1.DataSource = dsConfig.Tables[4];
+                    rptTermsCondition1.DataBind();
                 }
 
 

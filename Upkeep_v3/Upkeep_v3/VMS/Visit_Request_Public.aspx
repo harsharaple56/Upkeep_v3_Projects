@@ -997,7 +997,7 @@ border: 3px solid #ccc;*/
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item ">
 
-                            <asp:Repeater ID="rptTermsCondition" runat="server" ClientIDMode="Static">
+                            <asp:Repeater ID="rptTermsCondition1" runat="server" ClientIDMode="Static">
                                 <ItemTemplate>
 
                                     <div class="form-group m-form__group row">
