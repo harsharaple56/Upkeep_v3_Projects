@@ -581,6 +581,133 @@
 
                 <!--end:: Ticketing Section-->
             </div>
+
+            <div class="col-xl-6">
+
+                <!--begin:: Ticketing Section-->
+                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
+
+                    <div class="m-portlet__body">
+                        <div class="m-widget19">
+                            <div class="m-widget19__content ">
+                                <div class="m-widget19__header">
+                                    <div class="m-widget19__user-img">
+                                        <img class="m-widget19__img" style="width: 6rem;" src="<%= Page.ResolveClientUrl("~/assets/app/media/img/Dashboard_Icons/pending.png") %>" alt="">
+                                    </div>
+                                    <div class="m-widget19__info" style="padding-right: 1rem;">
+                                        <span class="m-widget19__username m--font-danger" style="font-size: 2rem; margin-bottom: 2.4rem;    line-height: initial;">Pending Approvals
+                                        </span>
+                                        <br>
+                                        <span class="m-widget1__title" style="line-height: initial;">Total No. of Visit Requests pending for your approval
+                                        </span>
+                                    </div>
+                                    <div class="m-widget19__stats" style="line-height: 1;">
+                                        <asp:Label ID="lbl_VMS_Pending" runat="server" class="m-widget19__number m--font-danger" Style="font-size: 2.5rem;">
+                                            0
+                                        </asp:Label>
+                                        <span class="m-widget19__comment">Visit Requests
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="m-stack m-stack--ver m-stack--general m-stack--demo" style="height: 45px;">
+                                <div class="m-stack__item m-stack__item--center">
+                                    <div class="m-stack__demo-item">
+
+                                        <span class="m-widget19__username m--font-primary" style="font-size: 1rem; margin-bottom: 2.4rem;">Summary of Visit Requests recieved
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="m-widget1">
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col-xl-9">
+                                            <h3 class="m-widget1__title">Vist Requests
+                                                <span class="m-badge m-badge--primary m-badge--wide">Recieved</span>
+                                            </h3>
+                                            <span class="m-widget1__desc">Total Visit requests recieved through QR Code / Form Links</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <asp:Label ID="lbl_VMS_Recieved" runat="server" class="m-widget1__number m--font-primary">
+                                                0
+                                            </asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col-xl-9">
+                                            <h3 class="m-widget1__title">Vistors Marked
+                                                
+                                            <span class="m-badge m-badge--success m-badge--wide">IN</span>
+                                            </h3>
+                                            <span class="m-widget1__desc">Total No. of Visitors Marked IN</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <asp:Label ID="lbl_VMS_IN" runat="server" class="m-widget1__number m--font-success">
+                                                0
+                                            </asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col-xl-9">
+                                            <h3 class="m-widget1__title">Visitors Marked
+                                                
+                                            <span class="m-badge m-badge--warning m-badge--wide">OUT</span>
+                                            </h3>
+                                            <span class="m-widget1__desc">Total No. of Visitors Marked OUT</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <asp:Label ID="lbl_VMS_OUT" runat="server" class="m-widget1__number m--font-warning">
+                                                0
+                                            </asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-widget1__item">
+                                    <div class="row m-row--no-padding align-items-center">
+                                        <div class="col-xl-9">
+                                            <h3 class="m-widget1__title">Visit Requests
+                                                
+                                            <span class="m-badge m-badge--danger m-badge--wide">Rejected</span>
+                                            </h3>
+                                            <span class="m-widget1__desc">Total No. of Visit requests Rejected</span>
+                                        </div>
+                                        <div class="col m--align-right">
+                                            <asp:Label ID="lbl_VMS_Rejected" runat="server" class="m-widget1__number m--font-danger">
+                                                0
+                                            </asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        
+
+                    </div>
+                </div>
+
+                <!--end:: Ticketing Section-->
+            </div>
+
         </div>
 
 

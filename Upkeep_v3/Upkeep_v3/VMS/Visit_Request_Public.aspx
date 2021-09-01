@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request_Public.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request_Public" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Visit_Request_Public.aspx.cs" Inherits="Upkeep_v3.VMS.Visit_Request_Public" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -627,8 +626,8 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtName"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="*Only Alphabets allow." ForeColor="Red" />
-<br />
+                                ValidationExpression="[a-zA-Z ]*$" ErrorMessage="*Only Alphabets allow." ForeColor="Red" />
+                            <br />
 
                         </div>
                         <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fa fa-envelope"></span>Email</label>
@@ -638,9 +637,9 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
-                           <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"   
-ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
-</asp:RegularExpressionValidator>  
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"
+                                ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
+                            </asp:RegularExpressionValidator>
 
                         </div>
 
@@ -653,13 +652,13 @@ ErrorMessage="*Please enter valid email" ForeColor="Red" ValidationExpression="\
                                 ValidationGroup="validateVMS" ForeColor="Red"
                                 ErrorMessage="Please enter Mobile Number"></asp:RequiredFieldValidator>
 
-                        
-<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
-Display = "Dynamic"
-ControlToValidate = "txtPhone"
-ValidationExpression = "^[0-9]{10,10}$" ForeColor="Red"
-ErrorMessage="*Enter valid phone number in 10 digits.">
-</asp:RegularExpressionValidator>
+
+                            <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
+                                Display="Dynamic"
+                                ControlToValidate="txtPhone"
+                                ValidationExpression="^[0-9]{10,10}$" ForeColor="Red"
+                                ErrorMessage="*Enter valid phone number in 10 digits.">
+                            </asp:RegularExpressionValidator>
 
                         </div>
                     </div>
@@ -788,11 +787,11 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     <br />
 
                     <div class="m-form__heading" style="text-align: center;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background:bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
+                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
                     </div>
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:bisque;">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                             <div class="input-group date">
                                 <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
@@ -807,7 +806,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     </div>
                     &nbsp;
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:bisque;">
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
 
                              <div class="font-weight-bold">Upload Vaccination Certificate</div>
                              <br />
@@ -829,16 +828,36 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                      </div>
                     &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:antiquewhite;">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <div class="font-weight-bold">Upload Your Photo</div>
                             <br />
-                            <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-                                <span>
-                                    <i class="fa fa-camera"></i>
-                                    <span>Click Photo</span>
-                                </span>
+                            <div class="row">
 
-                            </button>
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                <div class="custom-file">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="custom-file-input" />
+                                    <label class="custom-file-label" for="customFile">Choose file (Max File Limit : 5 MB)</label>
+                                    <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                    OR 
+                                </div>
+                            
+                            <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
+                                    </button>
+                            </div>
+
+                            </div>
+
+                            
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
@@ -850,7 +869,7 @@ ErrorMessage="*Enter valid phone number in 10 digits.">
                     &nbsp;
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background:antiquewhite;">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <div class="font-weight-bold">Upload Your Aadhar Photo ID</div>
                             <br />
                             <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">

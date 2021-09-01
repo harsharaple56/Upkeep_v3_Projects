@@ -13,6 +13,42 @@ namespace Upkeep_v3.VMS {
     public partial class VMSRequest_Listing {
         
         /// <summary>
+        /// lbl_VMS_Recieved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_VMS_Recieved;
+        
+        /// <summary>
+        /// lbl_VMS_IN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_VMS_IN;
+        
+        /// <summary>
+        /// lbl_VMS_OUT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_VMS_OUT;
+        
+        /// <summary>
+        /// lbl_VMS_Rejected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_VMS_Rejected;
+        
+        /// <summary>
         /// export_excel control.
         /// </summary>
         /// <remarks>

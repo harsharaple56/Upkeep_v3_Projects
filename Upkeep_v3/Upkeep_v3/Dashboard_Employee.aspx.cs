@@ -13,6 +13,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 
 namespace Upkeep_v3
+
 {
     public partial class Dashboard_Employee : System.Web.UI.Page
     {
@@ -138,7 +139,15 @@ namespace Upkeep_v3
                         lbl_GP_InProgress.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]);
                         lbl_GP_OnHold.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]);
                         lbl_GP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]);
-                        
+
+                        lbl_VMS_IN.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_IN"]);
+                        lbl_VMS_OUT.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_OUT"]);
+                        lbl_VMS_Pending.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Pending"]);
+                        lbl_VMS_Recieved.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Recieved"]);
+                        lbl_VMS_Rejected.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Rejected"]);
+
+
+
                     }
                 }
 

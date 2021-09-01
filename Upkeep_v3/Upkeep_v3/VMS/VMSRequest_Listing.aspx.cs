@@ -13,6 +13,7 @@ namespace Upkeep_v3.VMS
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
+        int Company_ID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -26,6 +27,9 @@ namespace Upkeep_v3.VMS
             {
                 hdn_IsPostBack.Value = "no";
                 Session["PreviousURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
+                Company_ID = Convert.ToInt32(Session["CompanyID"]);
+
+                Dashboard_Details();
             }
         }
 
@@ -111,7 +115,63 @@ namespace Upkeep_v3.VMS
             return data;
         }
 
+        public void Dashboard_Details()
+        {
+            string Fromdate = string.Empty;
+            string ToDate = string.Empty;
 
+
+            if (start_date.Value != "")
+            {
+                Fromdate = Convert.ToString(start_date.Value);
+            }
+            else
+            {
+                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
+                DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture));
+
+                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+
+                //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+            if (end_date.Value != "")
+            {
+                ToDate = Convert.ToString(end_date.Value);
+            }
+            else
+            {
+                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
+                //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+            }
+
+
+            DataSet ds = new DataSet();
+            try
+            {
+                ds = ObjUpkeep.Fetch_Dashboard_Employee(Company_ID, LoggedInUserID, Fromdate, ToDate);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        lbl_VMS_IN.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["VMS_IN"]);
+                        lbl_VMS_OUT.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["VMS_OUT"]);
+                        lbl_VMS_Recieved.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Recieved"]);
+                        lbl_VMS_Rejected.InnerText = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Rejected"]);
+
+
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
