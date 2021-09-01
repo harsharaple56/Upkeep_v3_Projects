@@ -178,8 +178,29 @@ namespace Upkeep_v3.VMS
             //    SetRepeater();
             //    return;
             //}
+            if (ValidateTermsCondition() == false)
+            {
+                return;
+            }
+            else
+            {
+                SaveVisitData();
+            }
+        }
 
-            SaveVisitData();
+        public bool ValidateTermsCondition()
+        {
+            //Validate Terms and Conditions..
+            foreach (RepeaterItem item in rptTermsCondition.Items)
+            {
+                if (((CheckBox)item.FindControl("chkTermsCondition")).Checked == false)
+                {
+                    lblErrorMsg1.Text = "Please select all Terms and Conditions";
+                    return false;
+                }
+            }
+            return true;
+
         }
 
         protected void ddlVMSTitle_SelectedIndexChanged(object sender, EventArgs e)
@@ -454,6 +475,14 @@ namespace Upkeep_v3.VMS
                     //  rfvMeetingNew.Enabled = false;
 
                 }
+
+                if (dsConfig.Tables.Count > 4)
+                {
+                    rptTermsCondition.DataSource = dsConfig.Tables[4];
+                    rptTermsCondition.DataBind();
+                }
+
+
 
             }
             catch (Exception ex)
