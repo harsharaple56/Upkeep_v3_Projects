@@ -5277,6 +5277,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blMeetingComp, 
                     bool blEmailOtpComp, 
                     bool blContactOtpComp, 
+                    string termsCondition, 
                     string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
                         ConfigID,
@@ -5296,6 +5297,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blMeetingComp,
                         blEmailOtpComp,
                         blContactOtpComp,
+                        termsCondition,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
@@ -5319,8 +5321,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blMeetingComp, 
                     bool blEmailOtpComp, 
                     bool blContactOtpComp, 
+                    string termsCondition, 
                     string LoggedInUserID) {
-            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, LoggedInUserID, null);
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5342,6 +5345,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blMeetingComp, 
                     bool blEmailOtpComp, 
                     bool blContactOtpComp, 
+                    string termsCondition, 
                     string LoggedInUserID, 
                     object userState) {
             if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
@@ -5365,6 +5369,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blMeetingComp,
                         blEmailOtpComp,
                         blContactOtpComp,
+                        termsCondition,
                         LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         

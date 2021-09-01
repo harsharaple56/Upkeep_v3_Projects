@@ -97,7 +97,7 @@ namespace Upkeep_v3.VMS
                 string VMSQuestionVisible = string.Empty;
                 string VMSQuestionAns = string.Empty;
                 string VMSQuestionAnsData = string.Empty;
-
+                string VMSTermCondition = string.Empty;
                 //string VMSFeedback = string.Empty;
                 //string VMSFeedbackMandatory = string.Empty;
                 //string VMSFeedbackVisible = string.Empty;
@@ -186,11 +186,35 @@ namespace Upkeep_v3.VMS
                     strXmlVMS_Question.Append(@"</Question_Ans_Data_Root>");
                     strXmlVMS_Question.Append(@"</Question_Desc>");
 
-
                 }
 
                 strXmlVMS_Question.Append(@"</VMS_HEADER_ROOT>");
                 //strXmlVMS_Feedback.Append(@"</VMS_FEEDBACK_ROOT>");
+
+                StringBuilder strXmlVMS_TermCondition = new StringBuilder();
+                strXmlVMS_TermCondition.Append(@"<?xml version=""1.0"" ?>");
+                strXmlVMS_TermCondition.Append(@"<VMS_TERM_ROOT>");
+
+                int ccc = Request.Form.Count;
+                for (int j = 0; j < ccc; j++)
+                {
+                    VMSTermCondition = "";
+                    string[] VMSCondition_Array = Request.Form.GetValues("VMSTermCondition[" + j + "][ctl00$ContentPlaceHolder1$txtTermCondition]");
+                    if (VMSCondition_Array != null)
+                    {
+                        VMSTermCondition = VMSCondition_Array[0];
+                    }
+
+                    if (VMSCondition_Array != null)
+                    {
+                        strXmlVMS_TermCondition.Append(@"<VMS_TERM_DESC>");
+                        strXmlVMS_TermCondition.Append(@"<VMS_TERM>" + VMSTermCondition + "</VMS_TERM>");
+                        strXmlVMS_TermCondition.Append(@"</VMS_TERM_DESC>");
+                    }
+                }
+
+                strXmlVMS_TermCondition.Append(@"</VMS_TERM_ROOT>");
+
 
                 int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string strConfigTitle = string.Empty;
@@ -235,7 +259,7 @@ namespace Upkeep_v3.VMS
 
 
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -382,6 +406,11 @@ namespace Upkeep_v3.VMS
                        ans.Field<bool>("Is_Flag").ToString()))).ToArray();
 
                     hdnVMSQns.Value = string.Join("~", QnValues);
+
+                    var TermsValues = dsConfig.Tables[4].AsEnumerable().Select(s => s.Field<Int32>("Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace("<br>", System.Environment.NewLine)).ToArray();
+
+                    hdnVMSTerms.Value = string.Join("~", TermsValues);
+
                 }
 
 

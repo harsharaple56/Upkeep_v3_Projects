@@ -571,7 +571,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             string Visit_Request_ID = string.Empty;
             string Visitor_Name = string.Empty;
             string Visitor_ID_Link = string.Empty;
-            string VMS_Config_title = string.Empty;
+            string VMS_Config_Title = string.Empty;
             string Visit_Date = string.Empty;
             string Request_Date = string.Empty;
 
@@ -583,7 +583,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 Visit_Request_ID = Convert.ToString(mergeinfo_array[1]);
                 Visitor_Name = Convert.ToString(mergeinfo_array[2]);
                 Visitor_ID_Link = Convert.ToString(mergeinfo_array[3]);
-                VMS_Config_title = Convert.ToString(mergeinfo_array[4]);
+                VMS_Config_Title = Convert.ToString(mergeinfo_array[4]);
                 Visit_Date = Convert.ToString(mergeinfo_array[5]);
                 Request_Date = Convert.ToString(mergeinfo_array[6]);
 
@@ -626,7 +626,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         Visit_Request_ID = Visit_Request_ID,
                         Visitor_Name = Visitor_Name,
                         Visitor_ID_Link = Visitor_ID_Link,
-                        VMS_Config_title = VMS_Config_title,
+                        VMS_Config_Title = VMS_Config_Title,
                         Visit_Date = Visit_Date,
                         Request_Date = Request_Date
                     },

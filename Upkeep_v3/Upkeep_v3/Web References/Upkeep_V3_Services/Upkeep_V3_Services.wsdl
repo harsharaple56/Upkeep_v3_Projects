@@ -2764,6 +2764,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="blMeetingComp" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="blEmailOtpComp" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="blContactOtpComp" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="termsCondition" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>

@@ -93,6 +93,32 @@
                 },
             });
 
+            $('.TermComdition_repeater').repeater({
+                initEmpty: false,
+                show: function () {
+                    $(this).slideDown();
+                    var counter = $(this).parents('.TermComdition_repeater').find('.TermCondition_count');
+                    var question_count = counter.data('count');
+                    question_count++;
+                    counter.data('count', question_count).html(question_count + ' Term & Condition(s)');
+                    $('#error_TermCondition').html('');
+
+                    init_autosize();
+                    init_plugins();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                    var counter = $(this).parents('.TermComdition_repeater').find('.TermCondition_count');
+                    var question_count = counter.data('count');
+                    question_count--;
+                    counter.data('count', question_count).html(question_count + ' Term & Condition(s)');
+                    if (question_count == 0) {
+                        $('#error_TermCondition').html('Add at least one Term & Condition.');
+                    }
+                },
+            });
+
+
             $('.AnswerType_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -402,6 +428,23 @@
                     }
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
+                //$(".dltSection").click();
+                var terms = $('#hdnVMSTerms').val();
+                //alert(terms);
+                var arrTerms = terms.split("~");
+                for (var i = 0; i < arrTerms.length; i++) {
+                    $("#divTermAdd").click();
+                    //alert(arrTerms[i]);
+
+                    var arrIDTerm = arrTerms[i].split("||");
+                    $("input[name~='VMSTermCondition[" + i + "][hdnRepeaterTermID]']").val(arrIDTerm[0]);
+                    $("textarea[name~='VMSTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]']").val(arrIDTerm[1]);
+
+                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
+                }
+
+
+
                 return;
                 //Bind WP Headers with answesrs
                 //var headers = $('#hdnWPHeaders').val();
@@ -780,6 +823,60 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Terms and Conditions</h3>
+                            </div>
+                            <br />
+                            <div class="col-xl-12">
+                                <div class="m-form__section">
+                                    <div class="TermComdition_repeater">
+                                        <div class="form-group  m-form__group row">
+
+                                            <div data-repeater-list="VMSTermCondition" class="col-lg-12" runat="server" id="VMSTermCondition">
+
+                                                <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="Div2">
+                                                    <div class="col-md-9">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtTermCondition" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
+                                                                <span class="error_TermCondition text-danger medium"></span>
+                                                                <input type="hidden" name="hdnRepeaterTermID" id="hdnRepeaterTermID" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only dltSection">
+                                                            <i class="la la-trash"></i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-form__group form-group row">
+                                            <div class="col-lg-4">
+                                                <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divTermAdd">
+                                                    <span>
+                                                        <i class="la la-plus"></i>
+                                                        <span>Add Term & Condition</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <label id="Label2" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold TermCondition_count" data-count="1">1 Term & Condition(s)</label>
+                                            </div>
+                                            <span id="error_TermCondition" class="text-danger medium"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -840,11 +937,11 @@
                     <input type="hidden" id="HdnID" runat="server" />
                     <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
                     <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
-
+                    <asp:HiddenField ID="hdnVMSTerms" ClientIDMode="Static" runat="server" />
                     <%--</form>--%>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    <%--</div>--%>
 </asp:Content>
