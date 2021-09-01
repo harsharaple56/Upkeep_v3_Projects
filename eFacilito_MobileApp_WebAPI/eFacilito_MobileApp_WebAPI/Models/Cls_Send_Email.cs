@@ -150,7 +150,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Visit_Request_ID { get; set; }
         public string Visitor_Name { get; set; }
         public string Visitor_ID_Link { get; set; }
-        public string VMS_Config_title { get; set; }
+        public string VMS_Config_Title { get; set; }
         public string Visit_Date { get; set; }
         public string Request_Date { get; set; }
     }
