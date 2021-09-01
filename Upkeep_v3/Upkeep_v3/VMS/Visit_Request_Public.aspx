@@ -257,6 +257,55 @@ border: 3px solid #ccc;*/
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            var PhotoSuceess = $("#PhotoSuceess");
+            var PhotoFalied = $("#PhotoFalied");
+            var AadharSuceess = $("#AadharSuceess");
+            var AadharFailed = $("#AadharFailed");
+            var DoseDateSuceess = $("#DoseDateSuceess");
+            var DoseDateFailed = $("#DoseDateFailed");
+            var CertificateSuceess = $("#CertificateSuceess");
+            var CertificateFailed = $("#CertificateFailed");
+
+            PhotoSuceess.hide();
+            PhotoFalied.hide();
+            AadharSuceess.hide();
+            AadharFailed.hide();
+            DoseDateSuceess.hide();
+            DoseDateFailed.hide();
+            CertificateSuceess.hide();
+            CertificateFailed.hide();
+
+
+            $("[id*=txtDoseDate]").blur(function () {
+                var dob = $("[id*=txtDoseDate]").val();
+                if (!Date.parse(dob)) {
+                    DoseDateSuceess.show();
+                } else {
+                    DoseDateFailed.hide();
+                }
+            });
+
+            $("[id*=VCertificate]").blur(function () {
+                var imgVal = $("[id*=VCertificate]").val();
+                if (imgVal != "") {
+                    CertificateSuceess.show();
+                }
+            });
+
+
+            $("[id*=fileupload_userpic]").blur(function () {
+                var imgVal1 = $("[id*=fileupload_userpic]").val();
+                if (imgVal1 != "") {
+                    AadharSuceess.show();
+                }
+            });
+
+            //setInterval(function () {
+            //    var txtDoseDate = $("[id*=txtDoseDate]").val();
+            //    if (txtDoseDate != "") { DoseDateSuceess.show(); }
+            //}, 4000);
+
             var getValue = $("input[name=vCode]").val();
             toastr.options = {
                 "closeButton": true,
@@ -305,6 +354,8 @@ border: 3px solid #ccc;*/
                 }
             });
         });
+
+
     </script>
 
     <script type="text/javascript">
@@ -316,6 +367,7 @@ border: 3px solid #ccc;*/
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    $("#PhotoSuceess").show();
                     $("#m_modal_6").modal("hide");
                     toastr.success("Your Photo Successfully Added..!");
                 },
@@ -337,6 +389,7 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_7").modal("hide");
+                    $("#AadharSuceess").show();
                     toastr.success("Your ID Proof Successfully Added..!");
                 },
                 failure: function (response) {
@@ -793,6 +846,15 @@ border: 3px solid #ccc;*/
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
+                            <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
+                                <i class="fa fa-check-circle"></i>
+                                <b>Success</b>
+                            </span>
+                            <span id="DoseDateFailed" class="m-badge m-badge--danger m-badge--wide">
+                                <i class="fa fa-times-circle"></i>
+                                <b>Failed</b>
+                            </span>
+
                             <div class="input-group date">
                                 <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
                                 <div class="input-group-append">
@@ -808,13 +870,28 @@ border: 3px solid #ccc;*/
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                          <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
 
-                             <div class="font-weight-bold">Upload Vaccination Certificate</div>
+                             <div class="font-weight-bold">
+                                 Upload Vaccination Certificate 
+
+                                 <span id="CertificateSuceess" class="m-badge m-badge--success m-badge--wide">
+                                     <i class="fa fa-check-circle"></i>
+                                     <b>Success</b>
+                                 </span>
+                                 <span id="CertificateFailed" class="m-badge m-badge--danger m-badge--wide">
+                                     <i class="fa fa-times-circle"></i>
+                                     <b>Failed</b>
+                                 </span>
+
+                             </div>
                              <br />
 
                              <div class="custom-file">
-                                 <asp:FileUpload ID="VCertificate" runat="server" CssClass="custom-file-input" />
-                                 <label class="custom-file-label" for="customFile">Choose file (Max File Limit : 5 MB)</label>
+                                 <asp:FileUpload ID="VCertificate" runat="server" CssClass="custom-file-input" accept=".pdf" />
+                                 <label class="custom-file-label" for="customFile">
+                                     Choose file
+                                 <asp:Label ID="Label2" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                  <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
+                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ErrorMessage="Only .pdf file are allowed" ValidationExpression="(.*\.([cC][sS][vV])$)"></asp:RegularExpressionValidator>
                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                              </div>
@@ -822,6 +899,7 @@ border: 3px solid #ccc;*/
 
                              <div class="alert m-alert m-alert--default" role="alert">
                                  Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN.
+
                              </div>
                          </div>
 
@@ -829,35 +907,26 @@ border: 3px solid #ccc;*/
                     &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
-                            <div class="font-weight-bold">Upload Your Photo</div>
+                            <div class="font-weight-bold">
+                                Upload Your Photo
+                             <span id="PhotoSuceess" class="m-badge m-badge--success m-badge--wide">
+                                 <i class="fa fa-check-circle"></i>
+                                 <b>Success</b>
+                             </span>
+                                <span id="PhotoFalied" class="m-badge m-badge--danger m-badge--wide">
+                                    <i class="fa fa-times-circle"></i>
+                                    <b>Failed</b>
+                                </span>
+                            </div>
                             <br />
-                            <div class="row">
+                            <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                <span>
+                                    <i class="fa fa-camera"></i>
+                                    <span>Click Photo</span>
+                                </span>
 
-                                <div class="col-xl-5" style="padding-bottom: 1rem;">
-                                <div class="custom-file">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="custom-file-input" />
-                                    <label class="custom-file-label" for="customFile">Choose file (Max File Limit : 5 MB)</label>
-                                    <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
-                                    OR 
-                                </div>
-                            
-                            <div class="col-xl-5" style="padding-bottom: 1rem;">
-                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-                                        <span>
-                                            <i class="fa fa-camera"></i>
-                                            <span>Click Photo</span>
-                                        </span>
-                                    </button>
-                            </div>
+                            </button>
 
-                            </div>
-
-                            
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
@@ -870,18 +939,49 @@ border: 3px solid #ccc;*/
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
-                            <div class="font-weight-bold">Upload Your Aadhar Photo ID</div>
-                            <br />
-                            <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
-                                <span>
-                                    <i class="fa fa-camera"></i>
-                                    <span>Click Photo</span>
+                            <div class="font-weight-bold">
+                                Upload Your Aadhar Photo ID
+                             <span id="AadharSuceess" class="m-badge m-badge--success m-badge--wide">
+                                 <i class="fa fa-check-circle"></i>
+                                 <b>Success</b>
+                             </span>
+                                <span id="AadharFailed" class="m-badge m-badge--danger m-badge--wide">
+                                    <i class="fa fa-times-circle"></i>
+                                    <b>Failed</b>
                                 </span>
+                            </div>
+                            <br />
+                            <div class="row">
 
-                            </button>
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <div class="custom-file">
+                                        <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
+                                        <label class="custom-file-label" for="customFile">
+                                            Choose file
+                                        <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
+                                        <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="regexValidator" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="(.*\.([cC][sS][vV])$)"></asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter User Photo ID"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                    OR 
+                                </div>
+
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please upload your photo of your ID proof like PAN, Driving License, Passport for verification purposes. (Front side)
+                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side)
                             </div>
 
 
@@ -889,6 +989,7 @@ border: 3px solid #ccc;*/
 
 
                     </div>
+
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">

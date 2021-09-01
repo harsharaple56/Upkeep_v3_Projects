@@ -23,6 +23,9 @@ namespace Upkeep_v3.VMS
         DataSet dsConfig = new DataSet();
         //int CompanyID = 0;
         int ConfigID = 0;
+        public static string UserImage_fileData;
+        public static string UserPhotoID_fileData;
+        public static string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
 
 
         #endregion
@@ -36,66 +39,15 @@ namespace Upkeep_v3.VMS
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
-            Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
-            DataSet ds = new DataSet();
-            int id = 0;
-            int Company_ID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
-            ds = ObjUpkeep.GetLastVMSRequestID(Company_ID);
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                id = Convert.ToInt32(row["RequestID"]);
-            }
-            id++;
-
-
-            string fileName = id + "_" + RandomString(5) + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
-
-            //Convert Base64 Encoded string to Byte Array.
-            byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
-
-            //Save the Byte Array as Image File.
-            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", fileName));
-
-            string fileExtension = Path.GetExtension(filePath);
-
-            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-
-            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + fileName + fileExtension;
-
-            File.WriteAllBytes(filePath, imageBytes);
-            HttpContext.Current.Session["UserPhoto"] = ProfilePhoto_FilePath;
+            UserPhotoID_fileData = data;
             return true;
         }
 
         [WebMethod(EnableSession = true)]
         public static bool SaveUserIdProof(string data)
         {
-            Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
-            DataSet ds = new DataSet();
-            int CompanyID = Convert.ToInt32(HttpContext.Current.Session["CompanyID"]);
-            int id = 0;
-            ds = ObjUpkeep.GetLastVMSRequestID(CompanyID);
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                id = Convert.ToInt32(row["RequestID"]);
-            }
-            id++;
-            string fileName = id + "_" + RandomString(5) + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+            UserImage_fileData = data;
 
-            //Convert Base64 Encoded string to Byte Array.
-            byte[] imageBytes = Convert.FromBase64String(data.Split(',')[1]);
-
-            //Save the Byte Array as Image File.
-            string filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_IDProof/{0}.jpg", fileName));
-
-            string fileExtension = Path.GetExtension(filePath);
-
-            string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-
-            string ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + fileName + fileExtension;
-
-            File.WriteAllBytes(filePath, imageBytes);
-            HttpContext.Current.Session["User_IDProof"] = ProfilePhoto_FilePath;
             return true;
         }
 
@@ -885,6 +837,11 @@ namespace Upkeep_v3.VMS
                 int RequestID = 0;
                 char Action = 'N';
                 Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
+                string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
+                string UserImage_ProfilePhoto_FilePath = string.Empty;
+                string UserPhotoIDPath_Brows = string.Empty;
+                string GetUserPhotoIDPath = string.Empty;
+
 
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {
@@ -900,11 +857,32 @@ namespace Upkeep_v3.VMS
                         {
                             RequestID = Convert.ToInt32(ViewState["RequestID"]);
                         }
+
+                        #region Get Next Request ID
+                        DataSet ds = new DataSet();
+                        int id = 0;
+                        ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            id = Convert.ToInt32(row["RequestID"]);
+                        }
+                        id++;
+                        #endregion
+
+                        #region Certificate Photo
                         string storefilePathtoDB = string.Empty;
                         if (VCertificate.HasFile)
                         {
                             try
                             {
+                                var supportedTypes = new[] { "pdf" };
+                                var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
+                                if (!supportedTypes.Contains(fileExt))
+                                {
+                                    lbl_error_userpic.Text = "File Extension Is InValid - Only Upload PDF File";
+                                    return;
+                                }
+
                                 int maxFileSize = 5000; // 5MB
                                 int fileSize = VCertificate.PostedFile.ContentLength;
                                 if (fileSize > (maxFileSize * 1024))
@@ -923,14 +901,7 @@ namespace Upkeep_v3.VMS
                                 string fileName = VCertificate.FileName;
                                 string fileExtension = Path.GetExtension(fileName);
 
-                                DataSet ds = new DataSet();
-                                int id = 0;
-                                ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
-                                foreach (DataRow row in ds.Tables[0].Rows)
-                                {
-                                    id = Convert.ToInt32(row["RequestID"]);
-                                }
-                                id++;
+
                                 string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
                                 string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
                                 storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
@@ -945,6 +916,104 @@ namespace Upkeep_v3.VMS
                         {
                             lbl_error.Text = "Please Select File and Upload Again";
                         }
+                        #endregion
+
+                        #region User Image Browse
+                        if (fileupload_userpic.HasFile)
+                        {
+                            try
+                            {
+                                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                                var fileExt = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
+                                if (!supportedTypes.Contains(fileExt))
+                                {
+                                    lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                    return;
+                                }
+
+                                int maxFileSize = 5000; // 5MB
+                                int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                if (fileSize > (maxFileSize * 1024))
+                                {
+                                    lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                    return;
+                                }
+
+                                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
+                                if (!Directory.Exists(fileUploadPath_Profile))
+                                {
+                                    Directory.CreateDirectory(fileUploadPath_Profile);
+                                }
+
+                                string fileName = fileupload_userpic.FileName;
+                                string fileExtension = Path.GetExtension(fileName);
+
+                                string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
+                                UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
+                                fileupload_userpic.SaveAs(pathToSave);
+                            }
+                            catch (Exception ex)
+                            {
+                                lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                            }
+                        }
+                        else
+                        {
+                            lbl_error_userpic.Text = "Please Select File and Upload Again";
+                        }
+                        #endregion
+
+                        #region User Image Web Cam
+                        if (!string.IsNullOrEmpty(UserImage_fileData))
+                        {
+                            string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+                            //Convert Base64 Encoded string to Byte Array.
+                            byte[] UserImage_imageBytes = Convert.FromBase64String(UserImage_fileData.Split(',')[1]);
+
+                            //Save the Byte Array as Image File.
+                            string UserImage_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", UserImage_fileName));
+
+                            string UserImage_fileExtension = Path.GetExtension(UserImage_filePath);
+
+                            UserImage_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + UserImage_fileName + UserImage_fileExtension;
+
+                            File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
+                        }
+                        #endregion
+
+                        #region User Photo ID Web Cam
+                        if (!string.IsNullOrEmpty(UserPhotoID_fileData))
+                        {
+                            string UserPhotoID_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+                            //Convert Base64 Encoded string to Byte Array.
+                            byte[] UserPhotoID_imageBytes = Convert.FromBase64String(UserPhotoID_fileData.Split(',')[1]);
+
+                            //Save the Byte Array as Image File.
+                            string UserPhotoID_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_IDProof/{0}.jpg", UserPhotoID_fileName));
+
+                            string UserPhotoID_fileExtension = Path.GetExtension(UserPhotoID_filePath);
+
+                            UserPhotoID_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + UserPhotoID_fileName + UserPhotoID_fileExtension;
+
+                            File.WriteAllBytes(UserPhotoID_filePath, UserPhotoID_imageBytes);
+                        }
+                        #endregion
+
+                        #region Get User Upload Image Brows or Web cam
+                        if ((UserPhotoIDPath_Brows != null && UserPhotoID_ProfilePhoto_FilePath != null) || (UserPhotoIDPath_Brows != null && UserPhotoID_ProfilePhoto_FilePath == null))
+                        {
+                            GetUserPhotoIDPath = UserPhotoIDPath_Brows;
+                        }
+                        else if (UserPhotoIDPath_Brows == null && UserPhotoID_ProfilePhoto_FilePath != null)
+                        {
+                            GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
+                        }
+                        #endregion
+
+
                         ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                         string LoggedInUser = LoggedInUserID;
                         string strName = txtName.Text;
@@ -1312,9 +1381,10 @@ namespace Upkeep_v3.VMS
                     #endregion
 
                     #region SaveDataToDB
+
                     Save:
                         DataSet dsVMSQuestionData = new DataSet();
-                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, Session["UserPhoto"] != null ? Session["UserPhoto"].ToString() : string.Empty, storefilePathtoDB, strDoseDate, Session["User_IDProof"] != null ? Session["User_IDProof"].ToString() : string.Empty, LoggedInUserID);
+                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, UserImage_ProfilePhoto_FilePath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
 
                         if (dsVMSQuestionData.Tables.Count > 0)
                         {
@@ -1357,6 +1427,7 @@ namespace Upkeep_v3.VMS
                                     divError.Visible = true;
                                     lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
                                 }
+
                             }
                         }
                         #endregion
