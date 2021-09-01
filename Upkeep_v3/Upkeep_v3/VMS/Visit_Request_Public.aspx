@@ -961,8 +961,6 @@ border: 3px solid #ccc;*/
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
                                         <asp:RegularExpressionValidator ForeColor="Red" ID="regexValidator" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="(.*\.([cC][sS][vV])$)"></asp:RegularExpressionValidator>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter User Photo ID"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
