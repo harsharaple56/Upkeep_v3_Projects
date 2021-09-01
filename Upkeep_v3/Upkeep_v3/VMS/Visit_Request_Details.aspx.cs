@@ -1227,7 +1227,19 @@ namespace Upkeep_v3.VMS
 
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
-                        //else if (status == 5 && Action != 'N')
+                        else if (status == 1 && Action == 'R')
+                        {
+                            Response.Write("<script>alert('Status changed.');</script>");
+
+                            TextMessage = "Dear " + strName + "," + "%0a%0aYour visit Request ID " + Visit_Request_ID + " registered using eFacilito has been rejected by " + Company_Desc + " . You may submit your request again.";
+                            
+                            if (SMS_Enabled > 0)
+                            {
+                                string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                            }
+
+                            Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                        }
                         else if (status == 5)
                         {
                             divCountFull.Visible = true;

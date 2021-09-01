@@ -139,6 +139,63 @@
                 <div class="col-lg-12">
                     <!--begin::Portlet-->
                     <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+                        <div class="m-portlet__body">
+                            
+                            <div class="m-widget25">
+											<div class="m-widget25--progress" style="padding: 0;margin: 0;">
+												<div class="m-widget25__progress" style="width: 25%;">
+													<span id="lbl_VMS_Recieved" runat="server" class="m-widget25__progress-number">
+														0
+													</span>
+													<div class="m--space-10"></div>
+													<div class="progress m-progress--sm">
+														<div class="progress-bar m--bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<span class="m-widget25__progress-sub">
+														Requests Recieved
+													</span>
+												</div>
+												<div class="m-widget25__progress" style="width: 25%;">
+													<span id="lbl_VMS_IN" runat="server" class="m-widget25__progress-number">
+														0
+													</span>
+													<div class="m--space-10"></div>
+													<div class="progress m-progress--sm">
+														<div class="progress-bar m--bg-success" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<span class="m-widget25__progress-sub">
+														Visitors Marked IN 
+													</span>
+												</div>
+												<div class="m-widget25__progress" style="width: 25%;">
+													<span id="lbl_VMS_OUT" runat="server" class="m-widget25__progress-number">
+														0
+													</span>
+													<div class="m--space-10"></div>
+													<div class="progress m-progress--sm">
+														<div class="progress-bar m--bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<span class="m-widget25__progress-sub">
+														Visitors Marked OUT
+													</span>
+												</div>
+                                                <div class="m-widget25__progress" style="width: 25%;">
+													<span id="lbl_VMS_Rejected" runat="server" class="m-widget25__progress-number">
+														0
+													</span>
+													<div class="m--space-10"></div>
+													<div class="progress m-progress--sm">
+														<div class="progress-bar m--bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<span class="m-widget25__progress-sub">
+														Visit Requests Rejected
+													</span>
+												</div>
+                                                
+											</div>
+										</div>
+
+                        </div>
                         <div class="m-portlet__head">
 
                             <div class="m-portlet__head-wrapper">
@@ -295,11 +352,6 @@
                                 
 
                             </div>
-
-
-
-
-
 
 
                             <!--end: Search Form -->

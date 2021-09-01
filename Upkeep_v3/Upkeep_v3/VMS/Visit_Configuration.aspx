@@ -613,6 +613,12 @@
                                             <asp:CheckBox ID="ChkVaccinated" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Check for Vaccination</label>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                   
+                                    <asp:TextBox ID="txt_Emails" runat="server" class="form-control" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Email ID's Entered here will be notified whenever a Visit requests is registered for this Configuration. Enter Multiple Email ID's in comma seperated " ClientIDMode="Static" placeholder="Enter Email ID's to Notify"></asp:TextBox>
+                                    
+
+                                </div>
                             </div>
                             <div class="form-group m-form__group row">
                                 <div class="col-md-6" id="divFeedback">
