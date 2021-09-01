@@ -38,7 +38,7 @@ namespace Upkeep_v3.VMS
                 {
                     div_Visitor_ID.Visible = true;
                     div_No_Visitor_ID.Visible = false;
-                    Generate_Report();
+                    Generate_Visitor_ID();
                 }
                 else
                 {
@@ -49,7 +49,47 @@ namespace Upkeep_v3.VMS
             }
         }
 
-        protected void Generate_Report()
+        //protected void Generate_Report()
+        //{
+
+        //    try
+        //    {
+        //        DataSet dsVisitor_ID = new DataSet();
+        //        dsVisitor_ID = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
+
+        //        if (dsVisitor_ID != null)
+        //        {
+        //            if (dsVisitor_ID.Tables.Count > 0)
+        //            {
+        //                if (dsVisitor_ID.Tables[0].Rows.Count > 0)
+        //                {
+        //                    rv_Visitor_ID.ProcessingMode = ProcessingMode.Local;
+
+        //                    rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/VMS/Visitor_ID.rdlc");
+        //                    //rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Flr3ReportWizard.rdlc");
+
+        //                    ReportDataSource datasource0 = new ReportDataSource("ds_Visitor_Info_ID", dsVisitor_ID.Tables[0]);
+
+
+        //                    rv_Visitor_ID.LocalReport.EnableExternalImages = true;
+        //                    rv_Visitor_ID.LocalReport.DataSources.Clear();
+        //                    rv_Visitor_ID.LocalReport.EnableHyperlinks = true;
+        //                    rv_Visitor_ID.LocalReport.DataSources.Add(datasource0);
+        //                    //rv_Visitor_ID.LocalReport.Refresh();
+
+
+
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        protected void Generate_Visitor_ID()
         {
 
             try
@@ -63,21 +103,18 @@ namespace Upkeep_v3.VMS
                     {
                         if (dsVisitor_ID.Tables[0].Rows.Count > 0)
                         {
-                            rv_Visitor_ID.ProcessingMode = ProcessingMode.Local;
-
-                            rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/VMS/Visitor_ID.rdlc");
-                            //rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Flr3ReportWizard.rdlc");
-
-                            ReportDataSource datasource0 = new ReportDataSource("ds_Visitor_Info_ID", dsVisitor_ID.Tables[0]);
+                            Img_CompanyLogo.ImageUrl = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Company_Logo"]);
+                            Img_Visitor_Photo.ImageUrl = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visitor_Photo"]);
 
 
-                            rv_Visitor_ID.LocalReport.EnableExternalImages = true;
-                            rv_Visitor_ID.LocalReport.DataSources.Clear();
-                            rv_Visitor_ID.LocalReport.EnableHyperlinks = true;
-                            rv_Visitor_ID.LocalReport.DataSources.Add(datasource0);
-                            //rv_Visitor_ID.LocalReport.Refresh();
+                            lbl_Visitor_Name.InnerText= Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visitor_Name"]);
+                            lbl_Visitor_Email.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visitor_Email"]);
+                            lbl_Visitor_Contact.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visitor_Contact"]);
+                            lbl_VisitRequest_ID.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_ID"]);
+                            lbl_Vacc_Date.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Vaccination_Date"]);
+                            lbl_Request_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Date"]);
 
-
+                            
 
                         }
                     }
