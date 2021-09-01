@@ -492,7 +492,6 @@ namespace Upkeep_v3.VMS
 
         }
 
-
         private void FetchSectionHeaderData()
         {
             try
