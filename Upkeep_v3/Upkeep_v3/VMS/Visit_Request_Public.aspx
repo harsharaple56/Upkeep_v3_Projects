@@ -1012,7 +1012,7 @@ border: 3px solid #ccc;*/
                         </div>
                     </div>
 
-                   <asp:Label ID="lblErrorMsg1" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+                   <asp:Label ID="lblErrorMsg2" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">

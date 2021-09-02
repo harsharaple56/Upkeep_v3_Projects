@@ -147,7 +147,7 @@ namespace Upkeep_v3.VMS
             {
                 if (((CheckBox)item.FindControl("chkTermsCondition")).Checked == false)
                 {
-                    lblErrorMsg1.Text = "Please select all Terms and Conditions";
+                    lblErrorMsg.Text = "Please select all Terms and Conditions";
                     return false;
                 }
             }
@@ -1453,7 +1453,7 @@ namespace Upkeep_v3.VMS
                                 {
                                     SetRepeater();
                                     divError.Visible = true;
-                                    lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
+                                    lblErrorMsg2.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
                                 }
 
                             }
