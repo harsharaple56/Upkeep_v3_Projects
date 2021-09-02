@@ -277,34 +277,58 @@ border: 3px solid #ccc;*/
             CertificateFailed.hide();
 
 
-            $("[id*=txtDoseDate]").blur(function () {
-                var dob = $("[id*=txtDoseDate]").val();
-                if (!Date.parse(dob)) {
+
+            $("[id*=txtDoseDate]").change(function () {
+                var txtDate = $("[id*=txtDoseDate]").val();
+                if (txtDate != "") {
                     DoseDateSuceess.show();
-                } else {
                     DoseDateFailed.hide();
+                }
+                else {
+                    DoseDateSuceess.hide();
+                    DoseDateFailed.show();
                 }
             });
 
-            $("[id*=VCertificate]").blur(function () {
+            $("[id*=VCertificate]").change(function () {
                 var imgVal = $("[id*=VCertificate]").val();
                 if (imgVal != "") {
                     CertificateSuceess.show();
+                    CertificateFailed.hide();
+                }
+                else {
+                    CertificateSuceess.hide();
+                    CertificateFailed.show();
                 }
             });
 
-
-            $("[id*=fileupload_userpic]").blur(function () {
-                var imgVal1 = $("[id*=fileupload_userpic]").val();
-                if (imgVal1 != "") {
+            $("[id*=fileupload_userpic]").change(function () {
+                var imgValue = $("[id*=fileupload_userpic]").val();
+                if (imgValue != "") {
+                    $("[id*=idproof]")[0].removeAttribute('src');
                     AadharSuceess.show();
+                    AadharFailed.hide();
+                    $("[id*=RegularExpressionValidator5]").html('Only (.png , .jpg , .jpeg) files are allowed');
+                }
+                else {
+                    AadharSuceess.hide();
+                    AadharFailed.show();
                 }
             });
+
+
+
 
             //setInterval(function () {
             //    var txtDoseDate = $("[id*=txtDoseDate]").val();
             //    if (txtDoseDate != "") { DoseDateSuceess.show(); }
             //}, 4000);
+
+            var ClearRepeater = $("input[name=ClearRepeater]").val();
+            if (ClearRepeater != undefined)
+            {
+                $("#chkTermsCondition").prop('checked', false);
+            }
 
             var getValue = $("input[name=vCode]").val();
             toastr.options = {
@@ -381,6 +405,7 @@ border: 3px solid #ccc;*/
 
     <script type="text/javascript">
         function InserUserIDProof() {
+
             $.ajax({
                 type: "POST",
                 url: "Visit_Request_Public.aspx/SaveUserIdProof",
@@ -389,11 +414,17 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#m_modal_7").modal("hide");
+                    $("#lbl_userpic").html('Choose file');
+                    $("[id*=fileupload_userpic]").val('');
+                    $("[id*=RegularExpressionValidator5]").html('');
                     $("#AadharSuceess").show();
+                    $("#AadharFailed").hide();
                     toastr.success("Your ID Proof Successfully Added..!");
                 },
                 failure: function (response) {
                     $("#m_modal_7").modal("hide");
+                    $("#AadharSuceess").hide();
+                    $("#AadharFailed").show();
                     toastr.error("Your ID Proof Not Added..!");
                 }
             });
@@ -956,7 +987,7 @@ border: 3px solid #ccc;*/
                                 <div class="col-xl-5" style="padding-bottom: 1rem;">
                                     <div class="custom-file">
                                         <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
-                                        <label class="custom-file-label" for="customFile">
+                                        <label id="lbl_userpic" class="custom-file-label" for="customFile">
                                             Choose file
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>

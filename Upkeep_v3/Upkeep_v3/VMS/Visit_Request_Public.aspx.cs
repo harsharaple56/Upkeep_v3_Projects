@@ -23,19 +23,12 @@ namespace Upkeep_v3.VMS
         DataSet dsConfig = new DataSet();
         //int CompanyID = 0;
         int ConfigID = 0;
-        public static string UserImage_fileData;
-        public static string UserPhotoID_fileData;
+        public static string UserImage_fileData = string.Empty;
+        public static string UserPhotoID_fileData = string.Empty;
         public static string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-
-
         #endregion
-        private static Random random = new Random();
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+
+        #region Store Temporary Photos WebMethods
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
@@ -49,13 +42,13 @@ namespace Upkeep_v3.VMS
             UserPhotoID_fileData = data;
             return true;
         }
+        #endregion
 
         #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
             //LoggedInUserID = "admin";
             //LoggedInUserID = "121";
-
             string strConfigID = string.Empty;
             string strRequestID = string.Empty;
 
@@ -690,21 +683,13 @@ namespace Upkeep_v3.VMS
                             }
                         }
 
-
-
                     }
 
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
                         txtMeetUsers.ReadOnly = true;
-
-
                         txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
-
-
-
-
                     }
                 }
 
@@ -906,7 +891,7 @@ namespace Upkeep_v3.VMS
                                 var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
                                 if (!supportedTypes.Contains(fileExt))
                                 {
-                                    lbl_error_userpic.Text = "File Extension Is InValid - Only Upload PDF File";
+                                    lbl_error.Text = "File Extension Is InValid - Only Upload PDF File";
                                     return;
                                 }
 
@@ -939,10 +924,6 @@ namespace Upkeep_v3.VMS
                                 lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
                             }
                         }
-                        else
-                        {
-                            lbl_error.Text = "Please Select File and Upload Again";
-                        }
                         #endregion
 
                         #region User Image Browse
@@ -950,9 +931,9 @@ namespace Upkeep_v3.VMS
                         {
                             try
                             {
-                                var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                                var fileExt = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
-                                if (!supportedTypes.Contains(fileExt))
+                                var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
+                                if (!supportedTypesData.Contains(fileExt1))
                                 {
                                     lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
                                     return;
@@ -985,10 +966,6 @@ namespace Upkeep_v3.VMS
                                 lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
                             }
                         }
-                        else
-                        {
-                            lbl_error_userpic.Text = "Please Select File and Upload Again";
-                        }
                         #endregion
 
                         #region User Image Web Cam
@@ -1011,7 +988,7 @@ namespace Upkeep_v3.VMS
                         #endregion
 
                         #region User Photo ID Web Cam
-                        if (!string.IsNullOrEmpty(UserPhotoID_fileData))
+                        if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
                         {
                             string UserPhotoID_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
 
@@ -1034,10 +1011,10 @@ namespace Upkeep_v3.VMS
                         {
                             if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
                                 GetUserPhotoIDPath = UserPhotoIDPath_Brows;
-                            else if(!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
+                            else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
                                 GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
                         }
-                        
+
 
 
                         #endregion
@@ -1458,9 +1435,11 @@ namespace Upkeep_v3.VMS
                                 }
 
                             }
-                            ClearTextBoxes(Page);
                         }
+
                         #endregion
+                        ClearControlls();
+                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
                     }
                     else
                     {
@@ -1482,27 +1461,13 @@ namespace Upkeep_v3.VMS
 
         #endregion
 
-        protected void ClearTextBoxes(Control p1)
+        protected void ClearControlls()
         {
-            foreach (Control ctrl in p1.Controls)
-            {
-                if (ctrl is TextBox)
-                {
-                    TextBox t = ctrl as TextBox;
-
-                    if (t != null)
-                    {
-                        t.Text = String.Empty;
-                    }
-                }
-                else
-                {
-                    if (ctrl.Controls.Count > 0)
-                    {
-                        ClearTextBoxes(ctrl);
-                    }
-                }
-            }
+            txtDoseDate.Text = "";
+            txtVMSDate.Text = "";
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+            txtName.Text = "";
         }
 
         protected void txtPhone_TextChanged(object sender, EventArgs e)
