@@ -39,14 +39,14 @@ namespace Upkeep_v3.VMS
         [WebMethod(EnableSession = true)]
         public static bool SaveUserImage(string data)
         {
-            UserPhotoID_fileData = data;
+            UserImage_fileData = data;
             return true;
         }
 
         [WebMethod(EnableSession = true)]
         public static bool SaveUserIdProof(string data)
         {
-            UserImage_fileData = data;
+            UserPhotoID_fileData = data;
             return true;
         }
 
@@ -873,7 +873,7 @@ namespace Upkeep_v3.VMS
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {
                     remainDays = (dtVMSDate.Date - dtDoseDate.Date).TotalDays;
-                    if (remainDays > eligleDays)
+                    if (remainDays >= eligleDays)
                     {
                         #region Variable and Value Declaration
                         if (ViewState["Action"] != null)
@@ -1458,6 +1458,7 @@ namespace Upkeep_v3.VMS
                                 }
 
                             }
+                            ClearTextBoxes(Page);
                         }
                         #endregion
                     }
@@ -1480,6 +1481,29 @@ namespace Upkeep_v3.VMS
         }
 
         #endregion
+
+        protected void ClearTextBoxes(Control p1)
+        {
+            foreach (Control ctrl in p1.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    TextBox t = ctrl as TextBox;
+
+                    if (t != null)
+                    {
+                        t.Text = String.Empty;
+                    }
+                }
+                else
+                {
+                    if (ctrl.Controls.Count > 0)
+                    {
+                        ClearTextBoxes(ctrl);
+                    }
+                }
+            }
+        }
 
         protected void txtPhone_TextChanged(object sender, EventArgs e)
         {
