@@ -53,7 +53,6 @@ namespace Upkeep_v3.VMS
                 else
                 {
                     //From_Date = DateTime.Now.AddDays(-29).ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
-
                     From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
                 }
 
@@ -65,7 +64,6 @@ namespace Upkeep_v3.VMS
                 {
                     //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(30);
                     DateTime To_Date_dt = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture));
-
                     To_Date = To_Date_dt.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
                 }
 
@@ -94,9 +92,7 @@ namespace Upkeep_v3.VMS
                             string Email = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
                             
                             data += "<tr><td> <a href='Visit_Request_Details.aspx?RequestID=" + RequestID + "' style='text-decoration: underline;' > " + RequestID + " </a></td><td>" + Config_Title + "</td><td>" + Name + "</td><td>" + Phone + "</td><td>" + Email + "</td><td>" + InTime + "</td><td>" + OutTime + "</td><td>" + Status + "</td><td>" + Created_By + "</td><td>" + MeetDate + "</td><td>" + RequestDate + "</td></tr>";
-
                         }
-
                     }
                     else
                     {

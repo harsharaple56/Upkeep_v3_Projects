@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Upkeep_v3.CSM
 {
-   
+
     public partial class CSM_Configuration : System.Web.UI.Page
     {
         #region Global Variables
@@ -126,6 +126,8 @@ namespace Upkeep_v3.CSM
                 int Termln = 0;
                 if (String.IsNullOrEmpty(txtTermCount.Value)) { Termln = 0; }
                 else { Termln = Convert.ToInt32(txtTermCount.Value); }
+
+                string abc = lblTermCount.InnerText;
 
                 //loop for In question
                 for (int i = 0; i < InQln; i++)
@@ -248,20 +250,36 @@ namespace Upkeep_v3.CSM
                 }
 
                 //loop for Image Header
-                for (int i = 0; i < Termln; i++)
+                int ccc = Request.Form.Count;
+                for (int i = 0; i < ccc; i++)
+                //for (int i = 0; i < Termln; i++)
                 {
                     CSMImageHeaderID = "0";
                     CSMImageHeader = "";
 
-                    CSMImageHeaderID = Request.Form.GetValues("TermCondition[" + i + "][hdnRepeaterTermID]")[0];
-                    CSMImageHeader = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]")[0];
+                    string[] CSMImageHeader_Array = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]");
+                    if (CSMImageHeader_Array != null)
+                    {
+                        CSMImageHeader = CSMImageHeader_Array[0];
+                    }
 
-                    strXmlCSM_Terms.Append(@"<TERM_DETAIL>");
-                    strXmlCSM_Terms.Append(@"<TERM_Sequence>" + i + "</TERM_Sequence>");
-                    strXmlCSM_Terms.Append(@"<TERM_Id>" + CSMImageHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_Id>");
-                    strXmlCSM_Terms.Append(@"<TERM_DESC>" + CSMImageHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_DESC>");
-                    strXmlCSM_Terms.Append(@"</TERM_DETAIL>");
+                    string[] CSMImageHeaderID_Array = Request.Form.GetValues("TermCondition[" + i + "][hdnRepeaterTermID]");
+                    if (CSMImageHeaderID_Array != null)
+                    {
+                        CSMImageHeaderID = CSMImageHeaderID_Array[0];
+                    }
 
+                    //CSMImageHeader = Request.Form.GetValues("TermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermCondition]")[0];
+                    //CSMImageHeaderID = Request.Form.GetValues("TermCondition[" + i + "][hdnRepeaterTermID]")[0];
+
+                    if (CSMImageHeader != "")
+                    {
+                        strXmlCSM_Terms.Append(@"<TERM_DETAIL>");
+                        strXmlCSM_Terms.Append(@"<TERM_Sequence>" + i + "</TERM_Sequence>");
+                        strXmlCSM_Terms.Append(@"<TERM_Id>" + CSMImageHeaderID.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_Id>");
+                        strXmlCSM_Terms.Append(@"<TERM_DESC>" + CSMImageHeader.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;") + "</TERM_DESC>");
+                        strXmlCSM_Terms.Append(@"</TERM_DETAIL>");
+                    }
                 }
 
                 strXmlCSM_InQuestion.Append(@"</CSM_IN_HEADER_ROOT>");
@@ -469,7 +487,7 @@ namespace Upkeep_v3.CSM
                     hdnUsersID.Value = dsConfig.Tables[0].Rows[0]["Request_Flow_ID"].ToString();
                     hdnSelectedUserID.Value = dsConfig.Tables[0].Rows[0]["Request_Flow_ID"].ToString();
                     string UnitCost = dsConfig.Tables[0].Rows[0]["Cost"].ToString();
-                    if(UnitCost.Contains("/"))
+                    if (UnitCost.Contains("/"))
                     {
                         txtCost.Text = UnitCost.Split('/')[0] == null ? "0" : UnitCost.Split('/')[0];
                         txtUnit.Text = UnitCost.Split('/')[1] == null ? "" : UnitCost.Split('/')[1];

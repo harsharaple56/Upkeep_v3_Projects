@@ -92,7 +92,8 @@
                 ////    range = start.format('MMM D') + ' - ' + end.format('MMM D');
                 ////}
 
-                range = start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY');
+                //range = start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY');
+                range = start.format('MMM D') + ' - ' + end.format('MMM D');
 
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
