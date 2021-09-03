@@ -259,10 +259,11 @@ namespace Upkeep_v3.VMS
                 blEnableCovid = Convert.ToBoolean(ChkCovid.Checked);
                 blEnableVaccination = Convert.ToBoolean(ChkVaccinated.Checked);
 
-
+                string NotifyEmails = string.Empty;
+                NotifyEmails = Convert.ToString(txt_Emails.Text.Trim());
 
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), NotifyEmails, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -396,8 +397,8 @@ namespace Upkeep_v3.VMS
                     ChkEmailOtpCom.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
                     ChkContactOTPComp.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
                     ChkVaccinated.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
-                   
 
+                    txt_Emails.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["Notify_Emails"].ToString());
 
 
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
