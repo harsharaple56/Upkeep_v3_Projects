@@ -325,8 +325,7 @@ border: 3px solid #ccc;*/
             //}, 4000);
 
             var ClearRepeater = $("input[name=ClearRepeater]").val();
-            if (ClearRepeater != undefined)
-            {
+            if (ClearRepeater != undefined) {
                 $("#chkTermsCondition").prop('checked', false);
             }
 
@@ -336,7 +335,7 @@ border: 3px solid #ccc;*/
                 "debug": false,
                 "newestOnTop": false,
                 "progressBar": false,
-                "positionClass": "toast-top-right",
+                "positionClass": "toast-bottom-center",
                 "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "300",
@@ -438,15 +437,23 @@ border: 3px solid #ccc;*/
 
         $(document).ready(function () {
 
-            $('.datetimepicker_VisitDate').datepicker({
+
+            $('.datetimepicker_VisitDate').datetimepicker({
                 todayHighlight: true,
-                orientation: 'auto top',
                 autoclose: true,
                 pickerPosition: 'bottom-right',
-                format: 'dd-MM-yyyy',
+                format: 'dd/mm/yyyy HH:ii P',
                 showMeridian: true,
-                startDate: moment().format('dd-MM-yyyy'),
+                startDate: moment().format('YYYY-MM-DD'),
+            }).on('changeDate', function (event) {
+                var startDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var endDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                if (endDate < startDate) {
+                    $('#txtVMSDate').val('');
+                }
             });
+
+
 
             $('.datetimepicker_Dose').datepicker({
                 todayHighlight: true,
@@ -456,16 +463,6 @@ border: 3px solid #ccc;*/
                 format: 'dd-MM-yyyy',
                 showMeridian: true,
                 endDate: moment().format('dd-MM-yyyy'),
-            });
-
-
-            $('.datetimepicker').datepicker({
-                todayHighlight: true,
-                orientation: 'auto top',
-                autoclose: true,
-                pickerPosition: 'bottom-right',
-                format: 'dd-MM-yyyy',
-                showMeridian: true
             });
 
 
@@ -662,10 +659,7 @@ border: 3px solid #ccc;*/
                     </div>
                 </div>
 
-                <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
-                    <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
 
-                </div>
                 <div class="m--align-center" style="padding: 15px;">
                     <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
                 </div>
@@ -906,7 +900,7 @@ border: 3px solid #ccc;*/
 
                                  <span id="CertificateSuceess" class="m-badge m-badge--success m-badge--wide">
                                      <i class="fa fa-check-circle"></i>
-                                     <b>Success</b>
+                                     <b>Successfully Uploaded</b>
                                  </span>
                                  <span id="CertificateFailed" class="m-badge m-badge--danger m-badge--wide">
                                      <i class="fa fa-times-circle"></i>
@@ -939,10 +933,10 @@ border: 3px solid #ccc;*/
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <div class="font-weight-bold">
-                                Upload Your Photo
+                                Upload your photo without any mask
                              <span id="PhotoSuceess" class="m-badge m-badge--success m-badge--wide">
                                  <i class="fa fa-check-circle"></i>
-                                 <b>Success</b>
+                                 <b>Successfully Uploaded</b>
                              </span>
                                 <span id="PhotoFalied" class="m-badge m-badge--danger m-badge--wide">
                                     <i class="fa fa-times-circle"></i>
@@ -971,10 +965,10 @@ border: 3px solid #ccc;*/
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <div class="font-weight-bold">
-                                Upload Your Aadhar Photo ID
+                                Upload your valid Photo ID proof
                              <span id="AadharSuceess" class="m-badge m-badge--success m-badge--wide">
                                  <i class="fa fa-check-circle"></i>
-                                 <b>Success</b>
+                                 <b>Successfully Uploaded</b>
                              </span>
                                 <span id="AadharFailed" class="m-badge m-badge--danger m-badge--wide">
                                     <i class="fa fa-times-circle"></i>
@@ -1051,6 +1045,11 @@ border: 3px solid #ccc;*/
                             <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Submit" />
                         </div>
                     </div>
+
+                    <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
+                        <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
+                    </div>
+
                     <br />
                     <%-- Covid19 assessment --%>
                     <div id="divCovid" runat="server" visible="false">
