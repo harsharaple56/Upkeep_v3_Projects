@@ -137,9 +137,10 @@ namespace Upkeep_v3.VMS
             //Validate Terms and Conditions..
             foreach (RepeaterItem item in rptTermsCondition1.Items)
             {
+                divError.Visible = true;
                 if (((CheckBox)item.FindControl("chkTermsCondition")).Checked == false)
                 {
-                    lblErrorMsg.Text = "Please select all Terms and Conditions";
+                    lblErrorMsg.Text = "Please check Terms and Conditions";
                     return false;
                 }
             }
@@ -842,7 +843,7 @@ namespace Upkeep_v3.VMS
         {
             try
             {
-                DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim()).Date;
+                DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
                 DateTime dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
                 double eligleDays = 14;
                 double remainDays = 0;
@@ -1025,7 +1026,7 @@ namespace Upkeep_v3.VMS
                         string strName = txtName.Text;
                         string strEmail = txtEmail.Text;
                         string strPhone = txtPhone.Text;
-                        string strVisitDate = dtVMSDate.ToString("dd-MMM-yyyy");
+                        string strVisitDate = dtVMSDate.ToString("MMM dd yyyy hh:mm tt");
                         string strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
                         string strCovidTestDate = string.Empty;
                         if (!string.IsNullOrEmpty(txtAsmmtDate.Text))
@@ -1443,8 +1444,10 @@ namespace Upkeep_v3.VMS
                     }
                     else
                     {
+                        ClearControlls();
                         ViewState["DateInvalid"] = "DateInvalid";
                         Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
+                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
                     }
                 }
                 else
