@@ -114,7 +114,7 @@ namespace Upkeep_v3.VMS
 
                 string EventID = Convert.ToString(ddlFormName.SelectedValue);
                 DataSet ds = new DataSet();
-                
+
                 ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
                 int ColumnCount = 0;
 
@@ -126,42 +126,48 @@ namespace Upkeep_v3.VMS
                         {
                             int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
 
-                           
+
 
                             string Question = string.Empty;
 
                             //   data = "<tr><th>Action</th><th>visitor No</th> <th>UserName</th><th>Vist Date </th><th>Email</th><th>Phone No</th> <th> Meeting User Name</th><th>Meeting With</th> ";
                             data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
 
-                            ColumnCount = (ds.Tables[1].Rows.Count);
-
-                            int QuestionRowCount = 0;
-                            string indicator = string.Empty;
-                            string ans_type = string.Empty;
-                            //indicator = "<span class='fa-smile-beam'></span>";
-
-                            for (int j = 1; j <= ColumnCount; j++)
+                            if (ds.Tables.Count > 1)
                             {
-                                QuestionRowCount = j - 1;
-                                Question = Convert.ToString(ds.Tables[1].Rows[QuestionRowCount]["Qn_Desc"]);
-                               data += "<th data-container='body' data-toggle='m-tooltip' data-placement='top' title='" + Question + "'>Q" + j + " </th> ";
+                                if (ds.Tables[1].Rows.Count > 0)
+                                {
+                                    ColumnCount = (ds.Tables[1].Rows.Count);
 
+                                    int QuestionRowCount = 0;
+                                    string indicator = string.Empty;
+                                    string ans_type = string.Empty;
+                                    //indicator = "<span class='fa-smile-beam'></span>";
+
+                                    for (int j = 1; j <= ColumnCount; j++)
+                                    {
+                                        QuestionRowCount = j - 1;
+                                        Question = Convert.ToString(ds.Tables[1].Rows[QuestionRowCount]["Qn_Desc"]);
+                                        data += "<th data-container='body' data-toggle='m-tooltip' data-placement='top' title='" + Question + "'>Q" + j + " </th> ";
+
+                                    }
+                                }
                             }
-                        
 
-                     
-                        //}
-                    }
+
+
+                            //}
+                        }
                         else
                         {
-                           
+
                             data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
 
                         }
                     }
                     else
                     {
-                         data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
+                        data = "<tr><th>RequestID</th><th>Name</th><th>Email</th><th>Phone</th><th>RequestDate</th><th>Config_Title</th><th>Meeting_Time</th</tr>";
                         //invalid login
                     }
                 }
@@ -208,7 +214,7 @@ namespace Upkeep_v3.VMS
                 string EventID = Convert.ToString(ddlFormName.SelectedValue);
 
                 DataSet ds = new DataSet();
-               
+
                 ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
                 int ColumnCount = 0;
                 string Name = string.Empty;
@@ -216,7 +222,7 @@ namespace Upkeep_v3.VMS
                 string MobileNo = string.Empty;
                 string Meeting_Host = string.Empty;
                 string Answer = string.Empty;
-               // string StoreName = string.Empty;
+                // string StoreName = string.Empty;
                 //string StoreNo = string.Empty;
                 string Meeting_Name = string.Empty;
                 string Meeting_Date = string.Empty;
@@ -243,41 +249,32 @@ namespace Upkeep_v3.VMS
 
                             for (int i = 0; i < count; i++)
                             {
-                               
-                              
-                                    UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["Request_ID"]);
-                                    Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
-                                    EmailID = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
-                                    MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
-                                    MeetingDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
-                                    Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Title"]);
-                                    RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                                UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["Request_ID"]);
+                                Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
+                                EmailID = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
+                                MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
+                                MeetingDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
+                                Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Title"]);
+                                RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
-
-                            
-                                data += "<tr><td>"+ UserID + "</td><td>"+ Name +"</td><td>"+ EmailID + "</td><td>"+ MobileNo + "</td><td>"+RequestDate+"</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
+                                data += "<tr><td>" + UserID + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + RequestDate + "</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
 
                                 ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 7; j < ColumnCount; j++)
-                                    {
-                                        Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
-                                        data += "<td>" + Answer + "</td>";
+                                for (int j = 7; j < ColumnCount; j++)
+                                {
+                                    Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
+                                    data += "<td>" + Answer + "</td>";
+                                }
 
-
-                                    }
-
-
-                               
                                 data += "</tr>";
                                 x++;
-
                             }
                         }
                     }
                     else
                     {
-                      
+
                         //invalid login
                     }
                 }
@@ -396,7 +393,7 @@ namespace Upkeep_v3.VMS
 
                 DataSet dsMisReport = new DataSet();
                 dsMisReport = ObjUpkeep.Fetch_VMSRequestList_Report_Excel(EventID, Convert.ToInt32(Session["CompanyID"]), From_Date, To_Date);
-              
+
                 System.Data.DataTable dtMISReport = new System.Data.DataTable();
 
 
