@@ -48,7 +48,8 @@ namespace Upkeep_v3.VMS
             {
                 if (start_date.Value != "")
                 {
-                    From_Date = Convert.ToDateTime(start_date.Value).ToString("dd-MMM-yyyy");
+                    //From_Date = Convert.ToDateTime(start_date.Value).ToString("dd-MMM-yyyy");
+                    From_Date = Convert.ToString(start_date.Value);
                 }
                 else
                 {
@@ -58,7 +59,8 @@ namespace Upkeep_v3.VMS
 
                 if (end_date.Value != "")
                 {
-                    To_Date = Convert.ToDateTime(end_date.Value).ToString("dd-MMM-yyyy");
+                    //To_Date = Convert.ToDateTime(end_date.Value).ToString("dd-MMM-yyyy");
+                    To_Date = Convert.ToString(end_date.Value);
                 }
                 else
                 {
@@ -126,7 +128,7 @@ namespace Upkeep_v3.VMS
                 //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
                 DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture));
 
-                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                Fromdate = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
 
                 //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
             }
@@ -139,7 +141,7 @@ namespace Upkeep_v3.VMS
             {
                 //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
                 //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
+                ToDate = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
             }
 
 
