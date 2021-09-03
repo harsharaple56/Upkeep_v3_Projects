@@ -594,7 +594,7 @@ border: 3px solid #ccc;*/
                                             <div class="m-card-profile"">
                                                  <div class="">
                                                 <div class="m-card-profile__pic-wrapper" style="margin: 0px;">
-                                                     <asp:Image ID="IDProof" runat="server" />
+                                                     <asp:Image ID="IDProof" runat="server" style="width:-webkit-fill-available;height: -webkit-fill-available;"/>
                                                 </div>
                                             </div>
                                             </div>
@@ -615,7 +615,6 @@ border: 3px solid #ccc;*/
                             <div class="m-form__heading" style="text-align: center;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
                             </div>
-
 
                             <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
                                 <ItemTemplate>
