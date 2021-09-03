@@ -207,9 +207,12 @@ namespace Upkeep_v3.VMS
 
                     if (VMSCondition_Array != null)
                     {
-                        strXmlVMS_TermCondition.Append(@"<VMS_TERM_DESC>");
-                        strXmlVMS_TermCondition.Append(@"<VMS_TERM>" + VMSTermCondition + "</VMS_TERM>");
-                        strXmlVMS_TermCondition.Append(@"</VMS_TERM_DESC>");
+                        if (VMSTermCondition != "")
+                        {
+                            strXmlVMS_TermCondition.Append(@"<VMS_TERM_DESC>");
+                            strXmlVMS_TermCondition.Append(@"<VMS_TERM>" + VMSTermCondition + "</VMS_TERM>");
+                            strXmlVMS_TermCondition.Append(@"</VMS_TERM_DESC>");
+                        }
                     }
                 }
 
