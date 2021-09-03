@@ -352,31 +352,33 @@ border: 3px solid #ccc;*/
                 toastr.warning("Your are not eligible for Visit.");
             }
 
+            //Commented by Lokesh as date select was not working
 
-            Dropzone.autoDiscover = false;
-            $("#dZUpload").dropzone({
-                url: "/Handlers/VCertificate_Handler.ashx",
-                addRemoveLinks: true,
-                maxFiles: 1,
-                maxFilesize: 5, // MB
-                acceptedFiles: ".pdf",
-                init: function () {
-                    this.on("maxfilesexceeded", function (file) {
-                        this.removeAllFiles();
-                        this.addFile(file);
-                    });
-                },
-                success: function (file, response) {
-                    var fileName = response;
-                    file.previewElement.classList.add("dz-success");
-                    toastr.success("Your File Successfully Uploaded\n" + fileName);
-                },
-                error: function (file, response) {
-                    var fileName = response;
-                    file.previewElement.classList.add("dz-error");
-                    toastr.error("Your File Not Uploaded : " + fileName);
-                }
-            });
+            //Dropzone.autoDiscover = false;
+            //$("#dZUpload").dropzone({
+            //    url: "/Handlers/VCertificate_Handler.ashx",
+            //    addRemoveLinks: true,
+            //    maxFiles: 1,
+            //    maxFilesize: 5, // MB
+            //    acceptedFiles: ".pdf",
+            //    init: function () {
+            //        this.on("maxfilesexceeded", function (file) {
+            //            this.removeAllFiles();
+            //            this.addFile(file);
+            //        });
+            //    },
+            //    success: function (file, response) {
+            //        var fileName = response;
+            //        file.previewElement.classList.add("dz-success");
+            //        toastr.success("Your File Successfully Uploaded\n" + fileName);
+            //    },
+            //    error: function (file, response) {
+            //        var fileName = response;
+            //        file.previewElement.classList.add("dz-error");
+            //        toastr.error("Your File Not Uploaded : " + fileName);
+            //    }
+            //});
+
         });
 
 
