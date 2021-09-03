@@ -326,7 +326,7 @@ border: 3px solid #ccc;*/
 
             var ClearRepeater = $("input[name=ClearRepeater]").val();
             if (ClearRepeater != undefined) {
-                $("#chkTermsCondition").prop('checked', false);
+                $("[id*=chkTermsCondition]").prop('checked', false);
             }
 
             var getValue = $("input[name=vCode]").val();

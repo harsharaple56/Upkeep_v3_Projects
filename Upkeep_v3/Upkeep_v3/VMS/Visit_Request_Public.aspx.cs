@@ -1444,8 +1444,10 @@ namespace Upkeep_v3.VMS
                     }
                     else
                     {
+                        ClearControlls();
                         ViewState["DateInvalid"] = "DateInvalid";
                         Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
+                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
                     }
                 }
                 else
