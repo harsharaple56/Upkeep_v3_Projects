@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web.Services;
 using Upkeep_v3.SMS;
+using System.Globalization;
 
 namespace Upkeep_v3.VMS
 {
@@ -855,10 +856,11 @@ namespace Upkeep_v3.VMS
                 string UserPhotoIDPath_Brows = string.Empty;
                 string GetUserPhotoIDPath = string.Empty;
 
-
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {
-                    remainDays = (dtVMSDate.Date - dtDoseDate.Date).TotalDays;
+                    DateTime dtConvertVMSDate = Convert.ToDateTime(dtVMSDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
+                    DateTime dtConvertDoseDate = Convert.ToDateTime(dtDoseDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
+                    remainDays = (dtConvertVMSDate.Date - dtConvertDoseDate.Date).TotalDays;
                     if (remainDays >= eligleDays)
                     {
                         #region Variable and Value Declaration

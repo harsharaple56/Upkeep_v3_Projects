@@ -327,6 +327,7 @@ border: 3px solid #ccc;*/
             var ClearRepeater = $("input[name=ClearRepeater]").val();
             if (ClearRepeater != undefined) {
                 $("[id*=chkTermsCondition]").prop('checked', false);
+                $("[id*=divError]").hide();
             }
 
             var getValue = $("input[name=vCode]").val();
@@ -444,7 +445,7 @@ border: 3px solid #ccc;*/
                 todayHighlight: true,
                 autoclose: true,
                 pickerPosition: 'bottom-right',
-                format: 'dd/mm/yyyy HH:ii P',
+                format: 'dd-MM-yyyy HH:ii P',
                 showMeridian: true,
                 startDate: moment().format('YYYY-MM-DD'),
             }).on('changeDate', function (event) {
