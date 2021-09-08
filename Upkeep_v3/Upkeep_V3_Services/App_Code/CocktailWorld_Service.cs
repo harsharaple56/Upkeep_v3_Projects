@@ -82,6 +82,22 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet TransferMaster_CRUD(int Transfer_ID, string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise,
+            int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.TransferMaster_CRUD(Transfer_ID, TransferDate,  TP_No,  Invoice_No,  FL_IV,  Is_Show_Excise,Trasnfer_To_LicenseID,  License_ID,  LoggedInUserID,  Company_ID,  Action);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID, string Brand_Desc, string Size_Desc, decimal Bottle_Qty, decimal Bottle_Rate
             , decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No, string Mfg, string Tax_Type, decimal Tax_Amt, decimal Total_Amt
             , int License_ID, int Company_ID, string LoggedInUserID, string Action)
@@ -92,6 +108,21 @@ public class CocktailWorld_Service : System.Web.Services.WebService
             , Speg_Qty, Speg_Rate, Free_Qty, No_Of_Boxes, Batch_No, Mfg, Tax_Type, Tax_Amt, Total_Amt
             , License_ID, Company_ID, LoggedInUserID, Action);
 
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet TransferDetailsMaster_CRUD(int Transfer_ID,string Transfer_Against ,string TP_No ,int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate
+        ,decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.TransferDetailsMaster_CRUD( Transfer_ID,  Transfer_Against,  TP_No,  Brand_Opening_ID,  MfgDate,  Boxes,  BatchNo,  Speg_Qty,  Speg_Rate,  Bottle_Qty,  Bottle_Rate,  License_ID,  Company_ID,  LoggedInUserID,  Action);
         }
         catch (Exception ex)
         {
@@ -352,11 +383,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet License(string LoggedInUserID, int Company_ID, string Action)
+    public DataSet License(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.License(LoggedInUserID, Company_ID, Action);
+            ds = ObjCocktailWorld.License(LicenseID,LicenseName,LicenseNo,LoggedInUserID, Company_ID, Action);
 
         }
         catch (Exception ex)

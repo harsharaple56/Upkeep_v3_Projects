@@ -38,7 +38,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback PurchaseMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback TransferMaster_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback PurchaseDetailsMaster_CRUDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TransferDetailsMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback SaleDetailsMaster_CrudOperationCompleted;
         
@@ -129,7 +133,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event PurchaseMaster_CRUDCompletedEventHandler PurchaseMaster_CRUDCompleted;
         
         /// <remarks/>
+        public event TransferMaster_CRUDCompletedEventHandler TransferMaster_CRUDCompleted;
+        
+        /// <remarks/>
         public event PurchaseDetailsMaster_CRUDCompletedEventHandler PurchaseDetailsMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event TransferDetailsMaster_CRUDCompletedEventHandler TransferDetailsMaster_CRUDCompleted;
         
         /// <remarks/>
         public event SaleDetailsMaster_CrudCompletedEventHandler SaleDetailsMaster_CrudCompleted;
@@ -331,6 +341,55 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TransferMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet TransferMaster_CRUD(int Transfer_ID, string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise, int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("TransferMaster_CRUD", new object[] {
+                        Transfer_ID,
+                        TransferDate,
+                        TP_No,
+                        Invoice_No,
+                        FL_IV,
+                        Is_Show_Excise,
+                        Trasnfer_To_LicenseID,
+                        License_ID,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransferMaster_CRUDAsync(int Transfer_ID, string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise, int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action) {
+            this.TransferMaster_CRUDAsync(Transfer_ID, TransferDate, TP_No, Invoice_No, FL_IV, Is_Show_Excise, Trasnfer_To_LicenseID, License_ID, LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void TransferMaster_CRUDAsync(int Transfer_ID, string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise, int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.TransferMaster_CRUDOperationCompleted == null)) {
+                this.TransferMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransferMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("TransferMaster_CRUD", new object[] {
+                        Transfer_ID,
+                        TransferDate,
+                        TP_No,
+                        Invoice_No,
+                        FL_IV,
+                        Is_Show_Excise,
+                        Trasnfer_To_LicenseID,
+                        License_ID,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.TransferMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnTransferMaster_CRUDOperationCompleted(object arg) {
+            if ((this.TransferMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransferMaster_CRUDCompleted(this, new TransferMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PurchaseDetailsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet PurchaseDetailsMaster_CRUD(
                     int Purchase_ID, 
@@ -450,6 +509,79 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.PurchaseDetailsMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PurchaseDetailsMaster_CRUDCompleted(this, new PurchaseDetailsMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TransferDetailsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet TransferDetailsMaster_CRUD(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate, decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
+            object[] results = this.Invoke("TransferDetailsMaster_CRUD", new object[] {
+                        Transfer_ID,
+                        Transfer_Against,
+                        TP_No,
+                        Brand_Opening_ID,
+                        MfgDate,
+                        Boxes,
+                        BatchNo,
+                        Speg_Qty,
+                        Speg_Rate,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void TransferDetailsMaster_CRUDAsync(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate, decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
+            this.TransferDetailsMaster_CRUDAsync(Transfer_ID, Transfer_Against, TP_No, Brand_Opening_ID, MfgDate, Boxes, BatchNo, Speg_Qty, Speg_Rate, Bottle_Qty, Bottle_Rate, License_ID, Company_ID, LoggedInUserID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void TransferDetailsMaster_CRUDAsync(
+                    int Transfer_ID, 
+                    string Transfer_Against, 
+                    string TP_No, 
+                    int Brand_Opening_ID, 
+                    string MfgDate, 
+                    string Boxes, 
+                    string BatchNo, 
+                    decimal Speg_Qty, 
+                    decimal Speg_Rate, 
+                    decimal Bottle_Qty, 
+                    decimal Bottle_Rate, 
+                    int License_ID, 
+                    int Company_ID, 
+                    string LoggedInUserID, 
+                    string Action, 
+                    object userState) {
+            if ((this.TransferDetailsMaster_CRUDOperationCompleted == null)) {
+                this.TransferDetailsMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTransferDetailsMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("TransferDetailsMaster_CRUD", new object[] {
+                        Transfer_ID,
+                        Transfer_Against,
+                        TP_No,
+                        Brand_Opening_ID,
+                        MfgDate,
+                        Boxes,
+                        BatchNo,
+                        Speg_Qty,
+                        Speg_Rate,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        License_ID,
+                        Company_ID,
+                        LoggedInUserID,
+                        Action}, this.TransferDetailsMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnTransferDetailsMaster_CRUDOperationCompleted(object arg) {
+            if ((this.TransferDetailsMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TransferDetailsMaster_CRUDCompleted(this, new TransferDetailsMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1145,8 +1277,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/License", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet License(string LoggedInUserID, int Company_ID, string Action) {
+        public System.Data.DataSet License(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
             object[] results = this.Invoke("License", new object[] {
+                        LicenseID,
+                        LicenseName,
+                        LicenseNo,
                         LoggedInUserID,
                         Company_ID,
                         Action});
@@ -1154,16 +1289,19 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void LicenseAsync(string LoggedInUserID, int Company_ID, string Action) {
-            this.LicenseAsync(LoggedInUserID, Company_ID, Action, null);
+        public void LicenseAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
+            this.LicenseAsync(LicenseID, LicenseName, LicenseNo, LoggedInUserID, Company_ID, Action, null);
         }
         
         /// <remarks/>
-        public void LicenseAsync(string LoggedInUserID, int Company_ID, string Action, object userState) {
+        public void LicenseAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, object userState) {
             if ((this.LicenseOperationCompleted == null)) {
                 this.LicenseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLicenseOperationCompleted);
             }
             this.InvokeAsync("License", new object[] {
+                        LicenseID,
+                        LicenseName,
+                        LicenseNo,
                         LoggedInUserID,
                         Company_ID,
                         Action}, this.LicenseOperationCompleted, userState);
@@ -1377,6 +1515,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void TransferMaster_CRUDCompletedEventHandler(object sender, TransferMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransferMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransferMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void PurchaseDetailsMaster_CRUDCompletedEventHandler(object sender, PurchaseDetailsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
@@ -1388,6 +1552,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal PurchaseDetailsMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void TransferDetailsMaster_CRUDCompletedEventHandler(object sender, TransferDetailsMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class TransferDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal TransferDetailsMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

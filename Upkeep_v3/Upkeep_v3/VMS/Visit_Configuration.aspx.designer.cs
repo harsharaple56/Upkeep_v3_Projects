@@ -211,6 +211,33 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.CheckBox ChkEmailOtpCom;
         
         /// <summary>
+        /// ChkTimeLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkTimeLimit;
+        
+        /// <summary>
+        /// txtFromTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFromTime;
+        
+        /// <summary>
+        /// txtToTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtToTime;
+        
+        /// <summary>
         /// VMSQuestion control.
         /// </summary>
         /// <remarks>

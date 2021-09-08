@@ -97,6 +97,14 @@
                         </div>
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
+                                 <li class="m-portlet__nav-item">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back</span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="m-portlet__nav-item">
 
                                      <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Supplier" />
@@ -237,7 +245,7 @@
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Supplier Name :</label>
                                             <asp:TextBox ID="txtSupplierName" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSupplierName" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSupplierName" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter supplier name"></asp:RequiredFieldValidator>
 
                                         </div>
                                       
@@ -245,31 +253,36 @@
                                          <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Supplier Code :</label>
                                             <asp:TextBox ID="txtCode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter supplier code"></asp:RequiredFieldValidator>
 
                                         </div>
                                      
 
                                         <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Supplier Contact Number :</label>
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Supplier Contact Number:</label>
                                             <asp:TextBox ID="txtContct" runat="server" TextMode="Number" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtContct" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtContct" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter contact number"></asp:RequiredFieldValidator>
 
                                         </div>
                                       
+                                        <div class="form-group m-form__group row">
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">City</label>
+                                            <asp:TextBox ID="txtcity" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtcity" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter city"></asp:RequiredFieldValidator>
+                                        </div>
+
                                         
                                         <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Pincode</label>
                                             <asp:TextBox ID="txtPincode" runat="server" TextMode="Number" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPincode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
-
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPincode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter pincode"></asp:RequiredFieldValidator>
                                         </div>
 
 
                                           <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Address</label>
                                             <asp:TextBox ID="txtAddress" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAddress" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Value"></asp:RequiredFieldValidator>
+                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtAddress" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter address"></asp:RequiredFieldValidator>
 
                                         </div>
 
@@ -278,7 +291,7 @@
                                           <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Email ID</label>
                                             <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Value"></asp:RequiredFieldValidator>
+                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Email-ID"></asp:RequiredFieldValidator>
 
                                         </div>
 

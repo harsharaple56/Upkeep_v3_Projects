@@ -21,6 +21,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            dv_Size.Visible = false;
             if (!IsPostBack)
             {
                 Fetch_Category_Brand();
@@ -108,6 +109,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     grdCatagLinkUp.DataSource = ds.Tables[0];
                     grdCatagLinkUp.DataBind();
+                    dv_Size.Visible = true;
+
                 }
                 else
                 {

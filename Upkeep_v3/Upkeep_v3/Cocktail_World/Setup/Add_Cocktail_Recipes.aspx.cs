@@ -114,7 +114,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
 
-                dsCategory = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID,0,"","",CompanyID);
+                dsCategory = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, 0, "", "", CompanyID);
 
                 if (BrandID == 0)
                 {
@@ -207,6 +207,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 }
                             }
                             ds.AcceptChanges();
+                            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Cocktail_Recipes.aspx"), false);
                         }
                         else
                         {
