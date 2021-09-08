@@ -664,7 +664,8 @@ border: 3px solid #ccc;*/
 
 
                 <div class="m--align-center" style="padding: 15px;">
-                    <img id="Img_CompanyLogo" src="https://compelapps.in/Fetch_Logos/Phx_Palladium.PNG" style="width: auto; max-height: 100px; max-width: 100%;">
+                    <asp:Image ID="Img_CompanyLogo" runat="server" style="width: auto; max-height: 100px; max-width: 100%;" />
+                                
                 </div>
                 <div class="m--align-center" style="padding: 15px;">
                     <h4 class="m--font-primary font-weight-bold">

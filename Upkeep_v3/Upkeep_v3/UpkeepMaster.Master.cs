@@ -92,6 +92,8 @@ namespace Upkeep_v3
 
                 Image1.ImageUrl = VD_Path + "/assets/demo/media/img/logo/efacilito_White.png";
                 Img_CompanyLogo.ImageUrl = Convert.ToString(Session["Company_Logo"]);
+
+
                 //Image1.ImageUrl = Convert.ToString(Session["Company_Logo"]);
 
 

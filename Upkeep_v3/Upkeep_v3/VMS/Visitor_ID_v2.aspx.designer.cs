@@ -112,6 +112,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_Request_Date_Text;
         
         /// <summary>
+        /// lbl_Visit_Date_Text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_Visit_Date_Text;
+        
+        /// <summary>
         /// div_No_Visitor_ID control.
         /// </summary>
         /// <remarks>

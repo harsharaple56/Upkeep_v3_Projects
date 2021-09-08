@@ -6579,7 +6579,9 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
-    <EmbeddedResource Include="VMS\Visitor_ID.rdlc" />
+    <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

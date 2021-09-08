@@ -12,6 +12,7 @@ using System.Linq;
 using System.Web.Services;
 using Upkeep_v3.SMS;
 using System.Globalization;
+using System.Web.Configuration;
 
 namespace Upkeep_v3.VMS
 {
@@ -52,7 +53,9 @@ namespace Upkeep_v3.VMS
             //LoggedInUserID = "121";
             string strConfigID = string.Empty;
             string strRequestID = string.Empty;
+            string Company_Logo = string.Empty;
 
+            
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
 
@@ -74,11 +77,15 @@ namespace Upkeep_v3.VMS
                     if (!System.String.IsNullOrWhiteSpace(Request.QueryString["ConfigID"]))
                     {
                         strConfigID = Request.QueryString["ConfigID"].ToString();
+
                         if (strConfigID.All(char.IsDigit))
                         {
                             ViewState["ConfigID"] = Convert.ToInt32(strConfigID);
                         }
                         BindVMSConfig();
+
+                        
+
 
                     }
                 }
@@ -107,6 +114,7 @@ namespace Upkeep_v3.VMS
                 Fetch_User_UserGroupList();
                 Fetch_Department();
                 BindVMSTitle();
+                
                 div_VisitDetails.Visible = false;
             }
         }
@@ -393,6 +401,11 @@ namespace Upkeep_v3.VMS
                 string blMeetingComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_MeetingWith_Compulsory"]);
                 string blContactOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Contact_OTP_Compulsory"]);
                 string blEmailOtpComp = Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Email_OTP_Compulsory"]);
+
+                string Company_Logo = Convert.ToString(dsConfig.Tables[5].Rows[0]["Company_Logo"]);
+                Img_CompanyLogo.ImageUrl = Company_Logo;
+
+
 
 
                 if (blEmailComp == "True")

@@ -113,7 +113,7 @@ namespace Upkeep_v3.VMS
                             lbl_VisitRequest_ID.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_ID"]);
                             lbl_Vacc_Date.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Vaccination_Date"]);
                             lbl_Request_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Date"]);
-
+                            lbl_Visit_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Date_Text"]);
                             
 
                         }
