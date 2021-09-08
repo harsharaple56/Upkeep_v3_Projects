@@ -129,7 +129,16 @@ namespace Upkeep_v3.VMS
             }
             else
             {
-                SaveVisitData();
+                if (Convert.ToString(hdnValidTime.Value) == "1")
+                {
+                    SaveVisitData();
+                }
+                else
+                {
+                    string errorMsg = Convert.ToString(hdnValidTimeError.Value);
+                    lblTimeError.Text = errorMsg;
+                    BindVMSConfig();
+                }
             }
         }
 
@@ -424,6 +433,8 @@ namespace Upkeep_v3.VMS
 
                 int Is_TimeLimit_Enabled = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Is_TimeLimit_Enabled"]);
                 string visitingTime = string.Empty;
+                string fromTime = string.Empty;
+                string toTime = string.Empty;
 
                 if (Is_TimeLimit_Enabled > 0)
                 {
@@ -441,7 +452,11 @@ namespace Upkeep_v3.VMS
                     rptTermsCondition1.DataSource = dsConfig.Tables[4];
                     rptTermsCondition1.DataBind();
                 }
-                visitingTime = "Visit is allowed only between " + hdnFrom_Time.Value + " to " + hdnTo_Time.Value + " ";
+
+                fromTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["FromTime"]);
+                toTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["ToTime"]);
+
+                visitingTime = "Visit is allowed only between " + fromTime + " to " + toTime + " ";
                 lblVisitingTime.Text = visitingTime;
 
 

@@ -205,6 +205,12 @@ border: 3px solid #ccc;*/
         });
 
         function compareTimeFunction() {
+
+            $('#error_startDate').html('').parents('.form-group').removeClass('has-error');
+            $('#hdnValidTime').val('1');
+            $('#hdnValidTimeError').val('');
+            $('#lblTimeError').text('');
+
             var selectedDate = $('#txtVMSDate').val();
 
             var selectedTime = new Date(selectedDate).toLocaleTimeString();
@@ -217,8 +223,15 @@ border: 3px solid #ccc;*/
             }
             else {
                 //alert('fail');
-                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fromDate+' to '+toDate+' ';
+
+                var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
+                var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
+
+                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fTime+' to '+tTime+' ';
                 $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+
+                $('#hdnValidTime').val('0');
+                $('#hdnValidTimeError').val(errorMsg);
             }
 
         }
@@ -556,7 +569,11 @@ border: 3px solid #ccc;*/
                                         </div>
                                     </div>
                                     <span id="error_startDate" class="text-danger medium"></span>
+                                    <asp:HiddenField ID="hdnValidTime" runat="server" ClientIDMode="Static" Value="1" />
+                                    <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
+                                    <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static" ></asp:Label>
                                 </div>
+
                                 <asp:RequiredFieldValidator ID="rfVMSDate" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
 
