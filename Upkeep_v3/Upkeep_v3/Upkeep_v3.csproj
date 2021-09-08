@@ -1086,10 +1086,8 @@
     <Content Include="Cocktail_World\Transactions\Select_Transaction.aspx" />
     <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
-    <Content Include="CSM\Create_CSM_Request_Public.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
-    <Content Include="CSM\List_CSM_Services_Public.aspx" />
     <Content Include="CSM\List_Service_Requests_Type.aspx" />
     <Content Include="CSM\Raise_Service_Request.aspx" />
     <Content Include="CSM\Service_Requests.aspx" />
@@ -4649,13 +4647,6 @@
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\eFacilito_Controller.cs" />
-    <Compile Include="CSM\Create_CSM_Request_Public.aspx.cs">
-      <DependentUpon>Create_CSM_Request_Public.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CSM\Create_CSM_Request_Public.aspx.designer.cs">
-      <DependentUpon>Create_CSM_Request_Public.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
       <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4669,13 +4660,6 @@
     </Compile>
     <Compile Include="CSM\CSM_Configuration.aspx.designer.cs">
       <DependentUpon>CSM_Configuration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CSM\List_CSM_Services_Public.aspx.cs">
-      <DependentUpon>List_CSM_Services_Public.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CSM\List_CSM_Services_Public.aspx.designer.cs">
-      <DependentUpon>List_CSM_Services_Public.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSM\List_Service_Requests_Type.aspx.cs">
       <DependentUpon>List_Service_Requests_Type.aspx</DependentUpon>

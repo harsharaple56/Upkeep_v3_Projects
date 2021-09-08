@@ -781,11 +781,13 @@ border: 3px solid #ccc;*/
                                 </div>
                             </div>
                             <span id="error_startDate" class="text-danger medium"></span>
+                            <br />
+                             <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
                         <div>
-                                    <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
+                                   
                                 </div>
 
 
