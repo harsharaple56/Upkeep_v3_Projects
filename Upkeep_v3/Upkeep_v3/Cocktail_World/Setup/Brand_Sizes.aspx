@@ -10,13 +10,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    
-     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript" ></script>
 
-       <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>--%>
 
-   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 
@@ -33,7 +33,7 @@
             padding: 10px;
             width: 300px;
         }
-         </style>
+    </style>
 
     <script type="text/javascript">
 
@@ -55,12 +55,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //$('#btnedit').click(function () {
-            $("#btnedit").click(function(){
+            $("#btnedit").click(function () {
                 //alert('edit');
                 $('#Add_Category').modal('show');
-                
+
             });
-            
+
         });
 
         function openModal() {
@@ -70,20 +70,20 @@
 
     </script>
 
-     <script type="text/javascript">
-            $(document).ready(function(){
-                $('#m_table_1').DataTable({
-                    responsive: true,
-                    pagingType: 'full_numbers',
-                    'fnDrawCallback': function(){
-                        init_plugins();
-                    }
-                });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
             });
-        </script>
+        });
+    </script>
 
     <div runat="server">
-         <cc1:ToolkitScriptManager runat="server"> </cc1:ToolkitScriptManager>
+        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
                 <div class="m-portlet m-portlet--mobile">
@@ -97,26 +97,35 @@
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
                                 <li class="m-portlet__nav-item">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-portlet__nav-item">
 
-                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Size" />
-                           
+                                    <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Size" />
 
-                                     <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
-                              CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground"> </cc1:ModalPopupExtender>   
-                       
+
+                                    <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
+                                        CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                                    </cc1:ModalPopupExtender>
+
                                     <%--<a href="#Add_Category" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air" data-toggle="modal">
                                         <span>
                                     --%>        <%--<i class="la la-plus"></i>
                                             <span>New Category</span>--%>
-                                       <%-- </span>
+                                    <%-- </span>
                                     </a>--%>
 
 
                                 </li>
                             </ul>
-                           
-                          <%--  <asp:Button ID="Add_Category1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"  OnClick="btnAddCategory_Click" Text="+ New Category" />
-                          --%>      
+
+                            <%--  <asp:Button ID="Add_Category1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"  OnClick="btnAddCategory_Click" Text="+ New Category" />
+                            --%>
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -130,7 +139,6 @@
                                 <tr>
                                     <th>Size Name</th>
                                     <th>Size  Alias</th>
-                                   <%-- <th>Short Name</th>--%>
                                     <th>Action</th>
                                 </tr>
 
@@ -153,7 +161,7 @@
         </div>
 
         <!-- Start Modal -->
-     <%--   <div class="modal fade" id="Add_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <%--   <div class="modal fade" id="Add_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content" id="dvpopup" runat="server">
 
@@ -171,7 +179,7 @@
 
                             <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control"></asp:TextBox>
                             <%--<asp:RequiredFieldValidator ID="rfvDeptDesc" runat="server" ControlToValidate="txtDeptDesc" Visible="true" ValidationGroup="validationZone" ForeColor="Red" ErrorMessage="Please enter Department Desc"></asp:RequiredFieldValidator>--%>
-                       <%-- </div>
+        <%-- </div>
 
                     </div>
 
@@ -192,41 +200,40 @@
         </div>--%>
         <!-- End Modal -->
 
-          <asp:Panel ID="pnlCategoryMaster" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-                <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document" style="max-width: 590px;">
-                        <div class="modal-content">
-                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                <ContentTemplate>
+        <asp:Panel ID="pnlCategoryMaster" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+            <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                    <div class="modal-content">
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate>
 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Size Master</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader" runat="server" onserverclick="btnCloseHeader_ServerClick"  >
-                                            <span aria-hidden="true">&times;</span>
-                                       <%-- <asp:Button ID="btnCloseHeader" runat="server" class="Close"/>--%>
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Size Master</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader" runat="server" onserverclick="btnCloseHeader_ServerClick">
+                                        <span aria-hidden="true">&times;</span>
+                                        <%-- <asp:Button ID="btnCloseHeader" runat="server" class="Close"/>--%>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
 
-                                        </button>
+
+
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Description :</label>
+                                        <asp:TextBox ID="txtSizedes" autocomplete="off" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSizedes" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+
                                     </div>
-                                    <div class="modal-body">
 
 
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Alias :</label>
+                                        <asp:TextBox ID="txtSizeAlias" autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSizeAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
 
-                                             <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Description :</label>
-                                            <asp:TextBox ID="txtSizedes" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtSizedes" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                    </div>
 
-                                        </div>
-
-
-                                          <div class="form-group m-form__group row">
-                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size Alias :</label>
-                                            <asp:TextBox ID="txtSizeAlias" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSizeAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
-
-                                        </div>
-                                        
-                                   <%--    <div class="form-group m-form__group row">
+                                    <%--    <div class="form-group m-form__group row">
                                             <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Size :</label>
                                            <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%"  OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                                        
@@ -234,36 +241,36 @@
 
                                         </div>--%>
 
-                                       
-                                      
 
 
 
 
-  <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                   
-                                    </div>
-                                    <%--<div class="form-group m-form__group row">
+
+
+                                    <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+                                </div>
+                                <%--<div class="form-group m-form__group row">
                                         <div class="col-xl-9 col-lg-9">
                                             <asp:Label ID="Label1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                         </div>
                                     </div>--%>
 
-                                    <div class="modal-footer">
-                                        <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseCategory_Click" />
-                                        <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click" Text="Save" />
+                                <div class="modal-footer">
+                                    <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseCategory_Click" />
+                                    <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click" Text="Save" />
 
-                                    </div>
-                                </ContentTemplate>
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="btnCategorySave" EventName="Click" />
-                                </Triggers>
-                            </asp:UpdatePanel>
-                        </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnCategorySave" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
-                <!-- End Modal -->
-            </asp:Panel>
+            </div>
+            <!-- End Modal -->
+        </asp:Panel>
 
 
 

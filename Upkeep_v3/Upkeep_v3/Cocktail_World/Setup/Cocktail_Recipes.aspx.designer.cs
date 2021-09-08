@@ -20,5 +20,14 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor export_excel;
+        
+        /// <summary>
+        /// export_pdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_pdf;
     }
 }

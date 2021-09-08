@@ -23,15 +23,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
     {
 
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-
-
-        private DataTable ObjDt;
-
-        private double shivaLicenseID;
-        private ArrayList arrRowLicenses;
-        private ArrayList arrRowIndex;
-        private ArrayList arrRowSizeId;
-        public ArrayList gblArrMDICheckedLicense = new ArrayList();
+        public ArrayList gblArrMDICheckedLicensegblArrMDICheckedLicense = new ArrayList();
 
         DataSet Ds = new DataSet();
         string LoggedInUserID = string.Empty;
@@ -43,10 +35,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
             if (!IsPostBack)
             {
                 BindCategory();
-
             }
         }
-
 
         public void BindCategory()
         {
@@ -91,6 +81,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnCategorySave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string Cate_Desc = txtCategoryDesc.Text;
+                DataSet dsCateDesc = new DataSet();
+                //dsCateDesc = ObjCocktailWorld.
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
@@ -252,6 +252,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
             {
                 throw ex;
             }
+        }
+
+        protected void grdCatagLinkUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdCatagLinkUp.PageIndex = e.NewPageIndex;
+            BindCategory();
         }
 
 

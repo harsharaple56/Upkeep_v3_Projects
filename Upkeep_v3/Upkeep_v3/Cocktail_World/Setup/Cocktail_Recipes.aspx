@@ -127,14 +127,22 @@
                                                                 <span class="m-nav__section-text">Export Data Format</span>
                                                             </li>
 
+                                                            <hr />
 
                                                             <li class="m-nav__item">
-                                                                <a class="m-nav__link" id="export_excel" runat="server">
+                                                                <a class="m-nav__link" id="export_excel" runat="server" onserverclick="btnExport_Click">
                                                                     <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                                     <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                                 </a>
                                                             </li>
 
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="export_pdf" runat="server">
+                                                                    <%--onserverclick="btnPdf_Click">--%>
+                                                                    <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
+                                                                    <span class="m-nav__link-text">Pdf  <b>( .pdf )</b></span>
+                                                                </a>
+                                                            </li>
 
                                                         </ul>
                                                     </div>
@@ -154,6 +162,15 @@
                                             </span>
                                         </a>
                                     </li>
+                                     <li class="m-portlet__nav-item">
+                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" 
+                                            class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back</span>
+                                            </span>
+                                        </a>
+                                    </li>
 
                                 </ul>
 
@@ -168,13 +185,16 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                                 <tr>
+                                    <th>Cocktail Name</th>
+                                    <th>Rate</th>
                                     <th>Brand Name</th>
-                                    <th>Alias</th>
-                                    <th>ML / Peg</th>
+                                    <th>Size</th>
+                                    <th>Peg / ML</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-
                             <tbody>
+                                <%=BindCocktailRecipes()%>
                             </tbody>
                         </table>
 

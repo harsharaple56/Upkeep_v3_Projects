@@ -41,12 +41,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int Size_ID = Convert.ToInt32(Request.QueryString["Size_ID"]);
                 if (Size_ID > 0)
                 {
-                   BindSize(Size_ID);
+                    BindSize(Size_ID);
                 }
                 int DelSize_ID = Convert.ToInt32(Request.QueryString["DelSize_ID"]);
                 if (DelSize_ID > 0)
                 {
-                    // DeleteCategory(DelWorkflowID);
+                    DeleteSize(DelSize_ID);
                 }
 
             }
@@ -54,7 +54,24 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         }
 
-
+        public void DeleteSize(int Size_ID)
+        {
+            try
+            {
+                ds = ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, "", 0, LoggedInUserID, CompanyID, "D");
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sizes.aspx"), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void BindSize(int Size_ID)
         {
@@ -68,7 +85,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     {
                         Session["Size_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Size_ID"]);
                         txtSizedes.Text = Convert.ToString(ds.Tables[0].Rows[0]["Size_Desc"]);
-                       txtSizeAlias.Text = Convert.ToString(ds.Tables[0].Rows[0]["Size_Alias"]);
+                        txtSizeAlias.Text = Convert.ToString(ds.Tables[0].Rows[0]["Size_Alias"]);
                         mpeCategoryMaster.Show();
                     }
                     else
@@ -87,21 +104,17 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-
-
-
         protected void btnCategorySave_Click(object sender, EventArgs e)
         {
             int Size_ID = 0;
 
             string Size_Desc = string.Empty;
-           // string Size_Alias = string.Empty;
+            // string Size_Alias = string.Empty;
 
             int Size_Alias = 0;
 
             try
             {
-
                 if (Convert.ToString(Session["Size_ID"]) != "")
                 {
                     Size_ID = Convert.ToInt32(Session["Size_ID"]);
@@ -122,17 +135,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 Size_Alias = Convert.ToInt32(txtSizeAlias.Text.Trim());
 
-
-
-
-
-
-
-
-                ds = ds = ObjCocktailWorld.SizeMaster_CRUD( Size_ID, Size_Desc, Size_Alias, LoggedInUserID, CompanyID,Action);
-
-
-
+                ds = ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, Size_Desc, Size_Alias, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -172,14 +175,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-
-
         public string bindgrid()
         {
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.SizeMaster_CRUD(0, "", 0, LoggedInUserID,CompanyID, "R");
+                ds = ObjCocktailWorld.SizeMaster_CRUD(0, "", 0, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -193,10 +194,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string Size_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Size_Desc"]);
                             string Size_Alias = Convert.ToString(ds.Tables[0].Rows[i]["Size_Alias"]);
 
-
-
-                            data += "<tr><td>" + Size_Desc + "</td><td>" + Size_Alias + "</td><td><a href='Brand_Sizes.aspx?Size_ID=" + Size_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Brand_Sizes.aspx.aspx?DelSize_ID=" + Size_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
-
+                            data += "<tr>";
+                            data += "<td>" + Size_Desc + "</td>";
+                            data += "<td>" + Size_Alias + "</td>";
+                            data += "<td>" +
+                                "<a href='Brand_Sizes.aspx?Size_ID=" + Size_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
+                                "<a href='Brand_Sizes.aspx?DelSize_ID=" + Size_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "</td>";
+                            data += "</tr>";
                         }
                     }
                     else

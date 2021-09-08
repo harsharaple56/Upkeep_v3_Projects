@@ -34,19 +34,30 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelPermit_ID = Convert.ToInt32(Request.QueryString["DelPermit_ID"]);
                 if (DelPermit_ID > 0)
                 {
-                   // DeleteCategory(DelCategory_ID);
+                    DeletePermit(DelPermit_ID);
                 }
 
             }
 
         }
 
-
+        public void DeletePermit(int Permit_ID)
+        {
+            try
+            {
+                ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, string.Empty, LoggedInUserID, CompanyID, "D");
+                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         protected void btnClosePermit_Click(object sender, EventArgs e)
         {
-
+            mpeCategoryMaster.Hide();
         }
 
         protected void btnCategoryPermit_Click(object sender, EventArgs e)
@@ -58,16 +69,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
 
             int Permit_ID = 0;
-
             string Permit_Desc = string.Empty;
-           
-
             try
             {
-
-                if (Convert.ToString(Session["Permit_ID"]) != "")
+                if (Convert.ToInt32(Request.QueryString["Permit_ID"]) > 0)
                 {
-                    Permit_ID = Convert.ToInt32(Session["Permit_ID"]);
+                    Permit_ID = Convert.ToInt32(Request.QueryString["Permit_ID"]);
                 }
                 string Action = "";
 
@@ -83,12 +90,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 // DepartmentID = Convert.ToInt32(ddlDept.SelectedValue);
                 Permit_Desc = txtPermit.Text.Trim();
 
-         
-
-                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Desc, LoggedInUserID,CompanyID, Action);
-
-
-
+                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Desc, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -103,11 +105,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         {
                             Session["Category_ID"] = "";
                             txtPermit.Text = "";
-                          
-                            mpeCategoryMaster.Hide();
 
-                            //mpeZone.Hide();
-                            //bindgrid();
+                            mpeCategoryMaster.Hide();
                             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
                         }
                         else if (Status == 3)
@@ -152,18 +151,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                       
-
-                            Session["Permit_ID"]  = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
-                          //  string Permit_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Desc"]);
-                            txtPermit.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Desc"]);
-
-
-
-
-                            mpeCategoryMaster.Show();
-
-
+                        txtPermit.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Desc"]);
+                        mpeCategoryMaster.Show();
                     }
                 }
                 else
@@ -172,56 +161,56 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 }
 
             }
-            
+
             catch (Exception ex)
             {
                 throw ex;
             }
-    // return data;
+            // return data;
 
         }
 
 
         public string bindgrid()
+        {
+            string data = "";
+            try
+            {
+                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(0, "", LoggedInUserID, CompanyID, "R");
+
+                if (ds.Tables.Count > 0)
                 {
-                    string data = "";
-                    try
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        ds = ds = ObjCocktailWorld.PermitMaster_CRUD(0, "", LoggedInUserID, CompanyID, "R");
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
 
-                        if (ds.Tables.Count > 0)
+                        for (int i = 0; i < count; i++)
                         {
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                                int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
-
-                                for (int i = 0; i < count; i++)
-                                {
-                                    int Permit_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Permit_ID"]);
-                                    string Permit_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Desc"]);
-                           
+                            int Permit_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Permit_ID"]);
+                            string Permit_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Desc"]);
 
 
 
-                                    data += "<tr><td>" + Permit_ID + "</td><td>" + Permit_Desc + "</td><td><a href='Permit_holders.aspx?Permit_ID=" + Permit_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Permit_holders.aspx?DelPermit_ID=" + Permit_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
-                                }
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                        else
-                        {
+                            data += "<tr><td>" + Permit_ID + "</td><td>" + Permit_Desc + "</td><td><a href='Permit_holders.aspx?Permit_ID=" + Permit_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Permit_holders.aspx?DelPermit_ID=" + Permit_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        throw ex;
+
                     }
-                    return data;
+                }
+                else
+                {
+
                 }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+        }
+    }
 }

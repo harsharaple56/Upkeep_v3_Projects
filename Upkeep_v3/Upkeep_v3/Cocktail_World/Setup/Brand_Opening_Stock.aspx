@@ -96,19 +96,20 @@
                         <div class="m-portlet__head-tools">
                             <div class="m-portlet__head-tools">
                                 <ul class="m-portlet__nav">
-
+                                    
                                     <li class="m-portlet__nav-item">
-											<a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Add_Brand_Opening_Stock.aspx") %>" class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
-												<span>
-													<i class="flaticon-add"></i>
-													<span>Add Brand Opening</span>
-												</span>
-											</a>
-										</li>
+                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Add_Brand_Opening_Stock.aspx") %>" 
+                                            class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                            <span>
+                                                <i class="flaticon-add"></i>
+                                                <span>Add Brand Opening</span>
+                                            </span>
+                                        </a>
+                                    </li>
 
                                 </ul>
 
-                                 <ul class="m-portlet__nav">
+                                <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
 
                                         <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
@@ -116,7 +117,7 @@
                                                 <i class="fa fa-database" aria-hidden="true"></i>
                                                 <span>Export Data</span>
                                             </span>
-                                            
+
                                         </a>
                                         <div class="m-dropdown__wrapper" style="z-index: 101;">
                                             <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 72.5px;"></span>
@@ -127,16 +128,22 @@
                                                             <li class="m-nav__section m-nav__section--first">
                                                                 <span class="m-nav__section-text">Export Data Format</span>
                                                             </li>
-                                                            
-                                                            
-                                                            <li class="m-nav__item">
-                                                                <a class="m-nav__link" href="#">
-                                                                    <i class="m-nav__link-icon la la-file-excel-o" style="font-size:2rem"></i>
+                                                            <hr />
+
+                                                           <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="export_excel" runat="server" onserverclick="btnExport_Click">
+                                                                    <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                                     <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                                 </a>
                                                             </li>
-                                                            
-                                                            
+
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="export_pdf" runat="server" onserverclick="btnPdf_Click">
+                                                                    <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
+                                                                    <span class="m-nav__link-text">Pdf  <b>( .pdf )</b></span>
+                                                                </a>
+                                                            </li>
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -148,14 +155,22 @@
                                 <ul class="m-portlet__nav">
 
                                     <li class="m-portlet__nav-item">
-											<a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
-												<span>
-													<i class="fa fa-file-import"></i>
-													<span>Import Data</span>
-												</span>
-											</a>
-										</li>
-
+                                        <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
+                                            <span>
+                                                <i class="fa fa-file-import"></i>
+                                                <span>Import Data</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-portlet__nav-item">
+                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" 
+                                            class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back</span>
+                                            </span>
+                                        </a>
+                                    </li>
                                 </ul>
 
                             </div>
@@ -167,24 +182,25 @@
                     <div class="m-portlet__body">
 
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-									<thead>
-										<tr>
-											<th>Brand Name</th>
-                                            <th>Category</th>
-                                            <th>Size</th>
-											<th>Bottle Qty</th>
-											<th>SPeg Qty</th>
-                                            <th>Bottle Rate</th>
-                                            <th>Base Qty</th>
-                                            <th>Re-Order Level</th>
-                                            <th>Optimum Level</th>
-										</tr>
-									</thead>
-									
-                                     <tbody>
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Brand Name</th>
+                                    <th>Size</th>
+                                    <th>Bottle Qty</th>
+                                    <th>SPeg Qty</th>
+                                    <th>Bottle Rate</th>
+                                    <th>Base Qty</th>
+                                    <th>Re-Order Level</th>
+                                    <th>Optimum Level</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
 
-                                    </tbody>
-								</table>
+                           <tbody>
+                                <%=BindBrandOpening()%>
+                            </tbody>
+                        </table>
 
                     </div>
                 </div>

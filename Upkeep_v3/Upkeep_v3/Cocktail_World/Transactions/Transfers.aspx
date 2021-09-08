@@ -9,6 +9,15 @@
         }
     </style>
 
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                pagingType: 'full_numbers',
+                scrollX: true,
+            });
+        });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -45,7 +54,7 @@
                 <div class="m-portlet__body">
 
                     <!--begin: Datatable -->
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                         <thead>
                             <tr>
                                 <th>Transfer Date</th>
@@ -53,14 +62,15 @@
                                 <th>To License</th>
                                 <th>TP No.</th>
                                 <th>Invoice No.</th>
-                                <th>FL IV Banquet Lic.No.</th>
+                                <th>User Name</th>
+                                <th>Created Date</th>
                                 <th>Action</th>
 
                             </tr>
                         </thead>
 
                         <tbody>
-                            <%--<%=Fetch_Department_Transactions()%>--%>
+                            <%=Fetch_Transfer_Transactions()%>
                         </tbody>
                     </table>
 

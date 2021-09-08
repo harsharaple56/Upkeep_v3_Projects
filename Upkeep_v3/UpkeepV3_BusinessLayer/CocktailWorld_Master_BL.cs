@@ -315,6 +315,38 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet TransferMaster_CRUD(int Transfer_ID,string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise,
+            int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Transfer", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Transfer_ID", Transfer_ID);
+                cmd.Parameters.AddWithValue("@TransferDate", TransferDate);
+                cmd.Parameters.AddWithValue("@TP_No", TP_No);
+                cmd.Parameters.AddWithValue("@Invoice_No", Invoice_No);
+                cmd.Parameters.AddWithValue("@FL_IV", FL_IV);
+                cmd.Parameters.AddWithValue("@Is_Show_Excise", Is_Show_Excise);
+                cmd.Parameters.AddWithValue("@Trasnfer_To_LicenseID", Trasnfer_To_LicenseID);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID,string Brand_Desc,string Size_Desc,decimal Bottle_Qty, decimal Bottle_Rate
             ,decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No,string Mfg,string Tax_Type,decimal Tax_Amt,decimal Total_Amt
             ,int License_ID,int Company_ID, string LoggedInUserID, string Action, string StrConn)
@@ -340,6 +372,41 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Tax_Type", Tax_Type);
                 cmd.Parameters.AddWithValue("@Tax_Amt", Tax_Amt);
                 cmd.Parameters.AddWithValue("@Total_Amt", Total_Amt);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet TransferDetailsMaster_CRUD(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate
+        , decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action , string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_TransferDetails", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Transfer_ID", Transfer_ID);
+                cmd.Parameters.AddWithValue("@Transfer_Against", Transfer_Against);
+                cmd.Parameters.AddWithValue("@TP_No", TP_No);
+                cmd.Parameters.AddWithValue("@Brand_Opening_ID", Brand_Opening_ID);
+                cmd.Parameters.AddWithValue("@MfgDate", MfgDate);
+                cmd.Parameters.AddWithValue("@Boxes", Boxes);
+                cmd.Parameters.AddWithValue("@BatchNo", BatchNo);
+                cmd.Parameters.AddWithValue("@Speg_Qty", Speg_Qty);
+                cmd.Parameters.AddWithValue("@Speg_Rate", Speg_Rate);
+                cmd.Parameters.AddWithValue("@Bottle_Qty", Bottle_Qty);
+                cmd.Parameters.AddWithValue("@Bottle_Rate", Bottle_Rate);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
@@ -491,7 +558,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet License(string LoggedInUserID,int Company_ID, string Action, string StrConn)
+        public DataSet License(int LicenseID,string LicenseName,string LicenseNo, string LoggedInUserID,int Company_ID, string Action, string StrConn)
         {
             try
             {
@@ -502,6 +569,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_License", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
+                cmd.Parameters.AddWithValue("@LicenseName", LicenseName);
+                cmd.Parameters.AddWithValue("@LicenseNo", LicenseNo);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);

@@ -36,7 +36,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelSupplier_ID = Convert.ToInt32(Request.QueryString["DelSupplier_ID"]);
                 if (DelSupplier_ID > 0)
                 {
-                    // DeleteBrand(DelBrand_ID);
+                    DeleteSupplier(DelSupplier_ID);
                 }
 
 
@@ -45,15 +45,27 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-
-        public void BindSupplier(int Supplier_ID)
+        public void DeleteSupplier(int Supplier_ID)
         {
-            //  string data = "";
             try
             {
-                //   ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
-
-
+                DataSet dsDelSupplier = new DataSet();
+                dsDelSupplier = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID,string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty,LoggedInUserID,CompanyID,"D");
+                if (dsDelSupplier.Tables[0].Rows.Count > 0)
+                {
+                    Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Suppliers.aspx"), false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void BindSupplier(int Supplier_ID)
+        {
+            try
+            {
+                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID,string.Empty, string.Empty,0, string.Empty, string.Empty, string.Empty, string.Empty,LoggedInUserID,CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -61,28 +73,20 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     {
 
                         Session["Supplier_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Supplier_ID"]);
-
                         txtSupplierName.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Name"]);
-
                         txtCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Code"]); ;
                         txtPincode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_PINCODE"]); ;
                         txtContct.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Contact"]); ;
                         txtEmail.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Email"]);
-
-
-
-
-
+                        txtAddress.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_Address"]);
+                        txtcity.Text = Convert.ToString(ds.Tables[0].Rows[0]["Supplier_City"]);
                         mpeCategoryMaster.Show();
-
-
                     }
                 }
                 else
                 {
 
                 }
-
 
             }
             catch (Exception ex)
@@ -94,16 +98,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
         }
 
 
-
-
-
         protected void btnAddcategory_Click(object sender, EventArgs e)
         {
-
-
-
-
-
 
         }
 
@@ -131,6 +127,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             //int Code = 0;
             string Code = string.Empty;
             string Contact = string.Empty;
+            string City = string.Empty;
             int Pincode = 0;
             string Address = string.Empty;
             string Email = string.Empty;
@@ -138,7 +135,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-
                 if (Convert.ToString(Session["Supplier_ID"]) != "")
                 {
                     Supplier_ID = Convert.ToInt32(Session["Supplier_ID"]);
@@ -161,24 +157,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 Code = txtCode.Text.Trim();
                 //Contact = Convert.ToInt64(txtContct.Text.Trim());
                 Contact = txtContct.Text.Trim();
-
+                City = txtcity.Text.Trim();
                 Pincode = Convert.ToInt32(txtPincode.Text.Trim());
                 Address = txtAddress.Text.Trim();
                 Email = txtEmail.Text.Trim();
 
-
-
-                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, supplierName, Code, Pincode, Address, Contact, "", Email, LoggedInUserID, CompanyID, Action);
-
-                //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
-
-                //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
-
-
-
-
-
-                //ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, txtCategoryDesc.Text.Trim(), DepartmentID, LoggedInUserID, Action);
+                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, supplierName, Code, Pincode, Address, Contact, City, Email, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -251,7 +235,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                             string City = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_City"]);
                             int Pincode = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_PINCODE"]);
-                           // string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
+                            // string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
                             string Email = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Email"]);
 
 

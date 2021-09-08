@@ -42,7 +42,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void Fetch_License()
         {
-            ds = ObjCocktailWorld.License(LoggedInUserID, CompanyID, "Fetch");
+            ds = ObjCocktailWorld.License(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
             ddlLicense.DataSource = ds.Tables[0];
             ddlLicense.DataTextField = "License_Name";
             ddlLicense.DataValueField = "License_ID";
@@ -536,7 +536,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             //Get Calculation from Current Stock
                             if (Opening_ID == 0)
                             {
-                                Response.Write("<script>alert('Brand Opening not avalible.')</script>");
+                                Page.ClientScript.RegisterHiddenField("Opening_ID", "Opening_ID");
                                 break;
                             }
                             else
@@ -587,21 +587,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     else
                                     {
                                         string message = "Negative stock found in : Brand : " + Brand_Name + " And Size : " + Size_Desc + " With Bottle : " + getCurrentBottle + " and Speg : " + getCurrentsPeg;
-                                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                                        sb.Append("<script type = 'text/javascript'>");
-                                        sb.Append("window.onload=function(){");
-                                        sb.Append("alert('");
-                                        sb.Append(message);
-                                        sb.Append("')};");
-                                        sb.Append("</script>");
-                                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
+                                        Page.ClientScript.RegisterHiddenField("Negative", message);
                                         displayMessage = false;
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    Response.Write("<script>alert('Please Check Bottle Qty and SPeg Qty.')</script>");
+                                    Page.ClientScript.RegisterHiddenField("BS_QTY", "BS_QTY");
                                 }
                             }
                         }
@@ -647,12 +640,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     }
                     else
                     {
-                        Response.Write("<script>alert('Data already avalible.')</script>");
+                        Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>alert('Please select License.')</script>");
+                    Page.ClientScript.RegisterHiddenField("License", "License");
                 }
             }
             catch (Exception ex)

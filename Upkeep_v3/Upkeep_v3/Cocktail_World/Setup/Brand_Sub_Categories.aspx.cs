@@ -44,7 +44,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int DelSubCategory_ID = Convert.ToInt32(Request.QueryString["DelSubCategory_ID"]);
                 if (DelSubCategory_ID > 0)
                 {
-                    DeleteSubCategory(SubCategory_ID);
+                    DeleteSubCategory(DelSubCategory_ID);
                 }
 
             }
@@ -270,7 +270,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string SubCategory_Desc = Convert.ToString(ds.Tables[0].Rows[i]["SubCategory_Desc"]);
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
 
-                            data += "<tr><td>" + SubCategory_Desc + "</td><td>" + Category_Desc + "</td><td><a href='Brand_Sub_Categories.aspx?SubCategory_ID=" + SubCategory_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Brand_Sub_Categories?DelSubCategory_ID=" + SubCategory_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr>";
+                            data += "<td>" + SubCategory_Desc + "</td>";
+                            data += "<td>" + Category_Desc + "</td>";
+                            data += "<td>" +
+                                "<a href='Brand_Sub_Categories.aspx?SubCategory_ID=" + SubCategory_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
+                                "<a href='Brand_Sub_Categories.aspx?DelSubCategory_ID=" + SubCategory_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "</td>";
+                            data += "</tr>";
 
                         }
                     }
