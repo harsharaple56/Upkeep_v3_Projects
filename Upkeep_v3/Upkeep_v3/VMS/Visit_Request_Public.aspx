@@ -473,10 +473,14 @@ border: 3px solid #ccc;*/
 
 
         function compareTimeFunction() {
-            var selectedDate = $('#txtVMSDate').val();
+            $('#error_startDate').html('').parents('.form-group').removeClass('has-error');
+            $('#hdnValidTime').val('1');
+            $('#hdnValidTimeError').val('');
+            $('#lblTimeError').text('');
 
+            var selectedDate = $('#txtVMSDate').val();
             var selectedTime = new Date(selectedDate).toLocaleTimeString();
-            
+
             var fromDate = $('#hdnFrom_Time').val();
             var toDate = $('#hdnTo_Time').val();
 
@@ -485,8 +489,14 @@ border: 3px solid #ccc;*/
             }
             else {
                 //alert('fail');
-                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fromDate+' to '+toDate+' ';
+                var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
+                var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
+
+                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen ' + fTime + ' to ' + tTime + ' ';
                 $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+
+                $('#hdnValidTime').val('0');
+                $('#hdnValidTimeError').val(errorMsg);
             }
 
         }
@@ -781,12 +791,18 @@ border: 3px solid #ccc;*/
                                 </div>
                             </div>
                             <span id="error_startDate" class="text-danger medium"></span>
+                            <asp:HiddenField ID="hdnValidTime" runat="server" ClientIDMode="Static" Value="1" />
+                            <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
+                            <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static"></asp:Label>
+
                             <br />
                              <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
                         <div>
+                            <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
+                        </div>
                                    
                                 </div>
 

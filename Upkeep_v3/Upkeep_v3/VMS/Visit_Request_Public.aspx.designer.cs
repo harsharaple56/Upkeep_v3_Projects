@@ -265,6 +265,34 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtVMSDate;
         
         /// <summary>
+        /// hdnValidTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnValidTime;
+        
+        /// <summary>
+        /// hdnValidTimeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnValidTimeError;
+        
+        /// <summary>
+        /// lblTimeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTimeError;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
         /// lblVisitingTime control.
         /// </summary>
         /// <remarks>
