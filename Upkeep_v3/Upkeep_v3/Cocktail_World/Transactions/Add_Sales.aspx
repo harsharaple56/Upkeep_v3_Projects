@@ -16,6 +16,46 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            var getOpening_ID = $("input[name=Opening_ID]").val();
+            var getBS_QTY = $("input[name=BS_QTY]").val();
+            var getNegative = $("input[name=Negative]").val();
+            var getLicense = $("input[name=License]").val();
+            var getDuplicate = $("input[name=Duplicate]").val();
+            if (getOpening_ID != undefined) {
+                toastr.error("Brand Opening ID not available.");
+            }
+            if (getBS_QTY != undefined) {
+                toastr.error("Please Check Bottle Qty and SPeg Qty.");
+            }
+            if (getNegative != undefined) {
+                toastr.error(getNegative);
+            }
+            if (getLicense != undefined) {
+                toastr.error("Please Select License.");
+            }
+            if (getDuplicate != undefined) {
+                toastr.error("This data already in database.");
+            }
+
             $('.datetimepicker').datepicker({
                 todayHighlight: true,
                 orientation: 'auto bottom',

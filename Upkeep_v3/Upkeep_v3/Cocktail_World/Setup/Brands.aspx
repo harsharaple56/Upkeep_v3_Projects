@@ -94,6 +94,14 @@
                         </div>
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
+                                 <li class="m-portlet__nav-item">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back</span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <li class="m-portlet__nav-item">
 
                                     <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Brand" />
@@ -134,12 +142,6 @@
                                 </tr>
 
                             </thead>
-                            <%-- <tbody>
-                            <tr>
-                                <td>compel</td>
-                                <td>hjsdhfsj</td>
-                            </tr>
-                        </tbody>--%>
                             <tbody>
                                 <%=bindgrid()%>
                             </tbody>

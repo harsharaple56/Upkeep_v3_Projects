@@ -9,6 +9,14 @@
             height: 21px;
         }
     </style>
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                pagingType: 'full_numbers',
+                scrollX: true,
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

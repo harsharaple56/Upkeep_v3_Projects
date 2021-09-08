@@ -17,51 +17,40 @@ namespace Upkeep_v3.Cocktail_World.Setup
         int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
                 BindCategory();
                 BindSubCategory();
-
-
-
-
                 int Brand_ID = Convert.ToInt32(Request.QueryString["Brand_ID"]);
                 if (Brand_ID > 0)
                 {
-                // BindSubCategory(SubCategory_ID);
-
-                BindBrand(Brand_ID);
-
+                    BindBrand(Brand_ID);
                 }
                 int DelBrand_ID = Convert.ToInt32(Request.QueryString["DelBrand_ID"]);
                 if (DelBrand_ID > 0)
                 {
                     DeleteBrand(DelBrand_ID);
                 }
-
             }
-
         }
 
 
         public void BindBrand(int Brand_ID)
         {
-          //  string data = "";
+            //  string data = "";
             try
             {
                 ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
 
-              
-                    if (ds.Tables.Count > 0)
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
 
-                            Session["Brand_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+
+                        Session["Brand_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]);
                         ddlcategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
                         //int CategorySub_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]);
                         //BindSubCategory(CategorySub_ID);
@@ -81,25 +70,24 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                         mpeCategoryMaster.Show();
 
-                        
-                        }
-                    }
-                    else
-                    {
 
                     }
-               
-               
+                }
+                else
+                {
+
+                }
+
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-          // return data;
+            // return data;
 
         }
 
-  
         public void BindSubCategory()
         {
             try
@@ -246,8 +234,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 brandDesc = txtBrandDesc.Text.Trim();
                 Strenght = Convert.ToInt32(txtShortname.Text.Trim());
 
-                
-                if(chkBrndDisable.Checked == true)
+
+                if (chkBrndDisable.Checked == true)
                 {
                     Disable = 1;
                 }
@@ -257,9 +245,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 }
 
 
-              //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
+                //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
 
-               ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg ,SellRatePeg,SellRateBottle, Disable, LoggedInUserID, Action);
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
 
 
                 //ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, txtCategoryDesc.Text.Trim(), DepartmentID, LoggedInUserID, Action);
@@ -318,7 +306,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0,"", 0,0, 0, 0, 0, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -332,10 +320,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
                             string Brand_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Brand_Desc"]);
 
-
-
-                            data += "<tr><td>" + Brand_Desc + "</td><td>" + Category_Desc + "</td><td><a href='Brands.aspx?Brand_ID=" + Brand_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Brand.aspx.aspx?DelBrand_ID=" + Brand_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
-
+                            data += "<tr>";
+                            data += "<td>" + Brand_Desc + "</td>";
+                            data += "<td>" + Category_Desc + "</td>";
+                            data += "<td>" +
+                                "<a href='Brands.aspx?Brand_ID=" + Brand_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
+                                "<a href='Brands.aspx?DelBrand_ID=" + Brand_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "</td>";
+                            data += "</tr>";
                         }
                     }
                     else

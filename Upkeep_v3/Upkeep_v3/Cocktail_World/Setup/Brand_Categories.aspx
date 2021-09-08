@@ -192,7 +192,7 @@
 
                                 <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                     <div class="m-form__control">
-                                        <button type="button" id="btnAddcategory" runat="server" onserverclick="btnAddcategory_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <button type="button" id="btnAddcategory" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                                             <span>
                                                 <i class="fa fa-plus"></i>
                                                 <span>Add New Category</span>
@@ -216,7 +216,7 @@
                                     <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
                                         PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                         PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                        PagerSettings-Position="Bottom" ClientIDMode="Static">
+                                        PagerSettings-Position="Bottom" ClientIDMode="Static" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                 <ItemTemplate>
@@ -305,7 +305,7 @@
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category Description :</label>
                                         <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategoryDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategoryDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Category Description"></asp:RequiredFieldValidator>
 
                                     </div>
                                     <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
