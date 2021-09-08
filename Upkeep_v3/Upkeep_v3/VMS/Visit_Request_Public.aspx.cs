@@ -422,12 +422,27 @@ namespace Upkeep_v3.VMS
 
                 }
 
+                int Is_TimeLimit_Enabled = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Is_TimeLimit_Enabled"]);
+                string visitingTime = string.Empty;
+
+                if (Is_TimeLimit_Enabled > 0)
+                {
+                    hdnFrom_Time.Value = Convert.ToString(dsConfig.Tables[0].Rows[0]["From_Time"]);
+                    hdnTo_Time.Value = Convert.ToString(dsConfig.Tables[0].Rows[0]["To_Time"]);
+                }
+                else
+                {
+                    hdnFrom_Time.Value = "0";
+                    hdnTo_Time.Value = "0";
+                }
+
                 if (dsConfig.Tables.Count > 4)
                 {
                     rptTermsCondition1.DataSource = dsConfig.Tables[4];
                     rptTermsCondition1.DataBind();
                 }
-
+                visitingTime = "Visit is allowed only between " + hdnFrom_Time.Value + " to " + hdnTo_Time.Value + " ";
+                lblVisitingTime.Text = visitingTime;
 
 
             }

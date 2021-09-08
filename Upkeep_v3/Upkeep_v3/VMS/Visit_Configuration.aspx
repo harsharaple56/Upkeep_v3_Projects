@@ -6,6 +6,8 @@
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
 
+    <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/crud/forms/widgets/bootstrap-timepicker.js") %>" type="text/javascript"></script>
+
     <script type="text/javascript">
         // This jQuery code makes all check boxes read-only
         $('#ChkNameComp').click(function () {
@@ -63,6 +65,20 @@
                     $("#divCount").show(200);
                 }
             });
+
+            $("#divTimeLimit").hide();
+            $("#divChkTimeLimit").click(function () {
+                //alert("hii");
+                if ($("#ChkTimeLimit").is(":checked")) {
+                    $("#divTimeLimit").hide(300);
+                } else {
+                    $("#divTimeLimit").show(200);
+                }
+            });
+
+
+            $('.timepicker').timepicker();
+
 
 
 
@@ -387,6 +403,13 @@
                     $("#divChkCovid").show(300);
                     $("#ChkVaccinated").parent().parent().addClass("active");
                 }
+
+                if ($("#ChkTimeLimit").is(":checked")) {
+                    $("#divTimeLimit").show(300);
+                    $("#ChkTimeLimit").parent().parent().addClass("active");
+                }
+
+
                 var qns = $('#hdnVMSQns').val();
                 var arrQns = qns.split("~");
                 //alert(qns);
@@ -614,9 +637,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                   
+
                                     <asp:TextBox ID="txt_Emails" runat="server" class="form-control" data-container="body" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Email ID's Entered here will be notified whenever a Visit requests is registered for this Configuration. Enter Multiple Email ID's in comma seperated " ClientIDMode="Static" placeholder="Enter Email ID's to Notify"></asp:TextBox>
-                                    
+
 
                                 </div>
                             </div>
@@ -737,6 +760,69 @@
                                 </div>
 
                             </div>
+
+
+                            <div class="form-group m-form__group row">
+
+                                <div class="col-md-3">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="If enabled you can select a Feedback Form which will be sent to Visitors once they are Marked Out">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <div class="btn-group btn-group-toggle" id="divChkTimeLimit" data-toggle="buttons">
+
+                                        <label class="btn btn-light" id="lblChkTimeLimit">
+                                            <asp:CheckBox ID="ChkTimeLimit" autocomplete="off" runat="server" ClientIDMode="Static" /><i class="fa fa-check" aria-hidden="true"></i> Enable Time Limit</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row" id="divTimeLimit">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label class="col-4  col-form-label font-weight-bold">
+                                            <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select a Feedback form to be sent to Visitor post completion of their Visit">
+                                                <i class="fa fa-info-circle"></i>
+                                            </a>
+                                            From Time
+                                        </label>
+                                        <div class="col-lg-5 col-md-5 col-sm-12">
+                                            <div class="input-group ">
+                                                <asp:TextBox ID="txtFromTime" runat="server" autocomplete="off" class="form-control m-input timepicker" placeholder="Select From Time"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="la la-clock-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <label class="col-4 col-form-label font-weight-bold">
+                                            <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Enter the limit No. of People to be allowed as Marked IN , depending on total Number of ACTIVE occupancy you need in your premises. Post this Count , visit requests will be blocked until someone is marked out">
+                                                <i class="fa fa-info-circle"></i>
+                                            </a>
+                                            To Time
+
+                                        </label>
+                                        <div class="col-lg-5 col-md-5 col-sm-12">
+                                            <div class="input-group">
+                                                <asp:TextBox ID="txtToTime" runat="server" autocomplete="off" class="form-control m-input timepicker" placeholder="Select To Time"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="la la-clock-o"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
 
                             <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Configure Additional Fields For your Visitor Form</h3>

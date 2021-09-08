@@ -471,6 +471,27 @@ border: 3px solid #ccc;*/
 
         });
 
+
+        function compareTimeFunction() {
+            var selectedDate = $('#txtVMSDate').val();
+
+            var selectedTime = new Date(selectedDate).toLocaleTimeString();
+            
+            var fromDate = $('#hdnFrom_Time').val();
+            var toDate = $('#hdnTo_Time').val();
+
+            if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
+                //alert("success");
+            }
+            else {
+                //alert('fail');
+                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fromDate+' to '+toDate+' ';
+                $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+            }
+
+        }
+
+
         //function AddRow() {
         //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
         //    var len = tbl.rows.length;
@@ -617,6 +638,10 @@ border: 3px solid #ccc;*/
                 <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
                 <asp:HiddenField ID="hdnVMSQuestionData" runat="server" ClientIDMode="Static" />
                 <asp:HiddenField ID="hdnVMSQuestion" runat="server" ClientIDMode="Static" />
+
+                <asp:HiddenField ID="hdnFrom_Time" runat="server" ClientIDMode="Static" />
+                <asp:HiddenField ID="hdnTo_Time" runat="server" ClientIDMode="Static" />
+
                 <p id="info" style="display: none;"></p>
                 <p id="infox" style="display: none;"></p>
 
@@ -749,15 +774,18 @@ border: 3px solid #ccc;*/
                         <div class="col-md-4 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <div class="input-group date">
-                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_VisitDate" placeholder="Select Visit date & time"></asp:TextBox>
+                                <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_VisitDate" onchange="compareTimeFunction()" ClientIDMode="Static" placeholder="Select Visit date & time"></asp:TextBox>
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                 </div>
                             </div>
+                            <span id="error_startDate" class="text-danger medium"></span>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
-
+                        <div>
+                                    <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
+                                </div>
 
 
                         <label id="lbl_MeetingWith" runat="server" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
