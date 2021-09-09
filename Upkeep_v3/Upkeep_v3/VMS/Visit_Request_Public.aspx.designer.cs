@@ -292,7 +292,6 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.Label lblTimeError;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
         /// lblVisitingTime control.
         /// </summary>
         /// <remarks>

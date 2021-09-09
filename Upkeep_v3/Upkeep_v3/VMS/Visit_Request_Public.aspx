@@ -801,7 +801,6 @@ border: 3px solid #ccc;*/
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
                         <div>
-                            <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
                         </div>
                                    
                                 </div>

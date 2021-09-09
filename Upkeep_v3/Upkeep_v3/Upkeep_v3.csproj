@@ -536,6 +536,7 @@
     <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor.png" />
     <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor_50.png" />
     <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
+    <Content Include="assets\app\media\img\logos\Palladium.PNG" />
     <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
@@ -554,6 +555,8 @@
     <Content Include="assets\app\media\img\logos\logo_invoice_dark.png" />
     <Content Include="assets\app\media\img\logos\logo_invoice_white.png" />
     <Content Include="assets\app\media\img\logos\logo_login.png" />
+    <Content Include="assets\app\media\img\logos\verified.jpg" />
+    <Content Include="assets\app\media\img\logos\verify_certificate.png" />
     <Content Include="assets\app\media\img\misc\AarogyaQR.png" />
     <Content Include="assets\app\media\img\misc\load.gif" />
     <Content Include="assets\app\media\img\misc\notification_bg.jpg" />
@@ -607,6 +610,7 @@
     <Content Include="assets\app\media\img\users\user4.jpg" />
     <Content Include="assets\app\media\img\users\user4.png" />
     <Content Include="assets\app\media\img\users\user5.jpg" />
+    <Content Include="assets\app\media\img\verified.jpg" />
     <Content Include="assets\custom\common.js" />
     <Content Include="assets\custom\Dashboard.css" />
     <Content Include="assets\custom\icons.min.css" />
@@ -4102,6 +4106,7 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="VMS\Verify_Visitor_ID.aspx" />
     <Content Include="VMS\Visitor_ID_v2.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
@@ -5530,6 +5535,13 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID.aspx.cs">
+      <DependentUpon>Verify_Visitor_ID.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID.aspx.designer.cs">
+      <DependentUpon>Verify_Visitor_ID.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visitor_ID.Designer.cs">
       <AutoGen>True</AutoGen>
