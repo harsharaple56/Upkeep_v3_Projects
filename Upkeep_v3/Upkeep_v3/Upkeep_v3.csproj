@@ -551,6 +551,7 @@
     <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor.png" />
     <Content Include="assets\app\media\img\LMS_Icons\laundry_vendor_50.png" />
     <Content Include="assets\app\media\img\logos\AppleStore_download.png" />
+    <Content Include="assets\app\media\img\logos\Palladium.PNG" />
     <Content Include="assets\app\media\img\logos\PlayStore_download.png" />
     <Content Include="assets\app\media\img\logos\AlembicCity.png" />
     <Content Include="assets\app\media\img\logos\efacilito_250.png" />
@@ -569,6 +570,8 @@
     <Content Include="assets\app\media\img\logos\logo_invoice_dark.png" />
     <Content Include="assets\app\media\img\logos\logo_invoice_white.png" />
     <Content Include="assets\app\media\img\logos\logo_login.png" />
+    <Content Include="assets\app\media\img\logos\verified.jpg" />
+    <Content Include="assets\app\media\img\logos\verify_certificate.png" />
     <Content Include="assets\app\media\img\misc\AarogyaQR.png" />
     <Content Include="assets\app\media\img\misc\load.gif" />
     <Content Include="assets\app\media\img\misc\notification_bg.jpg" />
@@ -622,6 +625,7 @@
     <Content Include="assets\app\media\img\users\user4.jpg" />
     <Content Include="assets\app\media\img\users\user4.png" />
     <Content Include="assets\app\media\img\users\user5.jpg" />
+    <Content Include="assets\app\media\img\verified.jpg" />
     <Content Include="assets\custom\common.js" />
     <Content Include="assets\custom\Dashboard.css" />
     <Content Include="assets\custom\icons.min.css" />
@@ -1101,10 +1105,8 @@
     <Content Include="Cocktail_World\Transactions\Select_Transaction.aspx" />
     <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
-    <Content Include="CSM\Create_CSM_Request_Public.aspx" />
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
-    <Content Include="CSM\List_CSM_Services_Public.aspx" />
     <Content Include="CSM\List_Service_Requests_Type.aspx" />
     <Content Include="CSM\Raise_Service_Request.aspx" />
     <Content Include="CSM\Service_Requests.aspx" />
@@ -4119,6 +4121,7 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="VMS\Verify_Visitor_ID.aspx" />
     <Content Include="VMS\Default.aspx" />
     <Content Include="VMS\HTML5Camera.aspx" />
     <Content Include="VMS\QRScanWebCam.aspx" />
@@ -4667,13 +4670,6 @@
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\eFacilito_Controller.cs" />
-    <Compile Include="CSM\Create_CSM_Request_Public.aspx.cs">
-      <DependentUpon>Create_CSM_Request_Public.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CSM\Create_CSM_Request_Public.aspx.designer.cs">
-      <DependentUpon>Create_CSM_Request_Public.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
       <DependentUpon>CSMConfig_Listing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4687,13 +4683,6 @@
     </Compile>
     <Compile Include="CSM\CSM_Configuration.aspx.designer.cs">
       <DependentUpon>CSM_Configuration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CSM\List_CSM_Services_Public.aspx.cs">
-      <DependentUpon>List_CSM_Services_Public.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CSM\List_CSM_Services_Public.aspx.designer.cs">
-      <DependentUpon>List_CSM_Services_Public.aspx</DependentUpon>
     </Compile>
     <Compile Include="CSM\List_Service_Requests_Type.aspx.cs">
       <DependentUpon>List_Service_Requests_Type.aspx</DependentUpon>
@@ -5564,27 +5553,6 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
-    </Compile>
-    <Compile Include="VMS\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VMS\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VMS\HTML5Camera.aspx.cs">
-      <DependentUpon>HTML5Camera.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VMS\HTML5Camera.aspx.designer.cs">
-      <DependentUpon>HTML5Camera.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VMS\QRScanWebCam.aspx.cs">
-      <DependentUpon>QRScanWebCam.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VMS\QRScanWebCam.aspx.designer.cs">
-      <DependentUpon>QRScanWebCam.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visitor_ID.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -6637,7 +6605,9 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
-    <EmbeddedResource Include="VMS\Visitor_ID.rdlc" />
+    <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

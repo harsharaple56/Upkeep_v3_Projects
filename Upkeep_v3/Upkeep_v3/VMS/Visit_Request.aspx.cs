@@ -100,7 +100,19 @@ namespace Upkeep_v3.VMS
             //    return;
             //}
 
-            SaveVisitData();
+            if (Convert.ToString(hdnValidTime.Value) == "1")
+            {
+                SaveVisitData();
+            }
+            else
+            {
+                string errorMsg = Convert.ToString(hdnValidTimeError.Value);
+                lblTimeError.Text = errorMsg;
+                BindVMSConfig();
+                //Response.Write("<script>alert('"+ errorMsg + "');</script>");
+            }
+
+            
         }
 
         protected void ddlVMSTitle_SelectedIndexChanged(object sender, EventArgs e)
@@ -374,13 +386,30 @@ namespace Upkeep_v3.VMS
                     div_MeetingWith.Visible = false;
                 }
 
-
-
                 // spnEmailComp.Visible = true;
 
+                int Is_TimeLimit_Enabled = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Is_TimeLimit_Enabled"]);
 
+                string visitingTime = string.Empty;
+                string fromTime = string.Empty;
+                string toTime = string.Empty;
 
+                if (Is_TimeLimit_Enabled > 0)
+                {
+                    hdnFrom_Time.Value = Convert.ToString(dsConfig.Tables[0].Rows[0]["From_Time"]);
+                    hdnTo_Time.Value = Convert.ToString(dsConfig.Tables[0].Rows[0]["To_Time"]);
+                }
+                else
+                {
+                    hdnFrom_Time.Value = "0";
+                    hdnTo_Time.Value = "0";
+                }
 
+                fromTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["FromTime"]);
+                toTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["ToTime"]);
+
+                visitingTime = "Visit is allowed only between "+ fromTime + " to "+ toTime + " ";
+                lblVisitingTime.Text = visitingTime;
 
             }
             catch (Exception ex)

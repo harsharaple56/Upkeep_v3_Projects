@@ -31,6 +31,24 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.HiddenField hdnVMSQuestion;
         
         /// <summary>
+        /// hdnFrom_Time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnFrom_Time;
+        
+        /// <summary>
+        /// hdnTo_Time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTo_Time;
+        
+        /// <summary>
         /// divAlertExpired control.
         /// </summary>
         /// <remarks>
@@ -256,6 +274,33 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.TextBox txtVMSDate;
         
         /// <summary>
+        /// hdnValidTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnValidTime;
+        
+        /// <summary>
+        /// hdnValidTimeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnValidTimeError;
+        
+        /// <summary>
+        /// lblTimeError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTimeError;
+        
+        /// <summary>
         /// rfVMSDate control.
         /// </summary>
         /// <remarks>
@@ -263,6 +308,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfVMSDate;
+        
+        /// <summary>
+        /// lblVisitingTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVisitingTime;
         
         /// <summary>
         /// div_MeetingWith control.

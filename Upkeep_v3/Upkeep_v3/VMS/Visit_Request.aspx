@@ -189,16 +189,53 @@ border: 3px solid #ccc;*/
                 format: 'dd-MM-yyyy HH:ii P',
                 showMeridian: true,
                 startDate: moment().format('dd-MM-yyyy'),
+                //minDate: moment({ h: 10 }),
+                //maxDate: moment({ h: 14 }),
             }).on('changeDate', function (event) {
                 var startDate = moment($('#txtVMSDate').val(), 'dd-MM-yyyy hh:mm A').valueOf();
                 //var endDate = moment($('#endDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
                 $('#error_endDate').html('').parents('.form-group').removeClass('has-error');
+
+                //alert(event.data);
                 //if(endDate < startDate)
                 //{
                 // $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
                 //}
             });
         });
+
+        function compareTimeFunction() {
+
+            $('#error_startDate').html('').parents('.form-group').removeClass('has-error');
+            $('#hdnValidTime').val('1');
+            $('#hdnValidTimeError').val('');
+            $('#lblTimeError').text('');
+
+            var selectedDate = $('#txtVMSDate').val();
+
+            var selectedTime = new Date(selectedDate).toLocaleTimeString();
+            
+            var fromDate = $('#hdnFrom_Time').val();
+            var toDate = $('#hdnTo_Time').val();
+
+            if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
+                //alert("success");
+            }
+            else {
+                //alert('fail');
+
+                var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
+                var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
+
+                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fTime+' to '+tTime+' ';
+                $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+
+                $('#hdnValidTime').val('0');
+                $('#hdnValidTimeError').val(errorMsg);
+            }
+
+        }
+
 
         //function AddRow() {
         //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
@@ -347,6 +384,10 @@ border: 3px solid #ccc;*/
 
                         <asp:HiddenField ID="hdnVMSQuestionData" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnVMSQuestion" runat="server" ClientIDMode="Static" />
+
+                        <asp:HiddenField ID="hdnFrom_Time" runat="server" ClientIDMode="Static" />
+                        <asp:HiddenField ID="hdnTo_Time" runat="server" ClientIDMode="Static" />
+
                         <p id="info" style="display: none;"></p>
                         <p id="infox" style="display: none;"></p>
 
@@ -522,15 +563,24 @@ border: 3px solid #ccc;*/
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
 
                                     <div class="input-group date">
-                                        <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Visit date & time"></asp:TextBox>
+                                        <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" onchange="compareTimeFunction()" ClientIDMode="Static" placeholder="Select Visit date & time"></asp:TextBox>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                         </div>
                                     </div>
-                                    <span id="error_startDate" class="text-danger small"></span>
+                                    <span id="error_startDate" class="text-danger medium"></span>
+                                    <asp:HiddenField ID="hdnValidTime" runat="server" ClientIDMode="Static" Value="1" />
+                                    <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
+                                    <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static" ></asp:Label>
                                 </div>
+
                                 <asp:RequiredFieldValidator ID="rfVMSDate" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
+
+                                <div>
+                                    <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
+                                </div>
+
 
                                 <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
                                 <%--  <div id="dvMeeting" runat="server" style="display: block;">

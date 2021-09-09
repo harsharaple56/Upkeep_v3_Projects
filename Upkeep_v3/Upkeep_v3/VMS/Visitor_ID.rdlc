@@ -264,7 +264,9 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -277,6 +279,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -486,11 +489,46 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox15">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Visit_Date_Text.Value, "ds_Visitor_Info_ID")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>11.60167cm</Top>
+            <Left>0.35277cm</Left>
+            <Height>0.56472cm</Height>
+            <Width>6.55222cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>0.29287cm</Top>
         <Left>0.25259cm</Left>
-        <Height>11.42528cm</Height>
+        <Height>12.50125cm</Height>
         <Width>7.2644cm</Width>
         <Style>
           <Border>
@@ -499,7 +537,7 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>4.73611in</Height>
+    <Height>5.14583in</Height>
     <Style />
   </Body>
   <Width>3.0775in</Width>
@@ -576,6 +614,10 @@
         </Field>
         <Field Name="Visit_Request_ID">
           <DataField>Visit_Request_ID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Visit_Date_Text">
+          <DataField>Visit_Date_Text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

@@ -262,8 +262,17 @@ namespace Upkeep_v3.VMS
                 string NotifyEmails = string.Empty;
                 NotifyEmails = Convert.ToString(txt_Emails.Text.Trim());
 
+                bool Is_TimeLimit_Enabled = false;
+                string FromTime = string.Empty;
+                string ToTime = string.Empty;
+
+                Is_TimeLimit_Enabled = Convert.ToBoolean(ChkTimeLimit.Checked);
+                FromTime = Convert.ToString(txtFromTime.Text.Trim());
+                ToTime = Convert.ToString(txtToTime.Text.Trim());
+                
+
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), NotifyEmails, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -400,6 +409,9 @@ namespace Upkeep_v3.VMS
 
                     txt_Emails.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["Notify_Emails"].ToString());
 
+                    ChkTimeLimit.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_TimeLimit_Enabled"]);
+                    txtFromTime.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["From_Time"].ToString());
+                    txtToTime.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["To_Time"].ToString());
 
                     var QnValues = dsConfig.Tables[1].AsEnumerable().Select(s =>
                        s.Field<decimal>("VMS_Qn_Id").ToString() + "||" + s.Field<string>("Qn_Desc").ToString() + "||"

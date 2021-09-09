@@ -99,6 +99,16 @@
                                     
                                     
                                </div>
+                                <div class="m-stack__item m-stack__item--center m-stack__item--bottom">
+                                     <div class="col-form-label">
+                                         <label id="lbl_Visit_Date_Text" runat="server">
+                                        </label>
+
+                                     </div>
+                                    
+                                    
+                               </div>
+                                
 
                             </div>
 

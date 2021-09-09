@@ -5279,6 +5279,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blContactOtpComp, 
                     string termsCondition, 
                     string NotifyEmails, 
+                    bool Is_TimeLimit_Enabled, 
+                    string FromTime, 
+                    string ToTime, 
                     string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
                         ConfigID,
@@ -5300,6 +5303,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blContactOtpComp,
                         termsCondition,
                         NotifyEmails,
+                        Is_TimeLimit_Enabled,
+                        FromTime,
+                        ToTime,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
@@ -5325,8 +5331,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blContactOtpComp, 
                     string termsCondition, 
                     string NotifyEmails, 
+                    bool Is_TimeLimit_Enabled, 
+                    string FromTime, 
+                    string ToTime, 
                     string LoggedInUserID) {
-            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, LoggedInUserID, null);
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5350,6 +5359,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool blContactOtpComp, 
                     string termsCondition, 
                     string NotifyEmails, 
+                    bool Is_TimeLimit_Enabled, 
+                    string FromTime, 
+                    string ToTime, 
                     string LoggedInUserID, 
                     object userState) {
             if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
@@ -5375,6 +5387,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         blContactOtpComp,
                         termsCondition,
                         NotifyEmails,
+                        Is_TimeLimit_Enabled,
+                        FromTime,
+                        ToTime,
                         LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         
