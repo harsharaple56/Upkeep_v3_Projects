@@ -98,6 +98,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code)
+    {
+        try
+        {
+            ds = ObjUpkeep.Get_VMS_Verify_Visitor_ID(Visit_Request_Code);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
     {
         try

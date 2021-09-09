@@ -65,6 +65,30 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_VMS_Verify_Visitor_ID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Visit_Request_Code", Visit_Request_Code);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
         {

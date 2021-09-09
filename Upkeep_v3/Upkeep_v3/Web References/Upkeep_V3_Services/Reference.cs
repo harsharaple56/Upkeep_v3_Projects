@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback ASSET_INSERT_GRNL_MASTEROperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_MyAssetOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_ASSET_REQUEST_DetailsOperationCompleted;
@@ -135,6 +137,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_Report_ExcelOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ImportRetailerOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddChecklistMaster_CRUDOperationCompleted;
         
@@ -304,11 +308,11 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback ASSET_Insert_AssetCategoryOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ASSET_INSERT_GRNL_MASTEROperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLastVMSRequestIDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Get_VMS_Verify_Visitor_IDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Dashboard_AdminOperationCompleted;
         
@@ -472,8 +476,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_MIS_Report_ExcelOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ImportRetailerOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -511,6 +513,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event ASSET_INSERT_GRNL_MASTERCompletedEventHandler ASSET_INSERT_GRNL_MASTERCompleted;
         
         /// <remarks/>
         public event Fetch_MyAssetCompletedEventHandler Fetch_MyAssetCompleted;
@@ -670,6 +675,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_VMSRequestList_Report_ExcelCompletedEventHandler Fetch_VMSRequestList_Report_ExcelCompleted;
+        
+        /// <remarks/>
+        public event ImportRetailerCompletedEventHandler ImportRetailerCompleted;
         
         /// <remarks/>
         public event AddChecklistMaster_CRUDCompletedEventHandler AddChecklistMaster_CRUDCompleted;
@@ -924,13 +932,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event ASSET_Insert_AssetCategoryCompletedEventHandler ASSET_Insert_AssetCategoryCompleted;
         
         /// <remarks/>
-        public event ASSET_INSERT_GRNL_MASTERCompletedEventHandler ASSET_INSERT_GRNL_MASTERCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
         public event GetLastVMSRequestIDCompletedEventHandler GetLastVMSRequestIDCompleted;
+        
+        /// <remarks/>
+        public event Get_VMS_Verify_Visitor_IDCompletedEventHandler Get_VMS_Verify_Visitor_IDCompleted;
         
         /// <remarks/>
         public event Fetch_Dashboard_AdminCompletedEventHandler Fetch_Dashboard_AdminCompleted;
@@ -1176,7 +1184,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_MIS_Report_ExcelCompletedEventHandler Fetch_MIS_Report_ExcelCompleted;
         
         /// <remarks/>
-        public event ImportRetailerCompletedEventHandler ImportRetailerCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_INSERT_GRNL_MASTER", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
+            object[] results = this.Invoke("ASSET_INSERT_GRNL_MASTER", new object[] {
+                        LoggedInUserID,
+                        MasterType,
+                        Dept_Value,
+                        LocationXmlValue,
+                        VendorXmlValue});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
+            this.ASSET_INSERT_GRNL_MASTERAsync(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue, null);
+        }
+        
+        /// <remarks/>
+        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue, object userState) {
+            if ((this.ASSET_INSERT_GRNL_MASTEROperationCompleted == null)) {
+                this.ASSET_INSERT_GRNL_MASTEROperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_INSERT_GRNL_MASTEROperationCompleted);
+            }
+            this.InvokeAsync("ASSET_INSERT_GRNL_MASTER", new object[] {
+                        LoggedInUserID,
+                        MasterType,
+                        Dept_Value,
+                        LocationXmlValue,
+                        VendorXmlValue}, this.ASSET_INSERT_GRNL_MASTEROperationCompleted, userState);
+        }
+        
+        private void OnASSET_INSERT_GRNL_MASTEROperationCompleted(object arg) {
+            if ((this.ASSET_INSERT_GRNL_MASTERCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ASSET_INSERT_GRNL_MASTERCompleted(this, new ASSET_INSERT_GRNL_MASTERCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_MyAsset", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3030,6 +3072,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_VMSRequestList_Report_ExcelCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_VMSRequestList_Report_ExcelCompleted(this, new Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ImportRetailer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ImportRetailer(int CompanyID) {
+            object[] results = this.Invoke("ImportRetailer", new object[] {
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ImportRetailerAsync(int CompanyID) {
+            this.ImportRetailerAsync(CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void ImportRetailerAsync(int CompanyID, object userState) {
+            if ((this.ImportRetailerOperationCompleted == null)) {
+                this.ImportRetailerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImportRetailerOperationCompleted);
+            }
+            this.InvokeAsync("ImportRetailer", new object[] {
+                        CompanyID}, this.ImportRetailerOperationCompleted, userState);
+        }
+        
+        private void OnImportRetailerOperationCompleted(object arg) {
+            if ((this.ImportRetailerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ImportRetailerCompleted(this, new ImportRetailerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6202,43 +6273,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_INSERT_GRNL_MASTER", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ASSET_INSERT_GRNL_MASTER(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
-            object[] results = this.Invoke("ASSET_INSERT_GRNL_MASTER", new object[] {
-                        LoggedInUserID,
-                        MasterType,
-                        Dept_Value,
-                        LocationXmlValue,
-                        VendorXmlValue});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue) {
-            this.ASSET_INSERT_GRNL_MASTERAsync(LoggedInUserID, MasterType, Dept_Value, LocationXmlValue, VendorXmlValue, null);
-        }
-        
-        /// <remarks/>
-        public void ASSET_INSERT_GRNL_MASTERAsync(string LoggedInUserID, string MasterType, string Dept_Value, string LocationXmlValue, string VendorXmlValue, object userState) {
-            if ((this.ASSET_INSERT_GRNL_MASTEROperationCompleted == null)) {
-                this.ASSET_INSERT_GRNL_MASTEROperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_INSERT_GRNL_MASTEROperationCompleted);
-            }
-            this.InvokeAsync("ASSET_INSERT_GRNL_MASTER", new object[] {
-                        LoggedInUserID,
-                        MasterType,
-                        Dept_Value,
-                        LocationXmlValue,
-                        VendorXmlValue}, this.ASSET_INSERT_GRNL_MASTEROperationCompleted, userState);
-        }
-        
-        private void OnASSET_INSERT_GRNL_MASTEROperationCompleted(object arg) {
-            if ((this.ASSET_INSERT_GRNL_MASTERCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ASSET_INSERT_GRNL_MASTERCompleted(this, new ASSET_INSERT_GRNL_MASTERCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -6291,6 +6325,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.GetLastVMSRequestIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetLastVMSRequestIDCompleted(this, new GetLastVMSRequestIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Get_VMS_Verify_Visitor_ID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code) {
+            object[] results = this.Invoke("Get_VMS_Verify_Visitor_ID", new object[] {
+                        Visit_Request_Code});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Get_VMS_Verify_Visitor_IDAsync(string Visit_Request_Code) {
+            this.Get_VMS_Verify_Visitor_IDAsync(Visit_Request_Code, null);
+        }
+        
+        /// <remarks/>
+        public void Get_VMS_Verify_Visitor_IDAsync(string Visit_Request_Code, object userState) {
+            if ((this.Get_VMS_Verify_Visitor_IDOperationCompleted == null)) {
+                this.Get_VMS_Verify_Visitor_IDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGet_VMS_Verify_Visitor_IDOperationCompleted);
+            }
+            this.InvokeAsync("Get_VMS_Verify_Visitor_ID", new object[] {
+                        Visit_Request_Code}, this.Get_VMS_Verify_Visitor_IDOperationCompleted, userState);
+        }
+        
+        private void OnGet_VMS_Verify_Visitor_IDOperationCompleted(object arg) {
+            if ((this.Get_VMS_Verify_Visitor_IDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Get_VMS_Verify_Visitor_IDCompleted(this, new Get_VMS_Verify_Visitor_IDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9395,35 +9458,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ImportRetailer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ImportRetailer(int CompanyID) {
-            object[] results = this.Invoke("ImportRetailer", new object[] {
-                        CompanyID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ImportRetailerAsync(int CompanyID) {
-            this.ImportRetailerAsync(CompanyID, null);
-        }
-        
-        /// <remarks/>
-        public void ImportRetailerAsync(int CompanyID, object userState) {
-            if ((this.ImportRetailerOperationCompleted == null)) {
-                this.ImportRetailerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImportRetailerOperationCompleted);
-            }
-            this.InvokeAsync("ImportRetailer", new object[] {
-                        CompanyID}, this.ImportRetailerOperationCompleted, userState);
-        }
-        
-        private void OnImportRetailerOperationCompleted(object arg) {
-            if ((this.ImportRetailerCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ImportRetailerCompleted(this, new ImportRetailerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -9439,6 +9473,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ASSET_INSERT_GRNL_MASTERCompletedEventHandler(object sender, ASSET_INSERT_GRNL_MASTERCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ASSET_INSERT_GRNL_MASTERCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ASSET_INSERT_GRNL_MASTERCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -10807,6 +10867,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ImportRetailerCompletedEventHandler(object sender, ImportRetailerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ImportRetailerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ImportRetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13006,32 +13092,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void ASSET_INSERT_GRNL_MASTERCompletedEventHandler(object sender, ASSET_INSERT_GRNL_MASTERCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ASSET_INSERT_GRNL_MASTERCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ASSET_INSERT_GRNL_MASTERCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -13069,6 +13129,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal GetLastVMSRequestIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Get_VMS_Verify_Visitor_IDCompletedEventHandler(object sender, Get_VMS_Verify_Visitor_IDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Get_VMS_Verify_Visitor_IDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Get_VMS_Verify_Visitor_IDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -15153,32 +15239,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_MIS_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void ImportRetailerCompletedEventHandler(object sender, ImportRetailerCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ImportRetailerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ImportRetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -75,6 +75,23 @@ public class My_Upkeep
 
     }
 
+    public DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.Get_VMS_Verify_Visitor_ID(Visit_Request_Code, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
 
 
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)

@@ -4122,9 +4122,7 @@
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="VMS\Verify_Visitor_ID.aspx" />
-    <Content Include="VMS\Default.aspx" />
-    <Content Include="VMS\HTML5Camera.aspx" />
-    <Content Include="VMS\QRScanWebCam.aspx" />
+    <Content Include="VMS\Verify_Visitor_ID_V2.aspx" />
     <Content Include="VMS\Visitor_ID_v2.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
@@ -5553,6 +5551,13 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID_V2.aspx.cs">
+      <DependentUpon>Verify_Visitor_ID_V2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID_V2.aspx.designer.cs">
+      <DependentUpon>Verify_Visitor_ID_V2.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visitor_ID.Designer.cs">
       <AutoGen>True</AutoGen>

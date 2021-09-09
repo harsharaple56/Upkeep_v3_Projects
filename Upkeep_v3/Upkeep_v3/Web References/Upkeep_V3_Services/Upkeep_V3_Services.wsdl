@@ -3,6 +3,31 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ASSET_INSERT_GRNL_MASTER">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MasterType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dept_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationXmlValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VendorXmlValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_INSERT_GRNL_MASTERResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_INSERT_GRNL_MASTERResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_MyAsset">
         <s:complexType>
           <s:sequence>
@@ -1265,6 +1290,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_VMSRequestList_Report_ExcelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportRetailer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportRetailerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportRetailerResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3300,31 +3346,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_INSERT_GRNL_MASTER">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="MasterType" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Dept_Value" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LocationXmlValue" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="VendorXmlValue" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ASSET_INSERT_GRNL_MASTERResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_INSERT_GRNL_MASTERResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3346,6 +3367,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetLastVMSRequestIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_VMS_Verify_Visitor_ID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Visit_Request_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_VMS_Verify_Visitor_IDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_VMS_Verify_Visitor_IDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5343,27 +5385,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ImportRetailer">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ImportRetailerResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ImportRetailerResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5371,6 +5392,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTERResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_MyAssetSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_MyAsset" />
   </wsdl:message>
@@ -5688,6 +5715,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_VMSRequestList_Report_ExcelSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList_Report_ExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportRetailerSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportRetailer" />
+  </wsdl:message>
+  <wsdl:message name="ImportRetailerSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportRetailerResponse" />
   </wsdl:message>
   <wsdl:message name="AddChecklistMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:AddChecklistMaster_CRUD" />
@@ -6193,12 +6226,6 @@
   <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
     <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
   </wsdl:message>
-  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
-  </wsdl:message>
-  <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTERResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6210,6 +6237,12 @@
   </wsdl:message>
   <wsdl:message name="GetLastVMSRequestIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetLastVMSRequestIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_VMS_Verify_Visitor_IDSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_VMS_Verify_Visitor_ID" />
+  </wsdl:message>
+  <wsdl:message name="Get_VMS_Verify_Visitor_IDSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_VMS_Verify_Visitor_IDResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_Admin" />
@@ -6697,13 +6730,11 @@
   <wsdl:message name="Fetch_MIS_Report_ExcelSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_ExcelResponse" />
   </wsdl:message>
-  <wsdl:message name="ImportRetailerSoapIn">
-    <wsdl:part name="parameters" element="tns:ImportRetailer" />
-  </wsdl:message>
-  <wsdl:message name="ImportRetailerSoapOut">
-    <wsdl:part name="parameters" element="tns:ImportRetailerResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
+      <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset">
       <wsdl:input message="tns:Fetch_MyAssetSoapIn" />
       <wsdl:output message="tns:Fetch_MyAssetSoapOut" />
@@ -6915,6 +6946,10 @@
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <wsdl:input message="tns:Fetch_VMSRequestList_Report_ExcelSoapIn" />
       <wsdl:output message="tns:Fetch_VMSRequestList_Report_ExcelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportRetailer">
+      <wsdl:input message="tns:ImportRetailerSoapIn" />
+      <wsdl:output message="tns:ImportRetailerSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddChecklistMaster_CRUD">
       <wsdl:input message="tns:AddChecklistMaster_CRUDSoapIn" />
@@ -7252,10 +7287,6 @@
       <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
       <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
-      <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7263,6 +7294,10 @@
     <wsdl:operation name="GetLastVMSRequestID">
       <wsdl:input message="tns:GetLastVMSRequestIDSoapIn" />
       <wsdl:output message="tns:GetLastVMSRequestIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
+      <wsdl:input message="tns:Get_VMS_Verify_Visitor_IDSoapIn" />
+      <wsdl:output message="tns:Get_VMS_Verify_Visitor_IDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
@@ -7589,13 +7624,18 @@
       <wsdl:input message="tns:Fetch_MIS_Report_ExcelSoapIn" />
       <wsdl:output message="tns:Fetch_MIS_Report_ExcelSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ImportRetailer">
-      <wsdl:input message="tns:ImportRetailerSoapIn" />
-      <wsdl:output message="tns:ImportRetailerSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
       <wsdl:input>
@@ -8066,6 +8106,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportRetailer">
+      <soap:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8829,15 +8878,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -8849,6 +8889,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLastVMSRequestID">
       <soap:operation soapAction="http://tempuri.org/GetLastVMSRequestID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
+      <soap:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9585,18 +9634,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ImportRetailer">
-      <soap:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MyAsset">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyAsset" style="document" />
       <wsdl:input>
@@ -10067,6 +10116,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportRetailer">
+      <soap12:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10830,15 +10888,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10850,6 +10899,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLastVMSRequestID">
       <soap12:operation soapAction="http://tempuri.org/GetLastVMSRequestID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
+      <soap12:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11579,15 +11637,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MIS_Report_Excel">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ImportRetailer">
-      <soap12:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
