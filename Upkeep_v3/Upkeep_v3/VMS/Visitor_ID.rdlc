@@ -21,7 +21,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>4.86333cm</Top>
+            <Top>6.13333cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.6cm</Height>
             <Width>1.28292cm</Width>
@@ -40,10 +40,10 @@
             <Value>=First(Fields!Company_Logo.Value, "ds_Visitor_Info_ID")</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>0.635cm</Top>
-            <Left>2.06375cm</Left>
-            <Height>2.16458cm</Height>
-            <Width>3.16278cm</Width>
+            <Top>0.42333cm</Top>
+            <Left>1.77681cm</Left>
+            <Height>2.37625cm</Height>
+            <Width>3.44972cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -56,10 +56,10 @@
             <Value>=First(Fields!Visitor_Photo.Value, "ds_Visitor_Info_ID")</Value>
             <MIMEType>image/jpeg</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>2.97597cm</Top>
-            <Left>2.75167cm</Left>
-            <Height>1.71097cm</Height>
-            <Width>1.71167cm</Width>
+            <Top>3.20528cm</Top>
+            <Left>0.35278cm</Left>
+            <Height>2.75166cm</Height>
+            <Width>3.63169cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -84,7 +84,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.41611cm</Top>
+            <Top>7.68611cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>1.28292cm</Width>
@@ -116,7 +116,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.63972cm</Top>
+            <Top>6.90972cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.6cm</Height>
             <Width>1.60514cm</Width>
@@ -148,7 +148,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.1925cm</Top>
+            <Top>8.4625cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>2.89278cm</Width>
@@ -178,7 +178,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>4.86333cm</Top>
+            <Top>6.13333cm</Top>
             <Left>1.77681cm</Left>
             <Height>0.6cm</Height>
             <Width>5.1282cm</Width>
@@ -208,7 +208,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.63972cm</Top>
+            <Top>6.90972cm</Top>
             <Left>2.06375cm</Left>
             <Height>0.6cm</Height>
             <Width>4.84126cm</Width>
@@ -238,7 +238,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.41611cm</Top>
+            <Top>7.68611cm</Top>
             <Left>1.74153cm</Left>
             <Height>0.6cm</Height>
             <Width>5.16347cm</Width>
@@ -270,7 +270,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.1925cm</Top>
+            <Top>8.4625cm</Top>
             <Left>3.35139cm</Left>
             <Height>0.6cm</Height>
             <Width>3.55362cm</Width>
@@ -305,7 +305,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.96889cm</Top>
+            <Top>9.23889cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>6.55222cm</Width>
@@ -339,7 +339,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>8.74528cm</Top>
+            <Top>10.01528cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.6cm</Height>
             <Width>3.36903cm</Width>
@@ -373,7 +373,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>8.74528cm</Top>
+            <Top>10.01528cm</Top>
             <Left>3.82764cm</Left>
             <Height>0.6cm</Height>
             <Width>3.07736cm</Width>
@@ -409,7 +409,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>10.86056cm</Top>
+            <Top>12.13056cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.56472cm</Height>
             <Width>6.55222cm</Width>
@@ -442,7 +442,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.52167cm</Top>
+            <Top>10.79167cm</Top>
             <Left>0.35278cm</Left>
             <Height>0.6cm</Height>
             <Width>3.36903cm</Width>
@@ -474,7 +474,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.52167cm</Top>
+            <Top>10.79167cm</Top>
             <Left>3.82764cm</Left>
             <Height>0.6cm</Height>
             <Width>3.07735cm</Width>
@@ -508,7 +508,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>11.60167cm</Top>
+            <Top>12.87167cm</Top>
             <Left>0.35277cm</Left>
             <Height>0.56472cm</Height>
             <Width>6.55222cm</Width>
@@ -524,11 +524,27 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Image Name="Image3">
+            <Source>External</Source>
+            <Value>=First(Fields!Visitor_Photo.Value, "ds_Visitor_Info_ID")</Value>
+            <MIMEType>image/jpeg</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>3.20528cm</Top>
+            <Left>4.16085cm</Left>
+            <Height>2.75166cm</Height>
+            <Width>2.74416cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>0.29287cm</Top>
         <Left>0.25259cm</Left>
-        <Height>12.50125cm</Height>
+        <Height>13.80653cm</Height>
         <Width>7.2644cm</Width>
         <Style>
           <Border>
@@ -537,7 +553,7 @@
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>5.14583in</Height>
+    <Height>5.65277in</Height>
     <Style />
   </Body>
   <Width>3.0775in</Width>

@@ -12,9 +12,6 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <div class="m-grid__item m-grid__item--fluid">
-        <div class="m-content">
-
             <div class="row">
 
                 <div id="div_Visitor_ID" runat="server" class="col-lg-12">
@@ -52,32 +49,52 @@
                                     <asp:Image ID="Img_CompanyLogo" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
 
                                 </div>
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                                    <div class="m-stack__item m-stack__item--right">Visitor photo</div>
+                                    <div class="m-stack__item m-stack__item--left">
+                                        <asp:Image ID="Img_QR_Code" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
+
+                                    </div>
+                                </div>
+
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
                                     <asp:Image ID="Img_Visitor_Photo" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
 
-                                
-                                </div>
-                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                     <div class="font-weight-bold"> Name : <label id="lbl_Visitor_Name" runat="server"></label></div>
-                                    
 
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                     <div class="font-weight-bold">Email : <label id="lbl_Visitor_Email" runat="server"></label></div>
-                                    
+                                    <div class="font-weight-bold">
+                                        Name :
+                                        <label id="lbl_Visitor_Name" runat="server"></label>
+                                    </div>
+
 
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                    <div class="font-weight-bold">Contact : <label id="lbl_Visitor_Contact" runat="server"></label></div>
-                                    
+                                    <div class="font-weight-bold">
+                                        Email :
+                                        <label id="lbl_Visitor_Email" runat="server"></label>
+                                    </div>
+
 
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                    
-                                     <div class="font-weight-bold">Visit Request ID : <label id="lbl_VisitRequest_ID" runat="server"></label></div>
-                                  
-                                    
+                                    <div class="font-weight-bold">
+                                        Contact :
+                                        <label id="lbl_Visitor_Contact" runat="server"></label>
+                                    </div>
+
+
+                                </div>
+                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+
+                                    <div class="font-weight-bold">
+                                        Visit Request ID :
+                                        <label id="lbl_VisitRequest_ID" runat="server"></label>
+                                    </div>
+
+
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="background: yellow;">
 
@@ -85,30 +102,36 @@
 
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                     <div class="font-weight-bold">Vaccination Status : <span class="m-badge m-badge--success m-badge--wide m-badge--rounded">VACCINATED</span>
-                                     </div>
+                                    <div class="font-weight-bold">
+                                        Vaccination Status : <span class="m-badge m-badge--success m-badge--wide m-badge--rounded">VACCINATED</span>
+                                    </div>
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--bottom">
-                                     <div class="font-weight-bold">Date of Vaccination : 
-                                         <label id="lbl_Vacc_Date" runat="server"></label></div>
-                                     
-                                    
-                               </div>
+                                    <div class="font-weight-bold">
+                                        Date of Vaccination : 
+                                         <label id="lbl_Vacc_Date" runat="server"></label>
+                                    </div>
+
+
+                                </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--bottom">
-                                     <div class="col-form-label">Visit Request Created on <label id="lbl_Request_Date_Text" runat="server"></label></div>
-                                    
-                                    
-                               </div>
+                                    <div class="col-form-label">
+                                        Visit Request Created on
+                                        <label id="lbl_Request_Date_Text" runat="server"></label>
+                                    </div>
+
+
+                                </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--bottom">
-                                     <div class="col-form-label">
-                                         <label id="lbl_Visit_Date_Text" runat="server">
+                                    <div class="col-form-label">
+                                        <label id="lbl_Visit_Date_Text" runat="server">
                                         </label>
 
-                                     </div>
-                                    
-                                    
-                               </div>
-                                
+                                    </div>
+
+
+                                </div>
+
 
                             </div>
 
@@ -132,15 +155,9 @@
 
                 <div id="div1" runat="server" class="col-lg-12 m--align-center">
                     <!--begin::Portlet-->
-                    
+
                 </div>
 
             </div>
-        </div>
-    </div>
-
-
-
-
 
 </asp:Content>

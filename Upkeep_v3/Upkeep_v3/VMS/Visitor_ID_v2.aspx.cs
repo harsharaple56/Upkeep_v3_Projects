@@ -18,6 +18,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Microsoft.Reporting.WebForms;
+using QRCoder;
+using System.Drawing;
+
 
 namespace Upkeep_v3.VMS
 {
@@ -39,6 +42,7 @@ namespace Upkeep_v3.VMS
                     div_Visitor_ID.Visible = true;
                     div_No_Visitor_ID.Visible = false;
                     Generate_Visitor_ID();
+                    Generate_QR_Code();
                 }
                 else
                 {
@@ -91,6 +95,7 @@ namespace Upkeep_v3.VMS
 
         protected void Generate_Visitor_ID()
         {
+            string Visit_Request_Code = string.Empty;
 
             try
             {
@@ -114,7 +119,8 @@ namespace Upkeep_v3.VMS
                             lbl_Vacc_Date.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Vaccination_Date"]);
                             lbl_Request_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Date"]);
                             lbl_Visit_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Date_Text"]);
-                            
+                            Visit_Request_Code = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Code"]);
+
 
                         }
                     }
@@ -134,7 +140,7 @@ namespace Upkeep_v3.VMS
             {
                 DataSet dsVisitor_ID = new DataSet();
                 dsVisitor_ID = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
-
+                
                 if (dsVisitor_ID != null)
                 {
                     if (dsVisitor_ID.Tables.Count > 0)
@@ -192,6 +198,49 @@ namespace Upkeep_v3.VMS
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        protected void Generate_QR_Code()
+        {
+            string code = string.Empty;
+            try
+            {
+                DataSet dsVisitor_ID = new DataSet();
+                dsVisitor_ID = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
+
+                if (dsVisitor_ID != null)
+                {
+                    if (dsVisitor_ID.Tables.Count > 0)
+                    {
+                        if (dsVisitor_ID.Tables[0].Rows.Count > 0)
+                        {
+                            code = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Code"]);
+
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+            imgBarCode.Height = 150;
+            imgBarCode.Width = 150;
+            using (Bitmap bitMap = qrCode.GetGraphic(20))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+                    imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                }
+                Img_QR_Code.Controls.Add(imgBarCode);
             }
         }
 
