@@ -45,6 +45,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\..\..\..\Desktop\AdmissionSystem\AdmissionSystem\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
@@ -149,6 +158,12 @@
       <HintPath>..\packages\Whatsapp.NET.1.2.2\lib\WhatsAppApi.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net461\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net461\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -4104,6 +4119,9 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="VMS\Default.aspx" />
+    <Content Include="VMS\HTML5Camera.aspx" />
+    <Content Include="VMS\QRScanWebCam.aspx" />
     <Content Include="VMS\Visitor_ID_v2.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
@@ -5546,6 +5564,27 @@
     </Compile>
     <Compile Include="UpkeepMaster.Master.designer.cs">
       <DependentUpon>UpkeepMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\HTML5Camera.aspx.cs">
+      <DependentUpon>HTML5Camera.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\HTML5Camera.aspx.designer.cs">
+      <DependentUpon>HTML5Camera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\QRScanWebCam.aspx.cs">
+      <DependentUpon>QRScanWebCam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\QRScanWebCam.aspx.designer.cs">
+      <DependentUpon>QRScanWebCam.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visitor_ID.Designer.cs">
       <AutoGen>True</AutoGen>
