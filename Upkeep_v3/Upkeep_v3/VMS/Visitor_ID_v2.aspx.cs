@@ -21,7 +21,6 @@ using Microsoft.Reporting.WebForms;
 using QRCoder;
 using System.Drawing;
 
-
 namespace Upkeep_v3.VMS
 {
     public partial class Visitor_ID_v2 : System.Web.UI.Page
@@ -159,11 +158,9 @@ namespace Upkeep_v3.VMS
                             rv_Visitor_ID.LocalReport.DataSources.Clear();
                             rv_Visitor_ID.LocalReport.EnableHyperlinks = true;
                             rv_Visitor_ID.LocalReport.DataSources.Add(datasource0);
-                            //rv_Visitor_ID.LocalReport.Refresh();
-
                             rv_Visitor_ID.LocalReport.Refresh();
 
-                            string filename = "Visitor_ID_" + DateTime.Now;
+                            string filename = "Visitor_ID_" + dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_ID"].ToString() + "_" + DateTime.Now;
 
                             string deviceInfo = "<DeviceInfo>" +
                                 "  <OutputFormat>PDF</OutputFormat>" +
@@ -204,9 +201,15 @@ namespace Upkeep_v3.VMS
         protected void Generate_QR_Code()
         {
             string code = string.Empty;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+            imgBarCode.Height = 200;
+            imgBarCode.Width = 200;
+            DataSet dsVisitor_ID = new DataSet();
+
             try
             {
-                DataSet dsVisitor_ID = new DataSet();
                 dsVisitor_ID = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
 
                 if (dsVisitor_ID != null)
@@ -216,8 +219,16 @@ namespace Upkeep_v3.VMS
                         if (dsVisitor_ID.Tables[0].Rows.Count > 0)
                         {
                             code = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Code"]);
-
-
+                          
+                            using (Bitmap bitMap = qrCode.GetGraphic(20))
+                            {
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                    bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                    byte[] byteImage = ms.ToArray();
+                                    Img_QR_Code.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                                }
+                            }
                         }
                     }
                 }
@@ -227,21 +238,6 @@ namespace Upkeep_v3.VMS
                 throw ex;
             }
             
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
-            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            imgBarCode.Height = 150;
-            imgBarCode.Width = 150;
-            using (Bitmap bitMap = qrCode.GetGraphic(20))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    byte[] byteImage = ms.ToArray();
-                    imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
-                }
-                Img_QR_Code.Controls.Add(imgBarCode);
-            }
         }
 
     }

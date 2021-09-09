@@ -218,7 +218,7 @@
 
     <div id="scaninfo" class="row">
         <div class="col-md-12">
-            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" >
 
                 <div class="m--align-center" style="padding: 15px;">
                     <asp:Image ID="Img_CompanyLogo" src="../assets/app/media/img/logos/verify_certificate.png" runat="server" Style="width: auto; max-height: 150px; max-width: 100%;" />
@@ -244,7 +244,7 @@
 
     <div id="userinfo" class="row">
         <div class="col-md-12">
-            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
+            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" >
                 <div class="m-portlet__body">
                     <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo m--align-center">
 

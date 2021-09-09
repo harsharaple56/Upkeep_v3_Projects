@@ -52,7 +52,7 @@
                                 <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                                     <div class="m-stack__item m-stack__item--right">Visitor photo</div>
                                     <div class="m-stack__item m-stack__item--left">
-                                        <asp:Image ID="Img_QR_Code" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
+                                        <asp:Image ID="Img_QR_Code" runat="server" Style="width: auto; max-height: 100px; max-width: 100%;" />
 
                                     </div>
                                 </div>
