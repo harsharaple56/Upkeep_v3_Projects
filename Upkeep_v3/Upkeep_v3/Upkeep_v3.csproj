@@ -1172,6 +1172,7 @@
     <Content Include="General_Masters\User_Type_Master.aspx" />
     <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="assets\instascan.min.js" />
     <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Purchase_Details.aspx" />
