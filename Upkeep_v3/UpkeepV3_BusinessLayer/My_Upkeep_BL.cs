@@ -12,7 +12,7 @@ namespace UpkeepV3_BusinessLayer
     public class My_Upkeep_BL
     {
         DataSet ds = new DataSet();
-
+        private static Random random = new Random();
 
         public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
         {
@@ -3192,6 +3192,14 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        // Generates a random string with a given size.    
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         //Added by RC This function is used to save VMS Request
         public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, 
             string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, 
@@ -3201,6 +3209,7 @@ namespace UpkeepV3_BusinessLayer
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
+                string Visit_Request_Code = RandomString(10);
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
@@ -3220,6 +3229,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Vaccine_Certificate", Vaccine_Certificate);
                 cmd.Parameters.AddWithValue("@Date_of_Vaccination", Date_of_Vaccination);
                 cmd.Parameters.AddWithValue("@Visitor_IDProof", Visitor_IDProof);
+                cmd.Parameters.AddWithValue("@Visit_Request_Code", Visit_Request_Code);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

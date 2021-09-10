@@ -120,7 +120,6 @@ namespace Upkeep_v3.VMS
                             lbl_Visit_Date_Text.InnerText = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Date_Text"]);
                             Visit_Request_Code = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Code"]);
 
-
                         }
                     }
                 }
@@ -201,11 +200,6 @@ namespace Upkeep_v3.VMS
         protected void Generate_QR_Code()
         {
             string code = string.Empty;
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
-            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            imgBarCode.Height = 200;
-            imgBarCode.Width = 200;
             DataSet dsVisitor_ID = new DataSet();
 
             try
@@ -219,7 +213,11 @@ namespace Upkeep_v3.VMS
                         if (dsVisitor_ID.Tables[0].Rows.Count > 0)
                         {
                             code = Convert.ToString(dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_Code"]);
-                          
+                            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+                            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+                            imgBarCode.Height = 200;
+                            imgBarCode.Width = 200;
                             using (Bitmap bitMap = qrCode.GetGraphic(20))
                             {
                                 using (MemoryStream ms = new MemoryStream())

@@ -66,6 +66,10 @@ namespace Upkeep_v3.VMS
                         }
                     }
                 }
+                else
+                {
+                    return "InvalidQR";
+                }
                 #endregion
 
                 return visitor_code;
