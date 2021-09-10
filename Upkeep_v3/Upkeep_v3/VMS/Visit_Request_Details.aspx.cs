@@ -397,7 +397,7 @@ namespace Upkeep_v3.VMS
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         BindVMSConfig();
 
-                        bool isVaccineCheck_Enable = Convert.ToBoolean(dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+                        bool isVaccineCheck_Enable = !string.IsNullOrEmpty(dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"].ToString()) ? true : false;
                         if (isVaccineCheck_Enable == true)
                         {
                             div_vaccination.Visible = true;
@@ -1175,10 +1175,10 @@ namespace Upkeep_v3.VMS
                     xmlstr = sr.ReadToEnd();
                     strVMSData = xmlstr;
                 }
-                #endregion
+            #endregion
 
-                #region SaveDataToDB
-                Save:
+            #region SaveDataToDB
+            Save:
                 DataSet dsVMSQuestionData = new DataSet();
                 dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, "", "", "", "", LoggedInUserID);
 
@@ -1191,7 +1191,9 @@ namespace Upkeep_v3.VMS
                         string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
                         string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
                         string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
-                        string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+                        string DLT_Template_ID = string.Empty;
+                        if (dsVMSQuestionData.Tables[3].Columns.Contains("DLT_Template_ID"))
+                            DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
                         string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Company_Name"]);
                         string Visitor_ID_Link = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Visitor_ID_Link"]);
 
@@ -1232,13 +1234,19 @@ namespace Upkeep_v3.VMS
                             Response.Write("<script>alert('Status changed.');</script>");
 
                             TextMessage = "Dear " + strName + "," + "%0a%0aYour visit Request ID " + Visit_Request_ID + " registered using eFacilito has been rejected by " + Company_Desc + " . You may submit your request again.";
-                            
+
                             if (SMS_Enabled > 0)
                             {
                                 string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                             }
 
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                        }
+                        else if (status == 1 && Action == 'O')
+                        {
+                            divAlertOpen.Visible = false;
+                            divAlertClosed.Visible = true;
+                            btnSave.Visible = false;
                         }
                         else if (status == 5)
                         {
