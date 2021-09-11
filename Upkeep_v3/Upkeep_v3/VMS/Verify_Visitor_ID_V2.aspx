@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Verify_Visitor_ID_V2.aspx.cs" Inherits="Upkeep_v3.VMS.Verify_Visitor_ID_V2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="../assets/html5-qrcode.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -210,10 +211,9 @@
                 </div>
                 <div class="modal-body m--align-center">
                     <div class="col-sm-12">
-                        <div id="qr-reader" style="width: 730px"></div>
+                        <div id="qr-reader" style="width: 100%;font-size: 14px;"></div>
                         <div id="qr-reader-results"></div>
                     </div>
-                    <script src="../assets/html5-qrcode.min.js"></script>
                     <script>
                         function docReady(fn) {
                             if (document.readyState === "complete"
@@ -223,7 +223,6 @@
                                 document.addEventListener("DOMContentLoaded", fn);
                             }
                         }
-
                         docReady(function () {
                             var resultContainer = document.getElementById('qr-reader-results');
                             var lastResult, countResults = 0;
@@ -301,5 +300,6 @@
             </div>
         </div>
     </div>
+
 
 </asp:Content>
