@@ -4122,7 +4122,6 @@
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="VMS\Verify_Visitor_ID.aspx" />
     <Content Include="VMS\Verify_Visitor_ID_V2.aspx" />
     <Content Include="VMS\Visitor_ID_v2.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
