@@ -3,10 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#scaninfo").show();
+        $(function () {
             $("#userinfo").hide();
             $("#invaliduser").hide();
+            $("#scaninfo").show();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
             $("#lbl_Visitor_Name").html('');
             $("#lbl_Visitor_Email").html('');
             $("#lbl_VisitRequest_ID").html('');
@@ -40,7 +45,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
     <div id="scaninfo" class="row">
         <div class="col-md-12">
             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
@@ -67,7 +71,7 @@
         </div>
     </div>
 
-    <div id="userinfo" class="row">
+    <div id="userinfo" class="row m--hide">
         <div class="col-md-12">
             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
                 <div class="m-portlet__body">
@@ -164,7 +168,7 @@
         </div>
     </div>
 
-    <div id="invaliduser" class="row">
+    <div id="invaliduser" class="row m--hide">
         <div class="col-md-12">
             <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile" id="main_portlet">
                 <div class="m-portlet__body">
@@ -200,88 +204,97 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Scan QR Code on Visitor ID</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body m--align-center">
-                    <script src="../assets/instascan.min.js"></script>
                     <div class="col-sm-12">
-                        <video id="preview" class="p-1 border" style="width: 100%;"></video>
+                        <div id="qr-reader" style="width: 730px"></div>
+                        <div id="qr-reader-results"></div>
                     </div>
-                    <script type="text/javascript">
-                        var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-                        scanner.addListener('scan', function (content) {
-                            if (content != undefined || content != "") {
-                                $.ajax({
-                                    url: "Verify_Visitor_ID_V2.aspx/Verify_Visitor_ID",
-                                    type: "POST",
-                                    data: "{ 'visitor_code': '" + content + "'} ",
-                                    contentType: 'application/json;charset=utf-8',
-                                    dataType: 'json',
-                                    success: function (response) {
-                                        if (response.d == "InvalidQR") {
-                                            $("#m_modal_6").modal("hide");
-                                            $("#userinfo").hide();
-                                            $("#scaninfo").hide();
-                                            $("#invaliduser").show();
-                                            toastr.warning("Please enter valid QR Code...!");
-                                        }
-                                        else if (response.d != "") {
-                                            $("#PhotoSuceess").show();
-                                            $("#m_modal_6").modal("hide");
-                                            $.each(response.d.split(","), function (key, val) {
-                                                if (key == 0)
-                                                    $("#Img_Visitor_Photo").attr("src", val);
-                                                if (key == 1)
-                                                    $("#lbl_Visitor_Name").html(val);
-                                                if (key == 2)
-                                                    $("#lbl_Visitor_Email").html(val);
-                                                if (key == 3)
-                                                    $("#lbl_Visitor_Contact").html(val);
-                                                if (key == 4)
-                                                    $("#lbl_VisitRequest_ID").html(val);
-                                                if (key == 5)
-                                                    $("#lbl_Vacc_Date").html(val);
-                                                if (key == 6)
-                                                    $("#lbl_Request_Date_Text").html(val);
-                                                if (key == 7)
-                                                    $("#lbl_Visit_Date_Text").html(val);
-                                            });
-                                            $("#userinfo").show();
-                                            $("#scaninfo").hide();
-                                            $("#invaliduser").hide();
-                                            toastr.success("QR CODE Scan Successfully..!");
-                                        }
+                    <script src="../assets/html5-qrcode.min.js"></script>
+                    <script>
+                        function docReady(fn) {
+                            if (document.readyState === "complete"
+                                || document.readyState === "interactive") {
+                                setTimeout(fn, 1);
+                            } else {
+                                document.addEventListener("DOMContentLoaded", fn);
+                            }
+                        }
 
-                                    },
-                                    failure: function (response) {
-                                        $("#m_modal_6").modal("hide");
-                                        $("#userinfo").hide();
-                                        $("#scaninfo").hide();
-                                        $("#invaliduser").show();
-                                        toastr.warning("There is no QR CODE inside the image..!");
+                        docReady(function () {
+                            var resultContainer = document.getElementById('qr-reader-results');
+                            var lastResult, countResults = 0;
+                            function onScanSuccess(decodedText, decodedResult) {
+                                if (decodedText !== lastResult) {
+                                    ++countResults;
+                                    lastResult = decodedText;
+                                    if (decodedText != undefined || decodedText != "") {
+                                        $.ajax({
+                                            url: "Verify_Visitor_ID_V2.aspx/Verify_Visitor_ID",
+                                            type: "POST",
+                                            data: "{ 'visitor_code': '" + decodedText + "'} ",
+                                            contentType: 'application/json;charset=utf-8',
+                                            dataType: 'json',
+                                            success: function (response) {
+                                                if (response.d == "InvalidQR") {
+                                                    $("#m_modal_6").modal("hide");
+                                                    $("#userinfo").hide();
+                                                    $("#scaninfo").hide();
+                                                    $('#invaliduser').removeClass('m--hide');
+                                                    $('#invaliduser').removeAttr('style', 'display:none');
+                                                    $("#invaliduser").show();
+                                                    toastr.warning("Please enter valid QR Code...!");
+                                                }
+                                                else if (response.d != "") {
+                                                    $("#PhotoSuceess").show();
+                                                    $("#m_modal_6").modal("hide");
+                                                    $.each(response.d.split(","), function (key, val) {
+                                                        if (key == 0)
+                                                            $("#Img_Visitor_Photo").attr("src", val);
+                                                        if (key == 1)
+                                                            $("#lbl_Visitor_Name").html(val);
+                                                        if (key == 2)
+                                                            $("#lbl_Visitor_Email").html(val);
+                                                        if (key == 3)
+                                                            $("#lbl_Visitor_Contact").html(val);
+                                                        if (key == 4)
+                                                            $("#lbl_VisitRequest_ID").html(val);
+                                                        if (key == 5)
+                                                            $("#lbl_Vacc_Date").html(val);
+                                                        if (key == 6)
+                                                            $("#lbl_Request_Date_Text").html(val);
+                                                        if (key == 7)
+                                                            $("#lbl_Visit_Date_Text").html(val);
+                                                    });
+                                                    $('#userinfo').removeClass('m--hide');
+                                                    $('#userinfo').removeAttr('style', 'display:none');
+                                                    $("#userinfo").show();
+                                                    $("#scaninfo").hide();
+                                                    $("#invaliduser").hide();
+                                                    toastr.success("QR CODE Scan Successfully..!");
+                                                }
+
+                                            },
+                                            failure: function (response) {
+                                                $("#m_modal_6").modal("hide");
+                                                $("#userinfo").hide();
+                                                $("#scaninfo").hide();
+                                                $('#invaliduser').removeClass('m--hide');
+                                                $('#invaliduser').removeAttr('style', 'display:none');
+                                                $("#invaliduser").show();
+                                                toastr.warning("There is no QR CODE inside the image..!");
+                                            }
+                                        });
                                     }
-                                });
+                                }
                             }
-                        });
-                        Instascan.Camera.getCameras().then(function (cameras) {
-                            if (cameras.length > 1) {
-                                var selectedCam = cameras[1];
-                                $.each(cameras, (i, c) => {
-                                    if (c.name.indexOf('back') != -1) {
-                                        selectedCam = c;
-                                        return false;
-                                    }
-                                });
-                                scanner.start(selectedCam);
-                            }
-                            else {
-                                toastr.warning('No cameras found.');
-                            }
-                        }).catch(function (e) {
-                            toastr.warning(e);
+
+                            var html5QrcodeScanner = new Html5QrcodeScanner(
+                                "qr-reader", { fps: 10, qrbox: 250 });
+                            html5QrcodeScanner.render(onScanSuccess);
                         });
                     </script>
                 </div>
