@@ -254,7 +254,7 @@
                                             $("#invaliduser").hide();
                                             toastr.success("QR CODE Scan Successfully..!");
                                         }
-                                       
+
                                     },
                                     failure: function (response) {
                                         $("#m_modal_6").modal("hide");
@@ -267,30 +267,21 @@
                             }
                         });
                         Instascan.Camera.getCameras().then(function (cameras) {
-                            if (cameras.length > 0) {
-                                scanner.start(cameras[0]);
-                                $('[name="options"]').on('change', function () {
-                                    if ($(this).val() == 1) {
-                                        if (cameras[0] != "") {
-                                            scanner.start(cameras[0]);
-                                        } else {
-                                            alert('No Front camera found!');
-                                        }
-                                    } else if ($(this).val() == 2) {
-                                        if (cameras[1] != "") {
-                                            scanner.start(cameras[1]);
-                                        } else {
-                                            alert('No Back camera found!');
-                                        }
+                            if (cameras.length > 1) {
+                                var selectedCam = cameras[1];
+                                $.each(cameras, (i, c) => {
+                                    if (c.name.indexOf('back') != -1) {
+                                        selectedCam = c;
+                                        return false;
                                     }
                                 });
-                            } else {
-                                console.error('No cameras found.');
-                                alert('No cameras found.');
+                                scanner.start(selectedCam);
+                            }
+                            else {
+                                toastr.warning('No cameras found.');
                             }
                         }).catch(function (e) {
-                            console.error(e);
-                            alert(e);
+                            toastr.warning(e);
                         });
                     </script>
                 </div>
