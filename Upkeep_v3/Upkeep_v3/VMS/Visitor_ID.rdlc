@@ -526,7 +526,7 @@
           </Textbox>
           <Image Name="Image3">
             <Source>External</Source>
-            <Value>=First(Fields!Visitor_Photo.Value, "ds_Visitor_Info_ID")</Value>
+            <Value>=First(Fields!QR_Code_Path.Value, "ds_QR_Image")</Value>
             <MIMEType>image/jpeg</MIMEType>
             <Sizing>FitProportional</Sizing>
             <Top>3.20528cm</Top>
@@ -574,7 +574,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c7358b62-7244-4004-9bda-77badc84796a</rd:DataSourceID>
+      <rd:DataSourceID>0cf669e9-6ffa-47ad-bad7-bb2cf8b48cf6</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -636,11 +636,35 @@
           <DataField>Visit_Date_Text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="QR_Code_Path">
+          <DataField>QR_Code_Path</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Visitor_ID</rd:DataSetName>
-        <rd:SchemaPath>D:\GitHub\GitHub_Repositories_26_Apr_2021\Upkeep_v3_Projects\Upkeep_v3\Upkeep_v3\VMS\Visitor_ID.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\GITHub_Repositories\eFacilito\Upkeep_v3\Upkeep_v3\VMS\Visitor_ID.xsd</rd:SchemaPath>
         <rd:TableName>dt_Visitor_Info</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="ds_QR_Image">
+      <Query>
+        <DataSourceName>Visitor_ID</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="QR_Code_Path">
+          <DataField>QR_Code_Path</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Visitor_ID</rd:DataSetName>
+        <rd:SchemaPath>E:\GITHub_Repositories\eFacilito\Upkeep_v3\Upkeep_v3\VMS\Visitor_ID.xsd</rd:SchemaPath>
+        <rd:TableName>dt_QR_Code_Image</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
