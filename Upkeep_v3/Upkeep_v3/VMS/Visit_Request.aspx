@@ -211,29 +211,33 @@ border: 3px solid #ccc;*/
             $('#hdnValidTimeError').val('');
             $('#lblTimeError').text('');
 
-            var selectedDate = $('#txtVMSDate').val();
+            var Is_TimeLimit_Enabled = $('#hdnIs_TimeLimit_Enabled').val();
 
-            var selectedTime = new Date(selectedDate).toLocaleTimeString();
-            
-            var fromDate = $('#hdnFrom_Time').val();
-            var toDate = $('#hdnTo_Time').val();
+            if (Is_TimeLimit_Enabled > "0") {
 
-            if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
-                //alert("success");
+                var selectedDate = $('#txtVMSDate').val();
+
+                var selectedTime = new Date(selectedDate).toLocaleTimeString();
+
+                var fromDate = $('#hdnFrom_Time').val();
+                var toDate = $('#hdnTo_Time').val();
+
+                if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
+                    //alert("success");
+                }
+                else {
+                    //alert('fail');
+
+                    var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
+                    var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
+
+                    var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen ' + fTime + ' to ' + tTime + ' ';
+                    $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+
+                    $('#hdnValidTime').val('0');
+                    $('#hdnValidTimeError').val(errorMsg);
+                }
             }
-            else {
-                //alert('fail');
-
-                var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
-                var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
-
-                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen '+fTime+' to '+tTime+' ';
-                $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
-
-                $('#hdnValidTime').val('0');
-                $('#hdnValidTimeError').val(errorMsg);
-            }
-
         }
 
 
@@ -571,6 +575,7 @@ border: 3px solid #ccc;*/
                                     <span id="error_startDate" class="text-danger medium"></span>
                                     <asp:HiddenField ID="hdnValidTime" runat="server" ClientIDMode="Static" Value="1" />
                                     <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
+                                    <asp:HiddenField ID="hdnIs_TimeLimit_Enabled" runat="server" ClientIDMode="Static" Value="" />
                                     <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static" ></asp:Label>
                                 </div>
 

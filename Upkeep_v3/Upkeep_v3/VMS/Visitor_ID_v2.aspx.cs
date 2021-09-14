@@ -150,13 +150,38 @@ namespace Upkeep_v3.VMS
                             rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/VMS/Visitor_ID.rdlc");
                             //rv_Visitor_ID.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Flr3ReportWizard.rdlc");
 
-                            ReportDataSource datasource0 = new ReportDataSource("ds_Visitor_Info_ID", dsVisitor_ID.Tables[0]);
 
+                            //Convert Base64 Encoded string to Byte Array.
+                            string imageBase64 = string.Empty;
+                            imageBase64 = Convert.ToString(Session["QR_Byte_Array"]);
+
+                            byte[] imageBytes = Convert.FromBase64String(imageBase64);
+
+                            string VDName = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                            string SaveLocation = Server.MapPath("~/VMS/QR_Codes/VMS_") + Convert.ToString(Request_ID) + ".png";
+
+                            string imgPath = VDName + "/VMS/QR_Codes/VMS_" + Convert.ToString(Request_ID) + ".png";
+
+                            //Save the Byte Array as Image File.
+                            File.WriteAllBytes(SaveLocation, imageBytes);
+
+                            //Session["QR_Code_Path"] = imgPath;
+
+
+                            DataTable dtQRCodeImage = new DataTable();
+                            dtQRCodeImage.Clear();
+                            dtQRCodeImage.Columns.Add("QR_Code_Path");
+                            //string QRImage = Convert.ToString(Session["QR_Code_Path"]);
+                            dtQRCodeImage.Rows.Add(new object[] { imgPath });
+
+                            ReportDataSource datasource0 = new ReportDataSource("ds_Visitor_Info_ID", dsVisitor_ID.Tables[0]);
+                            ReportDataSource datasource1 = new ReportDataSource("ds_QR_Image", dtQRCodeImage);
 
                             rv_Visitor_ID.LocalReport.EnableExternalImages = true;
                             rv_Visitor_ID.LocalReport.DataSources.Clear();
                             rv_Visitor_ID.LocalReport.EnableHyperlinks = true;
                             rv_Visitor_ID.LocalReport.DataSources.Add(datasource0);
+                            rv_Visitor_ID.LocalReport.DataSources.Add(datasource1);
                             rv_Visitor_ID.LocalReport.Refresh();
 
                             string filename = "Visitor_ID_" + dsVisitor_ID.Tables[0].Rows[0]["Visit_Request_ID"].ToString() + "_" + DateTime.Now;
@@ -201,7 +226,7 @@ namespace Upkeep_v3.VMS
         {
             string code = string.Empty;
             DataSet dsVisitor_ID = new DataSet();
-
+            string imageBase64 = string.Empty;
             try
             {
                 dsVisitor_ID = ObjUpkeep.VMS_Generate_Visitor_ID(Request_ID);
@@ -225,6 +250,11 @@ namespace Upkeep_v3.VMS
                                     bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                                     byte[] byteImage = ms.ToArray();
                                     Img_QR_Code.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                                    imageBase64 = Convert.ToBase64String(byteImage);
+
+                                    Session["QR_Byte_Array"] = imageBase64;
+
+                                    
                                 }
                             }
                         }
