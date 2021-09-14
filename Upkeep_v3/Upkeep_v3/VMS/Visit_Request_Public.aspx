@@ -815,14 +815,14 @@ border: 3px solid #ccc;*/
                             <%-- <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
                         </div>
-                    </div>
-
+                
 
 
                     <br />
 
                     <div id="div_VisitDetails" runat="server" class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
+                        </div>
 
 
                         <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
@@ -909,9 +909,9 @@ border: 3px solid #ccc;*/
                             </FooterTemplate>
 
                         </asp:Repeater>
-                    </div>
-
+                
                     <br />
+
 
                     <div class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
@@ -1027,7 +1027,7 @@ border: 3px solid #ccc;*/
                             <br />
                             <div class="row">
 
-                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                <div class="col-xl-12" style="padding-bottom: 1rem;">
                                     <div class="custom-file">
                                         <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
                                         <label id="lbl_userpic" class="custom-file-label" for="customFile">
@@ -1038,7 +1038,7 @@ border: 3px solid #ccc;*/
 
                                     </div>
                                 </div>
-                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                <%--<div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
                                     OR 
                                 </div>
 
@@ -1049,7 +1049,7 @@ border: 3px solid #ccc;*/
                                             <span>Click Photo</span>
                                         </span>
                                     </button>
-                                </div>
+                                </div>--%>
 
                             </div>
 
@@ -1098,6 +1098,8 @@ border: 3px solid #ccc;*/
                     <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
                         <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
                     </div>
+
+                        </div>
 
                     <br />
                     <%-- Covid19 assessment --%>

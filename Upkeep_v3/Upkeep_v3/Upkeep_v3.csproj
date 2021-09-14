@@ -959,6 +959,7 @@
     <Content Include="assets\demo\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\user_profile_bg.jpg" />
+    <Content Include="assets\html5-qrcode.min.js" />
     <Content Include="assets\jquery-1.7.2.min.js" />
     <Content Include="assets\pages\scripts\table-datatables-editable.min.js.js" />
     <Content Include="assets\snippets\apps\mail\mail.js" />
