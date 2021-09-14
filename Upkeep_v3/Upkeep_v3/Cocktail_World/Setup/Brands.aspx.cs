@@ -42,8 +42,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             //  string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
-
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -57,16 +56,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                         ddlSubCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtBrandDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Brand_Desc"]);
+                        txtBrandShortDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["ShortName"]);
                         txtShortname.Text = Convert.ToString(ds.Tables[0].Rows[0]["Strength"]);
 
                         txtPurchRatepeg.Text = Convert.ToString(ds.Tables[0].Rows[0]["Purchase_Rate_Peg"]);
                         txtSellingRatePeg.Text = Convert.ToString(ds.Tables[0].Rows[0]["Selling_Rate_Peg"]);
 
                         txtSellingRateBotle.Text = Convert.ToString(ds.Tables[0].Rows[0]["Selling_Rate_Bottle"]);
-
-
-
-
 
                         mpeCategoryMaster.Show();
 
@@ -185,6 +181,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void btnCloseCategory_Click(object sender, EventArgs e)
         {
             txtBrandDesc.Text = "";
+            txtBrandShortDesc.Text = "";
             txtShortname.Text = "";
             lblCategoryErrorMsg.Text = "";
             mpeCategoryMaster.Hide();
@@ -204,6 +201,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             int SellRatePeg = 0;
             int SellRateBottle = 0;
             string brandDesc = string.Empty;
+            string shortDesc = string.Empty;
             // string Strenght = string.Empty;
             int Strenght = 0;
             try
@@ -232,6 +230,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 SellRatePeg = Convert.ToInt32(txtSellingRatePeg.Text.Trim());
                 SellRateBottle = Convert.ToInt32(txtSellingRateBotle.Text.Trim());
                 brandDesc = txtBrandDesc.Text.Trim();
+                shortDesc = txtBrandShortDesc.Text.Trim();
                 Strenght = Convert.ToInt32(txtShortname.Text.Trim());
 
 
@@ -247,7 +246,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 //  ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,BrandID,CategoryID,0,txtBrandDesc.Text.Trim(),txtShortname.Text.Trim(),Convert.ToInt32(txtPurchRatepeg),Convert.ToInt32(txtSellingRatePeg),Convert.ToInt32(txtSellingRateBotle),Disable,LoggedInUserID,Action);
 
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc,shortDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
 
 
                 //ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, txtCategoryDesc.Text.Trim(), DepartmentID, LoggedInUserID, Action);
@@ -306,7 +305,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -319,9 +318,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             int Brand_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Brand_ID"]);
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
                             string Brand_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Brand_Desc"]);
+                            string Brand_Short_Desc = Convert.ToString(ds.Tables[0].Rows[i]["ShortName"]);
 
                             data += "<tr>";
                             data += "<td>" + Brand_Desc + "</td>";
+                            data += "<td>" + Brand_Short_Desc + "</td>";
                             data += "<td>" + Category_Desc + "</td>";
                             data += "<td>" +
                                 "<a href='Brands.aspx?Brand_ID=" + Brand_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
@@ -355,7 +356,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             {
                 DataSet ds = new DataSet();
 
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", 0, 0, 0, 0, 0, LoggedInUserID, "D");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {

@@ -24,17 +24,55 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
         public ArrayList gblArrMDICheckedLicensegblArrMDICheckedLicense = new ArrayList();
-
         DataSet Ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        public static bool getUpdate = false;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
+                btn_edit.Visible = false;
+                btn_delete.Visible = false;
                 BindCategory();
+            }
+        }
+
+        protected void btn_Edit_Click(object sender, EventArgs e)
+        {
+            getUpdate = true;
+            ListItemCollection liCol = ddlCategory.Items;
+            for (int i = 0; i < liCol.Count; i++)
+            {
+                ListItem li = liCol[i];
+                if (li.Selected)
+                {
+                    DataSet ds = new DataSet();
+                    ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Convert.ToInt32(liCol[i].Value), "", "", LoggedInUserID, "select");
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
+                        mpeCategoryMaster.Show();
+                    }
+                }
+            }
+        }
+
+        protected void btn_Delete_Click(object sender, EventArgs e)
+        {
+            ListItemCollection liCol = ddlCategory.Items;
+            for (int i = 0; i < liCol.Count; i++)
+            {
+                ListItem li = liCol[i];
+                if (li.Selected)
+                {
+                    ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Convert.ToInt32(liCol[i].Value), "", "", LoggedInUserID, "Delete");
+                    Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
+                }
             }
         }
 
@@ -43,7 +81,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.CategoryMaster_CRUD(24, 0, "", "", LoggedInUserID, "select");
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, 0, "", "", LoggedInUserID, "select");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -54,7 +92,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         ddlCategory.DataValueField = "Category_ID";
                         ddlCategory.DataBind();
                         ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
-
                     }
                 }
             }
@@ -64,6 +101,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
 
         }
+
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             FetchCategorySizeLinkUp();
@@ -76,16 +114,37 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnCloseCategory_Click(object sender, EventArgs e)
         {
-
+            mpeCategoryMaster.Hide();
         }
 
         protected void btnCategorySave_Click(object sender, EventArgs e)
         {
             try
             {
+                int Category_ID = 0;
                 string Cate_Desc = txtCategoryDesc.Text;
-                DataSet dsCateDesc = new DataSet();
-                //dsCateDesc = ObjCocktailWorld.
+                string Action = string.Empty;
+                if (getUpdate)
+                {
+                    ListItemCollection liCol = ddlCategory.Items;
+                    for (int i = 0; i < liCol.Count; i++)
+                    {
+                        ListItem li = liCol[i];
+                        if (li.Selected)
+                        {
+                            Category_ID = Convert.ToInt32(liCol[i].Value);
+                            Action = "update";
+                            getUpdate = false;
+                        }
+                    }
+                }
+                else
+                {
+                    Action = "insert";
+                }
+                ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, Cate_Desc, "", LoggedInUserID, Action);
+                mpeCategoryMaster.Hide();
+                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
             }
             catch (Exception ex)
             {
@@ -94,12 +153,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         }
 
-
         public void FetchCategorySizeLinkUp()
         {
             try
             {
+
                 int Category_ID;
+
+
                 //ObjCategorySizeLnkUp = new ClsCategorySizelinlup();
                 // ds = new DataTable();
 
@@ -117,8 +178,21 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 //txtDetails.Text = "=$=";
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    grdCatagLinkUp.DataSource = ds.Tables[0];
-                    grdCatagLinkUp.DataBind();
+
+                    if (ddlCategory.SelectedIndex == 0)
+                    {
+                        btn_edit.Visible = false;
+                        btn_delete.Visible = false;
+                        grdCatagLinkUp.DataSource = null;
+                        grdCatagLinkUp.DataBind();
+                    }
+                    else
+                    {
+                        btn_edit.Visible = true;
+                        btn_delete.Visible = true;
+                        grdCatagLinkUp.DataSource = ds.Tables[0];
+                        grdCatagLinkUp.DataBind();
+                    }
                     //for (int index = 0; index <= ds.Tables[0].Rows.Count - 1; index++)
                     //{
                     //    //if (ds.Tables[0].Rows[index]["Selected"] == 1)
@@ -129,6 +203,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     grdCatagLinkUp.DataSource = null;
                     grdCatagLinkUp.DataBind();
+                    btn_edit.Visible = false;
+                    btn_delete.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -144,12 +220,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-
-
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
             string CategoryDetails = string.Empty;
             var rows = grdCatagLinkUp.Rows;
             int count = grdCatagLinkUp.Rows.Count;
@@ -165,6 +237,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 for (int i = 0; i < count; i++)
                 {
+
                     bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
                     if (isChecked)
                     {
@@ -198,7 +271,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 DataSet dsCatSave = new DataSet();
 
-                dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID,CompanyID,LoggedInUserID);
+                dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
 
                 if (Ds.Tables.Count > 0)
                 {
