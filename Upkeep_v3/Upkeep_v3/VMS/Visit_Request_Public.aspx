@@ -478,27 +478,30 @@ border: 3px solid #ccc;*/
             $('#hdnValidTimeError').val('');
             $('#lblTimeError').text('');
 
-            var selectedDate = $('#txtVMSDate').val();
-            var selectedTime = new Date(selectedDate).toLocaleTimeString();
+            var Is_TimeLimit_Enabled = $('#hdnIs_TimeLimit_Enabled').val();
 
-            var fromDate = $('#hdnFrom_Time').val();
-            var toDate = $('#hdnTo_Time').val();
+            if (Is_TimeLimit_Enabled > "0") {
+                var selectedDate = $('#txtVMSDate').val();
+                var selectedTime = new Date(selectedDate).toLocaleTimeString();
 
-            if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
-                //alert("success");
+                var fromDate = $('#hdnFrom_Time').val();
+                var toDate = $('#hdnTo_Time').val();
+
+                if (Date.parse('01/01/2011 ' + selectedTime) >= Date.parse('01/01/2011 ' + fromDate) && Date.parse('01/01/2011 ' + selectedTime) <= Date.parse('01/01/2011 ' + toDate)) {
+                    //alert("success");
+                }
+                else {
+                    //alert('fail');
+                    var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
+                    var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
+
+                    var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen ' + fTime + ' to ' + tTime + ' ';
+                    $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
+
+                    $('#hdnValidTime').val('0');
+                    $('#hdnValidTimeError').val(errorMsg);
+                }
             }
-            else {
-                //alert('fail');
-                var fTime = moment(fromDate, ["HH.mm"]).format("hh:mm a");
-                var tTime = moment(toDate, ["HH.mm"]).format("hh:mm a");
-
-                var errorMsg = 'Invalid visit Time.You are only allowed to visit betweeen ' + fTime + ' to ' + tTime + ' ';
-                $('#error_startDate').html(errorMsg).parents('.form-group').addClass('has-error');
-
-                $('#hdnValidTime').val('0');
-                $('#hdnValidTimeError').val(errorMsg);
-            }
-
         }
 
 
@@ -793,6 +796,7 @@ border: 3px solid #ccc;*/
                             <span id="error_startDate" class="text-danger medium"></span>
                             <asp:HiddenField ID="hdnValidTime" runat="server" ClientIDMode="Static" Value="1" />
                             <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
+                             <asp:HiddenField ID="hdnIs_TimeLimit_Enabled" runat="server" ClientIDMode="Static" Value="" />
                             <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static"></asp:Label>
 
                             <br />
@@ -815,14 +819,14 @@ border: 3px solid #ccc;*/
                             <%-- <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
                         </div>
-                    </div>
-
+                
 
 
                     <br />
 
                     <div id="div_VisitDetails" runat="server" class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
+                        </div>
 
 
                         <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
@@ -909,9 +913,9 @@ border: 3px solid #ccc;*/
                             </FooterTemplate>
 
                         </asp:Repeater>
-                    </div>
-
+                
                     <br />
+
 
                     <div class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
@@ -1027,7 +1031,7 @@ border: 3px solid #ccc;*/
                             <br />
                             <div class="row">
 
-                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                <div class="col-xl-12" style="padding-bottom: 1rem;">
                                     <div class="custom-file">
                                         <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
                                         <label id="lbl_userpic" class="custom-file-label" for="customFile">
@@ -1038,7 +1042,7 @@ border: 3px solid #ccc;*/
 
                                     </div>
                                 </div>
-                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                <%--<div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
                                     OR 
                                 </div>
 
@@ -1049,7 +1053,7 @@ border: 3px solid #ccc;*/
                                             <span>Click Photo</span>
                                         </span>
                                     </button>
-                                </div>
+                                </div>--%>
 
                             </div>
 
@@ -1098,6 +1102,8 @@ border: 3px solid #ccc;*/
                     <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
                         <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
                     </div>
+
+                        </div>
 
                     <br />
                     <%-- Covid19 assessment --%>
