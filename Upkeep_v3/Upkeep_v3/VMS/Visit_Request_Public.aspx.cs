@@ -463,6 +463,7 @@ namespace Upkeep_v3.VMS
                     hdnFrom_Time.Value = "0";
                     hdnTo_Time.Value = "0";
                     lblVisitingTime.Attributes.Add("style", "display:none;");
+
                 }
 
                 if (dsConfig.Tables.Count > 4)
