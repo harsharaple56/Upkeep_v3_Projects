@@ -959,7 +959,6 @@
     <Content Include="assets\demo\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\media\img\misc\user_profile_bg.jpg" />
-    <Content Include="assets\html5-qrcode.min.js" />
     <Content Include="assets\jquery-1.7.2.min.js" />
     <Content Include="assets\pages\scripts\table-datatables-editable.min.js.js" />
     <Content Include="assets\snippets\apps\mail\mail.js" />
@@ -4165,12 +4164,18 @@
     <Content Include="Handlers\RetailerImage_Handler.ashx" />
     <Content Include="VMS\Visit_Request_Details.aspx" />
     <Content Include="VMS\Visit_Request_Public.aspx" />
-    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
-    <Content Include="VMS\Visitor_ID.rdlc">
-      <SubType>Designer</SubType>
+    <Content Include="VMS\Visitor_ID.xsc">
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
-    <Content Include="VMS\Visitor_ID.xsc" />
-    <Content Include="VMS\Visitor_ID.xss" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="VMS\Visitor_ID.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Visitor_ID.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="VMS\Visitor_ID.xss">
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
+    </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl">
       <SubType>Designer</SubType>
     </None>
@@ -5554,6 +5559,11 @@
     <Compile Include="VMS\Verify_Visitor_ID_V2.aspx.designer.cs">
       <DependentUpon>Verify_Visitor_ID_V2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VMS\Visitor_ID.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Visitor_ID.xsd</DependentUpon>
+    </Compile>
     <Compile Include="VMS\Visitor_ID_v2.aspx.cs">
       <DependentUpon>Visitor_ID_v2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6600,6 +6610,9 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
+    <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

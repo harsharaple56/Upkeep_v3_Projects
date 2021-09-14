@@ -43,7 +43,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             string CreateBy = Convert.ToString(ds.Tables[0].Rows[i]["UserName"]);
                             DateTime CreatedDate = DateTime.Parse(Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]));
                             data += "<tr>";
-                            data += "<td>" + Transfer_Date.ToString("dd-MMM-yyyy") + "</td>";
+                            data += "<td>" + Transfer_Date + "</td>";
                             data += "<td>" + From_License + "</td>";
                             data += "<td>" + To_License + "</td>";
                             data += "<td>" + Tp_No + "</td>";

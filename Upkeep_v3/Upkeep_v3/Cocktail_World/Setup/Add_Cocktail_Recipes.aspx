@@ -3,42 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-bottom-center",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "3000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-
-            var options = $('[id$="ddlCocktail"] option');
-            var values = $.map(options, function (option) {
-                return option.innerText;
-            });
-            
-            $("[id*=txtCocktail]").on('keyup', function () {
-                $.each(values, function (index, value) {
-                    if ($("[id*=txtCocktail]").val().toLowerCase().trim() == value.toLowerCase().trim()) {
-                        toastr.warning("Please check the Cocktail name that value is already in Cocktail Dropdown.");
-                    }
-                });
-            });
-        });
-
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
@@ -76,7 +40,7 @@
                                     </a>
                                     <div class="btn-group">
                                         <asp:Button ID="btnSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Save"
-                                            ValidationGroup="ValidateSave" OnClick="btnSave_Click" />
+                                            ValidationGroup="ValidateUser" OnClick="btnSave_Click" />
                                     </div>
                                 </div>
 
@@ -93,40 +57,33 @@
 
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-2 col-lg-2 col-form-label"><span style="color: red;">*</span> Cocktail Name :</label>
-                                            <div class="col-xl-5 col-lg-5">
-                                                <div class="input-group">
-                                                    <asp:TextBox CssClass="form-control" OnTextChanged="txtCocktail_TextChanged" AutoPostBack="true" ID="txtCocktail" runat="server"></asp:TextBox>
-                                                    <asp:DropDownList OnSelectedIndexChanged="ddlCocktail_SelectedIndexChanged" AutoPostBack="true" ID="ddlCocktail" class="form-control m-input" runat="server">
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCocktail" Visible="true" Style="margin-left: 34%;" ValidationGroup="ValidateSave" ForeColor="Red" ErrorMessage="Please enter Cocktail Name"></asp:RequiredFieldValidator>
+                                            <div class="col-xl-4 col-lg-4" style="position: relative; background-color: white; border: solid #ebedf2 1px; max-width: 335px; height: 42px;">
+                                                <asp:TextBox OnTextChanged="txtCocktail_TextChanged" AutoPostBack="true" ID="txtCocktail" runat="server" class="form-control" Style="width: 60%; position: absolute; top: 0px; left: 37px; width: 296px; padding: 0px; font-size: 13px; border: none; outline: none; font-family: sans-serif,Arial"></asp:TextBox>
+                                                <asp:DropDownList OnSelectedIndexChanged="ddlCocktail_SelectedIndexChanged" AutoPostBack="true" ID="ddlCocktail" Style="position: absolute; top: 0px; left: 204px; font-size: 14px; border: none; width: 117px; margin: 0; outline: none;" class="form-control m-input" runat="server">
+                                                </asp:DropDownList>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCocktail" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Cocktail Name"></asp:RequiredFieldValidator>
                                             </div>
 
-
-                                            <label class="col-xl-2 col-lg-2 col-form-label">Rate :</label>
-                                            <div class="col-xl-3 col-lg-3">
-                                                <asp:TextBox ID="txtRate" runat="server" class="form-control"></asp:TextBox>
+                                            <label class="col-xl-2 col-lg-2 col-form-label" style="padding-left:140px">Rate :</label>
+                                            <div class="col-xl-4 col-lg-4">
+                                                <asp:TextBox ID="txtRate" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                             </div>
                                         </div>
 
 
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-1 col-lg-1 col-form-label"><span style="color: red;">*</span>  Brand :</label>
-                                            <div class="col-xl-3 col-lg-3">
+                                            <div class="col-xl-2 col-lg-2">
                                                 <asp:DropDownList ID="ddlBrand" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" AutoPostBack="true" class="form-control m-input" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="ValidateUser" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
-
                                             </div>
                                             <label class="col-xl-1 col-lg-1 col-form-label"><span style="color: red;">*</span>  Size :</label>
                                             <div class="col-xl-2 col-lg-2">
                                                 <asp:DropDownList ID="ddlSize" OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" class="form-control m-input" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="ValidateUser" ForeColor="Red" ErrorMessage="Please enter Size"></asp:RequiredFieldValidator>
-
                                             </div>
                                             <label class="col-xl-1 col-lg-1 col-form-label"><span style="color: red;">*</span> Peg / ML:</label>
-                                            <div class="col-xl-2 col-lg-2">
-                                                <asp:TextBox ID="txtpegml" runat="server" class="form-control"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtpegml" Visible="true" ValidationGroup="ValidateUser" ForeColor="Red" ErrorMessage="Please enter Peg/ML"></asp:RequiredFieldValidator>
+                                            <div class="col-xl-3 col-lg-3">
+                                                <asp:TextBox ID="txtpegml" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtpegml" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Rate"></asp:RequiredFieldValidator>
                                             </div>
 
                                             <div class="col-xl-3 col-lg-3" style="max-width: 16%;">

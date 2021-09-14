@@ -176,8 +176,6 @@
             <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Created_By" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Created_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -359,7 +357,6 @@
       <s:element name="CocktailMaster_CRUD">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Cocktail_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Category_Desc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Rate" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
@@ -372,6 +369,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="CocktailMaster_CRUDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Cocktail_Brand_Details">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Category_Desc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Cocktail_Brand_DetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Cocktail_Brand_DetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -443,7 +462,6 @@
             <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="SubCategory_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand_Short_Name" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Strength" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Purchase_Rate_Peg" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Selling_Rate_Peg" type="s:int" />
@@ -756,6 +774,12 @@
   <wsdl:message name="CocktailMaster_CRUDSoapOut">
     <wsdl:part name="parameters" element="tns:CocktailMaster_CRUDResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Cocktail_Brand_DetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Cocktail_Brand_Details" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Cocktail_Brand_DetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Cocktail_Brand_DetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="CocktailBrandsMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CocktailBrandsMaster_CRUD" />
   </wsdl:message>
@@ -878,6 +902,10 @@
     <wsdl:operation name="CocktailMaster_CRUD">
       <wsdl:input message="tns:CocktailMaster_CRUDSoapIn" />
       <wsdl:output message="tns:CocktailMaster_CRUDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cocktail_Brand_Details">
+      <wsdl:input message="tns:Fetch_Cocktail_Brand_DetailsSoapIn" />
+      <wsdl:output message="tns:Fetch_Cocktail_Brand_DetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CocktailBrandsMaster_CRUD">
       <wsdl:input message="tns:CocktailBrandsMaster_CRUDSoapIn" />
@@ -1045,6 +1073,15 @@
     </wsdl:operation>
     <wsdl:operation name="CocktailMaster_CRUD">
       <soap:operation soapAction="http://tempuri.org/CocktailMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cocktail_Brand_Details">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Cocktail_Brand_Details" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1273,6 +1310,15 @@
     </wsdl:operation>
     <wsdl:operation name="CocktailMaster_CRUD">
       <soap12:operation soapAction="http://tempuri.org/CocktailMaster_CRUD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cocktail_Brand_Details">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Cocktail_Brand_Details" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

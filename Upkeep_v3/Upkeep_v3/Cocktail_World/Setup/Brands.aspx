@@ -78,12 +78,6 @@
                 }
             });
         });
-
-        function RestrictSpaceSpecial(e) {
-            var k;
-            document.all ? k = e.keyCode : k = e.which;
-            return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
-        }
     </script>
 
     <div runat="server">
@@ -100,7 +94,7 @@
                         </div>
                         <div class="m-portlet__head-tools">
                             <ul class="m-portlet__nav">
-                                <li class="m-portlet__nav-item">
+                                 <li class="m-portlet__nav-item">
                                     <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
@@ -142,7 +136,6 @@
 
                                 <tr>
                                     <th>Brand Name</th>
-                                    <th>Brand Short Name</th>
                                     <th>Assigned Category</th>
                                     <%-- <th>Short Name</th>--%>
                                     <th>Action</th>
@@ -228,7 +221,7 @@
                                             </div>
 
                                             <div class="form-group m-form__group row">
-                                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Sub Category:</label>
+                                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Sub Category :</label>
                                                 <asp:DropDownList ID="ddlSubCategory" class="form-control" Style="width: 60%" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
 
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
@@ -237,27 +230,20 @@
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Description :</label>
-                                                <asp:TextBox ID="txtBrandDesc" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red"  ErrorMessage="Please enter Brand Description"></asp:RequiredFieldValidator>
+                                                <asp:TextBox ID="txtBrandDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Workflow Description"></asp:RequiredFieldValidator>
 
                                             </div>
 
-                                            <div class="form-group m-form__group row">
-                                                <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Short Description :</label>
-                                                <asp:TextBox ID="txtBrandShortDesc" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfvCategory1" runat="server" ControlToValidate="txtBrandShortDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Brand Short Description"></asp:RequiredFieldValidator>
-
-                                            </div>
-
-
-                                        </div>
-                                        <div class="col-6">
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Strength :</label>
                                                 <asp:TextBox ID="txtShortname" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
 
                                             </div>
+                                        </div>
+                                        <div class="col-6">
+
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Purchase Rate ( Peg - INR ) :</label>
                                                 <asp:TextBox ID="txtPurchRatepeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
@@ -281,12 +267,12 @@
 
                                         </div>
                                         <div class="col-12">
-
+                                            
                                             <div class="form-group m-form__group row">
 
                                                 <div class="col-lg-12">
-                                                    <asp:CheckBox ID="chkBrndDisable" CssClass="m-checkbox--success" runat="server" />
-                                                    <label for="message-text" class="form-control-label" style="text-align: center;">Click for Disable this brand in Transaction</label>
+                                                <asp:CheckBox ID="chkBrndDisable" CssClass="m-checkbox--success" runat="server" />
+                                                <label for="message-text" class="form-control-label" style="text-align: center;">Click for Disable this brand in Transaction</label>
                                                 </div>
                                             </div>
                                         </div>

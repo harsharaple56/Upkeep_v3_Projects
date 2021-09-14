@@ -58,6 +58,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback CocktailMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Cocktail_Brand_DetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback CocktailBrandsMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback FetchBrandSizeLinkupOperationCompleted;
@@ -159,6 +161,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event CocktailMaster_CRUDCompletedEventHandler CocktailMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Cocktail_Brand_DetailsCompletedEventHandler Fetch_Cocktail_Brand_DetailsCompleted;
         
         /// <remarks/>
         public event CocktailBrandsMaster_CRUDCompletedEventHandler CocktailBrandsMaster_CRUDCompleted;
@@ -509,24 +514,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TransferDetailsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet TransferDetailsMaster_CRUD(
-                    int Transfer_ID, 
-                    string Transfer_Against, 
-                    string TP_No, 
-                    int Brand_Opening_ID, 
-                    string MfgDate, 
-                    string Boxes, 
-                    string BatchNo, 
-                    decimal Speg_Qty, 
-                    decimal Speg_Rate, 
-                    decimal Bottle_Qty, 
-                    decimal Bottle_Rate, 
-                    int License_ID, 
-                    int Company_ID, 
-                    string LoggedInUserID, 
-                    string Created_By, 
-                    string Created_Date, 
-                    string Action) {
+        public System.Data.DataSet TransferDetailsMaster_CRUD(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate, decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("TransferDetailsMaster_CRUD", new object[] {
                         Transfer_ID,
                         Transfer_Against,
@@ -542,32 +530,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         License_ID,
                         Company_ID,
                         LoggedInUserID,
-                        Created_By,
-                        Created_Date,
                         Action});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void TransferDetailsMaster_CRUDAsync(
-                    int Transfer_ID, 
-                    string Transfer_Against, 
-                    string TP_No, 
-                    int Brand_Opening_ID, 
-                    string MfgDate, 
-                    string Boxes, 
-                    string BatchNo, 
-                    decimal Speg_Qty, 
-                    decimal Speg_Rate, 
-                    decimal Bottle_Qty, 
-                    decimal Bottle_Rate, 
-                    int License_ID, 
-                    int Company_ID, 
-                    string LoggedInUserID, 
-                    string Created_By, 
-                    string Created_Date, 
-                    string Action) {
-            this.TransferDetailsMaster_CRUDAsync(Transfer_ID, Transfer_Against, TP_No, Brand_Opening_ID, MfgDate, Boxes, BatchNo, Speg_Qty, Speg_Rate, Bottle_Qty, Bottle_Rate, License_ID, Company_ID, LoggedInUserID, Created_By, Created_Date, Action, null);
+        public void TransferDetailsMaster_CRUDAsync(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate, decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Action) {
+            this.TransferDetailsMaster_CRUDAsync(Transfer_ID, Transfer_Against, TP_No, Brand_Opening_ID, MfgDate, Boxes, BatchNo, Speg_Qty, Speg_Rate, Bottle_Qty, Bottle_Rate, License_ID, Company_ID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
@@ -586,8 +555,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
                     int License_ID, 
                     int Company_ID, 
                     string LoggedInUserID, 
-                    string Created_By, 
-                    string Created_Date, 
                     string Action, 
                     object userState) {
             if ((this.TransferDetailsMaster_CRUDOperationCompleted == null)) {
@@ -608,8 +575,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         License_ID,
                         Company_ID,
                         LoggedInUserID,
-                        Created_By,
-                        Created_Date,
                         Action}, this.TransferDetailsMaster_CRUDOperationCompleted, userState);
         }
         
@@ -922,9 +887,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CocktailMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CocktailMaster_CRUD(int Cocktail_ID, string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CocktailMaster_CRUD(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CocktailMaster_CRUD", new object[] {
-                        Cocktail_ID,
                         Category_Desc,
                         Rate,
                         Company_ID,
@@ -934,17 +898,16 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void CocktailMaster_CRUDAsync(int Cocktail_ID, string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
-            this.CocktailMaster_CRUDAsync(Cocktail_ID, Category_Desc, Rate, Company_ID, LoggedInUserID, Action, null);
+        public void CocktailMaster_CRUDAsync(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action) {
+            this.CocktailMaster_CRUDAsync(Category_Desc, Rate, Company_ID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CocktailMaster_CRUDAsync(int Cocktail_ID, string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action, object userState) {
+        public void CocktailMaster_CRUDAsync(string Category_Desc, string Rate, int Company_ID, string LoggedInUserID, string Action, object userState) {
             if ((this.CocktailMaster_CRUDOperationCompleted == null)) {
                 this.CocktailMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCocktailMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("CocktailMaster_CRUD", new object[] {
-                        Cocktail_ID,
                         Category_Desc,
                         Rate,
                         Company_ID,
@@ -956,6 +919,37 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.CocktailMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CocktailMaster_CRUDCompleted(this, new CocktailMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Cocktail_Brand_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Cocktail_Brand_Details(string Category_Desc, int Company_ID) {
+            object[] results = this.Invoke("Fetch_Cocktail_Brand_Details", new object[] {
+                        Category_Desc,
+                        Company_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Cocktail_Brand_DetailsAsync(string Category_Desc, int Company_ID) {
+            this.Fetch_Cocktail_Brand_DetailsAsync(Category_Desc, Company_ID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Cocktail_Brand_DetailsAsync(string Category_Desc, int Company_ID, object userState) {
+            if ((this.Fetch_Cocktail_Brand_DetailsOperationCompleted == null)) {
+                this.Fetch_Cocktail_Brand_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Cocktail_Brand_DetailsOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Cocktail_Brand_Details", new object[] {
+                        Category_Desc,
+                        Company_ID}, this.Fetch_Cocktail_Brand_DetailsOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Cocktail_Brand_DetailsOperationCompleted(object arg) {
+            if ((this.Fetch_Cocktail_Brand_DetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Cocktail_Brand_DetailsCompleted(this, new Fetch_Cocktail_Brand_DetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1041,14 +1035,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BrandMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action) {
+        public System.Data.DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("BrandMaster_CRUD", new object[] {
                         Company_ID,
                         Brand_ID,
                         Category_ID,
                         SubCategory_ID,
                         Brand_Desc,
-                        Brand_Short_Name,
                         Strength,
                         Purchase_Rate_Peg,
                         Selling_Rate_Peg,
@@ -1060,12 +1053,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void BrandMaster_CRUDAsync(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action) {
-            this.BrandMaster_CRUDAsync(Company_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Purchase_Rate_Peg, Selling_Rate_Peg, Selling_Rate_Bottle, Is_Disabled, LoggedInUserID, Action, null);
+        public void BrandMaster_CRUDAsync(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action) {
+            this.BrandMaster_CRUDAsync(Company_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Strength, Purchase_Rate_Peg, Selling_Rate_Peg, Selling_Rate_Bottle, Is_Disabled, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void BrandMaster_CRUDAsync(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action, object userState) {
+        public void BrandMaster_CRUDAsync(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action, object userState) {
             if ((this.BrandMaster_CRUDOperationCompleted == null)) {
                 this.BrandMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBrandMaster_CRUDOperationCompleted);
             }
@@ -1075,7 +1068,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         Category_ID,
                         SubCategory_ID,
                         Brand_Desc,
-                        Brand_Short_Name,
                         Strength,
                         Purchase_Rate_Peg,
                         Selling_Rate_Peg,
@@ -1768,6 +1760,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal CocktailMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Cocktail_Brand_DetailsCompletedEventHandler(object sender, Fetch_Cocktail_Brand_DetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Cocktail_Brand_DetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Cocktail_Brand_DetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
