@@ -903,7 +903,9 @@ namespace Upkeep_v3.VMS
                 string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
                 string UserImage_ProfilePhoto_FilePath = string.Empty;
                 string UserPhotoIDPath_Brows = string.Empty;
+                string UserPhotoSelfPath_Brows = string.Empty;
                 string GetUserPhotoIDPath = string.Empty;
+                string GetUserSelfPhotoPath = string.Empty;
 
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {
@@ -978,7 +980,7 @@ namespace Upkeep_v3.VMS
                         }
                         #endregion
 
-                        #region User Image Browse
+                        #region User Image Browse ID proof
                         if (fileupload_userpic.HasFile)
                         {
                             try
@@ -1020,8 +1022,50 @@ namespace Upkeep_v3.VMS
                         }
                         #endregion
 
+                        #region User Image Browse User
+                        if (fileupload1.HasFile)
+                        {
+                            try
+                            {
+                                var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                var fileExt1 = System.IO.Path.GetExtension(fileupload1.FileName).Substring(1);
+                                if (!supportedTypesData.Contains(fileExt1))
+                                {
+                                    Label4.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                    return;
+                                }
+
+                                int maxFileSize = 5000; // 5MB
+                                int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                if (fileSize > (maxFileSize * 1024))
+                                {
+                                    Label4.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                    return;
+                                }
+
+                                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/");
+                                if (!Directory.Exists(fileUploadPath_Profile))
+                                {
+                                    Directory.CreateDirectory(fileUploadPath_Profile);
+                                }
+
+                                string fileName = fileupload1.FileName;
+                                string fileExtension = Path.GetExtension(fileName);
+
+                                string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/") + str_image;
+                                UserPhotoSelfPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + str_image;
+                                fileupload1.SaveAs(pathToSave);
+                            }
+                            catch (Exception ex)
+                            {
+                                Label4.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                            }
+                        }
+                        #endregion
+
                         #region User Image Web Cam
-                        if (!string.IsNullOrEmpty(UserImage_fileData))
+                        if (!fileupload1.HasFile && !string.IsNullOrEmpty(UserImage_fileData))
                         {
                             string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
 
@@ -1065,6 +1109,14 @@ namespace Upkeep_v3.VMS
                                 GetUserPhotoIDPath = UserPhotoIDPath_Brows;
                             else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
                                 GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
+                        }
+
+                        if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows) || !string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                        {
+                            if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows))
+                                GetUserSelfPhotoPath = UserPhotoSelfPath_Brows;
+                            else if (!string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                                GetUserSelfPhotoPath = UserImage_ProfilePhoto_FilePath;
                         }
 
 
@@ -1442,7 +1494,7 @@ namespace Upkeep_v3.VMS
 
                     Save:
                         DataSet dsVMSQuestionData = new DataSet();
-                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, UserImage_ProfilePhoto_FilePath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
+                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
 
                         if (dsVMSQuestionData.Tables.Count > 0)
                         {
