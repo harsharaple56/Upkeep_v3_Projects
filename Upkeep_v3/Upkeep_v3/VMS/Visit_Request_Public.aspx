@@ -277,6 +277,10 @@ border: 3px solid #ccc;*/
             CertificateFailed.hide();
 
 
+            function getFile(filePath) {
+                return filePath.split('.').pop();
+            }
+
 
             $("[id*=txtDoseDate]").change(function () {
                 var txtDate = $("[id*=txtDoseDate]").val();
@@ -292,7 +296,10 @@ border: 3px solid #ccc;*/
 
             $("[id*=VCertificate]").change(function () {
                 var imgVal = $("[id*=VCertificate]").val();
-                if (imgVal != "") {
+                var exten = getFile(imgVal);
+                var validImageTypes = ['pdf', 'PDF'];
+
+                if (imgVal != "" && validImageTypes.includes(exten)) {
                     CertificateSuceess.show();
                     CertificateFailed.hide();
                 }
@@ -304,7 +311,9 @@ border: 3px solid #ccc;*/
 
             $("[id*=fileupload_userpic]").change(function () {
                 var imgValue = $("[id*=fileupload_userpic]").val();
-                if (imgValue != "") {
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
                     $("[id*=idproof]")[0].removeAttribute('src');
                     AadharSuceess.show();
                     AadharFailed.hide();
@@ -319,7 +328,9 @@ border: 3px solid #ccc;*/
 
             $("[id*=fileupload1]").change(function () {
                 var imgValue = $("[id*=fileupload1]").val();
-                if (imgValue != "") {
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
                     $("[id*=photo]")[0].removeAttribute('src');
                     PhotoSuceess.show();
                     PhotoFalied.hide();
@@ -984,7 +995,8 @@ border: 3px solid #ccc;*/
                                      Choose file
                                  <asp:Label ID="Label2" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                  <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
-                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
+                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
+                                     ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                              </div>
@@ -1011,7 +1023,7 @@ border: 3px solid #ccc;*/
                                     <b>Failed</b>
                                 </span>
 
-                               
+
                             </div>
                             <br />
                             <div class="row">
@@ -1023,7 +1035,7 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label3" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" ValidationGroup="validateVMS" ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
 
@@ -1076,7 +1088,7 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5" ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
                                 </div>
