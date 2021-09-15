@@ -49,15 +49,6 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.Image Img_CompanyLogo;
         
         /// <summary>
-        /// Img_QR_Code control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Img_QR_Code;
-        
-        /// <summary>
         /// Img_Visitor_Photo control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Img_Visitor_Photo;
+        
+        /// <summary>
+        /// Img_QR_Code control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Img_QR_Code;
         
         /// <summary>
         /// lbl_Visitor_Name control.

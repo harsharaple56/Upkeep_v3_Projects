@@ -1003,7 +1003,7 @@ border: 3px solid #ccc;*/
 
 
                              <div class="alert m-alert m-alert--default" role="alert">
-                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN.
+                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN. <b>Only .pdf format allowed.</b>
 
                              </div>
                          </div>
@@ -1058,7 +1058,7 @@ border: 3px solid #ccc;*/
 
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
+                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>. <b>Only .png , .jpeg , .jpg format allowed.</b>
                             </div>
 
                         </div>
@@ -1107,7 +1107,7 @@ border: 3px solid #ccc;*/
                             </div>
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side)
+                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side). <b>Only .png , .jpg , .jpeg format allowed.</b>
                             </div>
 
 
