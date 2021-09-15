@@ -357,6 +357,7 @@ border: 3px solid #ccc;*/
             }
 
             var getValue = $("input[name=vCode]").val();
+            var getValidation = $("input[name=ValidationMsg]").val();
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -376,6 +377,9 @@ border: 3px solid #ccc;*/
             };
             if (getValue != undefined) {
                 toastr.warning("Your are not eligible for Visit.");
+            }
+            if (getValidation != undefined) {
+                toastr.warning(getValidation);
             }
 
             //Commented by Lokesh as date select was not working
@@ -420,10 +424,13 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#PhotoSuceess").show();
+                    $("#PhotoFalied").hide();
                     $("#m_modal_6").modal("hide");
                     toastr.success("Your Photo Successfully Added..!");
                 },
                 failure: function (response) {
+                    $("#PhotoSuceess").hide();
+                    $("#PhotoFalied").show();
                     $("#m_modal_6").modal("hide");
                     toastr.error("Your Photo Not Added..!");
                 }
@@ -995,10 +1002,11 @@ border: 3px solid #ccc;*/
                                      Choose file
                                  <asp:Label ID="Label2" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                  <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
-                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
-                                     ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
+                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
+                                     ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
+                                 
                              </div>
 
 
@@ -1035,7 +1043,8 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label3" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" ValidationGroup="validateVMS" ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" 
+                                             ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
 
@@ -1088,7 +1097,10 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5" ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
+                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
+                                            ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
                                 </div>
