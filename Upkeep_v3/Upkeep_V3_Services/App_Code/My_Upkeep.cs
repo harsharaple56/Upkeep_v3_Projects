@@ -2265,14 +2265,14 @@ public class My_Upkeep
 	}
 
 	//Added by RC This function is used to save VMS request 
-	public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string Visitor_Photo, string Vaccine_Certificate, string Date_of_Vaccination, string Visitor_IDProof, string LoggedInUserID)
+	public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string ClosingRemark, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string Visitor_Photo, string Vaccine_Certificate, string Date_of_Vaccination, string Visitor_IDProof, string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature,Visitor_Photo,Vaccine_Certificate,Date_of_Vaccination,Visitor_IDProof, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Insert_VMSRequest(CompanyID, Action, RequestID, VMS_ConfigID, ClosingRemark, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature,Visitor_Photo,Vaccine_Certificate,Date_of_Vaccination,Visitor_IDProof, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3068,13 +3068,13 @@ public class My_Upkeep
 		}
 	}
 
-	public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID)
+	public DataSet Update_My_Profile_Details(string FirstName, string LastName, string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID)
 	{
 		DataSet dsProfile = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
-			dsProfile = ObjUpkeepCC_BL.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID, StrConn);
+			dsProfile = ObjUpkeepCC_BL.Update_My_Profile_Details(FirstName,LastName ,PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID, StrConn);
 			return dsProfile;
 		}
 		catch (Exception ex)

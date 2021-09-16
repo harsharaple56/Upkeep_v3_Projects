@@ -216,13 +216,13 @@
                                             <div class="form-group m-form__group row">
                                                 <label for="example-text-input" class="col-3 col-form-label font-weight-bold">First Name :</label>
                                                 <div class="col-7 col-form-label">
-                                                    <asp:Label ID="lblFirstName" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                    <asp:TextBox ID="txtFirstName" runat="server" class="form-control m-input"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="form-group m-form__group row">
                                                 <label for="example-text-input" class="col-3 col-form-label font-weight-bold">Last Name :</label>
                                                 <div class="col-7 col-form-label">
-                                                    <asp:Label ID="lblLastName" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                    <asp:TextBox ID="txtLastName" runat="server" class="form-control m-input"></asp:TextBox>
                                                 </div>
                                             </div>
 

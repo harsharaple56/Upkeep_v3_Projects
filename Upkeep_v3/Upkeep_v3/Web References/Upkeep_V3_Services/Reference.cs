@@ -2250,8 +2250,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Update_My_Profile_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
+        public System.Data.DataSet Update_My_Profile_Details(string FirstName, string LastName, string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
             object[] results = this.Invoke("Update_My_Profile_Details", new object[] {
+                        FirstName,
+                        LastName,
                         PhoneNo,
                         AltPhoneNo,
                         EmailID,
@@ -2266,16 +2268,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void Update_My_Profile_DetailsAsync(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
-            this.Update_My_Profile_DetailsAsync(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID, null);
+        public void Update_My_Profile_DetailsAsync(string FirstName, string LastName, string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID) {
+            this.Update_My_Profile_DetailsAsync(FirstName, LastName, PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID, null);
         }
         
         /// <remarks/>
-        public void Update_My_Profile_DetailsAsync(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID, object userState) {
+        public void Update_My_Profile_DetailsAsync(string FirstName, string LastName, string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID, object userState) {
             if ((this.Update_My_Profile_DetailsOperationCompleted == null)) {
                 this.Update_My_Profile_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdate_My_Profile_DetailsOperationCompleted);
             }
             this.InvokeAsync("Update_My_Profile_Details", new object[] {
+                        FirstName,
+                        LastName,
                         PhoneNo,
                         AltPhoneNo,
                         EmailID,
@@ -5604,6 +5608,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     char Action, 
                     int RequestID, 
                     int VMS_ConfigID, 
+                    string ClosingRemark, 
                     string Name, 
                     string Email, 
                     string Phone, 
@@ -5623,6 +5628,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        ClosingRemark,
                         Name,
                         Email,
                         Phone,
@@ -5646,6 +5652,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     char Action, 
                     int RequestID, 
                     int VMS_ConfigID, 
+                    string ClosingRemark, 
                     string Name, 
                     string Email, 
                     string Phone, 
@@ -5660,7 +5667,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string Date_of_Vaccination, 
                     string Visitor_IDProof, 
                     string LoggedInUserID) {
-            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, Visitor_Photo, Vaccine_Certificate, Date_of_Vaccination, Visitor_IDProof, LoggedInUserID, null);
+            this.Insert_VMSRequestAsync(CompanyID, Action, RequestID, VMS_ConfigID, ClosingRemark, Name, Email, Phone, strVMSDate, strMeetUsrs, strVMSData, strVMSCovidColorCode, strVMSCovidTestDate, strTemperature, Visitor_Photo, Vaccine_Certificate, Date_of_Vaccination, Visitor_IDProof, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5669,6 +5676,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     char Action, 
                     int RequestID, 
                     int VMS_ConfigID, 
+                    string ClosingRemark, 
                     string Name, 
                     string Email, 
                     string Phone, 
@@ -5692,6 +5700,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Action,
                         RequestID,
                         VMS_ConfigID,
+                        ClosingRemark,
                         Name,
                         Email,
                         Phone,

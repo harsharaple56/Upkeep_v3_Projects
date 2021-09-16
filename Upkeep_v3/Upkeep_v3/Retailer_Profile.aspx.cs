@@ -60,8 +60,8 @@ namespace Upkeep_v3
                         lblStoreNo.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Store_No"]);
                         Session["Store_No"] = Convert.ToString(dsProfile.Tables[0].Rows[0]["Store_No"]);
                         lblUsername.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Username"]);
-                        lblFirstName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerFirstName"]);
-                        lblLastName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerLastName"]);
+                        txtFirstName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerFirstName"]);
+                        txtLastName.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["StoreManagerLastName"]);
                         txtContactNo.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["PhoneNo"]);
                         txtAlternatePhoneNo.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["Alternate_Contact"]);
                         //txtAltPhoneNo.Text = Convert.ToString(dsProfile.Tables[0].Rows[0]["User_MobileAlter"]);
@@ -109,6 +109,8 @@ namespace Upkeep_v3
             DataSet dsProfile = new DataSet();
             try
             {
+                string FirstName = string.Empty;
+                string LastName = string.Empty;
                 string PhoneNo = string.Empty;
                 string AltPhoneNo = string.Empty;
                 string EmailID = string.Empty;
@@ -117,6 +119,8 @@ namespace Upkeep_v3
                 string State = string.Empty;
                 string Postcode = string.Empty;
 
+                FirstName = Convert.ToString(txtFirstName.Text.Trim());
+                LastName = Convert.ToString(txtLastName.Text.Trim());
                 PhoneNo = Convert.ToString(txtContactNo.Text.Trim());
                 AltPhoneNo = Convert.ToString(txtAlternatePhoneNo.Text.Trim());
                 EmailID = Convert.ToString(txtEmailID.Text.Trim());
@@ -125,7 +129,7 @@ namespace Upkeep_v3
                 State = Convert.ToString(txtState.Text.Trim());
                 Postcode = Convert.ToString(txtPostcode.Text.Trim());
 
-                dsProfile = ObjUpkeep.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
+                dsProfile = ObjUpkeep.Update_My_Profile_Details(FirstName,LastName,PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
                 if (dsProfile.Tables.Count > 0)
                 {
                     if (dsProfile.Tables[0].Rows.Count > 0)
