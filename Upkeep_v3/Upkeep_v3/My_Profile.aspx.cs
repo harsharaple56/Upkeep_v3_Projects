@@ -139,7 +139,7 @@ namespace Upkeep_v3
                 State = Convert.ToString(txtState.Text.Trim());
                 Postcode = Convert.ToString(txtPostCode.Text.Trim());
 
-                dsProfile = ObjUpkeep.Update_My_Profile_Details(PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
+                dsProfile = ObjUpkeep.Update_My_Profile_Details("","",PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
                 if (dsProfile.Tables.Count > 0)
                 {
                     if (dsProfile.Tables[0].Rows.Count > 0)
