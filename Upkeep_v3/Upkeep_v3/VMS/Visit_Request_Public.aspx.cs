@@ -13,6 +13,8 @@ using System.Web.Services;
 using Upkeep_v3.SMS;
 using System.Globalization;
 using System.Web.Configuration;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Upkeep_v3.VMS
 {
@@ -889,6 +891,23 @@ namespace Upkeep_v3.VMS
             }
         }
 
+        private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        {
+            using (var image = System.Drawing.Image.FromStream(sourcePath))
+            {
+                var newWidth = (int)(image.Width * scaleFactor);
+                var newHeight = (int)(image.Height * scaleFactor);
+                var thumbnailImg = new Bitmap(newWidth, newHeight);
+                var thumbGraph = Graphics.FromImage(thumbnailImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                thumbGraph.DrawImage(image, imageRectangle);
+                thumbnailImg.Save(targetPath, image.RawFormat);
+            }
+        }
+
         private void SaveVisitData()
         {
             try
@@ -937,7 +956,7 @@ namespace Upkeep_v3.VMS
                             id++;
                             #endregion
 
-                            #region Certificate Photo
+                            #region Certificate PDF
                             string storefilePathtoDB = string.Empty;
                             if (VCertificate.HasFile)
                             {
@@ -982,48 +1001,6 @@ namespace Upkeep_v3.VMS
                             }
                             #endregion
 
-                            #region User Image Browse ID proof
-                            if (fileupload_userpic.HasFile)
-                            {
-                                try
-                                {
-                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
-                                    var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
-                                    if (!supportedTypesData.Contains(fileExt1))
-                                    {
-                                        lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
-                                        return;
-                                    }
-
-                                    int maxFileSize = 5000; // 5MB
-                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
-                                    if (fileSize > (maxFileSize * 1024))
-                                    {
-                                        lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                        return;
-                                    }
-
-                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
-                                    if (!Directory.Exists(fileUploadPath_Profile))
-                                    {
-                                        Directory.CreateDirectory(fileUploadPath_Profile);
-                                    }
-
-                                    string fileName = fileupload_userpic.FileName;
-                                    string fileExtension = Path.GetExtension(fileName);
-
-                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
-                                    UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
-                                    fileupload_userpic.SaveAs(pathToSave);
-                                }
-                                catch (Exception ex)
-                                {
-                                    lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
-                                }
-                            }
-                            #endregion
-
                             #region User Image Browse User
                             if (fileupload1.HasFile)
                             {
@@ -1057,7 +1034,10 @@ namespace Upkeep_v3.VMS
                                     string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
                                     string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/") + str_image;
                                     UserPhotoSelfPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + str_image;
-                                    fileupload1.SaveAs(pathToSave);
+
+                                    Stream strm = fileupload1.PostedFile.InputStream;
+                                    ReduceImageSize(0.5, strm, pathToSave);
+
                                 }
                                 catch (Exception ex)
                                 {
@@ -1084,6 +1064,52 @@ namespace Upkeep_v3.VMS
                                 File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
                             }
                             #endregion
+
+                            #region User Image Browse ID proof
+                            if (fileupload_userpic.HasFile)
+                            {
+                                try
+                                {
+                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                    var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
+                                    if (!supportedTypesData.Contains(fileExt1))
+                                    {
+                                        lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                        return;
+                                    }
+
+                                    int maxFileSize = 5000; // 5MB
+                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                    if (fileSize > (maxFileSize * 1024))
+                                    {
+                                        lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                        return;
+                                    }
+
+                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
+                                    if (!Directory.Exists(fileUploadPath_Profile))
+                                    {
+                                        Directory.CreateDirectory(fileUploadPath_Profile);
+                                    }
+
+                                    string fileName = fileupload_userpic.FileName;
+                                    string fileExtension = Path.GetExtension(fileName);
+
+                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
+                                    UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
+                                    Stream strm = fileupload_userpic.PostedFile.InputStream;
+
+                                    ReduceImageSize(0.9, strm, pathToSave);
+                                }
+                                catch (Exception ex)
+                                {
+                                    lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                }
+                            }
+                            #endregion
+
+                         
 
                             #region User Photo ID Web Cam
                             if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
