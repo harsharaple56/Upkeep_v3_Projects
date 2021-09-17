@@ -122,7 +122,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             Session.Remove("hdnCocktailTax");
             Session["hdnCocktailTax"] = null;
 
-            ds = ObjCocktailWorld.CocktailMaster_CRUD("", "", CompanyID, "", "Fetch");
+            ds = ObjCocktailWorld.CocktailMaster_CRUD(0,"", "", CompanyID, "", "Fetch");
             ddlCocktail.DataSource = ds.Tables[0];
             ddlCocktail.DataTextField = "Cocktail_Desc";
             ddlCocktail.DataValueField = "Cocktail_ID";

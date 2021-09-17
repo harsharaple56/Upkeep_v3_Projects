@@ -277,6 +277,10 @@ border: 3px solid #ccc;*/
             CertificateFailed.hide();
 
 
+            function getFile(filePath) {
+                return filePath.split('.').pop();
+            }
+
 
             $("[id*=txtDoseDate]").change(function () {
                 var txtDate = $("[id*=txtDoseDate]").val();
@@ -292,7 +296,10 @@ border: 3px solid #ccc;*/
 
             $("[id*=VCertificate]").change(function () {
                 var imgVal = $("[id*=VCertificate]").val();
-                if (imgVal != "") {
+                var exten = getFile(imgVal);
+                var validImageTypes = ['pdf', 'PDF'];
+
+                if (imgVal != "" && validImageTypes.includes(exten)) {
                     CertificateSuceess.show();
                     CertificateFailed.hide();
                 }
@@ -304,7 +311,9 @@ border: 3px solid #ccc;*/
 
             $("[id*=fileupload_userpic]").change(function () {
                 var imgValue = $("[id*=fileupload_userpic]").val();
-                if (imgValue != "") {
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
                     $("[id*=idproof]")[0].removeAttribute('src');
                     AadharSuceess.show();
                     AadharFailed.hide();
@@ -313,6 +322,23 @@ border: 3px solid #ccc;*/
                 else {
                     AadharSuceess.hide();
                     AadharFailed.show();
+                }
+            });
+
+
+            $("[id*=fileupload1]").change(function () {
+                var imgValue = $("[id*=fileupload1]").val();
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
+                    $("[id*=photo]")[0].removeAttribute('src');
+                    PhotoSuceess.show();
+                    PhotoFalied.hide();
+                    $("[id*=RegularExpressionValidator6]").html('Only (.png , .jpg , .jpeg) files are allowed');
+                }
+                else {
+                    PhotoSuceess.hide();
+                    PhotoFalied.show();
                 }
             });
 
@@ -331,6 +357,7 @@ border: 3px solid #ccc;*/
             }
 
             var getValue = $("input[name=vCode]").val();
+            var getValidation = $("input[name=ValidationMsg]").val();
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -350,6 +377,9 @@ border: 3px solid #ccc;*/
             };
             if (getValue != undefined) {
                 toastr.warning("Your are not eligible for Visit.");
+            }
+            if (getValidation != undefined) {
+                toastr.warning(getValidation);
             }
 
             //Commented by Lokesh as date select was not working
@@ -394,10 +424,13 @@ border: 3px solid #ccc;*/
                 dataType: "json",
                 success: function (response) {
                     $("#PhotoSuceess").show();
+                    $("#PhotoFalied").hide();
                     $("#m_modal_6").modal("hide");
                     toastr.success("Your Photo Successfully Added..!");
                 },
                 failure: function (response) {
+                    $("#PhotoSuceess").hide();
+                    $("#PhotoFalied").show();
                     $("#m_modal_6").modal("hide");
                     toastr.error("Your Photo Not Added..!");
                 }
@@ -969,14 +1002,16 @@ border: 3px solid #ccc;*/
                                      Choose file
                                  <asp:Label ID="Label2" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                  <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
-                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
+                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
+                                     ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
+                                 
                              </div>
 
 
                              <div class="alert m-alert m-alert--default" role="alert">
-                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN.
+                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN. <b>Only .pdf format allowed.</b>
 
                              </div>
                          </div>
@@ -998,23 +1033,47 @@ border: 3px solid #ccc;*/
                                     <i class="fa fa-times-circle"></i>
                                     <b>Failed</b>
                                 </span>
+
+
                             </div>
                             <br />
-                            <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
-                                <span>
-                                    <i class="fa fa-camera"></i>
-                                    <span>Click Photo</span>
-                                </span>
+                            <div class="row">
 
-                            </button>
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <div class="custom-file">
+                                        <asp:FileUpload ID="fileupload1" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
+                                        <label id="lbl_userpic1" class="custom-file-label" for="customFile">
+                                            Choose file
+                                        <asp:Label ID="Label3" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
+                                        <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" 
+                                             ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                    OR 
+                                </div>
+
+                                <div class="col-xl-4" style="padding-bottom: 1rem;">
+                                    <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
+
+                                    </button>
+                                </div>
+                            </div>
 
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
+                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>. <b>Only .png , .jpeg , .jpg format allowed.</b>
                             </div>
 
                         </div>
-
                     </div>
                     &nbsp;
 
@@ -1041,7 +1100,10 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
+                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
+                                            ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
                                 </div>
@@ -1060,7 +1122,7 @@ border: 3px solid #ccc;*/
                             </div>
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side)
+                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side). <b>Only .png , .jpg , .jpeg format allowed.</b>
                             </div>
 
 

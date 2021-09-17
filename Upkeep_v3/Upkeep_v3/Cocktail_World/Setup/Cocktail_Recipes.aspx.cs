@@ -30,7 +30,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.CocktailMaster_CRUD(string.Empty, string.Empty,CompanyID,LoggedInUserID ,"F");
+                ds = ObjCocktailWorld.CocktailMaster_CRUD(0,string.Empty, string.Empty,CompanyID,LoggedInUserID ,"F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -85,7 +85,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.CocktailMaster_CRUD(string.Empty, string.Empty, CompanyID, LoggedInUserID, "F");
+                dsExport = ObjCocktailWorld.CocktailMaster_CRUD(0,string.Empty, string.Empty, CompanyID, LoggedInUserID, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 

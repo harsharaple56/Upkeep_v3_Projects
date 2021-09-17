@@ -18,6 +18,7 @@
             $("#lbl_VisitRequest_ID").html('');
             $("#lbl_Visitor_Contact").html('');
             $("#Img_Visitor_Photo").attr("src", "");
+            $("#Img_Company_Logo").attr("src", "");
             $("#lbl_Vacc_Date").html('');
             $("#lbl_Request_Date_Text").html('');
             $("#lbl_Visit_Date_Text").html('');
@@ -92,12 +93,12 @@
                         </div>
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
-                            <asp:Image ID="Image2" src="../assets/app/media/img/logos/Palladium.PNG" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
+                            <img id="Img_Company_Logo" src="#" style="width: auto; max-height: 100px; max-width: 100%;" />
 
                         </div>
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
-                            <img src="#" id="Img_Visitor_Photo" style="width: auto; max-height: 70px; max-width: 100%;" />
+                            <img src="#" id="Img_Visitor_Photo" style="width: auto; max-height: 100px; max-width: 100%;" />
 
                         </div>
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
@@ -215,7 +216,7 @@
                 </div>
                 <div class="modal-body m--align-center">
                     <div class="col-sm-12">
-                        <div id="qr-reader" style="width: 100%;font-size: 14px;"></div>
+                        <div id="qr-reader" style="width: 100%; font-size: 14px;"></div>
                         <div id="qr-reader-results"></div>
                     </div>
                     <script>
@@ -271,6 +272,10 @@
                                                             $("#lbl_Request_Date_Text").html(val);
                                                         if (key == 7)
                                                             $("#lbl_Visit_Date_Text").html(val);
+                                                        if (key == 8)
+                                                            $("#Img_Company_Logo").attr("src", val);
+
+
                                                     });
                                                     $('#userinfo').removeClass('m--hide');
                                                     $('#userinfo').removeAttr('style', 'display:none');

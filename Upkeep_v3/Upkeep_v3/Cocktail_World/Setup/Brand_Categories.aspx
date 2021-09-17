@@ -164,7 +164,7 @@
 
                                 </li>
                             </ul>
-                          
+
                         </div>
 
                     </div>
@@ -180,14 +180,18 @@
                                     <label class="font-weight-bold">Select Category</label>
                                 </div>
 
-                                <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
+                                <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
 
                                     <div class="m-form__control">
                                         <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
                                         <asp:DropDownList ID="ddlCategory" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-
                                     </div>
+                                </div>
+
+                                <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                       <asp:LinkButton ToolTip="Edit Category" style="width: 55px;height: 35px;" class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' ID="btn_edit" runat="server"  OnClick="btn_Edit_Click" ><i id='I1' runat='server' class='la la-edit'></i></asp:LinkButton>
+                                       <asp:LinkButton ToolTip="Delete Category" style="width: 55px;height: 35px;" class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' ID="btn_delete" runat="server"  OnClick="btn_Delete_Click" ><i id='I2' runat='server' class='la la-trash'></i></asp:LinkButton>
                                 </div>
 
                                 <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
@@ -220,12 +224,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                 <ItemTemplate>
-
-                                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                        <input id="chkSelct" runat="server" type="checkbox" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>'>
-														<span></span>
-                                                    </label>
-                                                    <%-- <asp:CheckBox ID="chkSelct" runat="server" Checked='<%#(DataBinder.Eval(Container.DataItem,"Selected"))%>' />--%>
+                                                     <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
@@ -253,12 +252,12 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="No Of Speg" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox class="form-control m-input" ID="txtnoofspeg" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
+                                                    <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtnoofspeg" Width="80px" CssClass="form-control numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"NoOfSpeg"))%>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Peg Size(ML)" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox class="form-control m-input" ID="txtpegsize" Width="80px" CssClass="numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
+                                                    <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtpegsize" Width="80px" CssClass="form-control numeric" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"PegSize"))%>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -317,7 +316,7 @@
                                     </div>--%>
 
                                 <div class="modal-footer">
-                                    <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseCategory_Click" />
+                                    <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseCategory_Click"  />
                                     <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click" Text="Save" />
 
                                 </div>

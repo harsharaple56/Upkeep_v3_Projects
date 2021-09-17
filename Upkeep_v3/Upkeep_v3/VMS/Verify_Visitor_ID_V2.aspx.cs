@@ -38,6 +38,7 @@ namespace Upkeep_v3.VMS
                     string Vaccination_Date = string.Empty;
                     string Visit_Request_Date = string.Empty;
                     string Visit_Date = string.Empty;
+                    string Img_Company_Logo = string.Empty;
 
                     Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
                     DataSet dsVCOde = new DataSet();
@@ -51,13 +52,14 @@ namespace Upkeep_v3.VMS
                             Visitor_Request_ID = dsVCOde.Tables[0].Rows[0]["Visit_Request_ID"].ToString();
                             Visitor_Contact = dsVCOde.Tables[0].Rows[0]["Visitor_Contact"].ToString();
                             Visitor_Photo = dsVCOde.Tables[0].Rows[0]["Visitor_Photo"].ToString();
+                            Img_Company_Logo = dsVCOde.Tables[0].Rows[0]["Company_Logo"].ToString();
                             DateTime vdate = DateTime.Parse(dsVCOde.Tables[0].Rows[0]["Vaccination_Date"].ToString());
                             DateTime vistidate = DateTime.Parse(dsVCOde.Tables[0].Rows[0]["Visit_Date"].ToString());
                             Vaccination_Date = vdate.ToString("dddd - dd MMMM yyyy");
                             Visit_Date = vistidate.ToString("dddd - dd/MMM/yyyy hh:mm tt");
                             Visit_Request_Date = dsVCOde.Tables[0].Rows[0]["Visit_Request_Date"].ToString();
 
-                            string vCodedata = string.Join(",", Visitor_Photo, Visitor_Name, Visitor_Email, Visitor_Contact, Visitor_Request_ID, Vaccination_Date, Visit_Request_Date, Visit_Date);
+                            string vCodedata = string.Join(",", Visitor_Photo, Visitor_Name, Visitor_Email, Visitor_Contact, Visitor_Request_ID, Vaccination_Date, Visit_Request_Date, Visit_Date, Img_Company_Logo);
                             return vCodedata;
                         }
                         else

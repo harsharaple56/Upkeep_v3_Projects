@@ -612,7 +612,7 @@ border: 3px solid #ccc;*/
 
                             <br />
 
-                            <div class="m-form__heading" style="text-align: center;">
+                            <div id="dv_rpt" runat="server" class="m-form__heading" style="text-align: center;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
                             </div>
 
@@ -753,6 +753,20 @@ border: 3px solid #ccc;*/
                                             <%--<p class="form-text text-muted">It is recommended to take an assessment test as of now if possible, or else enter the most latest time..</p>--%>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                             <div id="dv_Remark" runat="server" class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Remarks</h3>
+                            </div>
+
+
+                            <div id="dv_ClosingRemark" runat="server" class="form-group row">
+                                <label class="col-md-2 col-form-label font-weight-bold" style="padding-right: 0px;"><span class="fab fa-readme"></span>Closing Remarks : </label>
+                                <div class="col-md-10 col-form-label">
+                                    <asp:TextBox ID="txtClosingRemarks" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Closing Remarks"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtClosingRemarks" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Closing Remarks"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -930,6 +944,11 @@ border: 3px solid #ccc;*/
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+
+
+                        
+
+
 
                         <%--</form>--%>
                     </div>

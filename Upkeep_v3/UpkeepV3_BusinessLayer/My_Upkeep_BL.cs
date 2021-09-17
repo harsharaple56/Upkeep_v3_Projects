@@ -3201,7 +3201,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string Name, string Email, string Phone, 
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID,string ClosingRemark, string Name, string Email, string Phone, 
             string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, 
             string strVMSCovidTestDate, string strTemperature,string Visitor_Photo,string Vaccine_Certificate,string Date_of_Vaccination,string Visitor_IDProof, string LoggedInUserID, string StrConn)
         {
@@ -3216,6 +3216,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.Parameters.AddWithValue("@RequestID", RequestID);
                 cmd.Parameters.AddWithValue("@VMS_ConfigID", VMS_ConfigID);
+                cmd.Parameters.AddWithValue("@ClosingRemark", ClosingRemark);
                 cmd.Parameters.AddWithValue("@VName", Name);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@Phone", Phone);
@@ -4360,7 +4361,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_My_Profile_Details(string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID, string StrConn)
+        public DataSet Update_My_Profile_Details(string FirstName ,string LastName ,string PhoneNo, string AltPhoneNo, string EmailID, string Address, string City, string State, string Postcode, string LoggedInUserID, string UserType, int CompanyID, string StrConn)
         {
             DataSet dsProfile = new DataSet();
             try
@@ -4368,6 +4369,8 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Update_User_Profile_Details", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@FirstName", FirstName);
+                cmd.Parameters.AddWithValue("@LastName", LastName);
                 cmd.Parameters.AddWithValue("@PhoneNo", PhoneNo);
                 cmd.Parameters.AddWithValue("@AltPhoneNo", AltPhoneNo);
                 cmd.Parameters.AddWithValue("@EmailID", EmailID);

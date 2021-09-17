@@ -38,7 +38,6 @@ namespace Upkeep_v3.VMS
 
             if (!IsPostBack)
             {
-
                 if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
                 {
                     Response.Redirect("~/Login.aspx", false);
@@ -62,7 +61,9 @@ namespace Upkeep_v3.VMS
                 {
 
                     btnSave.Text = "Mark IN";
-
+                    dv_rpt.Visible = false;
+                    dv_Remark.Visible = false;
+                    dv_ClosingRemark.Visible = false;
                     if (!System.String.IsNullOrWhiteSpace(Request.QueryString["RequestID"]))
                     {
                         strRequestID = Request.QueryString["RequestID"].ToString();
@@ -322,6 +323,7 @@ namespace Upkeep_v3.VMS
                 {
                     rptQuestionDetails.DataSource = dsConfig.Tables[1];
                     rptQuestionDetails.DataBind();
+                    dv_rpt.Visible = true;
                     totalNumber.InnerText = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 
@@ -416,6 +418,8 @@ namespace Upkeep_v3.VMS
                         txtName.ReadOnly = true;
                         txtEmail.ReadOnly = true;
                         txtPhone.ReadOnly = true;
+                        txtClosingRemarks.ReadOnly = true;
+
 
                         txtVMSDate.Text = dsData.Tables[1].Rows[0]["Meeting_Time"].ToString();
                         txtName.Text = dsData.Tables[1].Rows[0]["Name"].ToString();
@@ -425,6 +429,7 @@ namespace Upkeep_v3.VMS
 
                         txtEmail.Text = dsData.Tables[1].Rows[0]["Email"].ToString();
                         txtPhone.Text = dsData.Tables[1].Rows[0]["Phone"].ToString();
+                        txtClosingRemarks.Text = dsData.Tables[1].Rows[0]["Closing_Remarks"].ToString();
 
 
                         //txtWorkPermitToDate.Text = dsData.Tables[0].Rows[0]["Wp_To_Date"].ToString();
@@ -442,10 +447,15 @@ namespace Upkeep_v3.VMS
                                 divAlertOpen.Visible = true;
                                 btnSave.Text = "Mark OUT";
                                 ViewState["Action"] = 'O';
+                                dv_Remark.Visible = true;
+                                dv_ClosingRemark.Visible = true;
+                                txtClosingRemarks.ReadOnly = false;
                                 break;
                             case "OUT":
                                 divAlertClosed.Visible = true;
                                 btnSave.Visible = false;
+                                dv_Remark.Visible = true;
+                                dv_ClosingRemark.Visible = true;
                                 break;
                             case "Expired":
                                 divAlertExpired.Visible = true;
@@ -494,6 +504,7 @@ namespace Upkeep_v3.VMS
                     {
                         rptQuestionDetails.DataSource = dsData.Tables[3];
                         rptQuestionDetails.DataBind();
+                        dv_rpt.Visible = true;
                     }
                     //Bind configured Visit data
                     if (dsData.Tables[4].Rows.Count > 0)
@@ -816,6 +827,7 @@ namespace Upkeep_v3.VMS
                 }
                 ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string LoggedInUser = LoggedInUserID;
+                string ClosingRemark = txtClosingRemarks.Text.Trim();
                 string strName = txtName.Text;
                 string strEmail = txtEmail.Text;
                 string strPhone = txtPhone.Text;
@@ -1180,7 +1192,7 @@ namespace Upkeep_v3.VMS
             #region SaveDataToDB
             Save:
                 DataSet dsVMSQuestionData = new DataSet();
-                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, "", "", "", "", LoggedInUserID);
+                dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, ClosingRemark, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, "", "", "", "", LoggedInUserID);
 
                 if (dsVMSQuestionData.Tables.Count > 0)
                 {
@@ -1247,6 +1259,7 @@ namespace Upkeep_v3.VMS
                             divAlertOpen.Visible = false;
                             divAlertClosed.Visible = true;
                             btnSave.Visible = false;
+                            txtClosingRemarks.ReadOnly = true;
                         }
                         else if (status == 5)
                         {

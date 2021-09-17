@@ -13,6 +13,8 @@ using System.Web.Services;
 using Upkeep_v3.SMS;
 using System.Globalization;
 using System.Web.Configuration;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Upkeep_v3.VMS
 {
@@ -912,6 +914,23 @@ namespace Upkeep_v3.VMS
             }
         }
 
+        private void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        {
+            using (var image = System.Drawing.Image.FromStream(sourcePath))
+            {
+                var newWidth = (int)(image.Width * scaleFactor);
+                var newHeight = (int)(image.Height * scaleFactor);
+                var thumbnailImg = new Bitmap(newWidth, newHeight);
+                var thumbGraph = Graphics.FromImage(thumbnailImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                thumbGraph.DrawImage(image, imageRectangle);
+                thumbnailImg.Save(targetPath, image.RawFormat);
+            }
+        }
+
         private void SaveVisitData()
         {
             double eligleDays = 14;
@@ -961,589 +980,651 @@ namespace Upkeep_v3.VMS
                             RequestID = Convert.ToInt32(ViewState["RequestID"]);
                         }
 
-                        #region Get Next Request ID
-                        DataSet ds = new DataSet();
-                        int id = 0;
-                        ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
-                        foreach (DataRow row in ds.Tables[0].Rows)
-                        {
-                            id = Convert.ToInt32(row["RequestID"]);
-                        }
-                        id++;
-                        #endregion
-
-                        #region Certificate Photo
-                        string storefilePathtoDB = string.Empty;
-                        if (VCertificate.HasFile)
-                        {
-                            try
+                            #region Get Next Request ID
+                            DataSet ds = new DataSet();
+                            int id = 0;
+                            ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
+                            foreach (DataRow row in ds.Tables[0].Rows)
                             {
-                                var supportedTypes = new[] { "pdf" };
-                                var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
-                                if (!supportedTypes.Contains(fileExt))
-                                {
-                                    lbl_error.Text = "File Extension Is InValid - Only Upload PDF File";
-                                    return;
-                                }
-
-                                int maxFileSize = 5000; // 5MB
-                                int fileSize = VCertificate.PostedFile.ContentLength;
-                                if (fileSize > (maxFileSize * 1024))
-                                {
-                                    lbl_error.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                    return;
-                                }
-
-                                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
-                                if (!Directory.Exists(fileUploadPath_Profile))
-                                {
-                                    Directory.CreateDirectory(fileUploadPath_Profile);
-                                }
-
-                                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                                string fileName = VCertificate.FileName;
-                                string fileExtension = Path.GetExtension(fileName);
-
-
-                                string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
-                                storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
-                                VCertificate.SaveAs(pathToSave);
+                                id = Convert.ToInt32(row["RequestID"]);
                             }
-                            catch (Exception ex)
+                            id++;
+                            #endregion
+
+                            #region Certificate PDF
+                            string storefilePathtoDB = string.Empty;
+                            if (VCertificate.HasFile)
                             {
-                                lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
-                            }
-                        }
-                        #endregion
-
-                        #region User Image Browse
-                        if (fileupload_userpic.HasFile)
-                        {
-                            try
-                            {
-                                var supportedTypesData = new[] { "jpg", "jpeg", "png" };
-                                var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
-                                if (!supportedTypesData.Contains(fileExt1))
+                                try
                                 {
-                                    lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
-                                    return;
-                                }
-
-                                int maxFileSize = 5000; // 5MB
-                                int fileSize = fileupload_userpic.PostedFile.ContentLength;
-                                if (fileSize > (maxFileSize * 1024))
-                                {
-                                    lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                    return;
-                                }
-
-                                string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
-                                if (!Directory.Exists(fileUploadPath_Profile))
-                                {
-                                    Directory.CreateDirectory(fileUploadPath_Profile);
-                                }
-
-                                string fileName = fileupload_userpic.FileName;
-                                string fileExtension = Path.GetExtension(fileName);
-
-                                string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
-                                UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
-                                fileupload_userpic.SaveAs(pathToSave);
-                            }
-                            catch (Exception ex)
-                            {
-                                lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
-                            }
-                        }
-                        #endregion
-
-                        #region User Image Web Cam
-                        if (!string.IsNullOrEmpty(UserImage_fileData))
-                        {
-                            string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
-
-                            //Convert Base64 Encoded string to Byte Array.
-                            byte[] UserImage_imageBytes = Convert.FromBase64String(UserImage_fileData.Split(',')[1]);
-
-                            //Save the Byte Array as Image File.
-                            string UserImage_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", UserImage_fileName));
-
-                            string UserImage_fileExtension = Path.GetExtension(UserImage_filePath);
-
-                            UserImage_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + UserImage_fileName + UserImage_fileExtension;
-
-                            File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
-                        }
-                        #endregion
-
-                        #region User Photo ID Web Cam
-                        if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
-                        {
-                            string UserPhotoID_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
-
-                            //Convert Base64 Encoded string to Byte Array.
-                            byte[] UserPhotoID_imageBytes = Convert.FromBase64String(UserPhotoID_fileData.Split(',')[1]);
-
-                            //Save the Byte Array as Image File.
-                            string UserPhotoID_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_IDProof/{0}.jpg", UserPhotoID_fileName));
-
-                            string UserPhotoID_fileExtension = Path.GetExtension(UserPhotoID_filePath);
-
-                            UserPhotoID_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + UserPhotoID_fileName + UserPhotoID_fileExtension;
-
-                            File.WriteAllBytes(UserPhotoID_filePath, UserPhotoID_imageBytes);
-                        }
-                        #endregion
-
-                        #region Get User Upload Image Brows or Web cam
-                        if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows) || !string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
-                        {
-                            if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
-                                GetUserPhotoIDPath = UserPhotoIDPath_Brows;
-                            else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
-                                GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
-                        }
-
-
-
-                        #endregion
-
-
-                        ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
-                        string LoggedInUser = LoggedInUserID;
-                        string strName = txtName.Text;
-                        string strEmail = txtEmail.Text;
-                        string strPhone = txtPhone.Text;
-                        string strVisitDate = dtVMSDate.ToString("MMM dd yyyy hh:mm tt");
-                        string strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
-                        string strCovidTestDate = string.Empty;
-                        if (!string.IsNullOrEmpty(txtAsmmtDate.Text))
-                        {
-                            DateTime dtAsmmtDate = Convert.ToDateTime(txtAsmmtDate.Text.Trim()).Date;
-                            strCovidTestDate = dtAsmmtDate.ToString("dd-MMM-yyyy");
-                        }
-                        string strMeetUsers = hdnSelectedUserID.Value;
-                        string strTemperature = txtTemperature.Text;
-                        string strCovidColor = string.Empty;
-                        if (rdbGreen.Checked == true)
-                        {
-                            strCovidColor = "GREEN";
-                        }
-                        if (rdbOrange.Checked == true)
-                        {
-                            strCovidColor = "ORANGE";
-                        }
-                        if (rdbRed.Checked == true)
-                        {
-                            strCovidColor = "RED";
-                        }
-                        #endregion
-
-                        #region VisitQuestion
-                        /*
-                         Create table and store data in table and convert later in xml and pass in to Datatbase..
-                         Table Structure :  QuestionID | AnswerID | Data
-                        */
-
-                        string strVMSData = "";
-
-
-                        if (Action != 'N')
-                            goto Save;
-
-                        DataTable dt = new DataTable();
-                        dt.Clear();
-                        dt.TableName = "TableVisitQuestion";
-                        dt.Columns.Add("QuestionID");
-                        dt.Columns.Add("AnswerID");
-                        dt.Columns.Add("Data");
-                        // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
-
-                        string Is_Not_Valid = "False";
-
-
-                        foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
-                        {
-
-                            string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
-                            string Is_Mandatory = Convert.ToString((itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value);
-                            Label lblQuestionErr = (itemQuestion.FindControl("lblQuestionErr") as Label);
-                            string isField = "False";
-
-                            int AnswerTypeID = Convert.ToInt32((itemQuestion.FindControl("hdnAnswerID") as HiddenField).Value);
-                            string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
-
-                            if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
-                            {
-                                CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
-                                List<String> chkStrList = new List<string>();
-
-
-                                foreach (ListItem item in divCheckBoxIDI.Items)
-                                {
-                                    if (item.Selected)
+                                    var supportedTypes = new[] { "pdf" };
+                                    var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
+                                    if (!supportedTypes.Contains(fileExt))
                                     {
-                                        isField = "True";
-
-                                        chkStrList.Add(item.Value);
-                                        DataRow dtRow = dt.NewRow();
-                                        dtRow["QuestionID"] = HeadId;
-                                        dtRow["AnswerID"] = AnswerTypeID;
-                                        // dtRow["Data"] = item.Value;
-                                        dtRow["Data"] = item;
-
-                                        dt.Rows.Add(dtRow);
-                                    }
-                                }
-
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
-                                    {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
-                                    }
-                                }
-
-                                //String YrStr = String.Join(";", chkStrList.ToArray());
-                            }
-                            else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
-                            {
-                                RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
-                                List<String> RadioStrList = new List<string>();
-                                foreach (ListItem item in divRadioButtonrdbYes.Items)
-                                {
-                                    if (item.Selected)
-                                    {
-                                        isField = "True";
-                                        RadioStrList.Add(item.Value);
-
-                                        DataRow dtRow = dt.NewRow();
-                                        dtRow["QuestionID"] = HeadId;
-                                        dtRow["AnswerID"] = AnswerTypeID;
-                                        //  dtRow["Data"] = item.Value;
-                                        dtRow["Data"] = item;
-                                        dt.Rows.Add(dtRow);
-                                    }
-                                }
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
-                                    {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
-                                    }
-                                }
-                                //String YrStr = String.Join(";", RadioStrList.ToArray());
-
-                            }
-                            else if (AnswerType == "IMAGE") //Image Upload  
-                            {
-                                HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
-
-                                FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
-
-
-                                if (ChecklistImage.HasFile)
-                                {
-                                    isField = "True";
-                                    List<int> Lst_ValidImage = new List<int>();
-                                    List<int> Lst_ImageSaved = new List<int>();
-                                    List<string> Lst_Images = new List<string>();
-                                    string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
-                                    string fileName = string.Empty;
-
-                                    string fileUploadPath = HttpContext.Current.Server.MapPath("~/VMSImages/" + CurrentDate);
-                                    if (!Directory.Exists(fileUploadPath))
-                                    {
-                                        Directory.CreateDirectory(fileUploadPath);
+                                        lbl_error.Text = "File Extension Is InValid - Only Upload PDF File";
+                                        return;
                                     }
 
-                                    int i = 0;
-
-                                    foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                                    int maxFileSize = 5000; // 5MB
+                                    int fileSize = VCertificate.PostedFile.ContentLength;
+                                    if (fileSize > (maxFileSize * 1024))
                                     {
-                                        string filetype = Path.GetExtension(postfiles.FileName);
-                                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                        lbl_error.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                        return;
+                                    }
+
+                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
+                                    if (!Directory.Exists(fileUploadPath_Profile))
+                                    {
+                                        Directory.CreateDirectory(fileUploadPath_Profile);
+                                    }
+
+                                    string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                    string fileName = VCertificate.FileName;
+                                    string fileExtension = Path.GetExtension(fileName);
+
+
+                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
+                                    storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
+                                    VCertificate.SaveAs(pathToSave);
+                                }
+                                catch (Exception ex)
+                                {
+                                    lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                }
+                            }
+                            #endregion
+
+                            #region User Image Browse User
+                            if (fileupload1.HasFile)
+                            {
+                                try
+                                {
+                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                    var fileExt1 = System.IO.Path.GetExtension(fileupload1.FileName).Substring(1);
+                                    if (!supportedTypesData.Contains(fileExt1))
+                                    {
+                                        Label4.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                        return;
+                                    }
+
+                                    int maxFileSize = 5000; // 5MB
+                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                    if (fileSize > (maxFileSize * 1024))
+                                    {
+                                        Label4.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                        return;
+                                    }
+
+                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/");
+                                    if (!Directory.Exists(fileUploadPath_Profile))
+                                    {
+                                        Directory.CreateDirectory(fileUploadPath_Profile);
+                                    }
+
+                                    string fileName = fileupload1.FileName;
+                                    string fileExtension = Path.GetExtension(fileName);
+
+                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/") + str_image;
+                                    UserPhotoSelfPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + str_image;
+
+                                    Stream strm = fileupload1.PostedFile.InputStream;
+                                    ReduceImageSize(0.5, strm, pathToSave);
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Label4.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                }
+                            }
+                            #endregion
+
+                            #region User Image Web Cam
+                            if (!fileupload1.HasFile && !string.IsNullOrEmpty(UserImage_fileData))
+                            {
+                                string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+                                //Convert Base64 Encoded string to Byte Array.
+                                byte[] UserImage_imageBytes = Convert.FromBase64String(UserImage_fileData.Split(',')[1]);
+
+                                //Save the Byte Array as Image File.
+                                string UserImage_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", UserImage_fileName));
+
+                                string UserImage_fileExtension = Path.GetExtension(UserImage_filePath);
+
+                                UserImage_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + UserImage_fileName + UserImage_fileExtension;
+
+                                File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
+                            }
+                            #endregion
+
+                            #region User Image Browse ID proof
+                            if (fileupload_userpic.HasFile)
+                            {
+                                try
+                                {
+                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                    var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
+                                    if (!supportedTypesData.Contains(fileExt1))
+                                    {
+                                        lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                        return;
+                                    }
+
+                                    int maxFileSize = 5000; // 5MB
+                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                    if (fileSize > (maxFileSize * 1024))
+                                    {
+                                        lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                        return;
+                                    }
+
+                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
+                                    if (!Directory.Exists(fileUploadPath_Profile))
+                                    {
+                                        Directory.CreateDirectory(fileUploadPath_Profile);
+                                    }
+
+                                    string fileName = fileupload_userpic.FileName;
+                                    string fileExtension = Path.GetExtension(fileName);
+
+                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
+                                    UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
+                                    Stream strm = fileupload_userpic.PostedFile.InputStream;
+
+                                    ReduceImageSize(0.9, strm, pathToSave);
+                                }
+                                catch (Exception ex)
+                                {
+                                    lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                }
+                            }
+                            #endregion
+
+                         
+
+                            #region User Photo ID Web Cam
+                            if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
+                            {
+                                string UserPhotoID_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+                                //Convert Base64 Encoded string to Byte Array.
+                                byte[] UserPhotoID_imageBytes = Convert.FromBase64String(UserPhotoID_fileData.Split(',')[1]);
+
+                                //Save the Byte Array as Image File.
+                                string UserPhotoID_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_IDProof/{0}.jpg", UserPhotoID_fileName));
+
+                                string UserPhotoID_fileExtension = Path.GetExtension(UserPhotoID_filePath);
+
+                                UserPhotoID_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + UserPhotoID_fileName + UserPhotoID_fileExtension;
+
+                                File.WriteAllBytes(UserPhotoID_filePath, UserPhotoID_imageBytes);
+                            }
+                            #endregion
+
+                            #region Get User Upload Image Brows or Web cam
+                            if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows) || !string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
+                            {
+                                if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
+                                    GetUserPhotoIDPath = UserPhotoIDPath_Brows;
+                                else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
+                                    GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
+                            }
+
+                            if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows) || !string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                            {
+                                if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows))
+                                    GetUserSelfPhotoPath = UserPhotoSelfPath_Brows;
+                                else if (!string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                                    GetUserSelfPhotoPath = UserImage_ProfilePhoto_FilePath;
+                            }
+
+
+
+                            #endregion
+
+
+                            ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
+                            string LoggedInUser = LoggedInUserID;
+                            string strName = txtName.Text;
+                            string strEmail = txtEmail.Text;
+                            string strPhone = txtPhone.Text;
+                            string strVisitDate = dtVMSDate.ToString("MMM dd yyyy hh:mm tt");
+                            string strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
+                            string strCovidTestDate = string.Empty;
+                            if (!string.IsNullOrEmpty(txtAsmmtDate.Text))
+                            {
+                                DateTime dtAsmmtDate = Convert.ToDateTime(txtAsmmtDate.Text.Trim()).Date;
+                                strCovidTestDate = dtAsmmtDate.ToString("dd-MMM-yyyy");
+                            }
+                            string strMeetUsers = hdnSelectedUserID.Value;
+                            string strTemperature = txtTemperature.Text;
+                            string strCovidColor = string.Empty;
+                            if (rdbGreen.Checked == true)
+                            {
+                                strCovidColor = "GREEN";
+                            }
+                            if (rdbOrange.Checked == true)
+                            {
+                                strCovidColor = "ORANGE";
+                            }
+                            if (rdbRed.Checked == true)
+                            {
+                                strCovidColor = "RED";
+                            }
+                            #endregion
+
+                            #region VisitQuestion
+                            /*
+                             Create table and store data in table and convert later in xml and pass in to Datatbase..
+                             Table Structure :  QuestionID | AnswerID | Data
+                            */
+
+                            string strVMSData = "";
+
+
+                            if (Action != 'N')
+                                goto Save;
+
+                            DataTable dt = new DataTable();
+                            dt.Clear();
+                            dt.TableName = "TableVisitQuestion";
+                            dt.Columns.Add("QuestionID");
+                            dt.Columns.Add("AnswerID");
+                            dt.Columns.Add("Data");
+                            // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
+
+                            string Is_Not_Valid = "False";
+
+
+                            foreach (RepeaterItem itemQuestion in rptQuestionDetails.Items)
+                            {
+
+                                string AnswerType = (itemQuestion.FindControl("hdnAnswerTypeSDesc") as HiddenField).Value;
+                                string Is_Mandatory = Convert.ToString((itemQuestion.FindControl("hdnIs_Mandatory") as HiddenField).Value);
+                                Label lblQuestionErr = (itemQuestion.FindControl("lblQuestionErr") as Label);
+                                string isField = "False";
+
+                                int AnswerTypeID = Convert.ToInt32((itemQuestion.FindControl("hdnAnswerID") as HiddenField).Value);
+                                string HeadId = (itemQuestion.FindControl("hfQuestionId") as HiddenField).Value;
+
+                                if (AnswerType == "MSLCT") //Multi Selection [CheckBox]
+                                {
+                                    CheckBoxList divCheckBoxIDI = itemQuestion.FindControl("divCheckBoxIDI") as CheckBoxList;
+                                    List<String> chkStrList = new List<string>();
+
+
+                                    foreach (ListItem item in divCheckBoxIDI.Items)
+                                    {
+                                        if (item.Selected)
                                         {
-                                            Lst_ValidImage.Add(1);
-                                        }
-                                        else
-                                        {
-                                            Lst_ValidImage.Add(0);
+                                            isField = "True";
+
+                                            chkStrList.Add(item.Value);
+                                            DataRow dtRow = dt.NewRow();
+                                            dtRow["QuestionID"] = HeadId;
+                                            dtRow["AnswerID"] = AnswerTypeID;
+                                            // dtRow["Data"] = item.Value;
+                                            dtRow["Data"] = item;
+
+                                            dt.Rows.Add(dtRow);
                                         }
                                     }
-                                    foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+
+                                    if (Is_Mandatory == "*")
                                     {
-                                        string filetype = Path.GetExtension(postfiles.FileName);
-                                        if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                        if (isField == "False")
                                         {
-                                            try
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
+                                    }
+
+                                    //String YrStr = String.Join(";", chkStrList.ToArray());
+                                }
+                                else if (AnswerType == "SSLCT") //Single Selection [Radio Button]
+                                {
+                                    RadioButtonList divRadioButtonrdbYes = itemQuestion.FindControl("divRadioButtonrdbYes") as RadioButtonList;
+                                    List<String> RadioStrList = new List<string>();
+                                    foreach (ListItem item in divRadioButtonrdbYes.Items)
+                                    {
+                                        if (item.Selected)
+                                        {
+                                            isField = "True";
+                                            RadioStrList.Add(item.Value);
+
+                                            DataRow dtRow = dt.NewRow();
+                                            dtRow["QuestionID"] = HeadId;
+                                            dtRow["AnswerID"] = AnswerTypeID;
+                                            //  dtRow["Data"] = item.Value;
+                                            dtRow["Data"] = item;
+                                            dt.Rows.Add(dtRow);
+                                        }
+                                    }
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
+                                        {
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
+                                    }
+                                    //String YrStr = String.Join(";", RadioStrList.ToArray());
+
+                                }
+                                else if (AnswerType == "IMAGE") //Image Upload  
+                                {
+                                    HtmlGenericControl sample = itemQuestion.FindControl("divImage") as HtmlGenericControl;
+
+                                    FileUpload ChecklistImage = (FileUpload)itemQuestion.FindControl("FileUpload_ChecklistImage");
+
+
+                                    if (ChecklistImage.HasFile)
+                                    {
+                                        isField = "True";
+                                        List<int> Lst_ValidImage = new List<int>();
+                                        List<int> Lst_ImageSaved = new List<int>();
+                                        List<string> Lst_Images = new List<string>();
+                                        string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                                        string fileName = string.Empty;
+
+                                        string fileUploadPath = HttpContext.Current.Server.MapPath("~/VMSImages/" + CurrentDate);
+                                        if (!Directory.Exists(fileUploadPath))
+                                        {
+                                            Directory.CreateDirectory(fileUploadPath);
+                                        }
+
+                                        int i = 0;
+
+                                        foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                                        {
+                                            string filetype = Path.GetExtension(postfiles.FileName);
+                                            if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
                                             {
-                                                fileName = HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
-                                                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                                                string SaveLocation = Server.MapPath("~/VMSImages/" + CurrentDate) + "/" + fileName;
-                                                string FileLocation = imgPath + "/VMSImages/" + CurrentDate + "/" + fileName;// + "*WP";
-                                                string ImageName = Path.GetFileName(postfiles.FileName);
-                                                Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
-                                                var targetFile = SaveLocation;
-
-                                                if (!Lst_ValidImage.Contains(0))
+                                                Lst_ValidImage.Add(1);
+                                            }
+                                            else
+                                            {
+                                                Lst_ValidImage.Add(0);
+                                            }
+                                        }
+                                        foreach (HttpPostedFile postfiles in ChecklistImage.PostedFiles)
+                                        {
+                                            string filetype = Path.GetExtension(postfiles.FileName);
+                                            if (filetype.ToLower() == ".jpg" || filetype.ToLower() == ".png")
+                                            {
+                                                try
                                                 {
-                                                    postfiles.SaveAs(SaveLocation);
-                                                    Lst_Images.Add(FileLocation);
+                                                    fileName = HeadId + "_" + AnswerType + "_" + Convert.ToString(i) + filetype;
+                                                    string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                                    string SaveLocation = Server.MapPath("~/VMSImages/" + CurrentDate) + "/" + fileName;
+                                                    string FileLocation = imgPath + "/VMSImages/" + CurrentDate + "/" + fileName;// + "*WP";
+                                                    string ImageName = Path.GetFileName(postfiles.FileName);
+                                                    Stream strm = postfiles.InputStream;  //FileUpload_TicketImage.PostedFile.InputStream;
+                                                    var targetFile = SaveLocation;
 
-                                                    isField = "True";
-                                                    DataRow dtRow = dt.NewRow();
-                                                    dtRow["QuestionID"] = HeadId;
-                                                    dtRow["AnswerID"] = AnswerTypeID;
-                                                    dtRow["Data"] = FileLocation;
-                                                    dt.Rows.Add(dtRow);
+                                                    if (!Lst_ValidImage.Contains(0))
+                                                    {
+                                                        postfiles.SaveAs(SaveLocation);
+                                                        Lst_Images.Add(FileLocation);
+
+                                                        isField = "True";
+                                                        DataRow dtRow = dt.NewRow();
+                                                        dtRow["QuestionID"] = HeadId;
+                                                        dtRow["AnswerID"] = AnswerTypeID;
+                                                        dtRow["Data"] = FileLocation;
+                                                        dt.Rows.Add(dtRow);
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Lst_ImageSaved.Add(0); // Image failed to save
+                                                    throw ex;
                                                 }
                                             }
-                                            catch (Exception ex)
+                                            else
                                             {
-                                                Lst_ImageSaved.Add(0); // Image failed to save
-                                                throw ex;
+                                                Lst_ValidImage.Add(0);  // image extension is not proper
                                             }
+                                            i = i + 1;
                                         }
-                                        else
+                                    }
+
+
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
                                         {
-                                            Lst_ValidImage.Add(0);  // image extension is not proper
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
                                         }
-                                        i = i + 1;
                                     }
+
                                 }
-
-
-                                if (Is_Mandatory == "*")
+                                else if (AnswerType == "NUMBR") //Number Text Field
                                 {
-                                    if (isField == "False")
+                                    // isField = "True";
+                                    HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    string sVal = Request.Form.GetValues(txtNum)[0];
+
+                                    if (sVal == "")
                                     {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
+                                        isField = "False";
+                                    }
+                                    else
+                                    {
+                                        isField = "True";
+                                    }
+                                    DataRow dtRow = dt.NewRow();
+                                    dtRow["QuestionID"] = HeadId;
+                                    dtRow["AnswerID"] = AnswerTypeID;
+                                    dtRow["Data"] = sVal;
+                                    dt.Rows.Add(dtRow);
+
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
+                                        {
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
+                                    }
+
+                                }
+                                else if (AnswerType == "STEXT") //Normal Text Field
+                                {
+                                    // isField = "True";
+                                    HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    string sVal = Request.Form.GetValues(txtNum)[0];
+                                    if (sVal == "")
+                                    {
+                                        isField = "False";
+                                    }
+                                    else
+                                    {
+                                        isField = "True";
+                                    }
+
+                                    DataRow dtRow = dt.NewRow();
+                                    dtRow["QuestionID"] = HeadId;
+                                    dtRow["AnswerID"] = AnswerTypeID;
+                                    dtRow["Data"] = sVal;
+                                    dt.Rows.Add(dtRow);
+
+
+
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
+                                        {
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
                                     }
                                 }
-
-                            }
-                            else if (AnswerType == "NUMBR") //Number Text Field
-                            {
-                                // isField = "True";
-                                HtmlGenericControl sample = itemQuestion.FindControl("divNumber") as HtmlGenericControl;
-                                string txtNum = sample.Controls[1].UniqueID;
-                                string sVal = Request.Form.GetValues(txtNum)[0];
-
-                                if (sVal == "")
-                                {
-                                    isField = "False";
-                                }
-                                else
+                                else if (AnswerType == "LTEXT") // Textarea Field
                                 {
                                     isField = "True";
-                                }
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = sVal;
-                                dt.Rows.Add(dtRow);
-
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
+                                    HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    string sVal = Request.Form.GetValues(txtNum)[0];
+                                    if (sVal == "")
                                     {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
+                                        isField = "False";
+                                    }
+                                    else
+                                    {
+                                        isField = "True";
+                                    }
+                                    DataRow dtRow = dt.NewRow();
+                                    dtRow["QuestionID"] = HeadId;
+                                    dtRow["AnswerID"] = AnswerTypeID;
+                                    dtRow["Data"] = sVal;
+                                    dt.Rows.Add(dtRow);
+
+
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
+                                        {
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
                                     }
                                 }
-
-                            }
-                            else if (AnswerType == "STEXT") //Normal Text Field
-                            {
-                                // isField = "True";
-                                HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
-                                string txtNum = sample.Controls[1].UniqueID;
-                                string sVal = Request.Form.GetValues(txtNum)[0];
-                                if (sVal == "")
-                                {
-                                    isField = "False";
-                                }
-                                else
+                                else  //Normal Text Field
                                 {
                                     isField = "True";
-                                }
-
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = sVal;
-                                dt.Rows.Add(dtRow);
-
-
-
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
+                                    HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
+                                    string txtNum = sample.Controls[1].UniqueID;
+                                    string sVal = Request.Form.GetValues(txtNum)[0];
+                                    if (sVal == "")
                                     {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
+                                        isField = "False";
+                                    }
+                                    else
+                                    {
+                                        isField = "True";
+                                    }
+                                    DataRow dtRow = dt.NewRow();
+                                    dtRow["QuestionID"] = HeadId;
+                                    dtRow["AnswerID"] = AnswerTypeID;
+                                    dtRow["Data"] = sVal;
+                                    dt.Rows.Add(dtRow);
+
+
+                                    if (Is_Mandatory == "*")
+                                    {
+                                        if (isField == "False")
+                                        {
+                                            Is_Not_Valid = "True";
+                                            lblQuestionErr.Text = "Please provide valid data.";
+                                        }
                                     }
                                 }
                             }
-                            else if (AnswerType == "LTEXT") // Textarea Field
+
+
+
+                            if (Is_Not_Valid == "True")
                             {
-                                isField = "True";
-                                HtmlGenericControl sample = itemQuestion.FindControl("divTextArea") as HtmlGenericControl;
-                                string txtNum = sample.Controls[1].UniqueID;
-                                string sVal = Request.Form.GetValues(txtNum)[0];
-                                if (sVal == "")
-                                {
-                                    isField = "False";
-                                }
-                                else
-                                {
-                                    isField = "True";
-                                }
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = sVal;
-                                dt.Rows.Add(dtRow);
-
-
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
-                                    {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
-                                    }
-                                }
+                                //call repeater
+                                BindVMSConfig();
+                                return;
                             }
-                            else  //Normal Text Field
+
+                            if (dt.Rows.Count > 0)
                             {
-                                isField = "True";
-                                HtmlGenericControl sample = itemQuestion.FindControl("divText") as HtmlGenericControl;
-                                string txtNum = sample.Controls[1].UniqueID;
-                                string sVal = Request.Form.GetValues(txtNum)[0];
-                                if (sVal == "")
-                                {
-                                    isField = "False";
-                                }
-                                else
-                                {
-                                    isField = "True";
-                                }
-                                DataRow dtRow = dt.NewRow();
-                                dtRow["QuestionID"] = HeadId;
-                                dtRow["AnswerID"] = AnswerTypeID;
-                                dtRow["Data"] = sVal;
-                                dt.Rows.Add(dtRow);
+                                DataTable DTS = new DataTable();
+                                DTS = dt.Copy();
 
-
-                                if (Is_Mandatory == "*")
-                                {
-                                    if (isField == "False")
-                                    {
-                                        Is_Not_Valid = "True";
-                                        lblQuestionErr.Text = "Please provide valid data.";
-                                    }
-                                }
+                                MemoryStream str = new MemoryStream();
+                                DTS.WriteXml(str, true);
+                                str.Seek(0, SeekOrigin.Begin);
+                                StreamReader sr = new StreamReader(str);
+                                string xmlstr;
+                                xmlstr = sr.ReadToEnd();
+                                strVMSData = xmlstr;
                             }
-                        }
-
-
-
-                        if (Is_Not_Valid == "True")
-                        {
-                            //call repeater
-                            BindVMSConfig();
-                            return;
-                        }
-
-                        if (dt.Rows.Count > 0)
-                        {
-                            DataTable DTS = new DataTable();
-                            DTS = dt.Copy();
-
-                            MemoryStream str = new MemoryStream();
-                            DTS.WriteXml(str, true);
-                            str.Seek(0, SeekOrigin.Begin);
-                            StreamReader sr = new StreamReader(str);
-                            string xmlstr;
-                            xmlstr = sr.ReadToEnd();
-                            strVMSData = xmlstr;
-                        }
-                    #endregion
-
-                    #region SaveDataToDB
-
-                    Save:
-                        DataSet dsVMSQuestionData = new DataSet();
-                        dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, UserImage_ProfilePhoto_FilePath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
-
-                        if (dsVMSQuestionData.Tables.Count > 0)
-                        {
-                            if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
-                            {
-                                int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
-                                int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-
-                                if (status == 1 && Action == 'N')
-                                {
-                                    //SetRepeater();
-                                    //divinsertbutton.visible = false;
-                                    lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-
-                                    int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-                                    string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
-
-                                    mpeVMSRequestSaveSuccess.Show();
-
-                                    string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
-
-                                    if (SMS_Enabled == 1)
-                                    {
-                                        string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
-                                        string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
-                                        string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
-                                        string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
-
-                                        string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
-                                    }
-                                }
-                                else if (status == 1 && Action != 'N')
-                                {
-                                    Response.Write("<script>alert('Status changed.');</script>");
-                                    Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
-                                }
-                                else
-                                {
-                                    SetRepeater();
-                                    divError.Visible = true;
-                                    lblErrorMsg2.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
-                                }
-
-                            }
-                        }
-
                         #endregion
-                        ClearControlls();
-                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
+
+                        #region SaveDataToDB
+
+                        Save:
+                            DataSet dsVMSQuestionData = new DataSet();
+                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID,string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
+
+                            if (dsVMSQuestionData.Tables.Count > 0)
+                            {
+                                if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
+                                {
+                                    int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
+                                    int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
+
+                                    if (status == 1 && Action == 'N')
+                                    {
+                                        //SetRepeater();
+                                        //divinsertbutton.visible = false;
+                                        lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+
+                                        int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+                                        string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
+
+                                        mpeVMSRequestSaveSuccess.Show();
+
+                                        string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+
+                                        if (SMS_Enabled == 1)
+                                        {
+                                            string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
+                                            string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
+                                            string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
+                                            string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+
+                                            string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                                        }
+                                    }
+                                    else if (status == 1 && Action != 'N')
+                                    {
+                                        Response.Write("<script>alert('Status changed.');</script>");
+                                        Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                                    }
+                                    else
+                                    {
+                                        SetRepeater();
+                                        divError.Visible = true;
+                                        lblErrorMsg2.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
+                                    }
+
+                                }
+                            }
+
+                            #endregion
+                            ClearControlls();
+                            Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
+                        }
+                        else
+                        {
+                            ClearControlls();
+                            ViewState["DateInvalid"] = "DateInvalid";
+                            Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
+                            Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
+                        }
                     }
                     else
                     {
-                        ClearControlls();
                         ViewState["DateInvalid"] = "DateInvalid";
                         Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
-                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
                     }
                 }
                 else
                 {
-                    ViewState["DateInvalid"] = "DateInvalid";
-                    Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
+                    Page.ClientScript.RegisterHiddenField("ValidationMsg", "Please enter valid data..!");
                 }
             }
             catch (Exception ex)
