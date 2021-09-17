@@ -468,8 +468,19 @@ namespace Upkeep_v3.VMS
 
                 if (dsConfig.Tables.Count > 4)
                 {
-                    rptTermsCondition1.DataSource = dsConfig.Tables[4];
-                    rptTermsCondition1.DataBind();
+                    if (dsConfig.Tables[4].Rows.Count > 0)
+                    {
+                        rptTermsCondition1.DataSource = dsConfig.Tables[4];
+                        rptTermsCondition1.DataBind();
+                    }
+                    else
+                    {
+                        dvTermsCondHeader.Attributes.Add("style", "display:none;");
+                    }
+                }
+                else
+                {
+                    dvTermsCondHeader.Attributes.Add("style", "display:none;");
                 }
 
                 fromTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["FromTime"]);
@@ -478,6 +489,18 @@ namespace Upkeep_v3.VMS
                 visitingTime = "Visit is allowed only between " + fromTime + " to " + toTime + " ";
                 lblVisitingTime.Text = visitingTime;
 
+                int Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+                Session["Vaccine_Check_Enable"] = Convert.ToString(Vaccine_Check_Enable);
+                if (Vaccine_Check_Enable > 0)
+                {
+                    //dvVaccinationCheck.Attributes.Add("style", "display:none;");
+                }
+                else
+                {
+                    dvVaccinationCheck.Attributes.Add("style", "display:none;");
+                    RequiredFieldValidator3.Enabled = false;
+                    RequiredFieldValidator4.Enabled = false;
+                }
 
             }
             catch (Exception ex)
@@ -891,19 +914,35 @@ namespace Upkeep_v3.VMS
 
         private void SaveVisitData()
         {
+            double eligleDays = 14;
+            double remainDays = 0;
+            int RequestID = 0;
+            char Action = 'N';
+            Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
+            string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
+            string UserImage_ProfilePhoto_FilePath = string.Empty;
+            string UserPhotoIDPath_Brows = string.Empty;
+            string GetUserPhotoIDPath = string.Empty;
+
             try
             {
+                int Vaccine_Check_Enable = 0;
+                if (Convert.ToString(Session["Vaccine_Check_Enable"]) != "")
+                {
+                    Vaccine_Check_Enable = Convert.ToInt32(Session["Vaccine_Check_Enable"]);
+                }
+
                 DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
-                DateTime dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
-                double eligleDays = 14;
-                double remainDays = 0;
-                int RequestID = 0;
-                char Action = 'N';
-                Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
-                string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
-                string UserImage_ProfilePhoto_FilePath = string.Empty;
-                string UserPhotoIDPath_Brows = string.Empty;
-                string GetUserPhotoIDPath = string.Empty;
+                DateTime dtDoseDate = dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
+
+                if (Vaccine_Check_Enable > 0)
+                {
+
+                }
+                else
+                {
+
+                }
 
                 if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                 {

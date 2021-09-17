@@ -364,6 +364,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.Repeater rptQuestionDetails;
         
         /// <summary>
+        /// dvVaccinationCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvVaccinationCheck;
+        
+        /// <summary>
         /// txtDoseDate control.
         /// </summary>
         /// <remarks>
@@ -461,6 +470,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator5;
+        
+        /// <summary>
+        /// dvTermsCondHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTermsCondHeader;
         
         /// <summary>
         /// rptTermsCondition1 control.

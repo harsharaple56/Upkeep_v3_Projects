@@ -12,7 +12,7 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-            <div class="row">
+            <div class="">
 
                 <div id="div_Visitor_ID" runat="server" class="col-lg-12">
                     <!--begin::Portlet-->

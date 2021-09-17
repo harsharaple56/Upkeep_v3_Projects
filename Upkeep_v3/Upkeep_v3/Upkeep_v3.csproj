@@ -4125,7 +4125,9 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="VMS\QR_Codes\VMS_325.png" />
     <Content Include="VMS\Verify_Visitor_ID_V2.aspx" />
+    <Content Include="VMS\Verify_Visitor_ID_V3.aspx" />
     <Content Include="VMS\Visitor_ID_v2.aspx" />
+    <Content Include="VMS\Visitor_ID_V3.aspx" />
     <Content Include="VMS\Visits_Report.aspx" />
     <Content Include="General_Masters\Template\Checklist_Import_Template.xlsx" />
     <Content Include="CheckList\ChecklistReport.xsc">
@@ -5561,6 +5563,13 @@
     <Compile Include="VMS\Verify_Visitor_ID_V2.aspx.designer.cs">
       <DependentUpon>Verify_Visitor_ID_V2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID_V3.aspx.cs">
+      <DependentUpon>Verify_Visitor_ID_V3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Verify_Visitor_ID_V3.aspx.designer.cs">
+      <DependentUpon>Verify_Visitor_ID_V3.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VMS\Visitor_ID.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5572,6 +5581,13 @@
     </Compile>
     <Compile Include="VMS\Visitor_ID_v2.aspx.designer.cs">
       <DependentUpon>Visitor_ID_v2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VMS\Visitor_ID_V3.aspx.cs">
+      <DependentUpon>Visitor_ID_V3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMS\Visitor_ID_V3.aspx.designer.cs">
+      <DependentUpon>Visitor_ID_V3.aspx</DependentUpon>
     </Compile>
     <Compile Include="VMS\Visits_Report.aspx.cs">
       <DependentUpon>Visits_Report.aspx</DependentUpon>

@@ -73,10 +73,12 @@
     </div>
 
     <div id="userinfo" class="row m--hide">
-        <div class="col-md-12">
-            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+            <div class="m-portlet m-portlet--last m-portlet--head-lg m-portlet--responsive-mobile"  style="border-radius: 25px;border: 2px solid #6c6d6b;">
                 <div class="m-portlet__body">
-                    <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo m--align-center">
+                    <div class="m-stack--ver m-stack--tablet m-stack--demo m--align-center">
 
                         <div class="m-stack__item m-stack__item--center m-stack__item--top">
 
@@ -167,6 +169,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-2"></div>
     </div>
 
     <div id="invaliduser" class="row m--hide">

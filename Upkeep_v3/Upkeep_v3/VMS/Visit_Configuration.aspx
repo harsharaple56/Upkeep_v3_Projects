@@ -452,10 +452,12 @@
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
                 //$(".dltSection").click();
+                //debugger;
                 var terms = $('#hdnVMSTerms').val();
                 //alert(terms);
                 var arrTerms = terms.split("~");
                 for (var i = 0; i < arrTerms.length; i++) {
+                    if (i !== 0)
                     $("#divTermAdd").click();
                     //alert(arrTerms[i]);
 
@@ -935,7 +937,7 @@
                                                     </div>
 
                                                     <div class="col-md-1">
-                                                        <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only dltSection">
+                                                        <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only dltSection" id="dltSection">
                                                             <i class="la la-trash"></i>
                                                         </div>
                                                     </div>
