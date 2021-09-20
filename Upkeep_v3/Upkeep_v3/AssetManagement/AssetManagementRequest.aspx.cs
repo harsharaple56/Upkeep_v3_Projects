@@ -262,7 +262,7 @@ namespace Upkeep_v3.AssetManagement
 
                         foreach (RepeaterItem item in rptCustomFields.Items)
                         {
-                            (rptCustomFields.Items[item.ItemIndex].FindControl("txtCustomFieldsValue") as TextBox).Text = dsAssestData.Tables[0].Rows[item.ItemIndex]["Asset_Field_Value"].ToString();
+                            (rptCustomFields.Items[item.ItemIndex].FindControl("txtCustomFieldsValue") as TextBox).Text = dsAssestData.Tables[0].Rows[item.ItemIndex-1]["Asset_Field_Value"].ToString();
                         }
 
 

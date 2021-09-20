@@ -933,52 +933,40 @@ namespace Upkeep_v3.VMS
 
         private void SaveVisitData()
         {
-            double eligleDays = 14;
-            double remainDays = 0;
-            int RequestID = 0;
-            char Action = 'N';
-            Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
-            string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
-            string UserImage_ProfilePhoto_FilePath = string.Empty;
-            string UserPhotoIDPath_Brows = string.Empty;
-            string GetUserPhotoIDPath = string.Empty;
-
             try
             {
-                int Vaccine_Check_Enable = 0;
-                if (Convert.ToString(Session["Vaccine_Check_Enable"]) != "")
+                if (!string.IsNullOrEmpty(txtDoseDate.Text) && VCertificate.HasFile && (fileupload1.HasFile || !string.IsNullOrEmpty(UserImage_fileData)) && fileupload_userpic.HasFile)
                 {
-                    Vaccine_Check_Enable = Convert.ToInt32(Session["Vaccine_Check_Enable"]);
-                }
+                    DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
+                    DateTime dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
+                    double eligleDays = 14;
+                    double remainDays = 0;
+                    int RequestID = 0;
+                    char Action = 'N';
+                    Send_eFacilito_SMS sms1 = new Send_eFacilito_SMS();
+                    string UserPhotoID_ProfilePhoto_FilePath = string.Empty;
+                    string UserImage_ProfilePhoto_FilePath = string.Empty;
+                    string UserPhotoIDPath_Brows = string.Empty;
+                    string UserPhotoSelfPath_Brows = string.Empty;
+                    string GetUserPhotoIDPath = string.Empty;
+                    string GetUserSelfPhotoPath = string.Empty;
 
-                DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
-                DateTime dtDoseDate = dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
-
-                if (Vaccine_Check_Enable > 0)
-                {
-
-                }
-                else
-                {
-
-                }
-
-                if (dtVMSDate.Date != null && dtDoseDate.Date != null)
-                {
-                    DateTime dtConvertVMSDate = Convert.ToDateTime(dtVMSDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
-                    DateTime dtConvertDoseDate = Convert.ToDateTime(dtDoseDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
-                    remainDays = (dtConvertVMSDate.Date - dtConvertDoseDate.Date).TotalDays;
-                    if (remainDays >= eligleDays)
+                    if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                     {
-                        #region Variable and Value Declaration
-                        if (ViewState["Action"] != null)
+                        DateTime dtConvertVMSDate = Convert.ToDateTime(dtVMSDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
+                        DateTime dtConvertDoseDate = Convert.ToDateTime(dtDoseDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
+                        remainDays = (dtConvertVMSDate.Date - dtConvertDoseDate.Date).TotalDays;
+                        if (remainDays >= eligleDays)
                         {
-                            Action = Convert.ToChar(ViewState["Action"]);
-                        }
-                        if (ViewState["RequestID"] != null)
-                        {
-                            RequestID = Convert.ToInt32(ViewState["RequestID"]);
-                        }
+                            #region Variable and Value Declaration
+                            if (ViewState["Action"] != null)
+                            {
+                                Action = Convert.ToChar(ViewState["Action"]);
+                            }
+                            if (ViewState["RequestID"] != null)
+                            {
+                                RequestID = Convert.ToInt32(ViewState["RequestID"]);
+                            }
 
                             #region Get Next Request ID
                             DataSet ds = new DataSet();
@@ -1144,7 +1132,7 @@ namespace Upkeep_v3.VMS
                             }
                             #endregion
 
-                         
+
 
                             #region User Photo ID Web Cam
                             if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
@@ -1557,7 +1545,7 @@ namespace Upkeep_v3.VMS
 
                         Save:
                             DataSet dsVMSQuestionData = new DataSet();
-                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID,string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
+                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
 
                             if (dsVMSQuestionData.Tables.Count > 0)
                             {
@@ -1633,26 +1621,27 @@ namespace Upkeep_v3.VMS
             }
         }
 
+
         #endregion
 
         protected void ClearControlls()
-        {
-            txtDoseDate.Text = "";
-            txtVMSDate.Text = "";
-            txtPhone.Text = "";
-            txtEmail.Text = "";
-            txtName.Text = "";
-        }
+    {
+        txtDoseDate.Text = "";
+        txtVMSDate.Text = "";
+        txtPhone.Text = "";
+        txtEmail.Text = "";
+        txtName.Text = "";
+    }
 
-        protected void txtPhone_TextChanged(object sender, EventArgs e)
+    protected void txtPhone_TextChanged(object sender, EventArgs e)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
-            {
-                lblErrorMsg.Text = "Please enter only number";
-                // MessageBox.Show("Please enter only numbers.");
-                txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
-            }
+            lblErrorMsg.Text = "Please enter only number";
+            // MessageBox.Show("Please enter only numbers.");
+            txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
         }
+    }
 
     }
 }
