@@ -3794,6 +3794,108 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    #region Ticketing Dashboard
+
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block1(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block2(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block3(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block4(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block5(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block6(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+    [WebMethod]
+    public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block7(LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
 }
 
 public class AuthenticationHeader : SoapHeader
