@@ -399,6 +399,7 @@
                 //    var time = window.document.getElementById(VarLocRowObj).children[5].children[0].value;
                 //}
 
+
                 var nxtlvl = window.document.getElementById(VarLocRowObj).children[10].innerHTML;
 
                 //if (window.document.getElementById(VarLocRowObj).children[6].children[2].value == "") {
@@ -428,6 +429,8 @@
                 //var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + time + "#" + nxtlvl;
                 var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + MobileAccess + "#" + WebAccess + "#" + ApprovalRights + "#" + HoldRights + "#" + RejectRights + "#" + nxtlvl;
 
+                //alert(strInfo);
+
                 if (window.document.getElementById("<%= txtHdn.ClientID%>").value == "") {
                     <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
@@ -436,6 +439,7 @@
                     <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
                 }
+
 
             }
 
