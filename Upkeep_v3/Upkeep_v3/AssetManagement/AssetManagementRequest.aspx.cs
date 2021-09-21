@@ -73,7 +73,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID),CompanyID);
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)
@@ -196,7 +196,7 @@ namespace Upkeep_v3.AssetManagement
                         Session["CustomeFields"] = "True";
                         rptCustomFields.DataSource = dsSetting.Tables[0];
                         rptCustomFields.DataBind();
-                          
+
                     }
                 }
             }
@@ -259,10 +259,17 @@ namespace Upkeep_v3.AssetManagement
                         ddlCurrencyType.SelectedValue = dsAssestData.Tables[0].Rows[0]["Currency_Type"].ToString();
                         txtAssetPurchaseDate.Text = dsAssestData.Tables[0].Rows[0]["Asset_Purchase_Date"].ToString();
 
-
-                        foreach (RepeaterItem item in rptCustomFields.Items)
+                        if (rptCustomFields.Items.Count == dsAssestData.Tables[0].Rows.Count)
                         {
-                            (rptCustomFields.Items[item.ItemIndex].FindControl("txtCustomFieldsValue") as TextBox).Text = dsAssestData.Tables[0].Rows[item.ItemIndex]["Asset_Field_Value"].ToString();
+                            foreach (RepeaterItem item in rptCustomFields.Items)
+                            {
+                                (rptCustomFields.Items[item.ItemIndex].FindControl("txtCustomFieldsValue") as TextBox).Text = dsAssestData.Tables[0].Rows[item.ItemIndex]["Asset_Field_Value"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            rptCustomFields.DataSource = null;
+                            rptCustomFields.DataBind();
                         }
 
 
@@ -1371,6 +1378,7 @@ namespace Upkeep_v3.AssetManagement
                 }
             }
         }
+
 
     }
 }

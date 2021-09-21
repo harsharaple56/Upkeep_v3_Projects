@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback ASSET_Insert_AssetCategoryOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ASSET_INSERT_GRNL_MASTEROperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_MyAssetOperationCompleted;
@@ -139,6 +141,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_Report_ExcelOperationCompleted;
         
         private System.Threading.SendOrPostCallback ImportRetailerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_AssetList_MasterOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddChecklistMaster_CRUDOperationCompleted;
         
@@ -305,8 +309,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_Asset_Vendor_DropDownOperationCompleted;
         
         private System.Threading.SendOrPostCallback ASSET_Insert_AssetTypeOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback ASSET_Insert_AssetCategoryOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -515,6 +517,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event ASSET_Insert_AssetCategoryCompletedEventHandler ASSET_Insert_AssetCategoryCompleted;
+        
+        /// <remarks/>
         public event ASSET_INSERT_GRNL_MASTERCompletedEventHandler ASSET_INSERT_GRNL_MASTERCompleted;
         
         /// <remarks/>
@@ -678,6 +683,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event ImportRetailerCompletedEventHandler ImportRetailerCompleted;
+        
+        /// <remarks/>
+        public event Import_AssetList_MasterCompletedEventHandler Import_AssetList_MasterCompleted;
         
         /// <remarks/>
         public event AddChecklistMaster_CRUDCompletedEventHandler AddChecklistMaster_CRUDCompleted;
@@ -927,9 +935,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event ASSET_Insert_AssetTypeCompletedEventHandler ASSET_Insert_AssetTypeCompleted;
-        
-        /// <remarks/>
-        public event ASSET_Insert_AssetCategoryCompletedEventHandler ASSET_Insert_AssetCategoryCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -1182,6 +1187,41 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_MIS_Report_ExcelCompletedEventHandler Fetch_MIS_Report_ExcelCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
+            object[] results = this.Invoke("ASSET_Insert_AssetCategory", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetTypeID,
+                        AssetCategory});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
+            this.ASSET_Insert_AssetCategoryAsync(LoggedInUserID, companyID, AssetTypeID, AssetCategory, null);
+        }
+        
+        /// <remarks/>
+        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory, object userState) {
+            if ((this.ASSET_Insert_AssetCategoryOperationCompleted == null)) {
+                this.ASSET_Insert_AssetCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetCategoryOperationCompleted);
+            }
+            this.InvokeAsync("ASSET_Insert_AssetCategory", new object[] {
+                        LoggedInUserID,
+                        companyID,
+                        AssetTypeID,
+                        AssetCategory}, this.ASSET_Insert_AssetCategoryOperationCompleted, userState);
+        }
+        
+        private void OnASSET_Insert_AssetCategoryOperationCompleted(object arg) {
+            if ((this.ASSET_Insert_AssetCategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ASSET_Insert_AssetCategoryCompleted(this, new ASSET_Insert_AssetCategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_INSERT_GRNL_MASTER", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3105,6 +3145,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.ImportRetailerCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ImportRetailerCompleted(this, new ImportRetailerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_AssetList_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_AssetList_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_AssetList_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_AssetList_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_AssetList_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_AssetList_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_AssetList_MasterOperationCompleted == null)) {
+                this.Import_AssetList_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_AssetList_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_AssetList_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_AssetList_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_AssetList_MasterOperationCompleted(object arg) {
+            if ((this.Import_AssetList_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_AssetList_MasterCompleted(this, new Import_AssetList_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6243,41 +6314,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.ASSET_Insert_AssetTypeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ASSET_Insert_AssetTypeCompleted(this, new ASSET_Insert_AssetTypeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ASSET_Insert_AssetCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet ASSET_Insert_AssetCategory(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
-            object[] results = this.Invoke("ASSET_Insert_AssetCategory", new object[] {
-                        LoggedInUserID,
-                        companyID,
-                        AssetTypeID,
-                        AssetCategory});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory) {
-            this.ASSET_Insert_AssetCategoryAsync(LoggedInUserID, companyID, AssetTypeID, AssetCategory, null);
-        }
-        
-        /// <remarks/>
-        public void ASSET_Insert_AssetCategoryAsync(string LoggedInUserID, int companyID, int AssetTypeID, string AssetCategory, object userState) {
-            if ((this.ASSET_Insert_AssetCategoryOperationCompleted == null)) {
-                this.ASSET_Insert_AssetCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnASSET_Insert_AssetCategoryOperationCompleted);
-            }
-            this.InvokeAsync("ASSET_Insert_AssetCategory", new object[] {
-                        LoggedInUserID,
-                        companyID,
-                        AssetTypeID,
-                        AssetCategory}, this.ASSET_Insert_AssetCategoryOperationCompleted, userState);
-        }
-        
-        private void OnASSET_Insert_AssetCategoryOperationCompleted(object arg) {
-            if ((this.ASSET_Insert_AssetCategoryCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ASSET_Insert_AssetCategoryCompleted(this, new ASSET_Insert_AssetCategoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -9487,6 +9523,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ASSET_Insert_AssetCategoryCompletedEventHandler(object sender, ASSET_Insert_AssetCategoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ASSET_Insert_AssetCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ASSET_Insert_AssetCategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void ASSET_INSERT_GRNL_MASTERCompletedEventHandler(object sender, ASSET_INSERT_GRNL_MASTERCompletedEventArgs e);
     
     /// <remarks/>
@@ -10902,6 +10964,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal ImportRetailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Import_AssetList_MasterCompletedEventHandler(object sender, Import_AssetList_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_AssetList_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_AssetList_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13060,32 +13148,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal ASSET_Insert_AssetTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void ASSET_Insert_AssetCategoryCompletedEventHandler(object sender, ASSET_Insert_AssetCategoryCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ASSET_Insert_AssetCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ASSET_Insert_AssetCategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

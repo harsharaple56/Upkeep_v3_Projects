@@ -3,6 +3,30 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ASSET_Insert_AssetCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssetTypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetCategory" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetCategoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ASSET_INSERT_GRNL_MASTER">
         <s:complexType>
           <s:sequence>
@@ -1313,6 +1337,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ImportRetailerResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_AssetList_Master">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_AssetList_MasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_AssetList_MasterResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3315,30 +3361,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ASSET_Insert_AssetCategory">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="AssetTypeID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetCategory" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ASSET_Insert_AssetCategoryResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetCategoryResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5395,6 +5417,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
+  </wsdl:message>
   <wsdl:message name="ASSET_INSERT_GRNL_MASTERSoapIn">
     <wsdl:part name="parameters" element="tns:ASSET_INSERT_GRNL_MASTER" />
   </wsdl:message>
@@ -5724,6 +5752,12 @@
   </wsdl:message>
   <wsdl:message name="ImportRetailerSoapOut">
     <wsdl:part name="parameters" element="tns:ImportRetailerResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_AssetList_MasterSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_AssetList_Master" />
+  </wsdl:message>
+  <wsdl:message name="Import_AssetList_MasterSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_AssetList_MasterResponse" />
   </wsdl:message>
   <wsdl:message name="AddChecklistMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:AddChecklistMaster_CRUD" />
@@ -6222,12 +6256,6 @@
   </wsdl:message>
   <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
     <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
-  </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetCategorySoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategoryResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -6734,6 +6762,10 @@
     <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_ExcelResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
       <wsdl:input message="tns:ASSET_INSERT_GRNL_MASTERSoapIn" />
       <wsdl:output message="tns:ASSET_INSERT_GRNL_MASTERSoapOut" />
@@ -6953,6 +6985,10 @@
     <wsdl:operation name="ImportRetailer">
       <wsdl:input message="tns:ImportRetailerSoapIn" />
       <wsdl:output message="tns:ImportRetailerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_AssetList_Master">
+      <wsdl:input message="tns:Import_AssetList_MasterSoapIn" />
+      <wsdl:output message="tns:Import_AssetList_MasterSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddChecklistMaster_CRUD">
       <wsdl:input message="tns:AddChecklistMaster_CRUDSoapIn" />
@@ -7285,10 +7321,6 @@
     <wsdl:operation name="ASSET_Insert_AssetType">
       <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
       <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
-      <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -7630,6 +7662,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
       <soap:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
       <wsdl:input>
@@ -8118,6 +8159,15 @@
     </wsdl:operation>
     <wsdl:operation name="ImportRetailer">
       <soap:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_AssetList_Master">
+      <soap:operation soapAction="http://tempuri.org/Import_AssetList_Master" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8865,15 +8915,6 @@
     </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetType">
       <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9640,6 +9681,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_Insert_AssetCategory">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_INSERT_GRNL_MASTER">
       <soap12:operation soapAction="http://tempuri.org/ASSET_INSERT_GRNL_MASTER" style="document" />
       <wsdl:input>
@@ -10128,6 +10178,15 @@
     </wsdl:operation>
     <wsdl:operation name="ImportRetailer">
       <soap12:operation soapAction="http://tempuri.org/ImportRetailer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_AssetList_Master">
+      <soap12:operation soapAction="http://tempuri.org/Import_AssetList_Master" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10875,15 +10934,6 @@
     </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetType">
       <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetCategory">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

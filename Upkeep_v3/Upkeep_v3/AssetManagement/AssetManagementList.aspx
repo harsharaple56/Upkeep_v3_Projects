@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="AssetManagementList.aspx.cs" Inherits="Upkeep_v3.AssetManagement.AssetManagementList" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
@@ -119,14 +121,80 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                        <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementRequest.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                            <span>
-                                <i class="la la-plus"></i>
-                                <span>Add New Asset</span>
-                            </span>
-                        </a>
-                        <div class="m-separator m-separator--dashed d-xl-none"></div>
+
+
+                    <div class="m-portlet__head-tools">
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+
+                                <li class="m-portlet__nav-item">
+                                    <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementRequest.aspx") %>" style="margin-top: 5%;"
+                                        class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                        <span>
+                                            <i class="la la-plus"></i>
+                                            <span>Add New Asset</span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+
+                                    <a href="#" class="m-dropdown__toggle dropdown-toggle btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                        <%--<span class="fa fa-database"></span>--%>
+                                        Export Data
+                                    </a>
+                                    <div class="m-dropdown__wrapper">
+                                        <div class="m-dropdown__inner">
+                                            <div class="m-dropdown__body">
+                                                <div class="m-dropdown__content">
+                                                    <ul class="m-nav">
+                                                        <li class="m-nav__section m-nav__section--first">
+                                                            <span class="m-nav__section-text">Export Data Format</span>
+                                                        </li>
+                                                        <hr />
+                                                        <li class="m-nav__item">
+                                                            <a class="m-nav__link" id="export_excel" onserverclick="btnExportExcel_Click" runat="server">
+                                                                <i class="m-nav__link-icon la la-file-excel-o"></i>
+                                                                <span class="m-nav__link-text">Excel</span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li class="m-nav__item">
+                                                            <a onserverclick="btnExportPDF_Click" runat="server" class="m-nav__link" id="export_pdf">
+                                                                <i class="m-nav__link-icon la la-file-pdf-o"></i>
+                                                                <span class="m-nav__link-text">PDF</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <ul class="m-portlet__nav">
+
+                                <li class="m-portlet__nav-item">
+                                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" runat="server" id="btnImportExcelPopup" onserverclick="btnImport_Click">
+                                        <span>
+                                            <i class="fa fa-file-import"></i>
+                                            <span>Import Data</span>
+                                        </span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                            <cc1:ModalPopupExtender ID="mpeUserMst" runat="server" PopupControlID="pnlImportExport" TargetControlID="btnImportExcelPopup"
+                                CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                            </cc1:ModalPopupExtender>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -222,6 +290,57 @@
 
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
+        <asp:Panel ID="pnlImportExport" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 100%;">
+            <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 700px;">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group m-form__group row">
+                                <label for="message-text" class="col-xl-2 col-lg-2 form-control-label">Import :</label>
+                                <div class="col-xl-9 col-lg-9">
+                                    <asp:FileUpload ID="FU_AssetMst" runat="server" CssClass="custom-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                    <label id="lbl_userpic" class="custom-file-label" for="customFile" style="padding-right: 418px;">
+                                        Choose file
+                                    </label>
+                                    <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_AssetMst" ErrorMessage="Please upload a file" ForeColor="Red"
+                                        Display="Dynamic" ValidationGroup="ValidationImport"></asp:RequiredFieldValidator>
+                                    <span id="ImportError_Msg" style="color: red;"></span>
+                                    <asp:Label ID="lblImportErrorMsg" Text="" runat="server" ForeColor="Red"></asp:Label>
+
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-xl-12 col-lg-11">
+                                    <div style="overflow-y: auto; height: 250px; display: none;" id="dvErrorGrid" runat="server">
+                                        <asp:GridView ID="gvImportError" runat="server" AutoGenerateColumns="true" HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black"
+                                            CssClass="table table-striped- table-bordered table-hover table-checkable">
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <asp:LinkButton Style="margin-right: 250px;" ID="LinkButton1" runat="server" OnClick="lnkSampleFile_Click" ClientIDMode="Static">
+                                     <img src="../assets/app/media/img/icons/download_sample_26.png" />
+                                    <span>Download Sample Import File</span>
+                            </asp:LinkButton>
+
+                            <asp:Button ID="btnImportExcel" Text="Import" runat="server" OnClick="btnImport_Click" ValidationGroup="ValidationImport" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
+                            <asp:Button ID="btnCloseImportPopUp" Text="Close" OnClick="btnCloseImportPopUp_Click" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </asp:Panel>
     </div>
 
 
