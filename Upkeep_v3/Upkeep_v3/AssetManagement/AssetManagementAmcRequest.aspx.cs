@@ -82,7 +82,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID,0,string.Empty,string.Empty,string.Empty);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
                 //SPR_ASSET_FETCH_DROPDOWN_LIST
                 if (dsTitle.Tables.Count > 0)

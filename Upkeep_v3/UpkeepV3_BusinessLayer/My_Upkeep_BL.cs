@@ -3592,7 +3592,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region Asset Management 
 
-        public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, string StrConn)
+        public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID,int TypeID,string Type_Desc, string CategoryTypeID, string Action, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3601,6 +3601,10 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("SPR_ASSET_FETCH_DROPDOWN_LIST", con);
                 cmd.Parameters.AddWithValue("@UserID", UserID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@TypeID", TypeID);
+                cmd.Parameters.AddWithValue("@Type_Desc", Type_Desc);
+                cmd.Parameters.AddWithValue("@CategoryTypeID", CategoryTypeID);
+                cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

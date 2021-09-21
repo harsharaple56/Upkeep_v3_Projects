@@ -6224,26 +6224,34 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Asset_DropDown", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Asset_DropDown(int UserID, int CompanyID) {
+        public System.Data.DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, int TypeID, string Type_Desc, string CategoryTypeID, string Action) {
             object[] results = this.Invoke("Fetch_Asset_DropDown", new object[] {
                         UserID,
-                        CompanyID});
+                        CompanyID,
+                        TypeID,
+                        Type_Desc,
+                        CategoryTypeID,
+                        Action});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID) {
-            this.Fetch_Asset_DropDownAsync(UserID, CompanyID, null);
+        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID, int TypeID, string Type_Desc, string CategoryTypeID, string Action) {
+            this.Fetch_Asset_DropDownAsync(UserID, CompanyID, TypeID, Type_Desc, CategoryTypeID, Action, null);
         }
         
         /// <remarks/>
-        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID, object userState) {
+        public void Fetch_Asset_DropDownAsync(int UserID, int CompanyID, int TypeID, string Type_Desc, string CategoryTypeID, string Action, object userState) {
             if ((this.Fetch_Asset_DropDownOperationCompleted == null)) {
                 this.Fetch_Asset_DropDownOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Asset_DropDownOperationCompleted);
             }
             this.InvokeAsync("Fetch_Asset_DropDown", new object[] {
                         UserID,
-                        CompanyID}, this.Fetch_Asset_DropDownOperationCompleted, userState);
+                        CompanyID,
+                        TypeID,
+                        Type_Desc,
+                        CategoryTypeID,
+                        Action}, this.Fetch_Asset_DropDownOperationCompleted, userState);
         }
         
         private void OnFetch_Asset_DropDownOperationCompleted(object arg) {

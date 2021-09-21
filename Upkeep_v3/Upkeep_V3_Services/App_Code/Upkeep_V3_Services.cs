@@ -2871,12 +2871,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #region Asset Management
     [WebMethod]
-    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID)
+    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, int TypeID, string Type_Desc,string CategoryTypeID, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID, CompanyID);
+            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID, CompanyID,TypeID,Type_Desc, CategoryTypeID, Action);
         }
         catch (Exception ex)
         {
