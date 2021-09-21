@@ -10,16 +10,7 @@
 namespace Upkeep_v3.VMS {
     
     
-    public partial class Visitor_ID_v2 {
-        
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+    public partial class Visitor_ID_V3 {
         
         /// <summary>
         /// div_Visitor_ID control.
@@ -29,15 +20,6 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Visitor_ID;
-        
-        /// <summary>
-        /// rv_Visitor_ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_Visitor_ID;
         
         /// <summary>
         /// Img_CompanyLogo control.
@@ -139,12 +121,12 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_No_Visitor_ID;
         
         /// <summary>
-        /// div1 control.
+        /// rv_Visitor_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_Visitor_ID;
     }
 }

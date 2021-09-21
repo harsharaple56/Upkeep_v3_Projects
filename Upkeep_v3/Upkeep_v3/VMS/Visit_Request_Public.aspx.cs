@@ -470,8 +470,19 @@ namespace Upkeep_v3.VMS
 
                 if (dsConfig.Tables.Count > 4)
                 {
-                    rptTermsCondition1.DataSource = dsConfig.Tables[4];
-                    rptTermsCondition1.DataBind();
+                    if (dsConfig.Tables[4].Rows.Count > 0)
+                    {
+                        rptTermsCondition1.DataSource = dsConfig.Tables[4];
+                        rptTermsCondition1.DataBind();
+                    }
+                    else
+                    {
+                        dvTermsCondHeader.Attributes.Add("style", "display:none;");
+                    }
+                }
+                else
+                {
+                    dvTermsCondHeader.Attributes.Add("style", "display:none;");
                 }
 
                 fromTime = Convert.ToString(dsConfig.Tables[0].Rows[0]["FromTime"]);
@@ -480,6 +491,18 @@ namespace Upkeep_v3.VMS
                 visitingTime = "Visit is allowed only between " + fromTime + " to " + toTime + " ";
                 lblVisitingTime.Text = visitingTime;
 
+                int Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+                Session["Vaccine_Check_Enable"] = Convert.ToString(Vaccine_Check_Enable);
+                if (Vaccine_Check_Enable > 0)
+                {
+                    //dvVaccinationCheck.Attributes.Add("style", "display:none;");
+                }
+                else
+                {
+                    dvVaccinationCheck.Attributes.Add("style", "display:none;");
+                    RequiredFieldValidator3.Enabled = false;
+                    RequiredFieldValidator4.Enabled = false;
+                }
 
             }
             catch (Exception ex)
@@ -1109,7 +1132,7 @@ namespace Upkeep_v3.VMS
                             }
                             #endregion
 
-                         
+
 
                             #region User Photo ID Web Cam
                             if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
@@ -1522,7 +1545,7 @@ namespace Upkeep_v3.VMS
 
                         Save:
                             DataSet dsVMSQuestionData = new DataSet();
-                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID,string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
+                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
 
                             if (dsVMSQuestionData.Tables.Count > 0)
                             {
@@ -1598,26 +1621,27 @@ namespace Upkeep_v3.VMS
             }
         }
 
+
         #endregion
 
         protected void ClearControlls()
-        {
-            txtDoseDate.Text = "";
-            txtVMSDate.Text = "";
-            txtPhone.Text = "";
-            txtEmail.Text = "";
-            txtName.Text = "";
-        }
+    {
+        txtDoseDate.Text = "";
+        txtVMSDate.Text = "";
+        txtPhone.Text = "";
+        txtEmail.Text = "";
+        txtName.Text = "";
+    }
 
-        protected void txtPhone_TextChanged(object sender, EventArgs e)
+    protected void txtPhone_TextChanged(object sender, EventArgs e)
+    {
+        if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, "[^0-9]"))
-            {
-                lblErrorMsg.Text = "Please enter only number";
-                // MessageBox.Show("Please enter only numbers.");
-                txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
-            }
+            lblErrorMsg.Text = "Please enter only number";
+            // MessageBox.Show("Please enter only numbers.");
+            txtPhone.Text = txtPhone.Text.Remove(txtPhone.Text.Length - 1);
         }
+    }
 
     }
 }

@@ -303,6 +303,7 @@ namespace Upkeep_v3.VMS
             string From_Date = string.Empty;
             string To_Date = string.Empty;
             int EventID = Convert.ToInt32(ddlFormName.SelectedValue);
+
             try
             {
                 if (start_date.Value != "")
@@ -376,6 +377,7 @@ namespace Upkeep_v3.VMS
         {
             string From_Date = string.Empty;
             string To_Date = string.Empty;
+            int EventID = Convert.ToInt32(ddlFormName.SelectedValue);
 
             try
             {
@@ -389,10 +391,10 @@ namespace Upkeep_v3.VMS
                 {
                     To_Date = Convert.ToString(end_date.Value);
                 }
-                string EventID = Convert.ToString(ddlFormName.SelectedValue);
+                //string EventID = Convert.ToString(ddlFormName.SelectedValue);
 
                 DataSet dsMisReport = new DataSet();
-                dsMisReport = ObjUpkeep.Fetch_VMSRequestList_Report_Excel(EventID, Convert.ToInt32(Session["CompanyID"]), From_Date, To_Date);
+                dsMisReport = ObjUpkeep.Fetch_VMSRequestList_Report(EventID, Convert.ToInt32(Session["CompanyID"]), LoggedInUserID, From_Date, To_Date);
 
                 System.Data.DataTable dtMISReport = new System.Data.DataTable();
 

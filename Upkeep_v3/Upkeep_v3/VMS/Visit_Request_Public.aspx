@@ -949,7 +949,7 @@ border: 3px solid #ccc;*/
 
                     <br />
 
-
+                    <div id="dvVaccinationCheck" runat="server">
                     <div class="m-form__heading" style="text-align: center;">
                         <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
                     </div>
@@ -1011,12 +1011,15 @@ border: 3px solid #ccc;*/
 
 
                              <div class="alert m-alert m-alert--default" role="alert">
-                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN.
+                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN. <b>Only .pdf format allowed.</b>
 
                              </div>
                          </div>
 
                      </div>
+                   
+                    </div>
+                    
                     &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
@@ -1067,7 +1070,7 @@ border: 3px solid #ccc;*/
 
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>.
+                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>. <b>Only .png , .jpeg , .jpg format allowed.</b>
                             </div>
 
                         </div>
@@ -1119,7 +1122,7 @@ border: 3px solid #ccc;*/
                             </div>
 
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side)
+                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side). <b>Only .png , .jpg , .jpeg format allowed.</b>
                             </div>
 
 
@@ -1128,27 +1131,29 @@ border: 3px solid #ccc;*/
 
                     </div>
 
-                    <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Terms and Conditions</h3>
-                    </div>
-                    <br />
-                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item ">
+                    <div id="dvTermsCondHeader" runat="server">
+                        <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
+                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Terms and Conditions</h3>
+                        </div>
+                        <br />
+                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                            <div class="m-stack__item ">
 
-                            <asp:Repeater ID="rptTermsCondition1" runat="server" ClientIDMode="Static">
-                                <ItemTemplate>
+                                <asp:Repeater ID="rptTermsCondition1" runat="server" ClientIDMode="Static">
+                                    <ItemTemplate>
 
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-xl-12 col-lg-4" style="padding-top: 10px; padding-bottom: 10px;">
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-xl-12 col-lg-4" style="padding-top: 10px; padding-bottom: 10px;">
 
-                                            <asp:CheckBox runat="server" ID="chkTermsCondition" />
-                                            <asp:Label ID="lblTermID" runat="server" Text='<%#Eval("Terms_ID") %>' Style="display: none;"></asp:Label>
-                                            <asp:Label ID="lblTermDesc" runat="server" Text='<%#Eval("Terms_Desc") %>' ClientIDMode="Static" CssClass="form-control-label col-form-label font-weight-bold"></asp:Label>
+                                                <asp:CheckBox runat="server" ID="chkTermsCondition" />
+                                                <asp:Label ID="lblTermID" runat="server" Text='<%#Eval("Terms_ID") %>' Style="display: none;"></asp:Label>
+                                                <asp:Label ID="lblTermDesc" runat="server" Text='<%#Eval("Terms_Desc") %>' ClientIDMode="Static" CssClass="form-control-label col-form-label font-weight-bold"></asp:Label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                                    </ItemTemplate>
+                                </asp:Repeater>
 
+                            </div>
                         </div>
                     </div>
 

@@ -12,7 +12,7 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-            <div class="row">
+            <div class="">
 
                 <div id="div_Visitor_ID" runat="server" class="col-lg-12">
                     <!--begin::Portlet-->
@@ -46,22 +46,17 @@
 
                             <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo m--align-center">
                                 <div class="m-stack__item m-stack__item--center m-stack__item--top">
-                                    <asp:Image ID="Img_CompanyLogo" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
+                                    <asp:Image ID="Img_CompanyLogo" runat="server" Style="width: auto; max-height: 100px; max-width: 100%;" />
 
                                 </div>
                                 <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                                    <div class="m-stack__item m-stack__item--right">Visitor photo</div>
+                                    <div class="m-stack__item m-stack__item--right">
+                                        <asp:Image ID="Img_Visitor_Photo" runat="server" Style="width: auto; max-height: 100px; max-width: 100%;" />
+                                    </div>
                                     <div class="m-stack__item m-stack__item--left">
                                         <asp:Image ID="Img_QR_Code" runat="server" Style="width: auto; max-height: 100px; max-width: 100%;" />
 
                                     </div>
-                                </div>
-
-                                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-
-                                    <asp:Image ID="Img_Visitor_Photo" runat="server" Style="width: auto; max-height: 70px; max-width: 100%;" />
-
-
                                 </div>
                                 <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                                     <div class="font-weight-bold">
