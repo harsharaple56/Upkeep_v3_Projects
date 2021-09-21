@@ -1257,7 +1257,7 @@
                                     <br />
                                     <div id="divModalAssetType" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Asset Type :</label>
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>New Asset Type :</label>
                                             <div class="col-xl-8 col-lg-8">
                                                 <asp:TextBox ID="txtModalAssetType" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="txtModalAssetType" Visible="true"
@@ -1265,9 +1265,9 @@
                                                     ErrorMessage="Please enter Asset Type"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
-
-                                        <div class="form-group row" style="padding-left: 15%; margin-bottom: 0;">
-                                            <div class="col-xl-10 col-lg-10">
+                                         <br />
+                                        <div class="form-group row">
+                                            <div class="col-xl-12 col-lg-12">
                                                 <div class="form-group m-form__group row">
                                                     <table class="table table-striped-table-bordered table-hover">
                                                         <tr>
@@ -1299,7 +1299,7 @@
                                     <br />
                                     <div id="divModalAssetCategory" style="display: block;">
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span> Asset Type :</label>
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>New Asset Type :</label>
                                             <div class="col-xl-8 col-lg-8">
                                                 <asp:DropDownList ID="ddlModalAssetType" class="form-control m-input" runat="server" ClientIDMode="Static"></asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ControlToValidate="ddlModalAssetType" Visible="true"
@@ -1309,7 +1309,7 @@
                                         </div>
                                         <br />
                                         <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
-                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>Asset Category :</label>
+                                            <label class="col-xl-4 col-lg-4 form-control-label"><span style="color: red;">*</span>New Asset Category :</label>
                                             <div class="col-xl-8 col-lg-8">
                                                 <asp:TextBox ID="txtModalAssetCategory" runat="server" class="form-control" ClientIDMode="Static"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ControlToValidate="txtModalAssetCategory" Visible="true"
@@ -1318,8 +1318,8 @@
                                             </div>
                                         </div>
                                         <br />
-                                        <div class="form-group row" style="padding-left: 15%; margin-bottom: 0;">
-                                            <div class="col-xl-10 col-lg-10">
+                                         <div class="form-group row">
+                                            <div class="col-xl-12 col-lg-12">
                                                 <div class="form-group m-form__group row">
                                                     <table class="table table-striped-table-bordered table-hover">
                                                         <tr>
