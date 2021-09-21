@@ -4508,6 +4508,26 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Import_AssetList_Master(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Import_Asset_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.CommandTimeout = 300;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         /*Mohammed*/
 

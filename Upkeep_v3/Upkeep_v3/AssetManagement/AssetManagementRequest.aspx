@@ -568,32 +568,38 @@
                                     </div>
                                 </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementList.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                        <%--<%= Page.ResolveClientUrl( Session["PreviousURL"].ToString()) %>--%>
-                                        <span>
-                                            <i class="la la-arrow-left"></i>
-                                            <span>Back</span>
-                                        </span>
-                                    </a>
-                                    <div class="btn-group">
 
-                                        <asp:Button ID="Button1" TYPE="button" Text="Save" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
-                                            ClientIDMode="Static" />
-                                        <%--OnClientClick="return FunSetXML();" --%>
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item">
+                                            <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementList.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                                <%--<%= Page.ResolveClientUrl( Session["PreviousURL"].ToString()) %>--%>
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>
+                                                    <span>Back</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="m-portlet__nav-item">
+                                            <div class="btn-group">
+                                                <asp:Button ID="Button1" TYPE="button" Text="Save" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
+                                                    ClientIDMode="Static" />
 
-                                        <asp:Button ID="btnSave" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                                            CausesValidation="true" ValidationGroup="validateAsset" Text="Save" OnClick="btnSave_Click" Style="display: none" />
-                                        <asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                                            CausesValidation="true" ValidationGroup="validateAssetAMC" Text="SaveAMC" Style="display: none" />
+                                                <asp:Button ID="btnSave" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                                                    CausesValidation="true" ValidationGroup="validateAsset" Text="Save" OnClick="btnSave_Click" Style="display: none" />
+                                                <asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                                                    CausesValidation="true" ValidationGroup="validateAssetAMC" Text="SaveAMC" Style="display: none" />
 
-                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
-                                    </div>
+                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                                <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
+                                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </div>
+                                        </li>
+                                       
+
+                                    </ul>
                                 </div>
-
                             </div>
                         </div>
 
@@ -643,7 +649,7 @@
 
                                             <br />
                                             <div id="Div1" runat="server" style="display: block;">
-                                                <div class="form-group row" >
+                                                <div class="form-group row">
                                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Category :</label>
                                                     <div class="col-xl3 col-lg-3">
                                                         <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
@@ -669,7 +675,7 @@
                                     </asp:UpdatePanel>
                             <br />
                             <div id="Div2" runat="server" style="display: block;">
-                                <div class="form-group row" >
+                                <div class="form-group row">
                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name :</label>
                                     <div class="col-xl-3 col-lg-3">
                                         <asp:TextBox ID="txtAssetName" runat="server" class="form-control"></asp:TextBox>
@@ -704,15 +710,15 @@
                             </div>
 
 
-                             <br />
+                            <br />
 
                             <asp:Repeater ID="rptCustomFields" runat="server">
                                 <ItemTemplate>
                                     <div class="form-group m-form__group row">
                                         <asp:HiddenField ID="hdnFieldID" ClientIDMode="Static" runat="server" Value='<%#Eval("Asset_Field_ID")%>' />
-                                        <asp:Label ID="lblCustomFieldDesc" runat="server" class="col-xl-2 col-form-label" Text='<%#Eval("Asset_AddOn_Field_Desc")%>'  Style="font-weight: bolder;"></asp:Label>
+                                        <asp:Label ID="lblCustomFieldDesc" runat="server" class="col-xl-2 col-form-label" Text='<%#Eval("Asset_AddOn_Field_Desc")%>' Style="font-weight: bolder;"></asp:Label>
                                         <div class="col-xl-10">
-                                            <asp:TextBox ID="txtCustomFieldsValue" runat="server"  Placeholder='<%#Eval("Asset_Field_Placeholder")%>' class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtCustomFieldsValue" runat="server" Placeholder='<%#Eval("Asset_Field_Placeholder")%>' class="form-control"></asp:TextBox>
                                         </div>
 
                                     </div>
@@ -743,11 +749,9 @@
                                                     ClientIDMode="Static" autocomplete="off">
                                                 </asp:DropDownList>
 
-<%--                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlAssetVendor" Visible="true"
+                                                <%--                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlAssetVendor" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
                                                     ErrorMessage="Please select Asset Vendor"></asp:RequiredFieldValidator>--%>
-
-
                                             </div>
 
                                             <%--<label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;"></span></label>--%>
@@ -779,7 +783,7 @@
                                                 <%--OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" --%>
                                                 <asp:DropDownList ID="ddlCurrencyType" class="form-control m-input" runat="server">
                                                 </asp:DropDownList>
-                                            <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlCurrencyType" Visible="true"
+                                                <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlCurrencyType" Visible="true"
                                                     Display="Dynamic" ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0"
                                                     ErrorMessage="Please select Currency Type"></asp:RequiredFieldValidator>--%>
                                             </div>
@@ -799,9 +803,10 @@
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                                     </div>
-                                                <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtAssetPurchaseDate" Visible="true" Display="Dynamic"
+                                                    <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtAssetPurchaseDate" Visible="true" Display="Dynamic"
                                                         ValidationGroup="validateAsset" ForeColor="Red" InitialValue="0" ErrorMessage="Please Purchase Date"></asp:RequiredFieldValidator>
-                                                --%></div>
+                                                    --%>
+                                                </div>
                                                 <span id="error_startDate" class="text-danger small"></span>
                                             </div>
                                         </div>

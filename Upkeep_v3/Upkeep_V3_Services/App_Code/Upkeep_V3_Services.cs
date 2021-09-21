@@ -1550,6 +1550,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Import_AssetList_Master(int CompanyID,string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            My_Upkeep obj = new My_Upkeep();
+            ds = obj.Import_AssetList_Master(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     #endregion
     //[-][Feedback System Methods]
 
