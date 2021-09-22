@@ -36,11 +36,13 @@ namespace Upkeep_v3.Inventory
             if (!string.IsNullOrEmpty(hdnTxtCategory.Text))
             {
                 lblCategoryName.Text = hdnTxtCategory.Text;
+                lblCategoryName1.Text = hdnTxtCategory.Text;
                 Session["CategoryName"] = hdnTxtCategory.Text;
             }
             if (!string.IsNullOrEmpty(Convert.ToString(Session["CategoryName"])))
             {
                 lblCategoryName.Text = Convert.ToString(Session["CategoryName"]);
+                lblCategoryName1.Text = Convert.ToString(Session["CategoryName"]);
             }
 
             string ncn = Convert.ToString(hdnCategory.Value);
@@ -349,7 +351,7 @@ namespace Upkeep_v3.Inventory
 
             //string Category = Convert.ToString(hdnCategory.Value);
 
-            Session["Category"] = Category;
+            //Session["Category"] = Category;
 
             try
             {

@@ -343,7 +343,7 @@ public class My_Upkeep
 
 	}
 
-	public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action)
+	public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, string Category_ID, int Company_ID, string LoggedInUserID, string Action)
 	{
 		try
 		{

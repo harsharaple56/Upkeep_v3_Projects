@@ -489,7 +489,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, string Category_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             DataSet dsItem = new DataSet();
             try
@@ -500,7 +500,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategory_ID);
                 cmd.Parameters.AddWithValue("@SubCategory_Desc", SubCategory_Desc);
-                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@Category", Category_ID);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
