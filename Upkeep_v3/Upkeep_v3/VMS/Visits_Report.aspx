@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Visits_Report.aspx.cs" Inherits="Upkeep_v3.VMS.Visits_Report" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <!-- <div class="m-grid m-grid--hor m-grid--root m-page">
+    <!-- <div class="m-grid m-grid--hor m-grid--root m-page">
 			<div class="m-grid__item m-grid__item--fluid m-grid  m-error-6" >
 				<div class="m-error_container">
 					<div >
@@ -25,16 +26,41 @@
 		</div>-->
 
 
-      <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript" ></script>
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DatatableHtmlTableDemo.init();
+        });
+
+        var DatatableHtmlTableDemo = {
+            init: function () {
+                var e; e = $(".m-datatable").mDatatable({
+                    data: { saveState: { cookie: !1 } },
+                    search: { input: $("#generalSearch") },
+
+                    responsive: true,
+                    pagingType: 'full_numbers',
+                    scrollX: true,
+                    'fnDrawCallback': function () {
+                        init_plugins();
+                    }
+                })
+            }
+        };
+    </script>
+
+
+
     <script>
         $(document).ready(function () {
-            $('#m_table_1').DataTable({
-                pagingType: 'full_numbers',
-                scrollX: true,
-                //'fnDrawCallback': function () {
-                //    init_plugins();
-                //}
-            });
+            //$('#gvVisitReport').DataTable({
+            //    pagingType: 'full_numbers',
+            //    scrollX: true,
+            //    //'fnDrawCallback': function () {
+            //    //    init_plugins();
+            //    //}
+            //});
 
             $('.m_selectpicker').selectpicker();
             //alert('1111');
@@ -61,7 +87,7 @@
 
                 $('#start_date').val(start.format('DD/MM/YYYY'));
                 $('#end_date').val(end.format('DD/MM/YYYY'));
-                $('#date_range_title').val(title+range);
+                $('#date_range_title').val(title + range);
             }
 
             picker.daterangepicker({
@@ -80,12 +106,12 @@
             }, cb);
 
             var IsPostBack2 = $('#hdn_IsPostBack').val();
-            
+
             if (IsPostBack2 == "no") {
                 cb(start, end, '');
             }
             else {
-                
+
                 picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
             }
 
@@ -93,51 +119,51 @@
     </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-                <div class="m-content">
+        <div class="m-content">
 
-                     
-                        <div class="m-portlet m-portlet--mobile">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Vist Report		
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-caption float-right">
-                                    <div class="m-form__group m--margin-right-15">                                       
 
-                                        <asp:DropDownList class="btn btn-accent dropdown-toggle" ID="ddlFormName" ClientIDMode="Static" runat="server" title="Select Form" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="200px">
-                                        </asp:DropDownList>
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">Vist Report		
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-caption float-right">
+                        <div class="m-form__group m--margin-right-15">
 
-                                    </div>
-                                    <span class="m-subheader__daterange btn btn-sm btn-accent"  id="daterangepicker"  style="padding: 0.15rem 0.8rem;">
-                                        <span class="m-subheader__daterange-label">
-                                            <span class="m-subheader__daterange-title"></span>
-                                            <span class="m-subheader__daterange-date"></span>
-                                            <%--<input type="hidden" id="start_date" runat="server" >
+                            <asp:DropDownList class="btn btn-accent dropdown-toggle" ID="ddlFormName" ClientIDMode="Static" runat="server" title="Select Form" data-live-search="true" data-size="3" data-style="btn btn-accent m-btn--pill" data-width="200px">
+                            </asp:DropDownList>
+
+                        </div>
+                        <span class="m-subheader__daterange btn btn-sm btn-accent" id="daterangepicker" style="padding: 0.15rem 0.8rem;">
+                            <span class="m-subheader__daterange-label">
+                                <span class="m-subheader__daterange-title"></span>
+                                <span class="m-subheader__daterange-date"></span>
+                                <%--<input type="hidden" id="start_date" runat="server" >
                                             <input type="hidden" id="end_date" runat="server">--%>
-                                            <asp:HiddenField id="start_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField id="end_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField id="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField id="date_range_title" ClientIDMode="Static" runat="server" />
-                                        </span>
-                                        <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light" style="width: 37px; height: 37px;">
-                                            <i class="la la-angle-down"></i>
-                                        </button>
-                                    </span>
-                                    <div class="btn-group" style="margin-left: 15px;">
-                                        <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
-                                    </div>
-                                </div>
+                                <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                            </span>
+                            <button type="button" class="btn btn-accent btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-light" style="width: 37px; height: 37px;">
+                                <i class="la la-angle-down"></i>
+                            </button>
+                        </span>
+                        <div class="btn-group" style="margin-left: 15px;">
+                            <asp:Button ID="btnSearch" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnSearch_Click" Text="Search" />
+                        </div>
+                    </div>
 
-                            </div>
-                           
-                            <div class="m-portlet__body">
-                                
-                                <!--begin: Datatable -->
+                </div>
 
-                              <!--   <table class="m-datatable1" id="html_table1" width="100%">
+                <div class="m-portlet__body">
+
+                    <!--begin: Datatable -->
+
+                    <!--   <table class="m-datatable1" id="html_table1" width="100%">
                                 <thead>
                                     <tr>
                                         <%--<th title="Field #1" data-field="SrNo">Sr. No</th>--%>
@@ -164,22 +190,38 @@
                             </table>
                                 -->
 
+                   <%-- <div class="row m--margin-bottom-20 m--align-center form-group">
+                        <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile input-icon">
+                            
+                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                            <span><i class="flaticon2-search-1 icon-md"></i></span>
+                        </div>
+                    </div>--%>
+
+                    <div class="form-group m-form__group">
+                        <div class="col-lg-4 m-input-icon m-input-icon--left">
+                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                            <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-search"></i></span></span>
+                        </div>
+                    </div>
 
 
+                    <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
 
+                                <div class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline " id="m_table_1" style="overflow-x: auto;">
 
+                                    <asp:GridView ID="gvVisitReport" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable" ClientIDMode="Static"
+                                        runat="server" AutoGenerateColumns="true" OnRowDataBound="gvVisitReport_RowDataBound">
+                                    </asp:GridView>
 
+                                </div>
 
-
-
-
-
-
-
-
-
-
-                                <table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
+                            </div>
+                        </div>
+                    </div>
+                    <%--<table class="table table-striped- table-bordered table-hover table-checkable dataTable" id="m_table_1">
                                     <thead>
                                      
                                       <%=bindHeader()%>
@@ -192,15 +234,15 @@
 
                                        
                                     </tbody>
-                                </table>
-                                
-                                <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
-                            </div>
-                        </div>
-                        <!-- END EXAMPLE TABLE PORTLET-->
+                                </table>--%>
 
-                   
+                    <asp:Button ID="btnExport" runat="server" OnClick="btnExport_Click" Text="Export To Excel" class="btn btn-primary btn-success" />
                 </div>
             </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+
+
+        </div>
+    </div>
 
 </asp:Content>

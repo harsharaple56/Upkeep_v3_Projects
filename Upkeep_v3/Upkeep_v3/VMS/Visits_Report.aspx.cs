@@ -183,9 +183,9 @@ namespace Upkeep_v3.VMS
             return data;
         }
 
-        public string bindMIS_Report()
+        public void bindMIS_Report()
         {
-            string data = "";
+
             string From_Date = string.Empty;
             string To_Date = string.Empty;
             try
@@ -216,61 +216,43 @@ namespace Upkeep_v3.VMS
                 DataSet ds = new DataSet();
 
                 ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
-                int ColumnCount = 0;
-                string Name = string.Empty;
-                string EmailID = string.Empty;
-                string MobileNo = string.Empty;
-                string Meeting_Host = string.Empty;
-                string Answer = string.Empty;
-                // string StoreName = string.Empty;
-                //string StoreNo = string.Empty;
-                string Meeting_Name = string.Empty;
-                string Meeting_Date = string.Empty;
-                int UserID = 0;
-                string FeedbackNo = string.Empty;
-                string MeetingDate = string.Empty;
-                string Config_Title = string.Empty;
-                string RequestDate = string.Empty;
-
-                // DateTime FeedbackDate;
-                int x = 0;
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        if (ds.Tables[0].Columns.Count > 0)
-                        {
-                            int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
 
-                            //string UserType = Convert.ToString(ds.Tables[0].Rows[0]["User_Type"]);
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
 
+                        //string UserType = Convert.ToString(ds.Tables[0].Rows[0]["User_Type"]);
 
+                        gvVisitReport.DataSource = ds.Tables[0];
+                        gvVisitReport.DataBind();
 
-                            for (int i = 0; i < count; i++)
-                            {
-                                UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["Request_ID"]);
-                                Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
-                                EmailID = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
-                                MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
-                                MeetingDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
-                                Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Title"]);
-                                RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
+                        //for (int i = 0; i < count; i++)
+                        //{
+                        //    UserID = Convert.ToInt32(ds.Tables[0].Rows[i]["Request_ID"]);
+                        //    Name = Convert.ToString(ds.Tables[0].Rows[i]["Name"]);
+                        //    EmailID = Convert.ToString(ds.Tables[0].Rows[i]["Email"]);
+                        //    MobileNo = Convert.ToString(ds.Tables[0].Rows[i]["Phone"]);
+                        //    MeetingDate = Convert.ToString(ds.Tables[0].Rows[i]["Meeting_Time"]);
+                        //    Config_Title = Convert.ToString(ds.Tables[0].Rows[i]["Config_Title"]);
+                        //    RequestDate = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
 
-                                data += "<tr><td>" + UserID + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + RequestDate + "</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
+                        //    data += "<tr><td>" + UserID + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + RequestDate + "</td><td>" + Config_Title + "</td><td>" + MeetingDate + "</td>";
 
-                                ColumnCount = (ds.Tables[0].Columns.Count);
+                        //    ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                for (int j = 7; j < ColumnCount; j++)
-                                {
-                                    Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
-                                    data += "<td>" + Answer + "</td>";
-                                }
+                        //    for (int j = 7; j < ColumnCount; j++)
+                        //    {
+                        //        Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
+                        //        data += "<td>" + Answer + "</td>";
+                        //    }
 
-                                data += "</tr>";
-                                x++;
-                            }
-                        }
+                        //    data += "</tr>";
+                        //    x++;
+                        //}
+
                     }
                     else
                     {
@@ -287,7 +269,7 @@ namespace Upkeep_v3.VMS
             {
                 throw ex;
             }
-            return data;
+            //return data;
         }
 
         protected void btnExport_Click(object sender, EventArgs e)
@@ -460,6 +442,16 @@ namespace Upkeep_v3.VMS
             }
 
 
+        }
+
+        protected void gvVisitReport_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //check if the row is the header row
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                //add the thead and tbody section programatically
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
 
 
