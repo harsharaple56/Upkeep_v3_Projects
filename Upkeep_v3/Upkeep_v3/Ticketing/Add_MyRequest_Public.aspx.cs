@@ -234,8 +234,12 @@ namespace Upkeep_v3.Ticketing
                 string UserMobile = txtPhone.Text.Trim();
                 string UserDesc = txtTicketDesc.Text.Trim();
                 int LocationID = Convert.ToInt32(hdnassetLocation.Value);
-                int CategoryID = Convert.ToInt32(hdnCategory.Value);
-                int SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
+                int CategoryID = 0;
+                int SubCategoryID = 0;
+                if (!string.IsNullOrEmpty(hdnCategory.Value))
+                    CategoryID = Convert.ToInt32(hdnCategory.Value);
+                if (!string.IsNullOrEmpty(hdnSubCategory.Value))
+                    SubCategoryID = Convert.ToInt32(hdnSubCategory.Value);
                 string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
                 List<int> Lst_ValidImage = new List<int>();
                 List<int> Lst_ImageSaved = new List<int>();
@@ -455,8 +459,9 @@ namespace Upkeep_v3.Ticketing
                         }
                     }
 
+                    lblTicketCode.Text = TicketCode;
+                    mpeTicketSaveSuccess.Show();
                     ClearControlls();
-                    Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Add_MyRequest_Public.aspx"), false);
                 }
                 #endregion
             }
@@ -491,6 +496,8 @@ namespace Upkeep_v3.Ticketing
 
         protected void ClearControlls()
         {
+            Session["NextTicketCode"] = "";
+            Session["Department"] = "";
             txtName.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtPhone.Text = string.Empty;
@@ -499,6 +506,11 @@ namespace Upkeep_v3.Ticketing
             hdnCategory.Value = string.Empty;
             hdnSubCategory.Value = string.Empty;
             FileUpload_TicketImage.PostedFile.InputStream.Dispose();
+        }
+
+        protected void btnTicketSuccessOk_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Add_MyRequest_Public.aspx"), false);
         }
     }
 }

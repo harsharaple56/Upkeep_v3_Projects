@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Add_MyRequest_Public.aspx.cs" Inherits="Upkeep_v3.Ticketing.Add_MyRequest_Public" %>
+﻿<%@ Page Async="true" Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="Add_MyRequest_Public.aspx.cs" Inherits="Upkeep_v3.Ticketing.Add_MyRequest_Public" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -129,7 +129,7 @@
                 <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
                 <div class="m--align-center" style="padding: 15px;">
                     <%--<asp:Image ID="Img_CompanyLogo" runat="server" Style="width: auto; max-height: 100px; max-width: 100%;" />--%>
-                    <img style="width: 265px; height: 165px;" src="https://compelapps.in/eFacilito/assets/app/media/img/logos/efacilito_250.png">
+                    <img style="width: 265px; height: 165px;" src="https://compelapps.in/eFacilito/assets/app/media/img/logos/efacilito_250.png" />
                 </div>
                 <div class="m--align-center" style="padding: 15px;">
                     <h4 class="m--font-primary font-weight-bold">
@@ -184,7 +184,7 @@
                                 <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input m-input--air" placeholder="Enter User Mobile No."></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please enter Mobile Number"></asp:RequiredFieldValidator>
-                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPhone" ValidationGroup="validateTicket"
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPhone" ValidationGroup="validateTicket"
                                     ErrorMessage="Enter valid phone number in 10 digits." ForeColor="Red" ValidationExpression="^[0-9]{10,10}$">  
                                 </asp:RegularExpressionValidator>
                             </div>
@@ -220,12 +220,12 @@
                                             class="form-control m-input m-input--air" runat="server" clientidmode="Static" />
                                         <datalist id="dlassetLocation" runat="server" clientidmode="Static"></datalist>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtassetLocation" Visible="true" Display="Dynamic"
-                                    ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please select Location"></asp:RequiredFieldValidator>
                                         <span id="LocationError_Msg" style="color: red;"></span>
                                     </div>
                                 </div>
 
-                                
+
 
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -251,9 +251,10 @@
                                     class="form-control m-input m-input--air" runat="server" clientidmode="Static" />
                                 <datalist id="dlCategory" runat="server" clientidmode="Static"></datalist>
 
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCategory" Visible="true" Display="Dynamic"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCategory" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
                                 <span id="CategoryError_Msg" style="color: red;"></span>
+
                             </div>
 
                             <label class="col-xl-2 col-form-label font-weight-bold">
@@ -269,8 +270,9 @@
                                 <input list="dlSubCategory" id="txtSubCategory" name="txtassetLocation"
                                     class="form-control m-input m-input--air" runat="server" clientidmode="Static" />
                                 <datalist id="dlSubCategory" runat="server" clientidmode="Static"></datalist>
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSubCategory" Visible="true" Display="Dynamic"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSubCategory" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please select SubCategory"></asp:RequiredFieldValidator>
+
                             </div>
 
                         </div>
@@ -295,16 +297,16 @@
                                 <span class="fa fa-images" aria-hidden="true"></span>
                                 Upload Images :
                             </label>
-                             <div class="col-xl-4 col-lg-4">
+                            <div class="col-xl-4 col-lg-4">
                                 <asp:FileUpload accept="image/jpg, image/jpeg, image/png" ID="FileUpload_TicketImage" CssClass="custom-file-input m-input m-input--air" runat="server" AllowMultiple="true" />
                                 <label class="custom-file-label" for="customFile">
                                     Choose file
                                 </label>
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="FileUpload_TicketImage" Visible="true" Display="Dynamic"
-                                     ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please upload image."></asp:RequiredFieldValidator>
-                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator4" runat="server" 
-                                     ControlToValidate="FileUpload_TicketImage" ValidationGroup="validateTicket"
-                                     ErrorMessage="Failed!! Please upload jpg, jpeg, png file only." ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="FileUpload_TicketImage" Visible="true" Display="Dynamic"
+                                    ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please upload image."></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator4" runat="server"
+                                    ControlToValidate="FileUpload_TicketImage" ValidationGroup="validateTicket"
+                                    ErrorMessage="Failed!! Please upload jpg, jpeg, png file only." ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
                                 <br />
 
                                 <span id="ImageUpload_Msg" style="color: red;"></span>
@@ -318,7 +320,10 @@
 
                         <hr />
                         <asp:Button ID="btnSave" runat="server" class="btn m-btn--pill btn-primary btn-block" ValidationGroup="validateTicket" OnClick="btnSave_Click" Text="Save Your Ticket" />
-
+                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
+                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
                         <div class="alert alert-danger" id="divError" visible="False" runat="server" role="alert">
                             <asp:Label ID="lblErrorMsg" Text="" runat="server"></asp:Label>
                         </div>
@@ -327,4 +332,54 @@
             </div>
         </div>
     </div>
+
+    <asp:Panel ID="pnlTicketSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+        <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 590px;">
+                <div class="modal-content">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel2">Ticket Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
+                                    <span aria-hidden="true">&times;</span>
+
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group m-form__group row">
+
+                                    <label for="recipient-name" class="col-xl-8 col-lg-3 form-control-label">Ticket has been saved successfully</label>
+
+                                </div>
+
+
+
+                                <div class="form-group m-form__group row">
+                                    <label for="message-text" class="col-xl-5 col-lg-3 form-control-label">Ticket Number :</label>
+                                    <asp:Label ID="lblTicketCode" Text="" runat="server" CssClass="col-xl-1 col-lg-3 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+
+                                </div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <asp:Button ID="btnTicketSuccessOk" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnTicketSuccessOk_Click" />
+
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </asp:Panel>
+
 </asp:Content>
