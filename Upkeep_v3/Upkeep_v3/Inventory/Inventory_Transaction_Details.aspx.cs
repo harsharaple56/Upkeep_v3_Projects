@@ -108,6 +108,9 @@ namespace Upkeep_v3.Inventory
                             string Department = Convert.ToString(ds.Tables[0].Rows[i]["Department"]);
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
                             string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
+                            string OpeningStock = Convert.ToString(ds.Tables[0].Rows[i]["OpeningStock"]);
+                            string Consumed = Convert.ToString(ds.Tables[0].Rows[i]["Consumed"]);
+                            string Balance = Convert.ToString(ds.Tables[0].Rows[i]["Balance"]);
 
                             string chkBoxField = "";
                             if ((int)ViewState["TransID"] > 0)
@@ -130,6 +133,9 @@ namespace Upkeep_v3.Inventory
                             "<td>" + Department + "</td>" +
                             "<td>" + Category + "</td>" +
                             "<td>" + Sub_Category + "</td>" +
+                            "<td>" + OpeningStock + "</td>" +
+                            "<td>" + Consumed + "</td>" +
+                            "<td>" + Balance + "</td>" +
                             "</tr>";
                             //}
                             //else

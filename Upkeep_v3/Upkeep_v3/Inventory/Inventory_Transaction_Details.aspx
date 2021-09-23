@@ -199,7 +199,10 @@
                                 <th>Items</th>
                                 <th>Department</th>
                                 <th>Category</th>
-                                <th>Sub_Category</th>
+                                <th>Sub Category</th>
+                                <th>OpeningStock</th>
+                                <th>Consumed</th>
+                                <th>Balance</th>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                             </tr>
                         </thead>

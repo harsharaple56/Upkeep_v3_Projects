@@ -32,7 +32,7 @@ namespace Upkeep_v3
         {
             string UserType = string.Empty;
             int status = 0;
-           
+
             try
             {
                 bool isInternet = CheckForInternetConnection();
@@ -66,7 +66,7 @@ namespace Upkeep_v3
 
 
                         ds = ObjUpkeepCC.FetchUserEmail(txtEmail.Text.Trim(), UserType, CompanyID);
-                       
+
 
 
                         if (ds.Tables.Count > 0)
@@ -93,11 +93,11 @@ namespace Upkeep_v3
 
                                 if (status == 1)
                                 {
-                                  
+
 
                                     dvCompanyCode.Attributes.Add("style", "display:none;");
                                     DivOtp.Attributes.Add("style", "display:block;");
-                                   //dvCompanyLogo.Attributes.Add("style", "display:block; text-align: center;");
+                                    //dvCompanyLogo.Attributes.Add("style", "display:block; text-align: center;");
 
 
 
@@ -109,30 +109,32 @@ namespace Upkeep_v3
                                     Session["OTP"] = OTP;
 
 
-                                   ds = ObjUpkeepCC.ForgetPasswordSendOTP(Convert.ToString(Session["EmailID"]), OTP, CompanyID);
-
+                                    ds = ObjUpkeepCC.ForgetPasswordSendOTP(Convert.ToString(Session["EmailID"]), OTP, CompanyID);
 
                                 }
                                 else if (status == 2)
                                 {
                                     lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
                                     txtEmail.Text = "";
-                                   
-                                   
+
+
                                 }
                                 else if (status == 3)
                                 {
                                     lblError.Text = "Invalid Email Id";
                                     txtEmail.Text = "";
-                                   
-                                   
+
+
                                 }
 
                             }
                             else
                             {
                                 //invalid login
-                                lblError.Text = "This email Id is not registered under "+ CompanyID + " CompanyID";
+                                if (ds.Tables[1].Rows.Count > 0)
+                                {
+                                    lblError.Text = "This Email-ID is not registered under the " + ds.Tables[1].Rows[0]["Company_Desc"].ToString();
+                                }
                             }
                         }
                         else
@@ -146,7 +148,7 @@ namespace Upkeep_v3
                     {
                         lblError.Text = "License Expired, Kindly contact eFacilito Support Team";
                         txtEmail.Text = "";
-                       
+
                         //txtUsername.ReadOnly = true;
                         //txtPassword.ReadOnly = true;
                     }
@@ -154,7 +156,7 @@ namespace Upkeep_v3
                     {
                         lblError.Text = "Invalid Company Code";
                         txtEmail.Text = "";
-                      
+
                         //txtUsername.ReadOnly = true;
                         //txtPassword.ReadOnly = true;
                     }
@@ -176,7 +178,7 @@ namespace Upkeep_v3
             {
                 throw ex;
             }
-        
+
 
         }
 
@@ -208,7 +210,7 @@ namespace Upkeep_v3
                 DivOtp.Attributes.Add("style", "display:none;");
                 dvCompanyCode.Attributes.Add("style", "display:none;");
                 DivChangePassword.Attributes.Add("style", "display:block;");
-               // DivOtp.Attributes.Add("style", "display:block;");
+                // DivOtp.Attributes.Add("style", "display:block;");
 
 
 
@@ -243,7 +245,7 @@ namespace Upkeep_v3
             string Password = string.Empty;
             string ConfirmPassword = string.Empty;
             string EmailID = Convert.ToString(Session["EmailID"]);
-            string UserType = Convert.ToString (Session["UserType"]);
+            string UserType = Convert.ToString(Session["UserType"]);
 
 
 
@@ -251,7 +253,7 @@ namespace Upkeep_v3
             ConfirmPassword = TxtConfrmPassword.Text.Trim();
 
 
-            ds = ObjUpkeepCC.UpdatePassword(Convert.ToString(Session["User_ID"]),EmailID, Password,UserType , CompanyID);
+            ds = ObjUpkeepCC.UpdatePassword(Convert.ToString(Session["User_ID"]), EmailID, Password, UserType, CompanyID);
 
             if (ds.Tables.Count > 0)
             {

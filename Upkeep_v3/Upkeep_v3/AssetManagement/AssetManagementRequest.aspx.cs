@@ -67,13 +67,135 @@ namespace Upkeep_v3.AssetManagement
             }
 
         }
+
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            grd_AssetType.EditIndex = e.NewEditIndex;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = grd_AssetType.Rows[e.RowIndex];
+            int assetid = Convert.ToInt32(grd_AssetType.DataKeys[e.RowIndex].Values[0]);
+            string name = (row.Cells[2].Controls[0] as TextBox).Text;
+            DataSet dsDelete = new DataSet();
+            string Action = "UAT";
+            dsDelete = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, assetid, name,string.Empty, Action);
+            grd_AssetType.EditIndex = -1;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            grd_AssetType.EditIndex = -1;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int assetid = Convert.ToInt32(grd_AssetType.Rows[e.RowIndex].Cells[1].Text);
+            DataSet dsDelete = new DataSet();
+            string Action = "DAT";
+            dsDelete = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, assetid, string.Empty, string.Empty, Action);
+            Fetch_Bind_DropDown();
+        }
+
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != grd_AssetType.EditIndex)
+            {
+                (e.Row.Cells[0].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this data?');";
+            }
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Visible = false;
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[1].Visible = false;
+
+            }
+        }
+
+        protected void grd_AssetType_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grd_AssetType.PageIndex = e.NewPageIndex;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridView1.EditIndex)
+            {
+                (e.Row.Cells[0].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this data?');";
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    DropDownList ddlAssetType = (DropDownList)e.Row.FindControl("DropDownList2");
+
+                    DataSet dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, 0, string.Empty, string.Empty,string.Empty);
+                    ddlAssetType.DataSource = dsTitle.Tables[0];
+                    ddlAssetType.DataTextField = "Asset_Type_Desc";
+                    ddlAssetType.DataValueField = "Asset_Type_ID";
+                    ddlAssetType.DataBind();
+
+                    DataRowView dr = e.Row.DataItem as DataRowView;
+                    ddlAssetType.SelectedValue = dr.Row.ItemArray[1].ToString();
+                }
+            }
+        }
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int assetid = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["Asset_Category_ID"].ToString());
+            TextBox name = GridView1.Rows[e.RowIndex].FindControl("TextBox2") as TextBox;
+            DropDownList drpgender = GridView1.Rows[e.RowIndex].FindControl("DropDownList2") as DropDownList;
+            DataSet dsDelete = new DataSet();
+            string Action = "UAC";
+            dsDelete = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, assetid, name.Text,drpgender.Text, Action);
+            GridView1.EditIndex = -1;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            Fetch_Bind_DropDown();
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            int assetid = Convert.ToInt16(GridView1.DataKeys[e.RowIndex].Values["Asset_Category_ID"].ToString());
+            DataSet dsDelete = new DataSet();
+            string Action = "DAC";
+            dsDelete = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, assetid, string.Empty, string.Empty, Action);
+            Fetch_Bind_DropDown();
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridView1.EditIndex = -1;
+            Fetch_Bind_DropDown();
+        }
+
         public void Fetch_Bind_DropDown()
         {
             DataSet dsTitle = new DataSet();
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, 0, string.Empty, string.Empty, string.Empty);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)
@@ -92,6 +214,13 @@ namespace Upkeep_v3.AssetManagement
                         ddlModalAssetType.DataValueField = "Asset_Type_ID";
                         ddlModalAssetType.DataBind();
                         ddlModalAssetType.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                        //for editable grid
+                        grd_AssetType.DataSource = dsTitle.Tables[10];
+                        grd_AssetType.DataBind();
+
+                        GridView1.DataSource = dsTitle.Tables[11];
+                        GridView1.DataBind();
 
                     }
 
@@ -984,7 +1113,7 @@ namespace Upkeep_v3.AssetManagement
             string Initiator = string.Empty;
             try
             {
-                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID);
+                dsTitle = ObjUpkeep.Fetch_Asset_DropDown(Convert.ToInt32(LoggedInUserID), CompanyID, 0, string.Empty, string.Empty,string.Empty);
                 ViewState["dsGlobalDropDownData"] = dsTitle.Copy();
 
                 if (dsTitle.Tables.Count > 0)
@@ -1006,6 +1135,12 @@ namespace Upkeep_v3.AssetManagement
                             ddlModalAssetType.DataBind();
                             ddlModalAssetType.Items.Insert(0, new ListItem("--Select--", "0"));
 
+                            //for editable grid
+                            grd_AssetType.DataSource = dsTitle.Tables[10];
+                            grd_AssetType.DataBind();
+
+                            GridView1.DataSource = dsTitle.Tables[11];
+                            GridView1.DataBind();
                         }
                     }
 
