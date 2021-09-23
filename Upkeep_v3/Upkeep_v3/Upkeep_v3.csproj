@@ -1208,6 +1208,7 @@
     <Content Include="Retailer_Profile.aspx" />
     <Content Include="Testing_Codes\SendGrid_emails.aspx" />
     <Content Include="Testing_Codes\SendMail_SMTP.aspx" />
+    <Content Include="Ticketing\Add_MyRequest_Public.aspx" />
     <Content Include="vendors\dropzone\basic.css" />
     <Content Include="vendors\dropzone\basic.min.css" />
     <Content Include="vendors\dropzone\dropzone-amd-module.js" />
@@ -5450,6 +5451,13 @@
     </Compile>
     <Compile Include="Ticketing\Add_MyRequest.aspx.designer.cs">
       <DependentUpon>Add_MyRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ticketing\Add_MyRequest_Public.aspx.cs">
+      <DependentUpon>Add_MyRequest_Public.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ticketing\Add_MyRequest_Public.aspx.designer.cs">
+      <DependentUpon>Add_MyRequest_Public.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ticketing\Add_MyRequest_Retailer.aspx.cs">
       <DependentUpon>Add_MyRequest_Retailer.aspx</DependentUpon>
