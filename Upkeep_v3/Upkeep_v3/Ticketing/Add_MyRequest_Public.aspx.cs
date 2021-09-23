@@ -49,7 +49,7 @@ namespace Upkeep_v3.Ticketing
                         if (dsLocDetails.Tables[0].Rows.Count > 0)
                         {
                             ddlLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-                            ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
+                            //ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
                     }
                     if (ZoneID > 0 && LocationID == 0)
@@ -67,11 +67,11 @@ namespace Upkeep_v3.Ticketing
                     {
                         if (dsLocDetails.Tables[2].Rows.Count > 0)
                         {
-                            ddlSublocation.DataSource = dsLocDetails.Tables[2];
-                            ddlSublocation.DataTextField = "SubLoc_Desc";
-                            ddlSublocation.DataValueField = "SubLoc_ID";
-                            ddlSublocation.DataBind();
-                            ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
+                            //ddlSublocation.DataSource = dsLocDetails.Tables[2];
+                            //ddlSublocation.DataTextField = "SubLoc_Desc";
+                            //ddlSublocation.DataValueField = "SubLoc_ID";
+                            //ddlSublocation.DataBind();
+                            //ddlSublocation.Items.Insert(0, new ListItem("--Select--", "0"));
                         }
                     }
 
