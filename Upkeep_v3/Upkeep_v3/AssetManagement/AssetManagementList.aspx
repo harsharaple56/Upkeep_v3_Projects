@@ -320,7 +320,7 @@
                                 <div class="col-xl-12 col-lg-11">
                                     <div style="overflow-y: auto; height: 250px; display: none;" id="dvErrorGrid" runat="server">
                                         <asp:GridView ID="gvImportError" runat="server" AutoGenerateColumns="true" HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black"
-                                            CssClass="table table-striped- table-bordered table-hover table-checkable">
+                                            CssClass="table table-striped- table-bordered table-hover table-checkable" OnRowDataBound="gvImportError_RowDataBound">
                                         </asp:GridView>
                                     </div>
                                 </div>
