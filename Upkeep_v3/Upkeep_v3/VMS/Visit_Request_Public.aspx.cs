@@ -510,6 +510,7 @@ namespace Upkeep_v3.VMS
                     dvVaccinationCheck.Attributes.Add("style", "display:none;");
                     RequiredFieldValidator3.Enabled = false;
                     RequiredFieldValidator4.Enabled = false;
+                    RequiredFieldValidator5.Enabled = false;
                 }
 
             }
@@ -1645,8 +1646,8 @@ namespace Upkeep_v3.VMS
 
             try
             {
-                if ((fileupload1.HasFile || !string.IsNullOrEmpty(UserImage_fileData)) && fileupload_userpic.HasFile)
-                {
+                //if ((fileupload1.HasFile || !string.IsNullOrEmpty(UserImage_fileData)) && fileupload_userpic.HasFile)
+                //{
                     if (dtVMSDate.Date != null)
                     {
                         DateTime dtConvertVMSDate = Convert.ToDateTime(dtVMSDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
@@ -2255,11 +2256,11 @@ namespace Upkeep_v3.VMS
                         ViewState["DateInvalid"] = "DateInvalid";
                         Page.ClientScript.RegisterHiddenField("vCode", ViewState["DateInvalid"].ToString());
                     }
-                }
-                else
-                {
-                    Page.ClientScript.RegisterHiddenField("ValidationMsg", "Please enter valid data..!");
-                }
+                //}
+                //else
+                //{
+                //    Page.ClientScript.RegisterHiddenField("ValidationMsg", "Please enter valid data..!");
+                //}
             }
             catch (Exception ex)
             {
