@@ -8605,7 +8605,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, string strAction) {
+        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
             object[] results = this.Invoke("Insert_Ticket_Details", new object[] {
                         TicketCode,
                         CompanyID,
@@ -8616,17 +8616,21 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         list_Images,
                         CustomFields_XML,
                         LoggedInUserID,
+                        IsPublicTicket,
+                        UserName,
+                        UserMobile,
+                        UserEmail,
                         strAction});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, string strAction) {
-            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, strAction, null);
+        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
+            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, IsPublicTicket, UserName, UserMobile, UserEmail, strAction, null);
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, string strAction, object userState) {
+        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction, object userState) {
             if ((this.Insert_Ticket_DetailsOperationCompleted == null)) {
                 this.Insert_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Ticket_DetailsOperationCompleted);
             }
@@ -8640,6 +8644,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         list_Images,
                         CustomFields_XML,
                         LoggedInUserID,
+                        IsPublicTicket,
+                        UserName,
+                        UserMobile,
+                        UserEmail,
                         strAction}, this.Insert_Ticket_DetailsOperationCompleted, userState);
         }
         

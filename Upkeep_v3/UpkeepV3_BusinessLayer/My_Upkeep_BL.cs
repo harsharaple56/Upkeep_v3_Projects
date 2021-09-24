@@ -1445,7 +1445,8 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, string strAction, string StrConn)
+        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, 
+            string CustomFields_XML, string LoggedInUserID,bool IsPublicTicket,string UserName,string UserMobile,string UserEmail, string strAction, string StrConn)
         {
             try
             {
@@ -1462,6 +1463,10 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@TicketImages", list_Images);
                 cmd.Parameters.AddWithValue("@CustomFields_XML", CustomFields_XML);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@IsPublicTicket", IsPublicTicket);
+                cmd.Parameters.AddWithValue("@PublicUserName", UserName);
+                cmd.Parameters.AddWithValue("@PublicUserMobile", UserMobile);
+                cmd.Parameters.AddWithValue("@PublicUserEmail", UserEmail);
                 cmd.Parameters.AddWithValue("@Action", strAction);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

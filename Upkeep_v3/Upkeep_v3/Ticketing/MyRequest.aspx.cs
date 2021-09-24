@@ -36,7 +36,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details("", CompanyID, 0, 0, 0, "", "","", LoggedInUserID, "R");
+                dsTicket = ObjUpkeep.Insert_Ticket_Details("", CompanyID, 0, 0, 0, "", "","", LoggedInUserID,false,string.Empty, string.Empty, string.Empty ,"R");
 
                 int TicketID = 0;
                 string TicketNumber = string.Empty;
