@@ -878,8 +878,8 @@ namespace Upkeep_v3.VMS
                 string strVMSData = "";
 
 
-                if (Action != 'N')
-                    goto Save;
+                //if (Action != 'N')
+                //    goto Save;
 
                 DataTable dt = new DataTable();
                 dt.Clear();
