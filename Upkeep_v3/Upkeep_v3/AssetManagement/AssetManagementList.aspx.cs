@@ -461,6 +461,17 @@ namespace Upkeep_v3.AssetManagement
                 throw ex;
             }
         }
+
+        protected void gvImportError_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[6].Text != "")
+                {
+                    e.Row.Cells[6].ForeColor = System.Drawing.Color.Red;
+                }
+            }
+        }
     }
 
 

@@ -205,7 +205,7 @@ namespace Upkeep_v3.Laundry_Management.Stock
         public void bind_SubCategory()
         {
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            int CategoryID = Convert.ToInt32(ddl_Category.SelectedValue);
+            string CategoryID = Convert.ToString(ddl_Category.SelectedItem.Text);
 
             try
 

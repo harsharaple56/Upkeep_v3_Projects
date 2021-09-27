@@ -464,7 +464,7 @@ namespace Upkeep_v3.Ticketing
 
                     CustomFields_XML = strXmlCustomFields.ToString();
 
-                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, "C");
+                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, false, string.Empty, string.Empty, string.Empty, "C");
                     //mpeTicketSaveSuccess.Show();
 
                     //Send Mails

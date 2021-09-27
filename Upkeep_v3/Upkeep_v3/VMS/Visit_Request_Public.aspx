@@ -312,7 +312,7 @@ border: 3px solid #ccc;*/
             $("[id*=fileupload_userpic]").change(function () {
                 var imgValue = $("[id*=fileupload_userpic]").val();
                 var exten = getFile(imgValue);
-                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
                 if (imgValue != "" && validImageTypes.includes(exten)) {
                     $("[id*=idproof]")[0].removeAttribute('src');
                     AadharSuceess.show();
@@ -329,7 +329,7 @@ border: 3px solid #ccc;*/
             $("[id*=fileupload1]").change(function () {
                 var imgValue = $("[id*=fileupload1]").val();
                 var exten = getFile(imgValue);
-                var validImageTypes = ['png', 'jpg' , 'jpeg' , 'PNG' ,'JPG' ,'JPEG'];
+                var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
                 if (imgValue != "" && validImageTypes.includes(exten)) {
                     $("[id*=photo]")[0].removeAttribute('src');
                     PhotoSuceess.show();
@@ -358,6 +358,14 @@ border: 3px solid #ccc;*/
 
             var getValue = $("input[name=vCode]").val();
             var getValidation = $("input[name=ValidationMsg]").val();
+            var ValidationName = $("input[name=ValidationName]").val();
+            var ValidatioEmail = $("input[name=ValidatioEmail]").val();
+            var ValidationPhone = $("input[name=ValidationPhone]").val();
+            var ValidationDoseDate = $("input[name=ValidationDoseDate]").val();
+            var ValidationVMSDate = $("input[name=ValidationVMSDate]").val();
+            var ValidationVcerty = $("input[name=ValidationVcerty]").val();
+            var ValidationYourPhoto = $("input[name=ValidationYourPhoto]").val();
+            var ValidationIDProof = $("input[name=ValidationIDProof]").val();
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -381,6 +389,39 @@ border: 3px solid #ccc;*/
             if (getValidation != undefined) {
                 toastr.warning(getValidation);
             }
+
+            if (ValidationName != undefined) {
+                toastr.warning(getValidation);
+            }
+
+            if (ValidatioEmail != undefined) {
+                toastr.warning(ValidatioEmail);
+            }
+
+            if (ValidationPhone != undefined) {
+                toastr.warning(ValidationPhone);
+            }
+
+            if (ValidationDoseDate != undefined) {
+                toastr.warning(ValidationDoseDate);
+            }
+
+            if (ValidationVMSDate != undefined) {
+                toastr.warning(ValidationVMSDate);
+            }
+
+            if (ValidationYourPhoto != undefined) {
+                toastr.warning(ValidationYourPhoto);
+            }
+
+            if (ValidationIDProof != undefined) {
+                toastr.warning(ValidationIDProof);
+            }
+
+            if (ValidationVcerty != undefined) {
+                toastr.warning(ValidationVcerty);
+            }
+
 
             //Commented by Lokesh as date select was not working
 
@@ -950,34 +991,34 @@ border: 3px solid #ccc;*/
                     <br />
 
                     <div id="dvVaccinationCheck" runat="server">
-                    <div class="m-form__heading" style="text-align: center;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
-                    </div>
-
-                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
-                            <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
-                            <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
-                                <i class="fa fa-check-circle"></i>
-                                <b>Success</b>
-                            </span>
-                            <span id="DoseDateFailed" class="m-badge m-badge--danger m-badge--wide">
-                                <i class="fa fa-times-circle"></i>
-                                <b>Failed</b>
-                            </span>
-
-                            <div class="input-group date">
-                                <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
-                                </div>
-                            </div>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2<sup>nd</sup> Dose Vaccination Date"></asp:RequiredFieldValidator>
+                        <div class="m-form__heading" style="text-align: center;">
+                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Verify Vaccination Details</h3>
                         </div>
 
-                    </div>
-                    &nbsp;
+                        <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                            <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                                <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
+                                <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
+                                    <i class="fa fa-check-circle"></i>
+                                    <b>Success</b>
+                                </span>
+                                <span id="DoseDateFailed" class="m-badge m-badge--danger m-badge--wide">
+                                    <i class="fa fa-times-circle"></i>
+                                    <b>Failed</b>
+                                </span>
+
+                                <div class="input-group date">
+                                    <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                    </div>
+                                </div>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2<sup>nd</sup> Dose Vaccination Date"></asp:RequiredFieldValidator>
+                            </div>
+
+                        </div>
+                        &nbsp;
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                          <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
 
@@ -1006,7 +1047,7 @@ border: 3px solid #ccc;*/
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                                  <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
                                      ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
-                                 
+
                              </div>
 
 
@@ -1017,10 +1058,10 @@ border: 3px solid #ccc;*/
                          </div>
 
                      </div>
-                   
-                    </div>
-                    
-                    &nbsp;
+
+
+
+                        &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
                             <div class="font-weight-bold">
@@ -1046,8 +1087,8 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label3" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
-                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server" 
-                                             ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server"
+                                            ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
 
@@ -1075,7 +1116,7 @@ border: 3px solid #ccc;*/
 
                         </div>
                     </div>
-                    &nbsp;
+                        &nbsp;
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
@@ -1100,8 +1141,8 @@ border: 3px solid #ccc;*/
                                             Choose file
                                         <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
                                         <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
-                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
                                             ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
@@ -1130,6 +1171,9 @@ border: 3px solid #ccc;*/
 
 
                     </div>
+
+                    </div>
+
 
                     <div id="dvTermsCondHeader" runat="server">
                         <div class="m-form__heading" style="text-align: center; padding-top: 10px;">

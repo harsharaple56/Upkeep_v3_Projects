@@ -12,7 +12,6 @@ namespace UpkeepV3_BusinessLayer
     public class My_Upkeep_BL
     {
         DataSet ds = new DataSet();
-        private static Random random = new Random();
 
         public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
         {
@@ -489,7 +488,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, int Category_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet LMS_SubCategory_Mst(int SubCategory_ID, string SubCategory_Desc, string Category_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             DataSet dsItem = new DataSet();
             try
@@ -500,7 +499,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SubCategory_ID", SubCategory_ID);
                 cmd.Parameters.AddWithValue("@SubCategory_Desc", SubCategory_Desc);
-                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@Category", Category_ID);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
@@ -1445,7 +1444,8 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, string strAction, string StrConn)
+        public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,
+            string CustomFields_XML, string LoggedInUserID,bool IsPublicTicket,string UserName,string UserMobile,string UserEmail, string strAction, string StrConn)
         {
             try
             {
@@ -1462,6 +1462,10 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@TicketImages", list_Images);
                 cmd.Parameters.AddWithValue("@CustomFields_XML", CustomFields_XML);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@IsPublicTicket", IsPublicTicket);
+                cmd.Parameters.AddWithValue("@PublicUserName", UserName);
+                cmd.Parameters.AddWithValue("@PublicUserMobile", UserMobile);
+                cmd.Parameters.AddWithValue("@PublicUserEmail", UserEmail);
                 cmd.Parameters.AddWithValue("@Action", strAction);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -3061,7 +3065,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@FeedbackID", FeedbackTitle);
                 cmd.Parameters.AddWithValue("@EnableCovid", blEnableCovid);
                 cmd.Parameters.AddWithValue("@EnableVaccination", blChk_Vaccination);
-                
+
                 cmd.Parameters.AddWithValue("@EntryCount", EntryCount);
                 cmd.Parameters.AddWithValue("@NameComp", blNameComp);
                 cmd.Parameters.AddWithValue("@ContactComp", blContactComp);
@@ -3077,7 +3081,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@ToTime", ToTime);
 
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -3193,23 +3197,33 @@ namespace UpkeepV3_BusinessLayer
         }
 
         // Generates a random string with a given size.    
-        public static string RandomString(int length)
+        public static string GenerateRandomString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            char[] charArr = "0123456789ABCDEFGHIJKLMOPQRSTUVWXYZabcdefghijklmopqrstuvwxyz".ToCharArray();
+            string randomString = string.Empty;
+            Random objRandom = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                //Don’t Allow Repetation of Characters
+                int x = objRandom.Next(1, charArr.Length);
+                if (!randomString.Contains(charArr.GetValue(x).ToString()))
+                    randomString += charArr.GetValue(x);
+                else
+                    i--;
+            }
+            return randomString;
         }
 
         //Added by RC This function is used to save VMS Request
-        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID,string ClosingRemark, string Name, string Email, string Phone, 
-            string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, 
+        public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID,string ClosingRemark, string Name, string Email, string Phone,
+            string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode,
             string strVMSCovidTestDate, string strTemperature,string Visitor_Photo,string Vaccine_Certificate,string Date_of_Vaccination,string Visitor_IDProof, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
-                string Visit_Request_Code = RandomString(10);
+                string Visit_Request_Code = GenerateRandomString(15);
                 SqlCommand cmd = new SqlCommand("SPR_INSERT_VMS_REQUEST", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
@@ -3230,7 +3244,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Vaccine_Certificate", Vaccine_Certificate);
                 cmd.Parameters.AddWithValue("@Date_of_Vaccination", Date_of_Vaccination);
                 cmd.Parameters.AddWithValue("@Visitor_IDProof", Visitor_IDProof);
-                cmd.Parameters.AddWithValue("@Visit_Request_Code", Visit_Request_Code);
+                cmd.Parameters.AddWithValue("@Visit_Request_Code", Visit_Request_Code.Trim());
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -4664,7 +4678,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
-                
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

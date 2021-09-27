@@ -597,8 +597,13 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSubCategoryCode" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory code"></asp:RequiredFieldValidator>
 
                                     </div>--%>
+                                     <div class="form-group m-form__group row">
+                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
+                                        <asp:Label ID="lblCategoryName1" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
+                                    </div>
+
                                     <div class="form-group">
-                                        <label for="message-text" class="form-control-label">Description:</label>
+                                        <label for="message-text" class="form-control-label">SubCategory Description:</label>
                                         <asp:TextBox ID="txtSubCategory" runat="server" class="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSubCategory" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory"></asp:RequiredFieldValidator>
 
