@@ -5091,7 +5091,7 @@ namespace UpkeepV3_BusinessLayer
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Analyze_Tkt_Block1", con);
+                SqlCommand cmd = new SqlCommand("Spr_Analyze_Tkt_Block7", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
