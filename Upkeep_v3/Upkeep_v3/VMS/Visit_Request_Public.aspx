@@ -358,6 +358,14 @@ border: 3px solid #ccc;*/
 
             var getValue = $("input[name=vCode]").val();
             var getValidation = $("input[name=ValidationMsg]").val();
+            var ValidationName = $("input[name=ValidationName]").val();
+            var ValidatioEmail = $("input[name=ValidatioEmail]").val();
+            var ValidationPhone = $("input[name=ValidationPhone]").val();
+            var ValidationDoseDate = $("input[name=ValidationDoseDate]").val();
+            var ValidationVMSDate = $("input[name=ValidationVMSDate]").val();
+            var ValidationVcerty = $("input[name=ValidationVcerty]").val();
+            var ValidationYourPhoto = $("input[name=ValidationYourPhoto]").val();
+            var ValidationIDProof = $("input[name=ValidationIDProof]").val();
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -381,6 +389,39 @@ border: 3px solid #ccc;*/
             if (getValidation != undefined) {
                 toastr.warning(getValidation);
             }
+
+            if (ValidationName != undefined) {
+                toastr.warning(getValidation);
+            }
+
+            if (ValidatioEmail != undefined) {
+                toastr.warning(ValidatioEmail);
+            }
+
+            if (ValidationPhone != undefined) {
+                toastr.warning(ValidationPhone);
+            }
+
+            if (ValidationDoseDate != undefined) {
+                toastr.warning(ValidationDoseDate);
+            }
+
+            if (ValidationVMSDate != undefined) {
+                toastr.warning(ValidationVMSDate);
+            }
+
+            if (ValidationYourPhoto != undefined) {
+                toastr.warning(ValidationYourPhoto);
+            }
+
+            if (ValidationIDProof != undefined) {
+                toastr.warning(ValidationIDProof);
+            }
+
+            if (ValidationVcerty != undefined) {
+                toastr.warning(ValidationVcerty);
+            }
+
 
             //Commented by Lokesh as date select was not working
 
