@@ -3492,5 +3492,120 @@ public class My_Upkeep
     }
 
 
+	#region Ticketing Dashboard
 
+	public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block1(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block2(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block3(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block4(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block5(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block6(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+	public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID)
+	{
+		DataSet ds = new DataSet();
+		try
+
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block7(LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+
+	#endregion
 }

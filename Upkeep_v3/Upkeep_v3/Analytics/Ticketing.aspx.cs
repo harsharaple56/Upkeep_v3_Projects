@@ -20,10 +20,7 @@ namespace Upkeep_v3.Analytics
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             if (LoggedInUserID == "")
-            {
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
-            }
-            Ticketing.Fetch_Analyze_Tkt_Block1();
         }
 
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
@@ -35,6 +32,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block2()
         {
             DataSet ds = new DataSet();
@@ -42,6 +41,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block3()
         {
             DataSet ds = new DataSet();
@@ -49,6 +50,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block4()
         {
             DataSet ds = new DataSet();
@@ -56,6 +59,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block5()
         {
             DataSet ds = new DataSet();
@@ -63,6 +68,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block6()
         {
             DataSet ds = new DataSet();
@@ -70,6 +77,8 @@ namespace Upkeep_v3.Analytics
 
             return JsonConvert.SerializeObject(ds);
         }
+
+        [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public static string Fetch_Analyze_Tkt_Block7()
         {
             DataSet ds = new DataSet();
