@@ -81,6 +81,22 @@ border: 3px solid #ccc;*/
             background-color: red;
             color: white;
         }
+
+        .rbl input[type="radio"] {
+            margin-left: 5px;
+            margin-right: 10px;
+            padding-bottom: 46px;
+            border-radius: 50% !important;
+            border: 1px solid #bdc3d4;
+            height: 18px;
+            width: 18px;
+        }
+
+        .rbl label {
+            margin-right: 20px;
+            height: 20px;
+            width: 114px;
+        }
     </style>
 
 
@@ -693,8 +709,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                                     <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                                 </div>
 
-                                                <div id="divRadioButton" style="display: none" runat="server">
-                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
+                                                <div id="divRadioButton" class="m-radio-inline" style="display: none" runat="server">
+                                                    <asp:RadioButtonList CssClass="rbl" runat="server" ID="divRadioButtonrdbYes" RepeatLayout="Flow" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static"></asp:RadioButtonList>
+                                                    <hr />
                                                 </div>
 
                                                 <div id="divImage" style="display: none" runat="server">
