@@ -317,6 +317,7 @@ namespace Upkeep_v3.VMS
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
                 {
                     divCovid.Visible = true;
+                    divCovid1.Visible = true;
                 }
 
                 if (ViewState["RequestID"] == null)
@@ -399,14 +400,16 @@ namespace Upkeep_v3.VMS
                         //ddlWorkPermitTitle.SelectedValue = dsData.Tables[0].Rows[0]["WP_Config_ID"].ToString();
                         BindVMSConfig();
 
-                        bool isVaccineCheck_Enable = !string.IsNullOrEmpty(dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"].ToString()) ? true : false;
+                        bool isVaccineCheck_Enable = dsData.Tables[0].Rows[0]["Vaccine_Check_Enable"].ToString() == "True" ? true : false;
                         if (isVaccineCheck_Enable == true)
                         {
                             div_vaccination.Visible = true;
+                            div_vaccination1.Visible = true;
                         }
                         else
                         {
                             div_vaccination.Visible = false;
+                            div_vaccination1.Visible = false;
                         }
                     }
                     //Bind inserted Visit data
