@@ -188,8 +188,21 @@ border: 3px solid #ccc;*/
 
 
     <script>
+        
+        $(document).on("click", "#m_aside_left_minimize_toggle", function () {
+            if ($('#m_aside_left_minimize_toggle').attr('class').includes('--active')) {
+                $(".rbl").find('label').css("width", "140");
+            }
+            else {
+                $(".rbl").find('label').css("width", "114");
+            }
+
+
+        });
+
 
         $(document).ready(function () {
+
             window.addEventListener("dragover", function (e) {
                 e = e || event;
                 e.preventDefault();
