@@ -340,10 +340,12 @@ namespace Upkeep_v3.VMS
                 if (Vaccine_Check_Enable == 0)
                 {
                     div_Vaccination.Visible = false;
+                    div_Vaccination1.Visible = false;
                 }
                 else
                 {
                     div_Vaccination.Visible = true;
+                    div_Vaccination1.Visible = true;
                 }
 
 

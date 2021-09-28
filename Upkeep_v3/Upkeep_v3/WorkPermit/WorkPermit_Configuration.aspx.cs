@@ -22,7 +22,7 @@ namespace Upkeep_v3.WorkPermit
             string strWPConfigID = string.Empty;
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            
+
             //frmWorkPermit.Action = @"WorkPermit_Configuration.aspx";
             if (LoggedInUserID == "")
             {
@@ -91,7 +91,8 @@ namespace Upkeep_v3.WorkPermit
                     txtWPPrefix.Text = Convert.ToString(ds.Tables[0].Rows[0]["Transaction_Prefix"]);
                     txtNoOfLevel.Text = Convert.ToString(ds.Tables[0].Rows[0]["NoOfLevel"]);
 
-                    AddRows(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel"]), ds);
+                    if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["NoOfLevel"].ToString()))
+                        AddRows(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel"]), ds);
 
 
                     var SectionValues = ds.Tables[1].AsEnumerable().Select(s => s.Field<decimal>("WP_Section_ID").ToString() + "||" + s.Field<string>("WP_Section_Desc")).ToArray();

@@ -140,6 +140,20 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_VMSRequestList_Report_ExcelOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block1OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block2OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block3OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block4OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block5OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block6OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block7OperationCompleted;
+        
         private System.Threading.SendOrPostCallback ImportRetailerOperationCompleted;
         
         private System.Threading.SendOrPostCallback Import_AssetList_MasterOperationCompleted;
@@ -680,6 +694,27 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_VMSRequestList_Report_ExcelCompletedEventHandler Fetch_VMSRequestList_Report_ExcelCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block1CompletedEventHandler Fetch_Analyze_Tkt_Block1Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block2CompletedEventHandler Fetch_Analyze_Tkt_Block2Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block3CompletedEventHandler Fetch_Analyze_Tkt_Block3Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block4CompletedEventHandler Fetch_Analyze_Tkt_Block4Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block5CompletedEventHandler Fetch_Analyze_Tkt_Block5Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block6CompletedEventHandler Fetch_Analyze_Tkt_Block6Completed;
+        
+        /// <remarks/>
+        public event Fetch_Analyze_Tkt_Block7CompletedEventHandler Fetch_Analyze_Tkt_Block7Completed;
         
         /// <remarks/>
         public event ImportRetailerCompletedEventHandler ImportRetailerCompleted;
@@ -3116,6 +3151,209 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_VMSRequestList_Report_ExcelCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_VMSRequestList_Report_ExcelCompleted(this, new Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block1", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block1", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block1Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block1OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block1OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block1", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block1OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block1OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block1Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block1Completed(this, new Fetch_Analyze_Tkt_Block1CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block2", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block2", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block2Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block2OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block2OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block2OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block2", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block2OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block2OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block2Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block2Completed(this, new Fetch_Analyze_Tkt_Block2CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block3", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block3", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block3Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block3OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block3OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block3OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block3", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block3OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block3OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block3Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block3Completed(this, new Fetch_Analyze_Tkt_Block3CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block4", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block4", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block4Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block4Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block4Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block4OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block4OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block4OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block4", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block4OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block4OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block4Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block4Completed(this, new Fetch_Analyze_Tkt_Block4CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block5", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block5", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block5Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block5OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block5OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block5OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block5", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block5OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block5OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block5Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block5Completed(this, new Fetch_Analyze_Tkt_Block5CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block6", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block6", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block6Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block6OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block6OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block6OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block6", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block6OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block6OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block6Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block6Completed(this, new Fetch_Analyze_Tkt_Block6CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block7", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_Analyze_Tkt_Block7", new object[] {
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID) {
+            this.Fetch_Analyze_Tkt_Block7Async(LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID, object userState) {
+            if ((this.Fetch_Analyze_Tkt_Block7OperationCompleted == null)) {
+                this.Fetch_Analyze_Tkt_Block7OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block7OperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Analyze_Tkt_Block7", new object[] {
+                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block7OperationCompleted, userState);
+        }
+        
+        private void OnFetch_Analyze_Tkt_Block7OperationCompleted(object arg) {
+            if ((this.Fetch_Analyze_Tkt_Block7Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Analyze_Tkt_Block7Completed(this, new Fetch_Analyze_Tkt_Block7CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10954,6 +11192,188 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_VMSRequestList_Report_ExcelCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block1CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block1CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block1CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block1CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block2CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block2CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block3CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block3CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block3CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block3CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block4CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block4CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block4CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block4CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block5CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block5CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block5CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block5CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block6CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block6CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block6CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block6CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Analyze_Tkt_Block7CompletedEventHandler(object sender, Fetch_Analyze_Tkt_Block7CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Analyze_Tkt_Block7CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Analyze_Tkt_Block7CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

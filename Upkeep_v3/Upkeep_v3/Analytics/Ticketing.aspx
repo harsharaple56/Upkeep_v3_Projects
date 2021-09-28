@@ -3,33 +3,82 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="JS/Ticketing.js"></script>
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 35%;
+            left: 40%;
+        }
 
+        .invisible {
+            visibility: hidden;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .within-scroll {
+            overflow-y: scroll !important;
+            height: 340px;
+        }
+
+        #dvBlock6 .within-scroll::-webkit-scrollbar, #dvBlock7 .within-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        #dvBlock6 .within-scroll::-webkit-scrollbar-track, #dvBlock7 .within-scroll::-webkit-scrollbar-track {
+            background-color: #dfdfdf;
+            border-radius: 10px;
+        }
+
+        #dvBlock6 .within-scroll::-webkit-scrollbar-thumb, #dvBlock7 .within-scroll::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 20px 5px rgb(0 0 0 / 30%);
+            border-radius: 10px;
+        }
+
+        #dvBlock6 .table, #dvBlock7 .table {
+            width: 99% !important;
+        }
+    </style>
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
 
-                <div class="col-xl-6">
-
+                <div class="col-xl-6" id="dvBlock1">
+                    <div class="loader"></div>
                     <!--begin:: Ticketing Section-->
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force invisible">
 
                         <div class="m-portlet__body">
                             <div class="m-widget19">
                                 <div class="m-widget19__content">
                                     <div class="m-widget19__header">
                                         <div class="m-widget19__user-img">
-                                            <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/tkt.png" alt="">
+                                            <img class="m-widget19__img" style="width: 6rem;" src="../../assets/app/media/img/Dashboard_Icons/tkt.png" alt="" />
                                         </div>
                                         <div class="m-widget19__info">
                                             <span class="m-widget19__username">Total tickets
                                             </span>
-                                            <br>
+                                            <br />
                                             <span class="m-widget19__time">Total No. of Tickets raised
                                             </span>
                                         </div>
                                         <div class="m-widget19__stats">
-                                            <span class="m-widget19__number m--font-brand" style="font-size: 3.5rem;">18
-                                            </span>
+                                            <span class="m-widget19__number m--font-brand" style="font-size: 3.5rem;" id="totalCount"></span>
                                             <span class="m-widget19__comment" style="line-height: 2;">Tickets
                                             </span>
                                         </div>
@@ -55,7 +104,7 @@
                                             </span>
                                         </div>
                                         <div class="m-widget4__ext">
-                                            <span class="m-widget4__number m--font-accent">500</span>
+                                            <span class="m-widget4__number m--font-accent" id="openTicket"></span>
                                         </div>
                                     </div>
                                     <div class="m-widget4__item">
@@ -71,7 +120,7 @@
                                         </div>
                                         <div class="m-widget4__ext">
                                             <span class="m-widget4__stats m--font-info">
-                                                <span class="m-widget4__number m--font-accent">64</span>
+                                                <span class="m-widget4__number m--font-accent" id="closedTicket"></span>
                                             </span>
                                         </div>
                                     </div>
@@ -88,7 +137,7 @@
                                         </div>
                                         <div class="m-widget4__ext">
                                             <span class="m-widget4__stats m--font-info">
-                                                <span class="m-widget4__number m--font-accent">1080</span>
+                                                <span class="m-widget4__number m--font-accent" id="parkedTicket"></span>
                                             </span>
                                         </div>
                                     </div>
@@ -105,7 +154,7 @@
                                         </div>
                                         <div class="m-widget4__ext">
                                             <span class="m-widget4__stats m--font-info">
-                                                <span class="m-widget4__number m--font-accent">19</span>
+                                                <span class="m-widget4__number m--font-accent" id="expiredTicket"></span>
                                             </span>
                                         </div>
                                     </div>
@@ -118,9 +167,9 @@
                     <!--end:: Ticketing Section-->
                 </div>
 
-                <div class="col-xl-6">
-
-                    <div class="m-portlet m-portlet--full-height ">
+                <div class="col-xl-6" id="dvBlock2">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--full-height invisible">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -132,8 +181,32 @@
                         <div class="m-portlet__body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="m_widget4_tab1_content">
-                                    <div class="m-widget4 m-widget4--progress">
-                                        <div class="m-widget4__item">
+                                    <div class="m-widget4 m-widget4--progress" id="appendBlock2Content">
+                                        <div class="m-widget4__item" style="display: none">
+                                            <div class="m-widget4__img m-widget4__img--pic">
+                                                <img src="##ProfilePic##" alt="">
+                                            </div>
+                                            <div class="m-widget4__info">
+                                                <span class="m-widget4__title">##Name##
+                                                </span>
+                                                <br>
+                                                <span class="m-widget4__sub">##Designation##, <b>##Department##</b>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget4__progress">
+                                                <div class="m-widget4__progress-wrapper">
+                                                    <span class="m-widget17__progress-number">##Pecent##%</span>
+                                                    <span class="m-widget17__progress-label">Tickets</span>
+                                                    <div class="progress m-progress--sm">
+                                                        <div class="progress-bar bg-danger h-100" role="progressbar" style="width: ##Pecent##%;" aria-valuenow="25" aria-valuemin="40" aria-valuemax="##Pecent##"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-widget4__ext">
+                                                <a href="#" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">Profile</a>
+                                            </div>
+                                        </div>
+                                        <%--<div class="m-widget4__item">
                                             <div class="m-widget4__img m-widget4__img--pic">
                                                 <img src="../../assets/app/media/img/users/100_4.jpg" alt="">
                                             </div>
@@ -252,7 +325,7 @@
                                             <div class="m-widget4__ext">
                                                 <a href="#" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">Follow</a>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="m_widget4_tab2_content">
@@ -270,8 +343,9 @@
 
             <div class="row">
 
-                <div class="col-xl-12">
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                <div class="col-xl-12" id="dvBlock3">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height invisible">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -295,16 +369,14 @@
                                             <br>
                                             <span class="m-widget24__desc">Tickets in Assigned state
                                             </span>
-                                            <span class="m-widget24__stats m--font-info">1800
-                                            </span>
+                                            <span class="m-widget24__stats m--font-info" id="ASSIGNEDPerCount"></span>
                                             <div class="m--space-10"></div>
                                             <div class="progress m-progress--sm">
-                                                <div class="progress-bar m--bg-info" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar m--bg-info" id="ASSIGNEDProgress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <span class="m-widget24__change">From overall Open Tickets
                                             </span>
-                                            <span class="m-widget24__number">78%
-                                            </span>
+                                            <span class="m-widget24__number" id="ASSIGNEDPercent"></span>
                                         </div>
                                     </div>
 
@@ -320,16 +392,14 @@
                                             <br>
                                             <span class="m-widget24__desc">Tickets accepted by Users
                                             </span>
-                                            <span class="m-widget24__stats m--font-success">1349
-                                            </span>
+                                            <span class="m-widget24__stats m--font-success" id="ACCEPTEDPerCount"></span>
                                             <div class="m--space-10"></div>
                                             <div class="progress m-progress--sm">
-                                                <div class="progress-bar m--bg-success" role="progressbar" style="width: 84%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar m--bg-success" id="ACCEPTEDProgress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <span class="m-widget24__change">Change
                                             </span>
-                                            <span class="m-widget24__number">84%
-                                            </span>
+                                            <span class="m-widget24__number" id="ACCEPTEDPercent"></span>
                                         </div>
                                     </div>
 
@@ -345,16 +415,14 @@
                                             <br>
                                             <span class="m-widget24__desc">Work in Progress on tickets
                                             </span>
-                                            <span class="m-widget24__stats m--font-warning">567
-                                            </span>
+                                            <span class="m-widget24__stats m--font-warning" id="INPROGRESSPerCount"></span>
                                             <div class="m--space-10"></div>
                                             <div class="progress m-progress--sm">
-                                                <div class="progress-bar m--bg-warning" role="progressbar" style="width: 69%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar m--bg-warning" id="INPROGRESSProgress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <span class="m-widget24__change">Change
                                             </span>
-                                            <span class="m-widget24__number">69%
-                                            </span>
+                                            <span class="m-widget24__number" id="INPROGRESSPercent"></span>
                                         </div>
                                     </div>
 
@@ -370,9 +438,9 @@
 
             <div class="row">
 
-                <div class="col-xl-12">
-
-                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+                <div class="col-xl-12" id="dvBlock4">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height invisible">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -403,8 +471,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">63%
-                                                </span>
+                                                <span class="m-widget15__stats" id="Block4OpenPer"></span>
                                                 <span class="m-widget15__text ">Average Percent of Tickets every Month
                                                 </span>
 
@@ -413,14 +480,13 @@
 
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" id="Block4OpenProgress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">54%
-                                                </span>
+                                                <span class="m-widget15__stats" id="Block4ParkedPer"></span>
                                                 <span class="m-widget15__text ">Average Percent of Tickets every Month
                                                 </span>
 
@@ -428,7 +494,7 @@
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" id="Block4ParkedProgress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -436,8 +502,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">41%
-                                                </span>
+                                                <span class="m-widget15__stats" id="Block4ClosedPer"></span>
                                                 <span class="m-widget15__text ">Average Percent of Tickets every Month
                                                 </span>
 
@@ -445,14 +510,13 @@
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 55%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" id="Block4ClosedProgress" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="m-widget15__item">
-                                                <span class="m-widget15__stats">79%
-                                                </span>
+                                                <span class="m-widget15__stats" id="Block4ExpiredPer"></span>
                                                 <span class="m-widget15__text ">Average Percent of Tickets every Month
                                                 </span>
 
@@ -460,7 +524,7 @@
                                                 </span>
                                                 <div class="m--space-10"></div>
                                                 <div class="progress m-progress--sm">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar" id="Block4ExpiredProgress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -629,8 +693,9 @@
                 </div>
 
 
-                <div class="col-xl-6">
-                    <div class="m-portlet m-portlet--mobile ">
+                <div class="col-xl-6" id="dvBlock5">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--mobile invisible">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -651,85 +716,25 @@
                             </div>
                         </div>
                         <div class="m-portlet__body">
-                            <div class="m-widget25">
-
-
-                                <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px;">
+                            <div class="m-widget25" id="appendBlock5Content" >
+                                <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px; display: none">
                                     <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">63%
+                                        <span class="m-widget25__progress-number">##PERCENT## %
                                         </span>
                                         <div class="m--space-10"></div>
                                         <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-danger" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar m--bg-danger" role="progressbar" style="width: ##PERCENT##%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                        <span class="m-widget25__progress-sub">High
+                                        <span class="m-widget25__progress-sub">##PRIORITY##
                                         </span>
                                     </div>
                                     <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">2h 34m 22s
+                                        <span class="m-widget25__progress-number">##DOWNTIME##
                                         </span>
                                         <span class="m-widget25__progress-sub"><b>Average downtime</b> for Closed Tickets
                                         </span>
                                     </div>
                                 </div>
-
-                                <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px;">
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">63%
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-danger" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget25__progress-sub">Medium
-                                        </span>
-                                    </div>
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">2h 34m 22s
-                                        </span>
-                                        <span class="m-widget25__progress-sub"><b>Average downtime</b> for Closed Tickets
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px;">
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">63%
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-primary" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget25__progress-sub">Low
-                                        </span>
-                                    </div>
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">2h 34m 22s
-                                        </span>
-                                        <span class="m-widget25__progress-sub"><b>Average downtime</b> for Closed Tickets
-                                        </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px;">
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">63%
-                                        </span>
-                                        <div class="m--space-10"></div>
-                                        <div class="progress m-progress--sm">
-                                            <div class="progress-bar m--bg-primary" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="m-widget25__progress-sub">No Priority
-                                        </span>
-                                    </div>
-                                    <div class="m-widget25__progress">
-                                        <span class="m-widget25__progress-number">2h 34m 22s
-                                        </span>
-                                        <span class="m-widget25__progress-sub"><b>Average downtime</b> for Closed Tickets
-                                        </span>
-                                    </div>
-                                </div>
-
                             </div>
 
                         </div>
@@ -737,464 +742,215 @@
                 </div>
             </div>
 
-            
-        <div class="row">
 
-            <div class="col-xl-6">
-                <div class="m-portlet m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Category-wise Analysis
-                                </h3>
+            <div class="row">
+                <div class="col-xl-6" id="dvBlock6">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--full-height invisible">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Category-wise Analysis
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="m-portlet__head-tools">
+                                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link " data-toggle="tab" href="#m_widget11_tab1_content" role="tab">Last Month
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget11_tab2_content" role="tab">This Month
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="m-portlet__head-tools">
-                            <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-                                <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget11_tab1_content" role="tab">Last Month
-                                    </a>
-                                </li>
-                                <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget11_tab2_content" role="tab">This Month
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="m-portlet__body">
+                            <div class="tab-content">
+                                <div class="tab-pane" id="m_widget11_tab1_content">
+
+                                    <!--begin::Widget 11-->
+                                    <div class="m-widget11">
+                                        <div class="table-responsive">
+
+                                            <!--begin::Table-->
+                                            <table class="table" id="LastMonth">
+
+                                                <!--begin::Thead-->
+                                                <thead>
+                                                    <tr>
+                                                        <td class="m-widget11__app">Category</td>
+                                                        <td class="m-widget11__sales">Open</td>
+                                                        <td class="m-widget11__change">Parked</td>
+                                                        <td class="m-widget11__price">Closed</td>
+                                                        <td class="m-widget11__total m--align-right">Total</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <!--end::Thead-->
+
+                                                <!--begin::Tbody-->
+                                                <tbody>
+                                                </tbody>
+
+                                                <!--end::Tbody-->
+                                            </table>
+
+                                            <!--end::Table-->
+                                        </div>
+                                        <div class="m-widget11__action m--align-right">
+                                            <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
+                                        </div>
+                                    </div>
+
+                                    <!--end::Widget 11-->
+                                </div>
+                                <div class="tab-pane active" id="m_widget11_tab2_content">
+
+                                    <!--begin::Widget 11-->
+                                    <div class="m-widget11">
+                                        <div class="table-responsive">
+
+                                            <!--begin::Table-->
+                                            <table class="table" id="ThisMonth">
+
+                                                <!--begin::Thead-->
+                                                <thead>
+                                                    <tr>
+                                                        <td class="m-widget11__app">Category</td>
+                                                        <td class="m-widget11__sales">Open</td>
+                                                        <td class="m-widget11__change">Parked</td>
+                                                        <td class="m-widget11__price">Closed</td>
+                                                        <td class="m-widget11__total m--align-right">Total</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <!--end::Thead-->
+
+                                                <!--begin::Tbody-->
+                                                <tbody>
+                                                </tbody>
+
+                                                <!--end::Tbody-->
+                                            </table>
+
+                                            <!--end::Table-->
+                                        </div>
+                                        <div class="m-widget11__action m--align-right">
+                                            <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
+                                        </div>
+                                    </div>
+
+                                    <!--end::Widget 11-->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="m-portlet__body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="m_widget11_tab1_content">
+                </div>
 
-                                <!--begin::Widget 11-->
-                                <div class="m-widget11">
-                                    <div class="table-responsive">
-
-                                        <!--begin::Table-->
-                                        <table class="table">
-
-                                            <!--begin::Thead-->
-                                            <thead>
-                                                <tr>
-                                                    <td class="m-widget11__app">Category</td>
-                                                    <td class="m-widget11__sales">Open</td>
-                                                    <td class="m-widget11__change">Parked</td>
-                                                    <td class="m-widget11__price">Closed</td>
-                                                    <td class="m-widget11__total m--align-right">Total</td>
-                                                </tr>
-                                            </thead>
-
-                                            <!--end::Thead-->
-
-                                            <!--begin::Tbody-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-
-
-                                            </tbody>
-
-                                            <!--end::Tbody-->
-                                        </table>
-
-                                        <!--end::Table-->
-                                    </div>
-                                    <div class="m-widget11__action m--align-right">
-                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
-                                    </div>
+                <div class="col-xl-6" id="dvBlock7">
+                    <div class="loader"></div>
+                    <div class="m-portlet m-portlet--full-height invisible">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Department-wise Analysis
+                                    </h3>
                                 </div>
-
-                                <!--end::Widget 11-->
                             </div>
-                            <div class="tab-pane" id="m_widget11_tab2_content">
+                            <div class="m-portlet__head-tools">
+                                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link " data-toggle="tab" href="#m_widget11_tab1_content_dep" role="tab">Last Month
+                                        </a>
+                                    </li>
+                                    <li class="nav-item m-tabs__item">
+                                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget11_tab2_content_dep" role="tab">This Month
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="tab-content">
+                                <div class="tab-pane " id="m_widget11_tab1_content_dep">
 
-                                <!--begin::Widget 11-->
-                                <div class="m-widget11">
-                                    <div class="table-responsive">
+                                    <!--begin::Widget 11-->
+                                    <div class="m-widget11">
+                                        <div class="table-responsive">
 
-                                        <!--begin::Table-->
-                                        <table class="table">
+                                            <!--begin::Table-->
+                                            <table class="table" id="LastMonthDep">
 
-                                            <!--begin::Thead-->
-                                            <thead>
-                                                <tr>
-                                                    <td class="m-widget11__label">#</td>
-                                                    <td class="m-widget11__app">Application</td>
-                                                    <td class="m-widget11__sales">Sales</td>
-                                                    <td class="m-widget11__change">Change</td>
-                                                    <td class="m-widget11__price">Avg Price</td>
-                                                    <td class="m-widget11__total m--align-right">Total</td>
-                                                </tr>
-                                            </thead>
+                                                <!--begin::Thead-->
+                                                <thead>
+                                                    <tr>
+                                                        <td class="m-widget11__app">Department</td>
+                                                        <td class="m-widget11__sales">Open</td>
+                                                        <td class="m-widget11__change">Parked</td>
+                                                        <td class="m-widget11__price">Closed</td>
+                                                        <td class="m-widget11__total m--align-right">Total</td>
+                                                    </tr>
+                                                </thead>
 
-                                            <!--end::Thead-->
+                                                <!--end::Thead-->
 
-                                            <!--begin::Tbody-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Loop</span>
-                                                        <span class="m-widget11__sub">CRM System</span>
-                                                    </td>
-                                                    <td>19,200</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_1" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$63</td>
-                                                    <td class="m--align-right m--font-brand">$34,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Selto</span>
-                                                        <span class="m-widget11__sub">Powerful Website Builder</span>
-                                                    </td>
-                                                    <td>24,310</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_2" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$39</td>
-                                                    <td class="m--align-right m--font-brand">$46,010</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Jippo</span>
-                                                        <span class="m-widget11__sub">The Best Selling App</span>
-                                                    </td>
-                                                    <td>9,076</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_3" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$105</td>
-                                                    <td class="m--align-right m--font-brand">$67,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Verto</span>
-                                                        <span class="m-widget11__sub">Web Development Tool</span>
-                                                    </td>
-                                                    <td>11,094</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_4" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$16</td>
-                                                    <td class="m--align-right m--font-brand">$18,520</td>
-                                                </tr>
-                                            </tbody>
+                                                <!--begin::Tbody-->
+                                                <tbody>
+                                                </tbody>
 
-                                            <!--end::Tbody-->
-                                        </table>
+                                                <!--end::Tbody-->
+                                            </table>
 
-                                        <!--end::Table-->
+                                            <!--end::Table-->
+                                        </div>
+                                        <div class="m-widget11__action m--align-right">
+                                            <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
+                                        </div>
                                     </div>
-                                    <div class="m-widget11__action m--align-right">
-                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
-                                    </div>
+
+                                    <!--end::Widget 11-->
                                 </div>
+                                <div class="tab-pane active" id="m_widget11_tab2_content_dep">
 
-                                <!--end::Widget 11-->
+                                    <!--begin::Widget 11-->
+                                    <div class="m-widget11">
+                                        <div class="table-responsive">
+
+                                            <!--begin::Table-->
+                                            <table class="table" id="ThisMonthDep">
+
+                                                <!--begin::Thead-->
+                                                <thead>
+                                                    <tr>
+                                                        <td class="m-widget11__app">Department</td>
+                                                        <td class="m-widget11__sales">Open</td>
+                                                        <td class="m-widget11__change">Parked</td>
+                                                        <td class="m-widget11__price">Closed</td>
+                                                        <td class="m-widget11__total m--align-right">Total</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <!--end::Thead-->
+                                                <tbody></tbody>
+                                            </table>
+
+                                            <!--end::Table-->
+                                        </div>
+                                        <div class="m-widget11__action m--align-right">
+                                            <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
+                                        </div>
+                                    </div>
+
+                                    <!--end::Widget 11-->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-xl-6">
-                <div class="m-portlet m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">Department-wise Analysis
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="m-portlet__head-tools">
-                            <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-                                <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget11_tab1_content" role="tab">Last Month
-                                    </a>
-                                </li>
-                                <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget11_tab2_content" role="tab">This Month
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="m-portlet__body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="m_widget11_tab1_content">
-
-                                <!--begin::Widget 11-->
-                                <div class="m-widget11">
-                                    <div class="table-responsive">
-
-                                        <!--begin::Table-->
-                                        <table class="table">
-
-                                            <!--begin::Thead-->
-                                            <thead>
-                                                <tr>
-                                                    <td class="m-widget11__app">Department</td>
-                                                    <td class="m-widget11__sales">Open</td>
-                                                    <td class="m-widget11__change">Parked</td>
-                                                    <td class="m-widget11__price">Closed</td>
-                                                    <td class="m-widget11__total m--align-right">Total</td>
-                                                </tr>
-                                            </thead>
-
-                                            <!--end::Thead-->
-
-                                            <!--begin::Tbody-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <span class="m-widget11__title m--font-brand">Cleaning</span>
-                                                        <span class="m-widget11__sub">Total <b>3400</b> Tickets</span>
-                                                    </td>
-                                                    <td class=" m--font-danger">19,200</td>
-                                                    <td class=" m--font-warning">19,200</td>
-                                                    <td class=" m--font-success">63</td>
-                                                    <td class="m--align-right m--font-secondary">14,740</td>
-                                                </tr>
-
-
-                                            </tbody>
-
-                                            <!--end::Tbody-->
-                                        </table>
-
-                                        <!--end::Table-->
-                                    </div>
-                                    <div class="m-widget11__action m--align-right">
-                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
-                                    </div>
-                                </div>
-
-                                <!--end::Widget 11-->
-                            </div>
-                            <div class="tab-pane" id="m_widget11_tab2_content">
-
-                                <!--begin::Widget 11-->
-                                <div class="m-widget11">
-                                    <div class="table-responsive">
-
-                                        <!--begin::Table-->
-                                        <table class="table">
-
-                                            <!--begin::Thead-->
-                                            <thead>
-                                                <tr>
-                                                    <td class="m-widget11__label">#</td>
-                                                    <td class="m-widget11__app">Application</td>
-                                                    <td class="m-widget11__sales">Sales</td>
-                                                    <td class="m-widget11__change">Change</td>
-                                                    <td class="m-widget11__price">Avg Price</td>
-                                                    <td class="m-widget11__total m--align-right">Total</td>
-                                                </tr>
-                                            </thead>
-
-                                            <!--end::Thead-->
-
-                                            <!--begin::Tbody-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Loop</span>
-                                                        <span class="m-widget11__sub">CRM System</span>
-                                                    </td>
-                                                    <td>19,200</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_1" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$63</td>
-                                                    <td class="m--align-right m--font-brand">$34,740</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Selto</span>
-                                                        <span class="m-widget11__sub">Powerful Website Builder</span>
-                                                    </td>
-                                                    <td>24,310</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_2" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$39</td>
-                                                    <td class="m--align-right m--font-brand">$46,010</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Jippo</span>
-                                                        <span class="m-widget11__sub">The Best Selling App</span>
-                                                    </td>
-                                                    <td>9,076</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_3" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$105</td>
-                                                    <td class="m--align-right m--font-brand">$67,800</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-                                                            <input type="checkbox"><span></span></label>
-                                                    </td>
-                                                    <td>
-                                                        <span class="m-widget11__title">Verto</span>
-                                                        <span class="m-widget11__sub">Web Development Tool</span>
-                                                    </td>
-                                                    <td>11,094</td>
-                                                    <td>
-                                                        <div class="m-widget11__chart" style="height: 50px; width: 100px">
-                                                            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                                            <canvas id="m_chart_sales_by_apps_2_4" style="display: block; width: 0px; height: 0px;" height="0" width="0" class="chartjs-render-monitor"></canvas>
-                                                        </div>
-                                                    </td>
-                                                    <td>$16</td>
-                                                    <td class="m--align-right m--font-brand">$18,520</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <!--end::Tbody-->
-                                        </table>
-
-                                        <!--end::Table-->
-                                    </div>
-                                    <div class="m-widget11__action m--align-right">
-                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">Generate Report</button>
-                                    </div>
-                                </div>
-
-                                <!--end::Widget 11-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
-
-
-        </div>
-
     </div>
 </asp:Content>
