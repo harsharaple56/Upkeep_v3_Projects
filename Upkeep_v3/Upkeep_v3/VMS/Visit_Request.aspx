@@ -110,22 +110,22 @@ border: 3px solid #ccc;*/
         /* ----------- Non-Retina Screens ----------- */
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
             .rbl label {
-                margin-right: 3%;
+                margin-right: 16%;
             }
 
             .rbl input[type="radio"] {
-                margin-right: 5%;
+                margin-right: 1%;
             }
         }
 
         /* ----------- Retina Screens ----------- */
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
             .rbl label {
-                margin-right: 3%;
+                margin-right: 16%;
             }
 
             .rbl input[type="radio"] {
-                margin-right: 5%;
+                margin-right: 1%;
             }
         }
 
@@ -542,18 +542,6 @@ border: 3px solid #ccc;*/
 
 
     <script>
-        
-        $(document).on("click", "#m_aside_left_minimize_toggle", function () {
-            if ($('#m_aside_left_minimize_toggle').attr('class').includes('--active')) {
-                $(".rbl").find('label').css("width", "140");
-            }
-            else {
-                $(".rbl").find('label').css("width", "114");
-            }
-
-
-        });
-
 
         $(document).ready(function () {
 
