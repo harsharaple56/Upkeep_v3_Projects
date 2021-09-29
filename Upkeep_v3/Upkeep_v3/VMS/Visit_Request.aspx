@@ -83,19 +83,373 @@ border: 3px solid #ccc;*/
         }
 
         .rbl input[type="radio"] {
-            margin-left: 5px;
-            margin-right: 10px;
-            padding-bottom: 46px;
-            border-radius: 50% !important;
-            border: 1px solid #bdc3d4;
+            display: inline-block;
+            margin-right: 43px;
+            margin-bottom: 13px;
             height: 18px;
             width: 18px;
+            color: #575962;
+            box-sizing: border-box;
+            padding: 0;
+            position: relative;
+            cursor: pointer;
+            font-size: 1rem;
+            -webkit-box-sizing: border-box;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
         }
 
         .rbl label {
-            margin-right: 20px;
-            height: 20px;
-            width: 114px;
+            margin-right: 3%;
+            width: 14%;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+       
+        /* ----------- Non-Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 3%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+            .rbl label {
+                margin-right: 3%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 4 and 4S ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone X ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad 1, 2, Mini and Air ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad Pro 10.5" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Portrait */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Landscape */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* ----------- iPad Pro 12.9" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Portrait */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Landscape */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
         }
     </style>
 

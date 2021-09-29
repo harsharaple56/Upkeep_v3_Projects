@@ -1683,14 +1683,14 @@ public class My_Upkeep
 
 
 	//Added by RC WorkPermitConfiguration Save
-	public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID)
+	public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver,string WPNotify_Emails, string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, WPNotify_Emails, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -1893,14 +1893,14 @@ public class My_Upkeep
 
 
 	//Added by RC Update WP Config
-	public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string LoggedInUserID)
+	public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string WPNotify_Emails,string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Update_WorkPermitConfiguration(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Update_WorkPermitConfiguration(WP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header, strXmlWorkPermit_TermCondition, strXmlApprovalMatrix, chkShowApprovalMatrix_Initiator, chkShowApprovalMatrix_Approver, WPNotify_Emails, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)

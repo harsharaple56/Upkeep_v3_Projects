@@ -76,6 +76,10 @@ namespace Upkeep_v3.WorkPermit
                     btnSave.Text = "Update";
                     hdnWPConfigID.Value = ViewState["ConfigID"].ToString();
                     txtTitle.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Title"]);
+                    if(ds.Tables[0].Rows[0]["WP_Notify_Emails"] != null)
+                    {
+                        txt_Notify_Emails.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Notify_Emails"]);
+                    }
                     string Initiator = Convert.ToString(ds.Tables[0].Rows[0]["Initiator"]);
                     if (Initiator == "E")
                         rdbEmployee.Checked = true;
@@ -134,6 +138,7 @@ namespace Upkeep_v3.WorkPermit
                 string WPHeaderMandatory = string.Empty;
                 string WPHeaderAns = string.Empty;
                 string WPAnsData = string.Empty;
+                string WPNotify_Emails = string.Empty;
 
                 string WorkPermitType = string.Empty;
                 string WorkPermitTermCondition = string.Empty;
@@ -149,6 +154,9 @@ namespace Upkeep_v3.WorkPermit
                 StringBuilder strXmlWorkPermit_TermCondition = new StringBuilder();
                 strXmlWorkPermit_TermCondition.Append(@"<?xml version=""1.0"" ?>");
                 strXmlWorkPermit_TermCondition.Append(@"<WORKPERMIT_TERM_ROOT>");
+
+                WPNotify_Emails = Convert.ToString(txt_Notify_Emails.Text.Trim());
+
 
                 int ccc = Request.Form.Count;
                 for (int i = 0; i < ccc; i++)
@@ -371,9 +379,9 @@ namespace Upkeep_v3.WorkPermit
                 CompanyID = Convert.ToInt32(Session["CompanyID"].ToString());
 
                 if (ViewState["ConfigID"].ToString() != "0")
-                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Update_WorkPermitConfiguration(Convert.ToInt32(ViewState["ConfigID"]), strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, WPNotify_Emails, LoggedInUserID);
                 else
-                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, LoggedInUserID);
+                    dsWorkPermitConfig = ObjUpkeep.Insert_WorkPermitConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlWorkPermit_Header.ToString(), strXmlWorkPermit_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix_Initiator, ShowApprovalMatrix_Approver, WPNotify_Emails,LoggedInUserID);
 
                 if (dsWorkPermitConfig.Tables.Count > 0)
                 {
