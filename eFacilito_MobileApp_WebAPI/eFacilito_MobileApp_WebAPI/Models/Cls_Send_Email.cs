@@ -118,15 +118,12 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     public class MergeInfo_WorkPermit
     {
-        public string Raiser_Name { get; set; }
-        public string Gatepass_ID { get; set; }
-        public string Gatepass_Raised_Date { get; set; }
-        public string Gatepass_No { get; set; }
-        public string Gatepass_Title { get; set; }
-        public string Gatepass_Type { get; set; }
-        public string Gatepass_Date { get; set; }
-        public string Gatepass_Material_Detail { get; set; }
         public string Company_Name { get; set; }
+        public string Work_Permit_ID { get; set; }
+        public string Work_Permit_Title { get; set; }
+        public string Request_Date { get; set; }
+        public string Permit_From_Date { get; set; }
+        public string Permit_To_Date { get; set; }
     }
     #endregion
 
