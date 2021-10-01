@@ -94,15 +94,7 @@ namespace Upkeep_v3.Inventory
                     return "";
                 }
 
-                if ((int)ViewState["TransID"] > 0)
-                {
-                    ds = ObjUpkeep.Fetch_Tran_Detail(LoggedInUserID, Session["CompanyID"].ToString(), (int)ViewState["TransID"]);
-                }
-                else
-                {
-                    ds = ObjUpkeep.Fetch_Stock_Detail(LoggedInUserID, Session["CompanyID"].ToString(), 0);
-                }
-
+                ds = ObjUpkeep.Fetch_Stock_List(LoggedInUserID, Session["CompanyID"].ToString());
 
                 if (ds.Tables.Count > 0)
                 {
@@ -117,8 +109,8 @@ namespace Upkeep_v3.Inventory
 
                         for (int i = 0; i < count; i++)
                         {
-                            string Transac_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_ID"]);
-                            string Transac_Detail_ID = Convert.ToString(ds.Tables[0].Rows[i]["Transac_Detail_ID"]);
+                            string Transac_ID = Convert.ToString(0);
+                            string Transac_Detail_ID = Convert.ToString(0);
                             string Stock_ID = Convert.ToString(ds.Tables[0].Rows[i]["Stock_ID"]);
                             string Item_ID = Convert.ToString(ds.Tables[0].Rows[i]["Item_ID"]);
                             string Items = Convert.ToString(ds.Tables[0].Rows[i]["Items"]);
@@ -126,7 +118,7 @@ namespace Upkeep_v3.Inventory
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
                             string Sub_Category = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Category"]);
                             string Balance = Convert.ToString(ds.Tables[0].Rows[i]["Balance"]);
-                            string Consumed = Convert.ToString(ds.Tables[0].Rows[i]["Consumed"]);
+                            string Consumed = Convert.ToString(0);
 
                             string chkBoxField = "";
 
