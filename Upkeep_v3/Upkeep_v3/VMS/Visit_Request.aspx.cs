@@ -84,6 +84,7 @@ namespace Upkeep_v3.VMS
                 Fetch_User_UserGroupList();
                 Fetch_Department();
                 BindVMSTitle();
+                dv_rpt.Visible = false;
             }
         }
 
@@ -333,6 +334,7 @@ namespace Upkeep_v3.VMS
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
                 {
                     divCovid.Visible = true;
+                    divCovid1.Visible = true;
                 }
                 
                 int Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
@@ -354,6 +356,14 @@ namespace Upkeep_v3.VMS
                 {
                     rptQuestionDetails.DataSource = dsConfig.Tables[1];
                     rptQuestionDetails.DataBind();
+                    if (dsConfig.Tables[1].Rows.Count > 0)
+                    {
+                        dv_rpt.Visible = true;
+                    }
+                    else
+                    {
+                        dv_rpt.Visible = false;
+                    }
                     totalNumber.InnerText = dsConfig.Tables[3].Rows[0]["TotalCount"].ToString();
                 }
 

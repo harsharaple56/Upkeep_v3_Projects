@@ -342,7 +342,12 @@ border: 3px solid #ccc;*/
                 }
             });
 
-
+            $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
 
 
             //setInterval(function () {
@@ -1380,7 +1385,7 @@ border: 3px solid #ccc;*/
                                 <ContentTemplate>
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                        <asp:LinkButton class="close" runat="server" OnClick="btnCloseQuestion2_Click" id="btnCloseQuestion2">
+                                        <asp:LinkButton class="close" runat="server" OnClick="btnCloseQuestion2_Click" ID="btnCloseQuestion2">
                                             <span aria-hidden="true">&times;</span>
                                         </asp:LinkButton>
                                     </div>

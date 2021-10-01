@@ -987,7 +987,6 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 <div class="col-xl-6">
                                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
                                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-
                                             <iframe src="https://compelapps.in/eFacilito_UAT/AssetMangDocs/DOC/27-08-2021/HARDWARE_customfields_27-08-2021%20125421_certificate-2.pdf" width="100%" height="500px"></iframe>
                                         </div>
                                     </div>
