@@ -2328,5 +2328,9 @@ namespace Upkeep_v3.VMS
             }
         }
 
+        protected void btnCloseQuestion2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(HttpContext.Current.Request.Url.ToString(), true);
+        }
     }
 }

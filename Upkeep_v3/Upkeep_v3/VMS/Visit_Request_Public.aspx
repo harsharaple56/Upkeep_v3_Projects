@@ -1380,9 +1380,9 @@ border: 3px solid #ccc;*/
                                 <ContentTemplate>
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                        <asp:LinkButton class="close" runat="server" OnClick="btnCloseQuestion2_Click" id="btnCloseQuestion2">
                                             <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group m-form__group row">
