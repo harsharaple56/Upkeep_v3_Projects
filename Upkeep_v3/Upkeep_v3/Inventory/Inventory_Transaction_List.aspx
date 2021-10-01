@@ -44,7 +44,7 @@
 
                     <div class="col-xl-4 order-1 order-xl-2 m--align-right">
                         <%--~/CheckList/CheckList_Configuration.aspx--%>
-                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Inventory_Transaction_Details.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <a href="<%= Page.ResolveClientUrl("~/Inventory/Add_Inventory_Transaction.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>New Transaction</span>
@@ -75,7 +75,7 @@
                                 --%>
 
 
-                                <th>Transac_ID</th>
+                                <th>Transaction ID</th>
                                 <th>Department</th>
                                 <th>Consumed</th> 
                                 <th>Created_Date</th>

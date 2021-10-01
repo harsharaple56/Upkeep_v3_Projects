@@ -1175,6 +1175,7 @@
     <Content Include="General_Masters\Vendor_Mst.aspx" />
     <Content Include="Global.asax" />
     <Content Include="assets\instascan.min.js" />
+    <Content Include="Inventory\Add_Inventory_Transaction.aspx" />
     <Content Include="Inventory\General_Master.aspx" />
     <Content Include="Inventory\Inventory_List.aspx" />
     <Content Include="Inventory\Inventory_Purchase_Details.aspx" />
@@ -5129,6 +5130,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Add_Inventory_Transaction.aspx.cs">
+      <DependentUpon>Add_Inventory_Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory\Add_Inventory_Transaction.aspx.designer.cs">
+      <DependentUpon>Add_Inventory_Transaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\General_Master.aspx.cs">
       <DependentUpon>General_Master.aspx</DependentUpon>
