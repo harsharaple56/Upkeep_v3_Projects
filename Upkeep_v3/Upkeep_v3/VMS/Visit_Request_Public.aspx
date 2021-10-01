@@ -356,6 +356,11 @@ border: 3px solid #ccc;*/
                 $("[id*=divError]").hide();
             }
 
+            var technical = $("input[name=technical]").val();
+            if (technical != undefined) {
+                toastr.warning("Due to some technical error , please try after some time..!");
+            }
+
             var getValue = $("input[name=vCode]").val();
             var getValidation = $("input[name=ValidationMsg]").val();
             var ValidationName = $("input[name=ValidationName]").val();

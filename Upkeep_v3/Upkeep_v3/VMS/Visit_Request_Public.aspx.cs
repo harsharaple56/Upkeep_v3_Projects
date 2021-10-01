@@ -354,11 +354,8 @@ namespace Upkeep_v3.VMS
 
         protected void btnSuccessOk_Click(object sender, EventArgs e)
         {
-            //if (string.IsNullOrEmpty(LoggedInUserID) && !string.IsNullOrEmpty(SessionVisitor))
-            //    Page.Response.Redirect(Page.Request.Url.ToString(), true);
-            //else
-            //    Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
-            mpeVMSRequestSaveSuccess.Hide();
+            //mpeVMSRequestSaveSuccess.Hide();
+            Response.Redirect(HttpContext.Current.Request.Url.ToString(), true);
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
@@ -1556,56 +1553,68 @@ namespace Upkeep_v3.VMS
 
                         Save:
                             DataSet dsVMSQuestionData = new DataSet();
-                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, string.Empty, strName, strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB, strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
+                            dsVMSQuestionData = ObjUpkeep.Insert_VMSRequest(Convert.ToInt32(ViewState["CompanyID"]), Action, RequestID, ConfigID, string.Empty, strName,
+                                strEmail, strPhone, strVisitDate, strMeetUsers, strVMSData, strCovidColor, strCovidTestDate, strTemperature, GetUserSelfPhotoPath, storefilePathtoDB,
+                                strDoseDate, GetUserPhotoIDPath, LoggedInUserID);
 
                             if (dsVMSQuestionData.Tables.Count > 0)
                             {
                                 if (dsVMSQuestionData.Tables[0].Rows.Count > 0)
                                 {
                                     int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
-                                    int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-
-                                    if (status == 1 && Action == 'N')
+                                    if (status == 3 && Action == 'N')
                                     {
-                                        //SetRepeater();
-                                        //divinsertbutton.visible = false;
-                                        lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-
-                                        int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
-                                        string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
-
-                                        mpeVMSRequestSaveSuccess.Show();
-
-                                        string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
-
-                                        if (SMS_Enabled == 1)
-                                        {
-                                            string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
-                                            string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
-                                            string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
-                                            string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
-
-                                            string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
-                                        }
-                                    }
-                                    else if (status == 1 && Action != 'N')
-                                    {
-                                        Response.Write("<script>alert('Status changed.');</script>");
-                                        Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                                        ClearControlls();
+                                        Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
+                                        Page.ClientScript.RegisterHiddenField("technical", "technical");
+                                        Response.Redirect(HttpContext.Current.Request.Url.ToString(), true);
                                     }
                                     else
                                     {
-                                        SetRepeater();
-                                        divError.Visible = true;
-                                        lblErrorMsg2.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
-                                    }
+                                        int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
 
+                                        if (status == 1 && Action == 'N')
+                                        {
+                                            //SetRepeater();
+                                            //divinsertbutton.visible = false;
+                                            lblVMSRequestCode.Text = Convert.ToString(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+
+                                            int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
+                                            string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
+
+                                            mpeVMSRequestSaveSuccess.Show();
+
+                                            string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+
+                                            if (SMS_Enabled == 1)
+                                            {
+                                                string Send_SMS_URL = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Send_SMS_URL"]);
+                                                string User_ID = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["User_ID"]);
+                                                string Password = Convert.ToString(dsVMSQuestionData.Tables[2].Rows[0]["Password"]);
+                                                string DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[3].Rows[0]["DLT_Template_ID"]);
+
+                                                string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
+                                            }
+                                        }
+                                        else if (status == 1 && Action != 'N')
+                                        {
+                                            Response.Write("<script>alert('Status changed.');</script>");
+                                            Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
+                                        }
+                                        else
+                                        {
+                                            SetRepeater();
+                                            divError.Visible = true;
+                                            lblErrorMsg2.Text = "Due to some technical issue your request can not be process. Kindly contact support team.";
+                                        }
+                                    }
                                 }
                             }
 
                             #endregion
                             ClearControlls();
                             Page.ClientScript.RegisterHiddenField("ClearRepeater", "ClearRepeater");
+
                         }
                         else
                         {
