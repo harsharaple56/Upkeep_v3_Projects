@@ -1140,8 +1140,6 @@ namespace Upkeep_v3.VMS
                             }
                             #endregion
 
-
-
                             #region User Photo ID Web Cam
                             if (!fileupload_userpic.HasFile && !string.IsNullOrEmpty(UserPhotoID_fileData))
                             {

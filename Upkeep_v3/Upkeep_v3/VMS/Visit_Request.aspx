@@ -106,7 +106,7 @@ border: 3px solid #ccc;*/
             font-size: 1rem;
         }
 
-       
+
         /* ----------- Non-Retina Screens ----------- */
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
             .rbl label {
@@ -573,6 +573,13 @@ border: 3px solid #ccc;*/
                 // $('#error_endDate').html('Event end date-time can not be before the start date.').parents('.form-group').addClass('has-error');
                 //}
             });
+
+            $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
         });
 
         function compareTimeFunction() {
@@ -743,6 +750,252 @@ border: 3px solid #ccc;*/
         }
 
     </script>
+    <script type="text/javascript">
+        var isSubmitted = false;
+        function preventMultipleSubmissions() {
+            if (!isSubmitted) {
+                $('#<%=btnSave.ClientID %>').val('Mark IN');
+                isSubmitted = true;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.datetimepicker_Dose').datepicker({
+                todayHighlight: true,
+                orientation: 'auto top',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true,
+                endDate: moment().format('dd-MM-yyyy'),
+            });
+
+            $('.datetimepicker_VisitDate').datetimepicker({
+                todayHighlight: true,
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy HH:ii P',
+                showMeridian: true,
+                startDate: moment().format('YYYY-MM-DD'),
+            }).on('changeDate', function (event) {
+                var startDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                var endDate = moment($('#txtVMSDate').val(), 'DD/MM/YYYY hh:mm A').valueOf();
+                if (endDate < startDate) {
+                    $('#txtVMSDate').val('');
+                }
+            });
+
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var PhotoSuceess = $("#PhotoSuceess");
+            var PhotoFalied = $("#PhotoFalied");
+            var AadharSuceess = $("#AadharSuceess");
+            var AadharFailed = $("#AadharFailed");
+            var DoseDateSuceess = $("#DoseDateSuceess");
+            var DoseDateFailed = $("#DoseDateFailed");
+            var CertificateSuceess = $("#CertificateSuceess");
+            var CertificateFailed = $("#CertificateFailed");
+
+            PhotoSuceess.hide();
+            PhotoFalied.hide();
+            AadharSuceess.hide();
+            AadharFailed.hide();
+            DoseDateSuceess.hide();
+            DoseDateFailed.hide();
+            CertificateSuceess.hide();
+            CertificateFailed.hide();
+
+
+            function getFile(filePath) {
+                return filePath.split('.').pop();
+            }
+
+
+            $("[id*=txtDoseDate]").change(function () {
+                var txtDate = $("[id*=txtDoseDate]").val();
+                if (txtDate != "") {
+                    DoseDateSuceess.show();
+                    DoseDateFailed.hide();
+                }
+                else {
+                    DoseDateSuceess.hide();
+                    DoseDateFailed.show();
+                }
+            });
+
+            $("[id*=VCertificate]").change(function () {
+                var imgVal = $("[id*=VCertificate]").val();
+                var exten = getFile(imgVal);
+                var validImageTypes = ['pdf', 'PDF'];
+
+                if (imgVal != "" && validImageTypes.includes(exten)) {
+                    CertificateSuceess.show();
+                    CertificateFailed.hide();
+                }
+                else {
+                    CertificateSuceess.hide();
+                    CertificateFailed.show();
+                }
+            });
+
+            $("[id*=fileupload_userpic]").change(function () {
+                var imgValue = $("[id*=fileupload_userpic]").val();
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
+                    $("[id*=idproof]")[0].removeAttribute('src');
+                    AadharSuceess.show();
+                    AadharFailed.hide();
+                    $("[id*=RegularExpressionValidator5]").html('Only (.png , .jpg , .jpeg) files are allowed');
+                }
+                else {
+                    AadharSuceess.hide();
+                    AadharFailed.show();
+                }
+            });
+
+
+            $("[id*=fileupload1]").change(function () {
+                var imgValue = $("[id*=fileupload1]").val();
+                var exten = getFile(imgValue);
+                var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
+                if (imgValue != "" && validImageTypes.includes(exten)) {
+                    $("[id*=photo]")[0].removeAttribute('src');
+                    PhotoSuceess.show();
+                    PhotoFalied.hide();
+                    $("[id*=RegularExpressionValidator6]").html('Only (.png , .jpg , .jpeg) files are allowed');
+                }
+                else {
+                    PhotoSuceess.hide();
+                    PhotoFalied.show();
+                }
+            });
+
+            $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            var ClearRepeater = $("input[name=ClearRepeater]").val();
+            if (ClearRepeater != undefined) {
+                $("[id*=chkTermsCondition]").prop('checked', false);
+                $("[id*=divError]").hide();
+            }
+
+            var technical = $("input[name=technical]").val();
+            if (technical != undefined) {
+                toastr.warning("Due to some technical error , please try after some time..!");
+            }
+
+            var getValue = $("input[name=vCode]").val();
+            var getValidation = $("input[name=ValidationMsg]").val();
+            var ValidationName = $("input[name=ValidationName]").val();
+            var ValidatioEmail = $("input[name=ValidatioEmail]").val();
+            var ValidationPhone = $("input[name=ValidationPhone]").val();
+            var ValidationDoseDate = $("input[name=ValidationDoseDate]").val();
+            var ValidationVMSDate = $("input[name=ValidationVMSDate]").val();
+            var ValidationVcerty = $("input[name=ValidationVcerty]").val();
+            var ValidationYourPhoto = $("input[name=ValidationYourPhoto]").val();
+            var ValidationIDProof = $("input[name=ValidationIDProof]").val();
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            if (getValue != undefined) {
+                toastr.warning("Your are not eligible for Visit.");
+            }
+            if (getValidation != undefined) {
+                toastr.warning(getValidation);
+            }
+
+            if (ValidationName != undefined) {
+                toastr.warning(getValidation);
+            }
+
+            if (ValidatioEmail != undefined) {
+                toastr.warning(ValidatioEmail);
+            }
+
+            if (ValidationPhone != undefined) {
+                toastr.warning(ValidationPhone);
+            }
+
+            if (ValidationDoseDate != undefined) {
+                toastr.warning(ValidationDoseDate);
+            }
+
+            if (ValidationVMSDate != undefined) {
+                toastr.warning(ValidationVMSDate);
+            }
+
+            if (ValidationYourPhoto != undefined) {
+                toastr.warning(ValidationYourPhoto);
+            }
+
+            if (ValidationIDProof != undefined) {
+                toastr.warning(ValidationIDProof);
+            }
+
+            if (ValidationVcerty != undefined) {
+                toastr.warning(ValidationVcerty);
+            }
+
+
+        });
+
+
+    </script>
+
+    <script type="text/javascript">
+        function InserUserImage() {
+            $.ajax({
+                type: "POST",
+                url: "Visit_Request.aspx/SaveUserImage",
+                data: "{data: '" + $("#photo")[0].src + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#PhotoSuceess").show();
+                    $("#PhotoFalied").hide();
+                    $("#m_modal_6").modal("hide");
+                    toastr.success("Your Photo Successfully Added..!");
+                },
+                failure: function (response) {
+                    $("#PhotoSuceess").hide();
+                    $("#PhotoFalied").show();
+                    $("#m_modal_6").modal("hide");
+                    toastr.error("Your Photo Not Added..!");
+                }
+            });
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -844,15 +1097,17 @@ border: 3px solid #ccc;*/
 
                                 <div class="m-portlet__head-tools">
 
-                                    <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                    <a href="<%= Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx") %>" class="btn btn-secondary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
                                         </span>
                                     </a>
                                     <%--<asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitQuestion()" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />--%>
-
-                                    <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS" OnClick="btnSave_Click" Text="Save" />
+                                   &nbsp;
+                                   &nbsp;
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS"
+                                        OnClientClick="return preventMultipleSubmissions();" OnClick="btnSave_Click" Text="Save" />
 
                                     <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                     <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -883,11 +1138,11 @@ border: 3px solid #ccc;*/
                                 </div>
                             </div>
 
-                            <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                            <div id="dv_visitor" runat="server" class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visitor Information</h3>
                             </div>
 
-                            <div class="form-group row">
+                            <div id="dv_visitor1" runat="server" class="form-group row">
                                 <%--<div id="divNameComp" runat="server" style="display: block;">
                                     <span id="NameComp" runat="server" style="color: red;">*</span>
                                         </div>--%>
@@ -931,13 +1186,13 @@ border: 3px solid #ccc;*/
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div id="dv_dateofvisit" runat="server" class="form-group row">
                                 <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Date of Visit</label>
                                 <div class="col-md-4 col-form-label">
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
 
                                     <div class="input-group date">
-                                        <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" onchange="compareTimeFunction()" ClientIDMode="Static" placeholder="Select Visit date & time"></asp:TextBox>
+                                        <asp:TextBox ID="txtVMSDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_VisitDate" onchange="compareTimeFunction()" ClientIDMode="Static" placeholder="Select Visit date & time"></asp:TextBox>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                         </div>
@@ -979,53 +1234,187 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                             </div>
 
                             <br />
-                            <div class="m-form__heading" style="text-align: center;" id="div_Vaccination" visible="false" runat="server">
-                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">Vaccination Details</h3>
+                            <div id="dvVaccinationCheck" runat="server">
+                                <div class="m-form__heading" style="text-align: center;">
+                                    <h3 class="m-form__heading-title" style="line-height: 2.0; background: bisque; font-size: 1.2rem;">Vaccination Details</h3>
+                                </div>
+
+                                <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                                    <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                                        <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
+                                        <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
+                                            <i class="fa fa-check-circle"></i>
+                                            <b>Success</b>
+                                        </span>
+                                        <span id="DoseDateFailed" class="m-badge m-badge--danger m-badge--wide">
+                                            <i class="fa fa-times-circle"></i>
+                                            <b>Failed</b>
+                                        </span>
+
+                                        <div class="input-group date">
+                                            <asp:TextBox ID="txtDoseDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker_Dose" placeholder="Select date & time"></asp:TextBox>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                            </div>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDoseDate" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter 2<sup>nd</sup> Dose Vaccination Date"></asp:RequiredFieldValidator>
+                                    </div>
+
+                                </div>
+                                &nbsp;
+                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+
+                             <div class="font-weight-bold">
+                                 Upload Vaccination Certificate 
+
+                                 <span id="CertificateSuceess" class="m-badge m-badge--success m-badge--wide">
+                                     <i class="fa fa-check-circle"></i>
+                                     <b>Successfully Uploaded</b>
+                                 </span>
+                                 <span id="CertificateFailed" class="m-badge m-badge--danger m-badge--wide">
+                                     <i class="fa fa-times-circle"></i>
+                                     <b>Failed</b>
+                                 </span>
+
+                             </div>
+                             <br />
+
+                             <div class="custom-file">
+                                 <asp:FileUpload ID="VCertificate" runat="server" CssClass="custom-file-input" accept=".pdf" />
+                                 <label class="custom-file-label" for="customFile">
+                                     Choose file
+                                 <asp:Label ID="Label2" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
+                                 <asp:Label ID="lbl_error" runat="server" ForeColor="Red"></asp:Label>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="VCertificate" Visible="true" Display="Dynamic"
+                                     ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
+                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
+                                     ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
+
+                             </div>
+
+
+                             <div class="alert m-alert m-alert--default" role="alert">
+                                 Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN. <b>Only .pdf format allowed.</b>
+
+                             </div>
+                         </div>
+
+                     </div>
+
+
+
+                                &nbsp;
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                            <div class="font-weight-bold">
+                                Upload your photo without any mask
+                             <span id="PhotoSuceess" class="m-badge m-badge--success m-badge--wide">
+                                 <i class="fa fa-check-circle"></i>
+                                 <b>Successfully Uploaded</b>
+                             </span>
+                                <span id="PhotoFalied" class="m-badge m-badge--danger m-badge--wide">
+                                    <i class="fa fa-times-circle"></i>
+                                    <b>Failed</b>
+                                </span>
+
+
+                            </div>
+                            <br />
+                            <div class="row">
+
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <div class="custom-file">
+                                        <asp:FileUpload ID="fileupload1" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
+                                        <label id="lbl_userpic1" class="custom-file-label" for="customFile">
+                                            Choose file
+                                        <asp:Label ID="Label3" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
+                                        <asp:Label ID="Label4" runat="server" ForeColor="Red"></asp:Label>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator6" runat="server"
+                                            ControlToValidate="fileupload1" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                    OR 
+                                </div>
+
+                                <div class="col-xl-4" style="padding-bottom: 1rem;">
+                                    <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
+
+                                    </button>
+                                </div>
                             </div>
 
-                            <div class="form-group row" id="div_Vaccination1" visible="false" runat="server">
-                                <div class="col-xl-6">
-                                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                            <iframe src="https://compelapps.in/eFacilito_UAT/AssetMangDocs/DOC/27-08-2021/HARDWARE_customfields_27-08-2021%20125421_certificate-2.pdf" width="100%" height="500px"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="m-stack m-stack--ver m-stack--tablet m-stack--demo">
-                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
-                                            <div class="m-card-profile__title">
-                                                <b>Photo of Vaccinated Visitor</b>
-                                            </div>
-                                            <div class="m-card-profile">
-                                                <div class="m-card-profile__pic">
-                                                    <div class="m-card-profile__pic-wrapper" style="margin: 0px;">
-                                                        <img id="ContentPlaceHolder1_imgProfilePic" src="http://localhost:51897/UserImages/DEMO1.jpg">
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                Please click your Photo which will be used to generate your <b>Visitor Pass</b>. <b>Only .png , .jpeg , .jpg format allowed.</b>
+                            </div>
 
+                        </div>
+                    </div>
+                                &nbsp;
 
-                                        </div>
-                                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                                            <b>Date of 2nd Dose Vaccination provided by Visitor</b> :
-                                            <h2 class="font-weight-bold m--font-danger">27th August 2021</h2>
-                                            </br>
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                            <div class="font-weight-bold">
+                                Upload your valid Photo ID proof
+                             <span id="AadharSuceess" class="m-badge m-badge--success m-badge--wide">
+                                 <i class="fa fa-check-circle"></i>
+                                 <b>Successfully Uploaded</b>
+                             </span>
+                                <span id="AadharFailed" class="m-badge m-badge--danger m-badge--wide">
+                                    <i class="fa fa-times-circle"></i>
+                                    <b>Failed</b>
+                                </span>
+                            </div>
+                            <br />
+                            <div class="row">
 
-                                            <div>
-                                                <h5 class="font-weight-bold m--font-danger">NOTE: Please verify if the Vaccination date shown above is mentioned in the Certificate on the Left under </h5>
-                                            </div>
-                                            <h4 class="m--font-success">Date of 2nd Dose ुसा डोसची तारीख</h4>
-                                            </br>
-
-                                            <div>
-                                                <h5 class="font-weight-bold m--font-danger">If Date is Same , then Approve the Request , else Reject it</h5>
-                                            </div>
-                                        </div>
+                                <div class="col-xl-12" style="padding-bottom: 1rem;">
+                                    <div class="custom-file">
+                                        <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
+                                        <label id="lbl_userpic" class="custom-file-label" for="customFile">
+                                            Choose file
+                                        <asp:Label ID="Label1" runat="server" ForeColor="Red">(Max File Limit : 5 MB)</asp:Label></label>
+                                        <asp:Label ID="lbl_error_userpic" runat="server" ForeColor="Red"></asp:Label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fileupload_userpic" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
+                                            ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
 
                                     </div>
                                 </div>
+                                <%--<div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
+                                    OR 
+                                </div>
+
+                                <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
+                                    </button>
+                                </div>--%>
+                            </div>
+
+                            <div class="alert m-alert m-alert--default" role="alert">
+                                Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side). <b>Only .png , .jpg , .jpeg format allowed.</b>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
 
                             </div>
 
@@ -1181,45 +1570,45 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
 
                     <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body m--align-center">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <video id="video">Video stream not available.</video>
+
+                                    <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-camera"></i>
+                                            <span>Click Photo</span>
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="modal-body m--align-center">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <video id="video">Video stream not available.</video>
-
-                                            <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="fa fa-camera"></i>
-                                                    <span>Click Photo</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <canvas id="canvas">
-                                                <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
-                                            </canvas>
-                                            <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="fa fa-cloud-upload-alt"></i>
-                                                    <span>Upload Photo</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-
-
+                                <div class="col-xl-6">
+                                    <canvas id="canvas">
+                                        <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box." />
+                                    </canvas>
+                                    <button onclick="InserUserImage()" type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-cloud-upload-alt"></i>
+                                            <span>Upload Photo</span>
+                                        </span>
+                                    </button>
                                 </div>
-
                             </div>
+
+
                         </div>
+
                     </div>
+                </div>
+            </div>
 
 
                     <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">

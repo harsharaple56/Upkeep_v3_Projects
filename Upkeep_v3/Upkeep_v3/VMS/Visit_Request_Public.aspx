@@ -255,6 +255,19 @@ border: 3px solid #ccc;*/
             window.addEventListener('load', startup, false);
         })();
     </script>
+     <script type="text/javascript">
+        var isSubmitted = false;
+        function preventMultipleSubmissions() {
+            if (!isSubmitted) {
+                $('#<%=btnSave.ClientID %>').val('Mark IN');
+                isSubmitted = true;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
 
