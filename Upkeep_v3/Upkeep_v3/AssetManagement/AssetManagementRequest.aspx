@@ -388,7 +388,7 @@
                     if ($("#customCheck").is(':checked')) {
                         $("#btnSaveAmc").click();
 
-                        if ($("#HdflAmcDoc").val() = "1") {
+                        if ($("#HdflAmcDoc").val() == '1') {
                             alert('3 Mb Documents Size Limit, Please Correct');
                             return;
                         }
@@ -1172,7 +1172,7 @@
                                             <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
                                                 <div class="col-xl-12 col-lg-12">
                                                     <%-- class="table table-nomargin"--%>
-                                                    <table id="TblLevels" runat="server" border="1" visible="true" clientidmode="Static" width="100%">
+                                                    <table class="table table-striped- table-bordered table-hover table-checkable" id="TblLevels" runat="server" border="1" visible="true" clientidmode="Static" width="100%">
                                                         <thead>
                                                             <tr>
                                                                 <th>Sr No</th>

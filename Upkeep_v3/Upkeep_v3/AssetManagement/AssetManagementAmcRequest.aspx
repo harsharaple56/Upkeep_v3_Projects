@@ -421,50 +421,57 @@
                         <p id="infox" style="display: none;"></p>
 
                         <div class="m-portlet__head">
-                            <div class="m-portlet__head-progress">
-                            </div>
-                            <div class="m-portlet__head-wrapper">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Asset AMC Details</h3>
-                                    </div>
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">Asset AMC Details</h3>
                                 </div>
+                            </div>
 
-                                <div class="m-portlet__head-tools" style="width: 28%;">
-                                    <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementAmcList.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                        <%--<%= Page.ResolveClientUrl( Session["PreviousURL"].ToString()) %>--%>
-                                        <span>
-                                            <i class="la la-arrow-left"></i>
-                                            <span>Back</span>
-                                        </span>
-                                    </a>
-                                    <div class="btn-group">
+                            <div class="m-portlet__head-tools">
+                                <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
 
-                                        <asp:Button ID="Button1" TYPE="button" Text="Save" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
-                                            ClientIDMode="Static" />
-                                        <%--OnClientClick="return FunSetXML();" --%>
+                                        <li class="m-portlet__nav-item">
+                                            <a href="<%= Page.ResolveClientUrl("~/AssetManagement/AssetManagementAmcList.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                                <%--<%= Page.ResolveClientUrl( Session["PreviousURL"].ToString()) %>--%>
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>
+                                                    <span>Back</span>
+                                                </span>
+                                            </a>
+                                        </li>
 
-                                        <asp:Button ID="btnSave" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
-                                            CausesValidation="true" ValidationGroup="validateAssetAMC" Text="Save" OnClick="btnSave_Click" Style="display: none" />
-                                        <%--<asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                                    </ul>
+
+                                    <ul class="m-portlet__nav">
+
+                                        <li class="m-portlet__nav-item">
+                                            <asp:Button ID="Button1" TYPE="button" Text="Save" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"
+                                                ClientIDMode="Static" />
+                                            <%--OnClientClick="return FunSetXML();" --%>
+
+                                            <asp:Button ID="btnSave" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
+                                                CausesValidation="true" ValidationGroup="validateAssetAMC" Text="Save" OnClick="btnSave_Click" Style="display: none" />
+                                            <%--<asp:Button ID="btnSaveAmc" TYPE="button" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" ClientIDMode="Static"
                                             CausesValidation="true" ValidationGroup="validateAssetAMC" Text="SaveAMC" Style="display: none" />--%>
 
-                                        <asp:Button type="Button" ID="btnRenewAMC" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md"
-                                            Text="RENEW" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
-                                            data-title="Add AMC" data-backdrop="static" data-keyboard="false" />
+                                            <asp:Button type="Button" ID="btnRenewAMC" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md"
+                                                Text="RENEW" data-toggle="modal" data-target="#myModal" ClientIDMode="Static" OnClientClick="return false"
+                                                data-title="Add AMC" data-backdrop="static" data-keyboard="false" />
 
-                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
-                                    </div>
+                                            <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                            <cc1:ModalPopupExtender ID="mpeWpRequestSaveSuccess" runat="server" PopupControlID="pnlWpReqestSuccess" TargetControlID="btnTest"
+                                                CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                            </cc1:ModalPopupExtender>
+                                        </li>
+
+
+                                    </ul>
+
                                 </div>
 
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                    </div>
-                                </div>
                             </div>
+
                         </div>
 
                         <div class="m-portlet__body" style="padding: 0.3rem 2.2rem; display: none;">
@@ -773,7 +780,7 @@
                                     <div class="col-xl-2 col-lg-2">
                                     </div>
                                 </div>
-                                <div class="form-group row" style=" margin-bottom: 0;">
+                                <div class="form-group row" style="margin-bottom: 0;">
                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name:</label>
                                     <div class="col-xl-10 col-lg-8">
                                         <asp:TextBox ID="txttAmcName" runat="server" class="form-control"></asp:TextBox>
@@ -785,7 +792,7 @@
                                 </div>
                             </div>
                             <div id="DivIsNewAmc" runat="server" style="display: block;">
-                                <div class="form-group row" style=" margin-bottom: 0;">
+                                <div class="form-group row" style="margin-bottom: 0;">
                                     <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> Asset Name:</label>
                                     <div class="col-xl-10 col-lg-8">
                                         <asp:DropDownList ID="ddlAssetName" class="form-control m-input" runat="server" ClientIDMode="Static"
@@ -892,7 +899,7 @@
 
                                 <br />
                                 <div id="Div18" runat="server" style="display: block;">
-                                    <div class="form-group row" style=" margin-bottom: 0;">
+                                    <div class="form-group row" style="margin-bottom: 0;">
                                         <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Inclusion :</label>
                                         <div class="col-xl-4 col-lg-3" style="padding-right: 0px;">
                                             <asp:TextBox ID="txtAmcInclusion" TextMode="MultiLine" runat="server" class="form-control"></asp:TextBox>
@@ -922,7 +929,7 @@
 
                                 <br />
                                 <div id="Div21" runat="server" style="display: block;">
-                                    <div class="form-group row" style=" margin-bottom: 0;">
+                                    <div class="form-group row" style="margin-bottom: 0;">
                                         <label class="col-xl-2 col-lg-2 form-control-label"><span style="color: red;">*</span> AMC Documents :</label>
                                         <div class="col-xl-9 col-lg-6">
                                             <%--<input id="flAmcDoc" class="form-control" clientidmode="static" runat="server" onchange="readURL(this);" type="file" />--%>
@@ -945,14 +952,14 @@
 
                                 <br />
                                 <div id="Div32" runat="server" style="display: block;">
-                                        <div class="m-form__heading" style="text-align: center;">
-                                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset AMC History</h3>
-                                        </div>
+                                    <div class="m-form__heading" style="text-align: center;">
+                                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Asset AMC History</h3>
+                                    </div>
                                 </div>
 
                                 <br />
                                 <div id="Div10" runat="server" style="display: block;">
-                                    <div class="form-group row" style=" margin-bottom: 4%;">
+                                    <div class="form-group row" style="margin-bottom: 4%;">
                                         <div class="col-xl-12 col-lg-10">
                                             <table class="m-datatable" id="html_table" width="100%">
                                                 <thead>
@@ -1273,7 +1280,5 @@
             </div>
         </div>
     </div>
-    </div>
-
 
 </asp:Content>
