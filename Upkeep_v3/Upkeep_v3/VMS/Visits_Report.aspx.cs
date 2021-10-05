@@ -185,9 +185,13 @@ namespace Upkeep_v3.VMS
 
         public void bindMIS_Report()
         {
-
+            DataSet dsReport = new DataSet();
             string From_Date = string.Empty;
             string To_Date = string.Empty;
+
+            gvVisitReport.DataSource = null;
+            gvVisitReport.DataBind();
+
             try
             {
                 if (start_date.Value != "")
@@ -213,20 +217,18 @@ namespace Upkeep_v3.VMS
 
                 string EventID = Convert.ToString(ddlFormName.SelectedValue);
 
-                DataSet ds = new DataSet();
+                dsReport = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
 
-                ds = ObjUpkeep.Fetch_VMS_MIS_Report(EventID, From_Date, To_Date, CompanyID);
-
-                if (ds.Tables.Count > 0)
+                if (dsReport.Tables.Count > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+                    if (dsReport.Tables[0].Rows.Count > 0)
                     {
 
-                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+                        int count = Convert.ToInt32(dsReport.Tables[0].Rows.Count);
 
                         //string UserType = Convert.ToString(ds.Tables[0].Rows[0]["User_Type"]);
 
-                        gvVisitReport.DataSource = ds.Tables[0];
+                        gvVisitReport.DataSource = dsReport.Tables[0];
                         gvVisitReport.DataBind();
 
                         //for (int i = 0; i < count; i++)
@@ -256,7 +258,8 @@ namespace Upkeep_v3.VMS
                     }
                     else
                     {
-
+                        gvVisitReport.DataSource = null;
+                        gvVisitReport.DataBind();
                         //invalid login
                     }
                 }
