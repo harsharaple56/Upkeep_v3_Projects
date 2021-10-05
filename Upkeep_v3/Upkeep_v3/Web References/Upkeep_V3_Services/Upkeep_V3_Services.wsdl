@@ -1326,6 +1326,153 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block1Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block3Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block4">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block4Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block5">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block5Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block6">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block6Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block6Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block7">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Analyze_Tkt_Block7Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block7Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ImportRetailer">
         <s:complexType>
           <s:sequence>
@@ -2166,6 +2313,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Initiator" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Approver" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="WPNotify_Emails" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -2445,6 +2593,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="strXmlApprovalMatrix" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Initiator" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="chkShowApprovalMatrix_Approver" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="WPNotify_Emails" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -5755,6 +5904,48 @@
   <wsdl:message name="Fetch_VMSRequestList_Report_ExcelSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_VMSRequestList_Report_ExcelResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block1SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block1" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block1SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block1Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block2SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block2" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block2SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block2Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block3SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block3" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block3SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block3Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block4SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block4" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block4SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block4Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block5SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block5" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block5SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block5Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block6SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block6" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block6SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block6Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7Response" />
+  </wsdl:message>
   <wsdl:message name="ImportRetailerSoapIn">
     <wsdl:part name="parameters" element="tns:ImportRetailer" />
   </wsdl:message>
@@ -6990,6 +7181,34 @@
       <wsdl:input message="tns:Fetch_VMSRequestList_Report_ExcelSoapIn" />
       <wsdl:output message="tns:Fetch_VMSRequestList_Report_ExcelSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block1">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block1SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block2">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block2SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block3">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block3SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block4">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block4SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block5">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block5SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block5SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block6">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block6SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block6SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
+      <wsdl:input message="tns:Fetch_Analyze_Tkt_Block7SoapIn" />
+      <wsdl:output message="tns:Fetch_Analyze_Tkt_Block7SoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ImportRetailer">
       <wsdl:input message="tns:ImportRetailerSoapIn" />
       <wsdl:output message="tns:ImportRetailerSoapOut" />
@@ -8158,6 +8377,69 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block1">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block2">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block3">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block4">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block4" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block5">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block5" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block6">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block6" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10177,6 +10459,69 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_VMSRequestList_Report_Excel">
       <soap12:operation soapAction="http://tempuri.org/Fetch_VMSRequestList_Report_Excel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block1">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block2">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block3">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block4">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block4" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block5">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block5" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block6">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block6" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

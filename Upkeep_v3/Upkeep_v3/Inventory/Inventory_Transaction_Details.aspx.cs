@@ -112,30 +112,29 @@ namespace Upkeep_v3.Inventory
                             string Consumed = Convert.ToString(ds.Tables[0].Rows[i]["Consumed"]);
                             string Balance = Convert.ToString(ds.Tables[0].Rows[i]["Balance"]);
 
-                            string chkBoxField = "";
-                            if ((int)ViewState["TransID"] > 0)
-                            {
-                                chkBoxField = "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "' checked readonly disabled>" + "</td>";
-                            }
-                            else
-                            {
-                                chkBoxField = "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "'>" + "</td>";
-                            }
+                            //string chkBoxField = "";
+                            //if ((int)ViewState["TransID"] > 0)
+                            //{
+                            //    chkBoxField = "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "' checked readonly disabled>" + "</td>";
+                            //}
+                            //else
+                            //{
+                            //    chkBoxField = "<td>" + "<input type='checkbox' id='" + Item_ID + "' name='" + Item_ID + "' value ='" + Item_ID + "'>" + "</td>";
+                            //}
 
                             //if ((int)ViewState["Stock_ID"] != 0)
                             //{
                             data += "<tr>" +
                             //"<td>" + "<input type='checkbox' id='" + Stock_ID + "' name='" + Stock_ID + "' value ='" + Stock_ID + "'>" + "</td>" +
 
-                            chkBoxField +
+                           // chkBoxField +
 
                             "<td>" + Items + "</td>" +
                             "<td>" + Department + "</td>" +
                             "<td>" + Category + "</td>" +
                             "<td>" + Sub_Category + "</td>" +
-                            "<td>" + OpeningStock + "</td>" +
-                            "<td>" + Consumed + "</td>" +
                             "<td>" + Balance + "</td>" +
+                            "<td>" + Consumed + "</td>" +
                             "</tr>";
                             //}
                             //else
@@ -262,10 +261,10 @@ namespace Upkeep_v3.Inventory
                             "<td>" + Convert.ToInt32(j) + "</td>" +
                             //"<td style ='display:none'>" + Item_ID + "</td>" +
                             "<td>" + Items + "</td>" +
-                            //"<td>" + "<input type='text' id='" + TransDtl_ID + "' name='" + TransDtl_ID + "' value ='" + Items + "'readonly>" + "</td>" +
-                            "<td>" + "<input type='number' id='" + OpName + "' name='" + Item_ID + "' value ='" + OpeningStock + "' min='0' readonly>" + "</td>" +
-                            "<td>" + "<input type='number' id='" + CoName + "' name='" + Item_ID + "' value ='" + Consumed + "' data-isdata ='" + TransDtl_ID + "' min='0' onchange ='CompareTargetVal()'>" + "</td>" +
-                            "<td>" + "<input type='number' id='" + i + "' name='" + i + "' value ='" + Balance + "' readonly>" + "</td>" +
+                            //"<td>" + "<input class='form-control' type='text' id='" + TransDtl_ID + "' name='" + TransDtl_ID + "' value ='" + Items + "'readonly>" + "</td>" +
+                            "<td>" + "<input class='form-control' type='number' id='" + OpName + "' name='" + Item_ID + "' value ='" + OpeningStock + "' min='0' readonly>" + "</td>" +
+                            "<td>" + "<input class='form-control' type='number' id='" + CoName + "' name='" + Item_ID + "' value ='" + Consumed + "' data-isdata ='" + TransDtl_ID + "' min='0' onchange ='CompareTargetVal()'>" + "</td>" +
+                            "<td>" + "<input class='form-control' type='number' id='" + i + "' name='" + i + "' value ='" + Balance + "' readonly>" + "</td>" +
                             "</tr>";
 
                         }

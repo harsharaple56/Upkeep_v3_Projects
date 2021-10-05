@@ -1018,6 +1018,14 @@
                                         <label for="message-text" class="form-control-label" style="text-align: center;">Show Approval Matrix to Approver</label>
                                     </div>
                                 </div>
+                                </br>
+
+                                <div class="form-group row">
+                                    <label class="col-xl-4 col-lg-2 form-control-label font-weight-bold">Email ID's to Notify once approved by all Levels</label>
+                                    <div class="col-xl-8 col-lg-4">
+                                        <asp:TextBox ID="txt_Notify_Emails"  runat="server" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
 
                                 <br />
 

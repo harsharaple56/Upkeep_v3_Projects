@@ -161,13 +161,13 @@
                         </a>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
-                        <a href="#" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
+                       <%-- <a href="#" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
                             onserverclick="btnPopup_Click" runat="server" onclick="return SetTarget();">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Submit</span>
                             </span>
-                        </a>
+                        </a>--%>
                         <div class="m-separator m-separator--dashed d-xl-none"></div>
 
                         <%--  
@@ -194,15 +194,12 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-                                <th>Select</th>
-                                <%--<th style="display: none">ItemsID</th>--%>
                                 <th>Items</th>
                                 <th>Department</th>
                                 <th>Category</th>
                                 <th>Sub Category</th>
-                                <th>OpeningStock</th>
-                                <th>Consumed</th>
                                 <th>Balance</th>
+                                <th>Consumed</th>
                                 <asp:HiddenField ID="HiddenField1" runat="server" />
                             </tr>
                         </thead>

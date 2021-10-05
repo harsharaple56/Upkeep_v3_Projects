@@ -255,6 +255,19 @@ border: 3px solid #ccc;*/
             window.addEventListener('load', startup, false);
         })();
     </script>
+     <script type="text/javascript">
+        var isSubmitted = false;
+        function preventMultipleSubmissions() {
+            if (!isSubmitted) {
+                $('#<%=btnSave.ClientID %>').val('Mark IN');
+                isSubmitted = true;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -342,7 +355,12 @@ border: 3px solid #ccc;*/
                 }
             });
 
-
+            $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
 
 
             //setInterval(function () {
@@ -356,8 +374,21 @@ border: 3px solid #ccc;*/
                 $("[id*=divError]").hide();
             }
 
+            var technical = $("input[name=technical]").val();
+            if (technical != undefined) {
+                toastr.warning("Due to some technical error , please try after some time..!");
+            }
+
             var getValue = $("input[name=vCode]").val();
             var getValidation = $("input[name=ValidationMsg]").val();
+            var ValidationName = $("input[name=ValidationName]").val();
+            var ValidatioEmail = $("input[name=ValidatioEmail]").val();
+            var ValidationPhone = $("input[name=ValidationPhone]").val();
+            var ValidationDoseDate = $("input[name=ValidationDoseDate]").val();
+            var ValidationVMSDate = $("input[name=ValidationVMSDate]").val();
+            var ValidationVcerty = $("input[name=ValidationVcerty]").val();
+            var ValidationYourPhoto = $("input[name=ValidationYourPhoto]").val();
+            var ValidationIDProof = $("input[name=ValidationIDProof]").val();
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -381,6 +412,39 @@ border: 3px solid #ccc;*/
             if (getValidation != undefined) {
                 toastr.warning(getValidation);
             }
+
+            if (ValidationName != undefined) {
+                toastr.warning(getValidation);
+            }
+
+            if (ValidatioEmail != undefined) {
+                toastr.warning(ValidatioEmail);
+            }
+
+            if (ValidationPhone != undefined) {
+                toastr.warning(ValidationPhone);
+            }
+
+            if (ValidationDoseDate != undefined) {
+                toastr.warning(ValidationDoseDate);
+            }
+
+            if (ValidationVMSDate != undefined) {
+                toastr.warning(ValidationVMSDate);
+            }
+
+            if (ValidationYourPhoto != undefined) {
+                toastr.warning(ValidationYourPhoto);
+            }
+
+            if (ValidationIDProof != undefined) {
+                toastr.warning(ValidationIDProof);
+            }
+
+            if (ValidationVcerty != undefined) {
+                toastr.warning(ValidationVcerty);
+            }
+
 
             //Commented by Lokesh as date select was not working
 
@@ -1334,9 +1398,9 @@ border: 3px solid #ccc;*/
                                 <ContentTemplate>
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                        <asp:LinkButton class="close" runat="server" OnClick="btnCloseQuestion2_Click" ID="btnCloseQuestion2">
                                             <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group m-form__group row">

@@ -458,31 +458,23 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Send_Email_Zepto_Template_WorkPermit(string mail_template_key, string to_email_address, string dynamic_values)
         {
             string email_response = string.Empty;
-            string Raiser_Name = string.Empty;
-            string Gatepass_ID = string.Empty;
-            string Gatepass_Raised_Date = string.Empty;
-            string Gatepass_No = string.Empty;
-            string Gatepass_Title = string.Empty;
-            string Gatepass_Type = string.Empty;
-            string Gatepass_Date = string.Empty;
-            string Gatepass_Material_Detail = string.Empty;
             string Company_Name = string.Empty;
+            string Work_Permit_ID = string.Empty;
+            string Work_Permit_Title = string.Empty;
+            string Request_Date = string.Empty;
+            string Permit_From_Date = string.Empty;
+            string Permit_To_Date = string.Empty;
 
             try
             {
                 string[] mergeinfo_array = dynamic_values.Split(',');
 
-                Raiser_Name = Convert.ToString(mergeinfo_array[0]);
-                Gatepass_ID = Convert.ToString(mergeinfo_array[1]);
-                Gatepass_Raised_Date = Convert.ToString(mergeinfo_array[2]);
-                Gatepass_No = Convert.ToString(mergeinfo_array[3]);
-                Gatepass_Title = Convert.ToString(mergeinfo_array[4]);
-                Gatepass_Type = Convert.ToString(mergeinfo_array[5]);
-                Gatepass_Date = Convert.ToString(mergeinfo_array[6]);
-                Gatepass_Material_Detail = Convert.ToString(mergeinfo_array[7]);
-                Company_Name = Convert.ToString(mergeinfo_array[8]);
-                //}
-
+                Company_Name = Convert.ToString(mergeinfo_array[0]);
+                Work_Permit_ID = Convert.ToString(mergeinfo_array[1]);
+                Work_Permit_Title = Convert.ToString(mergeinfo_array[2]);
+                Request_Date = Convert.ToString(mergeinfo_array[3]);
+                Permit_From_Date = Convert.ToString(mergeinfo_array[4]);
+                Permit_To_Date = Convert.ToString(mergeinfo_array[5]);
 
                 List<To> dataTo = new List<To>();
                 for (int i = 0; i < to_email_address.Split(';').Count(); i++)
@@ -519,15 +511,12 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     to = dataTo,
                     merge_info = new MergeInfo_WorkPermit()
                     {
-                        Raiser_Name = Raiser_Name,
-                        Gatepass_ID = Gatepass_ID,
-                        Gatepass_Raised_Date = Gatepass_Raised_Date,
-                        Gatepass_No = Gatepass_No,
-                        Gatepass_Title = Gatepass_Title,
-                        Gatepass_Type = Gatepass_Type,
-                        Gatepass_Date = Gatepass_Date,
-                        Gatepass_Material_Detail = Gatepass_Material_Detail,
-                        Company_Name = Company_Name
+                        Company_Name = Company_Name,
+                        Work_Permit_ID = Work_Permit_ID,
+                        Work_Permit_Title = Work_Permit_Title,
+                        Request_Date = Request_Date,
+                        Permit_From_Date = Permit_From_Date,
+                        Permit_To_Date = Permit_To_Date
                     },
                     reply_to = dataReply,
                     client_reference = "",

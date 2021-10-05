@@ -301,6 +301,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_vaccination;
         
         /// <summary>
+        /// div_vaccination1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_vaccination1;
+        
+        /// <summary>
         /// iframe_Document control.
         /// </summary>
         /// <remarks>
@@ -362,6 +371,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCovid;
+        
+        /// <summary>
+        /// divCovid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCovid1;
         
         /// <summary>
         /// rdbGreen control.

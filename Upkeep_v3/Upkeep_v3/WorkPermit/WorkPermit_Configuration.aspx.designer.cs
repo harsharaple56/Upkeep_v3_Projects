@@ -337,6 +337,15 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.WebControls.CheckBox chkShowApprovalMatrix_Approver;
         
         /// <summary>
+        /// txt_Notify_Emails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Notify_Emails;
+        
+        /// <summary>
         /// WorkPermitTermCondition control.
         /// </summary>
         /// <remarks>
