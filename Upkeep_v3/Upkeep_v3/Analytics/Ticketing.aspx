@@ -1,9 +1,74 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Ticketing.aspx.cs" Inherits="Upkeep_v3.Analytics.Ticketing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="JS/Ticketing.js"></script>
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+      <script>
+
+        $(document).ready(function () {
+
+            $('.m_selectpicker').selectpicker();
+            //alert('1111');
+            var picker = $('#daterangepicker');
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end, label) {
+                var title = '';
+                var range = '';
+
+                if ((end - start) < 100 || label == 'Today') {
+                    title = 'Today:';
+                    range = start.format('MMM D');
+                } else if (label == 'Yesterday') {
+                    title = 'Yesterday:';
+                    range = start.format('MMM D');
+                } else {
+                    range = start.format('MMM D') + ' - ' + end.format('MMM D');
+                }
+
+                picker.find('.m-subheader__daterange-date').html(range);
+                picker.find('.m-subheader__daterange-title').html(title);
+
+                $('#start_date').val(start.format('DD/MM/YYYY'));
+                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#date_range_title').val(title + range);
+
+                //call button click here
+                $("#btnDashboard").click();
+            }
+
+            picker.daterangepicker({
+                direction: mUtil.isRTL(),
+                startDate: start,
+                endDate: end,
+                opens: 'left',
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            var IsPostBack2 = $('#hdn_IsPostBack').val();
+
+            if (IsPostBack2 == "no") {
+                cb(start, end, '');
+            }
+            else {
+
+                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
+            }
+
+
+
+        });
+
+    </script>
+
     <style>
         .loader {
             border: 16px solid #f3f3f3;
@@ -54,6 +119,37 @@
             width: 99% !important;
         }
     </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+   <div class="m-subheader">
+
+            <div class="m-form-group row m--align-center">
+                <div class="col-xl-3" style="padding-bottom:15px;">
+
+                </div>
+                <div class="col-xl-6 m--align-center" style="padding-bottom: 15px;">
+                </div>
+                <div class="col-xl-3 m--align-right">
+                    <span class="m-subheader__daterange" id="daterangepicker">
+                        <span class="m-subheader__daterange-label"> 
+                            <span class="m-subheader__daterange-title"></span>
+                            <span class="m-subheader__daterange-date m--font-brand"></span>
+                            <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                            <asp:HiddenField ID="hdnCompanyID" ClientIDMode="Static" runat="server" />
+
+                        </span>
+                        <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+                            <i class="la la-angle-down"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+        </div>
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
@@ -716,7 +812,7 @@
                             </div>
                         </div>
                         <div class="m-portlet__body">
-                            <div class="m-widget25" id="appendBlock5Content" >
+                            <div class="m-widget25" id="appendBlock5Content">
                                 <div class="m-widget25--progress" style="margin: 40px auto 0; padding-top: 0px; display: none">
                                     <div class="m-widget25__progress">
                                         <span class="m-widget25__progress-number">##PERCENT## %
