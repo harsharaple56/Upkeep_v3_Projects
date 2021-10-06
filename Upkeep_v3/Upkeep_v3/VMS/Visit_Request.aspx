@@ -457,6 +457,7 @@ border: 3px solid #ccc;*/
     <%--Script for Web Cam--%>
 
     <script>
+
         /* JS comes here */
         (function () {
 
@@ -517,9 +518,6 @@ border: 3px solid #ccc;*/
                 var context = canvas.getContext('2d');
                 context.fillStyle = "#AAA";
                 context.fillRect(0, 0, canvas.width, canvas.height);
-
-                var data = canvas.toDataURL('image/png');
-                photo.setAttribute('src', data);
             }
 
             function takepicture() {
@@ -798,6 +796,7 @@ border: 3px solid #ccc;*/
 
     <script type="text/javascript">
         $(document).ready(function () {
+
             var PhotoSuceess = $("#PhotoSuceess");
             var PhotoFalied = $("#PhotoFalied");
             var AadharSuceess = $("#AadharSuceess");
@@ -849,7 +848,7 @@ border: 3px solid #ccc;*/
                 }
             });
 
-            $("[id*=fileupload_userpic]").change(function () {
+             $("[id*=fileupload_userpic]").change(function () {
                 var imgValue = $("[id*=fileupload_userpic]").val();
                 var exten = getFile(imgValue);
                 var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
@@ -966,34 +965,46 @@ border: 3px solid #ccc;*/
                 toastr.warning(ValidationVcerty);
             }
 
-
         });
-
 
     </script>
 
     <script type="text/javascript">
+
         function InserUserImage() {
-            $.ajax({
-                type: "POST",
-                url: "Visit_Request.aspx/SaveUserImage",
-                data: "{data: '" + $("#photo")[0].src + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    $("#PhotoSuceess").show();
-                    $("#PhotoFalied").hide();
-                    $("#m_modal_6").modal("hide");
-                    toastr.success("Your Photo Successfully Added..!");
-                },
-                failure: function (response) {
-                    $("#PhotoSuceess").hide();
-                    $("#PhotoFalied").show();
-                    $("#m_modal_6").modal("hide");
-                    toastr.error("Your Photo Not Added..!");
-                }
-            });
+            var checksrc = $("#photo")[0].src;
+            if (checksrc != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "Visit_Request.aspx/SaveUserImage",
+                    data: "{data: '" + $("#photo")[0].src + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#PhotoSuceess").show();
+                        $("#PhotoFalied").hide();
+                        $("#m_modal_6").modal("hide");
+                        $("[id*=photo]")[0].removeAttribute('src');
+                        toastr.success("Your Photo Successfully Added..!");
+                    },
+                    failure: function (response) {
+                        $("#PhotoSuceess").hide();
+                        $("[id*=photo]")[0].removeAttribute('src');
+                        $("#PhotoFalied").show();
+                        $("#m_modal_6").modal("hide");
+                        toastr.error("Your Photo Not Added..!");
+                    }
+                });
+            } else {
+                $("#PhotoSuceess").hide();
+                $("[id*=photo]")[0].removeAttribute('src');
+                $("#PhotoFalied").show();
+                $("#m_modal_6").modal("hide");
+                toastr.error("Your Photo Not Added..!");
+            }
+
         }
+
     </script>
 
 </asp:Content>
@@ -1240,7 +1251,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
 
                                 <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                                    <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                                    <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
                                         <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                                         <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
                                             <i class="fa fa-check-circle"></i>
@@ -1264,7 +1275,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
                                 &nbsp;
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
 
                              <div class="font-weight-bold">
                                  Upload Vaccination Certificate 
@@ -1291,10 +1302,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                      ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Vaccination Certificate"></asp:RequiredFieldValidator>
                                  <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator3" runat="server" ControlToValidate="VCertificate" ValidationGroup="validateVMS"
                                      ErrorMessage="Only .pdf file are allowed" ValidationExpression="^.*\.(pdf|PDF)$"></asp:RegularExpressionValidator>
-
                              </div>
-
-
                              <div class="alert m-alert m-alert--default" role="alert">
                                  Please upload your 2<sup>nd</sup> Dose vaccination certificate provided by CoWIN. <b>Only .pdf format allowed.</b>
 
@@ -1307,7 +1315,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                 &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
                             <div class="font-weight-bold">
                                 Upload your photo without any mask
                              <span id="PhotoSuceess" class="m-badge m-badge--success m-badge--wide">
@@ -1343,7 +1351,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
 
                                 <div class="col-xl-4" style="padding-bottom: 1rem;">
-                                    <button id="btn_ClickPhoto_Aadhar" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
+                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
                                         <span>
                                             <i class="fa fa-camera"></i>
                                             <span>Click Photo</span>
@@ -1363,7 +1371,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 &nbsp;
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" style="border-color: red;">
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
                             <div class="font-weight-bold">
                                 Upload your valid Photo ID proof
                              <span id="AadharSuceess" class="m-badge m-badge--success m-badge--wide">
@@ -1389,33 +1397,17 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
                                             ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
-
                                     </div>
                                 </div>
-                                <%--<div class="col-xl-2 font-weight-bold" style="padding-bottom: 1rem;">
-                                    OR 
-                                </div>
-
-                                <div class="col-xl-5" style="padding-bottom: 1rem;">
-                                    <button id="btn_ClickPhoto" type="button" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_7">
-                                        <span>
-                                            <i class="fa fa-camera"></i>
-                                            <span>Click Photo</span>
-                                        </span>
-                                    </button>
-                                </div>--%>
                             </div>
 
                             <div class="alert m-alert m-alert--default" role="alert">
                                 Please upload any of these valid photo ID only – Aadhar Card, Driving License, Passport, PAN Card (Front Side). <b>Only .png , .jpg , .jpeg format allowed.</b>
                             </div>
 
-
                         </div>
 
-
                     </div>
-
                             </div>
 
                             <br />
@@ -1570,45 +1562,45 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
 
                     <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body m--align-center">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <video id="video">Video stream not available.</video>
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body m--align-center">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <video id="video">Video stream not available.</video>
 
-                                    <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                        <span>
-                                            <i class="fa fa-camera"></i>
-                                            <span>Click Photo</span>
-                                        </span>
-                                    </button>
+                                            <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                <span>
+                                                    <i class="fa fa-camera"></i>
+                                                    <span>Click Photo</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <canvas id="canvas">
+                                                <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box." />
+                                            </canvas>
+                                            <button onclick="InserUserImage()" type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                <span>
+                                                    <i class="fa fa-cloud-upload-alt"></i>
+                                                    <span>Upload Photo</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                <div class="col-xl-6">
-                                    <canvas id="canvas">
-                                        <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box." />
-                                    </canvas>
-                                    <button onclick="InserUserImage()" type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                        <span>
-                                            <i class="fa fa-cloud-upload-alt"></i>
-                                            <span>Upload Photo</span>
-                                        </span>
-                                    </button>
-                                </div>
+
                             </div>
-
-
                         </div>
-
                     </div>
-                </div>
-            </div>
 
 
                     <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
