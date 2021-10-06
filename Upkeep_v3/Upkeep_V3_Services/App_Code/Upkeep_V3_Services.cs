@@ -3799,12 +3799,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region Ticketing Dashboard
 
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block1(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block1(LoggedInUserID,FromDate,ToDate);
         }
         catch (Exception ex)
         {
@@ -3813,12 +3813,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block2(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block2(LoggedInUserID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3827,12 +3827,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block3(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block3(LoggedInUserID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3855,12 +3855,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block5(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block5(LoggedInUserID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3869,12 +3869,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block6(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block6(LoggedInUserID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3883,12 +3883,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block7(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block7(LoggedInUserID, FromDate, ToDate);
         }
         catch (Exception ex)
         {

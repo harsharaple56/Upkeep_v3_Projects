@@ -5,7 +5,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-
     <style type="text/css">
         .modalBackground {
             background-color: grey;
@@ -150,9 +149,6 @@ border: 3px solid #ccc;*/
                 var context = canvas.getContext('2d');
                 context.fillStyle = "#AAA";
                 context.fillRect(0, 0, canvas.width, canvas.height);
-
-                var data = canvas.toDataURL('image/png');
-                photo.setAttribute('src', data);
             }
 
             function takepicture() {
@@ -479,65 +475,47 @@ border: 3px solid #ccc;*/
     </script>
 
     <script type="text/javascript">
+
         function InserUserImage() {
-            $.ajax({
-                type: "POST",
-                url: "Visit_Request_Public.aspx/SaveUserImage",
-                data: "{data: '" + $("#photo")[0].src + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    $("#PhotoSuceess").show();
-                    $("#PhotoFalied").hide();
-                    $("#m_modal_6").modal("hide");
-                    toastr.success("Your Photo Successfully Added..!");
-                },
-                failure: function (response) {
-                    $("#PhotoSuceess").hide();
-                    $("#PhotoFalied").show();
-                    $("#m_modal_6").modal("hide");
-                    toastr.error("Your Photo Not Added..!");
-                }
-            });
-        }
-    </script>
+            var checksrc = $("#photo")[0].src;
+            if (checksrc != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "Visit_Request.aspx/SaveUserImage",
+                    data: "{data: '" + $("#photo")[0].src + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#PhotoSuceess").show();
+                        $("#PhotoFalied").hide();
+                        $("#m_modal_6").modal("hide");
+                        $("[id*=photo]")[0].removeAttribute('src');
+                        toastr.success("Your Photo Successfully Added..!");
+                    },
+                    failure: function (response) {
+                        $("#PhotoSuceess").hide();
+                        $("[id*=photo]")[0].removeAttribute('src');
+                        $("#PhotoFalied").show();
+                        $("#m_modal_6").modal("hide");
+                        toastr.error("Your Photo Not Added..!");
+                    }
+                });
+            } else {
+                $("#PhotoSuceess").hide();
+                $("[id*=photo]")[0].removeAttribute('src');
+                $("#PhotoFalied").show();
+                $("#m_modal_6").modal("hide");
+                toastr.error("Your Photo Not Added..!");
+            }
 
-    <script type="text/javascript">
-        function InserUserIDProof() {
-
-            $.ajax({
-                type: "POST",
-                url: "Visit_Request_Public.aspx/SaveUserIdProof",
-                data: "{data: '" + $("#idproof")[0].src + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    $("#m_modal_7").modal("hide");
-                    $("#lbl_userpic").html('Choose file');
-                    $("[id*=fileupload_userpic]").val('');
-                    $("[id*=RegularExpressionValidator5]").html('');
-                    $("#AadharSuceess").show();
-                    $("#AadharFailed").hide();
-                    toastr.success("Your ID Proof Successfully Added..!");
-                },
-                failure: function (response) {
-                    $("#m_modal_7").modal("hide");
-                    $("#AadharSuceess").hide();
-                    $("#AadharFailed").show();
-                    toastr.error("Your ID Proof Not Added..!");
-                }
-            });
         }
 
     </script>
-
 
 
     <script type="text/javascript">
 
         $(document).ready(function () {
-
-
             $('.datetimepicker_VisitDate').datetimepicker({
                 todayHighlight: true,
                 autoclose: true,
@@ -553,8 +531,6 @@ border: 3px solid #ccc;*/
                 }
             });
 
-
-
             $('.datetimepicker_Dose').datepicker({
                 todayHighlight: true,
                 orientation: 'auto top',
@@ -564,8 +540,6 @@ border: 3px solid #ccc;*/
                 showMeridian: true,
                 endDate: moment().format('dd-MM-yyyy'),
             });
-
-
         });
 
 

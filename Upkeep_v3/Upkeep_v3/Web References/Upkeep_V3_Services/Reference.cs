@@ -3156,24 +3156,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block1", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block1", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block1Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block1Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block1Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block1OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block1OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block1OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block1", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block1OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block1OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block1OperationCompleted(object arg) {
@@ -3185,24 +3189,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block2", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block2", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block2Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block2Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block2Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block2OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block2OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block2OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block2", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block2OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block2OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block2OperationCompleted(object arg) {
@@ -3214,24 +3222,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block3", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block3", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block3Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block3Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block3Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block3OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block3OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block3OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block3", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block3OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block3OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block3OperationCompleted(object arg) {
@@ -3272,24 +3284,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block5", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block5", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block5Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block5Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block5Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block5OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block5OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block5OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block5", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block5OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block5OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block5OperationCompleted(object arg) {
@@ -3301,24 +3317,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block6", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block6", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block6Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block6Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block6Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block6OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block6OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block6OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block6", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block6OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block6OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block6OperationCompleted(object arg) {
@@ -3330,24 +3350,28 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Analyze_Tkt_Block7", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID) {
+        public System.Data.DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, string FromDate, string ToDate) {
             object[] results = this.Invoke("Fetch_Analyze_Tkt_Block7", new object[] {
-                        LoggedInUserID});
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID) {
-            this.Fetch_Analyze_Tkt_Block7Async(LoggedInUserID, null);
+        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID, string FromDate, string ToDate) {
+            this.Fetch_Analyze_Tkt_Block7Async(LoggedInUserID, FromDate, ToDate, null);
         }
         
         /// <remarks/>
-        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID, object userState) {
+        public void Fetch_Analyze_Tkt_Block7Async(string LoggedInUserID, string FromDate, string ToDate, object userState) {
             if ((this.Fetch_Analyze_Tkt_Block7OperationCompleted == null)) {
                 this.Fetch_Analyze_Tkt_Block7OperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Analyze_Tkt_Block7OperationCompleted);
             }
             this.InvokeAsync("Fetch_Analyze_Tkt_Block7", new object[] {
-                        LoggedInUserID}, this.Fetch_Analyze_Tkt_Block7OperationCompleted, userState);
+                        LoggedInUserID,
+                        FromDate,
+                        ToDate}, this.Fetch_Analyze_Tkt_Block7OperationCompleted, userState);
         }
         
         private void OnFetch_Analyze_Tkt_Block7OperationCompleted(object arg) {
