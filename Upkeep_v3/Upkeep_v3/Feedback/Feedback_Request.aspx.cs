@@ -9,6 +9,7 @@ using System.Text;
 using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Configuration;
+using System.Web.Script.Serialization;
 
 namespace Upkeep_v3.Feedback
 {
@@ -21,7 +22,7 @@ namespace Upkeep_v3.Feedback
         DataSet dsConfig = new DataSet();
         int CompanyID = 0;
         int EventID = 0;
-
+        protected string Values;
         #endregion
 
         #region Event 
@@ -274,6 +275,7 @@ namespace Upkeep_v3.Feedback
                 dt.Columns.Add("QuestionID");
                 dt.Columns.Add("AnswerID");
                 dt.Columns.Add("Data");
+                dt.Columns.Add("NegativeFeedback");
                 // dtRow["SectionID"] = ""; dtRow["QuestionID"] = ""; dtRow["AnswerID"] = ""; dtRow["Data"] = ""; 
 
                 string Is_Not_Valid = "False";
@@ -306,6 +308,7 @@ namespace Upkeep_v3.Feedback
                                 dtRow["QuestionID"] = HeadId;
                                 dtRow["AnswerID"] = AnswerType;
                                 dtRow["Data"] = item.Value;
+                                dtRow["NegativeFeedback"] = string.Empty;
                                 dt.Rows.Add(dtRow);
                             }
                         }
@@ -328,10 +331,28 @@ namespace Upkeep_v3.Feedback
                         HtmlGenericControl sample = itemQuestion.FindControl("divStar") as HtmlGenericControl;
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
+
+                        #region Fetch Feedback from textbox
+                        string feedbackdesc = string.Empty;
+                        string getTextBoxID = itemQuestion.FindControl("divStar").ClientID.Split('_')[3];
+                        string setTextBoxID = "StarTextBox_" + getTextBoxID;
+                        string[] textboxValues = Request.Form.GetValues(setTextBoxID);
+                        if (textboxValues != null)
+                        {
+                            JavaScriptSerializer serializer = new JavaScriptSerializer();
+                            this.Values = serializer.Serialize(textboxValues);
+                            foreach (string textboxValue in textboxValues)
+                            {
+                                feedbackdesc = textboxValue;
+                            }
+                        }
+                        #endregion
+
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerType;
                         dtRow["Data"] = sVal;
+                        dtRow["NegativeFeedback"] = feedbackdesc;
                         dt.Rows.Add(dtRow);
 
 
@@ -354,6 +375,7 @@ namespace Upkeep_v3.Feedback
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerType;
                         dtRow["Data"] = sVal;
+                        dtRow["NegativeFeedback"] = string.Empty;
                         dt.Rows.Add(dtRow);
 
 
@@ -373,18 +395,36 @@ namespace Upkeep_v3.Feedback
                         string txtNum = sample.Controls[1].UniqueID;
                         string sVal = Request.Form.GetValues(txtNum)[0];
 
-                        if(sVal=="")
+                        #region Fetch Feedback from textbox
+                        string feedbackdesc = string.Empty;
+                        string getTextBoxID = itemQuestion.FindControl("divEmoji").ClientID.Split('_')[3];
+                        string setTextBoxID = "DynamicTextBox_" + getTextBoxID;
+                        string[] textboxValues = Request.Form.GetValues(setTextBoxID);
+                        if (textboxValues != null)
+                        {
+                            JavaScriptSerializer serializer = new JavaScriptSerializer();
+                            this.Values = serializer.Serialize(textboxValues);
+                            foreach (string textboxValue in textboxValues)
+                            {
+                                feedbackdesc = textboxValue;
+                            }
+                        }
+                        #endregion
+
+
+                        if (sVal == "")
                         {
                             lblFeedbackError.Text = "Kindly fill all the feedback";
                             BindEvent();
                             return;
                         }
-                        
+
 
                         DataRow dtRow = dt.NewRow();
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerType;
                         dtRow["Data"] = sVal;
+                        dtRow["NegativeFeedback"] = feedbackdesc;
                         dt.Rows.Add(dtRow);
 
 
@@ -407,6 +447,7 @@ namespace Upkeep_v3.Feedback
                         dtRow["QuestionID"] = HeadId;
                         dtRow["AnswerID"] = AnswerType;
                         dtRow["Data"] = sVal;
+                        dtRow["NegativeFeedback"] = string.Empty;
                         dt.Rows.Add(dtRow);
 
 
