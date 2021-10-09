@@ -596,31 +596,34 @@ namespace Upkeep_v3.Ticketing
                                             Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                             SendSMS sms = new SendSMS();
-                                            if (dsCloseTicket.Tables.Count > 2)
+                                            if (APIKey != "")
                                             {
-                                                if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                                if (dsCloseTicket.Tables.Count > 2)
                                                 {
-                                                    TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
-                                                    TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
-                                                    TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+                                                    if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                                    {
+                                                        TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                        TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                                        TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
 
-                                                    if (strTicketAction == "In Progress")
-                                                    {
-                                                        TicketAction = "OPEN (In Progress)";
-                                                    }
-                                                    else if (strTicketAction == "Hold")
-                                                    {
-                                                        TicketAction = "PARKED (Hold)";
-                                                    }
-                                                    else if (strTicketAction == "Closed")
-                                                    {
-                                                        TicketAction = "CLOSED (Done)";
-                                                    }
+                                                        if (strTicketAction == "In Progress")
+                                                        {
+                                                            TicketAction = "OPEN (In Progress)";
+                                                        }
+                                                        else if (strTicketAction == "Hold")
+                                                        {
+                                                            TicketAction = "PARKED (Hold)";
+                                                        }
+                                                        else if (strTicketAction == "Closed")
+                                                        {
+                                                            TicketAction = "CLOSED (Done)";
+                                                        }
 
-                                                    TextMessage = "Dear " + TicketRaisedBy_Name + ",";
-                                                    TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
-                                                    TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
-                                                    string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                        TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                        TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                                        TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
+                                                        string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                    }
                                                 }
                                             }
                                         }
@@ -695,31 +698,34 @@ namespace Upkeep_v3.Ticketing
                                         Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                         SendSMS sms = new SendSMS();
-                                        if (dsCloseTicket.Tables.Count > 2)
+                                        if (APIKey != "")
                                         {
-                                            if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                            if (dsCloseTicket.Tables.Count > 2)
                                             {
-                                                TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
-                                                TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
-                                                TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+                                                if (dsCloseTicket.Tables[2].Rows.Count > 0)
+                                                {
+                                                    TicketNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                    TicketRaisedBy_Name = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_Name"]);
+                                                    TicketRaisedBy_MobileNo = Convert.ToString(dsCloseTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
 
-                                                if (strTicketAction == "In Progress")
-                                                {
-                                                    TicketAction = "OPEN (In Progress)";
-                                                }
-                                                else if (strTicketAction == "Hold")
-                                                {
-                                                    TicketAction = "PARKED (Hold)";
-                                                }
-                                                else if (strTicketAction == "Closed")
-                                                {
-                                                    TicketAction = "CLOSED (Done)";
-                                                }
+                                                    if (strTicketAction == "In Progress")
+                                                    {
+                                                        TicketAction = "OPEN (In Progress)";
+                                                    }
+                                                    else if (strTicketAction == "Hold")
+                                                    {
+                                                        TicketAction = "PARKED (Hold)";
+                                                    }
+                                                    else if (strTicketAction == "Closed")
+                                                    {
+                                                        TicketAction = "CLOSED (Done)";
+                                                    }
 
-                                                TextMessage = "Dear " + TicketRaisedBy_Name + ",";
-                                                TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
-                                                TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
-                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                    TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                    TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
+                                                    TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
+                                                    string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                }
                                             }
                                         }
                                     }
@@ -785,19 +791,22 @@ namespace Upkeep_v3.Ticketing
                                     Send_SMS_URL = Send_SMS_URL.Replace("%26", "&");
 
                                     SendSMS sms = new SendSMS();
-                                    if (dsTicket.Tables.Count > 2)
+                                    if (APIKey != "")
                                     {
-                                        if (dsTicket.Tables[2].Rows.Count > 0)
+                                        if (dsTicket.Tables.Count > 2)
                                         {
-                                            TicketNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketNo"]);
-                                            TicketAcceptedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy"]);
-                                            TicketAcceptedBy_Department = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy_Dept"]);
-                                            TicketRaisedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy"]);
-                                            TicketRaisedBy_MobileNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
+                                            if (dsTicket.Tables[2].Rows.Count > 0)
+                                            {
+                                                TicketNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketNo"]);
+                                                TicketAcceptedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy"]);
+                                                TicketAcceptedBy_Department = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketAcceptedBy_Dept"]);
+                                                TicketRaisedBy_Name = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy"]);
+                                                TicketRaisedBy_MobileNo = Convert.ToString(dsTicket.Tables[2].Rows[0]["TicketRaisedBy_MobileNo"]);
 
-                                            TextMessage = "Dear " + TicketRaisedBy_Name + ",";
-                                            TextMessage += "%0a%0aYour ticket " + TicketNo + " has been accepted by " + TicketAcceptedBy_Name + " from " + TicketAcceptedBy_Department + "";
-                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                                TextMessage = "Dear " + TicketRaisedBy_Name + ",";
+                                                TextMessage += "%0a%0aYour ticket " + TicketNo + " has been accepted by " + TicketAcceptedBy_Name + " from " + TicketAcceptedBy_Department + "";
+                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            }
                                         }
                                     }
                                 }
