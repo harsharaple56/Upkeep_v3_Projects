@@ -251,7 +251,7 @@ border: 3px solid #ccc;*/
             window.addEventListener('load', startup, false);
         })();
     </script>
-     <script type="text/javascript">
+    <script type="text/javascript">
         var isSubmitted = false;
         function preventMultipleSubmissions() {
             if (!isSubmitted) {
@@ -352,6 +352,13 @@ border: 3px solid #ccc;*/
             });
 
             $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $("[id*=btnSuccessOk]").keydown(function (e) {
                 if (e.keyCode == 13) {
                     e.preventDefault();
                     return false;
@@ -842,19 +849,14 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red"
                                 ErrorMessage="Please enter Mobile Number"></asp:RequiredFieldValidator>
-
-
-                            <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4"
-                                Display="Dynamic"
-                                ControlToValidate="txtPhone"
-                                ValidationExpression="^[0-9]{10,10}$" ForeColor="Red"
-                                ErrorMessage="*Enter valid phone number in 10 digits.">
-                            </asp:RegularExpressionValidator>
-
+                            <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator4" Display="Dynamic" ControlToValidate="txtPhone"
+                                ValidationExpression="^[0-9]{10,10}$" ForeColor="Red" ErrorMessage="*Enter valid phone number in 10 digits."></asp:RegularExpressionValidator>
                         </div>
                     </div>
 
                     <div class="form-group row">
+
+
                         <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Date of Visit</label>
                         <div class="col-md-4 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
@@ -875,71 +877,68 @@ border: 3px solid #ccc;*/
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
-                        <div>
+
+                        <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                        <div id="div_MeetingWith1" runat="server" visible="false" class="col-md-4 col-form-label">
+                            <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                            <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
+                            <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                         </div>
+                        <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
 
                     </div>
 
 
-                    <label id="lbl_MeetingWith" runat="server" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
-                    <div id="div_MeetingWith" runat="server" class="col-md-4 col-form-label">
-                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
-                        <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                        <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
-
-                        <%-- <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                                ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
-                    </div>
 
 
 
                     <br />
+                    <div id="dv_rpt" runat="server">
+                        <div id="div_VisitDetails" runat="server" class="m-form__heading" style="text-align: center;">
+                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
+                        </div>
 
-                    <div id="div_VisitDetails" runat="server" class="m-form__heading" style="text-align: center;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visit Details</h3>
-                    </div>
+                        <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
+                            <ItemTemplate>
 
+                                <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
+                                <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
+                                <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
 
-                    <asp:Repeater ID="rptQuestionDetails" runat="server" OnItemDataBound="rptQuestionDetails_ItemDataBound">
-                        <ItemTemplate>
-
-                            <asp:HiddenField ID="hdnAnswerTypeSDesc" runat="server" Value='<%# Eval("SDesc") %>' />
-                            <asp:HiddenField ID="hdnAnswerID" runat="server" Value='<%# Eval("Ans_Type_ID") %>' />
-                            <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
-
-                            <div class="form-group m-form__group row" style="padding-left: 1%;">
-                                <div class="col-md-3">
-                                    <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
-                                    <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
-                                    <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
-                                    <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-                                </div>
-                                <div class="col-md-9">
-
-                                    <div id="divText" style="display: none" runat="server">
-                                        <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <div class="col-md-3">
+                                        <asp:HiddenField ID="hfQuestionId" runat="server" Value='<%# Eval("VMS_Qn_ID") %>' />
+                                        <label class="form-control-label font-weight-bold" id=' <%#Eval("VMS_Qn_ID") %> '><span style="color: red;"><%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %></span> &nbsp; &nbsp; <%#Eval("Qn_Desc") %> :</label>
+                                        <asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_Mandatory"))  ? "*" : " " %>' />
+                                        <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
                                     </div>
+                                    <div class="col-md-9">
 
-                                    <div id="divNumber" style="display: none" runat="server">
-                                        <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
-                                    </div>
-
-                                    <div id="divTextArea" style="display: none" runat="server">
-                                        <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
-                                    </div>
-
-                                    <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
-                                        <div class="m-radio-inline" style="padding-left: 0px;">
-                                            <label class="m-radio" style="padding-left: 0px;">
-                                                <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
-                                                </asp:RadioButtonList>
-                                            </label>
+                                        <div id="divText" style="display: none" runat="server">
+                                            <input name="divTextName" id="divTextid" type="text" class="form-control" runat="server" />
                                         </div>
-                                    </div>
 
-                                    <div id="divImage" style="display: none" runat="server">
-                                        <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" AllowMultiple="true" />
-                                        &nbsp;
+                                        <div id="divNumber" style="display: none" runat="server">
+                                            <input type="number" min="0" name="divNumberName" id="divNumberid" class="form-control" runat="server" />
+                                        </div>
+
+                                        <div id="divTextArea" style="display: none" runat="server">
+                                            <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                                        </div>
+
+                                        <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
+                                            <div class="m-radio-inline" style="padding-left: 0px;">
+                                                <label class="m-radio" style="padding-left: 0px;">
+                                                    <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                                    </asp:RadioButtonList>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="divImage" style="display: none" runat="server">
+                                            <asp:FileUpload ID="FileUpload_ChecklistImage" runat="server" ClientIDMode="Static" CssClass="btn FileUpload_ChecklistImage" AllowMultiple="true" />
+                                            &nbsp;
 
                                         <button type="button" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_6">
 
@@ -951,39 +950,40 @@ border: 3px solid #ccc;*/
                                         </button>
 
 
-                                        <div id="divImgBtns" style="display: none" runat="server">
-                                            <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
-                                                data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
-                                                <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
-                                                <%--data-images="<%#Eval("Question_Data") %>"--%>
-                                            </button>
-                                            <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
-                                        </div>
-                                    </div>
-
-                                    <div id="divDate" style="display: none" runat="server">
-                                        <div class="input-group date">
-                                            <asp:TextBox ID="VisitDate" runat="server" autocomplete="off"
-                                                class="form-control m-input datetimepicker"
-                                                placeholder="Select date & time"></asp:TextBox>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                            <div id="divImgBtns" style="display: none" runat="server">
+                                                <button id='btnImg' type='button' data-toggle='modal' data-target="#exampleModal" class='btn btn-accent m-btn m-btn--icon'
+                                                    data-images="<%#Eval("ImagePath") %>" data-container='body' style="width: 41px; height: 41px;" data-placement='top' title='View Uploaded Image'>
+                                                    <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
+                                                    <%--data-images="<%#Eval("Question_Data") %>"--%>
+                                                </button>
+                                                <asp:HiddenField ID="hdnImg" runat="server" ClientIDMode="Static" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="divCheckBox" style="display: none" runat="server">
-                                        <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
+
+                                        <div id="divDate" style="display: none" runat="server">
+                                            <div class="input-group date">
+                                                <asp:TextBox ID="VisitDate" runat="server" autocomplete="off"
+                                                    class="form-control m-input datetimepicker"
+                                                    placeholder="Select date & time"></asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divCheckBox" style="display: none" runat="server">
+                                            <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" CellSpacing="5" CellPadding="5" ClientIDMode="Static"></asp:CheckBoxList>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
-                                Style="display: none;"></asp:Label>
-                        </FooterTemplate>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                                    Style="display: none;"></asp:Label>
+                            </FooterTemplate>
 
-                    </asp:Repeater>
+                        </asp:Repeater>
+                    </div>
 
                     <br />
 
@@ -1275,10 +1275,6 @@ border: 3px solid #ccc;*/
                 <br />
                 <br />
             </div>
-
-
-
-
 
             <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">

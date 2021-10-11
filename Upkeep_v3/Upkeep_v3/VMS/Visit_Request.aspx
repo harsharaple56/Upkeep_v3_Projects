@@ -848,12 +848,11 @@ border: 3px solid #ccc;*/
                 }
             });
 
-             $("[id*=fileupload_userpic]").change(function () {
+            $("[id*=fileupload_userpic]").change(function () {
                 var imgValue = $("[id*=fileupload_userpic]").val();
                 var exten = getFile(imgValue);
                 var validImageTypes = ['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG'];
                 if (imgValue != "" && validImageTypes.includes(exten)) {
-                    $("[id*=idproof]")[0].removeAttribute('src');
                     AadharSuceess.show();
                     AadharFailed.hide();
                     $("[id*=RegularExpressionValidator5]").html('Only (.png , .jpg , .jpeg) files are allowed');
@@ -882,6 +881,13 @@ border: 3px solid #ccc;*/
             });
 
             $("[id*=btnSave]").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $("[id*=btnSuccessOk]").keydown(function (e) {
                 if (e.keyCode == 13) {
                     e.preventDefault();
                     return false;
@@ -1185,7 +1191,7 @@ border: 3px solid #ccc;*/
                                 <span id ="SpnPhone" runat="server" style="color: red;">*</span>
                                 </div>--%>
                                 <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
+                                 <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
                                 <div class="col-md-3 col-form-label">
 
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
@@ -1193,11 +1199,12 @@ border: 3px solid #ccc;*/
                                     <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
-
                                 </div>
                             </div>
 
-                            <div id="dv_dateofvisit" runat="server" class="form-group row">
+                            <div id="dv_visitor2" runat="server" class="form-group row">
+                               
+
                                 <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Date of Visit</label>
                                 <div class="col-md-4 col-form-label">
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
@@ -1222,27 +1229,17 @@ border: 3px solid #ccc;*/
                                     <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
                                 </div>
 
-
-                                <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                <%--  <div id="dvMeeting" runat="server" style="display: block;">
-                                  <span id ="spnMeeting" runat="server" style="color: red;">*</span>
-                                    </div>--%>
-                                <div id="div_MeetingWith" runat="server" visible="false">
-                                    <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
-                                    <div class="col-md-4 col-form-label">
-                                        <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
-                                        <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
-                                        <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
-                                        <%--    <asp:RequiredFieldValidator ID="rfvMeeting" runat="server" ControlToValidate="ddlDepartment" Visible="true" Display="Dynamic" Enabled="false"
-ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>--%>
-                                    </div>
-                                    <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
-
+                                <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                                <div id="div_MeetingWith1" runat="server" visible="false" class="col-md-4 col-form-label">
+                                    <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
+                                    <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
+                                    <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                                 </div>
-
-                                <%-- </div>--%>
+                                <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
                             </div>
+
+
 
                             <br />
                             <div id="dvVaccinationCheck" runat="server">
@@ -1251,7 +1248,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
 
                                 <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                                    <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
+                                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                                         <label class="col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Enter Your 2<sup>nd</sup> Dose Vaccination Date</label>
                                         <span id="DoseDateSuceess" class="m-badge m-badge--success m-badge--wide">
                                             <i class="fa fa-check-circle"></i>
@@ -1275,7 +1272,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 </div>
                                 &nbsp;
                      <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                         <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
+                         <div class="m-stack__item m-stack__item--center m-stack__item--middle">
 
                              <div class="font-weight-bold">
                                  Upload Vaccination Certificate 
@@ -1315,7 +1312,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
 
                                 &nbsp;
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <div class="font-weight-bold">
                                 Upload your photo without any mask
                              <span id="PhotoSuceess" class="m-badge m-badge--success m-badge--wide">
@@ -1371,7 +1368,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                 &nbsp;
 
                     <div class="m-stack m-stack--ver m-stack--general m-stack--demo">
-                        <div class="m-stack__item m-stack__item--center m-stack__item--middle" >
+                        <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                             <div class="font-weight-bold">
                                 Upload your valid Photo ID proof
                              <span id="AadharSuceess" class="m-badge m-badge--success m-badge--wide">
@@ -1385,9 +1382,9 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                             </div>
                             <br />
                             <div class="row">
-
-                                <div class="col-xl-12" style="padding-bottom: 1rem;">
+                              <div class="col-xl-12" style="padding-bottom: 1rem;">
                                     <div class="custom-file">
+
                                         <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />
                                         <label id="lbl_userpic" class="custom-file-label" for="customFile">
                                             Choose file
@@ -1397,6 +1394,7 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                                             ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Photo ID proof"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator5"
                                             ValidationGroup="validateVMS" runat="server" ControlToValidate="fileupload_userpic" ErrorMessage="Only (.png , .jpg , .jpeg) files are allowed" ValidationExpression="^.*\.(jpg|JPG|png|PNG|jpeg|JPEG)$"></asp:RegularExpressionValidator>
+
                                     </div>
                                 </div>
                             </div>
@@ -1735,7 +1733,6 @@ ValidationGroup="validateVMS" ForeColor="Red" InitialValue="0" ErrorMessage="Ple
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </asp:Content>
 

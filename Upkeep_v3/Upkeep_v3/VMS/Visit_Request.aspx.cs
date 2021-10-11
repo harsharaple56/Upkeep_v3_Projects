@@ -103,8 +103,8 @@ namespace Upkeep_v3.VMS
                 dv_rpt.Visible = false;
                 dv_visitor.Visible = false;
                 dv_visitor1.Visible = false;
+                dv_visitor2.Visible = false;
                 divDesc.Visible = false;
-                dv_dateofvisit.Visible = false;
             }
         }
 
@@ -147,14 +147,15 @@ namespace Upkeep_v3.VMS
                     ViewState["ConfigID"] = Convert.ToInt32(ddlVMSTitle.SelectedValue);
                     dv_visitor.Visible = true;
                     dv_visitor1.Visible = true;
+                    dv_visitor2.Visible = true;
                     divDesc.Visible = true;
-                    dv_dateofvisit.Visible = true;
                     BindVMSConfig();
                 }
                 else
                 {
                     dv_visitor.Visible = false;
                     dv_visitor1.Visible = false;
+                    dv_visitor2.Visible = false;
                     divDesc.Visible = false;
                     divCovid.Visible = false;
                     divCovid1.Visible = false;
@@ -162,8 +163,8 @@ namespace Upkeep_v3.VMS
                     dv_rpt.Visible = false;
                     rfvEmail.Enabled = false;
                     div_MeetingWith.Visible = false;
+                    div_MeetingWith1.Visible = false;
                     rfvphone.Enabled = false;
-                    dv_dateofvisit.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -430,10 +431,14 @@ namespace Upkeep_v3.VMS
 
                     // rfvMeeting.Enabled = true;
                     rfvMeetingNew.Enabled = true;
+                    div_MeetingWith.Visible = true;
+                    div_MeetingWith1.Visible = true;
                 }
                 else
                 {
+                    rfvMeetingNew.Enabled = false;
                     div_MeetingWith.Visible = false;
+                    div_MeetingWith1.Visible = false;
                 }
 
                 // spnEmailComp.Visible = true;

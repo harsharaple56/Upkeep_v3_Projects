@@ -283,13 +283,13 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvphone;
         
         /// <summary>
-        /// dv_dateofvisit control.
+        /// dv_visitor2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_dateofvisit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_visitor2;
         
         /// <summary>
         /// txtVMSDate control.
@@ -362,6 +362,15 @@ namespace Upkeep_v3.VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_MeetingWith;
+        
+        /// <summary>
+        /// div_MeetingWith1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_MeetingWith1;
         
         /// <summary>
         /// txtMeetUsers control.

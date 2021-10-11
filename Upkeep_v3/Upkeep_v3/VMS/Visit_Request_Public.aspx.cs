@@ -116,7 +116,7 @@ namespace Upkeep_v3.VMS
                 Fetch_User_UserGroupList();
                 Fetch_Department();
                 BindVMSTitle();
-
+                dv_rpt.Visible = false;
                 div_VisitDetails.Visible = false;
             }
         }
@@ -440,13 +440,15 @@ namespace Upkeep_v3.VMS
                 {
                     // rfvMeeting.Enabled = true;
                     div_MeetingWith.Visible = true;
-                    lbl_MeetingWith.Visible = true;
+                    div_MeetingWith1.Visible = true;
+                    rfvMeetingNew.Visible = true;
                     //rfvMeetingNew.Enabled = true;
                 }
                 else
                 {
                     div_MeetingWith.Visible = false;
-                    lbl_MeetingWith.Visible = false;
+                    div_MeetingWith1.Visible = false;
+                    rfvMeetingNew.Visible = false;
                     //  rfvMeetingNew.Enabled = false;
 
                 }
