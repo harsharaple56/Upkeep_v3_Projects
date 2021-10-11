@@ -248,6 +248,21 @@ background-color: blanchedalmond;
                 var rating = parseInt($('.ulStars li.selected').last().data('value'), 10);
 
                 $(this).parent().parent().siblings('.hdnStar').val(rating);
+
+                var getID = $(this).parent().parent().parent().parent().attr('ID');
+                var getBehindvalue = getID.split('_').pop();
+                var inputdynamicname = 'StarTextBox_' + getBehindvalue;
+                if (rating == "1" || rating == "2") {
+                    if ($(this).parent().parent().children()[1].children[1] == undefined) {
+                        $(this).parent().after("<div><label style='font-size:20px'>Feedback : </label><input name='" + inputdynamicname + "' id='feedback' placeholder='Please enter your reason' type='text' class='form-control' required/></div>");
+                    }
+                }
+
+                if (rating == "3" || rating == "4" || rating == "5") {
+                    if ($(this).parent().parent().children()[1].children[1] != undefined) {
+                        $(this).parent().parent().children()[1].remove();
+                    }
+                }
                 //var msg = "";
                 //if (ratingValue > 1) {
                 //    msg = "Thanks! You rated this " + ratingValue + " stars.";
@@ -278,6 +293,21 @@ background-color: blanchedalmond;
                         $(this).parent().find(".rating" + i).text(emoji[0]);
                         $(this).parent().find(".rating" + i).removeClass("selectedSmiley");
 
+                    }
+                }
+
+                var getID = $(this).parent().parent().attr('ID');
+                var getBehindvalue = getID.split('_').pop();
+                var inputdynamicname = 'DynamicTextBox_' + getBehindvalue;
+                if (rating == "1" || rating == "2") {
+                    if ($(this).parent().parent().children()[1].children[1] == undefined) {
+                        $(this).parent().after("<div><label style='font-size:20px'>Feedback : </label><input name='" + inputdynamicname + "' id='feedback' placeholder='Please enter your reason' type='text' class='form-control' required/></div>");
+                    }
+                }
+
+                if (rating == "3" || rating == "4" || rating == "5") {
+                    if ($(this).parent().parent().children()[1].children[1] != undefined) {
+                        $(this).parent().parent().children()[1].remove();
                     }
                 }
 
@@ -421,11 +451,11 @@ background-color: blanchedalmond;
         function callSaveAlert() {
             //alert('hiiiiii');
             //$("#m_sweetalert_demo_61").click();
-             $("#m_sweetalert_demo_61").click(function () {
+            $("#m_sweetalert_demo_61").click(function () {
                 //alert('show msg');
                 swal({ position: "center", type: "success", title: "Thanks for your valuable time, Your feedback helps us to serve you better.", showConfirmButton: !1, timer: 3000 })
                 //alert('show msg2312987978');
-                 event.preventDefault()
+                event.preventDefault()
             });
         }
     </script>
@@ -487,7 +517,6 @@ background-color: blanchedalmond;
                                         </cc1:ModalPopupExtender>
 
                                         <%--<button type="button" class="btn btn-success m-btn m-btn--custom m_sweetalert_demo_6" id="m_sweetalert_demo_3" runat="server">Success</button>--%>
-
                                     </div>
                                 </div>
 
@@ -498,7 +527,7 @@ background-color: blanchedalmond;
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
 
-                               <%-- <div class="form-group m-form__group row" id="dvBanner" runat="server">
+                                <%-- <div class="form-group m-form__group row" id="dvBanner" runat="server">
 
                                     <img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />
 
@@ -618,6 +647,7 @@ background-color: blanchedalmond;
                                                                 <i class='fa fa-star fa-fw'></i>
                                                             </li>
                                                         </ul>
+                                                        <div id="Div1" runat="server"></div>
                                                     </div>
                                                     <div>
                                                     </div>
@@ -647,11 +677,15 @@ background-color: blanchedalmond;
                                                 <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
                                             </div>
                                             <div id="divEmoji" style="display: none" runat="server">
-                                                <div class="ratingSmiley text-center">
+                                                <div id="divRating" class="ratingSmiley text-center">
                                                     <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
-                                                    <span class="rating1">😶</span><span class="rating2">😶</span><span class="rating3">😶</span><span class="rating4">😶</span><span class="rating5">😶</span>
-
+                                                    <span class="rating1">😶</span>
+                                                    <span class="rating2">😶</span>
+                                                    <span class="rating3">😶</span>
+                                                    <span class="rating4">😶</span>
+                                                    <span class="rating5">😶</span>
                                                 </div>
+                                                <div id="example" runat="server"></div>
                                             </div>
                                         </div>
 
