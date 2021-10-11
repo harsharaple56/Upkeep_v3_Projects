@@ -316,7 +316,6 @@
                     //alert(image);
                     //image = "~/WorkPermitImages/19-03-2020/48_63_3_0.jpg";
 
-                    alert(image);
                     if (title.includes("Image")) {
                         // alert("Image");
 
