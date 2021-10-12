@@ -964,6 +964,7 @@ namespace Upkeep_v3.VMS
                     string UserPhotoSelfPath_Brows = string.Empty;
                     string GetUserPhotoIDPath = string.Empty;
                     string GetUserSelfPhotoPath = string.Empty;
+                    string storefilePathtoDB = string.Empty;
 
                     if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                     {
@@ -996,7 +997,6 @@ namespace Upkeep_v3.VMS
                                 #endregion
 
                                 #region Certificate PDF
-                                string storefilePathtoDB = string.Empty;
                                 if (VCertificate.HasFile)
                                 {
                                     try
